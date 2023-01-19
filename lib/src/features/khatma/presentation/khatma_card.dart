@@ -10,14 +10,14 @@ class KhatmaCard extends StatelessWidget {
   final VoidCallback? onPressed;
 
   // * Keys for testing using find.byKey()
-  static const productCardKey = Key('product-card');
+  static const khatmaCardKey = Key('khatma-card');
 
   @override
   Widget build(BuildContext context) {
     // TODO: Inject formatter
     return Card(
       child: InkWell(
-        key: productCardKey,
+        key: khatmaCardKey,
         onTap: onPressed,
         child: Padding(
           padding: const EdgeInsets.all(Sizes.p16),

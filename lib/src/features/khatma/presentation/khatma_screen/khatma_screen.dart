@@ -26,7 +26,7 @@ class KhatmaScreen extends StatelessWidget {
             value: khatmaValue,
             data: (khatma) => khatma == null
                 ? EmptyPlaceholderWidget(
-                    message: 'Product not found'.hardcoded,
+                    message: 'Khatma not found'.hardcoded,
                   )
                 : CustomScrollView(
                     slivers: [
