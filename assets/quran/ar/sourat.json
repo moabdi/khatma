@@ -1,0 +1,914 @@
+[
+  {
+    "id": 1,
+    "name": "الفاتحة",
+    "type": "mecque",
+    "verses": 7,
+    "page": 1,
+    "pages": 1
+  },
+  {
+    "id": 2,
+    "name": "البقرة",
+    "type": "medine",
+    "verses": 286,
+    "page": 2,
+    "pages": 48
+  },
+  {
+    "id": 3,
+    "name": "آل عمران",
+    "type": "medine",
+    "verses": 200,
+    "page": 50,
+    "pages": 27
+  },
+  {
+    "id": 4,
+    "name": "النساء",
+    "type": "medine",
+    "verses": 176,
+    "page": 77,
+    "pages": 29
+  },
+  {
+    "id": 5,
+    "name": "المائدة",
+    "type": "medine",
+    "verses": 120,
+    "page": 106,
+    "pages": 22
+  },
+  {
+    "id": 6,
+    "name": "الأنعام",
+    "type": "mecque",
+    "verses": 165,
+    "page": 128,
+    "pages": 23
+  },
+  {
+    "id": 7,
+    "name": "الأعراف",
+    "type": "mecque",
+    "verses": 206,
+    "page": 151,
+    "pages": 26
+  },
+  {
+    "id": 8,
+    "name": "الأنفال",
+    "type": "medine",
+    "verses": 75,
+    "page": 177,
+    "pages": 10
+  },
+  {
+    "id": 9,
+    "name": "التوبة",
+    "type": "medine",
+    "verses": 129,
+    "page": 187,
+    "pages": 21
+  },
+  {
+    "id": 10,
+    "name": "يونس",
+    "type": "mecque",
+    "verses": 109,
+    "page": 208,
+    "pages": 13
+  },
+  {
+    "id": 11,
+    "name": "هود",
+    "type": "mecque",
+    "verses": 123,
+    "page": 221,
+    "pages": 14
+  },
+  {
+    "id": 12,
+    "name": "يوسف",
+    "type": "mecque",
+    "verses": 111,
+    "page": 235,
+    "pages": 14
+  },
+  {
+    "id": 13,
+    "name": "الرعد",
+    "type": "medine",
+    "verses": 43,
+    "page": 249,
+    "pages": 6
+  },
+  {
+    "id": 14,
+    "name": "ابراهيم",
+    "type": "mecque",
+    "verses": 52,
+    "page": 255,
+    "pages": 7
+  },
+  {
+    "id": 15,
+    "name": "الحجر",
+    "type": "mecque",
+    "verses": 99,
+    "page": 262,
+    "pages": 5
+  },
+  {
+    "id": 16,
+    "name": "النحل",
+    "type": "mecque",
+    "verses": 128,
+    "page": 267,
+    "pages": 15
+  },
+  {
+    "id": 17,
+    "name": "الإسراء",
+    "type": "mecque",
+    "verses": 111,
+    "page": 282,
+    "pages": 11
+  },
+  {
+    "id": 18,
+    "name": "الكهف",
+    "type": "mecque",
+    "verses": 110,
+    "page": 293,
+    "pages": 12
+  },
+  {
+    "id": 19,
+    "name": "مريم",
+    "type": "mecque",
+    "verses": 98,
+    "page": 305,
+    "pages": 7
+  },
+  {
+    "id": 20,
+    "name": "طه",
+    "type": "mecque",
+    "verses": 135,
+    "page": 312,
+    "pages": 10
+  },
+  {
+    "id": 21,
+    "name": "الأنبياء",
+    "type": "mecque",
+    "verses": 112,
+    "page": 322,
+    "pages": 10
+  },
+  {
+    "id": 22,
+    "name": "الحج",
+    "type": "medine",
+    "verses": 78,
+    "page": 332,
+    "pages": 10
+  },
+  {
+    "id": 23,
+    "name": "المؤمنون",
+    "type": "mecque",
+    "verses": 118,
+    "page": 342,
+    "pages": 8
+  },
+  {
+    "id": 24,
+    "name": "النور",
+    "type": "medine",
+    "verses": 64,
+    "page": 350,
+    "pages": 9
+  },
+  {
+    "id": 25,
+    "name": "الفرقان",
+    "type": "mecque",
+    "verses": 77,
+    "page": 359,
+    "pages": 8
+  },
+  {
+    "id": 26,
+    "name": "الشعراء",
+    "type": "mecque",
+    "verses": 227,
+    "page": 367,
+    "pages": 10
+  },
+  {
+    "id": 27,
+    "name": "النمل",
+    "type": "mecque",
+    "verses": 93,
+    "page": 377,
+    "pages": 8
+  },
+  {
+    "id": 28,
+    "name": "القصص",
+    "type": "mecque",
+    "verses": 88,
+    "page": 385,
+    "pages": 11
+  },
+  {
+    "id": 29,
+    "name": "العنكبوت",
+    "type": "mecque",
+    "verses": 69,
+    "page": 396,
+    "pages": 8
+  },
+  {
+    "id": 30,
+    "name": "الروم",
+    "type": "mecque",
+    "verses": 60,
+    "page": 404,
+    "pages": 7
+  },
+  {
+    "id": 31,
+    "name": "لقمان",
+    "type": "mecque",
+    "verses": 34,
+    "page": 411,
+    "pages": 4
+  },
+  {
+    "id": 32,
+    "name": "السجدة",
+    "type": "mecque",
+    "verses": 30,
+    "page": 415,
+    "pages": 3
+  },
+  {
+    "id": 33,
+    "name": "الأحزاب",
+    "type": "medine",
+    "verses": 73,
+    "page": 418,
+    "pages": 10
+  },
+  {
+    "id": 34,
+    "name": "سبإ",
+    "type": "mecque",
+    "verses": 54,
+    "page": 428,
+    "pages": 6
+  },
+  {
+    "id": 35,
+    "name": "فاطر",
+    "type": "mecque",
+    "verses": 45,
+    "page": 434,
+    "pages": 6
+  },
+  {
+    "id": 36,
+    "name": "يس",
+    "type": "mecque",
+    "verses": 83,
+    "page": 440,
+    "pages": 6
+  },
+  {
+    "id": 37,
+    "name": "الصافات",
+    "type": "mecque",
+    "verses": 182,
+    "page": 446,
+    "pages": 7
+  },
+  {
+    "id": 38,
+    "name": "ص",
+    "type": "mecque",
+    "verses": 88,
+    "page": 453,
+    "pages": 5
+  },
+  {
+    "id": 39,
+    "name": "الزمر",
+    "type": "mecque",
+    "verses": 75,
+    "page": 458,
+    "pages": 9
+  },
+  {
+    "id": 40,
+    "name": "غافر",
+    "type": "mecque",
+    "verses": 85,
+    "page": 467,
+    "pages": 10
+  },
+  {
+    "id": 41,
+    "name": "فصلت",
+    "type": "mecque",
+    "verses": 54,
+    "page": 477,
+    "pages": 6
+  },
+  {
+    "id": 42,
+    "name": "الشورى",
+    "type": "mecque",
+    "verses": 53,
+    "page": 483,
+    "pages": 6
+  },
+  {
+    "id": 43,
+    "name": "الزخرف",
+    "type": "mecque",
+    "verses": 89,
+    "page": 489,
+    "pages": 7
+  },
+  {
+    "id": 44,
+    "name": "الدخان",
+    "type": "mecque",
+    "verses": 59,
+    "page": 496,
+    "pages": 3
+  },
+  {
+    "id": 45,
+    "name": "الجاثية",
+    "type": "mecque",
+    "verses": 37,
+    "page": 499,
+    "pages": 3
+  },
+  {
+    "id": 46,
+    "name": "الأحقاف",
+    "type": "mecque",
+    "verses": 35,
+    "page": 502,
+    "pages": 5
+  },
+  {
+    "id": 47,
+    "name": "محمد",
+    "type": "medine",
+    "verses": 38,
+    "page": 507,
+    "pages": 4
+  },
+  {
+    "id": 48,
+    "name": "الفتح",
+    "type": "medine",
+    "verses": 29,
+    "page": 511,
+    "pages": 4
+  },
+  {
+    "id": 49,
+    "name": "الحجرات",
+    "type": "medine",
+    "verses": 18,
+    "page": 515,
+    "pages": 3
+  },
+  {
+    "id": 50,
+    "name": "ق",
+    "type": "mecque",
+    "verses": 45,
+    "page": 518,
+    "pages": 2
+  },
+  {
+    "id": 51,
+    "name": "الذاريات",
+    "type": "mecque",
+    "verses": 60,
+    "page": 520,
+    "pages": 3
+  },
+  {
+    "id": 52,
+    "name": "الطور",
+    "type": "mecque",
+    "verses": 49,
+    "page": 523,
+    "pages": 3
+  },
+  {
+    "id": 53,
+    "name": "النجم",
+    "type": "mecque",
+    "verses": 62,
+    "page": 526,
+    "pages": 2
+  },
+  {
+    "id": 54,
+    "name": "القمر",
+    "type": "mecque",
+    "verses": 55,
+    "page": 528,
+    "pages": 3
+  },
+  {
+    "id": 55,
+    "name": "الرحمن",
+    "type": "medine",
+    "verses": 78,
+    "page": 531,
+    "pages": 3
+  },
+  {
+    "id": 56,
+    "name": "الواقعة",
+    "type": "mecque",
+    "verses": 96,
+    "page": 534,
+    "pages": 3
+  },
+  {
+    "id": 57,
+    "name": "الحديد",
+    "type": "medine",
+    "verses": 29,
+    "page": 537,
+    "pages": 5
+  },
+  {
+    "id": 58,
+    "name": "المجادلة",
+    "type": "medine",
+    "verses": 22,
+    "page": 542,
+    "pages": 3
+  },
+  {
+    "id": 59,
+    "name": "الحشر",
+    "type": "medine",
+    "verses": 24,
+    "page": 545,
+    "pages": 4
+  },
+  {
+    "id": 60,
+    "name": "الممتحنة",
+    "type": "medine",
+    "verses": 13,
+    "page": 549,
+    "pages": 2
+  },
+  {
+    "id": 61,
+    "name": "الصف",
+    "type": "medine",
+    "verses": 14,
+    "page": 551,
+    "pages": 2
+  },
+  {
+    "id": 62,
+    "name": "الجمعة",
+    "type": "medine",
+    "verses": 11,
+    "page": 553,
+    "pages": 1
+  },
+  {
+    "id": 63,
+    "name": "المنافقون",
+    "type": "medine",
+    "verses": 11,
+    "page": 554,
+    "pages": 2
+  },
+  {
+    "id": 64,
+    "name": "التغابن",
+    "type": "medine",
+    "verses": 18,
+    "page": 556,
+    "pages": 2
+  },
+  {
+    "id": 65,
+    "name": "الطلاق",
+    "type": "medine",
+    "verses": 12,
+    "page": 558,
+    "pages": 2
+  },
+  {
+    "id": 66,
+    "name": "التحريم",
+    "type": "medine",
+    "verses": 12,
+    "page": 560,
+    "pages": 2
+  },
+  {
+    "id": 67,
+    "name": "الملك",
+    "type": "mecque",
+    "verses": 30,
+    "page": 562,
+    "pages": 2
+  },
+  {
+    "id": 68,
+    "name": "القلم",
+    "type": "mecque",
+    "verses": 52,
+    "page": 564,
+    "pages": 2
+  },
+  {
+    "id": 69,
+    "name": "الحاقة",
+    "type": "mecque",
+    "verses": 52,
+    "page": 566,
+    "pages": 2
+  },
+  {
+    "id": 70,
+    "name": "المعارج",
+    "type": "mecque",
+    "verses": 44,
+    "page": 568,
+    "pages": 2
+  },
+  {
+    "id": 71,
+    "name": "نوح",
+    "type": "mecque",
+    "verses": 28,
+    "page": 570,
+    "pages": 2
+  },
+  {
+    "id": 72,
+    "name": "الجن",
+    "type": "mecque",
+    "verses": 28,
+    "page": 572,
+    "pages": 2
+  },
+  {
+    "id": 73,
+    "name": "المزمل",
+    "type": "mecque",
+    "verses": 20,
+    "page": 574,
+    "pages": 1
+  },
+  {
+    "id": 74,
+    "name": "المدثر",
+    "type": "mecque",
+    "verses": 56,
+    "page": 575,
+    "pages": 2
+  },
+  {
+    "id": 75,
+    "name": "القيامة",
+    "type": "mecque",
+    "verses": 40,
+    "page": 577,
+    "pages": 1
+  },
+  {
+    "id": 76,
+    "name": "الانسان",
+    "type": "medine",
+    "verses": 31,
+    "page": 578,
+    "pages": 2
+  },
+  {
+    "id": 77,
+    "name": "المرسلات",
+    "type": "mecque",
+    "verses": 50,
+    "page": 580,
+    "pages": 2
+  },
+  {
+    "id": 78,
+    "name": "النبإ",
+    "type": "mecque",
+    "verses": 40,
+    "page": 582,
+    "pages": 1
+  },
+  {
+    "id": 79,
+    "name": "النازعات",
+    "type": "mecque",
+    "verses": 46,
+    "page": 583,
+    "pages": 2
+  },
+  {
+    "id": 80,
+    "name": "عبس",
+    "type": "mecque",
+    "verses": 42,
+    "page": 585,
+    "pages": 1
+  },
+  {
+    "id": 81,
+    "name": "التكوير",
+    "type": "mecque",
+    "verses": 29,
+    "page": 586,
+    "pages": 1
+  },
+  {
+    "id": 82,
+    "name": "الإنفطار",
+    "type": "mecque",
+    "verses": 19,
+    "page": 587,
+    "pages": 1
+  },
+  {
+    "id": 83,
+    "name": "المطففين",
+    "type": "mecque",
+    "verses": 36,
+    "page": 587,
+    "pages": 2
+  },
+  {
+    "id": 84,
+    "name": "الإنشقاق",
+    "type": "mecque",
+    "verses": 25,
+    "page": 589,
+    "pages": 1
+  },
+  {
+    "id": 85,
+    "name": "البروج",
+    "type": "mecque",
+    "verses": 22,
+    "page": 590,
+    "pages": 1
+  },
+  {
+    "id": 86,
+    "name": "الطارق",
+    "type": "mecque",
+    "verses": 17,
+    "page": 591,
+    "pages": 1
+  },
+  {
+    "id": 87,
+    "name": "الأعلى",
+    "type": "mecque",
+    "verses": 19,
+    "page": 591,
+    "pages": 1
+  },
+  {
+    "id": 88,
+    "name": "الغاشية",
+    "type": "mecque",
+    "verses": 26,
+    "page": 592,
+    "pages": 1
+  },
+  {
+    "id": 89,
+    "name": "الفجر",
+    "type": "mecque",
+    "verses": 30,
+    "page": 593,
+    "pages": 1
+  },
+  {
+    "id": 90,
+    "name": "البلد",
+    "type": "mecque",
+    "verses": 20,
+    "page": 594,
+    "pages": 1
+  },
+  {
+    "id": 91,
+    "name": "الشمس",
+    "type": "mecque",
+    "verses": 15,
+    "page": 595,
+    "pages": 1
+  },
+  {
+    "id": 92,
+    "name": "الليل",
+    "type": "mecque",
+    "verses": 21,
+    "page": 595,
+    "pages": 1
+  },
+  {
+    "id": 93,
+    "name": "الضحى",
+    "type": "mecque",
+    "verses": 11,
+    "page": 596,
+    "pages": 1
+  },
+  {
+    "id": 94,
+    "name": "الشرح",
+    "type": "mecque",
+    "verses": 8,
+    "page": 596,
+    "pages": 1
+  },
+  {
+    "id": 95,
+    "name": "التين",
+    "type": "mecque",
+    "verses": 8,
+    "page": 597,
+    "pages": 1
+  },
+  {
+    "id": 96,
+    "name": "العلق",
+    "type": "mecque",
+    "verses": 19,
+    "page": 597,
+    "pages": 1
+  },
+  {
+    "id": 97,
+    "name": "القدر",
+    "type": "mecque",
+    "verses": 5,
+    "page": 598,
+    "pages": 1
+  },
+  {
+    "id": 98,
+    "name": "البينة",
+    "type": "medine",
+    "verses": 8,
+    "page": 598,
+    "pages": 1
+  },
+  {
+    "id": 99,
+    "name": "الزلزلة",
+    "type": "medine",
+    "verses": 8,
+    "page": 599,
+    "pages": 1
+  },
+  {
+    "id": 100,
+    "name": "العاديات",
+    "type": "mecque",
+    "verses": 11,
+    "page": 599,
+    "pages": 1
+  },
+  {
+    "id": 101,
+    "name": "القارعة",
+    "type": "mecque",
+    "verses": 11,
+    "page": 600,
+    "pages": 1
+  },
+  {
+    "id": 102,
+    "name": "التكاثر",
+    "type": "mecque",
+    "verses": 8,
+    "page": 600,
+    "pages": 1
+  },
+  {
+    "id": 103,
+    "name": "العصر",
+    "type": "mecque",
+    "verses": 3,
+    "page": 601,
+    "pages": 1
+  },
+  {
+    "id": 104,
+    "name": "الهمزة",
+    "type": "mecque",
+    "verses": 9,
+    "page": 601,
+    "pages": 1
+  },
+  {
+    "id": 105,
+    "name": "الفيل",
+    "type": "mecque",
+    "verses": 5,
+    "page": 601,
+    "pages": 1
+  },
+  {
+    "id": 106,
+    "name": "قريش",
+    "type": "mecque",
+    "verses": 4,
+    "page": 602,
+    "pages": 1
+  },
+  {
+    "id": 107,
+    "name": "الماعون",
+    "type": "mecque",
+    "verses": 7,
+    "page": 602,
+    "pages": 1
+  },
+  {
+    "id": 108,
+    "name": "الكوثر",
+    "type": "mecque",
+    "verses": 3,
+    "page": 602,
+    "pages": 1
+  },
+  {
+    "id": 109,
+    "name": "الكافرون",
+    "type": "mecque",
+    "verses": 6,
+    "page": 603,
+    "pages": 1
+  },
+  {
+    "id": 110,
+    "name": "النصر",
+    "type": "medine",
+    "verses": 3,
+    "page": 603,
+    "pages": 1
+  },
+  {
+    "id": 111,
+    "name": "المسد",
+    "type": "mecque",
+    "verses": 5,
+    "page": 603,
+    "pages": 1
+  },
+  {
+    "id": 112,
+    "name": "الإخلاص",
+    "type": "mecque",
+    "verses": 4,
+    "page": 604,
+    "pages": 1
+  },
+  {
+    "id": 113,
+    "name": "الفلق",
+    "type": "mecque",
+    "verses": 5,
+    "page": 604,
+    "pages": 1
+  },
+  {
+    "id": 114,
+    "name": "الناس",
+    "type": "mecque",
+    "verses": 6,
+    "page": 604,
+    "pages": 1
+  }
+]

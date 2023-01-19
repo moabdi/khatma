@@ -1,0 +1,963 @@
+[
+    {
+        "id": 1,
+        "juzz": 1,
+        "name":  "الم",
+        "transliteration": "'Alif-Lām-Mīm",
+        "translation": "'Alif-Lām-Mīm",
+        "page": 1,
+        "start": {
+            "sourat": 1,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 2,
+            "verse": 74
+        }
+    },
+    {
+        "id": 2,
+        "juzz": 1,
+        "name": "أَفَتَطْمَعُونَ",
+        "transliteration": "'Afataţma`ūna",
+        "translation": "Espérez-vous",
+        "page": 11,
+        "start": {
+            "sourat": 2,
+            "verse": 75
+        },
+        "end": {
+            "sourat": 2,
+            "verse": 141
+        }
+    },
+    {
+        "id": 3,
+        "juzz": 2,
+        "name": "سَيَقُولُ السُّفَهَاءُ",
+        "transliteration": "Sayaqūlu As-Sufahā'u",
+        "translation": "Les faibles d'esprit vont dire",
+        "page": 22,
+        "start": {
+            "sourat": 2,
+            "verse": 142
+        },
+        "end": {
+            "sourat": 2,
+            "verse": 202
+        }
+    },
+    {
+        "id": 4,
+        "juzz": 2,
+        "name": "وَاذْكُرُوا اللَّهَ",
+        "transliteration": "Wa Adhkurū Allāha",
+        "translation": "Et invoquez Allah",
+        "page": 32,
+        "start": {
+            "sourat": 2,
+            "verse": 203
+        },
+        "end": {
+            "sourat": 2,
+            "verse": 252
+        }
+    },
+    {
+        "id": 5,
+        "juzz": 3,
+        "name": "تِلْكَ ٱلْرُّسُلُ",
+        "transliteration": "Tilka Ar-Rusulu ",
+        "translation": "Parmi ces messagers",
+        "page": 42,
+        "start": {
+            "sourat": 2,
+            "verse": 253
+        },
+        "end": {
+            "sourat": 3,
+            "verse": 14
+        }
+    },
+    {
+        "id": 6,
+        "juzz": 3,
+        "name": "قُلْ أَؤُنَبِّئُكُم",
+        "transliteration": "Qul 'A'uunabbi'ukum",
+        "translation": "Dis : Puis-je vous apprendre",
+        "page": 51,
+        "start": {
+            "sourat": 3,
+            "verse": 15
+        },
+        "end": {
+            "sourat": 3,
+            "verse": 92
+        }
+    },
+    {
+        "id": 7,
+        "juzz": 4,
+        "name": "كُلُّ الطَّعَامِ",
+        "transliteration": "Kullu Aţ-Ţa`āmi",
+        "translation": "Toute nourriture",
+        "page": 62,
+        "start": {
+            "sourat": 3,
+            "verse": 93
+        },
+        "end": {
+            "sourat": 3,
+            "verse": 170
+        }
+    },
+{
+        "id": 8,
+        "juzz": 4,
+        "name": "يَسْتَبْشِرُونَ",
+        "transliteration": "Yastabshirūna",
+        "translation": "Ils sont ravis",
+        "page": 72,
+        "start": {
+            "sourat": 3,
+            "verse": 171
+        },
+        "end": {
+            "sourat": 4,
+            "verse": 23
+        }
+    },
+    {
+        "id": 9,
+        "juzz": 5,
+        "name": "وَٱلْمُحْصَنَاتُ",
+        "transliteration": "Wa Al-Muĥşanātu",
+        "translation": "Et, parmi les femmes",
+        "page": 82,
+        "start": {
+            "sourat": 4,
+            "verse": 24
+        },
+        "end": {
+            "sourat": 4,
+            "verse": 87
+        }
+    },
+{
+        "id": 10,
+        "juzz": 5,
+        "name": "فَمَا لَكُمْ فِي الْمُنَافِقِينَ",
+        "transliteration": "Famā Lakum Fī Al-Munāfiqīna",
+        "translation": "Qu'avez-vous au sujet des hypocrites",
+        "page": 92,
+        "start": {
+            "sourat": 4,
+            "verse": 88
+        },
+        "end": {
+            "sourat": 4,
+            "verse": 147
+        }
+    },
+    {
+        "id": 11,
+        "juzz": 6,
+        "name": "لَا يُحِبُّ ٱللهُ",
+        "transliteration": "Lā Yuĥibbu Allāhu",
+        "translation": "Allah n'aime",
+        "page": 102,
+        "start": {
+            "sourat": 4,
+            "verse": 148
+        },
+        "end": {
+            "sourat": 5,
+            "verse": 26
+        }
+    },
+    {
+        "id": 12,
+        "juzz": 6,
+        "name": "وَاتْلُ عَلَيْهِمْ",
+        "transliteration": "Wa Atlu `Alayhim",
+        "translation": "Et raconte-leur",
+        "page": 112,
+        "start": {
+            "sourat": 5,
+            "verse": 27
+        },
+        "end": {
+            "sourat": 5,
+            "verse": 81
+        }
+    },
+    {
+        "id": 13,
+        "juzz": 7,
+        "name": "لَتَجِدَنَّ",
+        "transliteration": "Latajidanna",
+        "translation": "Tu trouveras",
+        "page": 121,
+        "start": {
+            "sourat": 5,
+            "verse": 82
+        },
+        "end": {
+            "sourat": 6,
+            "verse": 35
+        }
+    },
+    {
+        "id": 14,
+        "juzz": 7,
+        "name": "إِنَّمَا يَسْتَجِيبُ",
+        "transliteration": "'Innamā Yastajību",
+        "translation": "Seuls ceux qui entendent répondent",
+        "page": 132,
+        "start": {
+            "sourat": 6,
+            "verse": 36
+        },
+        "end": {
+            "sourat": 6,
+            "verse": 110
+        }
+    },
+    {
+        "id": 15,
+        "juzz": 8,
+        "name": "وَلَوْ أَنَّنَا نَزَّلْنَا",
+        "transliteration": "Wa Law 'Annanā Nazzalnā",
+        "translation": "Et si Nous faisions descendre",
+        "page": 142,
+        "start": {
+            "sourat": 6,
+            "verse": 111
+        },
+        "end": {
+            "sourat": 6,
+            "verse": 165
+        }
+    },
+    {
+        "id": 16,
+        "juzz": 8,
+        "name": "المص كِتَابٌ",
+        "transliteration": "'Alif-Lām-Mīm-Şād Kitābun",
+        "translation": "Alif, Lâm, Mîm, Sâd. C'est un Livre",
+        "page": 151,
+        "start": {
+            "sourat": 7,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 7,
+            "verse": 87
+        }
+    },
+    {
+        "id": 17,
+        "juzz": 9,
+        "name": "قَالَ ٱلْمَلَأُ",
+        "transliteration": "Qāla Al-Mala'u",
+        "translation": "Les notables ont dit",
+        "page": 162,
+        "start": {
+            "sourat": 7,
+            "verse": 88
+        },
+        "end": {
+            "sourat": 7,
+            "verse": 170
+        }
+    },
+    {
+        "id": 18,
+        "juzz": 9,
+        "name": "وَإِذْ نَتَقْنَا",
+        "transliteration": "Wa 'Idh Nataqnā",
+        "translation": "Et lorsque Nous avons brandi",
+        "page": 173,
+        "start": {
+            "sourat": 7,
+            "verse": 171
+        },
+        "end": {
+            "sourat": 8,
+            "verse": 40
+        }
+    },
+    {
+        "id": 19,
+        "juzz": 10,
+        "name": "وَٱعْلَمُواْ",
+        "transliteration": "Wa A`lamū",
+        "translation": "Et sachez que",
+        "page": 182,
+        "start": {
+            "sourat": 8,
+            "verse": 41
+        },
+        "end": {
+            "sourat": 9,
+            "verse": 33
+        }
+    },
+    {
+        "id": 20,
+        "juzz": 10,
+        "name": " إِنَّ كَثِيرًا",
+        "transliteration": "'Inna Kathīrāan",
+        "translation": "Beaucoup de",
+        "page": 192,
+        "start": {
+            "sourat": 9,
+            "verse": 34
+        },
+        "end": {
+            "sourat": 9,
+            "verse": 92
+        }
+    },
+    {
+        "id": 21,
+        "juzz": 11,
+        "name": "إِنَّمَا السَّبِيلُ",
+        "transliteration": "'Innamā As-Sabīlu",
+        "translation": "Il n'y a de voie",
+        "page": 201,
+        "start": {
+            "sourat": 9,
+            "verse": 93
+        },
+        "end": {
+            "sourat": 10,
+            "verse": 25
+        }
+    },
+    {
+        "id": 22,
+        "juzz": 11,
+        "name": "لِّلَّذِينَ أَحْسَنُوا",
+        "transliteration": "Lilladhīna 'Aĥsanū",
+        "translation": "A ceux qui agissent en bien",
+        "page": 212,
+        "start": {
+            "sourat": 10,
+            "verse": 26
+        },
+        "end": {
+            "sourat": 11,
+            "verse": 5
+        }
+    },
+    {
+        "id": 23,
+        "juzz": 12,
+        "name": "وَمَا مِنْ دَآبَّةٍ",
+        "transliteration": "Wa Mā Min Dābbatin",
+        "translation": "Il n'y a point de bête",
+        "page": 222,
+        "start": {
+            "sourat": 11,
+            "verse": 6
+        },
+        "end": {
+            "sourat": 11,
+            "verse": 83
+        }
+    },
+    {
+        "id": 24,
+        "juzz": 12,
+        "name": "وَإِلَىٰ مَدْيَنَ",
+        "transliteration": "Wa 'Ilá Madyana",
+        "translation": "Et (Nous avons envoyé) aux Madyan",
+        "page": 231,
+        "start": {
+            "sourat": 11,
+            "verse": 84
+        },
+        "end": {
+            "sourat": 12,
+            "verse": 52
+        }
+    },
+    {
+        "id": 25,
+        "juzz": 13,
+        "name": "وَمَا أُبَرِّئُ",
+        "transliteration": "Wa Mā 'Ubarri'u",
+        "translation": "Je ne m'innocente cependant pas",
+        "page": 242,
+        "start": {
+            "sourat": 12,
+            "verse": 53
+        },
+        "end": {
+            "sourat": 13,
+            "verse": 18
+        }
+    },
+    {
+        "id": 26,
+        "juzz": 13,
+        "name": "أَفَمَن يَعْلَمُ",
+        "transliteration": "'Afaman Ya`lamu",
+        "translation": "Celui qui sait",
+        "page": 252,
+        "start": {
+            "sourat": 13,
+            "verse": 19
+        },
+        "end": {
+            "sourat": 14,
+            "verse": 52
+        }
+    },
+    {
+        "id": 27,
+        "juzz": 14,
+        "name": "رُّبَمَا",
+        "transliteration": "Rubamā",
+        "translation": "Probablement",
+        "page": 262,
+        "start": {
+            "sourat": 15,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 16,
+            "verse": 50
+        }
+    },
+    {
+        "id": 28,
+        "juzz": 14,
+        "name": "وَقَالَ اللَّهُ لَا تَتَّخِذُوا",
+        "transliteration": "Wa Qāla Allāhu Lā Tattakhidhū",
+        "translation": "Allah dit : Ne prenez",
+        "page": 272,
+        "start": {
+            "sourat": 16,
+            "verse": 51
+        },
+        "end": {
+            "sourat": 16,
+            "verse": 128
+        }
+    },
+    {
+        "id": 29,
+        "juzz": 15,
+        "name": "سُبْحَانَ ٱلَّذِى",
+        "transliteration": "Subĥāna Al-Ladhī",
+        "translation": "Gloire à Celui [Dieu]",
+        "page": 282,
+        "start": {
+            "sourat": 17,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 17,
+            "verse": 98
+        }
+    },
+    {
+        "id": 30,
+        "juzz": 15,
+        "name": " أَوَلَمْ يَرَوْا",
+        "transliteration": "N'ont-ils pas vu",
+        "translation": "Exalted is the One (Allahu ‘Azza wa-jalla) is who",
+        "page": 292,
+        "start": {
+            "sourat": 17,
+            "verse": 99
+        },
+        "end": {
+            "sourat": 18,
+            "verse": 74
+        }
+    },
+    {
+        "id": 31,
+        "juzz": 16,
+        "name": "قَالَ أَلَمْ أَقُل",
+        "transliteration": "Qāla 'Alam 'Aqul",
+        "translation": "Il lui dit: Ne t'ai je pas dit",
+        "page": 302,
+        "start": {
+            "sourat": 18,
+            "verse": 75
+        },
+        "end": {
+            "sourat": 19,
+            "verse": 98
+        }
+    },
+    {
+        "id": 32,
+        "juzz": 16,
+        "name": "طه",
+        "transliteration": "Tāhā",
+        "translation": "Tāhā",
+        "page": 312,
+        "start": {
+            "sourat": 20,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 20,
+            "verse": 135
+        }
+    },
+    {
+        "id": 33,
+        "juzz": 17,
+        "name": "اقْتَرَبَ",
+        "transliteration": "Iqtaraba",
+        "translation": "[L'échéance] approche",
+        "page": 322,
+        "start": {
+            "sourat": 21,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 21,
+            "verse": 112
+        }
+    },
+    {
+        "id": 34,
+        "juzz": 17,
+        "name": "يَا أَيُّهَا النَّاسُ",
+        "transliteration": "Yā 'Ayyuhā An-Nāsu",
+        "translation": "O hommes",
+        "page": 332,
+        "start": {
+            "sourat": 22,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 22,
+            "verse": 78
+        }
+    },
+    {
+        "id": 35,
+        "juzz": 18,
+        "name": "قَدْ أَفْلَحَ",
+        "transliteration": "Qad 'Aflaĥa",
+        "translation": "Bienheureux sont certes les croyants",
+        "page": 342,
+        "start": {
+            "sourat": 23,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 24,
+            "verse": 20
+        }
+    },
+    {
+        "id": 36,
+        "juzz": 18,
+        "name": "لَا تَتَّبِعُوا",
+        "transliteration": "Lā Tattabi`ū",
+        "translation": "Ne suivez pas",
+        "page": 352,
+        "start": {
+            "sourat": 24,
+            "verse": 21
+        },
+        "end": {
+            "sourat": 25,
+            "verse": 20
+        }
+    },
+    {
+        "id": 37,
+        "juzz": 19,
+        "name": "وَقَالَ الَّذِينَ",
+        "transliteration": "Wa Qāla Al-Ladhīna",
+        "translation": "Et ceux qui n'espèrent pas Nous rencontrer disent",
+        "page": 362,
+        "start": {
+            "sourat": 25,
+            "verse": 21
+        },
+        "end": {
+            "sourat": 26,
+            "verse": 110
+        }
+    },
+    {
+        "id": 38,
+        "juzz": 19,
+        "name": " قَالُوا أَنُؤْمِنُ",
+        "transliteration": "Qālū 'Anu'uminu",
+        "translation": "Ils dirent : Croirons-nous en toi",
+        "page": 371,
+        "start": {
+            "sourat": 26,
+            "verse": 111
+        },
+        "end": {
+            "sourat": 27,
+            "verse": 55
+        }
+    },
+    {
+        "id": 39,
+        "juzz": 20,
+        "name": "فَمَا كَانَ جَوَابَ",
+        "transliteration": "Famā Kāna Jawāba",
+        "translation": "Puis son peuple n'eut que cette réponse",
+        "page": 382,
+        "start": {
+            "sourat": 27,
+            "verse": 56
+        },
+        "end": {
+            "sourat": 28,
+            "verse": 50
+        }
+    },
+    {
+        "id": 40,
+        "juzz": 20,
+        "name": "وَلَقَدْ وَصَّلْنَا",
+        "transliteration": "Wa Laqad Waşşalnā",
+        "translation": "Nous leur avons déjà exposé la Parole",
+        "page": 392,
+        "start": {
+            "sourat": 28,
+            "verse": 51
+        },
+        "end": {
+            "sourat": 29,
+            "verse": 45
+        }
+    },
+    {
+        "id": 41,
+        "juzz": 21,
+        "name": "وَلَا تُجَادِلُوا",
+        "transliteration": "Wa Lā Tujādilū",
+        "translation": "Et ne discutez que de la meilleure façon",
+        "page": 402,
+        "start": {
+            "sourat": 29,
+            "verse": 46
+        },
+        "end": {
+            "sourat": 31,
+            "verse": 21
+        }
+    },
+    {
+        "id": 42,
+        "juzz": 21,
+        "name": "وَمَن يُسْلِمْ",
+        "transliteration": "Wa Man Yuslim",
+        "translation": "Et quiconque soumet",
+        "page": 413,
+        "start": {
+            "sourat": 31,
+            "verse": 22
+        },
+        "end": {
+            "sourat": 33,
+            "verse": 30
+        }
+    },
+    {
+        "id": 43,
+        "juzz": 22,
+        "name": "وَمَن يَقْنُتْ",
+        "transliteration": "Wa Man Yaqnut",
+        "translation": "Et quiconque qui est obéissant",
+        "page": 422,
+        "start": {
+            "sourat": 33,
+            "verse": 31
+        },
+        "end": {
+            "sourat": 34,
+            "verse": 23
+        }
+    },
+    {
+        "id": 44,
+        "juzz": 22,
+        "name": "قُلْ مَن يَرْزُقُكُم",
+        "transliteration": "Qul Man Yarzuqukum",
+        "translation": "Dis : Qui vous nourrit",
+        "page": 431,
+        "start": {
+            "sourat": 34,
+            "verse": 24
+        },
+        "end": {
+            "sourat": 36,
+            "verse": 27
+        }
+    },
+    {
+        "id": 45,
+        "juzz": 23,
+        "name": "وَمَا أَنزَلْنَا",
+        "transliteration": "Wa Mā 'Anzalnā",
+        "translation": "Nous ne fîmes descendre",
+        "page": 442,
+        "start": {
+            "sourat": 36,
+            "verse": 28
+        },
+        "end": {
+            "sourat": 37,
+            "verse": 144
+        }
+    },
+    {
+        "id": 46,
+        "juzz": 23,
+        "name": "فَنَبَذْنَاهُ",
+        "transliteration": "Fanabadhnāhu",
+        "translation": "Nous le jetâmes",
+        "page": 451,
+        "start": {
+            "sourat": 37,
+            "verse": 145
+        },
+        "end": {
+            "sourat": 39,
+            "verse": 31
+        }
+    },
+    {
+        "id": 47,
+        "juzz": 24,
+        "name": "فَمَنْ أَظْلَمُ",
+        "transliteration": "Faman 'Ažlamu",
+        "translation": "Quel pire injuste ",
+        "page": 462,
+        "start": {
+            "sourat": 39,
+            "verse": 32
+        },
+        "end": {
+            "sourat": 40,
+            "verse": 40
+        }
+    },
+    {
+        "id": 48,
+        "juzz": 24,
+        "name": "وَيَا قَوْمِ مَا لِي",
+        "transliteration": "Wa Yāqawmi Mā Lī",
+        "translation": "O mon peuple",
+        "page": 472,
+        "start": {
+            "sourat": 40,
+            "verse": 41
+        },
+        "end": {
+            "sourat": 41,
+            "verse": 46
+        }
+    },
+    {
+        "id": 49,
+        "juzz": 25,
+        "name": "إِلَيْهِ يُرَدُّ",
+        "transliteration": "'Ilayhi Yuraddu",
+        "translation": "A Lui revient",
+        "page": 482,
+        "start": {
+            "sourat": 41,
+            "verse": 47
+        },
+        "end": {
+            "sourat": 43,
+            "verse": 23
+        }
+    },
+    {
+        "id": 50,
+        "juzz": 25,
+        "name": "قَالَ أَوَلَوْ جِئْتُكُم",
+        "transliteration": "Qāla 'Awalaw Ji'tukum",
+        "translation": "Il dit : Même si je viens",
+        "page": 491,
+        "start": {
+            "sourat": 43,
+            "verse": 24
+        },
+        "end": {
+            "sourat": 45,
+            "verse": 37
+        }
+    },
+    {
+        "id": 51,
+        "juzz": 26,
+        "name": "حم مَا خَلَقْنَا",
+        "transliteration": "Ĥā-Mīm Mā Khalaqnā",
+        "translation": "Ha-Mim Nous n'avons créé",
+        "page": 502,
+        "start": {
+            "sourat": 46,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 48,
+            "verse": 17
+        }
+    },
+    {
+        "id": 52,
+        "juzz": 26,
+        "name": "لَّقَدْ رَضِيَ",
+        "transliteration": "Laqad Rađiya",
+        "translation": "Allah a très certainement agréé",
+        "page": 513,
+        "start": {
+            "sourat": 48,
+            "verse": 18
+        },
+        "end": {
+            "sourat": 51,
+            "verse": 30
+        }
+    },
+    {
+        "id": 53,
+        "juzz": 27,
+        "name": "قَالَ فَمَا خَطْبُكُمْ",
+        "transliteration": "Qāla Famā Khaţbukum",
+        "translation": "Quelle est donc votre mission",
+        "page": 522,
+        "start": {
+            "sourat": 51,
+            "verse": 31
+        },
+        "end": {
+            "sourat": 54,
+            "verse": 55
+        }
+    },
+    {
+        "id": 54,
+        "juzz": 27,
+        "name": "الرَّحْمَـٰنُ",
+        "transliteration": "Ar-Raĥmānu",
+        "translation": "Le Tout Miséricordieux",
+        "page": 531,
+        "start": {
+            "sourat": 55,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 57,
+            "verse": 29
+        }
+    },
+    {
+        "id": 55,
+        "juzz": 28,
+        "name": "قَدْ سَمِعَ",
+        "transliteration": "Qad Sami`a",
+        "translation": "Allah a bien entendu",
+        "page": 542,
+        "start": {
+            "sourat": 58,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 61,
+            "verse": 14
+        }
+    },
+    {
+        "id": 56,
+        "juzz": 28,
+        "name": "يُسَبِّحُ لِلَّهِ",
+        "transliteration": "Yusabbiĥu Lillāhi",
+        "translation": "Ils Glorifient Allah",
+        "page": 553,
+        "start": {
+            "sourat": 62,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 66,
+            "verse": 12
+        }
+    },
+    {
+        "id": 57,
+        "juzz": 29,
+        "name": "تَبَارَكَ الَّذِي",
+        "transliteration": "Tabāraka Al-Ladhī",
+        "translation": "Béni soit celui",
+        "page": 562,
+        "start": {
+            "sourat": 67,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 71,
+            "verse": 28
+        }
+    },
+    {
+        "id": 58,
+        "juzz": 29,
+        "name": "قُلْ أُوحِيَ",
+        "transliteration": "Qul 'Ūĥiya",
+        "translation": "Dis : Il m'a été révélé",
+        "page": 572,
+        "start": {
+            "sourat": 72,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 77,
+            "verse": 50
+        }
+    },
+    {
+        "id": 59,
+        "juzz": 30,
+        "name": "عَمَّ يَتَسَاءَلُونَ",
+        "transliteration": "`Amma Yatasā'alūna",
+        "translation": "Sur quoi s'interrogent-ils",
+        "page": 582,
+        "start": {
+            "sourat": 78,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 86,
+            "verse": 1
+        }
+    }
+,
+    {
+        "id": 60,
+        "juzz": 30,
+        "name": "سَبِّحِ",
+        "transliteration": "Sabbiĥi",
+        "translation": "Glorifie le nom de ton Seigneur",
+        "page": 591,
+        "start": {
+            "sourat": 87,
+            "verse": 1
+        },
+        "end": {
+            "sourat": 114,
+            "verse": 6
+        }
+    }
+]
