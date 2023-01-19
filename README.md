@@ -1,16 +1,11 @@
-# Flutter eCommerce App
+# Flutter Khatma App
 
-This is the official Flutter Project for this course:
+Khatma APP 
 
-- [Complete Flutter Course Bundle](https://codewithandrea.com/courses/complete-flutter-bundle/)
+### Prerequesities
+* Flutter (One flutter installed, run flutter doctor and install prerequesities)
+* Emulator android
 
-This will include a full-stack eCommerce app using Flutter & Firebase:
-
-![eCommerce App Preview](/.github/images/ecommerce-app-preview.png)
-
-A Flutter web preview of the app can be found here:
-
-- [Flutter Web Demo](https://my-shop-ecommerce-stg.web.app/)
-
-
-### [LICENSE: MIT](../LICENSE.md)
+### Run 
+* Run Emulator or branche your phone to laptop (with mode dev eabled)
+* Run main class (/lib/src/main.dart)
