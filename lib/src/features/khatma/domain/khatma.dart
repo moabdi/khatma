@@ -1,24 +1,23 @@
-/// * The khatma identifier is an important concept and can have its own type.
-typedef KhatmaID = String;
+import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
 
-/// Class representing a khatma.
 class Khatma {
-  const Khatma({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.price,
-    required this.availableQuantity,
-    this.avgRating = 0,
-    this.numRatings = 0,
-  });
+  String? id;
+  String name;
+  String description;
+  DateTime? start;
+  DateTime? end;
+  String? creator;
+  bool permanent = false;
+  KhatmaUnit unit;
 
-  /// Unique khatma id
-  final KhatmaID id;
-  final String title;
-  final String description;
-  final double price;
-  final int availableQuantity;
-  final double avgRating;
-  final int numRatings;
+  Khatma({
+    this.id,
+    required this.name,
+    required this.description,
+    this.start,
+    this.end,
+    this.creator,
+    this.permanent = false,
+    this.unit = KhatmaUnit.hizb,
+  });
 }

@@ -2,9 +2,7 @@ import 'dart:convert';
 
 class Preferences {
   String language = 'en';
-
   bool useDarkTheme = false;
-
   String riwaya;
 
   Preferences({

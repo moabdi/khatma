@@ -1,6 +1,6 @@
 import 'package:khatma_app/src/constants/test_khatmat.dart';
-import 'package:khatma_app/src/features/khatma/domain/khatma.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma_app/src/features/khatma/domain/khatma.dart';
 
 class FakeKhatmaRepository {
   final List<Khatma> _khatmat = kTestKhatmat;

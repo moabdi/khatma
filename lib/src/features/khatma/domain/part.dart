@@ -1,27 +1,29 @@
 import 'dart:convert';
 
-import 'package:khatma_app/src/features/khatma/domain/item.dart';
-import 'package:khatma_app/src/features/khatma/domain/sourat.dart';
-
-
-class Part extends Item {
+class Part {
+  int id;
+  String name;
+  String transliteration;
+  String translation;
   PartMarker? start;
   PartMarker? end;
-  Sourat? souratStart;
-  Sourat? souratEnd;
+  String type;
+  int? verses;
+  int? pages;
+  int? page;
 
   Part({
-    required int id,
-    required String name,
-    required String transliteration,
-    required String translation,
+    required this.id,
+    required this.name,
+    required this.transliteration,
+    required this.translation,
+    required this.type,
     this.start,
     this.end,
-  }) : super(
-            id: id,
-            name: name,
-            translation: translation,
-            transliteration: transliteration);
+    this.verses,
+    this.pages,
+    this.page,
+  });
 
   factory Part.fromMap(Map<String, dynamic> map) {
     return Part(
@@ -31,6 +33,10 @@ class Part extends Item {
       translation: map['translation'] ?? '',
       start: PartMarker.fromMap(map['start']),
       end: PartMarker.fromMap(map['start']),
+      type: map['type'],
+      verses: map['verses'],
+      pages: map['pages'],
+      page: map['page'],
     );
   }
 

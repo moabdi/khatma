@@ -61,7 +61,7 @@ class KhatmaDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(khatma.title, style: Theme.of(context).textTheme.headline6),
+              Text(khatma.name, style: Theme.of(context).textTheme.headline6),
               gapH8,
               Text(khatma.description),
             ],

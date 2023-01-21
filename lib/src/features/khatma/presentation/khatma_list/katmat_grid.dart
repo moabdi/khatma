@@ -36,7 +36,7 @@ class KhatmatGrid extends ConsumerWidget {
                   khatma: khatma,
                   onPressed: () => context.goNamed(
                     AppRoute.khatma.name,
-                    params: {'id': khatma.id},
+                    params: {'id': khatma.id!},
                   ),
                 );
               },

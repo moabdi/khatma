@@ -24,14 +24,7 @@ class KhatmaCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(khatma.title, style: Theme.of(context).textTheme.headline6),
-              gapH24,
-              Text(
-                khatma.availableQuantity <= 0
-                    ? 'Out of Stock'.hardcoded
-                    : 'Quantity: ${khatma.availableQuantity}'.hardcoded,
-                style: Theme.of(context).textTheme.caption,
-              )
+              Text(khatma.name, style: Theme.of(context).textTheme.headline6),
             ],
           ),
         ),
