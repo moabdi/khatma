@@ -1,1 +1,0 @@
- /Users/moabdi/development/khatma/.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart /Users/moabdi/development/khatma/.dart_tool/flutter_gen/gen_l10n/app_localizations.dart:  /Users/moabdi/development/khatma/l10n.yaml /Users/moabdi/development/khatma/lib/src/localization/app_en.arb
