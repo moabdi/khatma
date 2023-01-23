@@ -1,36 +1,42 @@
 import 'package:khatma_app/src/features/khatma/domain/khatma.dart';
+import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
 
 /// Test khatmat to be used until a data source is implemented
 var kTestKhatmat = [
   Khatma(
     id: '1',
-    name: 'Khatma 1',
-    description: 'Description 1',
+    name: 'Khatma privée',
+    description: 'Khatma personnel',
+    type: KhatmaType.custom,
   ),
   Khatma(
     id: '2',
-    name: 'Khatma 2',
-    description: 'Description 2',
+    name: 'Ramadan 2023',
+    description: 'A l''ocasion de ramadan 2023',
+    type: KhatmaType.ramadan,
   ),
   Khatma(
     id: '3',
-    name: 'Khatma 3',
-    description: 'Description 3',
+    name: 'Khatma Monsuel',
+    description: 'Hizeb raatib',
+    type: KhatmaType.monthly,
   ),
   Khatma(
     id: '4',
-    name: 'Khatma 4',
-    description: 'Description 4',
+    name: 'Mosquée plaisir',
+    description: 'Comunité plaisir ',
+    type: KhatmaType.mosque,
   ),
   Khatma(
     id: '5',
-    name: 'Khatma 5',
-    description: 'Description 5',
+    name: 'Khatma Joumouaa',
+    description: 'Lecture chque vendredi',
+    type: KhatmaType.friday,
   ),
   Khatma(
     id: '6',
-    name: 'Khatma 6',
-    description: 'Description 6',
+    name: 'Khatma classique',
+    description: 'Description classique',
   ),
   Khatma(
     id: '7',

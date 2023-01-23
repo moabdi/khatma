@@ -9,6 +9,7 @@ class Khatma {
   String? creator;
   bool permanent = false;
   KhatmaUnit unit;
+  KhatmaType? type;
 
   Khatma({
     this.id,
@@ -19,5 +20,6 @@ class Khatma {
     this.creator,
     this.permanent = false,
     this.unit = KhatmaUnit.hizb,
+    this.type,
   });
 }

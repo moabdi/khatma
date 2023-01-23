@@ -114,8 +114,8 @@ class AppTheme {
         colorScheme: colorScheme,
         textTheme: ButtonTextTheme.primary,
       ),
-      textTheme: _buildTextTheme(base.textTheme, "Roboto"),
-      primaryTextTheme: _buildTextTheme(base.primaryTextTheme, "Roboto"),
+      textTheme: _buildTextTheme(base.textTheme, "Lato"),
+      primaryTextTheme: _buildTextTheme(base.primaryTextTheme, "Lato"),
       platform: TargetPlatform.iOS,
       chipTheme: ChipThemeData(
         backgroundColor: Colors.grey.shade300,
@@ -155,12 +155,12 @@ class AppTheme {
       headline6: base.headline6?.copyWith(
           fontSize: 18, fontFamily: pFontFamily, fontWeight: FontWeight.w400),
       subtitle1: base.subtitle1?.copyWith(
-          fontSize: 16,
+          fontSize: 1,
           fontWeight: FontWeight.w900,
           fontFamily: pFontFamily,
           color: Colors.grey.shade600),
       subtitle2: base.subtitle2?.copyWith(
-          fontSize: 14, fontFamily: pFontFamily, fontWeight: FontWeight.w900),
+          fontSize: 4, fontFamily: pFontFamily, fontWeight: FontWeight.w900),
       bodyText1: base.bodyText1?.copyWith(
         fontSize: 16,
         fontFamily: pFontFamily,
@@ -198,7 +198,12 @@ class AppTheme {
       subtitle1: base.subtitle1?.copyWith(
           fontSize: 17, fontWeight: FontWeight.w500, fontFamily: pFontFamily),
       subtitle2: base.subtitle2?.copyWith(
-          fontSize: 16, fontFamily: pFontFamily, fontWeight: FontWeight.w400),
+          fontSize: 13, 
+          fontFamily: pFontFamily, 
+          fontWeight: FontWeight.w500,
+          
+          color: Colors.grey
+          ),
       bodyText1: base.bodyText1?.copyWith(
         fontSize: 18,
         fontFamily: pFontFamily,

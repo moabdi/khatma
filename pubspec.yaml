@@ -51,6 +51,7 @@ flutter:
     # Add all product images
     - assets/
     - assets/images/
+    - assets/images/khatma/
     - assets/quran/ar/
     - assets/quran/en/
     - assets/quran/ar/hafs/

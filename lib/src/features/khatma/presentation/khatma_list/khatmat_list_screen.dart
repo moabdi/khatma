@@ -1,4 +1,4 @@
-import 'package:khatma_app/src/features/khatma/presentation/top_khatma_card.dart';
+import 'package:khatma_app/src/features/khatma/presentation/khatma_list/top_khatma_card.dart';
 import 'package:khatma_app/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
 import 'package:khatma_app/src/features/khatma/presentation/khatma_list/katmat_grid.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +48,7 @@ class _KhatmatListScreenState extends State<KhatmatListScreen> {
         controller: _scrollController,
         slivers: [
           ResponsiveSliverCenter(
-            padding: const EdgeInsets.all(Sizes.p16),
+            padding: const EdgeInsets.all(Sizes.p12),
             child: Column(
               children: const[
                 SizedBox(height: 10),
@@ -57,6 +57,22 @@ class _KhatmatListScreenState extends State<KhatmatListScreen> {
                 KhatmatGrid(),
               ],
             ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_outlined),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: '',
           ),
         ],
       ),

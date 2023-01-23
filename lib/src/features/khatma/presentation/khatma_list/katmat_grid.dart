@@ -78,7 +78,7 @@ class KhatmatLayoutGrid extends StatelessWidget {
       return LayoutGrid(
         columnSizes: columnSizes,
         rowSizes: rowSizes,
-        rowGap: Sizes.p24, // equivalent to mainAxisSpacing
+        rowGap: Sizes.p8, // equivalent to mainAxisSpacing
         columnGap: Sizes.p24, // equivalent to crossAxisSpacing
         children: [
           // render all the items with automatic child placement
