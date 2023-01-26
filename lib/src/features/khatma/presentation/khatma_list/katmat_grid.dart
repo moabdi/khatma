@@ -35,7 +35,7 @@ class KhatmatGrid extends ConsumerWidget {
                 return KhatmaCard(
                   khatma: khatma,
                   onPressed: () => context.goNamed(
-                    AppRoute.khatma.name,
+                    AppRoute.khatmaDetails.name,
                     params: {'id': khatma.id!},
                   ),
                 );

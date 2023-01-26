@@ -181,7 +181,7 @@ class AppTheme {
   }
 
   static TextTheme _buildTextTheme(TextTheme base, String pFontFamily) {
-    var pFontFamily = GoogleFonts.lato().fontFamily;
+    var pFontFamily = GoogleFonts.openSans().fontFamily;
     return base.copyWith(
       headline1: base.headline1?.copyWith(
           fontSize: 112, fontFamily: pFontFamily, fontWeight: FontWeight.w900),
@@ -194,7 +194,7 @@ class AppTheme {
       headline5: base.headline5?.copyWith(
           fontSize: 22, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
       headline6: base.headline6?.copyWith(
-          fontSize: 20, fontFamily: pFontFamily, fontWeight: FontWeight.w400),
+          fontSize: 15, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
       subtitle1: base.subtitle1?.copyWith(
           fontSize: 17, fontWeight: FontWeight.w500, fontFamily: pFontFamily),
       subtitle2: base.subtitle2?.copyWith(

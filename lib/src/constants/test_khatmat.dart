@@ -5,8 +5,8 @@ import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
 var kTestKhatmat = [
   Khatma(
     id: '1',
-    name: 'Khatma privée',
-    description: 'Khatma personnel',
+    name: 'Khatmati',
+    description: '',
     type: KhatmaType.custom,
   ),
   Khatma(

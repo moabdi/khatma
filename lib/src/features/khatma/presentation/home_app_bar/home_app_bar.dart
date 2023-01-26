@@ -10,7 +10,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// - Orders button
 /// - Account or Sign-in button
 class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
-  const HomeAppBar({super.key});
+  const HomeAppBar({super.key, this.title});
+
+  final String? title;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,12 +26,12 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth < Breakpoint.tablet) {
       return AppBar(
-        title: Text('Khatma'.hardcoded),
+        title: title == null ? Text('Khatma'.hardcoded) : Text(title!),
         actions: [],
       );
     } else {
       return AppBar(
-        title: Text('Khatma'.hardcoded),
+        title: title == null ? Text('Khatma'.hardcoded) : Text(title!),
         actions: [],
       );
     }

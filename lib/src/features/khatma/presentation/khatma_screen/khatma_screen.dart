@@ -1,6 +1,12 @@
+import 'package:go_router/go_router.dart';
 import 'package:khatma_app/src/common_widgets/async_value_widget.dart';
+import 'package:khatma_app/src/common_widgets/text_or_empty.dart';
 import 'package:khatma_app/src/features/khatma/data/fake_khatma_repository.dart';
+import 'package:khatma_app/src/features/khatma/data/parts_repository.dart';
+import 'package:khatma_app/src/features/khatma/domain/part.dart';
 import 'package:khatma_app/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
+import 'package:khatma_app/src/features/khatma/presentation/khatma_card.dart';
+import 'package:khatma_app/src/features/khatma/presentation/khatma_list/katmat_grid.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:khatma_app/src/common_widgets/empty_placeholder_widget.dart';
 import 'package:flutter/material.dart';
@@ -43,9 +49,7 @@ class KhatmaScreen extends StatelessWidget {
   }
 }
 
-/// Shows all the khatma details along with actions to:
-/// - leave a review
-/// - add to cart
+/// Shows all the khatma details 
 class KhatmaDetails extends StatelessWidget {
   const KhatmaDetails({super.key, required this.khatma});
   final Khatma khatma;
@@ -63,7 +67,7 @@ class KhatmaDetails extends StatelessWidget {
             children: [
               Text(khatma.name, style: Theme.of(context).textTheme.headline6),
               gapH8,
-              Text(khatma.description),
+              TextOrEmpty(khatma.description),
             ],
           ),
         ),

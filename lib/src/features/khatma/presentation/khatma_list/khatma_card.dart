@@ -1,3 +1,4 @@
+import 'package:khatma_app/src/common_widgets/text_or_empty.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma_app/src/constants/app_sizes.dart';
@@ -15,10 +16,10 @@ class KhatmaCard extends StatelessWidget {
 
   String getAssetImage(String? type){
       if(type == null) {
-        return "assets/images/khatma/default.png";
+        return "assets/images/surat.jpg";
       }
 
-      return "assets/images/khatma/${type}.png";
+      return "assets/images/khatma/$type.png";
   }
 
   @override
@@ -28,29 +29,37 @@ class KhatmaCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
       ),
-      child: ListTile(
-        leading: Container(
-          padding: EdgeInsets.all(10),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 15),
+        child: ListTile(
+          leading: Container(
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.grey.shade100,
-            borderRadius: BorderRadius.all(Radius.circular(10.0))
+            borderRadius: const BorderRadius.all(Radius.circular(15.0))
           ),
           child:  Image(
             image: AssetImage(getAssetImage(khatma.type?.name)),
             fit: BoxFit.contain,
           ),
         ),
-        title: Text(khatma.name, style: AppTheme.getTheme().textTheme.titleLarge,),
-        subtitle: Text(khatma.description, style: AppTheme.getTheme().textTheme.subtitle2),
-        trailing: Container(
-          decoration: BoxDecoration(
-            color: Colors.blueGrey.shade50,
-            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(khatma.name, style: AppTheme.getTheme().textTheme.headline6,),
+              TextOrEmpty(khatma.description, style: AppTheme.getTheme().textTheme.subtitle2),
+            ],
           ),
-          child: const Icon(Icons.chevron_right_rounded)),
-        onTap: onPressed,
+          trailing: Container(
+            decoration: BoxDecoration(
+              color: Colors.blueGrey.shade50,
+              borderRadius: const BorderRadius.all(Radius.circular(10.0))
+            ),
+            child: const Icon(Icons.chevron_right_rounded)),
+          onTap: onPressed,
+        ),
       ),
     );
   }
-
 }

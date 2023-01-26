@@ -2,6 +2,7 @@ import 'package:khatma_app/src/features/authentication/data/fake_auth_repository
 import 'package:khatma_app/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:khatma_app/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:khatma_app/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
+import 'package:khatma_app/src/features/khatma/presentation/khatma_list/parts_selector_screen.dart';
 import 'package:khatma_app/src/features/khatma/presentation/khatma_screen/khatma_screen.dart';
 import 'package:khatma_app/src/features/khatma/presentation/khatma_list/khatmat_list_screen.dart';
 import 'package:khatma_app/src/routing/go_router_refresh_stream.dart';
@@ -13,6 +14,7 @@ import 'package:go_router/go_router.dart';
 enum AppRoute {
   home,
   khatma,
+  khatmaDetails,
   leaveReview,
   cart,
   checkout,
@@ -39,6 +41,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             builder: (context, state) {
               final khatmaId = state.params['id']!;
               return KhatmaScreen(khatmaId: khatmaId);
+            },
+          ),
+          GoRoute(
+            path: 'khatmaDetails/:id',
+            name: AppRoute.khatmaDetails.name,
+            builder: (context, state) {
+              final khatmaId = state.params['id']!;
+              return PartSelectorScreen(khatmaId: khatmaId);
             },
           ),
           GoRoute(
