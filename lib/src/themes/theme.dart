@@ -168,10 +168,11 @@ class AppTheme {
       headline6: base.headline6?.copyWith(
           fontSize: 15, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
       subtitle1: base.subtitle1?.copyWith(
-          fontSize: 13,
-          fontWeight: FontWeight.w600,
-          fontFamily: pFontFamily,
-          color: Colors.grey),
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        fontFamily: pFontFamily,
+        color: Colors.black.withOpacity(.5),
+      ),
       subtitle2: base.subtitle2?.copyWith(
           fontSize: 13,
           fontFamily: pFontFamily,

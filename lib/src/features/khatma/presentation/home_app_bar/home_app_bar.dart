@@ -1,3 +1,4 @@
+import 'package:khatma_app/src/common_widgets/text_or_empty.dart';
 import 'package:khatma_app/src/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,30 +31,32 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
           right: 10,
         ),
         child: AppBar(
+          title: TextOrEmpty(title),
           leading: IconButton(
-            icon: CircleAvatar(
-              backgroundColor: Colors.grey.shade50,
-              child: const Icon(Icons.notes),
-            ),
+            icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Scaffold.of(context).openDrawer();
+              // Perform action for back button
             },
           ),
           actions: [
             IconButton(
-                onPressed: () => {},
-                icon: const Icon(Icons.description_outlined)),
-            IconButton(
-                onPressed: () => {}, icon: const Icon(Icons.notifications)),
+              onPressed: () => {},
+              icon: const Icon(Icons.description),
+            ),
           ],
         ),
       );
     } else {
       return AppBar(
         actions: [
-          IconButton(onPressed: () => {}, icon: const Icon(Icons.bar_chart)),
           IconButton(
-              onPressed: () => {}, icon: const Icon(Icons.notifications)),
+            onPressed: () => {},
+            icon: const Icon(Icons.bar_chart),
+          ),
+          IconButton(
+            onPressed: () => {},
+            icon: const Icon(Icons.notifications),
+          ),
         ],
       );
     }

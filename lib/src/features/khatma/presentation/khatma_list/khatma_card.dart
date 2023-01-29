@@ -65,8 +65,18 @@ class KhatmaTile extends StatelessWidget {
             khatma.name,
             style: AppTheme.getTheme().textTheme.headline6,
           ),
-          TextOrEmpty("Dérniere lecture: hier",
-              style: AppTheme.getTheme().textTheme.subtitle2),
+          Row(
+            children: [
+              Icon(
+                Icons.schedule,
+                size: 14,
+                color: AppTheme.getTheme().textTheme.subtitle2!.color,
+              ),
+              gapW4,
+              TextOrEmpty("Depuis hier",
+                  style: AppTheme.getTheme().textTheme.subtitle2),
+            ],
+          ),
           gapH12,
           KhatmaCompletude(khatma: khatma),
           gapH4,

@@ -55,8 +55,8 @@ class TopKhatmaCard extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundColor: AppTheme.getTheme().backgroundColor.withOpacity(0.5),
-          child: icon,
           radius: 25,
+          child: icon,
         ),
         Text(
           count.toString(),

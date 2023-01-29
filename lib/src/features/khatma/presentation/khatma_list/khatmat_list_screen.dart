@@ -49,7 +49,9 @@ class _KhatmatListScreenState extends State<KhatmatListScreen> {
     return Scaffold(
       backgroundColor: HexColor("F5F5F8"),
       drawer: const MainDrawer(),
-      appBar: const HomeAppBar(),
+      appBar: const HomeAppBar(
+        title: "Home",
+      ),
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [

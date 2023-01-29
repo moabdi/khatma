@@ -1,12 +1,11 @@
-
-
 const sumOfTottalWords = 77797;
 
-double computeSouratCompletude(Set<int> ids) {
+double computeSouratCompletude(Set<int>? ids) {
+  if (ids == null) return 0;
   int sum = 0;
   for (var id in ids) {
     sum += surahWordsMap[id]!;
-   }
+  }
   return sum / sumOfTottalWords;
 }
 
