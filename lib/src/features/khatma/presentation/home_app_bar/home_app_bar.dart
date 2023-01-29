@@ -1,8 +1,6 @@
 import 'package:khatma_app/src/constants/breakpoints.dart';
-import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma_app/src/themes/theme.dart';
 
 /// Custom [AppBar] widget that is reused by the [KhatmatListScreen] and
 /// [ProductScreen].
@@ -27,29 +25,36 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth < Breakpoint.tablet) {
       return Padding(
-        padding: const EdgeInsets.only(top:15.0, right: 10,),
+        padding: const EdgeInsets.only(
+          top: 15.0,
+          right: 10,
+        ),
         child: AppBar(
           leading: IconButton(
             icon: CircleAvatar(
               backgroundColor: Colors.grey.shade50,
-              child: Icon(Icons.notes),
+              child: const Icon(Icons.notes),
             ),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
           ),
           actions: [
-            IconButton(onPressed:() => {}, icon: Icon(Icons.description_outlined)),
-            IconButton(onPressed:() => {}, icon: Icon(Icons.notifications)),
+            IconButton(
+                onPressed: () => {},
+                icon: const Icon(Icons.description_outlined)),
+            IconButton(
+                onPressed: () => {}, icon: const Icon(Icons.notifications)),
           ],
         ),
       );
     } else {
       return AppBar(
         actions: [
-          IconButton(onPressed:() => {}, icon: Icon(Icons.bar_chart)),
-          IconButton(onPressed:() => {}, icon: Icon(Icons.notifications)),
-          ],
+          IconButton(onPressed: () => {}, icon: const Icon(Icons.bar_chart)),
+          IconButton(
+              onPressed: () => {}, icon: const Icon(Icons.notifications)),
+        ],
       );
     }
   }

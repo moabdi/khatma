@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Custom image widget that loads an image as a static asset.
 class CustomImage extends StatelessWidget {
-  const CustomImage({super.key, required this.imageUrl});
+  const CustomImage(this.imageUrl, {super.key});
   final String imageUrl;
 
   @override

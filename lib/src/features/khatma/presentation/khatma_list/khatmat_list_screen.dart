@@ -48,7 +48,7 @@ class _KhatmatListScreenState extends State<KhatmatListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor("F5F5F8"),
-      drawer: MainDrawer(),
+      drawer: const MainDrawer(),
       appBar: const HomeAppBar(),
       body: CustomScrollView(
         controller: _scrollController,
@@ -57,15 +57,21 @@ class _KhatmatListScreenState extends State<KhatmatListScreen> {
             padding: const EdgeInsets.all(Sizes.p12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:[
+              children: [
                 const TopKhatmaCard(),
                 gapH20,
                 const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Khatma liste", style: AppTheme.getTheme().textTheme.subtitle1,),
-                     CIconButton(icon: FontAwesomeIcons.plus, label: "Nouvelle khatma", onPressed: ()=> {}),
+                    Text(
+                      "Khatma liste",
+                      style: AppTheme.getTheme().textTheme.subtitle1,
+                    ),
+                    CIconButton(
+                        icon: FontAwesomeIcons.plus,
+                        label: "Nouvelle khatma",
+                        onPressed: () => {}),
                   ],
                 ),
                 const SizedBox(height: 10),

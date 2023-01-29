@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:khatma_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';

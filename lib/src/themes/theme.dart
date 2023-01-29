@@ -9,9 +9,9 @@ class AppTheme {
   static Color secondaryColors = HexColor("#C66628");
   static const ColorScheme _shrineColorScheme = ColorScheme(
     primary: shrinePink100,
-    primaryVariant: shrineBrown900,
+    primaryContainer: shrineBrown900,
     secondary: shrinePink50,
-    secondaryVariant: shrineBrown900,
+    secondaryContainer: shrineBrown900,
     surface: shrineSurfaceWhite,
     background: shrineBackgroundWhite,
     error: shrineErrorRed,
@@ -49,10 +49,10 @@ class AppTheme {
       secondary: secondaryColor,
     );
     final ThemeData base = ThemeData.light();
-       
+
     TextTheme textTheme = _buildTextTheme(base.textTheme, "Lato");
     return base.copyWith(
-      brightness: Brightness.light,
+      brightness: Brightness.dark,
       backgroundColor: HexColor("F5F5F8"),
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
@@ -63,7 +63,7 @@ class AppTheme {
         titleTextStyle: textTheme.headline5!.copyWith(color: Colors.black),
         backgroundColor: Colors.grey.shade50,
         iconTheme: base.iconTheme.copyWith(
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: const Color.fromARGB(255, 0, 0, 0),
         ),
       ),
       bottomAppBarColor: const Color(0xFFF7FCFD),
@@ -75,7 +75,7 @@ class AppTheme {
       splashFactory: InkRipple.splashFactory,
       canvasColor: Colors.white,
       errorColor: const Color(0xFFB00020),
-      disabledColor: Colors.grey.shade200,
+      disabledColor: HexColor("F5F5F8"),
       buttonTheme: ButtonThemeData(
         colorScheme: const ColorScheme.light().copyWith(
           primary: primaryColor,
@@ -83,14 +83,18 @@ class AppTheme {
         ),
         textTheme: ButtonTextTheme.primary,
       ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.black,
+        elevation: 20,
+      ),
       textTheme: textTheme,
       primaryTextTheme: _buildTextTheme(base.textTheme, "Lato"),
       platform: TargetPlatform.iOS,
       chipTheme: ChipThemeData.fromDefaults(
         secondaryColor: primaryColor,
         brightness: ThemeData.light().brightness,
-        labelStyle: textTheme.subtitle2!
-        .copyWith(fontWeight: FontWeight.w100),
+        labelStyle: textTheme.subtitle2!.copyWith(fontWeight: FontWeight.w100),
       ),
       dividerTheme: DividerThemeData(
         color: Colors.grey[300],
@@ -120,7 +124,7 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0xFF0F0F0F),
       buttonTheme: ButtonThemeData(
         colorScheme: colorScheme,
-        textTheme: ButtonTextTheme.primary,
+        textTheme: ButtonTextTheme.normal,
       ),
       textTheme: _buildTextTheme(base.textTheme, "Lato"),
       primaryTextTheme: _buildTextTheme(base.primaryTextTheme, "Lato"),
@@ -130,11 +134,11 @@ class AppTheme {
         disabledColor: Colors.grey.shade300,
         selectedColor: primaryColor,
         secondarySelectedColor: Colors.grey.shade300,
-        padding: EdgeInsets.all(3),
+        padding: const EdgeInsets.all(3),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-        secondaryLabelStyle: TextStyle(),
+        secondaryLabelStyle: const TextStyle(),
         brightness: ThemeData.dark().brightness,
-        labelStyle: TextStyle(),
+        labelStyle: const TextStyle(),
       ),
       dividerTheme: DividerThemeData(
         color: Colors.grey[500],
@@ -142,49 +146,9 @@ class AppTheme {
         endIndent: 1,
         indent: 1,
       ),
-      inputDecorationTheme: InputDecorationTheme(
+      inputDecorationTheme: const InputDecorationTheme(
         filled: true,
       ),
-    );
-  }
-
-  static TextTheme _buildArTextTheme(TextTheme base, String pFontFamily) {
-    return base.copyWith(
-      headline1: base.headline1?.copyWith(
-          fontSize: 112, fontFamily: pFontFamily, fontWeight: FontWeight.w900),
-      headline2: base.headline2?.copyWith(
-          fontSize: 56, fontFamily: pFontFamily, fontWeight: FontWeight.w800),
-      headline3: base.headline3?.copyWith(
-          fontSize: 45, fontFamily: pFontFamily, fontWeight: FontWeight.w700),
-      headline4: base.headline4?.copyWith(
-          fontSize: 34, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
-      headline5: base.headline5?.copyWith(
-          fontSize: 20, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
-      headline6: base.headline6?.copyWith(
-          fontSize: 18, fontFamily: pFontFamily, fontWeight: FontWeight.w400),
-      subtitle1: base.subtitle1?.copyWith(
-          fontSize: 1,
-          fontWeight: FontWeight.w900,
-          fontFamily: pFontFamily,
-          color: Colors.grey.shade600),
-      subtitle2: base.subtitle2?.copyWith(
-          fontSize: 4, fontFamily: pFontFamily, fontWeight: FontWeight.w900),
-      bodyText1: base.bodyText1?.copyWith(
-        fontSize: 16,
-        fontFamily: pFontFamily,
-        fontWeight: FontWeight.w600,
-      ),
-      bodyText2: base.bodyText2?.copyWith(
-          fontSize: 18,
-          fontFamily: pFontFamily,
-          color: Colors.grey.shade500,
-          fontWeight: FontWeight.w300),
-      button: base.button?.copyWith(
-          fontSize: 14, fontWeight: FontWeight.w600, fontFamily: pFontFamily),
-      caption: base.caption?.copyWith(
-          fontSize: 12, fontFamily: pFontFamily, fontWeight: FontWeight.w400),
-      overline: base.overline?.copyWith(
-          fontSize: 10, fontFamily: pFontFamily, fontWeight: FontWeight.w100),
     );
   }
 
@@ -204,14 +168,15 @@ class AppTheme {
       headline6: base.headline6?.copyWith(
           fontSize: 15, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
       subtitle1: base.subtitle1?.copyWith(
-          fontSize: 13, fontWeight: FontWeight.w600, fontFamily: pFontFamily,
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+          fontFamily: pFontFamily,
           color: Colors.grey),
       subtitle2: base.subtitle2?.copyWith(
-          fontSize: 13, 
-          fontFamily: pFontFamily, 
+          fontSize: 13,
+          fontFamily: pFontFamily,
           fontWeight: FontWeight.w500,
-          color: Colors.grey
-      ),
+          color: Colors.grey),
       bodyText1: base.bodyText1?.copyWith(
         fontSize: 18,
         fontFamily: pFontFamily,

@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
+import 'package:khatma_app/src/features/khatma/utils/parts_helper.dart';
 
 class Khatma {
   String? id;
@@ -11,8 +10,8 @@ class Khatma {
   String? creator;
   bool permanent = false;
   SplitUnit unit;
-  KhatmaType? type;
-  double completude =  Random().nextDouble();
+  KhatmaType type;
+  Set<int> completedParts = {};
 
   Khatma({
     this.id,
@@ -23,6 +22,13 @@ class Khatma {
     this.creator,
     this.permanent = false,
     this.unit = SplitUnit.hizb,
-    this.type,
+    this.type = KhatmaType.custom,
   });
+
+  double get completude {
+    if (SplitUnit.sourat == unit) {
+      return computeSouratCompletude(completedParts);
+    }
+    return completedParts.length / unit.value;
+  }
 }

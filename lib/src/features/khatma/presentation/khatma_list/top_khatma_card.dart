@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:khatma_app/src/themes/theme.dart';
 
 class TopKhatmaCard extends StatelessWidget {
   const TopKhatmaCard({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +34,7 @@ class TopKhatmaCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                  ],
+                  children: [],
                 ),
               ),
             ),
