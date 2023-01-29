@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:khatma_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
@@ -10,25 +11,13 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(goRouterProvider);
+
     return MaterialApp.router(
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
       onGenerateTitle: (BuildContext context) => 'My Khatma'.hardcoded,
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-        appBarTheme: AppBarTheme(
-          backgroundColor: AppTheme.getTheme().primaryColor,
-          foregroundColor: Colors.white,
-          elevation: 0,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black, // background (button) color
-            foregroundColor: Colors.white, // foreground (text) color
-          ),
-        ),
-      ),
+      theme: AppTheme.getTheme(),
     );
   }
 }

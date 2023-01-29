@@ -11,8 +11,7 @@ class TopKhatmaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: HexColor("#25B8A0"),
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       onTap: () {},
       child: Ink(
         height: 120,
@@ -21,11 +20,11 @@ class TopKhatmaCard extends StatelessWidget {
             begin: Alignment.centerRight,
             end: Alignment.bottomLeft,
             colors: [
-              HexColor("#9EDCC7"),
-              HexColor("#25B8A0"),
+              AppTheme.getTheme().primaryColor.withOpacity(.2),
+              AppTheme.getTheme().primaryColor.withOpacity(.7),
             ],
           ),
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

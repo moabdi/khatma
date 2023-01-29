@@ -1,29 +1,33 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma_app/src/common_widgets/async_value_widget.dart';
 import 'package:khatma_app/src/common_widgets/safe_text.dart';
 import 'package:khatma_app/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma_app/src/features/khatma/data/parts_repository.dart';
+import 'package:khatma_app/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma_app/src/features/khatma/domain/part.dart';
 import 'package:khatma_app/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:khatma_app/src/themes/theme.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
-  const PartSelectorScreen({super.key, required this.khatmaId});
+  PartSelectorScreen({super.key, required this.khatmaId});
   final String khatmaId;
+  var random = new Random();
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final partsListValue = ref.watch(partListFutureProvider);
+    final khatmaValue = ref.watch(khatmaProvider(khatmaId));
     return Scaffold(
       appBar: const HomeAppBar(),
       body: Consumer(
         builder: (context, ref, _) {
-          final khatmaValue = ref.watch(khatmaProvider(khatmaId));
+          List<int> selectedParts = ref.watch(selectedItemsNotifier);
           return  AsyncValueWidget<List<Part>>(
           value: partsListValue,
           data: (parts) => parts.isEmpty
@@ -36,20 +40,32 @@ class PartSelectorScreen extends ConsumerWidget {
                   itemCount: parts.length,
                   itemBuilder: (BuildContext context, int index) {
                     var part = parts[index];
+                    var isIncluded = selectedParts.contains(index);
                     return ListTile(
+                      // enabled: isIncluded,
+                      // enableFeedback: isIncluded,
+                      onTap:() => ref.read(selectedItemsNotifier.notifier).toggleSelection(index),
+                      // selected: isIncluded,
+                      // selectedTileColor: Colors.grey.shade100,
                       leading: CircleAvatar(
-                        backgroundColor:AppTheme.getTheme().primaryColor,
+                        backgroundColor: HexColor(isIncluded ? "94A4BB":"DCF0EC"),
                         child: Text(part.id.toString(),
-                        style: const TextStyle(color: Colors.white),),
+                        style: AppTheme.getTheme().textTheme.headline6!
+                        .copyWith(color: HexColor(isIncluded ? "DCF0EC":"04AB67"))
+                        ),
                       ),
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SafeText(part.translation, maxLength: 20,),
-                          SafeText(part.name, maxLength: 25,),
+                          SafeText(part.translation, maxLength: 20,
+                          // style: AppTheme.getTheme().textTheme.bodyText2,
+                          ),
+                          SafeText(part.name, maxLength: 25,
+                          // style: AppTheme.getTheme().textTheme.headline6,
+                          ),
                         ],
                       ),
-                      subtitle: Text(part.transliteration),
+                      subtitle: Text(part.transliteration, style: AppTheme.getTheme().textTheme.subtitle2,),
                     );
                   },
                 ),

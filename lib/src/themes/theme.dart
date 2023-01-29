@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
@@ -48,14 +49,21 @@ class AppTheme {
       secondary: secondaryColor,
     );
     final ThemeData base = ThemeData.light();
+       
     TextTheme textTheme = _buildTextTheme(base.textTheme, "Lato");
     return base.copyWith(
+      brightness: Brightness.light,
+      backgroundColor: HexColor("F5F5F8"),
       appBarTheme: AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.grey.shade50,
+        ),
+        elevation: .2,
         centerTitle: false,
         titleTextStyle: textTheme.headline5!.copyWith(color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade50,
         iconTheme: base.iconTheme.copyWith(
-          color: HexColor("#534961"),
+          color: Color.fromARGB(255, 0, 0, 0),
         ),
       ),
       bottomAppBarColor: const Color(0xFFF7FCFD),
@@ -66,7 +74,6 @@ class AppTheme {
       splashColor: primaryColors.withOpacity(0.2),
       splashFactory: InkRipple.splashFactory,
       canvasColor: Colors.white,
-      backgroundColor: Colors.white,
       errorColor: const Color(0xFFB00020),
       disabledColor: Colors.grey.shade200,
       buttonTheme: ButtonThemeData(
@@ -82,7 +89,8 @@ class AppTheme {
       chipTheme: ChipThemeData.fromDefaults(
         secondaryColor: primaryColor,
         brightness: ThemeData.light().brightness,
-        labelStyle: textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w300),
+        labelStyle: textTheme.subtitle2!
+        .copyWith(fontWeight: FontWeight.w100),
       ),
       dividerTheme: DividerThemeData(
         color: Colors.grey[300],
@@ -196,14 +204,14 @@ class AppTheme {
       headline6: base.headline6?.copyWith(
           fontSize: 15, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
       subtitle1: base.subtitle1?.copyWith(
-          fontSize: 17, fontWeight: FontWeight.w500, fontFamily: pFontFamily),
+          fontSize: 13, fontWeight: FontWeight.w600, fontFamily: pFontFamily,
+          color: Colors.grey),
       subtitle2: base.subtitle2?.copyWith(
           fontSize: 13, 
           fontFamily: pFontFamily, 
           fontWeight: FontWeight.w500,
-          
           color: Colors.grey
-          ),
+      ),
       bodyText1: base.bodyText1?.copyWith(
         fontSize: 18,
         fontFamily: pFontFamily,

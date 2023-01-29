@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/services.dart';
 import 'package:khatma_app/src/app.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +15,7 @@ void main() async {
   usePathUrlStrategy();
   // * Register error handlers. For more info, see:
   // * https://docs.flutter.dev/testing/errors
-  registerErrorHandlers();
+  registerErrorHandlers(); 
   // * Entry point of the app
   runApp(const ProviderScope(child: MyApp()));
 }

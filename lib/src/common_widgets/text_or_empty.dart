@@ -8,6 +8,6 @@ class TextOrEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  text != null ? Text(text!, style: style,): const Text("");
+    return  text != null ? Text(text!, style: style,): const SizedBox(width: 0, height: 0,);
   }
 }

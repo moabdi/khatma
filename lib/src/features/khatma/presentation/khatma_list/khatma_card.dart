@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:khatma_app/src/common_widgets/text_or_empty.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,7 @@ class KhatmaCard extends StatelessWidget {
 
   String getAssetImage(String? type){
       if(type == null) {
-        return "assets/images/surat.jpg";
+        return "assets/images/khatma/khatma.png";
       }
 
       return "assets/images/khatma/$type.png";
@@ -25,18 +27,23 @@ class KhatmaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shadowColor: HexColor("F5F5F8"),
       elevation: 1,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
+        side: BorderSide(
+          color: HexColor("F5F5F8"),
+          width: 1.0,
+        ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10.0, bottom: 15),
+      child: Container(
+        height: 100,
         child: ListTile(
+          contentPadding: const EdgeInsets.all(10),
           leading: Container(
           padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.grey.shade100,
-            borderRadius: const BorderRadius.all(Radius.circular(15.0))
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(15.0))
           ),
           child:  Image(
             image: AssetImage(getAssetImage(khatma.type?.name)),
@@ -44,17 +51,30 @@ class KhatmaCard extends StatelessWidget {
           ),
         ),
           title: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(khatma.name, style: AppTheme.getTheme().textTheme.headline6,),
-              TextOrEmpty(khatma.description, style: AppTheme.getTheme().textTheme.subtitle2),
+              TextOrEmpty("Dérniere lecture 12/212/22", style: AppTheme.getTheme().textTheme.subtitle2),
+              gapH12,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(khatma.name, style: AppTheme.getTheme().textTheme.subtitle1,),
+                  Text((khatma.completude * 100).toStringAsFixed(0) +"%", style: AppTheme.getTheme().textTheme.subtitle2,),
+                ],
+              ),
+              gapH4,
+              LinearProgressIndicator(
+                backgroundColor: AppTheme.getTheme().disabledColor.withOpacity(.8),
+                valueColor: AlwaysStoppedAnimation<Color>(AppTheme.getTheme().primaryColor.withOpacity(khatma.completude)),
+                value: khatma.completude,
+              ),
             ],
           ),
           trailing: Container(
-            decoration: BoxDecoration(
-              color: Colors.blueGrey.shade50,
-              borderRadius: const BorderRadius.all(Radius.circular(10.0))
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10.0))
             ),
             child: const Icon(Icons.chevron_right_rounded)),
           onTap: onPressed,
