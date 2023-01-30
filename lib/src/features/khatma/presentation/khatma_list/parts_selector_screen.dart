@@ -26,7 +26,8 @@ class PartSelectorScreen extends ConsumerWidget {
         floatingActionButton: const FloatingButton(),
         body: Consumer(
           builder: (context, ref, _) {
-            final partsListValue = ref.watch(partListFutureProvider);
+            final partsListValue =
+                ref.watch(partsListFutureProvider(khatma.unit));
             List<int> selectedParts = ref.watch(selectedItemsNotifier);
             return AsyncValueWidget<List<Part>>(
               value: partsListValue,

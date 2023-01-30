@@ -35,7 +35,7 @@ class HomeAppBar extends ConsumerWidget with PreferredSizeWidget {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              // Perform action for back button
+              Navigator.pop(context);
             },
           ),
           actions: [
