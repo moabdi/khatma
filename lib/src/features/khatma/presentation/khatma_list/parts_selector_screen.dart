@@ -21,41 +21,44 @@ class PartSelectorScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final khatmaValue = ref.watch(khatmaProvider(khatmaId));
-    return AsyncValueWidget<Khatma?>(
-      value: khatmaValue,
-      data: (khatma) => Scaffold(
-        appBar: HomeAppBar(title: khatma!.name),
-        floatingActionButton: const FloatingButton(),
-        body: Consumer(
-          builder: (context, ref, _) {
-            final partsListValue =
-                ref.watch(partsListFutureProvider(khatma.unit));
-            List<int> selectedParts = ref.watch(selectedItemsNotifier);
-            return AsyncValueWidget<List<Part>>(
-              value: partsListValue,
-              data: (parts) => parts.isEmpty
-                  ? Text(
-                      'Cannot loading parts...'.hardcoded,
-                      style: Theme.of(context).textTheme.headline4,
-                    )
-                  : ListView.separated(
-                      separatorBuilder: (context, index) => const Divider(
-                        height: 2,
+    return Scaffold(
+      backgroundColor: AppTheme.getTheme().backgroundColor,
+      body: AsyncValueWidget<Khatma?>(
+        value: khatmaValue,
+        data: (khatma) => Scaffold(
+          appBar: HomeAppBar(title: khatma!.name),
+          floatingActionButton: const FloatingButton(),
+          body: Consumer(
+            builder: (context, ref, _) {
+              final partsListValue =
+                  ref.watch(partsListFutureProvider(khatma.unit));
+              List<int> selectedParts = ref.watch(selectedItemsNotifier);
+              return AsyncValueWidget<List<Part>>(
+                value: partsListValue,
+                data: (parts) => parts.isEmpty
+                    ? Text(
+                        'Cannot loading parts...'.hardcoded,
+                        style: Theme.of(context).textTheme.headline4,
+                      )
+                    : ListView.separated(
+                        separatorBuilder: (context, index) => const Divider(
+                          height: 2,
+                        ),
+                        itemCount: parts.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var part = parts[index];
+                          var isRead = khatma.completedParts!.contains(part.id);
+                          return PartListeTile(
+                            part,
+                            selectedParts: selectedParts,
+                            isRead: isRead,
+                            ref: ref,
+                          );
+                        },
                       ),
-                      itemCount: parts.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var part = parts[index];
-                        var isRead = khatma.completedParts!.contains(part.id);
-                        return PartListeTile(
-                          part,
-                          selectedParts: selectedParts,
-                          isRead: isRead,
-                          ref: ref,
-                        );
-                      },
-                    ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

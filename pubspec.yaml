@@ -1,5 +1,5 @@
 name: khatma
-description: Flutter eCommerce app (part of the Complete Flutter Course Bundle)
+description: khatma AMM78
 
 # Prevent accidental publishing to pub.dev.
 publish_to: 'none'
@@ -32,7 +32,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: 2.0.1
 
-# Custom app icon. For more info see: https://pub.dev/packages/flutter_launcher_icons
+# Custom app icon. For more info see: https://pub.dev/packages/flutterpub run flutter_launcher_icons_launcher_icons
 flutter_icons:
   ios: true
   android: true
