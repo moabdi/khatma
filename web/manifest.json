@@ -1,6 +1,6 @@
 {
-    "name": "khatma_app",
-    "short_name": "khatma_app",
+    "name": "khatma",
+    "short_name": "khatma",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

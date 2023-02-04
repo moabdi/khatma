@@ -1,5 +1,5 @@
-import 'package:khatma_app/src/features/khatma/domain/khatma.dart';
-import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 
 /// Test khatmat to be used until a data source is implemented
 var kTestKhatmat = [

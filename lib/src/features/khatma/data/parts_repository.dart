@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma_app/src/features/khatma/domain/part.dart';
-import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
+import 'package:khatma/src/features/khatma/domain/part.dart';
+import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 
 class PartsRepository {
   Future<List<Part>> fetchSouratList() async {

@@ -1,14 +1,14 @@
 import 'dart:math';
 
-import 'package:khatma_app/src/common_widgets/async_value_widget.dart';
-import 'package:khatma_app/src/features/khatma/data/fake_khatma_repository.dart';
-import 'package:khatma_app/src/features/khatma/domain/khatma.dart';
-import 'package:khatma_app/src/features/khatma/presentation/khatma_list/khatma_card.dart';
-import 'package:khatma_app/src/localization/string_hardcoded.dart';
-import 'package:khatma_app/src/routing/app_router.dart';
+import 'package:khatma/src/common_widgets/async_value_widget.dart';
+import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_list/khatma_card.dart';
+import 'package:khatma/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:khatma_app/src/constants/app_sizes.dart';
+import 'package:khatma/src/constants/app_sizes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

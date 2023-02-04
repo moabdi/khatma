@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(khatma_app LANGUAGES CXX)
+project(khatma LANGUAGES CXX)
 
-set(BINARY_NAME "khatma_app")
+set(BINARY_NAME "khatma")
 
 cmake_policy(SET CMP0063 NEW)
 

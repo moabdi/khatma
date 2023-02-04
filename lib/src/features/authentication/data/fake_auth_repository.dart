@@ -1,5 +1,5 @@
-import 'package:khatma_app/src/features/authentication/domain/app_user.dart';
-import 'package:khatma_app/src/utils/in_memory_store.dart';
+import 'package:khatma/src/features/authentication/domain/app_user.dart';
+import 'package:khatma/src/utils/in_memory_store.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FakeAuthRepository {

@@ -1,5 +1,5 @@
-import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
-import 'package:khatma_app/src/features/khatma/utils/parts_helper.dart';
+import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
+import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 
 class Khatma {
   String? id;

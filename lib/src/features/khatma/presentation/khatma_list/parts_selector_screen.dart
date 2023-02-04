@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma_app/src/common_widgets/async_value_widget.dart';
-import 'package:khatma_app/src/common_widgets/safe_text.dart';
-import 'package:khatma_app/src/features/khatma/data/fake_khatma_repository.dart';
-import 'package:khatma_app/src/features/khatma/data/parts_repository.dart';
-import 'package:khatma_app/src/features/khatma/data/selected_items_notifier.dart';
-import 'package:khatma_app/src/features/khatma/domain/khatma.dart';
-import 'package:khatma_app/src/features/khatma/domain/part.dart';
-import 'package:khatma_app/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
-import 'package:khatma_app/src/features/khatma/utils/collection_utils.dart';
-import 'package:khatma_app/src/localization/string_hardcoded.dart';
-import 'package:khatma_app/src/routing/app_router.dart';
-import 'package:khatma_app/src/themes/theme.dart';
+import 'package:khatma/src/common_widgets/async_value_widget.dart';
+import 'package:khatma/src/common_widgets/safe_text.dart';
+import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/parts_repository.dart';
+import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/part.dart';
+import 'package:khatma/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
+import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
+import 'package:khatma/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
   const PartSelectorScreen({super.key, required this.khatmaId});

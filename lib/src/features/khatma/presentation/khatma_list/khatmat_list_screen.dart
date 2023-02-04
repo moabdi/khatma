@@ -1,13 +1,13 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:khatma_app/src/common_widgets/icon_boutton.dart';
-import 'package:khatma_app/src/drawer/main_drawer.dart';
-import 'package:khatma_app/src/features/khatma/presentation/khatma_list/top_khatma_card.dart';
-import 'package:khatma_app/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
-import 'package:khatma_app/src/features/khatma/presentation/khatma_list/katmat_grid.dart';
+import 'package:khatma/src/common_widgets/icon_boutton.dart';
+import 'package:khatma/src/drawer/main_drawer.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_list/top_khatma_card.dart';
+import 'package:khatma/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_list/katmat_grid.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma_app/src/common_widgets/responsive_center.dart';
-import 'package:khatma_app/src/constants/app_sizes.dart';
-import 'package:khatma_app/src/themes/theme.dart';
+import 'package:khatma/src/common_widgets/responsive_center.dart';
+import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 /// Shows the list of khatmas with a search field at the top.
 class KhatmatListScreen extends StatefulWidget {

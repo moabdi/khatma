@@ -1,9 +1,9 @@
-import 'package:khatma_app/src/common_widgets/text_or_empty.dart';
+import 'package:khatma/src/common_widgets/text_or_empty.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma_app/src/constants/app_sizes.dart';
-import 'package:khatma_app/src/features/khatma/domain/khatma.dart';
-import 'package:khatma_app/src/features/khatma/utils/image_utils.dart';
-import 'package:khatma_app/src/themes/theme.dart';
+import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/utils/image_utils.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 /// Used to show a single khatma inside a card.
 class KhatmaCard extends StatelessWidget {

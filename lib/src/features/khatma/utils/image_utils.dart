@@ -1,4 +1,4 @@
-import 'package:khatma_app/src/features/khatma/enums/khatma_enums.dart';
+import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 
 class ImageUtils {
   static String getAssetImage(String? type) {

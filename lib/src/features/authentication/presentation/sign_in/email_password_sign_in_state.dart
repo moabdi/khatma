@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:khatma_app/src/features/authentication/presentation/sign_in/string_validators.dart';
-import 'package:khatma_app/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/features/authentication/presentation/sign_in/string_validators.dart';
+import 'package:khatma/src/localization/string_hardcoded.dart';
 
 /// Form type for email & password authentication
 enum EmailPasswordSignInFormType { signIn, register }

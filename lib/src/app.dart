@@ -1,8 +1,8 @@
-import 'package:khatma_app/src/localization/string_hardcoded.dart';
-import 'package:khatma_app/src/routing/app_router.dart';
+import 'package:khatma/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma_app/src/themes/theme.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});

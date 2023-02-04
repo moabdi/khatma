@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma_app/src/themes/theme.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class TopKhatmaCard extends StatelessWidget {
   const TopKhatmaCard({
