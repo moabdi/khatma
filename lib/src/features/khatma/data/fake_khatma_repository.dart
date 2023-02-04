@@ -19,7 +19,6 @@ class FakeKhatmaRepository {
   }
 
   Stream<List<Khatma>> watchKhatmaList() async* {
-    await Future.delayed(const Duration(seconds: 1));
     yield _khatmat;
   }
 

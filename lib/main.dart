@@ -13,7 +13,9 @@ void main() async {
   // * Register error handlers. For more info, se
   registerErrorHandlers();
   // * Entry point of the app
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 void registerErrorHandlers() {

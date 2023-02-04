@@ -32,14 +32,14 @@ var kTestKhatmat = [
     name: 'Mosquée plaisir',
     description: 'Comunité plaisir ',
     type: KhatmaType.mosque,
-    unit: SplitUnit.quart,
+    unit: SplitUnit.rubue,
   ),
   Khatma(
     id: '5',
     name: 'Khatma Joumouaa',
     description: 'Lecture chque vendredi',
     type: KhatmaType.friday,
-    unit: SplitUnit.roubaa,
+    unit: SplitUnit.thumun,
   ),
   Khatma(
     id: '6',

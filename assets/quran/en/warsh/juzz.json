@@ -1,0 +1,422 @@
+[
+    {
+        "id": 1,
+        "name": "الم",
+        "subname": "الفاتحة",
+        "title": "Juzz 1",
+        "subtitle": "Al-Fatihah (1)",
+        "transliteration": "'Alif-Lām-Mīm",
+        "translation": "'Alif-Lām-Mīm",
+        "page": 1,
+        "start": {
+            "sourat": 1,
+            "verse": 1
+        }
+    },
+    {
+        "id": 2,
+        "name": "سَيَقُولُ السُّفَهَاءُ",
+        "subname": "(142) البقرة",
+        "title": "Juzz 2",
+        "subtitle": "Al-Baqarah (142)",
+        "transliteration": "Sayaqūlu As-Sufahā'u",
+        "translation": "Les faibles d'esprit vont dire",
+        "page": 22,
+        "start": {
+            "sourat": 2,
+            "verse": 142
+        }
+    },
+    {
+        "id": 3,
+        "name": "تِلْكَ ٱلْرُّسُلُ",
+        "subname": "(253) البقرة",
+        "title": "Juzz 3",
+        "subtitle": "Al-Baqarah (253)",
+        "transliteration": "Tilka Ar-Rusulu ",
+        "translation": "Parmi ces messagers",
+        "page": 42,
+        "start": {
+            "sourat": 2,
+            "verse": 253
+        }
+    },
+    {
+        "id": 4,
+        "name": "كُلُّ الطَّعَام",
+        "subname": "(93) آل عمران",
+        "title": "Juzz 4",
+        "subtitle": "Ali 'Imran (93)",
+        "transliteration": "Kullu Aţ-Ţa`āmi",
+        "translation": "Toute nourriture",
+        "page": 62,
+        "start": {
+            "sourat": 3,
+            "verse": 93
+        }
+    },
+    {
+        "id": 5,
+        "name": "وَٱلْمُحْصَنَاتُ",
+        "subname": "(24) النساء",
+        "title": "Juzz 5",
+        "subtitle": "An-Nisa (24)",
+        "transliteration": "Wa Al-Muĥşanātu",
+        "translation": "Et, parmi les femmes",
+        "page": 82,
+        "start": {
+            "sourat": 4,
+            "verse": 24
+        }
+    },
+    {
+        "id": 6,
+        "name": "لَا يُحِبُّ ٱللهُ",
+        "subname": "(148) النساء",
+        "title": "Juzz 6",
+        "subtitle": "An-Nisa (148)",
+        "transliteration": "Lā Yuĥibbu Allāhu",
+        "translation": "Allah n'aime",
+        "page": 102,
+        "start": {
+            "sourat": 4,
+            "verse": 148
+        }
+    },
+    {
+        "id": 7,
+        "name": "لَتَجِدَنَّ",
+        "subname": "(82) المائدة",
+        "title": "Juzz 7",
+        "subtitle": "Al-Ma'idah (82)",
+        "transliteration": "Latajidanna",
+        "translation": "Tu trouveras",
+        "page": 121,
+        "start": {
+            "sourat": 5,
+            "verse": 82
+        }
+    },
+    {
+        "id": 8,
+        "name": "وَلَوْ أَنَّنَا نَزَّلْنَا",
+        "subname": "(111) الأنعام",
+        "title": "Juzz 8",
+        "subtitle": "Al-An'am (111)",
+        "transliteration": "Wa Law 'Annanā Nazzalnā",
+        "translation": "Et si Nous faisions descendre",
+        "page": 142,
+        "start": {
+            "sourat": 6,
+            "verse": 111
+        }
+    },
+    {
+        "id": 9,
+        "name": "قَالَ ٱلْمَلَأُ",
+        "subname": "(88) الأعراف",
+        "title": "Juzz 9",
+        "subtitle": "Al-A'raf (88)",
+        "transliteration": "Qāla Al-Mala'u",
+        "translation": "Les notables ont dit",
+        "page": 162,
+        "start": {
+            "sourat": 7,
+            "verse": 88
+        }
+    },
+    {
+        "id": 10,
+        "name": "وَٱعْلَمُواْ",
+        "subname": "(41) الأنفال",
+        "title": "Juzz 10",
+        "subtitle": "Al-Anfal (41)",
+        "transliteration": "Wa A`lamū",
+        "translation": "Et sachez que",
+        "page": 182,
+        "start": {
+            "sourat": 8,
+            "verse": 41
+        }
+    },
+    {
+        "id": 11,
+        "name": "إِنَّمَا السَّبِيلُ",
+        "subname": "(93) التوبة",
+        "title": "Juzz 11",
+        "subtitle": "At-Tawbah (93)",
+        "transliteration": "'Innamā As-Sabīlu",
+        "translation": "Il n'y a de voie",
+        "page": 201,
+        "start": {
+            "sourat": 9,
+            "verse": 93
+        }
+    },
+    {
+        "id": 12,
+        "name": "وَمَا مِنْ دَآبَّةٍ",
+        "subname": "(6) هود",
+        "title": "Juzz 12",
+        "subtitle": "Houd (6)",
+        "transliteration": "Wa Mā Min Dābbatin",
+        "translation": "Il n'y a point de bête",
+        "page": 222,
+        "start": {
+            "sourat": 11,
+            "verse": 6
+        }
+    },
+    {
+        "id": 13,
+        "name": "وَمَا أُبَرِّئُ",
+        "subname": "(53) يوسف",
+        "title": "Juzz 13",
+        "subtitle": "Yusuf (53)",
+        "transliteration": "Wa Mā 'Ubarri'u",
+        "translation": "Je ne m'innocente cependant pas",
+        "page": 242,
+        "start": {
+            "sourat": 12,
+            "verse": 53
+        }
+    },
+    {
+        "id": 14,
+        "name": "رُّبَمَا",
+        "subname": "(1) الحجر",
+        "title": "Juzz 14",
+        "subtitle": "Al-Hijr (1)",
+        "transliteration": "Rubamā",
+        "translation": "Probablement",
+        "page": 262,
+        "start": {
+            "sourat": 15,
+            "verse": 1
+        }
+    },
+    {
+        "id": 15,
+        "name": "سُبْحَانَ ٱلَّذِى",
+        "subname": "(1) الإسراء",
+        "title": "Juzz 15",
+        "subtitle": "Al-Isra (1)",
+        "transliteration": "Subĥāna Al-Ladhī",
+        "translation": "Gloire à Celui [Dieu]",
+        "page": 282,
+        "start": {
+            "sourat": 17,
+            "verse": 1
+        }
+    },
+    {
+        "id": 16,
+        "name": "قَالَ أَلَمْ أَقُل",
+        "subname": "(75) الكهف",
+        "title": "Juzz 16",
+        "subtitle": "Al-Kahf (75)",
+        "transliteration": "Qāla 'Alam 'Aqul",
+        "translation": "Il lui dit: Ne t'ai je pas dit",
+        "page": 302,
+        "start": {
+            "sourat": 18,
+            "verse": 75
+        }
+    },
+    {
+        "id": 17,
+        "name": "اقْتَرَبَ",
+        "subname": "(1) الأنبياء",
+        "title": "Juzz 17",
+        "subtitle": "Al-Anbya (1)",
+        "transliteration": "Iqtaraba",
+        "translation": "[L'échéance] approche",
+        "page": 322,
+        "start": {
+            "sourat": 21,
+            "verse": 1
+        }
+    },
+    {
+        "id": 18,
+        "name": "قَدْ أَفْلَحَ",
+        "subname": "(1) المؤمنون",
+        "title": "Juzz 18",
+        "subtitle": "Al-Mu'minun (1)",
+        "transliteration": "Qad 'Aflaĥa",
+        "translation": "Bienheureux sont certes les croyants",
+        "page": 342,
+        "start": {
+            "sourat": 23,
+            "verse": 1
+        }
+    },
+    {
+        "id": 19,
+        "name": "وَقَالَ الَّذِينَ",
+        "subname": "(21) الفرقان",
+        "title": "Juzz 19",
+        "subtitle": "Al-Furqan (21)",
+        "transliteration": "Wa Qāla Al-Ladhīna",
+        "translation": "Et ceux qui n'espèrent pas Nous rencontrer disent",
+        "page": 362,
+        "start": {
+            "sourat": 25,
+            "verse": 21
+        }
+    },
+    {
+        "id": 20,
+        "name": "فَمَا كَانَ جَوَابَ",
+        "subname": "(56) النمل",
+        "title": "Juzz 20",
+        "subtitle": "An-Naml (56)",
+        "transliteration": "Famā Kāna Jawāba",
+        "translation": "Puis son peuple n'eut que cette réponse",
+        "page": 382,
+        "start": {
+            "sourat": 27,
+            "verse": 56
+        }
+    },
+    {
+        "id": 21,
+        "name": "وَلَا تُجَادِلُوا",
+        "subname": "(46) العنكبوت",
+        "title": "Juzz 21",
+        "subtitle": "Al-'Ankabut (46)",
+        "transliteration": "Wa Lā Tujādilū",
+        "translation": "Et ne discutez que de la meilleure façon",
+        "page": 402,
+        "start": {
+            "sourat": 29,
+            "verse": 46
+        }
+    },
+    {
+        "id": 22,
+        "name": "وَمَن يَقْنُتْ",
+        "subname": "(31) الأحزاب",
+        "title": "Juzz 22",
+        "subtitle": "Al-Ahzab (31)",
+        "transliteration": "Wa Man Yaqnut",
+        "translation": "Et quiconque qui est obéissant",
+        "page": 422,
+        "start": {
+            "sourat": 33,
+            "verse": 31
+        }
+    },
+    {
+        "id": 23,
+        "name": "وَمَا أَنزَلْنَا",
+        "subname": "(28) يس",
+        "title": "Juzz 23",
+        "subtitle": "Ya-Sin (28)",
+        "transliteration": "Wa Mā 'Anzalnā",
+        "translation": "Nous ne fîmes descendre",
+        "page": 442,
+        "start": {
+            "sourat": 36,
+            "verse": 28
+        }
+    },
+    {
+        "id": 24,
+        "name": "فَمَنْ أَظْلَمُ",
+        "subname": "(32) الزمر",
+        "title": "Juzz 24",
+        "subtitle": "Az-Zumar (32)",
+        "transliteration": "Faman 'Ažlamu",
+        "translation": "Quel pire injuste ",
+        "page": 462,
+        "start": {
+            "sourat": 39,
+            "verse": 32
+        }
+    },
+    {
+        "id": 25,
+        "name": "إِلَيْهِ يُرَدُّ",
+        "subname": "(47) فصلت",
+        "title": "Juzz 25",
+        "subtitle": "Fussilat (47)",
+        "transliteration": "'Ilayhi Yuraddu",
+        "translation": "A Lui revient",
+        "page": 482,
+        "start": {
+            "sourat": 41,
+            "verse": 47
+        }
+    },
+    {
+        "id": 26,
+        "name": "حم مَا خَلَقْنَا",
+        "subname": "(1) الأحقاف",
+        "title": "Juzz 26",
+        "subtitle": "Al-Ahqaf (1)",
+        "transliteration": "Ĥā-Mīm Mā Khalaqnā",
+        "translation": "Ha-Mim Nous n'avons créé",
+        "page": 502,
+        "start": {
+            "sourat": 46,
+            "verse": 1
+        }
+    },
+    {
+        "id": 27,
+        "name": "قَالَ فَمَا خَطْبُكُمْ",
+        "subname": "(31) الذاريات",
+        "title": "Juzz 27",
+        "subtitle": "Adh-Dhariyat (31)",
+        "transliteration": "Qāla Famā Khaţbukum",
+        "translation": "Quelle est donc votre mission",
+        "page": 522,
+        "start": {
+            "sourat": 51,
+            "verse": 31
+        }
+    },
+    {
+        "id": 28,
+        "name": "قَدْ سَمِعَ",
+        "subname": "(1) المجادلة",
+        "title": "Juzz 28",
+        "subtitle": "Al-Mujadila (1)",
+        "transliteration": "Qad Sami`a",
+        "translation": "Allah a bien entendu",
+        "page": 542,
+        "start": {
+            "sourat": 58,
+            "verse": 1
+        }
+    },
+    {
+        "id": 29,
+        "name": "تَبَارَكَ الَّذِي",
+        "subname": "(1) الملك",
+        "title": "Juzz 29",
+        "subtitle": "Al-Mulk (1)",
+        "transliteration": "Tabāraka Al-Ladhī",
+        "translation": "Béni soit celui",
+        "page": 562,
+        "start": {
+            "sourat": 67,
+            "verse": 1
+        }
+    },
+    {
+        "id": 30,
+        "name": "عَمَّ يَتَسَاءَلُونَ",
+        "subname": "(1) النبإ",
+        "title": "Juzz 30",
+        "subtitle": "An-Naba (1)",
+        "transliteration": "`Amma Yatasā'alūna",
+        "translation": "Sur quoi s'interrogent-ils",
+        "page": 582,
+        "start": {
+            "sourat": 78,
+            "verse": 1
+        }
+    }
+]
