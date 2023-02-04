@@ -1,903 +1,842 @@
 [
     {
         "id": 1,
-        "name":  "الم",
+        "name": "الم",
+        "subname": "الفاتحة",
+        "title": "Hizb 1",
+        "subtitle": "Al-Fatihah (1)",
         "transliteration": "'Alif-Lām-Mīm",
         "translation": "'Alif-Lām-Mīm",
         "page": 1,
         "start": {
             "sourat": 1,
             "verse": 1
-        },
-        "end": {
-            "sourat": 2,
-            "verse": 74
         }
     },
     {
         "id": 2,
         "name": "أَفَتَطْمَعُونَ",
+        "subname": "(75) البقرة",
+        "title": "Hizb 2",
+        "subtitle": "Al-Baqarah (75)",
         "transliteration": "'Afataţma`ūna",
         "translation": "Espérez-vous",
         "page": 11,
         "start": {
             "sourat": 2,
             "verse": 75
-        },
-        "end": {
-            "sourat": 2,
-            "verse": 141
         }
     },
     {
         "id": 3,
         "name": "سَيَقُولُ السُّفَهَاءُ",
+        "subname": "(142) البقرة",
+        "title": "Hizb 3",
+        "subtitle": "Al-Baqarah (142)",
         "transliteration": "Sayaqūlu As-Sufahā'u",
         "translation": "Les faibles d'esprit vont dire",
         "page": 22,
         "start": {
             "sourat": 2,
             "verse": 142
-        },
-        "end": {
-            "sourat": 2,
-            "verse": 202
         }
     },
     {
         "id": 4,
         "name": "وَاذْكُرُوا اللَّهَ",
+        "subname": "(203) البقرة",
+        "title": "Hizb 4",
+        "subtitle": "Al-Baqarah (203)",
         "transliteration": "Wa Adhkurū Allāha",
         "translation": "Et invoquez Allah",
         "page": 32,
         "start": {
             "sourat": 2,
             "verse": 203
-        },
-        "end": {
-            "sourat": 2,
-            "verse": 252
         }
     },
     {
         "id": 5,
         "name": "تِلْكَ ٱلْرُّسُلُ",
+        "subname": "(253) البقرة",
+        "title": "Hizb 5",
+        "subtitle": "Al-Baqarah (253)",
         "transliteration": "Tilka Ar-Rusulu ",
         "translation": "Parmi ces messagers",
         "page": 42,
         "start": {
             "sourat": 2,
             "verse": 253
-        },
-        "end": {
-            "sourat": 3,
-            "verse": 14
         }
     },
     {
         "id": 6,
         "name": "قُلْ أَؤُنَبِّئُكُم",
+        "subname": "(15) آل عمران",
+        "title": "Hizb 6",
+        "subtitle": "Ali 'Imran (15)",
         "transliteration": "Qul 'A'uunabbi'ukum",
         "translation": "Dis : Puis-je vous apprendre",
         "page": 51,
         "start": {
             "sourat": 3,
             "verse": 15
-        },
-        "end": {
-            "sourat": 3,
-            "verse": 92
         }
     },
     {
         "id": 7,
         "name": "كُلُّ الطَّعَامِ",
+        "subname": "(93) آل عمران",
+        "title": "Hizb 7",
+        "subtitle": "Ali 'Imran (93)",
         "transliteration": "Kullu Aţ-Ţa`āmi",
         "translation": "Toute nourriture",
         "page": 62,
         "start": {
             "sourat": 3,
             "verse": 93
-        },
-        "end": {
-            "sourat": 3,
-            "verse": 170
         }
     },
-{
+    {
         "id": 8,
         "name": "يَسْتَبْشِرُونَ",
+        "subname": "(171) آل عمران",
+        "title": "Hizb 8",
+        "subtitle": "Ali 'Imran (171)",
         "transliteration": "Yastabshirūna",
         "translation": "Ils sont ravis",
         "page": 72,
         "start": {
             "sourat": 3,
             "verse": 171
-        },
-        "end": {
-            "sourat": 4,
-            "verse": 23
         }
     },
     {
         "id": 9,
         "name": "وَٱلْمُحْصَنَاتُ",
+        "subname": "(24) النساء",
+        "title": "Hizb 9",
+        "subtitle": "An-Nisa (24)",
         "transliteration": "Wa Al-Muĥşanātu",
         "translation": "Et, parmi les femmes",
         "page": 82,
         "start": {
             "sourat": 4,
             "verse": 24
-        },
-        "end": {
-            "sourat": 4,
-            "verse": 87
         }
     },
-{
+    {
         "id": 10,
         "name": "فَمَا لَكُمْ فِي الْمُنَافِقِينَ",
+        "subname": "(88) النساء",
+        "title": "Hizb 10",
+        "subtitle": "An-Nisa (88)",
         "transliteration": "Famā Lakum Fī Al-Munāfiqīna",
         "translation": "Qu'avez-vous au sujet des hypocrites",
         "page": 92,
         "start": {
             "sourat": 4,
             "verse": 88
-        },
-        "end": {
-            "sourat": 4,
-            "verse": 147
         }
     },
     {
         "id": 11,
         "name": "لَا يُحِبُّ ٱللهُ",
+        "subname": "(148) النساء",
+        "title": "Hizb 11",
+        "subtitle": "An-Nisa (148)",
         "transliteration": "Lā Yuĥibbu Allāhu",
         "translation": "Allah n'aime",
         "page": 102,
         "start": {
             "sourat": 4,
             "verse": 148
-        },
-        "end": {
-            "sourat": 5,
-            "verse": 26
         }
     },
     {
         "id": 12,
         "name": "وَاتْلُ عَلَيْهِمْ",
+        "subname": "(27) المائدة",
+        "title": "Hizb 12",
+        "subtitle": "Al-Ma'idah (27)",
         "transliteration": "Wa Atlu `Alayhim",
         "translation": "Et raconte-leur",
         "page": 112,
         "start": {
             "sourat": 5,
             "verse": 27
-        },
-        "end": {
-            "sourat": 5,
-            "verse": 81
         }
     },
     {
         "id": 13,
         "name": "لَتَجِدَنَّ",
+        "subname": "(82) المائدة",
+        "title": "Hizb 13",
+        "subtitle": "Al-Ma'idah (82)",
         "transliteration": "Latajidanna",
         "translation": "Tu trouveras",
         "page": 121,
         "start": {
             "sourat": 5,
             "verse": 82
-        },
-        "end": {
-            "sourat": 6,
-            "verse": 35
         }
     },
     {
         "id": 14,
         "name": "إِنَّمَا يَسْتَجِيبُ",
+        "subname": "(36) الأنعام",
+        "title": "Hizb 14",
+        "subtitle": "Al-An'am (36)",
         "transliteration": "'Innamā Yastajību",
         "translation": "Seuls ceux qui entendent répondent",
         "page": 132,
         "start": {
             "sourat": 6,
             "verse": 36
-        },
-        "end": {
-            "sourat": 6,
-            "verse": 110
         }
     },
     {
         "id": 15,
         "name": "وَلَوْ أَنَّنَا نَزَّلْنَا",
+        "subname": "(111) الأنعام",
+        "title": "Hizb 15",
+        "subtitle": "Al-An'am (111)",
         "transliteration": "Wa Law 'Annanā Nazzalnā",
         "translation": "Et si Nous faisions descendre",
         "page": 142,
         "start": {
             "sourat": 6,
             "verse": 111
-        },
-        "end": {
-            "sourat": 6,
-            "verse": 165
         }
     },
     {
         "id": 16,
         "name": "المص كِتَابٌ",
+        "subname": "(1) الأعراف",
+        "title": "Hizb 16",
+        "subtitle": "Al-A'raf (1)",
         "transliteration": "'Alif-Lām-Mīm-Şād Kitābun",
         "translation": "Alif, Lâm, Mîm, Sâd. C'est un Livre",
         "page": 151,
         "start": {
             "sourat": 7,
             "verse": 1
-        },
-        "end": {
-            "sourat": 7,
-            "verse": 87
         }
     },
     {
         "id": 17,
         "name": "قَالَ ٱلْمَلَأُ",
+        "subname": "(88) الأعراف",
+        "title": "Hizb 17",
+        "subtitle": "Al-A'raf (88)",
         "transliteration": "Qāla Al-Mala'u",
         "translation": "Les notables ont dit",
         "page": 162,
         "start": {
             "sourat": 7,
             "verse": 88
-        },
-        "end": {
-            "sourat": 7,
-            "verse": 170
         }
     },
     {
         "id": 18,
         "name": "وَإِذْ نَتَقْنَا",
+        "subname": "(171) الأعراف",
+        "title": "Hizb 18",
+        "subtitle": "Al-A'raf (171)",
         "transliteration": "Wa 'Idh Nataqnā",
         "translation": "Et lorsque Nous avons brandi",
         "page": 173,
         "start": {
             "sourat": 7,
             "verse": 171
-        },
-        "end": {
-            "sourat": 8,
-            "verse": 40
         }
     },
     {
         "id": 19,
         "name": "وَٱعْلَمُواْ",
+        "subname": "(41) الأنفال",
+        "title": "Hizb 19",
+        "subtitle": "Al-Anfal (41)",
         "transliteration": "Wa A`lamū",
         "translation": "Et sachez que",
         "page": 182,
         "start": {
             "sourat": 8,
             "verse": 41
-        },
-        "end": {
-            "sourat": 9,
-            "verse": 33
         }
     },
     {
         "id": 20,
         "name": " إِنَّ كَثِيرًا",
+        "subname": "(34) التوبة",
+        "title": "Hizb 20",
+        "subtitle": "At-Tawbah (34)",
         "transliteration": "'Inna Kathīrāan",
         "translation": "Beaucoup de",
         "page": 192,
         "start": {
             "sourat": 9,
             "verse": 34
-        },
-        "end": {
-            "sourat": 9,
-            "verse": 92
         }
     },
     {
         "id": 21,
         "name": "إِنَّمَا السَّبِيلُ",
+        "subname": "(93) التوبة",
+        "title": "Hizb 21",
+        "subtitle": "At-Tawbah (93)",
         "transliteration": "'Innamā As-Sabīlu",
         "translation": "Il n'y a de voie",
         "page": 201,
         "start": {
             "sourat": 9,
             "verse": 93
-        },
-        "end": {
-            "sourat": 10,
-            "verse": 25
         }
     },
     {
         "id": 22,
         "name": "لِّلَّذِينَ أَحْسَنُوا",
+        "subname": "(26) يونس",
+        "title": "Hizb 22",
+        "subtitle": "Yunus (26)",
         "transliteration": "Lilladhīna 'Aĥsanū",
         "translation": "A ceux qui agissent en bien",
         "page": 212,
         "start": {
             "sourat": 10,
             "verse": 26
-        },
-        "end": {
-            "sourat": 11,
-            "verse": 5
         }
     },
     {
         "id": 23,
         "name": "وَمَا مِنْ دَآبَّةٍ",
+        "subname": "(6) هود",
+        "title": "Hizb 23",
+        "subtitle": "Houd (6)",
         "transliteration": "Wa Mā Min Dābbatin",
         "translation": "Il n'y a point de bête",
         "page": 222,
         "start": {
             "sourat": 11,
             "verse": 6
-        },
-        "end": {
-            "sourat": 11,
-            "verse": 83
         }
     },
     {
         "id": 24,
         "name": "وَإِلَىٰ مَدْيَنَ",
+        "subname": "(84) هود",
+        "title": "Hizb 24",
+        "subtitle": "Houd (84)",
         "transliteration": "Wa 'Ilá Madyana",
         "translation": "Et (Nous avons envoyé) aux Madyan",
         "page": 231,
         "start": {
             "sourat": 11,
             "verse": 84
-        },
-        "end": {
-            "sourat": 12,
-            "verse": 52
         }
     },
     {
         "id": 25,
         "name": "وَمَا أُبَرِّئُ",
+        "subname": "(53) يوسف",
+        "title": "Hizb 25",
+        "subtitle": "Yusuf (53)",
         "transliteration": "Wa Mā 'Ubarri'u",
         "translation": "Je ne m'innocente cependant pas",
         "page": 242,
         "start": {
             "sourat": 12,
             "verse": 53
-        },
-        "end": {
-            "sourat": 13,
-            "verse": 18
         }
     },
     {
         "id": 26,
         "name": "أَفَمَن يَعْلَمُ",
+        "subname": "(19) الرعد",
+        "title": "Hizb 26",
+        "subtitle": "Ar-Ra'd (19)",
         "transliteration": "'Afaman Ya`lamu",
         "translation": "Celui qui sait",
         "page": 252,
         "start": {
             "sourat": 13,
             "verse": 19
-        },
-        "end": {
-            "sourat": 14,
-            "verse": 52
         }
     },
     {
         "id": 27,
         "name": "رُّبَمَا",
+        "subname": "(1) الحجر",
+        "title": "Hizb 27",
+        "subtitle": "Al-Hijr (1)",
         "transliteration": "Rubamā",
         "translation": "Probablement",
         "page": 262,
         "start": {
             "sourat": 15,
             "verse": 1
-        },
-        "end": {
-            "sourat": 16,
-            "verse": 50
         }
     },
     {
         "id": 28,
         "name": "وَقَالَ اللَّهُ لَا تَتَّخِذُوا",
+        "subname": "(16) النحل",
+        "title": "Hizb 28",
+        "subtitle": "An-Nahl (16)",
         "transliteration": "Wa Qāla Allāhu Lā Tattakhidhū",
         "translation": "Allah dit : Ne prenez",
         "page": 272,
         "start": {
             "sourat": 16,
             "verse": 51
-        },
-        "end": {
-            "sourat": 16,
-            "verse": 128
         }
     },
     {
         "id": 29,
         "name": "سُبْحَانَ ٱلَّذِى",
+        "subname": "(1) الإسراء",
+        "title": "Hizb 29",
+        "subtitle": "Al-Isra (1)",
         "transliteration": "Subĥāna Al-Ladhī",
         "translation": "Gloire à Celui [Dieu]",
         "page": 282,
         "start": {
             "sourat": 17,
             "verse": 1
-        },
-        "end": {
-            "sourat": 17,
-            "verse": 98
         }
     },
     {
         "id": 30,
         "name": " أَوَلَمْ يَرَوْا",
+        "subname": "(99) الإسراء",
+        "title": "Hizb 30",
+        "subtitle": "Al-Isra (99)",
         "transliteration": "Awalam yaraw",
         "translation": "Exalted is the One (Allahu ‘Azza wa-jalla) is who",
         "page": 292,
         "start": {
             "sourat": 17,
             "verse": 99
-        },
-        "end": {
-            "sourat": 18,
-            "verse": 74
         }
     },
     {
         "id": 31,
         "name": "قَالَ أَلَمْ أَقُل",
+        "subname": "(75) الكهف",
+        "title": "Hizb 31",
+        "subtitle": "Al-Kahf (75)",
         "transliteration": "Qāla 'Alam 'Aqul",
         "translation": "Il lui dit: Ne t'ai je pas dit",
         "page": 302,
         "start": {
             "sourat": 18,
             "verse": 75
-        },
-        "end": {
-            "sourat": 19,
-            "verse": 98
         }
     },
     {
         "id": 32,
         "name": "طه",
+        "subname": "(1) طه",
+        "title": "Hizb 32",
+        "subtitle": "Taha (1)",
         "transliteration": "Tāhā",
         "translation": "Tāhā",
         "page": 312,
         "start": {
             "sourat": 20,
             "verse": 1
-        },
-        "end": {
-            "sourat": 20,
-            "verse": 135
         }
     },
     {
         "id": 33,
         "name": "اقْتَرَبَ",
+        "subname": "(1) الأنبياء",
+        "title": "Hizb 33",
+        "subtitle": "Al-Anbya (1)",
         "transliteration": "Iqtaraba",
         "translation": "[L'échéance] approche",
         "page": 322,
         "start": {
             "sourat": 21,
             "verse": 1
-        },
-        "end": {
-            "sourat": 21,
-            "verse": 112
         }
     },
     {
         "id": 34,
         "name": "يَا أَيُّهَا النَّاسُ",
+        "subname": "(1) الحج",
+        "title": "Hizb 34",
+        "subtitle": "Al-Hajj (1)",
         "transliteration": "Yā 'Ayyuhā An-Nāsu",
         "translation": "O hommes",
         "page": 332,
         "start": {
             "sourat": 22,
             "verse": 1
-        },
-        "end": {
-            "sourat": 22,
-            "verse": 78
         }
     },
     {
         "id": 35,
         "name": "قَدْ أَفْلَحَ",
+        "subname": "(1) المؤمنون",
+        "title": "Hizb 35",
+        "subtitle": "Al-Mu'minun (1)",
         "transliteration": "Qad 'Aflaĥa",
         "translation": "Bienheureux sont certes les croyants",
         "page": 342,
         "start": {
             "sourat": 23,
             "verse": 1
-        },
-        "end": {
-            "sourat": 24,
-            "verse": 20
         }
     },
     {
         "id": 36,
         "name": "لَا تَتَّبِعُوا",
+        "subname": "(21) النور",
+        "title": "Hizb 36",
+        "subtitle": "An-Nur (21)",
         "transliteration": "Lā Tattabi`ū",
         "translation": "Ne suivez pas",
         "page": 352,
         "start": {
             "sourat": 24,
             "verse": 21
-        },
-        "end": {
-            "sourat": 25,
-            "verse": 20
         }
     },
     {
         "id": 37,
         "name": "وَقَالَ الَّذِينَ",
+        "subname": "(21) الفرقان",
+        "title": "Hizb 37",
+        "subtitle": "Al-Furqan (21)",
         "transliteration": "Wa Qāla Al-Ladhīna",
         "translation": "Et ceux qui n'espèrent pas Nous rencontrer disent",
         "page": 362,
         "start": {
             "sourat": 25,
             "verse": 21
-        },
-        "end": {
-            "sourat": 26,
-            "verse": 110
         }
     },
     {
         "id": 38,
         "name": " قَالُوا أَنُؤْمِنُ",
+        "subname": "(111) الشعراء",
+        "title": "Hizb 38",
+        "subtitle": "Ash-Shu'ara (111)",
         "transliteration": "Qālū 'Anu'uminu",
         "translation": "Ils dirent : Croirons-nous en toi",
         "page": 371,
         "start": {
             "sourat": 26,
             "verse": 111
-        },
-        "end": {
-            "sourat": 27,
-            "verse": 55
         }
     },
     {
         "id": 39,
         "name": "فَمَا كَانَ جَوَابَ",
+        "subname": "(56) النمل",
+        "title": "Hizb 39",
+        "subtitle": "An-Naml (56)",
         "transliteration": "Famā Kāna Jawāba",
         "translation": "Puis son peuple n'eut que cette réponse",
         "page": 382,
         "start": {
             "sourat": 27,
             "verse": 56
-        },
-        "end": {
-            "sourat": 28,
-            "verse": 50
         }
     },
     {
         "id": 40,
         "name": "وَلَقَدْ وَصَّلْنَا",
+        "subname": "(51) القصص",
+        "title": "Hizb 40",
+        "subtitle": "Al-Qasas (51)",
         "transliteration": "Wa Laqad Waşşalnā",
         "translation": "Nous leur avons déjà exposé la Parole",
         "page": 392,
         "start": {
             "sourat": 28,
             "verse": 51
-        },
-        "end": {
-            "sourat": 29,
-            "verse": 45
         }
     },
     {
         "id": 41,
         "name": "وَلَا تُجَادِلُوا",
+        "subname": "(46) العنكبوت",
+        "title": "Hizb 41",
+        "subtitle": "Al-'Ankabut (46)",
         "transliteration": "Wa Lā Tujādilū",
         "translation": "Et ne discutez que de la meilleure façon",
         "page": 402,
         "start": {
             "sourat": 29,
             "verse": 46
-        },
-        "end": {
-            "sourat": 31,
-            "verse": 21
         }
     },
     {
         "id": 42,
         "name": "وَمَن يُسْلِمْ",
+        "subname": "(22) لقمان",
+        "title": "Hizb 42",
+        "subtitle": "Luqman (22)",
         "transliteration": "Wa Man Yuslim",
         "translation": "Et quiconque soumet",
         "page": 413,
         "start": {
             "sourat": 31,
             "verse": 22
-        },
-        "end": {
-            "sourat": 33,
-            "verse": 30
         }
     },
     {
         "id": 43,
         "name": "وَمَن يَقْنُتْ",
+        "subname": "(31) الأحزاب",
+        "title": "Hizb 43",
+        "subtitle": "Al-Ahzab (31)",
         "transliteration": "Wa Man Yaqnut",
         "translation": "Et quiconque qui est obéissant",
         "page": 422,
         "start": {
             "sourat": 33,
             "verse": 31
-        },
-        "end": {
-            "sourat": 34,
-            "verse": 23
         }
     },
     {
         "id": 44,
         "name": "قُلْ مَن يَرْزُقُكُم",
+        "subname": "(24) سبإ",
+        "title": "Hizb 44",
+        "subtitle": "Saba (24)",
         "transliteration": "Qul Man Yarzuqukum",
         "translation": "Dis : Qui vous nourrit",
         "page": 431,
         "start": {
             "sourat": 34,
             "verse": 24
-        },
-        "end": {
-            "sourat": 36,
-            "verse": 27
         }
     },
     {
         "id": 45,
         "name": "وَمَا أَنزَلْنَا",
+        "subname": "(28) يس",
+        "title": "Hizb 45",
+        "subtitle": "Ya-Sin (28)",
         "transliteration": "Wa Mā 'Anzalnā",
         "translation": "Nous ne fîmes descendre",
         "page": 442,
         "start": {
             "sourat": 36,
             "verse": 28
-        },
-        "end": {
-            "sourat": 37,
-            "verse": 144
         }
     },
     {
         "id": 46,
         "name": "فَنَبَذْنَاهُ",
+        "subname": "(145) الصافات",
+        "title": "Hizb 46",
+        "subtitle": "As-Saffat (145)",
         "transliteration": "Fanabadhnāhu",
         "translation": "Nous le jetâmes",
         "page": 451,
         "start": {
             "sourat": 37,
             "verse": 145
-        },
-        "end": {
-            "sourat": 39,
-            "verse": 31
         }
     },
     {
         "id": 47,
         "name": "فَمَنْ أَظْلَمُ",
+        "subname": "(32) الزمر",
+        "title": "Hizb 47",
+        "subtitle": "Az-Zumar (32)",
         "transliteration": "Faman 'Ažlamu",
         "translation": "Quel pire injuste ",
         "page": 462,
         "start": {
             "sourat": 39,
             "verse": 32
-        },
-        "end": {
-            "sourat": 40,
-            "verse": 40
         }
     },
     {
         "id": 48,
         "name": "وَيَا قَوْمِ مَا لِي",
+        "subname": "(41) غافر",
+        "title": "Hizb 48",
+        "subtitle": "Ghafir (41)",
         "transliteration": "Wa Yāqawmi Mā Lī",
         "translation": "O mon peuple",
         "page": 472,
         "start": {
             "sourat": 40,
             "verse": 41
-        },
-        "end": {
-            "sourat": 41,
-            "verse": 46
         }
     },
     {
         "id": 49,
         "name": "إِلَيْهِ يُرَدُّ",
+        "subname": "(47) فصلت",
+        "title": "Hizb 49",
+        "subtitle": "Fussilat (47)",
         "transliteration": "'Ilayhi Yuraddu",
         "translation": "A Lui revient",
         "page": 482,
         "start": {
             "sourat": 41,
             "verse": 47
-        },
-        "end": {
-            "sourat": 43,
-            "verse": 23
         }
     },
     {
         "id": 50,
         "name": "قَالَ أَوَلَوْ جِئْتُكُم",
+        "subname": "(24) الزخرف",
+        "title": "Hizb 50",
+        "subtitle": "Az-Zukhruf (24)",
         "transliteration": "Qāla 'Awalaw Ji'tukum",
         "translation": "Il dit : Même si je viens",
         "page": 491,
         "start": {
             "sourat": 43,
             "verse": 24
-        },
-        "end": {
-            "sourat": 45,
-            "verse": 37
         }
     },
     {
         "id": 51,
         "name": "حم مَا خَلَقْنَا",
+        "subname": "(1) الأحقاف",
+        "title": "Hizb 51",
+        "subtitle": "Al-Ahqaf (1)",
         "transliteration": "Ĥā-Mīm Mā Khalaqnā",
         "translation": "Ha-Mim Nous n'avons créé",
         "page": 502,
         "start": {
             "sourat": 46,
             "verse": 1
-        },
-        "end": {
-            "sourat": 48,
-            "verse": 17
         }
     },
     {
         "id": 52,
         "name": "لَّقَدْ رَضِيَ",
+        "subname": "(18) الفتح",
+        "title": "Hizb 52",
+        "subtitle": "Al-Fath (18)",
         "transliteration": "Laqad Rađiya",
         "translation": "Allah a très certainement agréé",
         "page": 513,
         "start": {
             "sourat": 48,
             "verse": 18
-        },
-        "end": {
-            "sourat": 51,
-            "verse": 30
         }
     },
     {
         "id": 53,
         "name": "قَالَ فَمَا خَطْبُكُمْ",
+        "subname": "(31) الذاريات",
+        "title": "Hizb 53",
+        "subtitle": "Adh-Dhariyat (31)",
         "transliteration": "Qāla Famā Khaţbukum",
         "translation": "Quelle est donc votre mission",
         "page": 522,
         "start": {
             "sourat": 51,
             "verse": 31
-        },
-        "end": {
-            "sourat": 54,
-            "verse": 55
         }
     },
     {
         "id": 54,
         "name": "الرَّحْمَـٰنُ",
+        "subname": "(1) الرَّحْمَـٰنُ",
+        "title": "Hizb 54",
+        "subtitle": "Ar-Rahman (1)",
         "transliteration": "Ar-Raĥmānu",
         "translation": "Le Tout Miséricordieux",
         "page": 531,
         "start": {
             "sourat": 55,
             "verse": 1
-        },
-        "end": {
-            "sourat": 57,
-            "verse": 29
         }
     },
     {
         "id": 55,
         "name": "قَدْ سَمِعَ",
+        "subname": "(1) المجادلة",
+        "title": "Hizb 55",
+        "subtitle": "Al-Mujadila (1)",
         "transliteration": "Qad Sami`a",
         "translation": "Allah a bien entendu",
         "page": 542,
         "start": {
             "sourat": 58,
             "verse": 1
-        },
-        "end": {
-            "sourat": 61,
-            "verse": 14
         }
     },
     {
         "id": 56,
         "name": "يُسَبِّحُ لِلَّهِ",
+        "subname": "(1) الجمعة",
+        "title": "Hizb 56",
+        "subtitle": "Al-Jumu'ah (1)",
         "transliteration": "Yusabbiĥu Lillāhi",
         "translation": "Ils Glorifient Allah",
         "page": 553,
         "start": {
             "sourat": 62,
             "verse": 1
-        },
-        "end": {
-            "sourat": 66,
-            "verse": 12
         }
     },
     {
         "id": 57,
         "name": "تَبَارَكَ الَّذِي",
+        "subname": "(1) الملك",
+        "title": "Hizb 57",
+        "subtitle": "Al-Mulk (1)",
         "transliteration": "Tabāraka Al-Ladhī",
         "translation": "Béni soit celui",
         "page": 562,
         "start": {
             "sourat": 67,
             "verse": 1
-        },
-        "end": {
-            "sourat": 71,
-            "verse": 28
         }
     },
     {
         "id": 58,
         "name": "قُلْ أُوحِيَ",
+        "subname": "(1) الجن",
+        "title": "Hizb 58",
+        "subtitle": "Al-Jinn (1)",
         "transliteration": "Qul 'Ūĥiya",
         "translation": "Dis : Il m'a été révélé",
         "page": 572,
         "start": {
             "sourat": 72,
             "verse": 1
-        },
-        "end": {
-            "sourat": 77,
-            "verse": 50
         }
     },
     {
         "id": 59,
         "name": "عَمَّ يَتَسَاءَلُونَ",
+        "subname": "(1) النبإ",
+        "title": "Hizb 59",
+        "subtitle": "An-Naba (1)",
         "transliteration": "`Amma Yatasā'alūna",
         "translation": "Sur quoi s'interrogent-ils",
         "page": 582,
         "start": {
             "sourat": 78,
             "verse": 1
-        },
-        "end": {
-            "sourat": 86,
-            "verse": 1
         }
-    }
-,
+    },
     {
         "id": 60,
         "name": "سَبِّحِ",
+        "subname": "(1) الأعلى",
+        "title": "Hizb 60",
+        "subtitle": "Al-A'la (1)",
         "transliteration": "Sabbiĥi",
         "translation": "Glorifie le nom de ton Seigneur",
         "page": 591,
         "start": {
             "sourat": 87,
             "verse": 1
-        },
-        "end": {
-            "sourat": 114,
-            "verse": 6
         }
     }
 ]

@@ -9,7 +9,7 @@ var kTestKhatmat = [
     description: '',
     type: KhatmaType.custom,
     unit: SplitUnit.juzz,
-    completedParts: {1, 2, 3},
+    completedParts: [1, 2, 3],
   ),
   Khatma(
     id: '2',
@@ -17,15 +17,15 @@ var kTestKhatmat = [
     description: 'A l' 'ocasion de ramadan 2023',
     type: KhatmaType.ramadan,
     unit: SplitUnit.hizb,
-    completedParts: {1, 2, 3, 4, 5},
+    completedParts: [1, 2, 3, 4, 5],
   ),
   Khatma(
     id: '3',
-    name: 'Khatma Monsuel',
+    name: 'Khatma Mensuel',
     description: 'Hizeb raatib',
     type: KhatmaType.monthly,
     unit: SplitUnit.sourat,
-    completedParts: {1, 2, 3, 4, 5, 6, 7, 8},
+    completedParts: [1, 2, 3, 4, 5, 6, 7, 8],
   ),
   Khatma(
     id: '4',

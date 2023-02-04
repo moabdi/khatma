@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khatma_app/src/common_widgets/async_value_widget.dart';
 import 'package:khatma_app/src/common_widgets/safe_text.dart';
 import 'package:khatma_app/src/features/khatma/data/fake_khatma_repository.dart';
@@ -10,6 +11,7 @@ import 'package:khatma_app/src/features/khatma/domain/part.dart';
 import 'package:khatma_app/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
 import 'package:khatma_app/src/features/khatma/utils/collection_utils.dart';
 import 'package:khatma_app/src/localization/string_hardcoded.dart';
+import 'package:khatma_app/src/routing/app_router.dart';
 import 'package:khatma_app/src/themes/theme.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
@@ -119,7 +121,10 @@ class PartListeTile extends StatelessWidget {
           : ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id),
       onTap: () => CollectionUtils.isNotEmpty(selectedParts)
           ? ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id)
-          : null,
+          : context.goNamed(AppRoute.quran.name, params: {
+              'idSourat': part.start.sourat.toString(),
+              'idVerset': part.start.verse.toString(),
+            }),
       leading: CircleAvatar(
         backgroundColor: isRead
             ? AppTheme.getTheme().disabledColor
@@ -138,7 +143,7 @@ class PartListeTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SafeText(
-            part.translation,
+            part.title,
             maxLength: 20,
             style: isRead ? AppTheme.getTheme().textTheme.subtitle1 : null,
           ),
@@ -149,9 +154,18 @@ class PartListeTile extends StatelessWidget {
           ),
         ],
       ),
-      subtitle: Text(
-        part.transliteration,
-        style: AppTheme.getTheme().textTheme.subtitle2,
+      subtitle: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SafeText(
+            part.subtitle,
+            style: AppTheme.getTheme().textTheme.subtitle2,
+          ),
+          SafeText(
+            part.subname,
+            style: AppTheme.getTheme().textTheme.subtitle2,
+          ),
+        ],
       ),
     );
   }

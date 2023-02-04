@@ -2,1141 +2,1604 @@
   {
     "id": 1,
     "name": "الفاتحة",
-    "transliteration": "Al-Fatihah",
-    "translation": "L'ouverture",
+    "subname": "(7) مكية",
+    "title": "Al-Fatihah",
+    "subtitle": "L'ouverture (7)",
     "type": "mecque",
     "verses": 7,
     "page": 1,
-    "pages": 1
+    "start": {
+      "sourat": 1,
+      "verse": 1
+    }
   },
   {
     "id": 2,
     "name": "البقرة",
-    "transliteration": "Al-Baqarah",
-    "translation": "La vache",
+    "subname": "(286) مدنية",
+    "title": "Al-Baqarah",
+    "subtitle": "La vache (286)",
     "type": "medine",
     "verses": 286,
     "page": 2,
-    "pages": 48
+    "start": {
+      "sourat": 2,
+      "verse": 1
+    }
   },
   {
     "id": 3,
     "name": "آل عمران",
-    "transliteration": "Ali 'Imran",
-    "translation": "La famille de 'imran",
+    "subname": "(200) مدنية",
+    "title": "Ali 'Imran",
+    "subtitle": "La famille de 'imran (200)",
     "type": "medine",
     "verses": 200,
     "page": 50,
-    "pages": 27
+    "start": {
+      "sourat": 3,
+      "verse": 1
+    }
   },
   {
     "id": 4,
     "name": "النساء",
-    "transliteration": "An-Nisa",
-    "translation": "Les femmes",
+    "subname": "(176) مدنية",
+    "title": "An-Nisa",
+    "subtitle": "Les femmes (176)",
     "type": "medine",
     "verses": 176,
     "page": 77,
-    "pages": 29
+    "start": {
+      "sourat": 4,
+      "verse": 1
+    }
   },
   {
     "id": 5,
     "name": "المائدة",
-    "transliteration": "Al-Ma'idah",
-    "translation": "La table servie",
+    "subname": "(120) مدنية",
+    "title": "Al-Ma'idah",
+    "subtitle": "La table servie (120)",
     "type": "medine",
     "verses": 120,
     "page": 106,
-    "pages": 22
+    "start": {
+      "sourat": 5,
+      "verse": 1
+    }
   },
   {
     "id": 6,
     "name": "الأنعام",
-    "transliteration": "Al-An'am",
-    "translation": "Les bestiaux",
+    "subname": "(165) مدنية",
+    "title": "Al-An'am",
+    "subtitle": "Les bestiaux (165)",
     "type": "mecque",
     "verses": 165,
     "page": 128,
-    "pages": 23
+    "start": {
+      "sourat": 6,
+      "verse": 1
+    }
   },
   {
     "id": 7,
     "name": "الأعراف",
-    "transliteration": "Al-A'raf",
-    "translation": "Al-A'raf",
+    "subname": "(206) مكية",
+    "title": "Al-A'raf",
+    "subtitle": "Al-A'raf",
     "type": "mecque",
     "verses": 206,
     "page": 151,
-    "pages": 26
+    "start": {
+      "sourat": 7,
+      "verse": 1
+    }
   },
   {
     "id": 8,
     "name": "الأنفال",
-    "transliteration": "Al-Anfal",
-    "translation": "Le butin",
+    "subname": "(75) مدنية",
+    "title": "Al-Anfal",
+    "subtitle": "Le butin",
     "type": "medine",
     "verses": 75,
     "page": 177,
-    "pages": 10
+    "start": {
+      "sourat": 8,
+      "verse": 1
+    }
   },
   {
     "id": 9,
     "name": "التوبة",
-    "transliteration": "At-Tawbah",
-    "translation": "Le repentir",
+    "subname": "(129) مدنية",
+    "title": "At-Tawbah",
+    "subtitle": "Le repentir",
     "type": "medine",
     "verses": 129,
     "page": 187,
-    "pages": 21
+    "start": {
+      "sourat": 9,
+      "verse": 1
+    }
   },
   {
     "id": 10,
     "name": "يونس",
-    "transliteration": "Yunus",
-    "translation": "Jonas",
+    "subname": "(109) مدنية",
+    "title": "Yunus",
+    "subtitle": "Jonas",
     "type": "mecque",
     "verses": 109,
     "page": 208,
-    "pages": 13
+    "start": {
+      "sourat": 10,
+      "verse": 1
+    }
   },
   {
     "id": 11,
     "name": "هود",
-    "transliteration": "Hud",
-    "translation": "Houd",
+    "subname": "(123) مكية",
+    "title": "Hud",
+    "subtitle": "Houd",
     "type": "mecque",
     "verses": 123,
     "page": 221,
-    "pages": 14
+    "start": {
+      "sourat": 11,
+      "verse": 1
+    }
   },
   {
     "id": 12,
     "name": "يوسف",
-    "transliteration": "Yusuf",
-    "translation": "Joseph",
+    "subname": "(111) مكية",
+    "title": "Yusuf",
+    "subtitle": "Joseph",
     "type": "mecque",
     "verses": 111,
     "page": 235,
-    "pages": 14
+    "start": {
+      "sourat": 12,
+      "verse": 1
+    }
   },
   {
     "id": 13,
     "name": "الرعد",
-    "transliteration": "Ar-Ra'd",
-    "translation": "Le tonnerre",
+    "subname": "(43) مدنية",
+    "title": "Ar-Ra'd",
+    "subtitle": "Le tonnerre",
     "type": "medine",
     "verses": 43,
     "page": 249,
-    "pages": 6
+    "start": {
+      "sourat": 13,
+      "verse": 1
+    }
   },
   {
     "id": 14,
     "name": "ابراهيم",
-    "transliteration": "Ibrahim",
-    "translation": "Abraham",
+    "subname": "(52) مكية",
+    "title": "Ibrahim",
+    "subtitle": "Abraham",
     "type": "mecque",
     "verses": 52,
     "page": 255,
-    "pages": 7
+    "start": {
+      "sourat": 14,
+      "verse": 1
+    }
   },
   {
     "id": 15,
     "name": "الحجر",
-    "transliteration": "Al-Hijr",
-    "translation": "Al-Hijr",
+    "subname": "(99) مكية",
+    "title": "Al-Hijr",
+    "subtitle": "Al-Hijr",
     "type": "mecque",
     "verses": 99,
     "page": 262,
-    "pages": 5
+    "start": {
+      "sourat": 15,
+      "verse": 1
+    }
   },
   {
     "id": 16,
     "name": "النحل",
-    "transliteration": "An-Nahl",
-    "translation": "Les abeilles",
+    "subname": "(128) مكية",
+    "title": "An-Nahl",
+    "subtitle": "Les abeilles",
     "type": "mecque",
     "verses": 128,
     "page": 267,
-    "pages": 15
+    "start": {
+      "sourat": 16,
+      "verse": 1
+    }
   },
   {
     "id": 17,
     "name": "الإسراء",
-    "transliteration": "Al-Isra",
-    "translation": "Le voyage nocturne",
+    "subname": "(11) مكية",
+    "title": "Al-Isra",
+    "subtitle": "Le voyage nocturne",
     "type": "mecque",
     "verses": 111,
     "page": 282,
-    "pages": 11
+    "start": {
+      "sourat": 17,
+      "verse": 1
+    }
   },
   {
     "id": 18,
     "name": "الكهف",
-    "transliteration": "Al-Kahf",
-    "translation": "La caverne",
+    "subname": "(110) مكية",
+    "title": "Al-Kahf",
+    "subtitle": "La caverne",
     "type": "mecque",
     "verses": 110,
     "page": 293,
-    "pages": 12
+    "start": {
+      "sourat": 18,
+      "verse": 1
+    }
   },
   {
     "id": 19,
     "name": "مريم",
-    "transliteration": "Maryam",
-    "translation": "Marie",
+    "subname": "(98) مكية",
+    "title": "Maryam",
+    "subtitle": "Marie",
     "type": "mecque",
     "verses": 98,
     "page": 305,
-    "pages": 7
+    "start": {
+      "sourat": 19,
+      "verse": 1
+    }
   },
   {
     "id": 20,
     "name": "طه",
-    "transliteration": "Taha",
-    "translation": "Ta-Ha",
+    "subname": "(135) مكية",
+    "title": "Taha",
+    "subtitle": "Ta-Ha",
     "type": "mecque",
     "verses": 135,
     "page": 312,
-    "pages": 10
+    "pages": 10,
+    "start": {
+      "sourat": 20,
+      "verse": 1
+    }
   },
   {
     "id": 21,
     "name": "الأنبياء",
-    "transliteration": "Al-Anbya",
-    "translation": "Les prophètes",
+    "subname": "(112) مكية",
+    "title": "Al-Anbya",
+    "subtitle": "Les prophètes",
     "type": "mecque",
     "verses": 112,
     "page": 322,
-    "pages": 10
+    "pages": 10,
+    "start": {
+      "sourat": 21,
+      "verse": 1
+    }
   },
   {
     "id": 22,
     "name": "الحج",
-    "transliteration": "Al-Hajj",
-    "translation": "Le pèlerinage",
+    "subname": "(78)مدنية",
+    "title": "Al-Hajj",
+    "subtitle": "Le pèlerinage",
     "type": "medine",
     "verses": 78,
     "page": 332,
-    "pages": 10
+    "pages": 10,
+    "start": {
+      "sourat": 22,
+      "verse": 1
+    }
   },
   {
     "id": 23,
     "name": "المؤمنون",
-    "transliteration": "Al-Mu'minun",
-    "translation": "Les croyants",
+    "subname": "(118) مكية",
+    "title": "Al-Mu'minun",
+    "subtitle": "Les croyants",
     "type": "mecque",
     "verses": 118,
     "page": 342,
-    "pages": 8
+    "start": {
+      "sourat": 23,
+      "verse": 1
+    }
   },
   {
     "id": 24,
     "name": "النور",
-    "transliteration": "An-Nur",
-    "translation": "La lumière",
+    "subname": "(64)مدنية",
+    "title": "An-Nur",
+    "subtitle": "La lumière",
     "type": "medine",
     "verses": 64,
     "page": 350,
-    "pages": 9
+    "start": {
+      "sourat": 24,
+      "verse": 1
+    }
   },
   {
     "id": 25,
     "name": "الفرقان",
-    "transliteration": "Al-Furqan",
-    "translation": "Le discernement",
+    "subname": "(77) مكية",
+    "title": "Al-Furqan",
+    "subtitle": "Le discernement",
     "type": "mecque",
     "verses": 77,
     "page": 359,
-    "pages": 8
+    "start": {
+      "sourat": 25,
+      "verse": 1
+    }
   },
   {
     "id": 26,
     "name": "الشعراء",
-    "transliteration": "Ash-Shu'ara",
-    "translation": "Les poètes",
+    "subname": "(227) مكية",
+    "title": "Ash-Shu'ara",
+    "subtitle": "Les poètes",
     "type": "mecque",
     "verses": 227,
     "page": 367,
-    "pages": 10
+    "pages": 10,
+    "start": {
+      "sourat": 26,
+      "verse": 1
+    }
   },
   {
     "id": 27,
     "name": "النمل",
-    "transliteration": "An-Naml",
-    "translation": "Les fourmis",
+    "subname": "(93) مكية",
+    "title": "An-Naml",
+    "subtitle": "Les fourmis",
     "type": "mecque",
     "verses": 93,
     "page": 377,
-    "pages": 8
+    "start": {
+      "sourat": 27,
+      "verse": 1
+    }
   },
   {
     "id": 28,
     "name": "القصص",
-    "transliteration": "Al-Qasas",
-    "translation": "Le récit",
+    "subname": "(88) مكية",
+    "title": "Al-Qasas",
+    "subtitle": "Le récit",
     "type": "mecque",
     "verses": 88,
     "page": 385,
-    "pages": 11
+    "pages": 11,
+    "start": {
+      "sourat": 28,
+      "verse": 1
+    }
   },
   {
     "id": 29,
     "name": "العنكبوت",
-    "transliteration": "Al-'Ankabut",
-    "translation": "L'araignée",
+    "subname": "(69) مكية",
+    "title": "Al-'Ankabut",
+    "subtitle": "L'araignée",
     "type": "mecque",
     "verses": 69,
     "page": 396,
-    "pages": 8
+    "start": {
+      "sourat": 29,
+      "verse": 1
+    }
   },
   {
     "id": 30,
     "name": "الروم",
-    "transliteration": "Ar-Rum",
-    "translation": "Les romains",
+    "subname": "(60) مكية",
+    "title": "Ar-Rum",
+    "subtitle": "Les romains",
     "type": "mecque",
     "verses": 60,
     "page": 404,
-    "pages": 7
+    "start": {
+      "sourat": 20,
+      "verse": 1
+    }
   },
   {
     "id": 31,
     "name": "لقمان",
-    "transliteration": "Luqman",
-    "translation": "Louqman",
+    "subname": "(34) مكية",
+    "title": "Luqman",
+    "subtitle": "Louqman",
     "type": "mecque",
     "verses": 34,
     "page": 411,
-    "pages": 4
+    "start": {
+      "sourat": 31,
+      "verse": 1
+    }
   },
   {
     "id": 32,
     "name": "السجدة",
-    "transliteration": "As-Sajdah",
-    "translation": "La prosternation",
+    "subname": "(30) مكية",
+    "title": "As-Sajdah",
+    "subtitle": "La prosternation",
     "type": "mecque",
     "verses": 30,
     "page": 415,
-    "pages": 3
+    "start": {
+      "sourat": 32,
+      "verse": 1
+    }
   },
   {
     "id": 33,
     "name": "الأحزاب",
-    "transliteration": "Al-Ahzab",
-    "translation": "Les coalisés",
+    "subname": "(73)مدنية",
+    "title": "Al-Ahzab",
+    "subtitle": "Les coalisés",
     "type": "medine",
     "verses": 73,
     "page": 418,
-    "pages": 10
+    "pages": 10,
+    "start": {
+      "sourat": 33,
+      "verse": 1
+    }
   },
   {
     "id": 34,
     "name": "سبإ",
-    "transliteration": "Saba",
-    "translation": "Saba'",
+    "subname": "(54) مكية",
+    "title": "Saba",
+    "subtitle": "Saba'",
     "type": "mecque",
     "verses": 54,
     "page": 428,
-    "pages": 6
+    "start": {
+      "sourat": 34,
+      "verse": 1
+    }
   },
   {
     "id": 35,
     "name": "فاطر",
-    "transliteration": "Fatir",
-    "translation": "Le Créateur",
+    "subname": "(45) مكية",
+    "title": "Fatir",
+    "subtitle": "Le Créateur",
     "type": "mecque",
     "verses": 45,
     "page": 434,
-    "pages": 6
+    "start": {
+      "sourat": 35,
+      "verse": 1
+    }
   },
   {
     "id": 36,
     "name": "يس",
-    "transliteration": "Ya-Sin",
-    "translation": "Ya-Sin",
+    "subname": "(83) مكية",
+    "title": "Ya-Sin",
+    "subtitle": "Ya-Sin",
     "type": "mecque",
     "verses": 83,
     "page": 440,
-    "pages": 6
+    "start": {
+      "sourat": 36,
+      "verse": 1
+    }
   },
   {
     "id": 37,
     "name": "الصافات",
-    "transliteration": "As-Saffat",
-    "translation": "Les rangés",
+    "subname": "(182) مكية",
+    "title": "As-Saffat",
+    "subtitle": "Les rangés",
     "type": "mecque",
     "verses": 182,
     "page": 446,
-    "pages": 7
+    "start": {
+      "sourat": 37,
+      "verse": 1
+    }
   },
   {
     "id": 38,
     "name": "ص",
-    "transliteration": "Sad",
-    "translation": "Sad",
+    "subname": "(88) مكية",
+    "title": "Sad",
+    "subtitle": "Sad",
     "type": "mecque",
     "verses": 88,
     "page": 453,
-    "pages": 5
+    "start": {
+      "sourat": 38,
+      "verse": 1
+    }
   },
   {
     "id": 39,
     "name": "الزمر",
-    "transliteration": "Az-Zumar",
-    "translation": "Les groupes",
+    "subname": "(75) مكية",
+    "title": "Az-Zumar",
+    "subtitle": "Les groupes",
     "type": "mecque",
     "verses": 75,
     "page": 458,
-    "pages": 9
+    "start": {
+      "sourat": 39,
+      "verse": 1
+    }
   },
   {
     "id": 40,
     "name": "غافر",
-    "transliteration": "Ghafir",
-    "translation": "Le Pardonneur",
+    "subname": "(85) مكية",
+    "title": "Ghafir",
+    "subtitle": "Le Pardonneur",
     "type": "mecque",
     "verses": 85,
     "page": 467,
-    "pages": 10
+    "pages": 10,
+    "start": {
+      "sourat": 40,
+      "verse": 1
+    }
   },
   {
     "id": 41,
     "name": "فصلت",
-    "transliteration": "Fussilat",
-    "translation": "Les versets explicites",
+    "subname": "(54) مكية",
+    "title": "Fussilat",
+    "subtitle": "Les versets explicites",
     "type": "mecque",
     "verses": 54,
     "page": 477,
-    "pages": 6
+    "start": {
+      "sourat": 41,
+      "verse": 1
+    }
   },
   {
     "id": 42,
     "name": "الشورى",
-    "transliteration": "Ash-Shuraa",
-    "translation": "La concertation",
+    "subname": "(53) مكية",
+    "title": "Ash-Shuraa",
+    "subtitle": "La concertation",
     "type": "mecque",
     "verses": 53,
     "page": 483,
-    "pages": 6
+    "start": {
+      "sourat": 42,
+      "verse": 1
+    }
   },
   {
     "id": 43,
     "name": "الزخرف",
-    "transliteration": "Az-Zukhruf",
-    "translation": "L'ornement",
+    "subname": "(89) مكية",
+    "title": "Az-Zukhruf",
+    "subtitle": "L'ornement",
     "type": "mecque",
     "verses": 89,
     "page": 489,
-    "pages": 7
+    "start": {
+      "sourat": 43,
+      "verse": 1
+    }
   },
   {
     "id": 44,
     "name": "الدخان",
-    "transliteration": "Ad-Dukhan",
-    "translation": "La fumée",
+    "subname": "(59) مكية",
+    "title": "Ad-Dukhan",
+    "subtitle": "La fumée",
     "type": "mecque",
     "verses": 59,
     "page": 496,
-    "pages": 3
+    "start": {
+      "sourat": 44,
+      "verse": 1
+    }
   },
   {
     "id": 45,
     "name": "الجاثية",
-    "transliteration": "Al-Jathiyah",
-    "translation": "L'agenouillée",
+    "subname": "(37) مكية",
+    "title": "Al-Jathiyah",
+    "subtitle": "L'agenouillée",
     "type": "mecque",
     "verses": 37,
     "page": 499,
-    "pages": 3
+    "start": {
+      "sourat": 45,
+      "verse": 1
+    }
   },
   {
     "id": 46,
     "name": "الأحقاف",
-    "transliteration": "Al-Ahqaf",
-    "translation": "Al-Ahqaf",
+    "subname": "(35) مكية",
+    "title": "Al-Ahqaf",
+    "subtitle": "Al-Ahqaf",
     "type": "mecque",
     "verses": 35,
     "page": 502,
-    "pages": 5
+    "start": {
+      "sourat": 46,
+      "verse": 1
+    }
   },
   {
     "id": 47,
     "name": "محمد",
-    "transliteration": "Muhammad",
-    "translation": "Mouhammad",
+    "subname": "(38)مدنية",
+    "title": "Muhammad",
+    "subtitle": "Mouhammad",
     "type": "medine",
     "verses": 38,
     "page": 507,
-    "pages": 4
+    "start": {
+      "sourat": 47,
+      "verse": 1
+    }
   },
   {
     "id": 48,
     "name": "الفتح",
-    "transliteration": "Al-Fath",
-    "translation": "La victoire éclatante",
+    "subname": "(29)مدنية",
+    "title": "Al-Fath",
+    "subtitle": "La victoire éclatante",
     "type": "medine",
     "verses": 29,
     "page": 511,
-    "pages": 4
+    "start": {
+      "sourat": 48,
+      "verse": 1
+    }
   },
   {
     "id": 49,
     "name": "الحجرات",
-    "transliteration": "Al-Hujurat",
-    "translation": "Les appartements",
+    "subname": "(18)مدنية",
+    "title": "Al-Hujurat",
+    "subtitle": "Les appartements",
     "type": "medine",
     "verses": 18,
     "page": 515,
-    "pages": 3
+    "start": {
+      "sourat": 49,
+      "verse": 1
+    }
   },
   {
     "id": 50,
     "name": "ق",
-    "transliteration": "Qaf",
-    "translation": "Qaf",
+    "subname": "(45) مكية",
+    "title": "Qaf",
+    "subtitle": "Qaf",
     "type": "mecque",
     "verses": 45,
     "page": 518,
-    "pages": 2
+    "start": {
+      "sourat": 50,
+      "verse": 1
+    }
   },
   {
     "id": 51,
     "name": "الذاريات",
-    "transliteration": "Adh-Dhariyat",
-    "translation": "Qui éparpillent",
+    "subname": "(60) مكية",
+    "title": "Adh-Dhariyat",
+    "subtitle": "Qui éparpillent",
     "type": "mecque",
     "verses": 60,
     "page": 520,
-    "pages": 3
+    "start": {
+      "sourat": 51,
+      "verse": 1
+    }
   },
   {
     "id": 52,
     "name": "الطور",
-    "transliteration": "At-Tur",
-    "translation": "Le mont At-Tour",
+    "subname": "(49) مكية",
+    "title": "At-Tur",
+    "subtitle": "Le mont At-Tour",
     "type": "mecque",
     "verses": 49,
     "page": 523,
-    "pages": 3
+    "start": {
+      "sourat": 52,
+      "verse": 1
+    }
   },
   {
     "id": 53,
     "name": "النجم",
-    "transliteration": "An-Najm",
-    "translation": "L'étoile",
+    "subname": "(62) مكية",
+    "title": "An-Najm",
+    "subtitle": "L'étoile",
     "type": "mecque",
     "verses": 62,
     "page": 526,
-    "pages": 2
+    "start": {
+      "sourat": 53,
+      "verse": 1
+    }
   },
   {
     "id": 54,
     "name": "القمر",
-    "transliteration": "Al-Qamar",
-    "translation": "La lune",
+    "subname": "(55) مكية",
+    "title": "Al-Qamar",
+    "subtitle": "La lune",
     "type": "mecque",
     "verses": 55,
     "page": 528,
-    "pages": 3
+    "start": {
+      "sourat": 54,
+      "verse": 1
+    }
   },
   {
     "id": 55,
     "name": "الرحمن",
-    "transliteration": "Ar-Rahman",
-    "translation": "Le Tout Miséricordieux",
+    "subname": "(78)مدنية",
+    "title": "Ar-Rahman",
+    "subtitle": "Le Tout Miséricordieux",
     "type": "medine",
     "verses": 78,
     "page": 531,
-    "pages": 3
+    "start": {
+      "sourat": 55,
+      "verse": 1
+    }
   },
   {
     "id": 56,
     "name": "الواقعة",
-    "transliteration": "Al-Waqi'ah",
-    "translation": "L'inévitable",
+    "subname": "(96) مكية",
+    "title": "Al-Waqi'ah",
+    "subtitle": "L'inévitable",
     "type": "mecque",
     "verses": 96,
     "page": 534,
-    "pages": 3
+    "start": {
+      "sourat": 56,
+      "verse": 1
+    }
   },
   {
     "id": 57,
     "name": "الحديد",
-    "transliteration": "Al-Hadid",
-    "translation": "Le fer",
+    "subname": "(29)مدنية",
+    "title": "Al-Hadid",
+    "subtitle": "Le fer",
     "type": "medine",
     "verses": 29,
     "page": 537,
-    "pages": 5
+    "start": {
+      "sourat": 57,
+      "verse": 1
+    }
   },
   {
     "id": 58,
     "name": "المجادلة",
-    "transliteration": "Al-Mujadila",
-    "translation": "La discussion",
+    "subname": "(22)مدنية",
+    "title": "Al-Mujadila",
+    "subtitle": "La discussion",
     "type": "medine",
     "verses": 22,
     "page": 542,
-    "pages": 3
+    "start": {
+      "sourat": 58,
+      "verse": 1
+    }
   },
   {
     "id": 59,
     "name": "الحشر",
-    "transliteration": "Al-Hashr",
-    "translation": "L'exode",
+    "subname": "(24)مدنية",
+    "title": "Al-Hashr",
+    "subtitle": "L'exode",
     "type": "medine",
     "verses": 24,
     "page": 545,
-    "pages": 4
+    "start": {
+      "sourat": 59,
+      "verse": 1
+    }
   },
   {
     "id": 60,
     "name": "الممتحنة",
-    "transliteration": "Al-Mumtahanah",
-    "translation": "L'éprouvée",
+    "subname": "(13)مدنية",
+    "title": "Al-Mumtahanah",
+    "subtitle": "L'éprouvée",
     "type": "medine",
     "verses": 13,
     "page": 549,
-    "pages": 2
+    "start": {
+      "sourat": 60,
+      "verse": 1
+    }
   },
   {
     "id": 61,
     "name": "الصف",
-    "transliteration": "As-Saf",
-    "translation": "Le rang",
+    "subname": "(14)مدنية",
+    "title": "As-Saf",
+    "subtitle": "Le rang",
     "type": "medine",
     "verses": 14,
     "page": 551,
-    "pages": 2
+    "start": {
+      "sourat": 61,
+      "verse": 1
+    }
   },
   {
     "id": 62,
     "name": "الجمعة",
-    "transliteration": "Al-Jumu'ah",
-    "translation": "Le vendredi",
+    "subname": "(11)مدنية",
+    "title": "Al-Jumu'ah",
+    "subtitle": "Le vendredi",
     "type": "medine",
     "verses": 11,
     "page": 553,
-    "pages": 1
+    "start": {
+      "sourat": 62,
+      "verse": 1
+    }
   },
   {
     "id": 63,
     "name": "المنافقون",
-    "transliteration": "Al-Munafiqun",
-    "translation": "Les hypocrites",
+    "subname": "(11)مدنية",
+    "title": "Al-Munafiqun",
+    "subtitle": "Les hypocrites",
     "type": "medine",
     "verses": 11,
     "page": 554,
-    "pages": 2
+    "start": {
+      "sourat": 63,
+      "verse": 1
+    }
   },
   {
     "id": 64,
     "name": "التغابن",
-    "transliteration": "At-Taghabun",
-    "translation": "La grande perte",
+    "subname": "(18) مدنية",
+    "title": "At-Taghabun",
+    "subtitle": "La grande perte",
     "type": "medine",
     "verses": 18,
     "page": 556,
-    "pages": 2
+    "start": {
+      "sourat": 64,
+      "verse": 1
+    }
   },
   {
     "id": 65,
     "name": "الطلاق",
-    "transliteration": "At-Talaq",
-    "translation": "Le divorce",
+    "subname": "(12) مدنية",
+    "title": "At-Talaq",
+    "subtitle": "Le divorce",
     "type": "medine",
     "verses": 12,
     "page": 558,
-    "pages": 2
+    "start": {
+      "sourat": 65,
+      "verse": 1
+    }
   },
   {
     "id": 66,
     "name": "التحريم",
-    "transliteration": "At-Tahrim",
-    "translation": "L'interdiction",
+    "subname": "(12) مدنية",
+    "title": "At-Tahrim",
+    "subtitle": "L'interdiction",
     "type": "medine",
     "verses": 12,
     "page": 560,
-    "pages": 2
+    "start": {
+      "sourat": 66,
+      "verse": 1
+    }
   },
   {
     "id": 67,
     "name": "الملك",
-    "transliteration": "Al-Mulk",
-    "translation": "La royauté",
+    "subname": "(30) مكية",
+    "title": "Al-Mulk",
+    "subtitle": "La royauté",
     "type": "mecque",
     "verses": 30,
     "page": 562,
-    "pages": 2
+    "start": {
+      "sourat": 67,
+      "verse": 1
+    }
   },
   {
     "id": 68,
     "name": "القلم",
-    "transliteration": "Al-Qalam",
-    "translation": "La plume",
+    "subname": "(52) مكية",
+    "title": "Al-Qalam",
+    "subtitle": "La plume",
     "type": "mecque",
     "verses": 52,
     "page": 564,
-    "pages": 2
+    "start": {
+      "sourat": 68,
+      "verse": 1
+    }
   },
   {
     "id": 69,
     "name": "الحاقة",
-    "transliteration": "Al-Haqqah",
-    "translation": "L'inéluctable",
+    "subname": "(52) مكية",
+    "title": "Al-Haqqah",
+    "subtitle": "L'inéluctable",
     "type": "mecque",
     "verses": 52,
     "page": 566,
-    "pages": 2
+    "start": {
+      "sourat": 69,
+      "verse": 1
+    }
   },
   {
     "id": 70,
     "name": "المعارج",
-    "transliteration": "Al-Ma'arij",
-    "translation": "Les voies d'ascension",
+    "subname": "(44) مكية",
+    "title": "Al-Ma'arij",
+    "subtitle": "Les voies d'ascension",
     "type": "mecque",
     "verses": 44,
     "page": 568,
-    "pages": 2
+    "start": {
+      "sourat": 70,
+      "verse": 1
+    }
   },
   {
     "id": 71,
     "name": "نوح",
-    "transliteration": "Nuh",
-    "translation": "Noé",
+    "subname": "(28) مكية",
+    "title": "Nuh",
+    "subtitle": "Noé",
     "type": "mecque",
     "verses": 28,
     "page": 570,
-    "pages": 2
+    "start": {
+      "sourat": 71,
+      "verse": 1
+    }
   },
   {
     "id": 72,
     "name": "الجن",
-    "transliteration": "Al-Jinn",
-    "translation": "Les djinns",
+    "subname": "(7) مكية",
+    "title": "Al-Jinn",
+    "subtitle": "Les djinns",
     "type": "mecque",
     "verses": 28,
     "page": 572,
-    "pages": 2
+    "start": {
+      "sourat": 72,
+      "verse": 1
+    }
   },
   {
     "id": 73,
     "name": "المزمل",
-    "transliteration": "Al-Muzzammil",
-    "translation": "L'enveloppé",
+    "subname": "(20) مكية",
+    "title": "Al-Muzzammil",
+    "subtitle": "L'enveloppé",
     "type": "mecque",
     "verses": 20,
     "page": 574,
-    "pages": 1
+    "start": {
+      "sourat": 73,
+      "verse": 1
+    }
   },
   {
     "id": 74,
     "name": "المدثر",
-    "transliteration": "Al-Muddaththir",
-    "translation": "Celui qui se couvre",
+    "subname": "(56) مكية",
+    "title": "Al-Muddaththir",
+    "subtitle": "Celui qui se couvre",
     "type": "mecque",
     "verses": 56,
     "page": 575,
-    "pages": 2
+    "start": {
+      "sourat": 74,
+      "verse": 1
+    }
   },
   {
     "id": 75,
     "name": "القيامة",
-    "transliteration": "Al-Qiyamah",
-    "translation": "La résurrection",
+    "subname": "(40) مكية",
+    "title": "Al-Qiyamah",
+    "subtitle": "La résurrection",
     "type": "mecque",
     "verses": 40,
     "page": 577,
-    "pages": 1
+    "start": {
+      "sourat": 75,
+      "verse": 1
+    }
   },
   {
     "id": 76,
     "name": "الانسان",
-    "transliteration": "Al-Insan",
-    "translation": "L'homme",
+    "subname": "(31) مدنية",
+    "title": "Al-Insan",
+    "subtitle": "L'homme",
     "type": "medine",
     "verses": 31,
     "page": 578,
-    "pages": 2
+    "start": {
+      "sourat": 76,
+      "verse": 1
+    }
   },
   {
     "id": 77,
     "name": "المرسلات",
-    "transliteration": "Al-Mursalat",
-    "translation": "Les envoyés",
+    "subname": "(50) مكية",
+    "title": "Al-Mursalat",
+    "subtitle": "Les envoyés",
     "type": "mecque",
     "verses": 50,
     "page": 580,
-    "pages": 2
+    "start": {
+      "sourat": 77,
+      "verse": 1
+    }
   },
   {
     "id": 78,
     "name": "النبإ",
-    "transliteration": "An-Naba",
-    "translation": "La nouvelle",
+    "subname": "(40) مكية",
+    "title": "An-Naba",
+    "subtitle": "La nouvelle",
     "type": "mecque",
     "verses": 40,
     "page": 582,
-    "pages": 1
+    "start": {
+      "sourat": 78,
+      "verse": 1
+    }
   },
   {
     "id": 79,
     "name": "النازعات",
-    "transliteration": "An-Nazi'at",
-    "translation": "Ceux qui arrachent",
+    "subname": "(46) مكية",
+    "title": "An-Nazi'at",
+    "subtitle": "Ceux qui arrachent",
     "type": "mecque",
     "verses": 46,
     "page": 583,
-    "pages": 2
+    "start": {
+      "sourat": 79,
+      "verse": 1
+    }
   },
   {
     "id": 80,
     "name": "عبس",
-    "transliteration": "Abasa",
-    "translation": "Il s'est renfrogné",
+    "subname": "(42) مكية",
+    "title": "Abasa",
+    "subtitle": "Il s'est renfrogné",
     "type": "mecque",
     "verses": 42,
     "page": 585,
-    "pages": 1
+    "start": {
+      "sourat": 80,
+      "verse": 1
+    }
   },
   {
     "id": 81,
     "name": "التكوير",
-    "transliteration": "At-Takwir",
-    "translation": "L'obscurcissement",
+    "subname": "(29) مكية",
+    "title": "At-Takwir",
+    "subtitle": "L'obscurcissement",
     "type": "mecque",
     "verses": 29,
     "page": 586,
-    "pages": 1
+    "start": {
+      "sourat": 81,
+      "verse": 1
+    }
   },
   {
     "id": 82,
     "name": "الإنفطار",
-    "transliteration": "Al-Infitar",
-    "translation": "La rupture",
+    "subname": "(19) مكية",
+    "title": "Al-Infitar",
+    "subtitle": "La rupture",
     "type": "mecque",
     "verses": 19,
     "page": 587,
-    "pages": 1
+    "start": {
+      "sourat": 82,
+      "verse": 1
+    }
   },
   {
     "id": 83,
     "name": "المطففين",
-    "transliteration": "Al-Mutaffifin",
-    "translation": "Les fraudeurs",
+    "subname": "(367) مكية",
+    "title": "Al-Mutaffifin",
+    "subtitle": "Les fraudeurs",
     "type": "mecque",
     "verses": 36,
     "page": 587,
-    "pages": 2
+    "start": {
+      "sourat": 83,
+      "verse": 1
+    }
   },
   {
     "id": 84,
     "name": "الإنشقاق",
-    "transliteration": "Al-Inshiqaq",
-    "translation": "La déchirure",
+    "subname": "(25) مكية",
+    "title": "Al-Inshiqaq",
+    "subtitle": "La déchirure",
     "type": "mecque",
     "verses": 25,
     "page": 589,
-    "pages": 1
+    "start": {
+      "sourat": 84,
+      "verse": 1
+    }
   },
   {
     "id": 85,
     "name": "البروج",
-    "transliteration": "Al-Buruj",
-    "translation": "Les constellations",
+    "subname": "(22) مكية",
+    "title": "Al-Buruj",
+    "subtitle": "Les constellations",
     "type": "mecque",
     "verses": 22,
     "page": 590,
-    "pages": 1
+    "start": {
+      "sourat": 85,
+      "verse": 1
+    }
   },
   {
     "id": 86,
     "name": "الطارق",
-    "transliteration": "At-Tariq",
-    "translation": "L'astre nocturne",
+    "subname": "(17) مكية",
+    "title": "At-Tariq",
+    "subtitle": "L'astre nocturne",
     "type": "mecque",
     "verses": 17,
     "page": 591,
-    "pages": 1
+    "start": {
+      "sourat": 86,
+      "verse": 1
+    }
   },
   {
     "id": 87,
     "name": "الأعلى",
-    "transliteration": "Al-A'la",
-    "translation": "Le Très-Haut",
+    "subname": "(19) مكية",
+    "title": "Al-A'la",
+    "subtitle": "Le Très-Haut",
     "type": "mecque",
     "verses": 19,
     "page": 591,
-    "pages": 1
+    "start": {
+      "sourat": 87,
+      "verse": 1
+    }
   },
   {
     "id": 88,
     "name": "الغاشية",
-    "transliteration": "Al-Ghashiyah",
-    "translation": "L'enveloppante",
+    "subname": "(26) مكية",
+    "title": "Al-Ghashiyah",
+    "subtitle": "L'enveloppante",
     "type": "mecque",
     "verses": 26,
     "page": 592,
-    "pages": 1
+    "start": {
+      "sourat": 88,
+      "verse": 1
+    }
   },
   {
     "id": 89,
     "name": "الفجر",
-    "transliteration": "Al-Fajr",
-    "translation": "L'aube",
+    "subname": "(30) مكية",
+    "title": "Al-Fajr",
+    "subtitle": "L'aube",
     "type": "mecque",
     "verses": 30,
     "page": 593,
-    "pages": 1
+    "start": {
+      "sourat": 89,
+      "verse": 1
+    }
   },
   {
     "id": 90,
     "name": "البلد",
-    "transliteration": "Al-Balad",
-    "translation": "La cité",
+    "subname": "(20) مكية",
+    "title": "Al-Balad",
+    "subtitle": "La cité",
     "type": "mecque",
     "verses": 20,
     "page": 594,
-    "pages": 1
+    "start": {
+      "sourat": 90,
+      "verse": 1
+    }
   },
   {
     "id": 91,
     "name": "الشمس",
-    "transliteration": "Ash-Shams",
-    "translation": "Le soleil",
+    "subname": "(15) مكية",
+    "title": "Ash-Shams",
+    "subtitle": "Le soleil",
     "type": "mecque",
     "verses": 15,
     "page": 595,
-    "pages": 1
+    "start": {
+      "sourat": 91,
+      "verse": 1
+    }
   },
   {
     "id": 92,
     "name": "الليل",
-    "transliteration": "Al-Layl",
-    "translation": "La nuit",
+    "subname": "(92) مكية",
+    "title": "Al-Layl",
+    "subtitle": "La nuit",
     "type": "mecque",
     "verses": 21,
     "page": 595,
-    "pages": 1
+    "start": {
+      "sourat": 92,
+      "verse": 1
+    }
   },
   {
     "id": 93,
     "name": "الضحى",
-    "transliteration": "Ad-Duhaa",
-    "translation": "Le jour montant",
+    "subname": "(11) مكية",
+    "title": "Ad-Duhaa",
+    "subtitle": "Le jour montant",
     "type": "mecque",
     "verses": 11,
     "page": 596,
-    "pages": 1
+    "start": {
+      "sourat": 93,
+      "verse": 1
+    }
   },
   {
     "id": 94,
     "name": "الشرح",
-    "transliteration": "Ash-Sharh",
-    "translation": "L'ouverture",
+    "subname": "(8) مكية",
+    "title": "Ash-Sharh",
+    "subtitle": "L'ouverture",
     "type": "mecque",
     "verses": 8,
     "page": 596,
-    "pages": 1
+    "start": {
+      "sourat": 94,
+      "verse": 1
+    }
   },
   {
     "id": 95,
     "name": "التين",
-    "transliteration": "At-Tin",
-    "translation": "Les figues",
+    "subname": "(8) مكية",
+    "title": "At-Tin",
+    "subtitle": "Les figues",
     "type": "mecque",
     "verses": 8,
     "page": 597,
-    "pages": 1
+    "start": {
+      "sourat": 95,
+      "verse": 1
+    }
   },
   {
     "id": 96,
     "name": "العلق",
-    "transliteration": "Al-'Alaq",
-    "translation": "L'adhérence",
+    "subname": "(19) مكية",
+    "title": "Al-'Alaq",
+    "subtitle": "L'adhérence",
     "type": "mecque",
     "verses": 19,
     "page": 597,
-    "pages": 1
+    "start": {
+      "sourat": 96,
+      "verse": 1
+    }
   },
   {
     "id": 97,
     "name": "القدر",
-    "transliteration": "Al-Qadr",
-    "translation": "La destinée",
+    "subname": "(5) مكية",
+    "title": "Al-Qadr",
+    "subtitle": "La destinée",
     "type": "mecque",
     "verses": 5,
     "page": 598,
-    "pages": 1
+    "start": {
+      "sourat": 97,
+      "verse": 1
+    }
   },
   {
     "id": 98,
     "name": "البينة",
-    "transliteration": "Al-Bayyinah",
-    "translation": "La preuve",
+    "subname": "(8) مدنية",
+    "title": "Al-Bayyinah",
+    "subtitle": "La preuve",
     "type": "medine",
     "verses": 8,
     "page": 598,
-    "pages": 1
+    "start": {
+      "sourat": 98,
+      "verse": 1
+    }
   },
   {
     "id": 99,
     "name": "الزلزلة",
-    "transliteration": "Az-Zalzalah",
-    "translation": "Le séisme",
+    "subname": "(8) مدنية",
+    "title": "Az-Zalzalah",
+    "subtitle": "Le séisme",
     "type": "medine",
     "verses": 8,
     "page": 599,
-    "pages": 1
+    "start": {
+      "sourat": 99,
+      "verse": 1
+    }
   },
   {
     "id": 100,
     "name": "العاديات",
-    "transliteration": "Al-'Adiyat",
-    "translation": "Les coursiers",
+    "subname": "(11) مكية",
+    "title": "Al-'Adiyat",
+    "subtitle": "Les coursiers",
     "type": "mecque",
     "verses": 11,
     "page": 599,
-    "pages": 1
+    "start": {
+      "sourat": 100,
+      "verse": 1
+    }
   },
   {
     "id": 101,
     "name": "القارعة",
-    "transliteration": "Al-Qari'ah",
-    "translation": "Le fracas",
+    "subname": "(11) مكية",
+    "title": "Al-Qari'ah",
+    "subtitle": "Le fracas",
     "type": "mecque",
     "verses": 11,
     "page": 600,
-    "pages": 1
+    "start": {
+      "sourat": 101,
+      "verse": 1
+    }
   },
   {
     "id": 102,
     "name": "التكاثر",
-    "transliteration": "At-Takathur",
-    "translation": "La course aux richesses",
+    "subname": "(8) مكية",
+    "title": "At-Takathur",
+    "subtitle": "La course aux richesses",
     "type": "mecque",
     "verses": 8,
     "page": 600,
-    "pages": 1
+    "start": {
+      "sourat": 102,
+      "verse": 1
+    }
   },
   {
     "id": 103,
     "name": "العصر",
-    "transliteration": "Al-'Asr",
-    "translation": "Le temps",
+    "subname": "(3) مكية",
+    "title": "Al-'Asr",
+    "subtitle": "Le temps",
     "type": "mecque",
     "verses": 3,
     "page": 601,
-    "pages": 1
+    "start": {
+      "sourat": 103,
+      "verse": 1
+    }
   },
   {
     "id": 104,
     "name": "الهمزة",
-    "transliteration": "Al-Humazah",
-    "translation": "Les calomniateurs",
+    "subname": "(9) مكية",
+    "title": "Al-Humazah",
+    "subtitle": "Les calomniateurs",
     "type": "mecque",
     "verses": 9,
     "page": 601,
-    "pages": 1
+    "start": {
+      "sourat": 104,
+      "verse": 1
+    }
   },
   {
     "id": 105,
     "name": "الفيل",
-    "transliteration": "Al-Fil",
-    "translation": "L'éléphant",
+    "subname": "(5) مكية",
+    "title": "Al-Fil",
+    "subtitle": "L'éléphant",
     "type": "mecque",
     "verses": 5,
     "page": 601,
-    "pages": 1
+    "start": {
+      "sourat": 105,
+      "verse": 1
+    }
   },
   {
     "id": 106,
     "name": "قريش",
-    "transliteration": "Quraysh",
-    "translation": "Les Quraysh",
+    "subname": "(4) مكية",
+    "title": "Quraysh",
+    "subtitle": "Les Quraysh",
     "type": "mecque",
     "verses": 4,
     "page": 602,
-    "pages": 1
+    "start": {
+      "sourat": 106,
+      "verse": 1
+    }
   },
   {
     "id": 107,
     "name": "الماعون",
-    "transliteration": "Al-Ma'un",
-    "translation": "L'entraide",
+    "subname": "(7) مكية",
+    "title": "Al-Ma'un",
+    "subtitle": "L'entraide",
     "type": "mecque",
     "verses": 7,
     "page": 602,
-    "pages": 1
+    "start": {
+      "sourat": 107,
+      "verse": 1
+    }
   },
   {
     "id": 108,
     "name": "الكوثر",
-    "transliteration": "Al-Kawthar",
-    "translation": "L'abondance",
+    "subname": "(3) مكية",
+    "title": "Al-Kawthar",
+    "subtitle": "L'abondance",
     "type": "mecque",
     "verses": 3,
     "page": 602,
-    "pages": 1
+    "start": {
+      "sourat": 108,
+      "verse": 1
+    }
   },
   {
     "id": 109,
     "name": "الكافرون",
-    "transliteration": "Al-Kafirun",
-    "translation": "Les mécréants",
+    "subname": "(6) مكية",
+    "title": "Al-Kafirun",
+    "subtitle": "Les mécréants",
     "type": "mecque",
     "verses": 6,
     "page": 603,
-    "pages": 1
+    "start": {
+      "sourat": 109,
+      "verse": 1
+    }
   },
   {
     "id": 110,
     "name": "النصر",
-    "transliteration": "An-Nasr",
-    "translation": "Le secours",
+    "subname": "(3) مدنية",
+    "title": "An-Nasr",
+    "subtitle": "Le secours",
     "type": "medine",
     "verses": 3,
     "page": 603,
-    "pages": 1
+    "start": {
+      "sourat": 110,
+      "verse": 1
+    }
   },
   {
     "id": 111,
     "name": "المسد",
-    "transliteration": "Al-Masad",
-    "translation": "Les fibres",
+    "subname": "(5) مكية",
+    "title": "Al-Masad",
+    "subtitle": "Les fibres",
     "type": "mecque",
     "verses": 5,
     "page": 603,
-    "pages": 1
+    "start": {
+      "sourat": 111,
+      "verse": 1
+    }
   },
   {
     "id": 112,
     "name": "الإخلاص",
-    "transliteration": "Al-Ikhlas",
-    "translation": "La sincérité",
+    "subname": "(4) مكية",
+    "title": "Al-Ikhlas",
+    "subtitle": "La sincérité",
     "type": "mecque",
     "verses": 4,
     "page": 604,
-    "pages": 1
+    "start": {
+      "sourat": 112,
+      "verse": 1
+    }
   },
   {
     "id": 113,
     "name": "الفلق",
-    "transliteration": "Al-Falaq",
-    "translation": "L'aube naissante",
+    "subname": "(5) مكية",
+    "title": "Al-Falaq",
+    "subtitle": "L'aube naissante",
     "type": "mecque",
     "verses": 5,
     "page": 604,
-    "pages": 1
+    "start": {
+      "sourat": 113,
+      "verse": 1
+    }
   },
   {
     "id": 114,
     "name": "الناس",
-    "transliteration": "An-Nas",
-    "translation": "Les humains",
+    "subname": "(6) مكية",
+    "title": "An-Nas",
+    "subtitle": "Les humains",
     "type": "mecque",
     "verses": 6,
     "page": 604,
-    "pages": 1
+    "start": {
+      "sourat": 114,
+      "verse": 1
+    }
   }
 ]

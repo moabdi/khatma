@@ -5,6 +5,7 @@ import 'package:khatma_app/src/features/authentication/presentation/sign_in/emai
 import 'package:khatma_app/src/features/khatma/presentation/khatma_list/parts_selector_screen.dart';
 import 'package:khatma_app/src/features/khatma/presentation/khatma_screen/khatma_screen.dart';
 import 'package:khatma_app/src/features/khatma/presentation/khatma_list/khatmat_list_screen.dart';
+import 'package:khatma_app/src/features/mushaf/presentations/moushaf_screen.dart';
 import 'package:khatma_app/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma_app/src/routing/not_found_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ enum AppRoute {
   orders,
   account,
   signIn,
+  quran,
 }
 
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -35,6 +37,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: AppRoute.home.name,
         builder: (context, state) => const KhatmatListScreen(),
         routes: [
+          GoRoute(
+            path: 'quran/:idSourat/:idVerset',
+            name: AppRoute.quran.name,
+            builder: (context, state) {
+              final idSourat = int.parse(state.params['idSourat']!);
+              final idVerset = int.parse(state.params['idVerset']!);
+              return MoushafScreen(
+                idSourat: idSourat,
+                idVerse: idVerset,
+              );
+            },
+          ),
           GoRoute(
             path: 'khatma/:id',
             name: AppRoute.khatma.name,

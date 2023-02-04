@@ -11,7 +11,7 @@ class Khatma {
   bool permanent = false;
   SplitUnit unit;
   KhatmaType type;
-  Set<int>? completedParts;
+  List<int>? completedParts;
 
   Khatma({
     this.id,
@@ -29,7 +29,7 @@ class Khatma {
   double get completude {
     if (completedParts == null) return 0;
     if (SplitUnit.sourat == unit) {
-      return computeSouratCompletude(completedParts!);
+      return computeSouratCompletude(completedParts!.toSet());
     }
     return completedParts!.length / unit.value;
   }

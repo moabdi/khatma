@@ -10,8 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // turn off the # in the URLs on the web
   usePathUrlStrategy();
-  // * Register error handlers. For more info, see:
-  // * https://docs.flutter.dev/testing/errors
+  // * Register error handlers. For more info, se
   registerErrorHandlers();
   // * Entry point of the app
   runApp(const ProviderScope(child: MyApp()));
