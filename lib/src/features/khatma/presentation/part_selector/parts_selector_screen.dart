@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common_widgets/async_value_widget.dart';
+import 'package:khatma/src/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/parts_repository.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
@@ -24,8 +25,17 @@ class PartSelectorScreen extends ConsumerWidget {
         value: khatmaValue,
         data: (khatma) => Scaffold(
           appBar: buildAppBar(khatma, context),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
           floatingActionButton: const PartFloatingButton(),
-          body: buildBody(khatma),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                buildBody(khatma),
+                gapH64,
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -39,6 +49,8 @@ class PartSelectorScreen extends ConsumerWidget {
         return AsyncValueWidget<List<Part>>(
           value: partsListValue,
           data: (parts) => ListView.separated(
+            shrinkWrap: true,
+            primary: false,
             separatorBuilder: (context, index) => const Divider(
               height: 2,
             ),
