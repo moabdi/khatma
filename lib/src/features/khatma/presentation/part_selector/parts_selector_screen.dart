@@ -9,6 +9,7 @@ import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/common_widgets/k_app_bar.dart';
+import 'package:khatma/src/features/khatma/presentation/part_selector/part_tile.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -38,6 +39,10 @@ class PartSelectorScreen extends ConsumerWidget {
                 onPressed: () => {},
                 icon: const Icon(Icons.description),
               ),
+              IconButton(
+                onPressed: () => {},
+                icon: const Icon(Icons.edit),
+              ),
             ],
           ),
           floatingActionButton: const FloatingButton(),
@@ -56,7 +61,7 @@ class PartSelectorScreen extends ConsumerWidget {
                   itemBuilder: (BuildContext context, int index) {
                     var part = parts[index];
                     var isRead = khatma.completedParts!.contains(part.id);
-                    return PartListeTile(
+                    return PartTile(
                       part,
                       selectedParts: selectedParts,
                       isRead: isRead,
@@ -104,83 +109,6 @@ class FloatingButton extends StatelessWidget {
                 ),
               );
       }),
-    );
-  }
-}
-
-class PartListeTile extends StatelessWidget {
-  const PartListeTile(this.part,
-      {super.key, this.ref, this.selectedParts, this.isRead = false});
-
-  final List<int>? selectedParts;
-  final Part part;
-  final WidgetRef? ref;
-  final bool isRead;
-
-  @override
-  Widget build(BuildContext context) {
-    bool isSelected = selectedParts!.contains(part.id);
-    return ListTile(
-      enabled: !isRead,
-      selected: isSelected,
-      //enableFeedback: isSelected,
-      tileColor: AppTheme.getTheme().backgroundColor,
-      selectedTileColor: isRead
-          ? AppTheme.getTheme().disabledColor
-          : isSelected
-              ? AppTheme.getTheme().primaryColor.withOpacity(0.13)
-              : AppTheme.getTheme().backgroundColor,
-      onLongPress: () => isRead
-          ? null
-          : ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id),
-      onTap: () => CollectionUtils.isNotEmpty(selectedParts)
-          ? ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id)
-          : context.pushNamed(AppRoute.quran.name, params: {
-              'idSourat': part.start.sourat.toString(),
-              'idVerset': part.start.verse.toString(),
-            }),
-      leading: CircleAvatar(
-        backgroundColor: isRead
-            ? AppTheme.getTheme().disabledColor
-            : isSelected
-                ? AppTheme.getTheme().primaryColor
-                : AppTheme.getTheme().primaryColor.withOpacity(.1),
-        child: Text(part.id.toString(),
-            style: AppTheme.getTheme().textTheme.headline6!.copyWith(
-                color: isRead
-                    ? null
-                    : isSelected
-                        ? AppTheme.getTheme().backgroundColor
-                        : AppTheme.getTheme().primaryColor)),
-      ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SafeText(
-            part.title,
-            maxLength: 20,
-            style: isRead ? AppTheme.getTheme().textTheme.subtitle1 : null,
-          ),
-          SafeText(
-            part.name,
-            maxLength: 25,
-            style: isRead ? AppTheme.getTheme().textTheme.subtitle1 : null,
-          ),
-        ],
-      ),
-      subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SafeText(
-            part.subtitle,
-            style: AppTheme.getTheme().textTheme.subtitle2,
-          ),
-          SafeText(
-            part.subname,
-            style: AppTheme.getTheme().textTheme.subtitle2,
-          ),
-        ],
-      ),
     );
   }
 }
