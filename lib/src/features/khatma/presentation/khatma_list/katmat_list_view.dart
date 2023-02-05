@@ -18,27 +18,35 @@ class KhatmatListView extends ConsumerWidget {
     return AsyncValueWidget<List<Khatma>>(
       value: khatmatListValue,
       data: (khatmat) => khatmat.isEmpty
-          ? Center(
-              child: Text(
-                'No khatma found'.hardcoded,
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            )
-          : ListView.builder(
-              shrinkWrap: true,
-              primary: false,
-              itemCount: khatmat.length,
-              itemBuilder: (_, index) {
-                final khatma = khatmat[index];
-                return KhatmaCard(
-                  khatma: khatma,
-                  onPressed: () => context.goNamed(
-                    AppRoute.khatmaDetails.name,
-                    params: {'id': khatma.id!},
-                  ),
-                );
-              },
-            ),
+          ? buildNoFound(context)
+          : buildKhatmaList(khatmat, context),
+    );
+  }
+
+  Center buildNoFound(BuildContext context) {
+    return Center(
+      child: Text(
+        'No khatma found'.hardcoded,
+        style: Theme.of(context).textTheme.headline4,
+      ),
+    );
+  }
+
+  ListView buildKhatmaList(List<Khatma> khatmat, BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      primary: false,
+      itemCount: khatmat.length,
+      itemBuilder: (_, index) {
+        final khatma = khatmat[index];
+        return KhatmaCard(
+          khatma: khatma,
+          onPressed: () => context.goNamed(
+            AppRoute.khatmaDetails.name,
+            params: {'id': khatma.id!},
+          ),
+        );
+      },
     );
   }
 }

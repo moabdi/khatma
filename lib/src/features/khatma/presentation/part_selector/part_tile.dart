@@ -25,7 +25,6 @@ class PartTile extends StatelessWidget {
     return ListTile(
       enabled: !isRead,
       selected: isSelected,
-      //enableFeedback: isSelected,
       tileColor: AppTheme.getTheme().backgroundColor,
       selectedTileColor: isRead
           ? AppTheme.getTheme().disabledColor

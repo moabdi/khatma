@@ -26,6 +26,13 @@ class FakeKhatmaRepository {
     return watchKhatmaList()
         .map((khatmas) => khatmas.firstWhere((khatma) => khatma.id == id));
   }
+
+  void masrAsReadParts(String? khatmaId, List<int> partIds) {
+    if (khatmaId != null) {
+      Khatma? khatma = getKhatma(khatmaId);
+      khatma?.completedParts!.addAll(partIds);
+    }
+  }
 }
 
 final khatmasRepositoryProvider = Provider<FakeKhatmaRepository>((ref) {

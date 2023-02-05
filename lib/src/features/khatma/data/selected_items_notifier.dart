@@ -16,6 +16,7 @@ class SelectedItemsNotifier extends StateNotifier<List<int>> {
   }
 }
 
-final selectedItemsNotifier = StateNotifierProvider<SelectedItemsNotifier, List<int>>((ref) {
+final selectedItemsNotifier =
+    StateNotifierProvider<SelectedItemsNotifier, List<int>>((ref) {
   return SelectedItemsNotifier();
 });

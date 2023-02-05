@@ -27,7 +27,7 @@ class PartSelectorScreen extends ConsumerWidget {
           appBar: buildAppBar(khatma, context),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: const PartFloatingButton(),
+          floatingActionButton: PartFloatingButton(khatmaId: khatma!.id),
           body: SingleChildScrollView(
             child: Column(
               children: [
