@@ -3,14 +3,12 @@ import 'package:khatma/src/features/kpi/presentation/reading_chart.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class TopCard extends StatelessWidget {
-  const TopCard({
-    super.key,
-  });
+  const TopCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      //borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(20.0)),
       onTap: () {},
       child: Ink(
         height: 120,
