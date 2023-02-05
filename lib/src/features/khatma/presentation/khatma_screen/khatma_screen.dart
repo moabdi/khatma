@@ -8,7 +8,7 @@ import 'package:khatma/src/common_widgets/text_or_empty.dart';
 import 'package:khatma/src/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
+import 'package:khatma/src/common_widgets/k_app_bar.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 
 /// Shows the khatma page for a given khatma ID.
@@ -19,7 +19,7 @@ class KhatmaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HomeAppBar(),
+      appBar: const KAppBar(),
       body: Consumer(
         builder: (context, ref, _) {
           final khatmaValue = ref.watch(khatmaProvider(khatmaId));

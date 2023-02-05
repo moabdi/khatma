@@ -26,6 +26,7 @@ dependencies:
   flare_flutter: ^3.0.2
   line_icons: ^2.0.1
   webview_flutter: ^4.0.2
+  fl_chart: ^0.60.0
 
 dev_dependencies:
   flutter_test:

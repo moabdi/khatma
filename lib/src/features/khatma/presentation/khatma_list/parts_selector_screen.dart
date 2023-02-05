@@ -8,9 +8,8 @@ import 'package:khatma/src/features/khatma/data/parts_repository.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
-import 'package:khatma/src/features/khatma/presentation/home_app_bar/home_app_bar.dart';
+import 'package:khatma/src/common_widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
-import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 
@@ -26,7 +25,21 @@ class PartSelectorScreen extends ConsumerWidget {
       body: AsyncValueWidget<Khatma?>(
         value: khatmaValue,
         data: (khatma) => Scaffold(
-          appBar: HomeAppBar(title: khatma!.name),
+          appBar: KAppBar(
+            title: khatma!.name,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            actions: [
+              IconButton(
+                onPressed: () => {},
+                icon: const Icon(Icons.description),
+              ),
+            ],
+          ),
           floatingActionButton: const FloatingButton(),
           body: Consumer(
             builder: (context, ref, _) {
@@ -119,7 +132,7 @@ class PartListeTile extends StatelessWidget {
           : ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id),
       onTap: () => CollectionUtils.isNotEmpty(selectedParts)
           ? ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id)
-          : context.goNamed(AppRoute.quran.name, params: {
+          : context.pushNamed(AppRoute.quran.name, params: {
               'idSourat': part.start.sourat.toString(),
               'idVerset': part.start.verse.toString(),
             }),
