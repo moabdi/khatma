@@ -15,7 +15,7 @@ class MyApp extends ConsumerWidget {
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
-      onGenerateTitle: (BuildContext context) => 'My Khatma'.hardcoded,
+      onGenerateTitle: (BuildContext context) => 'Khatma'.hardcoded,
       theme: AppTheme.getTheme(),
     );
   }

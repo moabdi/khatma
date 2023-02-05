@@ -1,7 +1,9 @@
+import 'package:flutter/services.dart';
 import 'package:khatma/src/common_widgets/text_or_empty.dart';
 import 'package:khatma/src/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 /// Custom [AppBar] widget that is reused by the [KhatmatListScreen] and
 /// [ProductScreen].
@@ -25,8 +27,7 @@ class KAppBar extends ConsumerWidget with PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 15.0,
-        right: 10,
+        top: 5.0,
       ),
       child: AppBar(
         title: TextOrEmpty(title),
@@ -37,5 +38,5 @@ class KAppBar extends ConsumerWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70.0);
+  Size get preferredSize => const Size.fromHeight(60.0);
 }

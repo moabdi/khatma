@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MoushafScreen extends StatefulWidget {
@@ -13,6 +17,8 @@ class MoushafScreen extends StatefulWidget {
 
 class _MoushafScreenState extends State<MoushafScreen> {
   late final WebViewController _controller;
+  bool _showAppBar = false;
+  late Timer _timer;
 
   @override
   void initState() {
@@ -34,11 +40,56 @@ class _MoushafScreenState extends State<MoushafScreen> {
   }
 
   @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: WebViewWidget(
-        controller: _controller,
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    return GestureDetector(
+      onVerticalDragEnd: showAppBar,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.dark.copyWith(
+          statusBarColor: AppTheme.getTheme().backgroundColor,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+        child: Scaffold(
+          appBar: _showAppBar
+              ? AppBar(
+                  title: Text(
+                    "Close",
+                    style: AppTheme.getTheme().textTheme.bodySmall,
+                  ),
+                  leading: IconButton(
+                      onPressed: () => {
+                            SystemChrome.setEnabledSystemUIMode(
+                                SystemUiMode.edgeToEdge),
+                            Navigator.pop(context),
+                          },
+                      icon: const Icon(Icons.close)),
+                )
+              : null,
+          body: WebViewWidget(
+            controller: _controller,
+          ),
+        ),
       ),
     );
+  }
+
+  void showAppBar(details) {
+    if (details.velocity.pixelsPerSecond.dy < 0 ||
+        details.velocity.pixelsPerSecond.dy > 0) {
+      setState(() {
+        _showAppBar = true;
+        _timer = Timer(const Duration(seconds: 3), () {
+          setState(() {
+            _showAppBar = false;
+          });
+        });
+      });
+    }
   }
 }

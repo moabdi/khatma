@@ -12,6 +12,7 @@ void main() async {
   usePathUrlStrategy();
   // * Register error handlers. For more info, se
   registerErrorHandlers();
+
   // * Entry point of the app
   runApp(const ProviderScope(
     child: MyApp(),

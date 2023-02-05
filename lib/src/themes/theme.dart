@@ -44,26 +44,35 @@ class AppTheme {
   static ThemeData newLightTheme() {
     Color primaryColor = primaryColors;
     Color secondaryColor = secondaryColors;
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
+
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(
       primary: primaryColor,
       secondary: secondaryColor,
     );
+
     final ThemeData base = ThemeData.light();
 
     TextTheme textTheme = _buildTextTheme(base.textTheme, "Lato");
     return base.copyWith(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       backgroundColor: HexColor("F5F5F8"),
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.grey.shade50,
-        ),
         elevation: .2,
         centerTitle: false,
         titleTextStyle: textTheme.headline5!.copyWith(color: Colors.black),
-        backgroundColor: Colors.grey.shade50,
-        iconTheme: base.iconTheme.copyWith(
-          color: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.white,
+        iconTheme:
+            base.iconTheme.copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+          statusBarBrightness: Brightness.light, // For iOS (dark icons)
         ),
       ),
       bottomAppBarColor: const Color(0xFFF7FCFD),

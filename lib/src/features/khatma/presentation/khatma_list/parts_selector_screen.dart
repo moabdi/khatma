@@ -21,7 +21,7 @@ class PartSelectorScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final khatmaValue = ref.watch(khatmaProvider(khatmaId));
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: AppTheme.getTheme().backgroundColor,
       body: AsyncValueWidget<Khatma?>(
         value: khatmaValue,
         data: (khatma) => Scaffold(
@@ -87,19 +87,21 @@ class FloatingButton extends StatelessWidget {
         final selectedParts = ref.watch(selectedItemsNotifier);
         return CollectionUtils.isEmpty(selectedParts)
             ? Container()
-            : FloatingActionButton.extended(
-                extendedTextStyle: AppTheme.getTheme().textTheme.subtitle1,
-                onPressed: () {
-                  // Add your onPressed code here!
-                },
-                label: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    'Marquer comme lu (${selectedParts.length})',
+            : Center(
+                child: FloatingActionButton.extended(
+                  extendedTextStyle: AppTheme.getTheme().textTheme.subtitle1,
+                  onPressed: () {
+                    // Add your onPressed code here!
+                  },
+                  label: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      'Marquer comme lu (${selectedParts.length})',
+                    ),
                   ),
+                  icon: const Icon(Icons.check),
+                  backgroundColor: AppTheme.getTheme().primaryColor,
                 ),
-                icon: const Icon(Icons.check),
-                backgroundColor: AppTheme.getTheme().primaryColor,
               );
       }),
     );
@@ -117,16 +119,17 @@ class PartListeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected = selectedParts != null && selectedParts!.contains(part.id);
+    bool isSelected = selectedParts!.contains(part.id);
     return ListTile(
       enabled: !isRead,
       selected: isSelected,
       //enableFeedback: isSelected,
+      tileColor: AppTheme.getTheme().backgroundColor,
       selectedTileColor: isRead
           ? AppTheme.getTheme().disabledColor
           : isSelected
               ? AppTheme.getTheme().primaryColor.withOpacity(0.13)
-              : null,
+              : AppTheme.getTheme().backgroundColor,
       onLongPress: () => isRead
           ? null
           : ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id),
