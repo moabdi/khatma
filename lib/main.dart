@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:khatma/src/app.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:flutter/foundation.dart';
@@ -13,6 +14,11 @@ void main() async {
   // * Register error handlers. For more info, se
   registerErrorHandlers();
 
+  LicenseRegistry.addLicense(() async* {
+    final license =
+        await rootBundle.loadString('assets/fonts/google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
   // * Entry point of the app
   runApp(const ProviderScope(
     child: MyApp(),
