@@ -2,9 +2,9 @@ import 'package:khatma/src/features/authentication/data/fake_auth_repository.dar
 import 'package:khatma/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
-import 'package:khatma/src/features/khatma/presentation/part_selector/parts_selector_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/widgets/part_selector/parts_selector_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_screen/khatma_screen.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_list/khatmat_list_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_list_screen/khatmat_list_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';
