@@ -1,10 +1,8 @@
-import 'dart:async';
-
-String formatLastRead(DateTime lastRead) {
+String formatDateAsTextDuration(DateTime dateTime) {
   DateTime now = DateTime.now();
 
-  if (lastRead.year == now.year && lastRead.month == now.month) {
-    int diffInDays = now.difference(lastRead).inDays;
+  if (dateTime.year == now.year && dateTime.month == now.month) {
+    int diffInDays = now.difference(dateTime).inDays;
 
     if (diffInDays == 0) {
       return 'Today';
@@ -15,12 +13,12 @@ String formatLastRead(DateTime lastRead) {
     }
   } else {
     int monthsAgo =
-        12 * (now.year - lastRead.year) + (now.month - lastRead.month);
-    String month = getMonthName(lastRead.month);
-    if (now.year == lastRead.year) {
+        12 * (now.year - dateTime.year) + (now.month - dateTime.month);
+    String month = getMonthName(dateTime.month);
+    if (now.year == dateTime.year) {
       return '$monthsAgo months ago';
     } else {
-      return '$month ${lastRead.year}';
+      return '$month ${dateTime.year}';
     }
   }
 }

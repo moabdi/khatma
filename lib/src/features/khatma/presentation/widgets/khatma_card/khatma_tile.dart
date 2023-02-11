@@ -47,7 +47,9 @@ class KhatmaTile extends StatelessWidget {
                 color: AppTheme.getTheme().textTheme.subtitle2!.color,
               ),
               gapW4,
-              TextOrEmpty(formatLastRead(khatma.lastRead ?? khatma.createDate),
+              TextOrEmpty(
+                  formatDateAsTextDuration(
+                      khatma.lastRead ?? khatma.createDate),
                   style: AppTheme.getTheme().textTheme.subtitle2),
             ],
           ),
