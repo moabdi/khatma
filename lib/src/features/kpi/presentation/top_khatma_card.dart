@@ -34,7 +34,7 @@ class TopKhatmaCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [],
+                  children: const [],
                 ),
               ),
             ),

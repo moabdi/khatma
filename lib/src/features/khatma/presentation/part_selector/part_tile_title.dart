@@ -5,10 +5,10 @@ import 'package:khatma/src/themes/theme.dart';
 
 class PartTileTitle extends StatelessWidget {
   const PartTileTitle({
-    Key? key,
+    super.key,
     required this.part,
     required this.isRead,
-  }) : super(key: key);
+  });
 
   final Part part;
   final bool isRead;
