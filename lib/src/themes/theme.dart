@@ -7,6 +7,7 @@ class AppTheme {
   static Color primaryColors = HexColor("#00A862");
   // static Color primaryColors = Colors.blue;
   static Color secondaryColors = HexColor("#C66628");
+  // ignore: unused_field
   static const ColorScheme _shrineColorScheme = ColorScheme(
     primary: shrinePink100,
     primaryContainer: shrineBrown900,
@@ -211,7 +212,7 @@ class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
     if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
+      hexColor = "FF$hexColor";
     }
     return int.parse(hexColor, radix: 16);
   }

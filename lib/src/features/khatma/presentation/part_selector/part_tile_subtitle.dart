@@ -5,9 +5,9 @@ import 'package:khatma/src/themes/theme.dart';
 
 class PartTileSubtitle extends StatelessWidget {
   const PartTileSubtitle({
-    Key? key,
+    super.key,
     required this.part,
-  }) : super(key: key);
+  });
 
   final Part part;
 
