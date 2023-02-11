@@ -1,4 +1,4 @@
-import 'package:khatma/src/constants/test_khatmat.dart';
+import 'package:khatma/src/common/constants/test_khatmat.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 

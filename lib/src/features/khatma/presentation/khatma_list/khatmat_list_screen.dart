@@ -1,10 +1,10 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:khatma/src/common_widgets/icon_boutton.dart';
+import 'package:khatma/src/common/widgets/icon_boutton.dart';
 import 'package:khatma/src/drawer/main_drawer.dart';
-import 'package:khatma/src/common_widgets/k_app_bar.dart';
+import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_list/katmat_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/kpi/presentation/top_card.dart';
 import 'package:khatma/src/themes/theme.dart';
 

@@ -5,10 +5,10 @@ import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:khatma/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:khatma/src/common_widgets/custom_text_button.dart';
-import 'package:khatma/src/common_widgets/primary_button.dart';
-import 'package:khatma/src/common_widgets/responsive_scrollable_card.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/common/widgets/custom_text_button.dart';
+import 'package:khatma/src/common/widgets/primary_button.dart';
+import 'package:khatma/src/common/widgets/responsive_scrollable_card.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Email & password sign in screen.

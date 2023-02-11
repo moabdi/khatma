@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common_widgets/async_value_widget.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/common/widgets/async_value_widget.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/data/parts_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';

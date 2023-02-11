@@ -1,4 +1,4 @@
-import 'package:khatma/src/common_widgets/alert_dialogs.dart';
+import 'package:khatma/src/common/widgets/alert_dialogs.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

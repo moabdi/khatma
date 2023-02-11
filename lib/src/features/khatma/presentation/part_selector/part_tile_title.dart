@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common_widgets/safe_text.dart';
+import 'package:khatma/src/common/widgets/safe_text.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/themes/theme.dart';
 

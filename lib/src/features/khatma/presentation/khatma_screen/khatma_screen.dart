@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common_widgets/async_value_widget.dart';
-import 'package:khatma/src/common_widgets/empty_placeholder_widget.dart';
-import 'package:khatma/src/common_widgets/responsive_center.dart';
-import 'package:khatma/src/common_widgets/responsive_two_column_layout.dart';
-import 'package:khatma/src/common_widgets/text_or_empty.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/common/widgets/async_value_widget.dart';
+import 'package:khatma/src/common/widgets/empty_placeholder_widget.dart';
+import 'package:khatma/src/common/widgets/responsive_center.dart';
+import 'package:khatma/src/common/widgets/responsive_two_column_layout.dart';
+import 'package:khatma/src/common/widgets/text_or_empty.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/common_widgets/k_app_bar.dart';
+import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 
 /// Shows the khatma page for a given khatma ID.

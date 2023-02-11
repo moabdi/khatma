@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:khatma/src/common_widgets/text_or_empty.dart';
-import 'package:khatma/src/constants/breakpoints.dart';
+import 'package:khatma/src/common/widgets/text_or_empty.dart';
+import 'package:khatma/src/common/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/themes/theme.dart';

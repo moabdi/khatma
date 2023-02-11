@@ -1,4 +1,4 @@
-import 'package:khatma/src/common_widgets/async_value_widget.dart';
+import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_list/khatma_card/khatma_card.dart';

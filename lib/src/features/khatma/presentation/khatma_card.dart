@@ -1,6 +1,6 @@
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 
 /// Used to show a single khatma inside a card.
 class KhatmaCard extends StatelessWidget {

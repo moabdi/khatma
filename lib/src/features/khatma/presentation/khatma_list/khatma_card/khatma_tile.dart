@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common_widgets/text_or_empty.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/common/widgets/text_or_empty.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/utils/image_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
