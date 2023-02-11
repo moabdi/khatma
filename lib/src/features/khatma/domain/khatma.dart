@@ -7,8 +7,8 @@ class Khatma {
   String? id;
   String name;
   String? description;
-  DateTime? start;
-  DateTime? end;
+  DateTime createDate;
+  DateTime? endDate;
   String? creator;
   bool permanent = false;
   SplitUnit unit;
@@ -23,8 +23,8 @@ class Khatma {
     this.id,
     required this.name,
     this.description,
-    this.start,
-    this.end,
+    required this.createDate,
+    this.endDate,
     this.creator,
     this.permanent = false,
     this.unit = SplitUnit.hizb,
@@ -42,7 +42,7 @@ class Khatma {
   }
 
   int get nextPartToRead {
-    if (completedParts == null || completedParts!.isEmpty) return 1;
+    if (completedParts?.isEmpty ?? true) return 1;
     return findSmallestMissingPositive(List.from(completedParts!)) + 1;
   }
 }

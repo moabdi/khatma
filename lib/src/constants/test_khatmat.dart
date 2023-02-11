@@ -10,6 +10,7 @@ var kTestKhatmat = [
     type: KhatmaType.custom,
     unit: SplitUnit.juzz,
     completedParts: [1, 2, 3],
+    createDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),
   ),
   Khatma(
@@ -19,6 +20,7 @@ var kTestKhatmat = [
     type: KhatmaType.ramadan,
     unit: SplitUnit.hizb,
     completedParts: [1, 2, 3, 4, 5],
+    createDate: DateTime.parse("2023-01-15 13:27:00"),
     lastRead: DateTime.parse("2023-02-08 08:00:00"),
   ),
   Khatma(
@@ -28,6 +30,7 @@ var kTestKhatmat = [
     type: KhatmaType.monthly,
     unit: SplitUnit.sourat,
     completedParts: [1, 2],
+    createDate: DateTime.parse("2023-01-01 10:15:00"),
     lastRead: DateTime.now(),
   ),
   Khatma(
@@ -36,6 +39,7 @@ var kTestKhatmat = [
     description: 'Comunité plaisir ',
     type: KhatmaType.mosque,
     unit: SplitUnit.rubue,
+    createDate: DateTime.parse("2022-12-01 10:15:00"),
   ),
   Khatma(
     id: '5',
@@ -43,23 +47,27 @@ var kTestKhatmat = [
     description: 'Lecture chque vendredi',
     type: KhatmaType.friday,
     unit: SplitUnit.thumun,
+    createDate: DateTime.parse("2022-10-01 10:15:00"),
   ),
   Khatma(
     id: '6',
     name: 'Khatma classique',
     description: 'Description classique',
-    unit: SplitUnit.hizb,
+    unit: SplitUnit.sourat,
+    createDate: DateTime.parse("2022-11-01 10:15:00"),
   ),
   Khatma(
     id: '7',
     name: 'Khatma 7',
     description: 'Description 7',
-    unit: SplitUnit.hizb,
+    unit: SplitUnit.juzz,
+    createDate: DateTime.parse("2023-02-01 10:15:00"),
   ),
   Khatma(
     id: '8',
     name: 'Khatma 8',
     description: 'Description 8',
     unit: SplitUnit.hizb,
+    createDate: DateTime.parse("2023-12-01 10:15:00"),
   ),
 ];
