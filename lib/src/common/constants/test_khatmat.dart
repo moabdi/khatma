@@ -68,6 +68,6 @@ var kTestKhatmat = [
     name: 'Khatma 8',
     description: 'Description 8',
     unit: SplitUnit.hizb,
-    createDate: DateTime.parse("2023-12-01 10:15:00"),
+    createDate: DateTime.parse("2022-12-01 10:15:00"),
   ),
 ];

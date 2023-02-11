@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/common/utils/duration_formatter.dart';
 import 'package:khatma/src/common/widgets/text_or_empty.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -46,7 +47,7 @@ class KhatmaTile extends StatelessWidget {
                 color: AppTheme.getTheme().textTheme.subtitle2!.color,
               ),
               gapW4,
-              TextOrEmpty("Depuis hier",
+              TextOrEmpty(formatLastRead(khatma.lastRead ?? khatma.createDate),
                   style: AppTheme.getTheme().textTheme.subtitle2),
             ],
           ),

@@ -1,7 +1,7 @@
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
-import 'package:khatma/src/utils/number_utils.dart';
+import 'package:khatma/src/common/utils/number_utils.dart';
 
 class Khatma {
   String? id;
