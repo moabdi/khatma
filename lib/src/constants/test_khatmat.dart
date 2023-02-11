@@ -10,6 +10,7 @@ var kTestKhatmat = [
     type: KhatmaType.custom,
     unit: SplitUnit.juzz,
     completedParts: [1, 2, 3],
+    lastRead: DateTime.parse("2023-01-01 13:27:00"),
   ),
   Khatma(
     id: '2',
@@ -18,6 +19,7 @@ var kTestKhatmat = [
     type: KhatmaType.ramadan,
     unit: SplitUnit.hizb,
     completedParts: [1, 2, 3, 4, 5],
+    lastRead: DateTime.parse("2023-02-08 08:00:00"),
   ),
   Khatma(
     id: '3',
@@ -25,7 +27,8 @@ var kTestKhatmat = [
     description: 'Hizeb raatib',
     type: KhatmaType.monthly,
     unit: SplitUnit.sourat,
-    completedParts: [1, 2, 3, 4, 5, 6, 7, 8],
+    completedParts: [1, 2],
+    lastRead: DateTime.now(),
   ),
   Khatma(
     id: '4',
