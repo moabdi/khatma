@@ -45,4 +45,9 @@ class Khatma {
     if (completedParts?.isEmpty ?? true) return 1;
     return findSmallestMissingPositive(List.from(completedParts!)) + 1;
   }
+
+  Duration get duration {
+    if (lastRead == null) return DateTime.now().difference(createDate);
+    return DateTime.now().difference(lastRead!);
+  }
 }
