@@ -112,8 +112,32 @@ class AppTheme {
         endIndent: 1,
         indent: 1,
       ),
+      listTileTheme: ListTileThemeData(
+        dense: false,
+        style: ListTileStyle.list,
+        selectedColor: primaryColor,
+        //iconColor: secondaryColor,
+        //contentPadding: EdgeInsetsGeometry.infinity,
+        tileColor: Colors.white,
+        selectedTileColor: primaryColor.withOpacity(0.13),
+        minLeadingWidth: 4,
+        //enableFeedback: false,
+      ),
     );
   }
+
+  ListTileThemeData appMaterialLightListTileThemeData = ListTileThemeData(
+    dense: false,
+    style: ListTileStyle.list,
+    selectedColor: Colors.amber,
+    iconColor: Colors.red,
+    textColor: Colors.blue,
+    contentPadding: EdgeInsetsGeometry.infinity,
+    tileColor: Colors.green,
+    selectedTileColor: Colors.blueAccent,
+    minLeadingWidth: 4,
+    enableFeedback: true,
+  );
 
   static ThemeData newDarkTheme() {
     Color primaryColor = primaryColors;

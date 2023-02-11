@@ -10,7 +10,6 @@ import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/part_selector/part_tile.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
   const PartSelectorScreen({super.key, required this.khatmaId});
@@ -20,7 +19,6 @@ class PartSelectorScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final khatmaValue = ref.watch(khatmaProvider(khatmaId));
     return Scaffold(
-      backgroundColor: AppTheme.getTheme().backgroundColor,
       body: AsyncValueWidget<Khatma?>(
         value: khatmaValue,
         data: (khatma) => Scaffold(
@@ -83,7 +81,7 @@ class PartSelectorScreen extends ConsumerWidget {
       actions: [
         IconButton(
           onPressed: () => {},
-          icon: const Icon(Icons.description),
+          icon: const Icon(Icons.info_outline_rounded),
         ),
         IconButton(
           onPressed: () => {},
