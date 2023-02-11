@@ -21,6 +21,7 @@ class KhatmaTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      hoverColor: AppTheme.getTheme().primaryColor.withOpacity(.2),
       contentPadding: const EdgeInsets.all(10),
       leading: Container(
         padding: const EdgeInsets.all(10),
