@@ -73,7 +73,7 @@ class PartSelectorScreen extends ConsumerWidget {
     return KAppBar(
       title: khatma!.name,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
+        icon: const Icon(Icons.chevron_left),
         onPressed: () {
           Navigator.pop(context);
         },
