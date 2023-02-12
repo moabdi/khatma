@@ -27,6 +27,7 @@ dependencies:
   line_icons: ^2.0.1
   webview_flutter: ^4.0.2
   fl_chart: ^0.60.0
+  dwds: ^16.0.1
 
 dev_dependencies:
   flutter_test:

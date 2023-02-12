@@ -62,6 +62,7 @@ class AppTheme {
 
     TextTheme textTheme = _buildTextTheme(base.textTheme, "Lato");
     return base.copyWith(
+      useMaterial3: true,
       brightness: Brightness.light,
       backgroundColor: HexColor("F5F5F8"),
       appBarTheme: AppBarTheme(
