@@ -124,6 +124,23 @@ class AppTheme {
         minLeadingWidth: 4,
         //enableFeedback: false,
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.all(15),
+        hintStyle: TextStyle(
+          color: Colors.grey[400],
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1, color: Colors.grey.shade200),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide:
+              BorderSide(width: 1.5, color: primaryColor.withOpacity(.4)),
+        ),
+      ),
     );
   }
 
@@ -214,7 +231,7 @@ class AppTheme {
           fontWeight: FontWeight.w500,
           color: Colors.grey),
       bodyText1: base.bodyText1?.copyWith(
-        fontSize: 18,
+        fontSize: 12,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),

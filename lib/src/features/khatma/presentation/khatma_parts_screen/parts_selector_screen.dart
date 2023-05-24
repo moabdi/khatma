@@ -55,7 +55,8 @@ class PartSelectorScreen extends ConsumerWidget {
             itemCount: parts.length,
             itemBuilder: (BuildContext context, int index) {
               var part = parts[index];
-              var isRead = khatma.completedParts!.contains(part.id);
+              var isRead = khatma.completedParts != null &&
+                  khatma.completedParts!.contains(part.id);
               return PartTile(
                 part,
                 selectedParts: selectedParts,

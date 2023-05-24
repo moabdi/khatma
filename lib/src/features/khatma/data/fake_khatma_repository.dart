@@ -30,7 +30,10 @@ class FakeKhatmaRepository {
   void masrAsReadParts(String? khatmaId, List<int> partIds) {
     if (khatmaId != null) {
       Khatma? khatma = getKhatma(khatmaId);
-      khatma?.completedParts!.addAll(partIds);
+      if (khatma!.completedParts == null) {
+        khatma.completedParts = [];
+      }
+      khatma.completedParts!.addAll(partIds);
     }
   }
 }

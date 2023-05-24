@@ -3,8 +3,10 @@ import 'package:khatma/src/features/authentication/presentation/account/account_
 import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/parts_selector_screen.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_screen/khatma_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_screen/bottom.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_list_screen/khatmat_list_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_screen/home_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_screen/khatma_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';
@@ -16,10 +18,6 @@ enum AppRoute {
   home,
   khatma,
   khatmaDetails,
-  leaveReview,
-  cart,
-  checkout,
-  orders,
   account,
   signIn,
   quran,
@@ -50,11 +48,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             },
           ),
           GoRoute(
-            path: 'khatma/:id',
+            path: 'khatma/create',
             name: AppRoute.khatma.name,
             builder: (context, state) {
-              final khatmaId = state.params['id']!;
-              return KhatmaScreen(khatmaId: khatmaId);
+              return AddKhatmaScreen();
             },
           ),
           GoRoute(
