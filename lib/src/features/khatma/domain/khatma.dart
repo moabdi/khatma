@@ -12,8 +12,10 @@ class Khatma {
   DateTime? endDate;
   String? creator;
   bool permanent = false;
+
   SplitUnit unit;
   KhatmaType type;
+  KhatmaStyle? style;
 
   // should be out
   DateTime? lastRead;
@@ -50,4 +52,11 @@ class Khatma {
     if (lastRead == null) return DateTime.now().difference(createDate);
     return DateTime.now().difference(lastRead!);
   }
+}
+
+class KhatmaStyle {
+  String? color;
+  String? icon;
+
+  KhatmaStyle({this.color, this.icon});
 }

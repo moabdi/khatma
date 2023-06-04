@@ -40,7 +40,7 @@ class PartTile extends StatelessWidget {
     if (CollectionUtils.isNotEmpty(selectedParts)) {
       toggleSelection();
     } else {
-      context.pushNamed(AppRoute.quran.name, params: {
+      context.pushNamed(AppRoute.quran.name, pathParameters: {
         'idSourat': part.start.sourat.toString(),
         'idVerset': part.start.verse.toString(),
       });

@@ -74,7 +74,7 @@ class KhatmatListScreen extends StatelessWidget {
             {
               context.goNamed(
                 AppRoute.quran.name,
-                params: {'idSourat': "1", 'idVerset': "1"},
+                pathParameters: {'idSourat': "1", 'idVerset': "1"},
               ),
             }
           else if (value == 2)

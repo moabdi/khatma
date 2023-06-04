@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// - [ShoppingCartIcon]
 /// - Orders button
 /// - Account or Sign-in button
-class KAppBar extends ConsumerWidget with PreferredSizeWidget {
+class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const KAppBar({
     super.key,
     this.title,

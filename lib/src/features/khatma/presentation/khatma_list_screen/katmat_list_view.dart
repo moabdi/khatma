@@ -43,7 +43,7 @@ class KhatmatListView extends ConsumerWidget {
           khatma: khatma,
           onPressed: () => context.goNamed(
             AppRoute.khatmaDetails.name,
-            params: {'id': khatma.id!},
+            pathParameters: {'id': khatma.id!},
           ),
         );
       },

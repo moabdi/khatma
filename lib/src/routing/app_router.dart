@@ -39,8 +39,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             path: 'quran/:idSourat/:idVerset',
             name: AppRoute.quran.name,
             builder: (context, state) {
-              final idSourat = int.parse(state.params['idSourat']!);
-              final idVerset = int.parse(state.params['idVerset']!);
+              final idSourat = int.parse(state.pathParameters['idSourat']!);
+              final idVerset = int.parse(state.pathParameters['idVerset']!);
               return MoushafScreen(
                 idSourat: idSourat,
                 idVerse: idVerset,
@@ -58,7 +58,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             path: 'khatma-parts/:id',
             name: AppRoute.khatmaDetails.name,
             builder: (context, state) {
-              final khatmaId = state.params['id']!;
+              final khatmaId = state.pathParameters['id']!;
               return PartSelectorScreen(khatmaId: khatmaId);
             },
           ),
