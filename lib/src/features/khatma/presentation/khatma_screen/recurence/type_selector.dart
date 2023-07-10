@@ -5,14 +5,14 @@ import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 import 'package:khatma/src/themes/theme.dart';
 
-class RecurenceSelector extends StatefulWidget {
-  const RecurenceSelector({super.key});
+class TypeSelector extends StatefulWidget {
+  const TypeSelector({super.key});
 
   @override
-  State<RecurenceSelector> createState() => _RecurenceSelectorState();
+  State<TypeSelector> createState() => _TypeSelectorState();
 }
 
-class _RecurenceSelectorState extends State<RecurenceSelector> {
+class _TypeSelectorState extends State<TypeSelector> {
   KhatmaScheduler _selectedScheduler = KhatmaScheduler.never;
   DateTime selectedDate = DateTime.now();
 
@@ -76,13 +76,6 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
         _neverRepeat(context),
         _repeatAfterComplete(context),
         _customRepeat(context),
-        Column(
-          children: [
-            _startDate(context),
-            _recurence(),
-            _endDate(context),
-          ],
-        ),
         gapH20,
         gapH20,
       ],

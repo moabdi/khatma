@@ -14,6 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final KhatmaType _selectedKhatmaType = KhatmaType.monthly;
   final bool _isPermanent = true;
   int? _value = 1;
+  List<bool> _isSelected = [false, true, false];
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,17 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            ToggleButtons(
+              children: <Widget>[
+                Text("Indivifual)"),
+              ],
+              isSelected: _isSelected,
+              onPressed: (int index) {
+                setState(() {
+                  _isSelected[index] = !_isSelected[index];
+                });
+              },
+            ),
             TextField(
               decoration: InputDecoration(
                 hintText: 'Enter the name of the Khatma',
