@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
-import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 
 class PartsRepository {
   List<Part> _souratList = [];
@@ -50,11 +50,11 @@ final partsListFutureProvider =
     FutureProvider.family.autoDispose<List<Part>, SplitUnit>((ref, unit) {
   final khatmasRepository = ref.watch(partsRepositoryProvider);
   switch (unit) {
-    case SplitUnit.sourat:
+    case SplitUnit.SOURAT:
       {
         return khatmasRepository.fetchSouratList();
       }
-    case SplitUnit.juzz:
+    case SplitUnit.JUZZ:
       {
         return khatmasRepository.fetchJuzzList();
       }

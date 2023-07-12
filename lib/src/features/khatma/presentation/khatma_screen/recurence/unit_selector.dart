@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
-import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 import 'package:khatma/src/themes/theme.dart';
+
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class UnitSelector extends StatelessWidget {
   const UnitSelector({super.key, required this.unit, required this.onSelect});
@@ -48,7 +49,7 @@ class UnitSelector extends StatelessWidget {
                   : null,
               title: Text(currentUnit.name.capitalize()),
               subtitle: Text(
-                "${currentUnit.value} parts",
+                "${currentUnit.count} parts",
                 style: AppTheme.getTheme().textTheme.subtitle2,
               ),
               leading: Padding(

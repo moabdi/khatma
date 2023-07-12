@@ -3,7 +3,6 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/constants/test_khatmat.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/recurence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/unit_selector.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -16,7 +15,7 @@ class AddKhatmaScreen extends StatefulWidget {
 }
 
 class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
-  final SplitUnit _selectedSplitUnit = SplitUnit.hizb;
+  final SplitUnit _selectedSplitUnit = SplitUnit.HIZB;
   List<bool> _isSelected = [true, false]; // Two values
   Khatma khatma = kTestKhatmat[0];
 
@@ -82,7 +81,7 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
                 ),
                 title: const Text("Split unit"),
                 subtitle: Text(
-                  "${khatma.unit.name.capitalize()} (${khatma.unit.value} parts)",
+                  "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
                   style: AppTheme.getTheme().textTheme.subtitle2,
                 ),
                 onTap: () => _showModal(
@@ -102,12 +101,19 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
                   Icons.rotate_right,
                   color: Color.fromARGB(255, 120, 0, 212),
                 ),
-                title: const Text('Repate'),
+                title: const Text('Repeat'),
                 subtitle: Text(
-                  "Never",
+                  khatma.recurrence.scheduler.name,
                   style: AppTheme.getTheme().textTheme.subtitle2,
                 ),
-                onTap: () => _showModal(context, RecurenceSelector()),
+                onTap: () => _showModal(
+                    context,
+                    RecurenceSelector(
+                      recurrence: khatma.recurrence,
+                      onSelect: (value) => setState(() {
+                        khatma.recurrence = value;
+                      }),
+                    )),
                 trailing: Icon(Icons.arrow_right),
               ),
               gapH20,
@@ -122,7 +128,14 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
                   "Individual",
                   style: AppTheme.getTheme().textTheme.subtitle2,
                 ),
-                onTap: () => _showModal(context, RecurenceSelector()),
+                onTap: () => _showModal(
+                    context,
+                    RecurenceSelector(
+                      recurrence: khatma.recurrence,
+                      onSelect: (value) => setState(() {
+                        khatma.recurrence = value;
+                      }),
+                    )),
                 trailing: Icon(Icons.arrow_right),
               ),
               gapH20,

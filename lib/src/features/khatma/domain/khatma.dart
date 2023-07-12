@@ -1,4 +1,3 @@
-import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:khatma/src/common/utils/number_utils.dart';
 
@@ -8,11 +7,14 @@ class Khatma {
   String? description;
   DateTime createDate;
   DateTime? endDate;
-  String? creator;
-  bool permanent = false;
+
+  Recurrence recurrence = Recurrence(
+      scheduler: KhatmaScheduler.NEVER,
+      startDate: DateTime.now(),
+      endDate: DateTime.now().add(const Duration(days: 365)));
 
   SplitUnit unit;
-  KhatmaType type;
+  String? creator;
   KhatmaStyle? style;
 
   // should be out
@@ -26,19 +28,18 @@ class Khatma {
     required this.createDate,
     this.endDate,
     this.creator,
-    this.permanent = false,
-    this.unit = SplitUnit.hizb,
-    this.type = KhatmaType.custom,
+    required this.recurrence,
+    this.unit = SplitUnit.HIZB,
     this.lastRead,
     this.completedParts,
   });
 
   double get completude {
     if (completedParts == null) return 0;
-    if (SplitUnit.sourat == unit) {
+    if (SplitUnit.SOURAT == unit) {
       return computeSouratCompletude(completedParts!.toSet());
     }
-    return completedParts!.length / unit.value;
+    return completedParts!.length / unit.count;
   }
 
   int get nextPartToRead {
@@ -57,4 +58,36 @@ class KhatmaStyle {
   String? icon;
 
   KhatmaStyle({this.color, this.icon});
+}
+
+class Recurrence {
+  KhatmaScheduler scheduler;
+  DateTime startDate;
+  DateTime endDate;
+  RecurrenceUnit? unit;
+  int? occurrence;
+
+  Recurrence({
+    required this.scheduler,
+    required this.startDate,
+    required this.endDate,
+    this.unit = RecurrenceUnit.DAILY,
+    this.occurrence,
+  });
+}
+
+enum KhatmaScheduler { NEVER, AUTO_REPEAT, CUSTOM }
+
+enum RecurrenceUnit { DAILY, WEEKLY, MONTHLY, MONTHLY_HIJRI, YEARLY }
+
+enum SplitUnit {
+  SOURAT(114),
+  JUZZ(30),
+  HIZB(60),
+  RUBUE(240),
+  THUMUN(480);
+
+  final int count;
+
+  const SplitUnit(this.count);
 }

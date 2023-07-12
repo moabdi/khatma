@@ -1,5 +1,4 @@
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 
 /// Test khatmat to be used until a data source is implemented
 var kTestKhatmat = [
@@ -7,67 +6,94 @@ var kTestKhatmat = [
     id: '1',
     name: 'Khatmati',
     description: '',
-    type: KhatmaType.custom,
-    unit: SplitUnit.juzz,
+    unit: SplitUnit.JUZZ,
     completedParts: [1, 2, 3],
     createDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
   Khatma(
     id: '2',
     name: 'Ramadan 2023',
     description: 'A l' 'ocasion de ramadan 2023',
-    type: KhatmaType.ramadan,
-    unit: SplitUnit.hizb,
+    unit: SplitUnit.HIZB,
     completedParts: [1, 2, 3, 4, 5],
     createDate: DateTime.parse("2023-01-15 13:27:00"),
     lastRead: DateTime.parse("2023-02-08 08:00:00"),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
   Khatma(
     id: '3',
     name: 'Khatma Mensuel',
     description: 'Hizeb raatib',
-    type: KhatmaType.monthly,
-    unit: SplitUnit.sourat,
+    unit: SplitUnit.SOURAT,
     completedParts: [1, 2],
     createDate: DateTime.parse("2023-01-01 10:15:00"),
     lastRead: DateTime.now(),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
   Khatma(
     id: '4',
     name: 'Mosquée plaisir',
     description: 'Comunité plaisir ',
-    type: KhatmaType.mosque,
-    unit: SplitUnit.rubue,
+    unit: SplitUnit.RUBUE,
     createDate: DateTime.parse("2022-12-01 10:15:00"),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
   Khatma(
     id: '5',
     name: 'Khatma Joumouaa',
     description: 'Lecture chque vendredi',
-    type: KhatmaType.friday,
-    unit: SplitUnit.thumun,
+    unit: SplitUnit.THUMUN,
     createDate: DateTime.parse("2022-10-01 10:15:00"),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
   Khatma(
     id: '6',
     name: 'Khatma classique',
     description: 'Description classique',
-    unit: SplitUnit.sourat,
+    unit: SplitUnit.SOURAT,
     createDate: DateTime.parse("2022-11-01 10:15:00"),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
   Khatma(
     id: '7',
     name: 'Khatma 7',
     description: 'Description 7',
-    unit: SplitUnit.juzz,
+    unit: SplitUnit.JUZZ,
     createDate: DateTime.parse("2023-02-01 10:15:00"),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
   Khatma(
     id: '8',
     name: 'Khatma 8',
     description: 'Description 8',
-    unit: SplitUnit.hizb,
+    unit: SplitUnit.HIZB,
     createDate: DateTime.parse("2022-12-01 10:15:00"),
+    recurrence: Recurrence(
+        scheduler: KhatmaScheduler.NEVER,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365))),
   ),
 ];

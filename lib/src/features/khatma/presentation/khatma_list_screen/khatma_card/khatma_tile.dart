@@ -28,7 +28,7 @@ class KhatmaTile extends StatelessWidget {
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(15.0))),
         child: Image(
-          image: AssetImage(ImageUtils.getAssetImage(khatma.type.name)),
+          image: AssetImage(ImageUtils.getAssetImage(khatma.name)),
           fit: BoxFit.contain,
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/enums/khatma_enums.dart';
 import 'package:khatma/src/themes/theme.dart';
+
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,8 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  SplitUnit _selectedSplitUnit = SplitUnit.hizb;
-  final KhatmaType _selectedKhatmaType = KhatmaType.monthly;
+  SplitUnit _selectedSplitUnit = SplitUnit.HIZB;
   final bool _isPermanent = true;
   int? _value = 1;
   List<bool> _isSelected = [false, true, false];
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 (int index) {
                   return FilterChip(
                     label: Text(
-                        '${SplitUnit.values[index].name} (${SplitUnit.values[index].value})'),
+                        '${SplitUnit.values[index].name} (${SplitUnit.values[index].count})'),
                     selected: _value == SplitUnit.values[index].index,
                     onSelected: (bool selected) {
                       setState(() {
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               title: Text('Hizb'),
               leading: Radio(
-                value: SplitUnit.hizb,
+                value: SplitUnit.HIZB,
                 groupValue: _selectedSplitUnit,
                 onChanged: (value) {
                   setState(() {
@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               title: Text('Juzz'),
               leading: Radio(
-                value: SplitUnit.juzz,
+                value: SplitUnit.JUZZ,
                 groupValue: _selectedSplitUnit,
                 onChanged: (value) {
                   setState(() {
