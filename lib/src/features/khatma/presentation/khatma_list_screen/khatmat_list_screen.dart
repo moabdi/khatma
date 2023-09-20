@@ -39,7 +39,7 @@ class KhatmatListScreen extends StatelessWidget {
                   CIconButton(
                       icon: FontAwesomeIcons.plus,
                       label: "Nouvelle khatma",
-                      onPressed: () => {}),
+                      onPressed: () => {context.goNamed(AppRoute.khatma.name)}),
                 ],
               ),
               const KhatmatListView(),
