@@ -108,7 +108,7 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
                 ),
                 onTap: () => _showModal(
                     context,
-                    RecurenceSelector(
+                    RecurrenceSelector(
                       recurrence: khatma.recurrence,
                       onSelect: (value) => setState(() {
                         khatma.recurrence = value;
@@ -130,7 +130,7 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
                 ),
                 onTap: () => _showModal(
                     context,
-                    RecurenceSelector(
+                    RecurrenceSelector(
                       recurrence: khatma.recurrence,
                       onSelect: (value) => setState(() {
                         khatma.recurrence = value;

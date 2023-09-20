@@ -6,29 +6,38 @@ import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
-class RecurenceSelector extends StatefulWidget {
-  RecurenceSelector(
-      {super.key, required this.recurrence, required this.onSelect});
+class RecurrenceSelector extends StatefulWidget {
+  RecurrenceSelector({
+    Key? key,
+    required this.recurrence,
+    required this.onSelect,
+  }) : super(key: key);
+
   final Recurrence recurrence;
   final ValueChanged<Recurrence> onSelect;
 
   @override
-  State<RecurenceSelector> createState() => _RecurenceSelectorState();
+  State<RecurrenceSelector> createState() => _RecurrenceSelectorState();
 }
 
-class _RecurenceSelectorState extends State<RecurenceSelector> {
+class _RecurrenceSelectorState extends State<RecurrenceSelector> {
   final TextEditingController _startDateEditingController =
       TextEditingController(
-          text: DateFormat('dd/MM/yyyy').format(DateTime.now()));
+    text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+  );
 
   final TextEditingController _endDateEditingController = TextEditingController(
-      text: DateFormat('dd/MM/yyyy').format(DateTime.now()));
+    text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
+  );
 
-  final TextEditingController _frequenceEditingController =
+  final TextEditingController _frequencyEditingController =
       TextEditingController(text: '1');
 
-  Future<void> _selectDate(BuildContext context,
-      TextEditingController controller, DateTime dateTime) async {
+  Future<void> _selectDate(
+    BuildContext context,
+    TextEditingController controller,
+    DateTime dateTime,
+  ) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: dateTime,
@@ -39,7 +48,6 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
     if (picked != null && picked != dateTime) {
       setState(() {
         controller.text = DateFormat('dd/MM/yyyy').format(picked);
-        ;
       });
     }
   }
@@ -67,17 +75,47 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Text("Set recurrence :",
-              style: AppTheme.getTheme().textTheme.titleLarge),
+          child: Text(
+            "Set recurrence:",
+            style: AppTheme.getTheme().textTheme.titleLarge,
+          ),
         ),
-        _neverRepeat(context),
-        _repeatAfterComplete(context),
-        _customRepeat(context),
+        _buildRecurrenceTile(
+          context,
+          KhatmaScheduler.NEVER,
+          "Does not repeat",
+          Icons.circle_outlined,
+          AppTheme.getTheme().primaryColor.withOpacity(.1),
+        ),
+        _buildRecurrenceTile(
+          context,
+          KhatmaScheduler.AUTO_REPEAT,
+          "Repeat after completing current",
+          Icons.circle_outlined,
+          AppTheme.getTheme().primaryColor.withOpacity(.1),
+        ),
+        _buildRecurrenceTile(
+          context,
+          KhatmaScheduler.CUSTOM,
+          "Custom",
+          Icons.circle_outlined,
+          AppTheme.getTheme().primaryColor.withOpacity(.1),
+        ),
         Column(
           children: [
-            _startDate(context),
-            _recurence(),
-            _endDate(context),
+            _buildDateField(
+              context,
+              "Start date:",
+              _startDateEditingController,
+              widget.recurrence.startDate,
+            ),
+            _recurrence(),
+            _buildDateField(
+              context,
+              "End date:",
+              _endDateEditingController,
+              widget.recurrence.endDate,
+            ),
           ],
         ),
         gapH20,
@@ -86,7 +124,12 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
     );
   }
 
-  Padding _endDate(BuildContext context) {
+  Padding _buildDateField(
+    BuildContext context,
+    String label,
+    TextEditingController controller,
+    DateTime dateTime,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
@@ -99,7 +142,7 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "End date:",
+                  label,
                   style: AppTheme.getTheme().textTheme.subtitle2,
                 ),
               ],
@@ -111,9 +154,12 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
             height: 40,
             child: Expanded(
               child: TextField(
-                controller: _endDateEditingController,
-                onTap: () => _selectDate(context, _endDateEditingController,
-                    widget.recurrence.endDate),
+                controller: controller,
+                onTap: () => _selectDate(
+                  context,
+                  controller,
+                  dateTime,
+                ),
               ),
             ),
           ),
@@ -122,7 +168,7 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
     );
   }
 
-  Padding _recurence() {
+  Padding _recurrence() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
@@ -135,7 +181,7 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "Evry:",
+                  "Every:",
                   style: AppTheme.getTheme().textTheme.subtitle2,
                 ),
               ],
@@ -148,7 +194,7 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
             child: TextField(
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                _frequenceEditingController.text = value;
+                _frequencyEditingController.text = value;
               },
             ),
           ),
@@ -163,23 +209,19 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
             child: DropdownButton<RecurrenceUnit>(
               focusColor: Colors.transparent,
               underline: const SizedBox(),
-              //style: TextStyle(
-              // color: Colors.blue, // Text color
-              // fontSize: 18.0, // Text size
-              // fontWeight: FontWeight.bold, // Text weight
-              //  ),
               value: widget.recurrence.unit,
               onChanged: (newValue) {
                 widget.recurrence.unit = newValue!;
               },
-              items: RecurrenceUnit.values
-                  .map<DropdownMenuItem<RecurrenceUnit>>(
-                      (RecurrenceUnit value) {
-                return DropdownMenuItem<RecurrenceUnit>(
-                  value: value,
-                  child: Text(value.name),
-                );
-              }).toList(),
+              items:
+                  RecurrenceUnit.values.map<DropdownMenuItem<RecurrenceUnit>>(
+                (RecurrenceUnit value) {
+                  return DropdownMenuItem<RecurrenceUnit>(
+                    value: value,
+                    child: Text(value.toString().split('.').last.capitalize()),
+                  );
+                },
+              ).toList(),
             ),
           ),
         ],
@@ -187,130 +229,37 @@ class _RecurenceSelectorState extends State<RecurenceSelector> {
     );
   }
 
-  Padding _startDate(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 80,
-            height: 40,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "Start date:",
-                  style: AppTheme.getTheme().textTheme.subtitle2,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 10),
-          SizedBox(
-            width: 200,
-            height: 40,
-            child: Expanded(
-              child: TextField(
-                controller: _startDateEditingController,
-                onTap: () => _selectDate(context, _startDateEditingController,
-                    widget.recurrence.startDate),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  ListTile _buildRecurrenceTile(
+    BuildContext context,
+    KhatmaScheduler scheduler,
+    String title,
+    IconData icon,
+    Color tileColor,
+  ) {
+    final bool isSelected = widget.recurrence.occurrence == scheduler;
+    final Color iconColor = isSelected
+        ? AppTheme.getTheme().primaryColor
+        : AppTheme.getTheme().disabledColor;
 
-  ListTile _neverRepeat(BuildContext context) {
     return ListTile(
       dense: true,
-      tileColor: widget.recurrence.occurrence == KhatmaScheduler.NEVER
-          ? AppTheme.getTheme().primaryColor.withOpacity(.1)
-          : null,
-      title: Text(KhatmaScheduler.NEVER.name.capitalize()),
+      tileColor: isSelected ? tileColor : null,
+      title: Text(scheduler.name),
       subtitle: Text(
-        "Does not repeat",
+        title,
         style: AppTheme.getTheme().textTheme.subtitle2,
       ),
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Icon(
-          widget.recurrence.occurrence == KhatmaScheduler.NEVER
-              ? Icons.check_circle_rounded
-              : Icons.circle_outlined,
+          isSelected ? Icons.check_circle_rounded : Icons.circle_outlined,
           size: 32,
-          color: widget.recurrence.occurrence == KhatmaScheduler.NEVER
-              ? AppTheme.getTheme().primaryColor
-              : AppTheme.getTheme().disabledColor,
+          color: iconColor,
         ),
       ),
       onTap: () {
         Navigator.pop(context);
-        widget.recurrence.scheduler = KhatmaScheduler.NEVER;
-        widget.onSelect(widget.recurrence);
-      },
-    );
-  }
-
-  ListTile _customRepeat(BuildContext context) {
-    return ListTile(
-      dense: true,
-      tileColor: widget.recurrence.occurrence == KhatmaScheduler.CUSTOM
-          ? AppTheme.getTheme().primaryColor.withOpacity(.1)
-          : null,
-      title: Text(KhatmaScheduler.CUSTOM.name.capitalize()),
-      subtitle: Text(
-        "Custom",
-        style: AppTheme.getTheme().textTheme.subtitle2,
-      ),
-      leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Icon(
-          widget.recurrence.occurrence == KhatmaScheduler.CUSTOM
-              ? Icons.check_circle_rounded
-              : Icons.circle_outlined,
-          size: 32,
-          color: widget.recurrence.occurrence == KhatmaScheduler.CUSTOM
-              ? AppTheme.getTheme().primaryColor
-              : AppTheme.getTheme().disabledColor,
-        ),
-      ),
-      onTap: () {
-        Navigator.pop(context);
-        widget.recurrence.scheduler = KhatmaScheduler.CUSTOM;
-        widget.onSelect(widget.recurrence);
-      },
-    );
-  }
-
-  ListTile _repeatAfterComplete(BuildContext context) {
-    return ListTile(
-      dense: true,
-      tileColor: widget.recurrence.occurrence == KhatmaScheduler.AUTO_REPEAT
-          ? AppTheme.getTheme().primaryColor.withOpacity(.1)
-          : null,
-      title: Text(KhatmaScheduler.AUTO_REPEAT.name.capitalize()),
-      subtitle: Text(
-        "Repeat after completing current",
-        style: AppTheme.getTheme().textTheme.subtitle2,
-      ),
-      leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Icon(
-          widget.recurrence.occurrence == KhatmaScheduler.AUTO_REPEAT
-              ? Icons.check_circle_rounded
-              : Icons.circle_outlined,
-          size: 32,
-          color: widget.recurrence.occurrence == KhatmaScheduler.AUTO_REPEAT
-              ? AppTheme.getTheme().primaryColor
-              : AppTheme.getTheme().disabledColor,
-        ),
-      ),
-      onTap: () {
-        Navigator.pop(context);
-        widget.recurrence.scheduler = KhatmaScheduler.AUTO_REPEAT;
+        widget.recurrence.scheduler = scheduler;
         widget.onSelect(widget.recurrence);
       },
     );
