@@ -9,7 +9,7 @@ class Khatma {
   DateTime? endDate;
 
   Recurrence recurrence = Recurrence(
-      scheduler: KhatmaScheduler.NEVER,
+      scheduler: KhatmaScheduler.CUSTOM,
       startDate: DateTime.now(),
       endDate: DateTime.now().add(const Duration(days: 365)));
 
@@ -74,6 +74,16 @@ class Recurrence {
     this.unit = RecurrenceUnit.DAILY,
     this.occurrence,
   });
+
+  Recurrence copy() {
+    return Recurrence(
+      scheduler: this.scheduler,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      unit: this.unit,
+      occurrence: this.occurrence,
+    );
+  }
 }
 
 enum KhatmaScheduler { NEVER, AUTO_REPEAT, CUSTOM }

@@ -11,7 +11,7 @@ var kTestKhatmat = [
     createDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.NEVER,
+        scheduler: KhatmaScheduler.CUSTOM,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
   ),
