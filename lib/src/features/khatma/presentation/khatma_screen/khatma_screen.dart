@@ -31,34 +31,6 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LayoutBuilder(
-                builder: (context, constraints) => SizedBox(
-                  height: 25,
-                  child: ToggleButtons(
-                    renderBorder: true,
-                    borderRadius: BorderRadius.circular(25),
-                    constraints: BoxConstraints.expand(
-                        width: (constraints.maxWidth - 5) / 2),
-                    isSelected: _isSelected,
-                    onPressed: (index) {
-                      setState(() {
-                        _isSelected[index] = !_isSelected[index];
-                      });
-                    },
-                    children: <Widget>[
-                      Text(
-                        "Individual",
-                        style: AppTheme.getTheme().textTheme.bodyText1,
-                      ),
-                      Text(
-                        "Partagée",
-                        style: AppTheme.getTheme().textTheme.bodyText1,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              gapH20,
               const TextField(
                 decoration: InputDecoration(
                   hintText: 'Enter the name of the Khatma',
