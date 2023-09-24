@@ -22,7 +22,7 @@ class RecurrenceSelector extends StatefulWidget {
 
 class _RecurrenceSelectorState extends State<RecurrenceSelector> {
   late final Recurrence updatedRecurrence;
-
+  RecurrenceUnit selectedCustomRecurrenceValue = RecurrenceUnit.MONTHLY;
   final TextEditingController _startDateEditingController =
       TextEditingController(
     text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
@@ -72,19 +72,30 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Container(
-            width: 40,
-            padding: const EdgeInsets.only(bottom: 20.0),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppTheme.getTheme().dividerColor,
-                  width: 3.5,
+        Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Center(
+              child: Container(
+                width: 40,
+                padding: const EdgeInsets.only(bottom: 20.0),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: AppTheme.getTheme().dividerColor,
+                      width: 3.5,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            CloseButton(
+              color: Color.fromARGB(255, 0, 212, 102),
+              onPressed: (() {
+                Navigator.pop(context);
+              }),
+            ),
+          ],
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -146,13 +157,15 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
             alignment: Alignment.bottomRight,
             child: TextButton(
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Color.fromARGB(255, 0, 212, 102)),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               ),
               onPressed: () {
                 Navigator.pop(context);
                 //onSelect(this.recurrence);
               },
-              child: Text('Save'),
+              child: Text('save'),
             ),
           ),
         )
@@ -247,9 +260,12 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
             child: DropdownButton<RecurrenceUnit>(
               focusColor: Colors.transparent,
               underline: const SizedBox(),
-              value: updatedRecurrence.unit,
+              value: selectedCustomRecurrenceValue,
               onChanged: (newValue) {
-                updatedRecurrence.unit = newValue!;
+                setState(() {
+                  updatedRecurrence.unit = newValue!;
+                  selectedCustomRecurrenceValue = newValue;
+                });
               },
               items:
                   RecurrenceUnit.values.map<DropdownMenuItem<RecurrenceUnit>>(
