@@ -3,7 +3,7 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/constants/test_khatmat.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/recurence_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/unit_selector.dart';
 import 'package:khatma/src/themes/theme.dart';
 

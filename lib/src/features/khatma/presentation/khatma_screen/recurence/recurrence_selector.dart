@@ -126,7 +126,7 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
           AppTheme.getTheme().primaryColor.withOpacity(.1),
         ),
         AnimatedSize(
-          curve: Curves.easeOut,
+          curve: Curves.ease,
           duration: const Duration(milliseconds: 600),
           child: _buildForm(),
         ),
@@ -148,13 +148,13 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
           _startDateEditingController,
           updatedRecurrence.startDate,
         ),
-        _recurrence(),
         _buildDateField(
           context,
           "End date:",
           _endDateEditingController,
           updatedRecurrence.endDate,
         ),
+        _recurrence(),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: Align(
