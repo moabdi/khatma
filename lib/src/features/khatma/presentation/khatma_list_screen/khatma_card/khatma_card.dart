@@ -16,19 +16,8 @@ class KhatmaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shadowColor: AppTheme.getTheme().disabledColor,
-      elevation: 1,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(7.0),
-        side: BorderSide(
-          color: AppTheme.getTheme().disabledColor,
-          width: 1.0,
-        ),
-      ),
-      child: SizedBox(
-        height: 110,
-        child: KhatmaTile(khatma: khatma, onPressed: onPressed),
-      ),
+      clipBehavior: Clip.antiAlias,
+      child: KhatmaTile(khatma: khatma, onPressed: onPressed),
     );
   }
 }
