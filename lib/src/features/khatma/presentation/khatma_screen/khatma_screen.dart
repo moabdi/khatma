@@ -8,7 +8,7 @@ import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/
 import 'package:khatma/src/themes/theme.dart';
 
 class AddKhatmaScreen extends StatefulWidget {
-  const AddKhatmaScreen({super.key});
+  const AddKhatmaScreen({Key? key}) : super(key: key);
 
   @override
   State<AddKhatmaScreen> createState() => _AddKhatmaScreenState();
@@ -34,7 +34,7 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New khatma"),
+        title: const Text("New Khatma"),
       ),
       body: SingleChildScrollView(
         child: FocusScope(
@@ -66,70 +66,52 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
                     ),
                   ),
                   gapH20,
-                  ListTile(
-                    dense: true,
-                    leading: const Icon(
-                      Icons.dynamic_feed,
-                      color: Colors.amber,
+                  buildListTile(
+                    Icons.dynamic_feed,
+                    Colors.amber,
+                    "Split unit",
+                    "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
+                    () => _showModal(
+                      context,
+                      UnitSelector(
+                        unit: khatma.unit,
+                        onSelect: (value) => setState(() {
+                          khatma.unit = value;
+                        }),
+                      ),
                     ),
-                    title: const Text("Split unit"),
-                    subtitle: Text(
-                      "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
-                      style: AppTheme.getTheme().textTheme.subtitle2,
-                    ),
-                    onTap: () => _showModal(
-                        context,
-                        UnitSelector(
-                          unit: khatma.unit,
-                          onSelect: (value) => setState(() {
-                            khatma.unit = value;
-                          }),
-                        )),
-                    trailing: Icon(Icons.arrow_right),
                   ),
                   gapH20,
-                  ListTile(
-                    dense: true,
-                    leading: const Icon(
-                      Icons.rotate_right,
-                      color: Color.fromARGB(255, 120, 0, 212),
+                  buildListTile(
+                    Icons.rotate_right,
+                    Color.fromARGB(255, 120, 0, 212),
+                    'Repeat',
+                    khatma.recurrence.scheduler.name,
+                    () => _showModal(
+                      context,
+                      RecurrenceSelector(
+                        recurrence: khatma.recurrence,
+                        onSelect: (value) => setState(() {
+                          khatma.recurrence = value;
+                        }),
+                      ),
                     ),
-                    title: const Text('Repeat'),
-                    subtitle: Text(
-                      khatma.recurrence.scheduler.name,
-                      style: AppTheme.getTheme().textTheme.subtitle2,
-                    ),
-                    onTap: () => _showModal(
-                        context,
-                        RecurrenceSelector(
-                          recurrence: khatma.recurrence,
-                          onSelect: (value) => setState(() {
-                            khatma.recurrence = value;
-                          }),
-                        )),
-                    trailing: Icon(Icons.arrow_right),
                   ),
                   gapH20,
-                  ListTile(
-                    dense: true,
-                    leading: const Icon(
-                      Icons.group,
-                      color: Color.fromARGB(255, 0, 212, 102),
+                  buildListTile(
+                    Icons.group,
+                    Color.fromARGB(255, 0, 212, 102),
+                    'Share',
+                    "Individual",
+                    () => _showModal(
+                      context,
+                      RecurrenceSelector(
+                        recurrence: khatma.recurrence,
+                        onSelect: (value) => setState(() {
+                          khatma.recurrence = value;
+                        }),
+                      ),
                     ),
-                    title: const Text('Share'),
-                    subtitle: Text(
-                      "Individual",
-                      style: AppTheme.getTheme().textTheme.subtitle2,
-                    ),
-                    onTap: () => _showModal(
-                        context,
-                        RecurrenceSelector(
-                          recurrence: khatma.recurrence,
-                          onSelect: (value) => setState(() {
-                            khatma.recurrence = value;
-                          }),
-                        )),
-                    trailing: Icon(Icons.arrow_right),
                   ),
                   gapH20,
                 ],
@@ -138,6 +120,24 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  ListTile buildListTile(IconData icon, Color color, String title,
+      String subtitle, Function onTap) {
+    return ListTile(
+      dense: true,
+      leading: Icon(
+        icon,
+        color: color,
+      ),
+      title: Text(title),
+      subtitle: Text(
+        subtitle,
+        style: AppTheme.getTheme().textTheme.subtitle2,
+      ),
+      onTap: () => onTap(),
+      trailing: Icon(Icons.arrow_right),
     );
   }
 
