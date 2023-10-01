@@ -15,9 +15,20 @@ class AddKhatmaScreen extends StatefulWidget {
 }
 
 class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
-  final SplitUnit _selectedSplitUnit = SplitUnit.HIZB;
-  List<bool> _isSelected = [true, false]; // Two values
   Khatma khatma = kTestKhatmat[0];
+
+  final _formKey = GlobalKey<FormState>();
+  final _node = FocusScopeNode();
+  final _nameController = TextEditingController();
+  final _descController = TextEditingController();
+
+  @override
+  void dispose() {
+    _node.dispose();
+    _nameController.dispose();
+    _descController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,92 +37,104 @@ class _AddKhatmaScreenState extends State<AddKhatmaScreen> {
         title: const Text("New khatma"),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const TextField(
-                decoration: InputDecoration(
-                  hintText: 'Enter the name of the Khatma',
-                ),
+        child: FocusScope(
+          node: _node,
+          child: Form(
+            key: _formKey,
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter the name of the Khatma',
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    autocorrect: false,
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => _node.nextFocus(),
+                  ),
+                  gapH20,
+                  TextField(
+                    controller: _descController,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 5,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter a description (optional)',
+                    ),
+                  ),
+                  gapH20,
+                  ListTile(
+                    dense: true,
+                    leading: const Icon(
+                      Icons.dynamic_feed,
+                      color: Colors.amber,
+                    ),
+                    title: const Text("Split unit"),
+                    subtitle: Text(
+                      "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
+                      style: AppTheme.getTheme().textTheme.subtitle2,
+                    ),
+                    onTap: () => _showModal(
+                        context,
+                        UnitSelector(
+                          unit: khatma.unit,
+                          onSelect: (value) => setState(() {
+                            khatma.unit = value;
+                          }),
+                        )),
+                    trailing: Icon(Icons.arrow_right),
+                  ),
+                  gapH20,
+                  ListTile(
+                    dense: true,
+                    leading: const Icon(
+                      Icons.rotate_right,
+                      color: Color.fromARGB(255, 120, 0, 212),
+                    ),
+                    title: const Text('Repeat'),
+                    subtitle: Text(
+                      khatma.recurrence.scheduler.name,
+                      style: AppTheme.getTheme().textTheme.subtitle2,
+                    ),
+                    onTap: () => _showModal(
+                        context,
+                        RecurrenceSelector(
+                          recurrence: khatma.recurrence,
+                          onSelect: (value) => setState(() {
+                            khatma.recurrence = value;
+                          }),
+                        )),
+                    trailing: Icon(Icons.arrow_right),
+                  ),
+                  gapH20,
+                  ListTile(
+                    dense: true,
+                    leading: const Icon(
+                      Icons.group,
+                      color: Color.fromARGB(255, 0, 212, 102),
+                    ),
+                    title: const Text('Share'),
+                    subtitle: Text(
+                      "Individual",
+                      style: AppTheme.getTheme().textTheme.subtitle2,
+                    ),
+                    onTap: () => _showModal(
+                        context,
+                        RecurrenceSelector(
+                          recurrence: khatma.recurrence,
+                          onSelect: (value) => setState(() {
+                            khatma.recurrence = value;
+                          }),
+                        )),
+                    trailing: Icon(Icons.arrow_right),
+                  ),
+                  gapH20,
+                ],
               ),
-              gapH20,
-              const TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: 5,
-                decoration: InputDecoration(
-                  hintText: 'Enter a description (optional)',
-                ),
-              ),
-              gapH20,
-              ListTile(
-                dense: true,
-                leading: const Icon(
-                  Icons.dynamic_feed,
-                  color: Colors.amber,
-                ),
-                title: const Text("Split unit"),
-                subtitle: Text(
-                  "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
-                  style: AppTheme.getTheme().textTheme.subtitle2,
-                ),
-                onTap: () => _showModal(
-                    context,
-                    UnitSelector(
-                      unit: khatma.unit,
-                      onSelect: (value) => setState(() {
-                        khatma.unit = value;
-                      }),
-                    )),
-                trailing: Icon(Icons.arrow_right),
-              ),
-              gapH20,
-              ListTile(
-                dense: true,
-                leading: const Icon(
-                  Icons.rotate_right,
-                  color: Color.fromARGB(255, 120, 0, 212),
-                ),
-                title: const Text('Repeat'),
-                subtitle: Text(
-                  khatma.recurrence.scheduler.name,
-                  style: AppTheme.getTheme().textTheme.subtitle2,
-                ),
-                onTap: () => _showModal(
-                    context,
-                    RecurrenceSelector(
-                      recurrence: khatma.recurrence,
-                      onSelect: (value) => setState(() {
-                        khatma.recurrence = value;
-                      }),
-                    )),
-                trailing: Icon(Icons.arrow_right),
-              ),
-              gapH20,
-              ListTile(
-                dense: true,
-                leading: const Icon(
-                  Icons.group,
-                  color: Color.fromARGB(255, 0, 212, 102),
-                ),
-                title: const Text('Share'),
-                subtitle: Text(
-                  "Individual",
-                  style: AppTheme.getTheme().textTheme.subtitle2,
-                ),
-                onTap: () => _showModal(
-                    context,
-                    RecurrenceSelector(
-                      recurrence: khatma.recurrence,
-                      onSelect: (value) => setState(() {
-                        khatma.recurrence = value;
-                      }),
-                    )),
-                trailing: Icon(Icons.arrow_right),
-              ),
-              gapH20,
-            ],
+            ),
           ),
         ),
       ),
