@@ -7,11 +7,11 @@ import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class RecurrenceSelector extends StatefulWidget {
-  RecurrenceSelector({
-    Key? key,
+  const RecurrenceSelector({
+    super.key,
     required this.recurrence,
     required this.onSelect,
-  }) : super(key: key);
+  });
 
   final Recurrence recurrence;
   final ValueChanged<Recurrence> onSelect;
@@ -125,7 +125,11 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
           Icons.circle_outlined,
           AppTheme.getTheme().primaryColor.withOpacity(.1),
         ),
-        _buildForm(),
+        AnimatedSize(
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 600),
+          child: _buildForm(),
+        ),
         gapH20,
         gapH20,
       ],
@@ -134,7 +138,7 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
 
   Widget _buildForm() {
     if (updatedRecurrence.scheduler == KhatmaScheduler.NEVER) {
-      return SizedBox();
+      return const SizedBox();
     }
     return Column(
       children: [
