@@ -1,6 +1,9 @@
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:khatma/src/common/utils/number_utils.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+part 'khatma.g.dart';
 
+@CopyWith()
 class Khatma {
   String? id;
   String name;
@@ -8,10 +11,7 @@ class Khatma {
   DateTime createDate;
   DateTime? endDate;
 
-  Recurrence recurrence = Recurrence(
-      scheduler: KhatmaScheduler.CUSTOM,
-      startDate: DateTime.now(),
-      endDate: DateTime.now().add(const Duration(days: 365)));
+  Recurrence recurrence;
 
   SplitUnit unit;
   String? creator;

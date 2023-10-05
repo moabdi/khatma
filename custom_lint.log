@@ -1,0 +1,24 @@
+The Dart VM service is listening on http://127.0.0.1:60366/1ipcrNEotic=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:60366/1ipcrNEotic=/devtools?uri=ws://127.0.0.1:60366/1ipcrNEotic=/ws
+The Dart VM service is listening on http://127.0.0.1:60748/Tdbz990XlOw=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:60748/Tdbz990XlOw=/devtools?uri=ws://127.0.0.1:60748/Tdbz990XlOw=/ws
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 Plugin WrapWithConsumer threw while analyzing /Users/moabdi/development/khatma/lib/src/features/khatma/data/khatma_notifier.dart:
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 Null check operator used on a null value
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #0      FunctionalToClassBasedProvider.run.<anonymous closure>.<anonymous closure> (package:riverpod_lint/src/assists/functional_to_class_based_provider.dart:60:48)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #1      ChangeBuilderImpl.addDartFileEdit (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:151:26)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #2      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #3      _ChangeBuilderImpl._waitForCompletion (package:custom_lint_core/src/change_reporter.dart:144:5)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #5      _ClientAnalyzerPlugin.handleEditGetAssists (package:custom_lint_builder/src/client.dart:466:7)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #6      ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:556:18)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 #7      ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:599:18)
+[WrapWithConsumer] 2023-10-02T20:05:11.393247 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-02T20:05:11.393247
+The Dart VM service is listening on http://127.0.0.1:57841/SJGfOPcICag=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57841/SJGfOPcICag=/devtools?uri=ws://127.0.0.1:57841/SJGfOPcICag=/ws

@@ -1,0 +1,30 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:flutter/material.dart';
+
+class KhatmaNotifier extends ChangeNotifier {
+  Khatma _khatma;
+
+  Khatma get khatma => _khatma;
+
+  KhatmaNotifier(this._khatma);
+
+  void updateKhatma(Khatma updatedKhatma) {
+    _khatma = updatedKhatma;
+    notifyListeners();
+  }
+}
+
+final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
+  return KhatmaNotifier(
+    Khatma(
+      name: 'test',
+      createDate: DateTime.now(),
+      recurrence: Recurrence(
+        scheduler: KhatmaScheduler.CUSTOM,
+        startDate: DateTime.now(),
+        endDate: DateTime.now().add(const Duration(days: 365)),
+      ),
+    ),
+  );
+});
