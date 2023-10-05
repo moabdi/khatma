@@ -8,18 +8,123 @@ import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/
 import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/unit_selector.dart';
 import 'package:khatma/src/themes/theme.dart';
 
-class AddKhatmaScreen extends ConsumerStatefulWidget {
-  const AddKhatmaScreen({Key? key}) : super(key: key);
+class AddKhatmaScreen extends ConsumerWidget {
+  const AddKhatmaScreen({super.key});
 
   @override
-  _AddKhatmaScreenState createState() => _AddKhatmaScreenState();
-}
-
-class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _node = FocusScopeNode();
-  final _nameController = TextEditingController();
-  final _descController = TextEditingController();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final khatma = ref.watch(formKhatmaProvider).khatma;
+    final formKey = GlobalKey<FormState>();
+    final node = FocusScopeNode();
+    final nameController = TextEditingController(text: khatma.name);
+    final descController =
+        TextEditingController(text: khatma.description ?? '');
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("New Khatma"),
+      ),
+      body: SingleChildScrollView(
+        child: FocusScope(
+          node: node,
+          child: Form(
+            key: formKey,
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter the name of the Khatma',
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    autocorrect: false,
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: () => node.nextFocus(),
+                    onChanged: (value) {
+                      ref
+                          .watch(formKhatmaProvider)
+                          .updateKhatma(khatma.copyWith(name: value));
+                    },
+                  ),
+                  gapH20,
+                  TextField(
+                    controller: descController,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 5,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter a description (optional)',
+                    ),
+                    onChanged: (value) {
+                      ref
+                          .watch(formKhatmaProvider)
+                          .updateKhatma(khatma.copyWith(description: value));
+                    },
+                  ),
+                  gapH20,
+                  buildListTile(
+                    Icons.dynamic_feed,
+                    Colors.amber,
+                    "Split unit",
+                    "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
+                    () => _showModal(
+                      context,
+                      UnitSelector(
+                          unit: khatma.unit,
+                          onSelect: (value) {
+                            ref
+                                .watch(formKhatmaProvider)
+                                .updateKhatma(khatma.copyWith(unit: value));
+                          }),
+                    ),
+                  ),
+                  gapH20,
+                  buildListTile(
+                    Icons.rotate_right,
+                    Color.fromARGB(255, 120, 0, 212),
+                    'Repeat',
+                    ref
+                        .watch(formKhatmaProvider)
+                        .khatma
+                        .recurrence
+                        .scheduler
+                        .name,
+                    () => _showModal(
+                      context,
+                      RecurrenceSelector(
+                          recurrence: khatma.recurrence,
+                          onSelect: (value) => ref
+                              .watch(formKhatmaProvider)
+                              .updateKhatma(
+                                  khatma.copyWith(recurrence: value))),
+                    ),
+                  ),
+                  gapH20,
+                  buildListTile(
+                    Icons.group,
+                    Color.fromARGB(255, 0, 212, 102),
+                    'Share',
+                    "Individual",
+                    () => _showModal(
+                      context,
+                      RecurrenceSelector(
+                          recurrence: khatma.recurrence,
+                          onSelect: (value) => ref
+                              .watch(formKhatmaProvider)
+                              .updateKhatma(
+                                  khatma.copyWith(recurrence: value))),
+                    ),
+                  ),
+                  gapH20,
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   void _showModal(BuildContext context, Widget widget) {
     showModalBottomSheet(
@@ -39,121 +144,6 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           child: widget,
         );
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final khatma = ref.watch(formKhatmaProvider).khatma;
-    _nameController.text = khatma.name;
-    _descController.text = khatma.description ?? '';
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("New Khatma"),
-      ),
-      body: Consumer(
-        builder: (context, ref, _) => SingleChildScrollView(
-          child: FocusScope(
-            node: _node,
-            child: Form(
-              key: _formKey,
-              child: Container(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFormField(
-                      controller: _nameController,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter the name of the Khatma',
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      autocorrect: false,
-                      textInputAction: TextInputAction.next,
-                      onEditingComplete: () => _node.nextFocus(),
-                      onChanged: (value) {
-                        ref
-                            .watch(formKhatmaProvider)
-                            .updateKhatma(khatma.copyWith(name: value));
-                      },
-                    ),
-                    gapH20,
-                    TextField(
-                      controller: _descController,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 5,
-                      decoration: const InputDecoration(
-                        hintText: 'Enter a description (optional)',
-                      ),
-                      onChanged: (value) {
-                        ref
-                            .watch(formKhatmaProvider)
-                            .updateKhatma(khatma.copyWith(description: value));
-                      },
-                    ),
-                    gapH20,
-                    buildListTile(
-                      Icons.dynamic_feed,
-                      Colors.amber,
-                      "Split unit",
-                      "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
-                      () => _showModal(
-                        context,
-                        UnitSelector(
-                            unit: khatma.unit,
-                            onSelect: (value) {
-                              ref
-                                  .watch(formKhatmaProvider)
-                                  .updateKhatma(khatma.copyWith(unit: value));
-                            }),
-                      ),
-                    ),
-                    gapH20,
-                    buildListTile(
-                      Icons.rotate_right,
-                      Color.fromARGB(255, 120, 0, 212),
-                      'Repeat',
-                      ref
-                          .watch(formKhatmaProvider)
-                          .khatma
-                          .recurrence
-                          .scheduler
-                          .name,
-                      () => _showModal(
-                        context,
-                        RecurrenceSelector(
-                            recurrence: khatma.recurrence,
-                            onSelect: (value) => ref
-                                .watch(formKhatmaProvider)
-                                .updateKhatma(
-                                    khatma.copyWith(recurrence: value))),
-                      ),
-                    ),
-                    gapH20,
-                    buildListTile(
-                      Icons.group,
-                      Color.fromARGB(255, 0, 212, 102),
-                      'Share',
-                      "Individual",
-                      () => _showModal(
-                        context,
-                        RecurrenceSelector(
-                            recurrence: khatma.recurrence,
-                            onSelect: (value) => ref
-                                .watch(formKhatmaProvider)
-                                .updateKhatma(
-                                    khatma.copyWith(recurrence: value))),
-                      ),
-                    ),
-                    gapH20,
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 
