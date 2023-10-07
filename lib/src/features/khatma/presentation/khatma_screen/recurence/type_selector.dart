@@ -14,7 +14,7 @@ class TypeSelector extends StatefulWidget {
 }
 
 class _TypeSelectorState extends State<TypeSelector> {
-  KhatmaScheduler _selectedScheduler = KhatmaScheduler.NEVER;
+  KhatmaScheduler _selectedScheduler = KhatmaScheduler.never;
   DateTime selectedDate = DateTime.now();
 
   final TextEditingController _startDateEditingController =
@@ -222,10 +222,10 @@ class _TypeSelectorState extends State<TypeSelector> {
   ListTile _neverRepeat(BuildContext context) {
     return ListTile(
       dense: true,
-      tileColor: _selectedScheduler == KhatmaScheduler.NEVER
+      tileColor: _selectedScheduler == KhatmaScheduler.never
           ? AppTheme.getTheme().primaryColor.withOpacity(.1)
           : null,
-      title: Text(KhatmaScheduler.NEVER.name.capitalize()),
+      title: Text(KhatmaScheduler.never.name.capitalize()),
       subtitle: Text(
         "Does not repeat",
         style: AppTheme.getTheme().textTheme.subtitle2,
@@ -233,11 +233,11 @@ class _TypeSelectorState extends State<TypeSelector> {
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Icon(
-          _selectedScheduler == KhatmaScheduler.NEVER
+          _selectedScheduler == KhatmaScheduler.never
               ? Icons.check_circle_rounded
               : Icons.circle_outlined,
           size: 32,
-          color: _selectedScheduler == KhatmaScheduler.NEVER
+          color: _selectedScheduler == KhatmaScheduler.never
               ? AppTheme.getTheme().primaryColor
               : AppTheme.getTheme().disabledColor,
         ),
@@ -245,7 +245,7 @@ class _TypeSelectorState extends State<TypeSelector> {
       onTap: () {
         setState(() {
           Navigator.pop(context);
-          _selectedScheduler = KhatmaScheduler.NEVER;
+          _selectedScheduler = KhatmaScheduler.never;
         });
       },
     );
@@ -254,10 +254,10 @@ class _TypeSelectorState extends State<TypeSelector> {
   ListTile _customRepeat(BuildContext context) {
     return ListTile(
       dense: true,
-      tileColor: _selectedScheduler == KhatmaScheduler.CUSTOM
+      tileColor: _selectedScheduler == KhatmaScheduler.custom
           ? AppTheme.getTheme().primaryColor.withOpacity(.1)
           : null,
-      title: Text(KhatmaScheduler.CUSTOM.name.capitalize()),
+      title: Text(KhatmaScheduler.custom.name.capitalize()),
       subtitle: Text(
         "Custom",
         style: AppTheme.getTheme().textTheme.subtitle2,
@@ -265,11 +265,11 @@ class _TypeSelectorState extends State<TypeSelector> {
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Icon(
-          _selectedScheduler == KhatmaScheduler.CUSTOM
+          _selectedScheduler == KhatmaScheduler.custom
               ? Icons.check_circle_rounded
               : Icons.circle_outlined,
           size: 32,
-          color: _selectedScheduler == KhatmaScheduler.CUSTOM
+          color: _selectedScheduler == KhatmaScheduler.custom
               ? AppTheme.getTheme().primaryColor
               : AppTheme.getTheme().disabledColor,
         ),
@@ -277,7 +277,7 @@ class _TypeSelectorState extends State<TypeSelector> {
       onTap: () {
         setState(() {
           Navigator.pop(context);
-          _selectedScheduler = KhatmaScheduler.CUSTOM;
+          _selectedScheduler = KhatmaScheduler.custom;
         });
       },
     );
@@ -286,10 +286,10 @@ class _TypeSelectorState extends State<TypeSelector> {
   ListTile _repeatAfterComplete(BuildContext context) {
     return ListTile(
       dense: true,
-      tileColor: _selectedScheduler == KhatmaScheduler.AUTO_REPEAT
+      tileColor: _selectedScheduler == KhatmaScheduler.autoRepeat
           ? AppTheme.getTheme().primaryColor.withOpacity(.1)
           : null,
-      title: Text(KhatmaScheduler.AUTO_REPEAT.name.capitalize()),
+      title: Text(KhatmaScheduler.autoRepeat.name.capitalize()),
       subtitle: Text(
         "Repeat after completing current",
         style: AppTheme.getTheme().textTheme.subtitle2,
@@ -297,11 +297,11 @@ class _TypeSelectorState extends State<TypeSelector> {
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Icon(
-          _selectedScheduler == KhatmaScheduler.AUTO_REPEAT
+          _selectedScheduler == KhatmaScheduler.autoRepeat
               ? Icons.check_circle_rounded
               : Icons.circle_outlined,
           size: 32,
-          color: _selectedScheduler == KhatmaScheduler.AUTO_REPEAT
+          color: _selectedScheduler == KhatmaScheduler.autoRepeat
               ? AppTheme.getTheme().primaryColor
               : AppTheme.getTheme().disabledColor,
         ),
@@ -309,7 +309,7 @@ class _TypeSelectorState extends State<TypeSelector> {
       onTap: () {
         setState(() {
           Navigator.pop(context);
-          _selectedScheduler = KhatmaScheduler.AUTO_REPEAT;
+          _selectedScheduler = KhatmaScheduler.autoRepeat;
         });
       },
     );

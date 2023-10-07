@@ -19,11 +19,14 @@ final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
   return KhatmaNotifier(
     Khatma(
       name: 'test',
+      unit: SplitUnit.hizb,
       createDate: DateTime.now(),
       recurrence: Recurrence(
-        scheduler: KhatmaScheduler.CUSTOM,
+        scheduler: KhatmaScheduler.custom,
         startDate: DateTime.now(),
-        endDate: DateTime.now().add(const Duration(days: 365)),
+        endDate: DateTime.now().add(const Duration(days: 30)),
+        unit: RecurrenceUnit.once,
+        occurrence: 1,
       ),
     ),
   );

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/unit_selector.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -164,7 +163,7 @@ class AddKhatmaScreen extends ConsumerWidget {
         onTap();
         //ref.read(khatmaProvider.notifier).updateKhatma(null);
       },
-      trailing: Icon(Icons.arrow_right),
+      trailing: const Icon(Icons.arrow_right),
     );
   }
 }

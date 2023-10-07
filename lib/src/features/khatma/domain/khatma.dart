@@ -1,42 +1,64 @@
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:khatma/src/common/utils/number_utils.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
-part 'khatma.g.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'khatma.freezed.dart';
 
-@CopyWith()
-class Khatma {
-  String? id;
-  String name;
-  String? description;
-  DateTime createDate;
-  DateTime? endDate;
+@freezed
+abstract class Khatma with _$Khatma {
+  const factory Khatma({
+    String? id,
+    String? description,
+    DateTime? endDate,
+    String? creator,
+    KhatmaStyle? style,
+    DateTime? lastRead,
+    List<int>? completedParts,
+    required String name,
+    required DateTime createDate,
+    required Recurrence recurrence,
+    required SplitUnit unit,
+  }) = _Khatma;
+}
 
-  Recurrence recurrence;
+@freezed
+abstract class KhatmaStyle with _$KhatmaStyle {
+  const factory KhatmaStyle({
+    String? color,
+    String? icon,
+  }) = _KhatmaStyle;
+}
 
-  SplitUnit unit;
-  String? creator;
-  KhatmaStyle? style;
+@freezed
+abstract class Recurrence with _$Recurrence {
+  const factory Recurrence({
+    required KhatmaScheduler scheduler,
+    required DateTime startDate,
+    required DateTime endDate,
+    RecurrenceUnit? unit,
+    int? occurrence,
+  }) = _Recurrence;
+}
 
-  // should be out
-  DateTime? lastRead;
-  List<int>? completedParts;
+enum KhatmaScheduler { never, autoRepeat, custom }
 
-  Khatma({
-    this.id,
-    required this.name,
-    this.description,
-    required this.createDate,
-    this.endDate,
-    this.creator,
-    required this.recurrence,
-    this.unit = SplitUnit.HIZB,
-    this.lastRead,
-    this.completedParts,
-  });
+enum RecurrenceUnit { once, daily, weekly, monthly, hijriMonthly, yearly }
 
+enum SplitUnit {
+  sourat(114),
+  juzz(30),
+  hizb(60),
+  rubue(240),
+  thumun(480);
+
+  final int count;
+
+  const SplitUnit(this.count);
+}
+
+extension KhatmaExtension on Khatma {
   double get completude {
     if (completedParts == null) return 0;
-    if (SplitUnit.SOURAT == unit) {
+    if (SplitUnit.sourat == unit) {
       return computeSouratCompletude(completedParts!.toSet());
     }
     return completedParts!.length / unit.count;
@@ -51,53 +73,4 @@ class Khatma {
     if (lastRead == null) return DateTime.now().difference(createDate);
     return DateTime.now().difference(lastRead!);
   }
-}
-
-class KhatmaStyle {
-  String? color;
-  String? icon;
-
-  KhatmaStyle({this.color, this.icon});
-}
-
-class Recurrence {
-  KhatmaScheduler scheduler;
-  DateTime startDate;
-  DateTime endDate;
-  RecurrenceUnit? unit;
-  int? occurrence;
-
-  Recurrence({
-    required this.scheduler,
-    required this.startDate,
-    required this.endDate,
-    this.unit = RecurrenceUnit.DAILY,
-    this.occurrence,
-  });
-
-  Recurrence copy() {
-    return Recurrence(
-      scheduler: this.scheduler,
-      startDate: this.startDate,
-      endDate: this.endDate,
-      unit: this.unit,
-      occurrence: this.occurrence,
-    );
-  }
-}
-
-enum KhatmaScheduler { NEVER, AUTO_REPEAT, CUSTOM }
-
-enum RecurrenceUnit { DAILY, WEEKLY, MONTHLY, MONTHLY_HIJRI, YEARLY }
-
-enum SplitUnit {
-  SOURAT(114),
-  JUZZ(30),
-  HIZB(60),
-  RUBUE(240),
-  THUMUN(480);
-
-  final int count;
-
-  const SplitUnit(this.count);
 }

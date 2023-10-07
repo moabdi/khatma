@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  SplitUnit _selectedSplitUnit = SplitUnit.HIZB;
+  SplitUnit _selectedSplitUnit = SplitUnit.hizb;
   final bool _isPermanent = true;
   int? _value = 1;
   List<bool> _isSelected = [false, true, false];
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               title: Text('Hizb'),
               leading: Radio(
-                value: SplitUnit.HIZB,
+                value: SplitUnit.hizb,
                 groupValue: _selectedSplitUnit,
                 onChanged: (value) {
                   setState(() {
@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               title: Text('Juzz'),
               leading: Radio(
-                value: SplitUnit.JUZZ,
+                value: SplitUnit.juzz,
                 groupValue: _selectedSplitUnit,
                 onChanged: (value) {
                   setState(() {

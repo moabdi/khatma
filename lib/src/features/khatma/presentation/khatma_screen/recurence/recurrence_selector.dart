@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
@@ -21,23 +22,32 @@ class RecurrenceSelector extends StatefulWidget {
 }
 
 class _RecurrenceSelectorState extends State<RecurrenceSelector> {
-  late final Recurrence updatedRecurrence;
-  RecurrenceUnit selectedCustomRecurrenceValue = RecurrenceUnit.MONTHLY;
+  late RecurrenceUnit selectedCustomRecurrenceValue;
+  final DateFormat _dateFormat = DateFormat('dd/MM/yyyy');
   final TextEditingController _startDateEditingController =
-      TextEditingController(
-    text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
-  );
+      TextEditingController();
 
-  final TextEditingController _endDateEditingController = TextEditingController(
-    text: DateFormat('dd/MM/yyyy').format(DateTime.now()),
-  );
+  final TextEditingController _endDateEditingController =
+      TextEditingController();
 
   final TextEditingController _frequencyEditingController =
       TextEditingController(text: '1');
+
+  final DateTime maxEndDate = DateTime.now().add(const Duration(days: 3600));
+
+  late Recurrence updatedRecurrence;
+
   @override
   void initState() {
     super.initState();
-    updatedRecurrence = widget.recurrence.copy();
+    updatedRecurrence = widget.recurrence.copyWith();
+    selectedCustomRecurrenceValue =
+        widget.recurrence.unit ?? RecurrenceUnit.monthly;
+    _startDateEditingController.text =
+        _dateFormat.format(widget.recurrence.startDate);
+    _endDateEditingController.text =
+        _dateFormat.format(widget.recurrence.endDate);
+    _frequencyEditingController.text = widget.recurrence.occurrence.toString();
   }
 
   @override
@@ -55,13 +65,11 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
       context: context,
       initialDate: dateTime,
       firstDate: DateTime.now(),
-      lastDate: DateTime(9999),
+      lastDate: maxEndDate,
     );
 
     if (picked != null && picked != dateTime) {
-      setState(() {
-        controller.text = DateFormat('dd/MM/yyyy').format(picked);
-      });
+      controller.text = _dateFormat.format(picked);
     }
   }
 
@@ -89,11 +97,22 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
                 ),
               ),
             ),
-            CloseButton(
-              color: Color.fromARGB(255, 0, 212, 102),
-              onPressed: (() {
-                Navigator.pop(context);
-              }),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: InkWell(
+                hoverColor: Colors.transparent,
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  padding: EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                    color: AppTheme.getTheme().disabledColor,
+                  ),
+                  child: Icon(Icons.close, size: 18, color: Colors.blueGrey),
+                ),
+                onTap: () => Navigator.of(context).pop(),
+              ),
             ),
           ],
         ),
@@ -106,21 +125,21 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
         ),
         _buildRecurrenceTile(
           context,
-          KhatmaScheduler.NEVER,
+          KhatmaScheduler.never,
           "Does not repeat",
           Icons.circle_outlined,
           AppTheme.getTheme().primaryColor.withOpacity(.1),
         ),
         _buildRecurrenceTile(
           context,
-          KhatmaScheduler.AUTO_REPEAT,
+          KhatmaScheduler.autoRepeat,
           "Repeat after completing current",
           Icons.circle_outlined,
           AppTheme.getTheme().primaryColor.withOpacity(.1),
         ),
         _buildRecurrenceTile(
           context,
-          KhatmaScheduler.CUSTOM,
+          KhatmaScheduler.custom,
           "Custom",
           Icons.circle_outlined,
           AppTheme.getTheme().primaryColor.withOpacity(.1),
@@ -137,11 +156,12 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
   }
 
   Widget _buildForm() {
-    if (updatedRecurrence.scheduler == KhatmaScheduler.NEVER) {
-      return const SizedBox();
-    }
     return Column(
       children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Divider(indent: 1),
+        ),
         _buildDateField(
           context,
           "Start date:",
@@ -155,25 +175,36 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
           updatedRecurrence.endDate,
         ),
         _recurrence(),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: TextButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(255, 0, 212, 102)),
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-                //onSelect(this.recurrence);
-              },
-              child: Text('save'),
-            ),
-          ),
-        )
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Divider(indent: 1),
+        ),
+        buildSave(),
       ],
+    );
+  }
+
+  Container buildSave() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: TextButton(
+          onPressed: () {
+            updatedRecurrence = updatedRecurrence.copyWith(
+              startDate: _dateFormat.parse(_startDateEditingController.text),
+              endDate: _dateFormat.parse(_endDateEditingController.text),
+              occurrence: _frequencyEditingController.text.isEmpty
+                  ? 0
+                  : int.parse(_frequencyEditingController.text),
+              unit: selectedCustomRecurrenceValue,
+            );
+            Navigator.pop(context);
+            widget.onSelect(updatedRecurrence);
+          },
+          child: const Text('save'),
+        ),
+      ),
     );
   }
 
@@ -220,7 +251,7 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
   }
 
   Widget _recurrence() {
-    if (updatedRecurrence.scheduler == KhatmaScheduler.AUTO_REPEAT) {
+    if (updatedRecurrence.scheduler == KhatmaScheduler.autoRepeat) {
       return SizedBox();
     }
     return Padding(
@@ -267,7 +298,8 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
               value: selectedCustomRecurrenceValue,
               onChanged: (newValue) {
                 setState(() {
-                  updatedRecurrence.unit = newValue!;
+                  updatedRecurrence =
+                      updatedRecurrence.copyWith(unit: newValue!);
                   selectedCustomRecurrenceValue = newValue;
                 });
               },
@@ -297,7 +329,7 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
     bool isSelected = updatedRecurrence.scheduler == scheduler;
     final Color iconColor = isSelected
         ? AppTheme.getTheme().primaryColor
-        : AppTheme.getTheme().disabledColor;
+        : AppTheme.getTheme().dividerColor;
 
     return ListTile(
       dense: true,
@@ -317,8 +349,7 @@ class _RecurrenceSelectorState extends State<RecurrenceSelector> {
       ),
       onTap: () {
         setState(() {
-          updatedRecurrence.scheduler = scheduler;
-          widget.onSelect(updatedRecurrence);
+          updatedRecurrence = updatedRecurrence.copyWith(scheduler: scheduler);
         });
       },
     );
