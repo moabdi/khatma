@@ -31,3 +31,29 @@ final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
     ),
   );
 });
+
+class RecurrenceNotifier extends ChangeNotifier {
+  Recurrence _recurrence;
+
+  Recurrence get recurrence => _recurrence;
+
+  RecurrenceNotifier(this._recurrence);
+
+  void updateRecurrence(Recurrence updatedRecurrence) {
+    _recurrence = updatedRecurrence;
+    notifyListeners();
+  }
+}
+
+final formRecurrenceProvider =
+    ChangeNotifierProvider<RecurrenceNotifier>((ref) {
+  return RecurrenceNotifier(
+    Recurrence(
+      scheduler: KhatmaScheduler.custom,
+      startDate: DateTime.now(),
+      endDate: DateTime.now().add(const Duration(days: 30)),
+      unit: RecurrenceUnit.once,
+      occurrence: 1,
+    ),
+  );
+});

@@ -59,7 +59,7 @@ class UnitSelector extends StatelessWidget {
                   size: 32,
                   color: selected
                       ? AppTheme.getTheme().primaryColor
-                      : AppTheme.getTheme().disabledColor,
+                      : AppTheme.getTheme().dividerColor,
                 ),
               ),
               onTap: () {
