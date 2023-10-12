@@ -87,6 +87,10 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
           duration: const Duration(milliseconds: 600),
           child: _buildForm(),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Divider(indent: 1),
+        ),
         buildSave(),
         gapH32,
       ],
@@ -160,10 +164,6 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
                         updatedRecurrence.copyWith(endDate: parse(value))),
               ),
               _recurrence(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Divider(indent: 1),
-              ),
             ],
           );
   }
