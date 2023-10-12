@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/part_selector/part_tile_leading.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/part_selector/part_tile_subtitle.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/part_selector/part_tile_title.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_leading.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_subtitle.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_title.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:khatma/src/routing/app_router.dart';
 

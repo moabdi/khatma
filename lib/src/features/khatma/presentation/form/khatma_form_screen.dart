@@ -4,9 +4,9 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_screen/khatma_form_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/recurrence_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_screen/recurence/unit_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/khatma_form_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/form/form/recurence/recurrence_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/recurence/unit_selector.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {

@@ -8,8 +8,8 @@ import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/part_selector/part_floating_button.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_parts_screen/part_selector/part_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
   const PartSelectorScreen({super.key, required this.khatmaId});
