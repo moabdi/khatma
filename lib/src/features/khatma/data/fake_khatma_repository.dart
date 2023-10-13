@@ -9,6 +9,10 @@ class FakeKhatmaRepository {
     return _khatmat;
   }
 
+  void saveKhatma(Khatma khatma) {
+    return _khatmat.add(khatma);
+  }
+
   Khatma? getKhatma(String id) {
     return _khatmat.firstWhere((khatma) => khatma.id == id);
   }

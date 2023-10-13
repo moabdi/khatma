@@ -45,6 +45,8 @@ class AddKhatmaScreen extends ConsumerWidget {
                   gapH20,
                   _buildShare(context, khatma, ref),
                   gapH20,
+                  gapH20,
+                  _saveButton(context, ref),
                 ],
               ),
             ),
@@ -166,6 +168,21 @@ class AddKhatmaScreen extends ConsumerWidget {
           child: widget,
         );
       },
+    );
+  }
+
+  _saveButton(BuildContext context, WidgetRef ref) {
+    return Container(
+      width: double.infinity,
+      height: 45,
+      child: FloatingActionButton(
+        isExtended: true,
+        materialTapTargetSize: MaterialTapTargetSize.padded,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: const Text('Save'),
+      ),
     );
   }
 }
