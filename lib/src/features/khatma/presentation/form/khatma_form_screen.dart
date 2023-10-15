@@ -4,6 +4,7 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/form/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/unit_selector.dart';
@@ -138,14 +139,16 @@ class AddKhatmaScreen extends ConsumerWidget {
     return KhatmaFormTile(
       icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
       title: 'Share',
-      subtitle: "Individual",
+      subtitle: khatma.share == null
+          ? ShareType.individual.name
+          : khatma.share.toString(),
       onTap: () => _showModal(
         context,
-        RecurrenceSelector(
-            recurrence: khatma.recurrence,
+        ShareSelector(
+            unit: khatma.share!,
             onSelect: (value) => ref
-                .watch(formKhatmaProvider)
-                .updateKhatma(khatma.copyWith(recurrence: value))),
+                .read(formKhatmaProvider)
+                .updateKhatma(khatma.copyWith(share: value))),
       ),
     );
   }

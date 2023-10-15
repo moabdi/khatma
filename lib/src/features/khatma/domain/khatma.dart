@@ -17,6 +17,7 @@ abstract class Khatma with _$Khatma {
     required DateTime createDate,
     required Recurrence recurrence,
     required SplitUnit unit,
+    ShareType? share,
   }) = _Khatma;
 }
 
@@ -40,6 +41,8 @@ abstract class Recurrence with _$Recurrence {
 }
 
 enum KhatmaScheduler { never, autoRepeat, custom }
+
+enum ShareType { individual, public, custom }
 
 enum RecurrenceUnit { once, daily, weekly, monthly, hijriMonthly, yearly }
 

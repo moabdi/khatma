@@ -17,16 +17,17 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Khatma {
   String? get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  DateTime get createDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
-  Recurrence get recurrence => throw _privateConstructorUsedError;
-  SplitUnit get unit => throw _privateConstructorUsedError;
   String? get creator => throw _privateConstructorUsedError;
   KhatmaStyle? get style => throw _privateConstructorUsedError;
   DateTime? get lastRead => throw _privateConstructorUsedError;
   List<int>? get completedParts => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  DateTime get createDate => throw _privateConstructorUsedError;
+  Recurrence get recurrence => throw _privateConstructorUsedError;
+  SplitUnit get unit => throw _privateConstructorUsedError;
+  ShareType? get share => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $KhatmaCopyWith<Khatma> get copyWith => throw _privateConstructorUsedError;
@@ -39,19 +40,20 @@ abstract class $KhatmaCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String name,
       String? description,
-      DateTime createDate,
       DateTime? endDate,
-      Recurrence recurrence,
-      SplitUnit unit,
       String? creator,
       KhatmaStyle? style,
       DateTime? lastRead,
-      List<int>? completedParts});
+      List<int>? completedParts,
+      String name,
+      DateTime createDate,
+      Recurrence recurrence,
+      SplitUnit unit,
+      ShareType? share});
 
-  $RecurrenceCopyWith<$Res> get recurrence;
   $KhatmaStyleCopyWith<$Res>? get style;
+  $RecurrenceCopyWith<$Res> get recurrence;
 }
 
 /// @nodoc
@@ -68,46 +70,31 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = null,
     Object? description = freezed,
-    Object? createDate = null,
     Object? endDate = freezed,
-    Object? recurrence = null,
-    Object? unit = null,
     Object? creator = freezed,
     Object? style = freezed,
     Object? lastRead = freezed,
     Object? completedParts = freezed,
+    Object? name = null,
+    Object? createDate = null,
+    Object? recurrence = null,
+    Object? unit = null,
+    Object? share = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      createDate: null == createDate
-          ? _value.createDate
-          : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      recurrence: null == recurrence
-          ? _value.recurrence
-          : recurrence // ignore: cast_nullable_to_non_nullable
-              as Recurrence,
-      unit: null == unit
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
-              as SplitUnit,
       creator: freezed == creator
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
@@ -124,15 +111,27 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.completedParts
           : completedParts // ignore: cast_nullable_to_non_nullable
               as List<int>?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      createDate: null == createDate
+          ? _value.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      recurrence: null == recurrence
+          ? _value.recurrence
+          : recurrence // ignore: cast_nullable_to_non_nullable
+              as Recurrence,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as SplitUnit,
+      share: freezed == share
+          ? _value.share
+          : share // ignore: cast_nullable_to_non_nullable
+              as ShareType?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RecurrenceCopyWith<$Res> get recurrence {
-    return $RecurrenceCopyWith<$Res>(_value.recurrence, (value) {
-      return _then(_value.copyWith(recurrence: value) as $Val);
-    });
   }
 
   @override
@@ -146,6 +145,14 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
       return _then(_value.copyWith(style: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RecurrenceCopyWith<$Res> get recurrence {
+    return $RecurrenceCopyWith<$Res>(_value.recurrence, (value) {
+      return _then(_value.copyWith(recurrence: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -157,21 +164,22 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String name,
       String? description,
-      DateTime createDate,
       DateTime? endDate,
-      Recurrence recurrence,
-      SplitUnit unit,
       String? creator,
       KhatmaStyle? style,
       DateTime? lastRead,
-      List<int>? completedParts});
+      List<int>? completedParts,
+      String name,
+      DateTime createDate,
+      Recurrence recurrence,
+      SplitUnit unit,
+      ShareType? share});
 
   @override
-  $RecurrenceCopyWith<$Res> get recurrence;
-  @override
   $KhatmaStyleCopyWith<$Res>? get style;
+  @override
+  $RecurrenceCopyWith<$Res> get recurrence;
 }
 
 /// @nodoc
@@ -186,46 +194,31 @@ class __$$KhatmaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = null,
     Object? description = freezed,
-    Object? createDate = null,
     Object? endDate = freezed,
-    Object? recurrence = null,
-    Object? unit = null,
     Object? creator = freezed,
     Object? style = freezed,
     Object? lastRead = freezed,
     Object? completedParts = freezed,
+    Object? name = null,
+    Object? createDate = null,
+    Object? recurrence = null,
+    Object? unit = null,
+    Object? share = freezed,
   }) {
     return _then(_$KhatmaImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      createDate: null == createDate
-          ? _value.createDate
-          : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       endDate: freezed == endDate
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      recurrence: null == recurrence
-          ? _value.recurrence
-          : recurrence // ignore: cast_nullable_to_non_nullable
-              as Recurrence,
-      unit: null == unit
-          ? _value.unit
-          : unit // ignore: cast_nullable_to_non_nullable
-              as SplitUnit,
       creator: freezed == creator
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
@@ -242,6 +235,26 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value._completedParts
           : completedParts // ignore: cast_nullable_to_non_nullable
               as List<int>?,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      createDate: null == createDate
+          ? _value.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      recurrence: null == recurrence
+          ? _value.recurrence
+          : recurrence // ignore: cast_nullable_to_non_nullable
+              as Recurrence,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as SplitUnit,
+      share: freezed == share
+          ? _value.share
+          : share // ignore: cast_nullable_to_non_nullable
+              as ShareType?,
     ));
   }
 }
@@ -251,32 +264,25 @@ class __$$KhatmaImplCopyWithImpl<$Res>
 class _$KhatmaImpl implements _Khatma {
   const _$KhatmaImpl(
       {this.id,
-      required this.name,
       this.description,
-      required this.createDate,
       this.endDate,
-      required this.recurrence,
-      required this.unit,
       this.creator,
       this.style,
       this.lastRead,
-      final List<int>? completedParts})
+      final List<int>? completedParts,
+      required this.name,
+      required this.createDate,
+      required this.recurrence,
+      required this.unit,
+      this.share})
       : _completedParts = completedParts;
 
   @override
   final String? id;
   @override
-  final String name;
-  @override
   final String? description;
   @override
-  final DateTime createDate;
-  @override
   final DateTime? endDate;
-  @override
-  final Recurrence recurrence;
-  @override
-  final SplitUnit unit;
   @override
   final String? creator;
   @override
@@ -294,8 +300,19 @@ class _$KhatmaImpl implements _Khatma {
   }
 
   @override
+  final String name;
+  @override
+  final DateTime createDate;
+  @override
+  final Recurrence recurrence;
+  @override
+  final SplitUnit unit;
+  @override
+  final ShareType? share;
+
+  @override
   String toString() {
-    return 'Khatma(id: $id, name: $name, description: $description, createDate: $createDate, endDate: $endDate, recurrence: $recurrence, unit: $unit, creator: $creator, style: $style, lastRead: $lastRead, completedParts: $completedParts)';
+    return 'Khatma(id: $id, description: $description, endDate: $endDate, creator: $creator, style: $style, lastRead: $lastRead, completedParts: $completedParts, name: $name, createDate: $createDate, recurrence: $recurrence, unit: $unit, share: $share)';
   }
 
   @override
@@ -304,37 +321,39 @@ class _$KhatmaImpl implements _Khatma {
         (other.runtimeType == runtimeType &&
             other is _$KhatmaImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.createDate, createDate) ||
-                other.createDate == createDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.recurrence, recurrence) ||
-                other.recurrence == recurrence) &&
-            (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.creator, creator) || other.creator == creator) &&
             (identical(other.style, style) || other.style == style) &&
             (identical(other.lastRead, lastRead) ||
                 other.lastRead == lastRead) &&
             const DeepCollectionEquality()
-                .equals(other._completedParts, _completedParts));
+                .equals(other._completedParts, _completedParts) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.createDate, createDate) ||
+                other.createDate == createDate) &&
+            (identical(other.recurrence, recurrence) ||
+                other.recurrence == recurrence) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.share, share) || other.share == share));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      name,
       description,
-      createDate,
       endDate,
-      recurrence,
-      unit,
       creator,
       style,
       lastRead,
-      const DeepCollectionEquality().hash(_completedParts));
+      const DeepCollectionEquality().hash(_completedParts),
+      name,
+      createDate,
+      recurrence,
+      unit,
+      share);
 
   @JsonKey(ignore: true)
   @override
@@ -346,31 +365,24 @@ class _$KhatmaImpl implements _Khatma {
 abstract class _Khatma implements Khatma {
   const factory _Khatma(
       {final String? id,
-      required final String name,
       final String? description,
-      required final DateTime createDate,
       final DateTime? endDate,
-      required final Recurrence recurrence,
-      required final SplitUnit unit,
       final String? creator,
       final KhatmaStyle? style,
       final DateTime? lastRead,
-      final List<int>? completedParts}) = _$KhatmaImpl;
+      final List<int>? completedParts,
+      required final String name,
+      required final DateTime createDate,
+      required final Recurrence recurrence,
+      required final SplitUnit unit,
+      final ShareType? share}) = _$KhatmaImpl;
 
   @override
   String? get id;
   @override
-  String get name;
-  @override
   String? get description;
   @override
-  DateTime get createDate;
-  @override
   DateTime? get endDate;
-  @override
-  Recurrence get recurrence;
-  @override
-  SplitUnit get unit;
   @override
   String? get creator;
   @override
@@ -379,6 +391,16 @@ abstract class _Khatma implements Khatma {
   DateTime? get lastRead;
   @override
   List<int>? get completedParts;
+  @override
+  String get name;
+  @override
+  DateTime get createDate;
+  @override
+  Recurrence get recurrence;
+  @override
+  SplitUnit get unit;
+  @override
+  ShareType? get share;
   @override
   @JsonKey(ignore: true)
   _$$KhatmaImplCopyWith<_$KhatmaImpl> get copyWith =>
