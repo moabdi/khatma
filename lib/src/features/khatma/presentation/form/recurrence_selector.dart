@@ -254,8 +254,6 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
                   ? null
                   : () {
                       Navigator.pop(context);
-                      widget.onSelect(
-                          ref.read(formRecurrenceProvider).recurrence);
                     },
               child: const Text('Cancel'),
             ),
@@ -264,9 +262,9 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               onPressed: isNotChanged
                   ? null
                   : () {
-                      Navigator.pop(context);
                       widget.onSelect(
                           ref.read(formRecurrenceProvider).recurrence);
+                      Navigator.pop(context);
                     },
               child: const Text('Apply'),
             ),

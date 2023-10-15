@@ -95,7 +95,7 @@ class AddKhatmaScreen extends ConsumerWidget {
             unit: khatma.unit,
             onSelect: (value) {
               ref
-                  .watch(formKhatmaProvider)
+                  .read(formKhatmaProvider)
                   .updateKhatma(khatma.copyWith(unit: value));
             }),
       ),

@@ -50,10 +50,10 @@ final formRecurrenceProvider =
     ChangeNotifierProvider<RecurrenceNotifier>((ref) {
   return RecurrenceNotifier(
     Recurrence(
-      scheduler: KhatmaScheduler.custom,
+      scheduler: KhatmaScheduler.never,
       startDate: DateTime.now(),
       endDate: DateTime.now().add(const Duration(days: 30)),
-      unit: RecurrenceUnit.once,
+      unit: RecurrenceUnit.monthly,
       occurrence: 1,
     ),
   );
