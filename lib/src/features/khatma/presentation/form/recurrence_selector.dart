@@ -241,12 +241,25 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Align(
         alignment: Alignment.bottomRight,
-        child: TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-            widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
-          },
-          child: const Text('save'),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
+              },
+              child: const Text('Cancel'),
+            ),
+            SizedBox(width: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
+              },
+              child: const Text('Apply'),
+            ),
+          ],
         ),
       ),
     );

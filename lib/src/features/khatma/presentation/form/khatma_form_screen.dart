@@ -68,11 +68,6 @@ class AddKhatmaScreen extends ConsumerWidget {
       autocorrect: false,
       textInputAction: TextInputAction.next,
       onEditingComplete: () => node.nextFocus(),
-      onChanged: (value) {
-        ref
-            .watch(formKhatmaProvider)
-            .updateKhatma(khatma.copyWith(name: value));
-      },
     );
   }
 
@@ -85,11 +80,6 @@ class AddKhatmaScreen extends ConsumerWidget {
       decoration: const InputDecoration(
         hintText: 'Enter a description (optional)',
       ),
-      onChanged: (value) {
-        ref
-            .watch(formKhatmaProvider)
-            .updateKhatma(khatma.copyWith(description: value));
-      },
     );
   }
 
