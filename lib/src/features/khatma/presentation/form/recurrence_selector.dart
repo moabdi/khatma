@@ -31,6 +31,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       TextEditingController();
 
   late Recurrence updatedRecurrence;
+  late int oldRecurrenceHash;
 
   @override
   void initState() {
@@ -38,6 +39,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     selectedCustomRecurrenceValue =
         widget.recurrence.unit ?? RecurrenceUnit.monthly;
     _frequencyEditingController.text = widget.recurrence.occurrence.toString();
+    oldRecurrenceHash = widget.recurrence.hashCode;
   }
 
   @override
@@ -237,6 +239,9 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   }
 
   Container buildSave() {
+    bool isNotChanged = oldRecurrenceHash ==
+        ref.read(formRecurrenceProvider).recurrence.hashCode;
+
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: Align(
@@ -245,18 +250,24 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
-              },
+              onPressed: isNotChanged
+                  ? null
+                  : () {
+                      Navigator.pop(context);
+                      widget.onSelect(
+                          ref.read(formRecurrenceProvider).recurrence);
+                    },
               child: const Text('Cancel'),
             ),
             SizedBox(width: 10),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
-              },
+              onPressed: isNotChanged
+                  ? null
+                  : () {
+                      Navigator.pop(context);
+                      widget.onSelect(
+                          ref.read(formRecurrenceProvider).recurrence);
+                    },
               child: const Text('Apply'),
             ),
           ],
