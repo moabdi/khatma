@@ -129,9 +129,8 @@ class AddKhatmaScreen extends ConsumerWidget {
     return KhatmaFormTile(
       icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
       title: 'Share',
-      subtitle: khatma.share == null
-          ? ShareType.individual.name
-          : khatma.share.toString(),
+      subtitle:
+          khatma.share == null ? ShareType.individual.name : khatma.share!.name,
       onTap: () => _showModal(
         context,
         ShareSelector(
