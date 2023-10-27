@@ -21,25 +21,15 @@ class DateField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 80,
-            height: 40,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  label,
-                  style: AppTheme.getTheme().textTheme.subtitle2,
-                ),
-              ],
-            ),
+          Text(
+            label,
+            style: AppTheme.getTheme().textTheme.titleSmall,
           ),
           const SizedBox(width: 10),
-          SizedBox(
-            width: 200,
-            height: 40,
+          Expanded(
             child: DatePickerField(
               date: dateTime,
               onChanged: onChanged,

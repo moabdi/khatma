@@ -21,14 +21,10 @@ class RecurrenceTile extends StatelessWidget {
         : AppTheme.getTheme().dividerColor;
 
     return ListTile(
-      dense: true,
       tileColor:
           isSelected ? AppTheme.getTheme().primaryColor.withOpacity(.1) : null,
       title: Text(value.name),
-      subtitle: Text(
-        "title",
-        style: AppTheme.getTheme().textTheme.subtitle2,
-      ),
+      subtitle: const Text("title"),
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Icon(

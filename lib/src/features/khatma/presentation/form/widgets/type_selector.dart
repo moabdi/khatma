@@ -97,7 +97,7 @@ class _TypeSelectorState extends State<TypeSelector> {
               children: [
                 Text(
                   "End date:",
-                  style: AppTheme.getTheme().textTheme.subtitle2,
+                  style: AppTheme.getTheme().textTheme.titleSmall,
                 ),
               ],
             ),
@@ -132,7 +132,7 @@ class _TypeSelectorState extends State<TypeSelector> {
               children: [
                 Text(
                   "Evry:",
-                  style: AppTheme.getTheme().textTheme.subtitle2,
+                  style: AppTheme.getTheme().textTheme.titleSmall,
                 ),
               ],
             ),
@@ -198,7 +198,7 @@ class _TypeSelectorState extends State<TypeSelector> {
               children: [
                 Text(
                   "Start date:",
-                  style: AppTheme.getTheme().textTheme.subtitle2,
+                  style: AppTheme.getTheme().textTheme.titleSmall,
                 ),
               ],
             ),
@@ -228,7 +228,7 @@ class _TypeSelectorState extends State<TypeSelector> {
       title: Text(KhatmaScheduler.never.name.capitalize()),
       subtitle: Text(
         "Does not repeat",
-        style: AppTheme.getTheme().textTheme.subtitle2,
+        style: AppTheme.getTheme().textTheme.titleSmall,
       ),
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -260,7 +260,7 @@ class _TypeSelectorState extends State<TypeSelector> {
       title: Text(KhatmaScheduler.custom.name.capitalize()),
       subtitle: Text(
         "Custom",
-        style: AppTheme.getTheme().textTheme.subtitle2,
+        style: AppTheme.getTheme().textTheme.titleSmall,
       ),
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -292,7 +292,7 @@ class _TypeSelectorState extends State<TypeSelector> {
       title: Text(KhatmaScheduler.autoRepeat.name.capitalize()),
       subtitle: Text(
         "Repeat after completing current",
-        style: AppTheme.getTheme().textTheme.subtitle2,
+        style: AppTheme.getTheme().textTheme.titleSmall,
       ),
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),

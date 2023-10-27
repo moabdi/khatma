@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class KhatmaNotifier extends ChangeNotifier {
   Khatma _khatma;
@@ -28,6 +30,10 @@ final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
         endDate: DateTime.now().add(const Duration(days: 30)),
         unit: RecurrenceUnit.once,
         occurrence: 1,
+      ),
+      style: KhatmaStyle(
+        color: AppTheme.getTheme().primaryColor.toString(),
+        icon: khatmaImagesMap.entries.first.key,
       ),
     ),
   );

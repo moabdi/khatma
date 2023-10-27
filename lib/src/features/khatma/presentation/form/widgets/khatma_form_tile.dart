@@ -21,10 +21,7 @@ class KhatmaFormTile extends StatelessWidget {
       dense: true,
       leading: icon,
       title: Text(title),
-      subtitle: Text(
-        subtitle,
-        style: AppTheme.getTheme().textTheme.subtitle2,
-      ),
+      subtitle: Text(subtitle),
       onTap: onTap,
       trailing: const Icon(Icons.arrow_right),
     );

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/share_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/form/recurrence_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/unit_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/unit_selector.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
@@ -28,31 +32,70 @@ class AddKhatmaScreen extends ConsumerWidget {
       ),
       floatingActionButton: _saveButton(context, ref),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SingleChildScrollView(
-        child: FocusScope(
-          node: node,
-          child: Form(
-            key: formKey,
-            child: Container(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildName(nameController, node, ref, khatma),
-                  gapH20,
-                  _buildDescription(descController, ref, khatma),
-                  gapH20,
-                  _buildSplitUnit(khatma, context, ref),
-                  gapH20,
-                  _buildRecurrence(khatma, ref, context),
-                  gapH20,
-                  _buildShare(context, khatma, ref),
-                  gapH20,
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: FocusScope(
+            node: node,
+            child: Form(
+              key: formKey,
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildIcon(context, khatma, ref),
+                    gapH20,
+                    _buildName(nameController, node, ref, khatma),
+                    gapH20,
+                    _buildDescription(descController, ref, khatma),
+                    gapH20,
+                    _buildSplitUnit(khatma, context, ref),
+                    gapH20,
+                    _buildRecurrence(khatma, ref, context),
+                    gapH20,
+                    _buildShare(context, khatma, ref),
+                    gapH64,
+                    gapH20,
+                  ],
+                ),
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildIcon(BuildContext context, Khatma khatma, WidgetRef ref) {
+    return Center(
+      child: CircleAvatar(
+        radius: 40,
+        backgroundColor: AppTheme.getTheme().cardColor,
+        child: Stack(children: [
+          InkWell(
+            onTap: () => _showModal(
+              context,
+              KhatmaStyleSelector(
+                style: khatma.style,
+                onChanged: (value) => ref.read(formKhatmaProvider).updateKhatma(
+                      khatma.copyWith(
+                        style: KhatmaStyle(
+                            icon: value,
+                            color: AppTheme.getTheme().primaryColor.toString()),
+                      ),
+                    ),
+              ),
+            ),
+            child: Center(
+              child: SizedBox(
+                height: 50,
+                width: 50,
+                child: FittedBox(
+                    child: getImage(khatma.style.icon, color: Colors.amber)),
+              ),
+            ),
+          ),
+        ]),
       ),
     );
   }
@@ -111,7 +154,6 @@ class AddKhatmaScreen extends ConsumerWidget {
       subtitle: khatma.recurrence.scheduler.name,
       onTap: () {
         ref.read(formRecurrenceProvider).updateRecurrence(khatma.recurrence);
-
         _showModal(
           context,
           RecurrenceSelector(
@@ -146,6 +188,7 @@ class AddKhatmaScreen extends ConsumerWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      useSafeArea: true,
       builder: (context) {
         return Ink(
           padding:
@@ -166,7 +209,7 @@ class AddKhatmaScreen extends ConsumerWidget {
   _saveButton(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: 45,
         child: FloatingActionButton.extended(

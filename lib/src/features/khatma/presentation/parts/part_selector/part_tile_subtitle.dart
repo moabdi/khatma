@@ -18,11 +18,11 @@ class PartTileSubtitle extends StatelessWidget {
       children: [
         SafeText(
           part.subtitle,
-          style: AppTheme.getTheme().textTheme.subtitle2,
+          style: AppTheme.getTheme().textTheme.titleSmall,
         ),
         SafeText(
           part.subname,
-          style: AppTheme.getTheme().textTheme.subtitle2,
+          style: AppTheme.getTheme().textTheme.titleSmall,
         ),
       ],
     );

@@ -23,7 +23,7 @@ class CIconButton extends StatelessWidget {
         size: 15,
       ),
       label: Text(label,
-          style: AppTheme.getTheme().textTheme.subtitle2!.copyWith(
+          style: AppTheme.getTheme().textTheme.titleSmall!.copyWith(
               color: AppTheme.getTheme().primaryColor,
               fontWeight: FontWeight.w600)),
       style: ElevatedButton.styleFrom(

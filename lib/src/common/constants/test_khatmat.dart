@@ -1,4 +1,6 @@
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 /// Test khatmat to be used until a data source is implemented
 var kTestKhatmat = [
@@ -14,6 +16,10 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.custom,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
   Khatma(
     id: '2',
@@ -27,6 +33,10 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
   Khatma(
     id: '3',
@@ -40,6 +50,10 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
   Khatma(
     id: '4',
@@ -51,6 +65,10 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
   Khatma(
     id: '5',
@@ -62,6 +80,10 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
   Khatma(
     id: '6',
@@ -73,6 +95,10 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
   Khatma(
     id: '7',
@@ -84,6 +110,10 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
   Khatma(
     id: '8',
@@ -95,5 +125,9 @@ var kTestKhatmat = [
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toString(),
+      icon: khatmaImagesMap.entries.first.key,
+    ),
   ),
 ];

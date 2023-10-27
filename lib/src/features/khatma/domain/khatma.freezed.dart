@@ -20,7 +20,7 @@ mixin _$Khatma {
   String? get description => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
   String? get creator => throw _privateConstructorUsedError;
-  KhatmaStyle? get style => throw _privateConstructorUsedError;
+  KhatmaStyle get style => throw _privateConstructorUsedError;
   DateTime? get lastRead => throw _privateConstructorUsedError;
   List<int>? get completedParts => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $KhatmaCopyWith<$Res> {
       String? description,
       DateTime? endDate,
       String? creator,
-      KhatmaStyle? style,
+      KhatmaStyle style,
       DateTime? lastRead,
       List<int>? completedParts,
       String name,
@@ -52,7 +52,7 @@ abstract class $KhatmaCopyWith<$Res> {
       SplitUnit unit,
       ShareType? share});
 
-  $KhatmaStyleCopyWith<$Res>? get style;
+  $KhatmaStyleCopyWith<$Res> get style;
   $RecurrenceCopyWith<$Res> get recurrence;
 }
 
@@ -73,7 +73,7 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
     Object? description = freezed,
     Object? endDate = freezed,
     Object? creator = freezed,
-    Object? style = freezed,
+    Object? style = null,
     Object? lastRead = freezed,
     Object? completedParts = freezed,
     Object? name = null,
@@ -99,10 +99,10 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as String?,
-      style: freezed == style
+      style: null == style
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
-              as KhatmaStyle?,
+              as KhatmaStyle,
       lastRead: freezed == lastRead
           ? _value.lastRead
           : lastRead // ignore: cast_nullable_to_non_nullable
@@ -136,12 +136,8 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
 
   @override
   @pragma('vm:prefer-inline')
-  $KhatmaStyleCopyWith<$Res>? get style {
-    if (_value.style == null) {
-      return null;
-    }
-
-    return $KhatmaStyleCopyWith<$Res>(_value.style!, (value) {
+  $KhatmaStyleCopyWith<$Res> get style {
+    return $KhatmaStyleCopyWith<$Res>(_value.style, (value) {
       return _then(_value.copyWith(style: value) as $Val);
     });
   }
@@ -167,7 +163,7 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
       String? description,
       DateTime? endDate,
       String? creator,
-      KhatmaStyle? style,
+      KhatmaStyle style,
       DateTime? lastRead,
       List<int>? completedParts,
       String name,
@@ -177,7 +173,7 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
       ShareType? share});
 
   @override
-  $KhatmaStyleCopyWith<$Res>? get style;
+  $KhatmaStyleCopyWith<$Res> get style;
   @override
   $RecurrenceCopyWith<$Res> get recurrence;
 }
@@ -197,7 +193,7 @@ class __$$KhatmaImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? endDate = freezed,
     Object? creator = freezed,
-    Object? style = freezed,
+    Object? style = null,
     Object? lastRead = freezed,
     Object? completedParts = freezed,
     Object? name = null,
@@ -223,10 +219,10 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value.creator
           : creator // ignore: cast_nullable_to_non_nullable
               as String?,
-      style: freezed == style
+      style: null == style
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
-              as KhatmaStyle?,
+              as KhatmaStyle,
       lastRead: freezed == lastRead
           ? _value.lastRead
           : lastRead // ignore: cast_nullable_to_non_nullable
@@ -267,7 +263,7 @@ class _$KhatmaImpl implements _Khatma {
       this.description,
       this.endDate,
       this.creator,
-      this.style,
+      required this.style,
       this.lastRead,
       final List<int>? completedParts,
       required this.name,
@@ -286,7 +282,7 @@ class _$KhatmaImpl implements _Khatma {
   @override
   final String? creator;
   @override
-  final KhatmaStyle? style;
+  final KhatmaStyle style;
   @override
   final DateTime? lastRead;
   final List<int>? _completedParts;
@@ -368,7 +364,7 @@ abstract class _Khatma implements Khatma {
       final String? description,
       final DateTime? endDate,
       final String? creator,
-      final KhatmaStyle? style,
+      required final KhatmaStyle style,
       final DateTime? lastRead,
       final List<int>? completedParts,
       required final String name,
@@ -386,7 +382,7 @@ abstract class _Khatma implements Khatma {
   @override
   String? get creator;
   @override
-  KhatmaStyle? get style;
+  KhatmaStyle get style;
   @override
   DateTime? get lastRead;
   @override
@@ -409,8 +405,8 @@ abstract class _Khatma implements Khatma {
 
 /// @nodoc
 mixin _$KhatmaStyle {
-  String? get color => throw _privateConstructorUsedError;
-  String? get icon => throw _privateConstructorUsedError;
+  String get color => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $KhatmaStyleCopyWith<KhatmaStyle> get copyWith =>
@@ -423,7 +419,7 @@ abstract class $KhatmaStyleCopyWith<$Res> {
           KhatmaStyle value, $Res Function(KhatmaStyle) then) =
       _$KhatmaStyleCopyWithImpl<$Res, KhatmaStyle>;
   @useResult
-  $Res call({String? color, String? icon});
+  $Res call({String color, String icon});
 }
 
 /// @nodoc
@@ -439,18 +435,18 @@ class _$KhatmaStyleCopyWithImpl<$Res, $Val extends KhatmaStyle>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? icon = freezed,
+    Object? color = null,
+    Object? icon = null,
   }) {
     return _then(_value.copyWith(
-      color: freezed == color
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
+              as String,
+      icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -463,7 +459,7 @@ abstract class _$$KhatmaStyleImplCopyWith<$Res>
       __$$KhatmaStyleImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? color, String? icon});
+  $Res call({String color, String icon});
 }
 
 /// @nodoc
@@ -477,18 +473,18 @@ class __$$KhatmaStyleImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? icon = freezed,
+    Object? color = null,
+    Object? icon = null,
   }) {
     return _then(_$KhatmaStyleImpl(
-      color: freezed == color
+      color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
-              as String?,
-      icon: freezed == icon
+              as String,
+      icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -496,12 +492,12 @@ class __$$KhatmaStyleImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$KhatmaStyleImpl implements _KhatmaStyle {
-  const _$KhatmaStyleImpl({this.color, this.icon});
+  const _$KhatmaStyleImpl({required this.color, required this.icon});
 
   @override
-  final String? color;
+  final String color;
   @override
-  final String? icon;
+  final String icon;
 
   @override
   String toString() {
@@ -528,13 +524,14 @@ class _$KhatmaStyleImpl implements _KhatmaStyle {
 }
 
 abstract class _KhatmaStyle implements KhatmaStyle {
-  const factory _KhatmaStyle({final String? color, final String? icon}) =
-      _$KhatmaStyleImpl;
+  const factory _KhatmaStyle(
+      {required final String color,
+      required final String icon}) = _$KhatmaStyleImpl;
 
   @override
-  String? get color;
+  String get color;
   @override
-  String? get icon;
+  String get icon;
   @override
   @JsonKey(ignore: true)
   _$$KhatmaStyleImplCopyWith<_$KhatmaStyleImpl> get copyWith =>

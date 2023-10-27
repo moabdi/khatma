@@ -38,20 +38,20 @@ class KhatmaTile extends StatelessWidget {
         children: [
           Text(
             khatma.name,
-            style: AppTheme.getTheme().textTheme.headline6,
+            style: AppTheme.getTheme().textTheme.bodyLarge,
           ),
           Row(
             children: [
               Icon(
                 Icons.schedule,
                 size: 14,
-                color: AppTheme.getTheme().textTheme.subtitle2!.color,
+                color: AppTheme.getTheme().textTheme.bodySmall!.color,
               ),
               gapW4,
               TextOrEmpty(
                   formatDateAsTextDuration(
                       khatma.lastRead ?? khatma.createDate),
-                  style: AppTheme.getTheme().textTheme.subtitle2),
+                  style: AppTheme.getTheme().textTheme.bodySmall),
             ],
           ),
           gapH12,

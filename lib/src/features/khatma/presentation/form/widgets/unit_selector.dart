@@ -43,15 +43,11 @@ class UnitSelector extends StatelessWidget {
             var currentUnit = SplitUnit.values[index];
             var selected = unit == currentUnit;
             return ListTile(
-              dense: true,
               tileColor: selected
                   ? AppTheme.getTheme().primaryColor.withOpacity(.1)
                   : null,
               title: Text(currentUnit.name.capitalize()),
-              subtitle: Text(
-                "${currentUnit.count} parts",
-                style: AppTheme.getTheme().textTheme.subtitle2,
-              ),
+              subtitle: Text("${currentUnit.count} parts"),
               leading: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Icon(

@@ -10,7 +10,7 @@ abstract class Khatma with _$Khatma {
     String? description,
     DateTime? endDate,
     String? creator,
-    KhatmaStyle? style,
+    required KhatmaStyle style,
     DateTime? lastRead,
     List<int>? completedParts,
     required String name,
@@ -24,8 +24,8 @@ abstract class Khatma with _$Khatma {
 @freezed
 abstract class KhatmaStyle with _$KhatmaStyle {
   const factory KhatmaStyle({
-    String? color,
-    String? icon,
+    required String color,
+    required String icon,
   }) = _KhatmaStyle;
 }
 

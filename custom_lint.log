@@ -1290,3 +1290,2538 @@ The Dart VM service is listening on http://127.0.0.1:52791/7NoQ-DaVVyM=/
 The Dart DevTools debugger and profiler is available at: http://127.0.0.1:52791/7NoQ-DaVVyM=/devtools?uri=ws://127.0.0.1:52791/7NoQ-DaVVyM=/ws
 The Dart VM service is listening on http://127.0.0.1:52906/9Z-TC-W3cqI=/
 The Dart DevTools debugger and profiler is available at: http://127.0.0.1:52906/9Z-TC-W3cqI=/devtools?uri=ws://127.0.0.1:52906/9Z-TC-W3cqI=/ws
+The Dart VM service is listening on http://127.0.0.1:50484/_sgMf9ucD7A=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:50484/_sgMf9ucD7A=/devtools?uri=ws://127.0.0.1:50484/_sgMf9ucD7A=/ws
+The Dart VM service is listening on http://127.0.0.1:56015/-KAHR5eVU84=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:56015/-KAHR5eVU84=/devtools?uri=ws://127.0.0.1:56015/-KAHR5eVU84=/ws
+The Dart VM service is listening on http://127.0.0.1:57327/NNBXYxBvR-Q=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57327/NNBXYxBvR-Q=/devtools?uri=ws://127.0.0.1:57327/NNBXYxBvR-Q=/ws
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 Plugin WrapWithConsumer threw while analyzing /Users/moabdi/development/khatma/lib/src/features/khatma/presentation/form/khatma_form_screen.dart:
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[WrapWithConsumer] 2023-10-15T20:03:37.503888
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #2      ChangeBuilderImpl._createDartFileEditBuilder (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:287:33)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #3      ChangeBuilderImpl.addDartFileEdit (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:136:23)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #4      _ChangeBuilderImpl.addDartFileEdit (package:custom_lint_core/src/change_reporter.dart:116:33)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #5      WrapWithConsumer.run.<anonymous closure> (package:riverpod_lint/src/assists/wrap_with_consumer.dart:35:21)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #6      _rootRunUnary (dart:async/zone.dart:1415:13)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #7      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #8      LinterVisitor._runSubscriptions (package:custom_lint_core/src/node_lint_visitor.g.dart:29:27)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #9      LinterVisitor.visitInstanceCreationExpression (package:custom_lint_core/src/node_lint_visitor.g.dart:609:5)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #10     InstanceCreationExpressionImpl.accept (package:analyzer/src/dart/ast/ast.dart:10462:15)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #11     ReturnStatementImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:15652:18)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #12     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #13     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #14     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #15     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #16     GeneralizingAstVisitor.visitReturnStatement (package:analyzer/dart/ast/visitor.dart:651:52)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #17     LinterVisitor.visitReturnStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:975:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #18     ReturnStatementImpl.accept (package:analyzer/src/dart/ast/ast.dart:15648:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #19     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #20     BlockImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1979:17)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #21     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #22     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #23     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #24     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #25     GeneralizingAstVisitor.visitBlock (package:analyzer/dart/ast/visitor.dart:173:32)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #26     LinterVisitor.visitBlock (package:custom_lint_core/src/node_lint_visitor.g.dart:112:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #27     BlockImpl.accept (package:analyzer/src/dart/ast/ast.dart:1975:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #28     BlockFunctionBodyImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1930:12)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #29     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #30     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #31     GeneralizingAstVisitor.visitFunctionBody (package:analyzer/dart/ast/visitor.dart:373:46)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #32     LinterVisitor.visitFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:490:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #33     GeneralizingAstVisitor.visitBlockFunctionBody (package:analyzer/dart/ast/visitor.dart:176:56)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #34     LinterVisitor.visitBlockFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:118:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #35     BlockFunctionBodyImpl.accept (package:analyzer/src/dart/ast/ast.dart:1922:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #36     MethodDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:12125:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #37     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #38     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #39     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #40     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #41     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #42     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #43     GeneralizingAstVisitor.visitClassMember (package:analyzer/dart/ast/visitor.dart:203:44)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #44     LinterVisitor.visitClassMember (package:custom_lint_core/src/node_lint_visitor.g.dart:172:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #45     GeneralizingAstVisitor.visitMethodDeclaration (package:analyzer/dart/ast/visitor.dart:505:56)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #46     LinterVisitor.visitMethodDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:730:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #47     MethodDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:12117:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #48     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #49     ClassDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:2903:13)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #50     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #51     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #52     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #53     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #54     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #55     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #56     GeneralizingAstVisitor.visitCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:222:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #57     LinterVisitor.visitCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:214:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #58     GeneralizingAstVisitor.visitNamedCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:516:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #59     LinterVisitor.visitNamedCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:748:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #60     GeneralizingAstVisitor.visitClassDeclaration (package:analyzer/dart/ast/visitor.dart:201:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #61     LinterVisitor.visitClassDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:166:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #62     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2893:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #63     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #64     CompilationUnitImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:3631:21)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #65     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #66     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #67     GeneralizingAstVisitor.visitCompilationUnit (package:analyzer/dart/ast/visitor.dart:219:52)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #68     LinterVisitor.visitCompilationUnit (package:custom_lint_core/src/node_lint_visitor.g.dart:208:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #69     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:3624:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #70     DartAssist.startUp.<anonymous closure> (package:custom_lint_core/src/assist.dart:81:17)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #71     _rootRun (dart:async/zone.dart:1399:13)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #72     _CustomZone.run (dart:async/zone.dart:1301:19)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #73     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1233:23)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #74     runPostRunCallbacks (package:custom_lint_core/src/plugin_base.dart:16:19)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #75     _ClientAnalyzerPlugin.handleEditGetAssists (package:custom_lint_builder/src/client.dart:463:5)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #76     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:556:18)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 #77     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:599:18)
+[WrapWithConsumer] 2023-10-15T20:03:37.503888 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-15T20:03:37.503888
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 Plugin WrapWithProviderScope threw while analyzing /Users/moabdi/development/khatma/lib/src/features/khatma/presentation/form/khatma_form_screen.dart:
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #2      ChangeBuilderImpl._createDartFileEditBuilder (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:287:33)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #3      ChangeBuilderImpl.addDartFileEdit (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:136:23)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #4      _ChangeBuilderImpl.addDartFileEdit (package:custom_lint_core/src/change_reporter.dart:116:33)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #5      WrapWithProviderScope.run.<anonymous closure> (package:riverpod_lint/src/assists/wrap_with_provider_scope.dart:33:21)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #6      _rootRunUnary (dart:async/zone.dart:1415:13)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #7      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #8      LinterVisitor._runSubscriptions (package:custom_lint_core/src/node_lint_visitor.g.dart:29:27)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #9      LinterVisitor.visitInstanceCreationExpression (package:custom_lint_core/src/node_lint_visitor.g.dart:609:5)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #10     InstanceCreationExpressionImpl.accept (package:analyzer/src/dart/ast/ast.dart:10462:15)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #11     ReturnStatementImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:15652:18)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #12     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #13     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #14     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #15     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #16     GeneralizingAstVisitor.visitReturnStatement (package:analyzer/dart/ast/visitor.dart:651:52)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #17     LinterVisitor.visitReturnStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:975:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #18     ReturnStatementImpl.accept (package:analyzer/src/dart/ast/ast.dart:15648:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #19     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #20     BlockImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1979:17)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #21     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #22     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #23     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #24     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #25     GeneralizingAstVisitor.visitBlock (package:analyzer/dart/ast/visitor.dart:173:32)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #26     LinterVisitor.visitBlock (package:custom_lint_core/src/node_lint_visitor.g.dart:112:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #27     BlockImpl.accept (package:analyzer/src/dart/ast/ast.dart:1975:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #28     BlockFunctionBodyImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1930:12)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #29     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #30     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #31     GeneralizingAstVisitor.visitFunctionBody (package:analyzer/dart/ast/visitor.dart:373:46)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #32     LinterVisitor.visitFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:490:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #33     GeneralizingAstVisitor.visitBlockFunctionBody (package:analyzer/dart/ast/visitor.dart:176:56)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #34     LinterVisitor.visitBlockFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:118:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #35     BlockFunctionBodyImpl.accept (package:analyzer/src/dart/ast/ast.dart:1922:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #36     MethodDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:12125:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #37     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #38     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #39     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #40     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #41     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #42     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #43     GeneralizingAstVisitor.visitClassMember (package:analyzer/dart/ast/visitor.dart:203:44)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #44     LinterVisitor.visitClassMember (package:custom_lint_core/src/node_lint_visitor.g.dart:172:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #45     GeneralizingAstVisitor.visitMethodDeclaration (package:analyzer/dart/ast/visitor.dart:505:56)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #46     LinterVisitor.visitMethodDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:730:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #47     MethodDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:12117:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #48     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #49     ClassDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:2903:13)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #50     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #51     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #52     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #53     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #54     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #55     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #56     GeneralizingAstVisitor.visitCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:222:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #57     LinterVisitor.visitCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:214:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #58     GeneralizingAstVisitor.visitNamedCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:516:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #59     LinterVisitor.visitNamedCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:748:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #60     GeneralizingAstVisitor.visitClassDeclaration (package:analyzer/dart/ast/visitor.dart:201:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #61     LinterVisitor.visitClassDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:166:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #62     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2893:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #63     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #64     CompilationUnitImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:3631:21)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #65     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #66     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #67     GeneralizingAstVisitor.visitCompilationUnit (package:analyzer/dart/ast/visitor.dart:219:52)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #68     LinterVisitor.visitCompilationUnit (package:custom_lint_core/src/node_lint_visitor.g.dart:208:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #69     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:3624:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #70     DartAssist.startUp.<anonymous closure> (package:custom_lint_core/src/assist.dart:81:17)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #71     _rootRun (dart:async/zone.dart:1399:13)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #72     _CustomZone.run (dart:async/zone.dart:1301:19)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #73     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1233:23)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #74     runPostRunCallbacks (package:custom_lint_core/src/plugin_base.dart:16:19)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #75     _ClientAnalyzerPlugin.handleEditGetAssists (package:custom_lint_builder/src/client.dart:463:5)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 <asynchronous suspension>
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #76     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:556:18)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 <asynchronous suspension>
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 #77     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:599:18)
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988 <asynchronous suspension>
+[WrapWithProviderScope] 2023-10-15T20:03:37.504988
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 Plugin WrapWithConsumer threw while analyzing /Users/moabdi/development/khatma/lib/src/features/khatma/presentation/form/khatma_form_screen.dart:
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[WrapWithConsumer] 2023-10-15T20:03:37.509104
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #2      ChangeBuilderImpl._createDartFileEditBuilder (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:287:33)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #3      ChangeBuilderImpl.addDartFileEdit (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:136:23)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #4      _ChangeBuilderImpl.addDartFileEdit (package:custom_lint_core/src/change_reporter.dart:116:33)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #5      WrapWithConsumer.run.<anonymous closure> (package:riverpod_lint/src/assists/wrap_with_consumer.dart:35:21)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #6      _rootRunUnary (dart:async/zone.dart:1415:13)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #7      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #8      LinterVisitor._runSubscriptions (package:custom_lint_core/src/node_lint_visitor.g.dart:29:27)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #9      LinterVisitor.visitInstanceCreationExpression (package:custom_lint_core/src/node_lint_visitor.g.dart:609:5)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #10     InstanceCreationExpressionImpl.accept (package:analyzer/src/dart/ast/ast.dart:10462:15)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #11     ReturnStatementImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:15652:18)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #12     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #13     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #14     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #15     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #16     GeneralizingAstVisitor.visitReturnStatement (package:analyzer/dart/ast/visitor.dart:651:52)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #17     LinterVisitor.visitReturnStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:975:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #18     ReturnStatementImpl.accept (package:analyzer/src/dart/ast/ast.dart:15648:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #19     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #20     BlockImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1979:17)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #21     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #22     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #23     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #24     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #25     GeneralizingAstVisitor.visitBlock (package:analyzer/dart/ast/visitor.dart:173:32)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #26     LinterVisitor.visitBlock (package:custom_lint_core/src/node_lint_visitor.g.dart:112:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #27     BlockImpl.accept (package:analyzer/src/dart/ast/ast.dart:1975:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #28     BlockFunctionBodyImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1930:12)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #29     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #30     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #31     GeneralizingAstVisitor.visitFunctionBody (package:analyzer/dart/ast/visitor.dart:373:46)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #32     LinterVisitor.visitFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:490:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #33     GeneralizingAstVisitor.visitBlockFunctionBody (package:analyzer/dart/ast/visitor.dart:176:56)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #34     LinterVisitor.visitBlockFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:118:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #35     BlockFunctionBodyImpl.accept (package:analyzer/src/dart/ast/ast.dart:1922:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #36     MethodDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:12125:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #37     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #38     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #39     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #40     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #41     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #42     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #43     GeneralizingAstVisitor.visitClassMember (package:analyzer/dart/ast/visitor.dart:203:44)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #44     LinterVisitor.visitClassMember (package:custom_lint_core/src/node_lint_visitor.g.dart:172:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #45     GeneralizingAstVisitor.visitMethodDeclaration (package:analyzer/dart/ast/visitor.dart:505:56)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #46     LinterVisitor.visitMethodDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:730:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #47     MethodDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:12117:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #48     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #49     ClassDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:2903:13)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #50     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #51     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #52     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #53     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #54     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #55     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #56     GeneralizingAstVisitor.visitCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:222:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #57     LinterVisitor.visitCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:214:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #58     GeneralizingAstVisitor.visitNamedCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:516:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #59     LinterVisitor.visitNamedCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:748:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #60     GeneralizingAstVisitor.visitClassDeclaration (package:analyzer/dart/ast/visitor.dart:201:7)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #61     LinterVisitor.visitClassDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:166:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #62     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2893:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #63     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #64     CompilationUnitImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:3631:21)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #65     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #66     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #67     GeneralizingAstVisitor.visitCompilationUnit (package:analyzer/dart/ast/visitor.dart:219:52)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #68     LinterVisitor.visitCompilationUnit (package:custom_lint_core/src/node_lint_visitor.g.dart:208:11)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #69     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:3624:50)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #70     DartAssist.startUp.<anonymous closure> (package:custom_lint_core/src/assist.dart:81:17)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #71     _rootRun (dart:async/zone.dart:1399:13)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #72     _CustomZone.run (dart:async/zone.dart:1301:19)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #73     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1233:23)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #74     runPostRunCallbacks (package:custom_lint_core/src/plugin_base.dart:16:19)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #75     _ClientAnalyzerPlugin.handleEditGetAssists (package:custom_lint_builder/src/client.dart:463:5)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #76     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:556:18)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 #77     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:599:18)
+[WrapWithConsumer] 2023-10-15T20:03:37.509104 <asynchronous suspension>
+[WrapWithConsumer] 2023-10-15T20:03:37.509104
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 Plugin WrapWithProviderScope threw while analyzing /Users/moabdi/development/khatma/lib/src/features/khatma/presentation/form/khatma_form_screen.dart:
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 InconsistentAnalysisException: Requested result might be inconsistent with previously returned results
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #0      AnalysisSessionImpl._checkConsistency (package:analyzer/src/dart/analysis/session.dart:135:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #1      AnalysisSessionImpl.getResolvedUnit (package:analyzer/src/dart/analysis/session.dart:121:5)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #2      ChangeBuilderImpl._createDartFileEditBuilder (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:287:33)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #3      ChangeBuilderImpl.addDartFileEdit (package:analyzer_plugin/src/utilities/change_builder/change_builder_core.dart:136:23)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #4      _ChangeBuilderImpl.addDartFileEdit (package:custom_lint_core/src/change_reporter.dart:116:33)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #5      WrapWithProviderScope.run.<anonymous closure> (package:riverpod_lint/src/assists/wrap_with_provider_scope.dart:33:21)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #6      _rootRunUnary (dart:async/zone.dart:1415:13)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #7      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #8      LinterVisitor._runSubscriptions (package:custom_lint_core/src/node_lint_visitor.g.dart:29:27)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #9      LinterVisitor.visitInstanceCreationExpression (package:custom_lint_core/src/node_lint_visitor.g.dart:609:5)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #10     InstanceCreationExpressionImpl.accept (package:analyzer/src/dart/ast/ast.dart:10462:15)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #11     ReturnStatementImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:15652:18)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #12     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #13     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #14     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #15     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #16     GeneralizingAstVisitor.visitReturnStatement (package:analyzer/dart/ast/visitor.dart:651:52)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #17     LinterVisitor.visitReturnStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:975:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #18     ReturnStatementImpl.accept (package:analyzer/src/dart/ast/ast.dart:15648:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #19     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #20     BlockImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1979:17)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #21     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #22     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #23     GeneralizingAstVisitor.visitStatement (package:analyzer/dart/ast/visitor.dart:679:40)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #24     LinterVisitor.visitStatement (package:custom_lint_core/src/node_lint_visitor.g.dart:1029:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #25     GeneralizingAstVisitor.visitBlock (package:analyzer/dart/ast/visitor.dart:173:32)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #26     LinterVisitor.visitBlock (package:custom_lint_core/src/node_lint_visitor.g.dart:112:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #27     BlockImpl.accept (package:analyzer/src/dart/ast/ast.dart:1975:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #28     BlockFunctionBodyImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:1930:12)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #29     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #30     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #31     GeneralizingAstVisitor.visitFunctionBody (package:analyzer/dart/ast/visitor.dart:373:46)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #32     LinterVisitor.visitFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:490:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #33     GeneralizingAstVisitor.visitBlockFunctionBody (package:analyzer/dart/ast/visitor.dart:176:56)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #34     LinterVisitor.visitBlockFunctionBody (package:custom_lint_core/src/node_lint_visitor.g.dart:118:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #35     BlockFunctionBodyImpl.accept (package:analyzer/src/dart/ast/ast.dart:1922:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #36     MethodDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:12125:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #37     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #38     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #39     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #40     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #41     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #42     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #43     GeneralizingAstVisitor.visitClassMember (package:analyzer/dart/ast/visitor.dart:203:44)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #44     LinterVisitor.visitClassMember (package:custom_lint_core/src/node_lint_visitor.g.dart:172:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #45     GeneralizingAstVisitor.visitMethodDeclaration (package:analyzer/dart/ast/visitor.dart:505:56)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #46     LinterVisitor.visitMethodDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:730:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #47     MethodDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:12117:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #48     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #49     ClassDeclarationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:2903:13)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #50     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #51     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #52     GeneralizingAstVisitor.visitAnnotatedNode (package:analyzer/dart/ast/visitor.dart:137:48)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #53     LinterVisitor.visitAnnotatedNode (package:custom_lint_core/src/node_lint_visitor.g.dart:46:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #54     GeneralizingAstVisitor.visitDeclaration (package:analyzer/dart/ast/visitor.dart:260:44)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #55     LinterVisitor.visitDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:286:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #56     GeneralizingAstVisitor.visitCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:222:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #57     LinterVisitor.visitCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:214:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #58     GeneralizingAstVisitor.visitNamedCompilationUnitMember (package:analyzer/dart/ast/visitor.dart:516:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #59     LinterVisitor.visitNamedCompilationUnitMember (package:custom_lint_core/src/node_lint_visitor.g.dart:748:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #60     GeneralizingAstVisitor.visitClassDeclaration (package:analyzer/dart/ast/visitor.dart:201:7)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #61     LinterVisitor.visitClassDeclaration (package:custom_lint_core/src/node_lint_visitor.g.dart:166:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #62     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2893:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #63     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:12998:20)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #64     CompilationUnitImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:3631:21)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #65     GeneralizingAstVisitor.visitNode (package:analyzer/dart/ast/visitor.dart:535:10)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #66     LinterVisitor.visitNode (package:custom_lint_core/src/node_lint_visitor.g.dart:784:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #67     GeneralizingAstVisitor.visitCompilationUnit (package:analyzer/dart/ast/visitor.dart:219:52)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #68     LinterVisitor.visitCompilationUnit (package:custom_lint_core/src/node_lint_visitor.g.dart:208:11)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #69     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:3624:50)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #70     DartAssist.startUp.<anonymous closure> (package:custom_lint_core/src/assist.dart:81:17)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #71     _rootRun (dart:async/zone.dart:1399:13)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #72     _CustomZone.run (dart:async/zone.dart:1301:19)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #73     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:1233:23)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #74     runPostRunCallbacks (package:custom_lint_core/src/plugin_base.dart:16:19)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #75     _ClientAnalyzerPlugin.handleEditGetAssists (package:custom_lint_builder/src/client.dart:463:5)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 <asynchronous suspension>
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #76     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:556:18)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 <asynchronous suspension>
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 #77     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:599:18)
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437 <asynchronous suspension>
+[WrapWithProviderScope] 2023-10-15T20:03:37.509437
+The Dart VM service is listening on http://127.0.0.1:62973/vz6gzmHM2Ic=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:62973/vz6gzmHM2Ic=/devtools?uri=ws://127.0.0.1:62973/vz6gzmHM2Ic=/ws
+The request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setPriorityFiles failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.setSubscriptions failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getFixes failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getAssists failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getFixes failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getAssists failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getFixes failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getAssists failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getFixes failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getAssists failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getFixes failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request edit.getAssists failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+Failed to read pubspec.yaml at /Users/moabdi/development/khatma:
+ParsedYamlException: line 38, column 3: Duplicate mapping key.
+   ╷
+38 │   flutter_launcher_icons: ^0.13.1
+   │   ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+#0      checkedYamlDecode (package:checked_yaml/checked_yaml.dart:32:5)
+#1      new Pubspec.parse (package:pubspec_parse/src/pubspec.dart:167:7)
+#2      parsePubspec (package:custom_lint/src/package_utils.dart:84:18)
+<asynchronous suspension>
+#3      CustomLintProject.parse (package:custom_lint/src/workspace.dart:980:28)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:525:21)
+<asynchronous suspension>
+#5      CustomLintWorkspace.fromContextRoots (package:custom_lint/src/workspace.dart:487:22)
+<asynchronous suspension>
+#6      SocketCustomLintServerToClientChannel.create (package:custom_lint/src/v2/server_to_client_channel.dart:59:23)
+<asynchronous suspension>
+#7      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:347:23)
+<asynchronous suspension>
+#8      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#9      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#10     CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+at:
+#0      CustomLintProject.parse.<anonymous closure> (package:custom_lint/src/workspace.dart:983:7)
+#1      _rootRunBinary (dart:async/zone.dart:1423:47)
+#2      _CustomZone.runBinary (dart:async/zone.dart:1315:19)
+#3      _FutureListener.handleError (dart:async/future_impl.dart:171:22)
+#4      Future._propagateToListeners.handleError (dart:async/future_impl.dart:852:47)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:873:13)
+#6      Future._completeError (dart:async/future_impl.dart:649:5)
+#7      _rootRunUnary (dart:async/zone.dart:1407:47)
+#8      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+
+The Dart VM service is listening on http://127.0.0.1:62391/70EDmLTENzA=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:62391/70EDmLTENzA=/devtools?uri=ws://127.0.0.1:62391/70EDmLTENzA=/ws
+The Dart VM service is listening on http://127.0.0.1:59854/voNhqqIwzkQ=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:59854/voNhqqIwzkQ=/devtools?uri=ws://127.0.0.1:59854/voNhqqIwzkQ=/ws
+The Dart VM service is listening on http://127.0.0.1:60402/e8F-WjhpFtc=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:60402/e8F-WjhpFtc=/devtools?uri=ws://127.0.0.1:60402/e8F-WjhpFtc=/ws
+The Dart VM service is listening on http://127.0.0.1:54459/xvtxPtfbPUk=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54459/xvtxPtfbPUk=/devtools?uri=ws://127.0.0.1:54459/xvtxPtfbPUk=/ws
+The request analysis.updateContent failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+A request throw the exception:PathNotFoundException(path=/Users/moabdi/development/khatma/lib/src/features/khatma/presentation/form/khatma_image_selector.dart; message=Cannot retrieve modification time)
+#0      _PhysicalFile.modificationStamp (package:analyzer/file_system/physical_file_system.dart:118:7)
+#1      _OverlayFile.modificationStamp (package:analyzer/file_system/overlay_file_system.dart:146:18)
+#2      FileSource.contentsFromFile (package:analyzer/src/source/source_resource.dart:64:14)
+#3      FileSource.contents (package:analyzer/src/source/source_resource.dart:51:12)
+#4      ExpectLint.run (package:custom_lint_builder/src/expect_lint.dart:34:23)
+#5      _ClientAnalyzerPlugin.analyzeFile.<anonymous closure> (package:custom_lint_builder/src/client.dart:823:25)
+<asynchronous suspension>
+#6      _ClientAnalyzerPlugin._runOperation (package:custom_lint_builder/src/client.dart:855:14)
+<asynchronous suspension>
+#7      _ClientAnalyzerPlugin.analyzeFile (package:custom_lint_builder/src/client.dart:776:5)
+<asynchronous suspension>
+#8      ServerPlugin.analyzeFiles (package:analyzer_plugin/plugin/plugin.dart:111:7)
+<asynchronous suspension>
+#9      ServerPlugin.handleAffectedFiles (package:analyzer_plugin/plugin/plugin.dart:211:5)
+<asynchronous suspension>
+#10     ServerPlugin.contentChanged.<anonymous closure> (package:analyzer_plugin/plugin/plugin.dart:141:9)
+<asynchronous suspension>
+#11     ServerPlugin._forAnalysisContexts (package:analyzer_plugin/plugin/plugin.dart:510:9)
+<asynchronous suspension>
+#12     ServerPlugin.contentChanged (package:analyzer_plugin/plugin/plugin.dart:136:7)
+<asynchronous suspension>
+#13     ServerPlugin.handleAnalysisUpdateContent (package:analyzer_plugin/plugin/plugin.dart:353:5)
+<asynchronous suspension>
+#14     ServerPlugin._getResponse (package:analyzer_plugin/plugin/plugin.dart:548:18)
+<asynchronous suspension>
+#15     ServerPlugin._onRequest (package:analyzer_plugin/plugin/plugin.dart:599:18)
+<asynchronous suspension>
+
+at:
+#0      SocketCustomLintServerToClientChannel.sendCustomLintRequest.<anonymous closure> (package:custom_lint/src/v2/server_to_client_channel.dart:275:11)
+#1      _$_CustomLintResponseAnalyzerPluginResponse.map (package:custom_lint/src/v2/protocol.freezed.dart:924:34)
+#2      SocketCustomLintServerToClientChannel.sendCustomLintRequest (package:custom_lint/src/v2/server_to_client_channel.dart:269:14)
+<asynchronous suspension>
+#3      SocketCustomLintServerToClientChannel.sendAnalyzerPluginRequest (package:custom_lint/src/v2/server_to_client_channel.dart:246:22)
+<asynchronous suspension>
+#4      CustomLintServer._handleRequest.<anonymous closure>.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:177:17)
+<asynchronous suspension>
+#5      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#6      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+
+The Dart VM service is listening on http://127.0.0.1:57931/7zhwkx5tjb0=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57931/7zhwkx5tjb0=/devtools?uri=ws://127.0.0.1:57931/7zhwkx5tjb0=/ws

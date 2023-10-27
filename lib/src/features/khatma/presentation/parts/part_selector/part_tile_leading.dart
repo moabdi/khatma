@@ -23,7 +23,7 @@ class PartTileLeading extends StatelessWidget {
               ? AppTheme.getTheme().primaryColor
               : AppTheme.getTheme().primaryColor.withOpacity(.1),
       child: Text(part.id.toString(),
-          style: AppTheme.getTheme().textTheme.headline6!.copyWith(
+          style: AppTheme.getTheme().textTheme.titleLarge!.copyWith(
               color: isRead
                   ? null
                   : isSelected

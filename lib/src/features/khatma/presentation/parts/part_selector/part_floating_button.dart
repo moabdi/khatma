@@ -19,7 +19,7 @@ class PartFloatingButton extends StatelessWidget {
       return CollectionUtils.isEmpty(selectedParts)
           ? Container()
           : FloatingActionButton.extended(
-              extendedTextStyle: AppTheme.getTheme().textTheme.subtitle1,
+              extendedTextStyle: AppTheme.getTheme().textTheme.titleMedium,
               onPressed: () {
                 ref
                     .read(khatmasRepositoryProvider)

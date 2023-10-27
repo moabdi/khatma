@@ -6,6 +6,7 @@ import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -56,7 +57,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildTopBar(context),
+        const TopBarBottomSheet(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child: Text(
@@ -99,48 +100,9 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     );
   }
 
-  Stack buildTopBar(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topRight,
-      children: [
-        Center(
-          child: Container(
-            width: 40,
-            padding: const EdgeInsets.only(bottom: 20.0),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppTheme.getTheme().dividerColor,
-                  width: 3.5,
-                ),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: InkWell(
-            hoverColor: Colors.transparent,
-            child: Container(
-              width: 30,
-              height: 30,
-              padding: EdgeInsets.all(0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                color: AppTheme.getTheme().disabledColor,
-              ),
-              child: Icon(Icons.close, size: 18, color: Colors.blueGrey),
-            ),
-            onTap: () => Navigator.of(context).pop(),
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildForm() {
     return KhatmaScheduler.never == updatedRecurrence.scheduler
-        ? SizedBox()
+        ? const SizedBox()
         : Column(
             children: [
               const Padding(
@@ -172,27 +134,18 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
 
   Widget _recurrence() {
     if (updatedRecurrence.scheduler != KhatmaScheduler.custom) {
-      return SizedBox();
+      return const SizedBox();
     }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(
-            width: 80,
-            height: 40,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "Every:",
-                  style: AppTheme.getTheme().textTheme.subtitle2,
-                ),
-              ],
-            ),
+          Text(
+            "Every:",
+            style: AppTheme.getTheme().textTheme.titleSmall,
           ),
-          const SizedBox(width: 10),
           SizedBox(
             width: 50,
             height: 35,
@@ -205,7 +158,6 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               },
             ),
           ),
-          const SizedBox(width: 20),
           Container(
             height: 35,
             decoration: BoxDecoration(
@@ -239,36 +191,21 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   }
 
   Container buildSave() {
-    bool isNotChanged = oldRecurrenceHash ==
+    bool isChanged = oldRecurrenceHash !=
         ref.read(formRecurrenceProvider).recurrence.hashCode;
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Align(
         alignment: Alignment.bottomRight,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              onPressed: isNotChanged
-                  ? null
-                  : () {
-                      Navigator.pop(context);
-                    },
-              child: const Text('Cancel'),
-            ),
-            SizedBox(width: 10),
-            ElevatedButton(
-              onPressed: isNotChanged
-                  ? null
-                  : () {
-                      widget.onSelect(
-                          ref.read(formRecurrenceProvider).recurrence);
-                      Navigator.pop(context);
-                    },
-              child: const Text('Apply'),
-            ),
-          ],
+        child: ElevatedButton(
+          onPressed: isChanged
+              ? () {
+                  widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
+                  Navigator.pop(context);
+                }
+              : null,
+          child: const Text('Apply'),
         ),
       ),
     );

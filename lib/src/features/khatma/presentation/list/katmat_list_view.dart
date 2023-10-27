@@ -27,7 +27,7 @@ class KhatmatListView extends ConsumerWidget {
     return Center(
       child: Text(
         'No khatma found'.hardcoded,
-        style: Theme.of(context).textTheme.headline4,
+        style: Theme.of(context).textTheme.headlineMedium,
       ),
     );
   }

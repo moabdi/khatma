@@ -34,7 +34,7 @@ class KhatmatListScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Khatma liste",
-                    style: AppTheme.getTheme().textTheme.subtitle1,
+                    style: AppTheme.getTheme().textTheme.titleMedium,
                   ),
                   CIconButton(
                       icon: FontAwesomeIcons.plus,
@@ -42,6 +42,9 @@ class KhatmatListScreen extends StatelessWidget {
                       onPressed: () => {context.goNamed(AppRoute.khatma.name)}),
                 ],
               ),
+              gapH20,
+              //ThemeTextStyle(),
+              gapH20,
               const KhatmatListView(),
             ],
           ),
@@ -80,6 +83,75 @@ class KhatmatListScreen extends StatelessWidget {
           else if (value == 2)
             {context.goNamed(AppRoute.khatma.name)}
         },
+      ),
+    );
+  }
+}
+
+class ThemeTextStyle extends StatelessWidget {
+  const ThemeTextStyle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Display Large Text",
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+          Text(
+            "Display Medium Text",
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          Text(
+            "Display Small Text",
+            style: Theme.of(context).textTheme.displaySmall,
+          ),
+          Text(
+            "Headline Medium Text",
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          Text(
+            "Headline Small Text",
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          Text(
+            "Title Large Text",
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Text(
+            "Title Medium Text",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          Text(
+            "Title Small Text",
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          Text(
+            "Body Large Text",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          Text(
+            "Body Medium Text",
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          Text(
+            "Label Large Text",
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          Text(
+            "Body Small Text",
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          Text(
+            "Label Small Text",
+            style: Theme.of(context).textTheme.labelSmall,
+          ),
+        ],
       ),
     );
   }

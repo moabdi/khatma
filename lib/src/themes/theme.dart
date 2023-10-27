@@ -64,11 +64,10 @@ class AppTheme {
     return base.copyWith(
       useMaterial3: true,
       brightness: Brightness.light,
-      backgroundColor: HexColor("F5F5F8"),
       appBarTheme: AppBarTheme(
         elevation: .2,
         centerTitle: false,
-        titleTextStyle: textTheme.headline5!.copyWith(color: Colors.black),
+        titleTextStyle: textTheme.headlineSmall!.copyWith(color: Colors.black),
         backgroundColor: Colors.white,
         iconTheme:
             base.iconTheme.copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
@@ -77,15 +76,12 @@ class AppTheme {
           statusBarBrightness: Brightness.light, // For iOS (dark icons)
         ),
       ),
-      bottomAppBarColor: const Color(0xFFF7FCFD),
       visualDensity: VisualDensity.comfortable,
-      colorScheme: colorScheme,
       primaryColor: primaryColor,
       indicatorColor: Colors.white,
       splashColor: primaryColors.withOpacity(0.2),
       splashFactory: InkRipple.splashFactory,
       canvasColor: Colors.white,
-      errorColor: const Color(0xFFB00020),
       disabledColor: HexColor("F5F5F8"),
       buttonTheme: ButtonThemeData(
         colorScheme: const ColorScheme.light().copyWith(
@@ -105,7 +101,7 @@ class AppTheme {
       chipTheme: ChipThemeData.fromDefaults(
         secondaryColor: primaryColor,
         brightness: ThemeData.light().brightness,
-        labelStyle: textTheme.subtitle2!.copyWith(fontWeight: FontWeight.w100),
+        labelStyle: textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w100),
       ),
       dividerTheme: DividerThemeData(
         color: Colors.grey[300],
@@ -114,15 +110,14 @@ class AppTheme {
         indent: 1,
       ),
       listTileTheme: ListTileThemeData(
-        dense: false,
+        dense: true,
         style: ListTileStyle.list,
         selectedColor: primaryColor,
-        //iconColor: secondaryColor,
-        //contentPadding: EdgeInsetsGeometry.infinity,
         tileColor: Colors.white,
         selectedTileColor: primaryColor.withOpacity(0.13),
+        titleTextStyle: textTheme.labelLarge,
+        subtitleTextStyle: textTheme.bodySmall,
         minLeadingWidth: 4,
-        //enableFeedback: false,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -163,10 +158,11 @@ class AppTheme {
           ),
         ),
       ),
+      colorScheme: colorScheme.copyWith(background: HexColor("F5F5F8")),
     );
   }
 
-  ListTileThemeData appMaterialLightListTileThemeData = ListTileThemeData(
+  ListTileThemeData appMaterialLightListTileThemeData = const ListTileThemeData(
     dense: false,
     style: ListTileStyle.list,
     selectedColor: Colors.amber,
@@ -228,46 +224,72 @@ class AppTheme {
 
   static TextTheme _buildTextTheme(TextTheme base, String pFontFamily) {
     var pFontFamily = GoogleFonts.openSans().fontFamily;
+
     return base.copyWith(
-      headline1: base.headline1?.copyWith(
-          fontSize: 112, fontFamily: pFontFamily, fontWeight: FontWeight.w900),
-      headline2: base.headline2?.copyWith(
-          fontSize: 56, fontFamily: pFontFamily, fontWeight: FontWeight.w800),
-      headline3: base.headline3?.copyWith(
-          fontSize: 45, fontFamily: pFontFamily, fontWeight: FontWeight.w700),
-      headline4: base.headline4?.copyWith(
-          fontSize: 34, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
-      headline5: base.headline5?.copyWith(
-          fontSize: 22, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
-      headline6: base.headline6?.copyWith(
-          fontSize: 15, fontFamily: pFontFamily, fontWeight: FontWeight.w600),
-      subtitle1: base.subtitle1?.copyWith(
-        fontSize: 13,
-        fontWeight: FontWeight.w600,
+      displayLarge: base.displayLarge?.copyWith(
+        fontSize: 48, // Adjust to match your design
         fontFamily: pFontFamily,
-        color: Colors.black.withOpacity(.5),
+        fontWeight: FontWeight.w900,
       ),
-      subtitle2: base.subtitle2?.copyWith(
-          fontSize: 13,
-          fontFamily: pFontFamily,
-          fontWeight: FontWeight.w500,
-          color: Colors.grey),
-      bodyText1: base.bodyText1?.copyWith(
-        fontSize: 12,
+      displayMedium: base.displayMedium?.copyWith(
+        fontSize: 28, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w800,
+      ),
+      displaySmall: base.displaySmall?.copyWith(
+        fontSize: 22, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w700,
+      ),
+      headlineMedium: base.headlineMedium?.copyWith(
+        fontSize: 20, // Adjust to match your design
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
-      bodyText2: base.bodyText2?.copyWith(
-          fontSize: 18,
-          fontFamily: pFontFamily,
-          color: Colors.grey.shade500,
-          fontWeight: FontWeight.w300),
-      button: base.button?.copyWith(
-          fontSize: 17, fontWeight: FontWeight.w600, fontFamily: pFontFamily),
-      caption: base.caption?.copyWith(
-          fontSize: 19, fontFamily: pFontFamily, fontWeight: FontWeight.w400),
-      overline: base.overline?.copyWith(
-          fontSize: 19, fontFamily: pFontFamily, fontWeight: FontWeight.w100),
+      headlineSmall: base.headlineSmall?.copyWith(
+        fontSize: 18, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w600,
+      ),
+      titleLarge: base.titleLarge?.copyWith(
+        fontSize: 16, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w600,
+      ),
+      titleMedium: base.titleMedium?.copyWith(
+        fontSize: 14, // Adjust to match your design
+        fontFamily: pFontFamily,
+      ),
+      titleSmall: base.titleSmall?.copyWith(
+        fontSize: 14, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w500,
+      ),
+      bodyLarge: base.bodyLarge?.copyWith(
+        fontSize: 14, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w600,
+      ),
+      bodyMedium: base.bodyMedium?.copyWith(
+        fontSize: 16, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w300,
+      ),
+      labelLarge: base.labelLarge?.copyWith(
+        fontSize: 14, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w600,
+      ),
+      bodySmall: base.bodySmall?.copyWith(
+        fontSize: 12, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w400,
+      ),
+      labelSmall: base.labelSmall?.copyWith(
+        fontSize: 12, // Adjust to match your design
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w300,
+      ),
     );
   }
 }

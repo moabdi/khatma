@@ -49,6 +49,9 @@ class _DatePickerFieldState extends State<DatePickerField> {
       controller: _dateEditingController,
       onTap: () => _selectDate(context),
       onChanged: widget.onChanged,
+      decoration: const InputDecoration(
+        isDense: true,
+      ),
     );
   }
 }

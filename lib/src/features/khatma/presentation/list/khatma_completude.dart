@@ -31,14 +31,14 @@ class KhatmaCompletude extends ConsumerWidget {
             children: [
               Text(
                 parts[khatma.nextPartToRead - 1].title.toString(),
-                style: AppTheme.getTheme().textTheme.subtitle1,
+                style: AppTheme.getTheme().textTheme.labelSmall,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
                 khatma.completude <= 0
                     ? ""
                     : "${(khatma.completude * 100).toStringAsFixed(0)}%",
-                style: AppTheme.getTheme().textTheme.subtitle2,
+                style: AppTheme.getTheme().textTheme.titleSmall,
               ),
             ],
           ),
