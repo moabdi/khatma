@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
@@ -159,7 +157,7 @@ class AddKhatmaScreen extends ConsumerWidget {
           RecurrenceSelector(
               recurrence: khatma.recurrence,
               onSelect: (value) => ref
-                  .watch(formKhatmaProvider)
+                  .read(formKhatmaProvider)
                   .updateKhatma(khatma.copyWith(recurrence: value))),
         );
       },
@@ -172,7 +170,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
       title: 'Share',
       subtitle:
-          khatma.share == null ? ShareType.individual.name : khatma.share!.name,
+          khatma.share == null ? ShareType.private.name : khatma.share!.name,
       onTap: () => _showModal(
         context,
         ShareSelector(

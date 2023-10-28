@@ -42,7 +42,7 @@ abstract class Recurrence with _$Recurrence {
 
 enum KhatmaScheduler { never, autoRepeat, custom }
 
-enum ShareType { individual, public, custom }
+enum ShareType { private, public, custom }
 
 enum RecurrenceUnit { once, daily, weekly, monthly, hijriMonthly, yearly }
 

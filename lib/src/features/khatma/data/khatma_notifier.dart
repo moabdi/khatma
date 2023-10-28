@@ -23,7 +23,7 @@ final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
       name: 'test',
       unit: SplitUnit.hizb,
       createDate: DateTime.now(),
-      share: ShareType.individual,
+      share: ShareType.private,
       recurrence: Recurrence(
         scheduler: KhatmaScheduler.custom,
         startDate: DateTime.now(),

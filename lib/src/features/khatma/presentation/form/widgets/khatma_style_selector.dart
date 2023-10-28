@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -23,17 +22,7 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
     Colors.red.shade400,
     Colors.pink,
     Colors.purple,
-    Colors.deepPurple,
-    Colors.indigo,
-    Colors.blue,
-    Colors.lightBlue,
-    Colors.cyan,
     Colors.teal,
-    Colors.green,
-    Colors.lightGreen,
-    Colors.amber,
-    Colors.orange,
-    Colors.deepOrange,
     Colors.brown,
     Colors.grey,
     Colors.blueGrey,

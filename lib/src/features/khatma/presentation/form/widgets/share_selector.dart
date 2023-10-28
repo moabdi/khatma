@@ -1,4 +1,7 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -7,12 +10,23 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class ShareSelector extends StatelessWidget {
   const ShareSelector(
-      {super.key, this.unit = ShareType.individual, required this.onSelect});
+      {super.key, this.unit = ShareType.private, required this.onSelect});
   final ShareType unit;
   final ValueChanged<ShareType> onSelect;
 
   @override
   Widget build(BuildContext context) {
+    List<String> descriptions = [
+      "The khatma will be kept private and exclusive to the organizer",
+      "Everyone is welcome to access and join the khatma",
+      "The khatma will be shared only with those who receive a specific number or QR code",
+    ];
+
+    List<Icon> icons = [
+      Icon(FontAwesomeIcons.lock, color: Colors.orange),
+      Icon(Icons.public, color: Colors.blue),
+      Icon(Icons.group, color: Colors.purple),
+    ];
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -44,26 +58,25 @@ class ShareSelector extends StatelessWidget {
             var currentUnit = ShareType.values[index];
             var selected = unit == currentUnit;
             return ListTile(
-              dense: true,
-              tileColor: selected
-                  ? AppTheme.getTheme().primaryColor.withOpacity(.1)
-                  : null,
-              title: Text(currentUnit.name.capitalize()),
-              leading: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Icon(
-                  selected ? Icons.check_circle_rounded : Icons.circle_outlined,
-                  size: 32,
-                  color: selected
-                      ? AppTheme.getTheme().primaryColor
-                      : AppTheme.getTheme().dividerColor,
+                tileColor: selected
+                    ? AppTheme.getTheme().primaryColor.withOpacity(.1)
+                    : null,
+                title: Text(currentUnit.name.capitalize()),
+                subtitle: Text(descriptions[index]),
+                leading: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: icons[index],
                 ),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                onSelect(currentUnit);
-              },
-            );
+                onTap: () {
+                  Navigator.pop(context);
+                  onSelect(currentUnit);
+                },
+                trailing: selected
+                    ? Icon(
+                        Icons.check,
+                        color: AppTheme.getTheme().primaryColor,
+                      )
+                    : null);
           },
         ),
         gapH20,

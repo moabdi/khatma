@@ -46,6 +46,8 @@ class _DatePickerFieldState extends State<DatePickerField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly: true,
+      enableInteractiveSelection: false,
       controller: _dateEditingController,
       onTap: () => _selectDate(context),
       onChanged: widget.onChanged,

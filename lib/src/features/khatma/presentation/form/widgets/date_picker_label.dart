@@ -5,13 +5,11 @@ import 'package:khatma/src/themes/theme.dart';
 class DateField extends StatelessWidget {
   const DateField({
     super.key,
-    required this.context,
     required this.label,
     required this.dateTime,
     required this.onChanged,
   });
 
-  final BuildContext context;
   final String label;
   final DateTime dateTime;
   final ValueChanged<String> onChanged;

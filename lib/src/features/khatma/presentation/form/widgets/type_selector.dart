@@ -123,6 +123,7 @@ class _TypeSelectorState extends State<TypeSelector> {
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
             width: 80,
@@ -137,7 +138,6 @@ class _TypeSelectorState extends State<TypeSelector> {
               ],
             ),
           ),
-          const SizedBox(width: 10),
           SizedBox(
             width: 50,
             height: 35,
@@ -148,7 +148,6 @@ class _TypeSelectorState extends State<TypeSelector> {
               },
             ),
           ),
-          const SizedBox(width: 20),
           Container(
             height: 35,
             decoration: BoxDecoration(
@@ -159,11 +158,6 @@ class _TypeSelectorState extends State<TypeSelector> {
             child: DropdownButton<String>(
               focusColor: Colors.transparent,
               underline: const SizedBox(),
-              //style: TextStyle(
-              // color: Colors.blue, // Text color
-              // fontSize: 18.0, // Text size
-              // fontWeight: FontWeight.bold, // Text weight
-              //  ),
               value: selectedValue,
               onChanged: (newValue) {
                 setState(() {

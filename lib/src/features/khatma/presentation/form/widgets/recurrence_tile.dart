@@ -6,34 +6,34 @@ class RecurrenceTile extends StatelessWidget {
   const RecurrenceTile(
       {super.key,
       required this.value,
+      this.subtitle,
+      required this.icon,
       required this.selectedValue,
       required this.onTap});
 
   final KhatmaScheduler value;
+  final String? subtitle;
+  final Widget icon;
   final KhatmaScheduler selectedValue;
   final GestureTapCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     bool isSelected = selectedValue == value;
-    final Color iconColor = isSelected
-        ? AppTheme.getTheme().primaryColor
-        : AppTheme.getTheme().dividerColor;
 
     return ListTile(
-      tileColor:
-          isSelected ? AppTheme.getTheme().primaryColor.withOpacity(.1) : null,
-      title: Text(value.name),
-      subtitle: const Text("title"),
-      leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Icon(
-          isSelected ? Icons.check_circle_rounded : Icons.circle_outlined,
-          size: 32,
-          color: iconColor,
-        ),
-      ),
-      onTap: onTap,
-    );
+        tileColor: isSelected
+            ? AppTheme.getTheme().primaryColor.withOpacity(.1)
+            : null,
+        title: Text(value.name),
+        subtitle: subtitle != null ? Text(subtitle!) : null,
+        leading: icon,
+        onTap: onTap,
+        trailing: isSelected
+            ? Icon(
+                Icons.check,
+                color: AppTheme.getTheme().primaryColor,
+              )
+            : null);
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/date_formatter.dart';
-import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_unit_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
@@ -30,6 +30,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
 
   final TextEditingController _frequencyEditingController =
       TextEditingController();
+  final TextEditingController unitController = TextEditingController();
 
   late Recurrence updatedRecurrence;
   late int oldRecurrenceHash;
@@ -67,6 +68,8 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         RecurrenceTile(
           value: KhatmaScheduler.never,
+          subtitle: "Khatma is a one-time event, ensuring at least one reading",
+          icon: Icon(Icons.block, color: Colors.grey),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
                 updatedRecurrence.copyWith(scheduler: KhatmaScheduler.never),
@@ -74,6 +77,8 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         RecurrenceTile(
           value: KhatmaScheduler.autoRepeat,
+          subtitle: "Khatma automatically restarts when completed",
+          icon: Icon(Icons.autorenew, color: Colors.blue),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
               updatedRecurrence.copyWith(
@@ -81,6 +86,9 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         RecurrenceTile(
           value: KhatmaScheduler.custom,
+          subtitle:
+              "You can tailor the khatma creation to your preferences and needs",
+          icon: Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
               updatedRecurrence.copyWith(scheduler: KhatmaScheduler.custom)),
@@ -101,35 +109,35 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   }
 
   Widget _buildForm() {
-    return KhatmaScheduler.never == updatedRecurrence.scheduler
-        ? const SizedBox()
-        : Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Divider(indent: 0.2),
-              ),
-              DateField(
-                context: context,
-                label: "Start date:",
-                dateTime: updatedRecurrence.startDate,
-                onChanged: (value) => ref
-                    .read(formRecurrenceProvider)
-                    .updateRecurrence(
-                        updatedRecurrence.copyWith(startDate: parse(value))),
-              ),
-              DateField(
-                context: context,
-                label: "End date:",
-                dateTime: updatedRecurrence.endDate,
-                onChanged: (value) => ref
-                    .read(formRecurrenceProvider)
-                    .updateRecurrence(
-                        updatedRecurrence.copyWith(endDate: parse(value))),
-              ),
-              _recurrence(),
-            ],
-          );
+    if (KhatmaScheduler.never == updatedRecurrence.scheduler) {
+      return const SizedBox();
+    }
+
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Divider(indent: 0.2),
+        ),
+        DateField(
+          label: "Start date:",
+          dateTime: updatedRecurrence.startDate,
+          onChanged: (value) => ref
+              .read(formRecurrenceProvider)
+              .updateRecurrence(
+                  updatedRecurrence.copyWith(startDate: parse(value))),
+        ),
+        DateField(
+          label: "End date:",
+          dateTime: updatedRecurrence.endDate,
+          onChanged: (value) => {
+            ref.read(formRecurrenceProvider).updateRecurrence(
+                updatedRecurrence.copyWith(endDate: parse(value)))
+          },
+        ),
+        _recurrence(),
+      ],
+    );
   }
 
   Widget _recurrence() {
@@ -140,51 +148,36 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             "Every:",
             style: AppTheme.getTheme().textTheme.titleSmall,
           ),
+          gapW20,
           SizedBox(
-            width: 50,
-            height: 35,
+            width: 55,
             child: TextField(
+              maxLength: 2,
               controller: _frequencyEditingController,
               keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                counterText: "",
+              ),
               onChanged: (value) {
                 ref.read(formRecurrenceProvider).updateRecurrence(
                     updatedRecurrence.copyWith(occurrence: int.parse(value)));
               },
             ),
           ),
-          Container(
-            height: 35,
-            decoration: BoxDecoration(
-              color: AppTheme.getTheme().disabledColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: DropdownButton<RecurrenceUnit>(
-              focusColor: Colors.transparent,
-              underline: const SizedBox(),
-              value: updatedRecurrence.unit,
-              onChanged: (value) {
+          gapW20,
+          UnitDropdownMenu(
+              selectedUnit: ref.read(formRecurrenceProvider).recurrence.unit,
+              onSelected: (value) {
                 ref
                     .read(formRecurrenceProvider)
                     .updateRecurrence(updatedRecurrence.copyWith(unit: value));
-              },
-              items:
-                  RecurrenceUnit.values.map<DropdownMenuItem<RecurrenceUnit>>(
-                (RecurrenceUnit value) {
-                  return DropdownMenuItem<RecurrenceUnit>(
-                    value: value,
-                    child: Text(value.toString().split('.').last.capitalize()),
-                  );
-                },
-              ).toList(),
-            ),
-          ),
+              }),
         ],
       ),
     );
