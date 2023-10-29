@@ -37,6 +37,13 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   late Recurrence updatedRecurrence;
   late int oldRecurrenceHash;
 
+  Map<KhatmaScheduler, Widget> schedulerIcons = {
+    KhatmaScheduler.never: const Icon(Icons.block, color: Colors.grey),
+    KhatmaScheduler.autoRepeat: const Icon(Icons.autorenew, color: Colors.blue),
+    KhatmaScheduler.custom:
+        const Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
+  };
+
   @override
   void initState() {
     super.initState();
@@ -68,31 +75,28 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
             style: AppTheme.getTheme().textTheme.titleLarge,
           ),
         ),
-        RecurrenceTile(
-          value: KhatmaScheduler.never,
-          icon: const Icon(Icons.block, color: Colors.grey),
-          selectedValue: updatedRecurrence.scheduler,
-          onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
-                updatedRecurrence.copyWith(scheduler: KhatmaScheduler.never),
-              ),
-        ),
-        const Divider(height: 0),
-        RecurrenceTile(
-          value: KhatmaScheduler.autoRepeat,
-          icon: const Icon(Icons.autorenew, color: Colors.blue),
-          selectedValue: updatedRecurrence.scheduler,
-          onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
-              updatedRecurrence.copyWith(
-                  scheduler: KhatmaScheduler.autoRepeat)),
-        ),
-        const Divider(height: 0),
-        RecurrenceTile(
-          value: KhatmaScheduler.custom,
-          icon:
-              const Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
-          selectedValue: updatedRecurrence.scheduler,
-          onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
-              updatedRecurrence.copyWith(scheduler: KhatmaScheduler.custom)),
+        Expanded(
+          child: ListView.separated(
+            separatorBuilder: (context, index) => const Divider(height: 0),
+            shrinkWrap: true,
+            itemCount: KhatmaScheduler.values.length,
+            itemBuilder: (context, index) {
+              KhatmaScheduler scheduler = KhatmaScheduler.values[index];
+              return Column(
+                children: [
+                  RecurrenceTile(
+                    value: scheduler,
+                    icon: schedulerIcons[scheduler]!,
+                    selectedValue: updatedRecurrence.scheduler,
+                    onTap: () =>
+                        ref.read(formRecurrenceProvider).updateRecurrence(
+                              updatedRecurrence.copyWith(scheduler: scheduler),
+                            ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
         AnimatedSize(
           curve: Curves.ease,
