@@ -75,7 +75,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
             style: AppTheme.getTheme().textTheme.titleLarge,
           ),
         ),
-        Expanded(
+        Flexible(
           child: ListView.separated(
             separatorBuilder: (context, index) => const Divider(height: 0),
             shrinkWrap: true,
@@ -151,31 +151,33 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            AppLocalizations.of(context).repeatEvery.withColon,
-            style: AppTheme.getTheme().textTheme.titleSmall,
-          ),
-          gapW20,
-          NumberDropdownMenu(
-              selectedUnit:
-                  ref.read(formRecurrenceProvider).recurrence.occurrence,
-              onSelected: (value) {
-                ref.read(formRecurrenceProvider).updateRecurrence(
-                    updatedRecurrence.copyWith(occurrence: value));
-              }),
-          gapW20,
-          UnitDropdownMenu(
-              selectedUnit: ref.read(formRecurrenceProvider).recurrence.unit,
-              onSelected: (value) {
-                ref
-                    .read(formRecurrenceProvider)
-                    .updateRecurrence(updatedRecurrence.copyWith(unit: value));
-              }),
-        ],
+      child: Flexible(
+        flex: 2,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              AppLocalizations.of(context).repeatEvery.withColon,
+              style: AppTheme.getTheme().textTheme.titleSmall,
+            ),
+            gapW20,
+            NumberDropdownMenu(
+                selectedUnit:
+                    ref.read(formRecurrenceProvider).recurrence.occurrence,
+                onSelected: (value) {
+                  ref.read(formRecurrenceProvider).updateRecurrence(
+                      updatedRecurrence.copyWith(occurrence: value));
+                }),
+            gapW20,
+            UnitDropdownMenu(
+                selectedUnit: ref.read(formRecurrenceProvider).recurrence.unit,
+                onSelected: (value) {
+                  ref.read(formRecurrenceProvider).updateRecurrence(
+                      updatedRecurrence.copyWith(unit: value));
+                }),
+          ],
+        ),
       ),
     );
   }
