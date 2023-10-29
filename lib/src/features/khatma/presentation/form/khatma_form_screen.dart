@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -11,6 +12,7 @@ import 'package:khatma/src/features/khatma/presentation/form/widgets/share_selec
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/unit_selector.dart';
+import 'package:khatma/src/localization/i10n_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
@@ -27,7 +29,7 @@ class AddKhatmaScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New Khatma"),
+        title: Text(AppLocalizations.of(context).newKhatma),
       ),
       floatingActionButton: _saveButton(context, ref),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -44,9 +46,9 @@ class AddKhatmaScreen extends ConsumerWidget {
                   children: [
                     _buildIcon(context, khatma, ref),
                     gapH20,
-                    _buildName(nameController, node, ref, khatma),
+                    _buildName(context, nameController, node, ref, khatma),
                     gapH20,
-                    _buildDescription(descController, ref, khatma),
+                    _buildDescription(context, descController, ref, khatma),
                     gapH20,
                     _buildSplitUnit(khatma, context, ref),
                     gapH20,
@@ -104,12 +106,16 @@ class AddKhatmaScreen extends ConsumerWidget {
     );
   }
 
-  TextFormField _buildName(TextEditingController nameController,
-      FocusScopeNode node, WidgetRef ref, Khatma khatma) {
+  TextFormField _buildName(
+      BuildContext context,
+      TextEditingController nameController,
+      FocusScopeNode node,
+      WidgetRef ref,
+      Khatma khatma) {
     return TextFormField(
       controller: nameController,
-      decoration: const InputDecoration(
-        hintText: 'Enter the name of the Khatma',
+      decoration: InputDecoration(
+        hintText: AppLocalizations.of(context).nameHint,
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       autocorrect: false,
@@ -118,14 +124,14 @@ class AddKhatmaScreen extends ConsumerWidget {
     );
   }
 
-  TextField _buildDescription(
+  TextField _buildDescription(BuildContext context,
       TextEditingController descController, WidgetRef ref, Khatma khatma) {
     return TextField(
       controller: descController,
       keyboardType: TextInputType.multiline,
       maxLines: 3,
-      decoration: const InputDecoration(
-        hintText: 'Enter a description (optional)',
+      decoration: InputDecoration(
+        hintText: AppLocalizations.of(context).descriptionHint,
       ),
     );
   }
@@ -134,8 +140,9 @@ class AddKhatmaScreen extends ConsumerWidget {
       Khatma khatma, BuildContext context, WidgetRef ref) {
     return KhatmaFormTile(
       icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
-      title: "Split unit",
-      subtitle: "${khatma.unit.name.capitalize()} (${khatma.unit.count} parts)",
+      title: AppLocalizations.of(context).splitUnit,
+      subtitle:
+          AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.value),
       onTap: () => _showModal(
         context,
         UnitSelector(
@@ -151,12 +158,6 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   KhatmaFormTile _buildRecurrence(
       Khatma khatma, WidgetRef ref, BuildContext context) {
-    Map<KhatmaScheduler, String> shareTypeDescriptions = {
-      KhatmaScheduler.never: "One-time reading guarantee.",
-      KhatmaScheduler.autoRepeat: "Auto repeat.",
-      KhatmaScheduler.custom:
-          "Repeat evry ${khatma.recurrence.occurrence} ${khatma.recurrence.unit}.",
-    };
     Map<KhatmaScheduler, Icon> iconsMap = {
       KhatmaScheduler.never: Icon(Icons.block, color: Colors.grey),
       KhatmaScheduler.autoRepeat: Icon(Icons.autorenew, color: Colors.blue),
@@ -167,11 +168,9 @@ class AddKhatmaScreen extends ConsumerWidget {
       icon: khatma.recurrence.scheduler == null
           ? iconsMap[KhatmaScheduler.never]!
           : iconsMap[khatma.recurrence.scheduler!]!,
-      title: 'Recurrence',
-      // ignore: unnecessary_null_comparison
-      subtitle: khatma.recurrence.scheduler != null
-          ? shareTypeDescriptions[khatma.recurrence.scheduler]!
-          : shareTypeDescriptions[KhatmaScheduler.never]!,
+      title: AppLocalizations.of(context).recurrence,
+      subtitle: AppLocalizations.of(context)
+          .khatmaSchedulerDesc(khatma.recurrence.scheduler.value),
       onTap: () {
         ref.read(formRecurrenceProvider).updateRecurrence(khatma.recurrence);
         _showModal(
@@ -188,25 +187,20 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   KhatmaFormTile _buildShare(
       BuildContext context, Khatma khatma, WidgetRef ref) {
-    Map<ShareType, Icon> shareTypeIcons = {
-      ShareType.private: Icon(FontAwesomeIcons.lock, color: Colors.orange),
-      ShareType.public: Icon(Icons.public, color: Colors.blue),
-      ShareType.custom: Icon(Icons.group, color: Colors.purple),
+    Map<KhatmaShareType, Icon> shareTypeIcons = {
+      KhatmaShareType.private:
+          const Icon(FontAwesomeIcons.lock, color: Colors.orange),
+      KhatmaShareType.public: const Icon(Icons.public, color: Colors.blue),
+      KhatmaShareType.group: const Icon(Icons.group, color: Colors.purple),
     };
-    Map<ShareType, String> shareTypeMap = {
-      ShareType.private: "This khatma is private.",
-      ShareType.public: "Everyone can access and participate.",
-      ShareType.custom:
-          "This khatma is shared only with those who receive a specific number or QR code.",
-    };
+
     return KhatmaFormTile(
       icon: khatma.share == null
-          ? shareTypeIcons[ShareType.private]!
+          ? shareTypeIcons[KhatmaShareType.private]!
           : shareTypeIcons[khatma.share!]!,
-      title: "Share",
-      subtitle: khatma.share == null
-          ? shareTypeMap[ShareType.private]!
-          : shareTypeMap[khatma.share!]!,
+      title: AppLocalizations.of(context).share,
+      subtitle:
+          AppLocalizations.of(context).khatmaShareTypeDesc(khatma.share!.value),
       onTap: () => _showModal(
         context,
         ShareSelector(
@@ -253,7 +247,7 @@ class AddKhatmaScreen extends ConsumerWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          label: Text("Save"),
+          label: Text(AppLocalizations.of(context).save),
         ),
       ),
     );
