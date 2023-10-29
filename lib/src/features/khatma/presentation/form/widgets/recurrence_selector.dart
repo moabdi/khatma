@@ -5,6 +5,7 @@ import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_unit_menu.dart';
+import 'package:khatma/src/features/khatma/presentation/common/number_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
@@ -63,13 +64,13 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
-            AppLocalizations.of(context).recurrence,
+            AppLocalizations.of(context).recurrence.withColon,
             style: AppTheme.getTheme().textTheme.titleLarge,
           ),
         ),
         RecurrenceTile(
           value: KhatmaScheduler.never,
-          icon: Icon(Icons.block, color: Colors.grey),
+          icon: const Icon(Icons.block, color: Colors.grey),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
                 updatedRecurrence.copyWith(scheduler: KhatmaScheduler.never),
@@ -78,7 +79,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         const Divider(height: 0),
         RecurrenceTile(
           value: KhatmaScheduler.autoRepeat,
-          icon: Icon(Icons.autorenew, color: Colors.blue),
+          icon: const Icon(Icons.autorenew, color: Colors.blue),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
               updatedRecurrence.copyWith(
@@ -87,7 +88,8 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         const Divider(height: 0),
         RecurrenceTile(
           value: KhatmaScheduler.custom,
-          icon: Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
+          icon:
+              const Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
               updatedRecurrence.copyWith(scheduler: KhatmaScheduler.custom)),
@@ -154,21 +156,13 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
             style: AppTheme.getTheme().textTheme.titleSmall,
           ),
           gapW20,
-          SizedBox(
-            width: 55,
-            child: TextField(
-              maxLength: 2,
-              controller: _frequencyEditingController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                counterText: '',
-              ),
-              onChanged: (value) {
+          NumberDropdownMenu(
+              selectedUnit:
+                  ref.read(formRecurrenceProvider).recurrence.occurrence,
+              onSelected: (value) {
                 ref.read(formRecurrenceProvider).updateRecurrence(
-                    updatedRecurrence.copyWith(occurrence: int.parse(value)));
-              },
-            ),
-          ),
+                    updatedRecurrence.copyWith(occurrence: value));
+              }),
           gapW20,
           UnitDropdownMenu(
               selectedUnit: ref.read(formRecurrenceProvider).recurrence.unit,

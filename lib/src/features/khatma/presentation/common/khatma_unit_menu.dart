@@ -6,8 +6,8 @@ import 'package:khatma/src/themes/theme.dart';
 class UnitDropdownMenu extends StatelessWidget {
   UnitDropdownMenu({super.key, this.selectedUnit, this.onSelected});
 
-  RecurrenceUnit? selectedUnit;
-  Function(RecurrenceUnit?)? onSelected;
+  final RecurrenceUnit? selectedUnit;
+  final Function(RecurrenceUnit?)? onSelected;
   final TextEditingController unitController = TextEditingController();
 
   @override

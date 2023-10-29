@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/utils/string_utils.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
@@ -16,23 +18,10 @@ class UnitSelector extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Container(
-            width: 40,
-            padding: const EdgeInsets.only(bottom: 20.0),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppTheme.getTheme().dividerColor,
-                  width: 3.5,
-                ),
-              ),
-            ),
-          ),
-        ),
+        const TopBarBottomSheet(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Text(AppLocalizations.of(context).splitUnit,
+          child: Text(AppLocalizations.of(context).splitUnit.withColon,
               style: AppTheme.getTheme().textTheme.titleLarge),
         ),
         ListView.builder(
