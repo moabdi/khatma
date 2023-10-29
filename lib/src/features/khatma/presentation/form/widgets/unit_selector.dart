@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
-import 'package:khatma/src/common/utils/string_utils.dart';
+import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/localization/i10n_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
-
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class UnitSelector extends StatelessWidget {
@@ -33,7 +33,7 @@ class UnitSelector extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Text("Split Unit :",
+          child: Text(AppLocalizations.of(context).splitUnit,
               style: AppTheme.getTheme().textTheme.titleLarge),
         ),
         ListView.builder(
@@ -46,8 +46,10 @@ class UnitSelector extends StatelessWidget {
               tileColor: selected
                   ? AppTheme.getTheme().primaryColor.withOpacity(.1)
                   : null,
-              title: Text(currentUnit.name.capitalize()),
-              subtitle: Text("${currentUnit.count} parts"),
+              title: Text(AppLocalizations.of(context)
+                  .khatmaSplitUnit(currentUnit.value)),
+              subtitle: Text(AppLocalizations.of(context)
+                  .khatmaSplitUnitDesc(currentUnit.value)),
               leading: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Icon(

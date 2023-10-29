@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/date_formatter.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_unit_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
+import 'package:khatma/src/localization/i10n_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -62,34 +64,30 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
-            "Recurrence:",
+            AppLocalizations.of(context).recurrence,
             style: AppTheme.getTheme().textTheme.titleLarge,
           ),
         ),
         RecurrenceTile(
           value: KhatmaScheduler.never,
-          subtitle: "Khatma is a one-time event, ensuring at least one reading",
           icon: Icon(Icons.block, color: Colors.grey),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
                 updatedRecurrence.copyWith(scheduler: KhatmaScheduler.never),
               ),
         ),
-        Divider(height: 0),
+        const Divider(height: 0),
         RecurrenceTile(
           value: KhatmaScheduler.autoRepeat,
-          subtitle: "Khatma automatically restarts when completed",
           icon: Icon(Icons.autorenew, color: Colors.blue),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
               updatedRecurrence.copyWith(
                   scheduler: KhatmaScheduler.autoRepeat)),
         ),
-        Divider(height: 0),
+        const Divider(height: 0),
         RecurrenceTile(
           value: KhatmaScheduler.custom,
-          subtitle:
-              "You can tailor the khatma creation to your preferences and needs",
           icon: Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
           selectedValue: updatedRecurrence.scheduler,
           onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(

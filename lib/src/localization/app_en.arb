@@ -52,7 +52,7 @@
       }
     }
   },
-  "khatmaSchedulerDescription": "{scheduler, select, other{Never} autoRepeat{Auto-repea} custom{Custom schedule} }",
+  "khatmaSchedulerDescription": "{scheduler, select, other{Khatma is a one-time event, ensuring at least one reading} autoRepeat{Khatma automatically restarts when completed} custom{You can tailor the khatma creation to your preferences and needs} }",
   "@khatmaScheduler": {
     "description": "translate enum KhatmaScheduler",
     "placeholders": {

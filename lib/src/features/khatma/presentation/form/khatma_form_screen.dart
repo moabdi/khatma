@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -97,7 +96,7 @@ class AddKhatmaScreen extends ConsumerWidget {
               child: CircleAvatar(
                 radius: 10,
                 backgroundColor: HexColor(khatma.style.color),
-                child: Icon(Icons.edit, size: 12),
+                child: const Icon(Icons.edit, size: 12),
               ),
             ),
           ]),
@@ -162,12 +161,10 @@ class AddKhatmaScreen extends ConsumerWidget {
       KhatmaScheduler.never: Icon(Icons.block, color: Colors.grey),
       KhatmaScheduler.autoRepeat: Icon(Icons.autorenew, color: Colors.blue),
       KhatmaScheduler.custom:
-          Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
+          const Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
     };
     return KhatmaFormTile(
-      icon: khatma.recurrence.scheduler == null
-          ? iconsMap[KhatmaScheduler.never]!
-          : iconsMap[khatma.recurrence.scheduler!]!,
+      icon: iconsMap[khatma.recurrence.scheduler]!,
       title: AppLocalizations.of(context).recurrence,
       subtitle: AppLocalizations.of(context)
           .khatmaSchedulerDesc(khatma.recurrence.scheduler.value),
