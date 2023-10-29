@@ -151,33 +151,36 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Flexible(
-        flex: 2,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              AppLocalizations.of(context).repeatEvery.withColon,
-              style: AppTheme.getTheme().textTheme.titleSmall,
-            ),
-            gapW20,
-            NumberDropdownMenu(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            AppLocalizations.of(context).repeatEvery.withColon,
+            style: AppTheme.getTheme().textTheme.titleSmall,
+          ),
+          gapW20,
+          Flexible(
+            flex: 2,
+            child: NumberDropdownMenu(
                 selectedUnit:
                     ref.read(formRecurrenceProvider).recurrence.occurrence,
                 onSelected: (value) {
                   ref.read(formRecurrenceProvider).updateRecurrence(
                       updatedRecurrence.copyWith(occurrence: value));
                 }),
-            gapW20,
-            UnitDropdownMenu(
+          ),
+          gapW20,
+          Flexible(
+            flex: 3,
+            child: UnitDropdownMenu(
                 selectedUnit: ref.read(formRecurrenceProvider).recurrence.unit,
                 onSelected: (value) {
                   ref.read(formRecurrenceProvider).updateRecurrence(
                       updatedRecurrence.copyWith(unit: value));
                 }),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
