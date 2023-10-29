@@ -20,6 +20,7 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
   Khatma(
     id: '2',
@@ -37,6 +38,7 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
   Khatma(
     id: '3',
@@ -54,6 +56,7 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
   Khatma(
     id: '4',
@@ -69,6 +72,7 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
   Khatma(
     id: '5',
@@ -84,6 +88,7 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
   Khatma(
     id: '6',
@@ -99,6 +104,7 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
   Khatma(
     id: '7',
@@ -114,6 +120,7 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
   Khatma(
     id: '8',
@@ -129,5 +136,6 @@ var kTestKhatmat = [
       color: AppTheme.getTheme().primaryColor.toString(),
       icon: khatmaImagesMap.entries.first.key,
     ),
+    share: KhatmaShareType.private,
   ),
 ];

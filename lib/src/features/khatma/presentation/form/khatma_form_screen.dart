@@ -11,7 +11,6 @@ import 'package:khatma/src/features/khatma/presentation/form/widgets/share_selec
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/unit_selector.dart';
-import 'package:khatma/src/localization/i10n_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
@@ -73,9 +72,9 @@ class AddKhatmaScreen extends ConsumerWidget {
           context,
           KhatmaStyleSelector(
             style: khatma.style,
-            onChanged: (value) => ref.read(formKhatmaProvider).updateKhatma(
-                  khatma.copyWith(style: value),
-                ),
+            onChanged: (value) => ref.updateKhatma(
+              khatma.copyWith(style: value),
+            ),
           ),
         ),
         child: CircleAvatar(
@@ -141,15 +140,13 @@ class AddKhatmaScreen extends ConsumerWidget {
       icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
       title: AppLocalizations.of(context).splitUnit,
       subtitle:
-          AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.value),
+          AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
       onTap: () => _showModal(
         context,
         UnitSelector(
             unit: khatma.unit,
             onSelect: (value) {
-              ref
-                  .read(formKhatmaProvider)
-                  .updateKhatma(khatma.copyWith(unit: value));
+              ref.updateKhatma(khatma.copyWith(unit: value));
             }),
       ),
     );
@@ -158,8 +155,9 @@ class AddKhatmaScreen extends ConsumerWidget {
   KhatmaFormTile _buildRecurrence(
       Khatma khatma, WidgetRef ref, BuildContext context) {
     Map<KhatmaScheduler, Icon> iconsMap = {
-      KhatmaScheduler.never: Icon(Icons.block, color: Colors.grey),
-      KhatmaScheduler.autoRepeat: Icon(Icons.autorenew, color: Colors.blue),
+      KhatmaScheduler.never: const Icon(Icons.block, color: Colors.grey),
+      KhatmaScheduler.autoRepeat:
+          const Icon(Icons.autorenew, color: Colors.blue),
       KhatmaScheduler.custom:
           const Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
     };
@@ -167,16 +165,15 @@ class AddKhatmaScreen extends ConsumerWidget {
       icon: iconsMap[khatma.recurrence.scheduler]!,
       title: AppLocalizations.of(context).recurrence,
       subtitle: AppLocalizations.of(context)
-          .khatmaSchedulerDesc(khatma.recurrence.scheduler.value),
+          .khatmaSchedulerDesc(khatma.recurrence.scheduler.name),
       onTap: () {
         ref.read(formRecurrenceProvider).updateRecurrence(khatma.recurrence);
         _showModal(
           context,
           RecurrenceSelector(
               recurrence: khatma.recurrence,
-              onSelect: (value) => ref
-                  .read(formKhatmaProvider)
-                  .updateKhatma(khatma.copyWith(recurrence: value))),
+              onSelect: (value) =>
+                  ref.updateKhatma(khatma.copyWith(recurrence: value))),
         );
       },
     );
@@ -192,19 +189,16 @@ class AddKhatmaScreen extends ConsumerWidget {
     };
 
     return KhatmaFormTile(
-      icon: khatma.share == null
-          ? shareTypeIcons[KhatmaShareType.private]!
-          : shareTypeIcons[khatma.share!]!,
+      icon: shareTypeIcons[khatma.share]!,
       title: AppLocalizations.of(context).share,
       subtitle:
-          AppLocalizations.of(context).khatmaShareTypeDesc(khatma.share!.value),
+          AppLocalizations.of(context).khatmaShareTypeDesc(khatma.share.name),
       onTap: () => _showModal(
         context,
         ShareSelector(
-            unit: khatma.share!,
-            onSelect: (value) => ref
-                .read(formKhatmaProvider)
-                .updateKhatma(khatma.copyWith(share: value))),
+            unit: khatma.share,
+            onSelect: (value) =>
+                ref.updateKhatma(khatma.copyWith(share: value))),
       ),
     );
   }
@@ -248,5 +242,11 @@ class AddKhatmaScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+}
+
+extension ProviderRef on WidgetRef {
+  updateKhatma(Khatma khatma) {
+    read(formKhatmaProvider).updateKhatma(khatma);
   }
 }

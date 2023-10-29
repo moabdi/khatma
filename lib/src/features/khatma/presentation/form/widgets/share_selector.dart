@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
-import 'package:khatma/src/localization/i10n_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -44,9 +43,9 @@ class ShareSelector extends StatelessWidget {
                     ? AppTheme.getTheme().primaryColor.withOpacity(.1)
                     : null,
                 title: Text(AppLocalizations.of(context)
-                    .khatmaShareType(currentUnit.value)),
+                    .khatmaShareType(currentUnit.name)),
                 subtitle: Text(AppLocalizations.of(context)
-                    .khatmaShareTypeDescription(currentUnit.value)),
+                    .khatmaShareTypeDescription(currentUnit.name)),
                 leading: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: icons[index],

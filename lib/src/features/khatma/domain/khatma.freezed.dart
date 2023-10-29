@@ -27,7 +27,7 @@ mixin _$Khatma {
   DateTime get createDate => throw _privateConstructorUsedError;
   Recurrence get recurrence => throw _privateConstructorUsedError;
   SplitUnit get unit => throw _privateConstructorUsedError;
-  KhatmaShareType? get share => throw _privateConstructorUsedError;
+  KhatmaShareType get share => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $KhatmaCopyWith<Khatma> get copyWith => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $KhatmaCopyWith<$Res> {
       DateTime createDate,
       Recurrence recurrence,
       SplitUnit unit,
-      KhatmaShareType? share});
+      KhatmaShareType share});
 
   $KhatmaStyleCopyWith<$Res> get style;
   $RecurrenceCopyWith<$Res> get recurrence;
@@ -80,7 +80,7 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
     Object? createDate = null,
     Object? recurrence = null,
     Object? unit = null,
-    Object? share = freezed,
+    Object? share = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -127,10 +127,10 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as SplitUnit,
-      share: freezed == share
+      share: null == share
           ? _value.share
           : share // ignore: cast_nullable_to_non_nullable
-              as KhatmaShareType?,
+              as KhatmaShareType,
     ) as $Val);
   }
 
@@ -170,7 +170,7 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
       DateTime createDate,
       Recurrence recurrence,
       SplitUnit unit,
-      KhatmaShareType? share});
+      KhatmaShareType share});
 
   @override
   $KhatmaStyleCopyWith<$Res> get style;
@@ -200,7 +200,7 @@ class __$$KhatmaImplCopyWithImpl<$Res>
     Object? createDate = null,
     Object? recurrence = null,
     Object? unit = null,
-    Object? share = freezed,
+    Object? share = null,
   }) {
     return _then(_$KhatmaImpl(
       id: freezed == id
@@ -247,10 +247,10 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as SplitUnit,
-      share: freezed == share
+      share: null == share
           ? _value.share
           : share // ignore: cast_nullable_to_non_nullable
-              as KhatmaShareType?,
+              as KhatmaShareType,
     ));
   }
 }
@@ -270,7 +270,7 @@ class _$KhatmaImpl implements _Khatma {
       required this.createDate,
       required this.recurrence,
       required this.unit,
-      this.share})
+      required this.share})
       : _completedParts = completedParts;
 
   @override
@@ -304,7 +304,7 @@ class _$KhatmaImpl implements _Khatma {
   @override
   final SplitUnit unit;
   @override
-  final KhatmaShareType? share;
+  final KhatmaShareType share;
 
   @override
   String toString() {
@@ -371,7 +371,7 @@ abstract class _Khatma implements Khatma {
       required final DateTime createDate,
       required final Recurrence recurrence,
       required final SplitUnit unit,
-      final KhatmaShareType? share}) = _$KhatmaImpl;
+      required final KhatmaShareType share}) = _$KhatmaImpl;
 
   @override
   String? get id;
@@ -396,7 +396,7 @@ abstract class _Khatma implements Khatma {
   @override
   SplitUnit get unit;
   @override
-  KhatmaShareType? get share;
+  KhatmaShareType get share;
   @override
   @JsonKey(ignore: true)
   _$$KhatmaImplCopyWith<_$KhatmaImpl> get copyWith =>

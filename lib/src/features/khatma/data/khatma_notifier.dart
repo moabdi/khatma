@@ -20,7 +20,7 @@ class KhatmaNotifier extends ChangeNotifier {
 final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
   return KhatmaNotifier(
     Khatma(
-      name: 'test',
+      name: '',
       unit: SplitUnit.hizb,
       createDate: DateTime.now(),
       share: KhatmaShareType.private,
@@ -28,7 +28,7 @@ final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
         scheduler: KhatmaScheduler.never,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 30)),
-        unit: RecurrenceUnit.monthly,
+        unit: RecurrenceUnit.month,
         occurrence: 1,
       ),
       style: KhatmaStyle(
@@ -59,7 +59,7 @@ final formRecurrenceProvider =
       scheduler: KhatmaScheduler.never,
       startDate: DateTime.now(),
       endDate: DateTime.now().add(const Duration(days: 30)),
-      unit: RecurrenceUnit.monthly,
+      unit: RecurrenceUnit.month,
       occurrence: 1,
     ),
   );

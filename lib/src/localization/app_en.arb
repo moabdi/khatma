@@ -1,23 +1,27 @@
 {
   "appTitle": "Khatma",
   "newKhatma": "New khatma",
-  "recurrence":"Recurrence",
-  "schedule":"Schedule",
-  "name":"Name",
-  "nameHint":"Enter the name of the Khatma",
-  "descriptionHint":"Enter a description (optional)",
-  "description":"Description",
-  "share":"Share",
-  "splitUnit":"Split unit",
-
-  "save":"Save",
-  "cancel":"Cancel",
-  "edit":"Edit",
-  "close":"Close",
-  "delete":"Delete",
-  
+  "recurrence": "Recurrence",
+  "schedule": "Schedule",
+  "name": "Name",
+  "nameHint": "Enter the name of the Khatma",
+  "descriptionHint": "Enter a description (optional)",
+  "description": "Description",
+  "share": "Share",
+  "splitUnit": "Split unit",
+  "apply": "Apply",
+  "save": "Save",
+  "cancel": "Cancel",
+  "edit": "Edit",
+  "close": "Close",
+  "delete": "Delete",
+  "startDate": "Start date",
+  "endDate": "End date",
+  "repeat": "Repeat",
+  "repeatEvery": "Repeat every",
+  "recurrenceUnit": "{recurrence, select, day{Day} week{Week} month{Month} hijriMonth{Hijri-month} year{year} other{}}",
   "khatmaSplitUnit": "{unit, select, other{Sourat} juzz{Juzz} hizb{Hizb} half{Half-Hizb} rubue{Fourth-hizb} thumun{Eighth-hizb}}",
-  "@khatmaScheduler": {
+  "@khatmaSplitUnit": {
     "description": "translate enum KhatmaSplitUnitDesc",
     "placeholders": {
       "unit": {
@@ -26,7 +30,7 @@
     }
   },
   "khatmaSplitUnitDesc": "{unit, select, other{Sourat (114 parts)} juzz{Juzz (30 parts)} hizb{Hizb (60 parts)} half{Half-Hizb (120 parts)} rubue{Fourth-hizb (240 parts)} thumun{Eighth-hizb (480 parts)}}",
-  "@khatmaScheduler": {
+  "@khatmaSplitUnitDesc": {
     "description": "translate enum KhatmaSplitUnitDesc",
     "placeholders": {
       "unit": {
@@ -44,7 +48,7 @@
     }
   },
   "khatmaSchedulerDesc": "{scheduler, select, other{Never} autoRepeat{Auto-repeat} custom{Custom schedule}}",
-  "@khatmaScheduler": {
+  "@khatmaSchedulerDesc": {
     "description": "translate enum KhatmaScheduler",
     "placeholders": {
       "scheduler": {
@@ -53,14 +57,14 @@
     }
   },
   "khatmaSchedulerDescription": "{scheduler, select, other{Khatma is a one-time event, ensuring at least one reading} autoRepeat{Khatma automatically restarts when completed} custom{You can tailor the khatma creation to your preferences and needs} }",
-  "@khatmaScheduler": {
+  "@khatmaSchedulerDescription": {
     "description": "translate enum KhatmaScheduler",
     "placeholders": {
       "scheduler": {
         "type": "String"
       }
     }
-  },  
+  },
   "khatmaShareType": "{share, select, other{Private} public{Public} group{Group}}",
   "@khatmaShareType": {
     "description": "translate enum KhatmaShareType",
@@ -71,7 +75,7 @@
     }
   },
   "khatmaShareTypeDesc": "{share, select, other{This khatma is private} public{Everyone can access and participate} group{This khatma is shared only with those who receive a specific number or QR code}}",
-  "@khatmaShareType": {
+  "@khatmaShareTypeDesc": {
     "description": "translate enum KhatmaScheduler",
     "placeholders": {
       "share": {
@@ -80,7 +84,7 @@
     }
   },
   "khatmaShareTypeDescription": "{share, select, other{The khatma will be kept private and exclusive to the organizer} public{Everyone is welcome to access and join the khatma} group{The khatma will be shared only with those who receive a specific number or QR code}}",
-  "@khatmaShareType": {
+  "@khatmaShareTypeDescription": {
     "description": "translate enum KhatmaScheduler",
     "placeholders": {
       "share": {

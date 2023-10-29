@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/utils/date_formatter.dart';
+import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_unit_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
-import 'package:khatma/src/localization/i10n_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -41,7 +40,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   void initState() {
     super.initState();
     selectedCustomRecurrenceValue =
-        widget.recurrence.unit ?? RecurrenceUnit.monthly;
+        widget.recurrence.unit ?? RecurrenceUnit.month;
     _frequencyEditingController.text = widget.recurrence.occurrence.toString();
     oldRecurrenceHash = widget.recurrence.hashCode;
   }
@@ -120,7 +119,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
           child: Divider(indent: 0.2),
         ),
         DateField(
-          label: "Start date:",
+          label: AppLocalizations.of(context).startDate.withColon,
           dateTime: updatedRecurrence.startDate,
           onChanged: (value) => ref
               .read(formRecurrenceProvider)
@@ -128,7 +127,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
                   updatedRecurrence.copyWith(startDate: parse(value))),
         ),
         DateField(
-          label: "End date:",
+          label: AppLocalizations.of(context).endDate.withColon,
           dateTime: updatedRecurrence.endDate,
           onChanged: (value) => {
             ref.read(formRecurrenceProvider).updateRecurrence(
@@ -151,7 +150,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            "Every:",
+            AppLocalizations.of(context).repeatEvery.withColon,
             style: AppTheme.getTheme().textTheme.titleSmall,
           ),
           gapW20,
@@ -162,7 +161,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               controller: _frequencyEditingController,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                counterText: "",
+                counterText: '',
               ),
               onChanged: (value) {
                 ref.read(formRecurrenceProvider).updateRecurrence(
@@ -192,14 +191,14 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       child: Align(
         alignment: Alignment.bottomRight,
         child: ElevatedButton(
-          onPressed: isChanged
-              ? () {
-                  widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
-                  Navigator.pop(context);
-                }
-              : null,
-          child: const Text('Apply'),
-        ),
+            onPressed: isChanged
+                ? () {
+                    widget
+                        .onSelect(ref.read(formRecurrenceProvider).recurrence);
+                    Navigator.pop(context);
+                  }
+                : null,
+            child: Text(AppLocalizations.of(context).apply)),
       ),
     );
   }

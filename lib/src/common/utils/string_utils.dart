@@ -10,9 +10,7 @@ extension SubstringExtension on String {
     var pattern = RegExp(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+');
     return pattern.hasMatch(this);
   }
-}
 
-extension StringExtension on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
@@ -20,4 +18,6 @@ extension StringExtension on String {
   String camelCase() {
     return "${this[0].toLowerCase()}${substring(1)}";
   }
+
+  String get withColon => "$this:";
 }

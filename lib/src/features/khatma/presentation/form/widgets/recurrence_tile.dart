@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/localization/i10n_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class RecurrenceTile extends StatelessWidget {
@@ -25,9 +24,9 @@ class RecurrenceTile extends StatelessWidget {
         tileColor: isSelected
             ? AppTheme.getTheme().primaryColor.withOpacity(.1)
             : null,
-        title: Text(AppLocalizations.of(context).khatmaScheduler(value.value)),
+        title: Text(AppLocalizations.of(context).khatmaScheduler(value.name)),
         subtitle: Text(AppLocalizations.of(context)
-            .khatmaSchedulerDescription(value.value)),
+            .khatmaSchedulerDescription(value.name)),
         leading: icon,
         onTap: onTap,
         trailing: isSelected
