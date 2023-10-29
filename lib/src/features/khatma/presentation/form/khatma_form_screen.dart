@@ -153,8 +153,9 @@ class AddKhatmaScreen extends ConsumerWidget {
       Khatma khatma, WidgetRef ref, BuildContext context) {
     Map<KhatmaScheduler, String> shareTypeDescriptions = {
       KhatmaScheduler.never: "One-time reading guarantee.",
-      KhatmaScheduler.autoRepeat: "Continuous khatma.",
-      KhatmaScheduler.custom: "Personalized scheduling.",
+      KhatmaScheduler.autoRepeat: "Auto repeat.",
+      KhatmaScheduler.custom:
+          "Repeat evry ${khatma.recurrence.occurrence} ${khatma.recurrence.unit}.",
     };
     Map<KhatmaScheduler, Icon> iconsMap = {
       KhatmaScheduler.never: Icon(Icons.block, color: Colors.grey),
@@ -166,7 +167,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       icon: khatma.recurrence.scheduler == null
           ? iconsMap[KhatmaScheduler.never]!
           : iconsMap[khatma.recurrence.scheduler!]!,
-      title: 'Repeat',
+      title: 'Recurrence',
       // ignore: unnecessary_null_comparison
       subtitle: khatma.recurrence.scheduler != null
           ? shareTypeDescriptions[khatma.recurrence.scheduler]!
@@ -202,7 +203,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       icon: khatma.share == null
           ? shareTypeIcons[ShareType.private]!
           : shareTypeIcons[khatma.share!]!,
-      title: khatma.share?.name.capitalize() ?? "Share",
+      title: "Share",
       subtitle: khatma.share == null
           ? shareTypeMap[ShareType.private]!
           : shareTypeMap[khatma.share!]!,
