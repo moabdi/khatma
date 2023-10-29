@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class TopBarBottomSheet extends StatelessWidget {
@@ -11,6 +12,7 @@ class TopBarBottomSheet extends StatelessWidget {
     return Stack(
       alignment: Alignment.topRight,
       children: [
+        gapH16,
         Center(
           child: Container(
             width: 40,

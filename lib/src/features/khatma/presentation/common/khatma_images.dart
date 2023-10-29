@@ -9,7 +9,7 @@ Widget getImage(String? key, {double? size, Color? color}) {
   if (key == null) {
     return Image.asset(
       getImagePath('assets/images/khatma/khatma.png'),
-      width: size,
+      width: size == null ? null : (size + 2),
     );
   }
 

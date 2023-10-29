@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -32,26 +33,16 @@ class ShareSelector extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-          child: Container(
-            width: 40,
-            padding: const EdgeInsets.only(bottom: 20.0),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppTheme.getTheme().dividerColor,
-                  width: 3.5,
-                ),
-              ),
-            ),
-          ),
-        ),
+        const TopBarBottomSheet(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child:
               Text("Share :", style: AppTheme.getTheme().textTheme.titleLarge),
         ),
-        ListView.builder(
+        ListView.separated(
+          separatorBuilder: (context, index) => Divider(
+            height: 0,
+          ),
           shrinkWrap: true,
           itemCount: ShareType.values.length,
           itemBuilder: (BuildContext context, int index) {

@@ -9,33 +9,45 @@ class KhatmaStyleSelector extends StatefulWidget {
   const KhatmaStyleSelector({super.key, required this.onChanged, this.style});
 
   final KhatmaStyle? style;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<KhatmaStyle> onChanged;
 
   @override
   State<KhatmaStyleSelector> createState() => _KhatmaStyleSelectorState();
 }
 
 class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
-  Color pickerColor = Color(0xff443a49);
-  Color currentColor = Color(0xff443a49);
-  List<Color> colors = [
-    Colors.red.shade400,
+  static List<Color> colors = <Color>[
+    AppTheme.getTheme().primaryColor,
+    Colors.orange,
+    Colors.red,
     Colors.pink,
     Colors.purple,
+    Colors.deepPurple,
+    Colors.indigo,
+    Colors.blue,
+    Colors.lightBlue,
+    Colors.cyan,
     Colors.teal,
-    Colors.brown,
-    Colors.grey,
+    Colors.green,
     Colors.blueGrey,
     Colors.black,
   ];
 
-  void changeColor(Color color) {
-    setState(() => pickerColor = color);
+  late KhatmaStyle updatedStyle;
+
+  @override
+  void initState() {
+    updatedStyle = widget.style ??
+        KhatmaStyle(
+            color: AppTheme.getTheme().primaryColor.toHex(),
+            icon: "khatma.png");
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    int columns = calculateColumns(context);
+    int columnsIcons = calculateColumns(context, 60);
+    int columnsColors = calculateColumns(context, 45);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -43,36 +55,50 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const TopBarBottomSheet(),
+          Text("Choose Color:",
+              style: AppTheme.getTheme().textTheme.titleSmall),
           gapH20,
-          Text("Choose Color:"),
-          gapH20,
-          Flexible(
-            child: GridView.builder(
-              //physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: columns > 10 ? 10 : columns,
-                crossAxisSpacing: 1,
-                mainAxisSpacing: 1,
-              ),
-              shrinkWrap: true,
-              itemCount: colors.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundColor: colors[index],
-                  // child: Icon(Icons.check),
-                ),
-              ),
-            ),
-          ),
+          _buildColor(columnsColors),
           gapH20,
           Text(
             "Choose Icon:",
             style: AppTheme.getTheme().textTheme.titleSmall,
           ),
           gapH20,
-          _buildImagesAndIcons(columns),
+          _buildImagesAndIcons(columnsIcons),
+          gapH20,
+          const Divider(),
+          buildSave(),
         ],
+      ),
+    );
+  }
+
+  Flexible _buildColor(int columnsColors) {
+    return Flexible(
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: columnsColors > 12 ? 12 : columnsColors,
+          crossAxisSpacing: 2,
+          mainAxisSpacing: 2,
+        ),
+        shrinkWrap: true,
+        itemCount: colors.length,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            child: CircleAvatar(
+              maxRadius: 10,
+              minRadius: 5,
+              backgroundColor: colors[index],
+              child: colors[index].toHex() == updatedStyle.color
+                  ? const Icon(Icons.check)
+                  : null,
+            ),
+            onTap: () => setState(() => updatedStyle =
+                updatedStyle.copyWith(color: colors[index].toHex())),
+          ),
+        ),
       ),
     );
   }
@@ -80,10 +106,9 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
   Flexible _buildImagesAndIcons(int columns) {
     return Flexible(
       child: GridView.builder(
-        //physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: columns > 9 ? 9 : columns,
+          crossAxisCount: columns > 10 ? 10 : columns,
           crossAxisSpacing: 3,
           mainAxisSpacing: 3,
         ),
@@ -92,15 +117,19 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
           String key = imagesNames[index];
           return InkWell(
             onTap: () {
-              widget.onChanged(key);
-              Navigator.pop(context);
+              setState(() {
+                updatedStyle = updatedStyle.copyWith(icon: key);
+              });
             },
-            child: Container(
-              color: key == widget.style?.icon
-                  ? AppTheme.getTheme().primaryColor
-                  : AppTheme.getTheme().disabledColor,
-              padding: const EdgeInsets.all(15),
-              child: FittedBox(child: getImage(key)),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircleAvatar(
+                backgroundColor: key == updatedStyle.icon
+                    ? HexColor(updatedStyle.color).withOpacity(.2)
+                    : Colors.grey.shade50,
+                child: getImage(key,
+                    color: HexColor(updatedStyle.color), size: 26),
+              ),
             ),
           );
         },
@@ -108,9 +137,25 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
     );
   }
 
-  int calculateColumns(BuildContext context) {
+  Container buildSave() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: ElevatedButton(
+          onPressed: () {
+            widget.onChanged(updatedStyle);
+            Navigator.pop(context);
+          },
+          child: const Text('Apply'),
+        ),
+      ),
+    );
+  }
+
+  int calculateColumns(BuildContext context, int factor) {
     double screenWidth = MediaQuery.of(context).size.width;
-    int columns = (screenWidth / 60).floor();
+    int columns = (screenWidth / factor).floor();
 
     return columns > 0 ? columns : 1;
   }

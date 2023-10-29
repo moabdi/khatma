@@ -60,9 +60,9 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       children: [
         const TopBarBottomSheet(),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
-            "Set recurrence:",
+            "Recurrence:",
             style: AppTheme.getTheme().textTheme.titleLarge,
           ),
         ),
@@ -75,6 +75,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
                 updatedRecurrence.copyWith(scheduler: KhatmaScheduler.never),
               ),
         ),
+        Divider(height: 0),
         RecurrenceTile(
           value: KhatmaScheduler.autoRepeat,
           subtitle: "Khatma automatically restarts when completed",
@@ -84,6 +85,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               updatedRecurrence.copyWith(
                   scheduler: KhatmaScheduler.autoRepeat)),
         ),
+        Divider(height: 0),
         RecurrenceTile(
           value: KhatmaScheduler.custom,
           subtitle:

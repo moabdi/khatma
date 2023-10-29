@@ -32,7 +32,7 @@ final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
         occurrence: 1,
       ),
       style: KhatmaStyle(
-        color: AppTheme.getTheme().primaryColor.toString(),
+        color: AppTheme.getTheme().primaryColor.toHex(),
         icon: khatmaImagesMap.entries.first.key,
       ),
     ),

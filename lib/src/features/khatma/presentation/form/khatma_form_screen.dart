@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
@@ -66,34 +67,39 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   Widget _buildIcon(BuildContext context, Khatma khatma, WidgetRef ref) {
     return Center(
-      child: CircleAvatar(
-        radius: 40,
-        backgroundColor: AppTheme.getTheme().cardColor,
-        child: Stack(children: [
-          InkWell(
-            onTap: () => _showModal(
-              context,
-              KhatmaStyleSelector(
-                style: khatma.style,
-                onChanged: (value) => ref.read(formKhatmaProvider).updateKhatma(
-                      khatma.copyWith(
-                        style: KhatmaStyle(
-                            icon: value,
-                            color: AppTheme.getTheme().primaryColor.toString()),
-                      ),
-                    ),
-              ),
-            ),
-            child: Center(
+      child: InkWell(
+        onTap: () => _showModal(
+          context,
+          KhatmaStyleSelector(
+            style: khatma.style,
+            onChanged: (value) => ref.read(formKhatmaProvider).updateKhatma(
+                  khatma.copyWith(style: value),
+                ),
+          ),
+        ),
+        child: CircleAvatar(
+          radius: 40,
+          backgroundColor: HexColor(khatma.style.color).withOpacity(.2),
+          child: Stack(children: [
+            Center(
               child: SizedBox(
                 height: 50,
                 width: 50,
                 child: FittedBox(
-                    child: getImage(khatma.style.icon, color: Colors.amber)),
+                    child: getImage(khatma.style.icon,
+                        color: HexColor(khatma.style.color))),
               ),
             ),
-          ),
-        ]),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: CircleAvatar(
+                radius: 10,
+                backgroundColor: HexColor(khatma.style.color),
+                child: Icon(Icons.edit, size: 12),
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }
@@ -117,7 +123,7 @@ class AddKhatmaScreen extends ConsumerWidget {
     return TextField(
       controller: descController,
       keyboardType: TextInputType.multiline,
-      maxLines: 5,
+      maxLines: 3,
       decoration: const InputDecoration(
         hintText: 'Enter a description (optional)',
       ),
@@ -145,11 +151,26 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   KhatmaFormTile _buildRecurrence(
       Khatma khatma, WidgetRef ref, BuildContext context) {
+    Map<KhatmaScheduler, String> shareTypeDescriptions = {
+      KhatmaScheduler.never: "One-time reading guarantee.",
+      KhatmaScheduler.autoRepeat: "Continuous khatma.",
+      KhatmaScheduler.custom: "Personalized scheduling.",
+    };
+    Map<KhatmaScheduler, Icon> iconsMap = {
+      KhatmaScheduler.never: Icon(Icons.block, color: Colors.grey),
+      KhatmaScheduler.autoRepeat: Icon(Icons.autorenew, color: Colors.blue),
+      KhatmaScheduler.custom:
+          Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
+    };
     return KhatmaFormTile(
-      icon: const Icon(Icons.rotate_right,
-          color: Color.fromARGB(255, 120, 0, 212)),
+      icon: khatma.recurrence.scheduler == null
+          ? iconsMap[KhatmaScheduler.never]!
+          : iconsMap[khatma.recurrence.scheduler!]!,
       title: 'Repeat',
-      subtitle: khatma.recurrence.scheduler.name,
+      // ignore: unnecessary_null_comparison
+      subtitle: khatma.recurrence.scheduler != null
+          ? shareTypeDescriptions[khatma.recurrence.scheduler]!
+          : shareTypeDescriptions[KhatmaScheduler.never]!,
       onTap: () {
         ref.read(formRecurrenceProvider).updateRecurrence(khatma.recurrence);
         _showModal(
@@ -166,11 +187,25 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   KhatmaFormTile _buildShare(
       BuildContext context, Khatma khatma, WidgetRef ref) {
+    Map<ShareType, Icon> shareTypeIcons = {
+      ShareType.private: Icon(FontAwesomeIcons.lock, color: Colors.orange),
+      ShareType.public: Icon(Icons.public, color: Colors.blue),
+      ShareType.custom: Icon(Icons.group, color: Colors.purple),
+    };
+    Map<ShareType, String> shareTypeMap = {
+      ShareType.private: "This khatma is private.",
+      ShareType.public: "Everyone can access and participate.",
+      ShareType.custom:
+          "This khatma is shared only with those who receive a specific number or QR code.",
+    };
     return KhatmaFormTile(
-      icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
-      title: 'Share',
-      subtitle:
-          khatma.share == null ? ShareType.private.name : khatma.share!.name,
+      icon: khatma.share == null
+          ? shareTypeIcons[ShareType.private]!
+          : shareTypeIcons[khatma.share!]!,
+      title: khatma.share?.name.capitalize() ?? "Share",
+      subtitle: khatma.share == null
+          ? shareTypeMap[ShareType.private]!
+          : shareTypeMap[khatma.share!]!,
       onTap: () => _showModal(
         context,
         ShareSelector(
