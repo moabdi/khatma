@@ -14,23 +14,21 @@ class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
     this.title,
     this.leading,
     this.actions,
+    this.backgroundColor,
   });
 
   final String? title;
   final Widget? leading;
   final List<Widget>? actions;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 5.0,
-      ),
-      child: AppBar(
-        title: TextOrEmpty(title),
-        leading: leading,
-        actions: actions,
-      ),
+    return AppBar(
+      backgroundColor: backgroundColor,
+      title: TextOrEmpty(title),
+      leading: leading,
+      actions: actions,
     );
   }
 

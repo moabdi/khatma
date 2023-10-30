@@ -10,6 +10,7 @@ import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
   const PartSelectorScreen({super.key, required this.khatmaId});
@@ -72,7 +73,8 @@ class PartSelectorScreen extends ConsumerWidget {
 
   KAppBar buildAppBar(Khatma? khatma, BuildContext context) {
     return KAppBar(
-      title: khatma!.name,
+      backgroundColor: khatma!.style.color.toColor().withOpacity(.3),
+      title: khatma.name,
       leading: IconButton(
         icon: const Icon(Icons.chevron_left),
         onPressed: () {
