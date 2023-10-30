@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
@@ -14,16 +13,7 @@ class UnitSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TopBarBottomSheet(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Text(AppLocalizations.of(context).splitUnit.withColon,
-              style: AppTheme.getTheme().textTheme.titleLarge),
-        ),
         ListView.builder(
           shrinkWrap: true,
           itemCount: SplitUnit.values.length,

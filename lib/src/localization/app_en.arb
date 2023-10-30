@@ -21,6 +21,7 @@
   "repeatEvery": "Repeat every",
   "chooseColor": "Choose color",
   "chooseIcon": "Choose icon",
+  "chooseKhatmaStyle": "Choose your khatma's style",
   "recurrenceUnit": "{recurrence, select, day{Day} week{Week} month{Month} hijriMonth{Hijri-month} year{year} other{}}",
   "khatmaSplitUnit": "{unit, select, other{Sourat} juzz{Juzz} hizb{Hizb} half{Half-Hizb} rubue{Fourth-hizb} thumun{Eighth-hizb}}",
   "@khatmaSplitUnit": {

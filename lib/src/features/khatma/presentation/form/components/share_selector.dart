@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/utils/string_utils.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -21,33 +18,19 @@ class ShareSelector extends StatelessWidget {
       Icon(Icons.public, color: Colors.blue),
       Icon(Icons.group, color: Colors.purple),
     ];
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const TopBarBottomSheet(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Text(AppLocalizations.of(context).share.withColon,
-              style: AppTheme.getTheme().textTheme.titleLarge),
-        ),
-        ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(),
-          shrinkWrap: true,
-          itemCount: KhatmaShareType.values.length,
-          itemBuilder: (BuildContext context, int index) {
-            var currentUnit = KhatmaShareType.values[index];
-            var selected = unit == currentUnit;
-            return ShareTile(
-                selected: selected,
-                currentUnit: currentUnit,
-                icon: icons[index],
-                onSelect: onSelect);
-          },
-        ),
-        gapH20,
-      ],
+    return ListView.separated(
+      separatorBuilder: (context, index) => const SizedBox(),
+      shrinkWrap: true,
+      itemCount: KhatmaShareType.values.length,
+      itemBuilder: (BuildContext context, int index) {
+        var currentUnit = KhatmaShareType.values[index];
+        var selected = unit == currentUnit;
+        return ShareTile(
+            selected: selected,
+            currentUnit: currentUnit,
+            icon: icons[index],
+            onSelect: onSelect);
+      },
     );
   }
 }

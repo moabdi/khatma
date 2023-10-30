@@ -8,10 +8,9 @@ import 'package:khatma/src/features/khatma/presentation/common/khatma_unit_menu.
 import 'package:khatma/src/features/khatma/presentation/common/number_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class RecurrenceSelector extends ConsumerStatefulWidget {
   const RecurrenceSelector({
@@ -64,20 +63,10 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
     return Column(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TopBarBottomSheet(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text(
-            AppLocalizations.of(context).recurrence.withColon,
-            style: AppTheme.getTheme().textTheme.titleLarge,
-          ),
-        ),
         Flexible(
           child: ListView.separated(
-            separatorBuilder: (context, index) => const Divider(height: 0),
+            separatorBuilder: (context, index) => const SizedBox(),
             shrinkWrap: true,
             itemCount: KhatmaScheduler.values.length,
             itemBuilder: (context, index) {

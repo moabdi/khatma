@@ -5,7 +5,6 @@ import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_color_picker.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_icon_picker.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class KhatmaStyleSelector extends StatefulWidget {
@@ -35,12 +34,6 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const TopBarBottomSheet(),
-          Text(
-            AppLocalizations.of(context).chooseColor.withColon,
-            style: AppTheme.getTheme().textTheme.titleSmall,
-          ),
-          gapH20,
           KhatmaColorPicker(
             color: updatedStyle.color.toColor(),
             onChanged: (value) => setState(() {

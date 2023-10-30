@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_avatar.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_style_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/share_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/khatma_avatar.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/unit_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/modal_bottom_sheet.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/unit_selector.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
@@ -68,14 +70,14 @@ class AddKhatmaScreen extends ConsumerWidget {
     return Center(
       child: InkWell(
         onTap: () => _showModal(
-          context,
-          KhatmaStyleSelector(
-            style: khatma.style,
-            onChanged: (value) => ref.updateKhatma(
-              khatma.copyWith(style: value),
+            context,
+            KhatmaStyleSelector(
+              style: khatma.style,
+              onChanged: (value) => ref.updateKhatma(
+                khatma.copyWith(style: value),
+              ),
             ),
-          ),
-        ),
+            AppLocalizations.of(context).chooseKhatmaStyle.withColon),
         child: KhatmaAvatar(style: khatma.style),
       ),
     );
@@ -125,6 +127,7 @@ class AddKhatmaScreen extends ConsumerWidget {
             onSelect: (value) {
               ref.updateKhatma(khatma.copyWith(unit: value));
             }),
+        AppLocalizations.of(context).splitUnit.withColon,
       ),
     );
   }
@@ -145,6 +148,7 @@ class AddKhatmaScreen extends ConsumerWidget {
               recurrence: khatma.recurrence,
               onSelect: (value) =>
                   ref.updateKhatma(khatma.copyWith(recurrence: value))),
+          AppLocalizations.of(context).recurrence.withColon,
         );
       },
     );
@@ -163,29 +167,8 @@ class AddKhatmaScreen extends ConsumerWidget {
             unit: khatma.share,
             onSelect: (value) =>
                 ref.updateKhatma(khatma.copyWith(share: value))),
+        AppLocalizations.of(context).share.withColon,
       ),
-    );
-  }
-
-  void _showModal(BuildContext context, Widget widget) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-      builder: (context) {
-        return Ink(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          decoration: BoxDecoration(
-            color: AppTheme.getTheme().listTileTheme.tileColor,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0),
-            ),
-          ),
-          child: widget,
-        );
-      },
     );
   }
 
@@ -205,6 +188,20 @@ class AddKhatmaScreen extends ConsumerWidget {
           label: Text(AppLocalizations.of(context).save),
         ),
       ),
+    );
+  }
+
+  void _showModal(BuildContext context, Widget child, String title) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (context) {
+        return ModalBottomSheet(
+          title: title,
+          child: child,
+        );
+      },
     );
   }
 }
