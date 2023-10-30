@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
@@ -35,9 +37,9 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
         mainAxisSize: MainAxisSize.min,
         children: [
           KhatmaColorPicker(
-            color: updatedStyle.color.toColor(),
+            color: updatedStyle.color,
             onChanged: (value) => setState(() {
-              updatedStyle = updatedStyle.copyWith(color: value.toHex());
+              updatedStyle = updatedStyle.copyWith(color: value);
             }),
           ),
           gapH20,
@@ -46,9 +48,18 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
             style: AppTheme.getTheme().textTheme.titleSmall,
           ),
           gapH20,
-          KhatmaIconPicker(style: updatedStyle),
+          Flexible(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * .3,
+              child: KhatmaIconPicker(
+                style: updatedStyle,
+                onChanged: (value) => setState(() {
+                  updatedStyle = updatedStyle.copyWith(icon: value);
+                }),
+              ),
+            ),
+          ),
           gapH20,
-          const Divider(),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Align(
@@ -62,6 +73,7 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
               ),
             ),
           ),
+          gapH20,
         ],
       ),
     );
