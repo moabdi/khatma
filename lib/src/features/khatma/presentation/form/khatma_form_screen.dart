@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
@@ -42,7 +41,7 @@ class AddKhatmaScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildIcon(context, khatma, ref),
+                    _buildAvatar(context, khatma, ref),
                     gapH20,
                     _buildName(context, nameController, node, ref, khatma),
                     gapH20,
@@ -65,7 +64,7 @@ class AddKhatmaScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildIcon(BuildContext context, Khatma khatma, WidgetRef ref) {
+  Widget _buildAvatar(BuildContext context, Khatma khatma, WidgetRef ref) {
     return Center(
       child: InkWell(
         onTap: () => _showModal(
@@ -77,29 +76,7 @@ class AddKhatmaScreen extends ConsumerWidget {
             ),
           ),
         ),
-        child: CircleAvatar(
-          radius: 40,
-          backgroundColor: HexColor(khatma.style.color).withOpacity(.2),
-          child: Stack(children: [
-            Center(
-              child: SizedBox(
-                height: 50,
-                width: 50,
-                child: FittedBox(
-                    child: getImage(khatma.style.icon,
-                        color: HexColor(khatma.style.color))),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: CircleAvatar(
-                radius: 10,
-                backgroundColor: HexColor(khatma.style.color),
-                child: const Icon(Icons.edit, size: 12),
-              ),
-            ),
-          ]),
-        ),
+        child: KhatmaAvatar(style: khatma.style),
       ),
     );
   }
@@ -154,15 +131,9 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   KhatmaFormTile _buildRecurrence(
       Khatma khatma, WidgetRef ref, BuildContext context) {
-    Map<KhatmaScheduler, Icon> iconsMap = {
-      KhatmaScheduler.never: const Icon(Icons.block, color: Colors.grey),
-      KhatmaScheduler.autoRepeat:
-          const Icon(Icons.autorenew, color: Colors.blue),
-      KhatmaScheduler.custom:
-          const Icon(Icons.history_toggle_off_sharp, color: Colors.orange),
-    };
     return KhatmaFormTile(
-      icon: iconsMap[khatma.recurrence.scheduler]!,
+      icon: const Icon(Icons.rotate_right,
+          color: Color.fromARGB(255, 120, 0, 212)),
       title: AppLocalizations.of(context).recurrence,
       subtitle: AppLocalizations.of(context)
           .khatmaSchedulerDesc(khatma.recurrence.scheduler.name),
@@ -181,15 +152,8 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   KhatmaFormTile _buildShare(
       BuildContext context, Khatma khatma, WidgetRef ref) {
-    Map<KhatmaShareType, Icon> shareTypeIcons = {
-      KhatmaShareType.private:
-          const Icon(FontAwesomeIcons.lock, color: Colors.orange),
-      KhatmaShareType.public: const Icon(Icons.public, color: Colors.blue),
-      KhatmaShareType.group: const Icon(Icons.group, color: Colors.purple),
-    };
-
     return KhatmaFormTile(
-      icon: shareTypeIcons[khatma.share]!,
+      icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
       title: AppLocalizations.of(context).share,
       subtitle:
           AppLocalizations.of(context).khatmaShareTypeDesc(khatma.share.name),

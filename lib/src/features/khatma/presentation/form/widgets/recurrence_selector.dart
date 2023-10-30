@@ -126,7 +126,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         DateField(
           label: AppLocalizations.of(context).startDate.withColon,
-          dateTime: updatedRecurrence.startDate,
+          value: updatedRecurrence.startDate,
           onChanged: (value) => ref
               .read(formRecurrenceProvider)
               .updateRecurrence(
@@ -134,7 +134,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         DateField(
           label: AppLocalizations.of(context).endDate.withColon,
-          dateTime: updatedRecurrence.endDate,
+          value: updatedRecurrence.endDate,
           onChanged: (value) => {
             ref.read(formRecurrenceProvider).updateRecurrence(
                 updatedRecurrence.copyWith(endDate: parse(value)))

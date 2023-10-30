@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
 import 'package:khatma/src/themes/theme.dart';
 
@@ -28,42 +29,65 @@ class ShareSelector extends StatelessWidget {
         const TopBarBottomSheet(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child:
-              Text("Share :", style: AppTheme.getTheme().textTheme.titleLarge),
+          child: Text(AppLocalizations.of(context).share.withColon,
+              style: AppTheme.getTheme().textTheme.titleLarge),
         ),
         ListView.separated(
-          separatorBuilder: (context, index) => const Divider(height: 0),
+          separatorBuilder: (context, index) => const SizedBox(),
           shrinkWrap: true,
           itemCount: KhatmaShareType.values.length,
           itemBuilder: (BuildContext context, int index) {
             var currentUnit = KhatmaShareType.values[index];
             var selected = unit == currentUnit;
-            return ListTile(
-                tileColor: selected
-                    ? AppTheme.getTheme().primaryColor.withOpacity(.1)
-                    : null,
-                title: Text(AppLocalizations.of(context)
-                    .khatmaShareType(currentUnit.name)),
-                subtitle: Text(AppLocalizations.of(context)
-                    .khatmaShareTypeDescription(currentUnit.name)),
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: icons[index],
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  onSelect(currentUnit);
-                },
-                trailing: selected
-                    ? Icon(
-                        Icons.check,
-                        color: AppTheme.getTheme().primaryColor,
-                      )
-                    : null);
+            return ShareTile(
+                selected: selected,
+                currentUnit: currentUnit,
+                icon: icons[index],
+                onSelect: onSelect);
           },
         ),
         gapH20,
       ],
     );
+  }
+}
+
+class ShareTile extends StatelessWidget {
+  const ShareTile({
+    super.key,
+    required this.selected,
+    required this.currentUnit,
+    required this.icon,
+    required this.onSelect,
+  });
+
+  final bool selected;
+  final KhatmaShareType currentUnit;
+  final Icon icon;
+  final ValueChanged<KhatmaShareType> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+        tileColor:
+            selected ? AppTheme.getTheme().primaryColor.withOpacity(.1) : null,
+        title: Text(
+            AppLocalizations.of(context).khatmaShareType(currentUnit.name)),
+        subtitle: Text(AppLocalizations.of(context)
+            .khatmaShareTypeDescription(currentUnit.name)),
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: icon,
+        ),
+        onTap: () {
+          Navigator.pop(context);
+          onSelect(currentUnit);
+        },
+        trailing: selected
+            ? Icon(
+                Icons.check,
+                color: AppTheme.getTheme().primaryColor,
+              )
+            : null);
   }
 }
