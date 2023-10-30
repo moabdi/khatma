@@ -24,8 +24,7 @@ class PartTile extends StatelessWidget {
     return ListTile(
       enabled: !isRead,
       selected: isSelected,
-      onLongPress: toggleSelection,
-      onTap: () => handleOnTap(context),
+      onTap: toggleSelection,
       leading:
           PartTileLeading(isRead: isRead, isSelected: isSelected, part: part),
       title: PartTileTitle(part: part, isRead: isRead),

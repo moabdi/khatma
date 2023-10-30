@@ -1,6 +1,11 @@
+import 'dart:math';
+
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
+
+var random = Random();
 
 /// Test khatmat to be used until a data source is implemented
 var kTestKhatmat = [
@@ -17,8 +22,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
@@ -35,8 +40,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
@@ -53,8 +58,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
@@ -69,8 +74,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
@@ -85,8 +90,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
@@ -101,8 +106,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
@@ -117,8 +122,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
@@ -133,8 +138,8 @@ var kTestKhatmat = [
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toString(),
-      icon: khatmaImagesMap.entries.first.key,
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
     share: KhatmaShareType.private,
   ),
