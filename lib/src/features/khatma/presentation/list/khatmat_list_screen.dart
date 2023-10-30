@@ -18,6 +18,7 @@ class KhatmatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor("#f7fcfd"),
       drawer: const MainDrawer(),
       appBar: KAppBar(title: AppLocalizations.of(context).appTitle),
       body: SingleChildScrollView(

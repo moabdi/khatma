@@ -9,40 +9,39 @@ import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
-class PartTile extends StatelessWidget {
+class PartTile extends ConsumerWidget {
   const PartTile(this.part,
-      {super.key, this.ref, this.selectedParts, this.isRead = false});
+      {super.key,
+      this.selectedParts,
+      this.isRead = false,
+      required this.color});
 
   final List<int>? selectedParts;
   final Part part;
-  final WidgetRef? ref;
   final bool isRead;
+  final Color color;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     bool isSelected = selectedParts!.contains(part.id);
     return ListTile(
       enabled: !isRead,
       selected: isSelected,
-      onTap: toggleSelection,
-      leading:
-          PartTileLeading(isRead: isRead, isSelected: isSelected, part: part),
+      onTap: () => toggleSelection(ref),
+      leading: PartTileLeading(
+          isRead: isRead, isSelected: isSelected, part: part, color: color),
       title: PartTileTitle(part: part, isRead: isRead),
       subtitle: PartTileSubtitle(part: part),
     );
   }
 
-  void toggleSelection() =>
-      ref?.read(selectedItemsNotifier.notifier).toggleSelection(part.id);
+  void toggleSelection(WidgetRef ref) =>
+      ref.read(selectedItemsNotifier.notifier).toggleSelection(part.id);
 
   void handleOnTap(BuildContext context) {
-    if (CollectionUtils.isNotEmpty(selectedParts)) {
-      toggleSelection();
-    } else {
-      context.pushNamed(AppRoute.quran.name, pathParameters: {
-        'idSourat': part.start.sourat.toString(),
-        'idVerset': part.start.verse.toString(),
-      });
-    }
+    context.pushNamed(AppRoute.quran.name, pathParameters: {
+      'idSourat': part.start.sourat.toString(),
+      'idVerset': part.start.verse.toString(),
+    });
   }
 }

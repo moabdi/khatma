@@ -3,6 +3,7 @@ import 'package:khatma/src/common/utils/duration_formatter.dart';
 import 'package:khatma/src/common/widgets/text_or_empty.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/common/enum_extension.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/themes/theme.dart';
 
@@ -35,9 +36,20 @@ class KhatmaTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            khatma.name,
-            style: AppTheme.getTheme().textTheme.bodyLarge,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                khatma.name,
+                style: AppTheme.getTheme().textTheme.bodyLarge,
+              ),
+              gapW4,
+              Icon(
+                khatma.share.icon,
+                size: 13,
+                color: Colors.blueGrey.shade200,
+              ),
+            ],
           ),
           Row(
             children: [

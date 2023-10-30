@@ -23,10 +23,10 @@ class PartSelectorScreen extends ConsumerWidget {
       body: AsyncValueWidget<Khatma?>(
         value: khatmaValue,
         data: (khatma) => Scaffold(
-          appBar: buildAppBar(khatma, context),
+          appBar: buildAppBar(khatma!, context),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: PartFloatingButton(khatmaId: khatma!.id),
+          floatingActionButton: PartFloatingButton(khatmaId: khatma.id),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -40,7 +40,7 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  Consumer buildBody(Khatma? khatma) {
+  Consumer buildBody(Khatma khatma) {
     return Consumer(
       builder: (context, ref, _) {
         final partsListValue = ref.watch(partsListFutureProvider(khatma!.unit));
@@ -62,7 +62,7 @@ class PartSelectorScreen extends ConsumerWidget {
                 part,
                 selectedParts: selectedParts,
                 isRead: isRead,
-                ref: ref,
+                color: khatma.style.color.toColor(),
               );
             },
           ),
@@ -71,9 +71,9 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  KAppBar buildAppBar(Khatma? khatma, BuildContext context) {
+  KAppBar buildAppBar(Khatma khatma, BuildContext context) {
     return KAppBar(
-      backgroundColor: khatma!.style.color.toColor().withOpacity(.3),
+      backgroundColor: khatma.style.color.toColor().withOpacity(.3),
       title: khatma.name,
       leading: IconButton(
         icon: const Icon(Icons.chevron_left),

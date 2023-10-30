@@ -8,11 +8,13 @@ class PartTileLeading extends StatelessWidget {
     required this.isRead,
     required this.isSelected,
     required this.part,
+    required this.color,
   });
 
   final bool isRead;
   final bool isSelected;
   final Part part;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +22,11 @@ class PartTileLeading extends StatelessWidget {
       backgroundColor: isRead
           ? AppTheme.getTheme().disabledColor
           : isSelected
-              ? AppTheme.getTheme().primaryColor
-              : AppTheme.getTheme().primaryColor.withOpacity(.1),
+              ? color
+              : color.withOpacity(.1),
       child: Text(part.id.toString(),
-          style: AppTheme.getTheme().textTheme.titleLarge!.copyWith(
-              color: isRead
-                  ? null
-                  : isSelected
-                      ? AppTheme.getTheme().backgroundColor
-                      : AppTheme.getTheme().primaryColor)),
+          style:
+              AppTheme.getTheme().textTheme.titleLarge!.copyWith(color: color)),
     );
   }
 }

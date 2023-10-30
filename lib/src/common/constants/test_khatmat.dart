@@ -43,7 +43,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: KhatmaShareType.public,
   ),
   Khatma(
     id: '3',
@@ -61,7 +61,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: KhatmaShareType.group,
   ),
   Khatma(
     id: '4',
