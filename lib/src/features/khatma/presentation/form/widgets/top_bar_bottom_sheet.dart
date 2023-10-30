@@ -34,12 +34,12 @@ class TopBarBottomSheet extends StatelessWidget {
             child: Container(
               width: 30,
               height: 30,
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.all(0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(50.0)),
                 color: AppTheme.getTheme().disabledColor,
               ),
-              child: Icon(Icons.close, size: 18, color: Colors.blueGrey),
+              child: const Icon(Icons.close, size: 18, color: Colors.blueGrey),
             ),
             onTap: () => Navigator.of(context).pop(),
           ),

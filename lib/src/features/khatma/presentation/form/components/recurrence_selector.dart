@@ -64,41 +64,42 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Flexible(
-          child: ListView.separated(
-            separatorBuilder: (context, index) => const SizedBox(),
-            shrinkWrap: true,
-            itemCount: KhatmaScheduler.values.length,
-            itemBuilder: (context, index) {
-              KhatmaScheduler scheduler = KhatmaScheduler.values[index];
-              return Column(
-                children: [
-                  RecurrenceTile(
-                    value: scheduler,
-                    icon: schedulerIcons[scheduler]!,
-                    selectedValue: updatedRecurrence.scheduler,
-                    onTap: () =>
-                        ref.read(formRecurrenceProvider).updateRecurrence(
-                              updatedRecurrence.copyWith(scheduler: scheduler),
-                            ),
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
+        _buildListView(),
         AnimatedSize(
           curve: Curves.ease,
           duration: const Duration(milliseconds: 600),
-          child: _buildForm(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: _buildForm(),
+          ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          child: Divider(indent: 1),
-        ),
+        const Divider(indent: .2),
         buildSave(),
         gapH32,
       ],
+    );
+  }
+
+  Widget _buildListView() {
+    return ListView.separated(
+      separatorBuilder: (context, index) => const SizedBox(),
+      shrinkWrap: true,
+      itemCount: KhatmaScheduler.values.length,
+      itemBuilder: (context, index) {
+        KhatmaScheduler scheduler = KhatmaScheduler.values[index];
+        return Column(
+          children: [
+            RecurrenceTile(
+              value: scheduler,
+              icon: schedulerIcons[scheduler]!,
+              selectedValue: updatedRecurrence.scheduler,
+              onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
+                    updatedRecurrence.copyWith(scheduler: scheduler),
+                  ),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -106,13 +107,8 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     if (KhatmaScheduler.never == updatedRecurrence.scheduler) {
       return const SizedBox();
     }
-
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          child: Divider(indent: 0.2),
-        ),
         DateField(
           label: AppLocalizations.of(context).startDate.withColon,
           value: updatedRecurrence.startDate,
@@ -121,6 +117,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               .updateRecurrence(
                   updatedRecurrence.copyWith(startDate: parse(value))),
         ),
+        gapH12,
         DateField(
           label: AppLocalizations.of(context).endDate.withColon,
           value: updatedRecurrence.endDate,
@@ -129,6 +126,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
                 updatedRecurrence.copyWith(endDate: parse(value)))
           },
         ),
+        gapH12,
         _recurrence(),
       ],
     );
@@ -138,39 +136,35 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     if (updatedRecurrence.scheduler != KhatmaScheduler.custom) {
       return const SizedBox();
     }
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            AppLocalizations.of(context).repeatEvery.withColon,
-            style: AppTheme.getTheme().textTheme.titleSmall,
-          ),
-          gapW20,
-          Flexible(
-            flex: 2,
-            child: NumberDropdownMenu(
-                selectedUnit:
-                    ref.read(formRecurrenceProvider).recurrence.occurrence,
-                onSelected: (value) {
-                  ref.read(formRecurrenceProvider).updateRecurrence(
-                      updatedRecurrence.copyWith(occurrence: value));
-                }),
-          ),
-          gapW20,
-          Flexible(
-            flex: 3,
-            child: UnitDropdownMenu(
-                selectedUnit: ref.read(formRecurrenceProvider).recurrence.unit,
-                onSelected: (value) {
-                  ref.read(formRecurrenceProvider).updateRecurrence(
-                      updatedRecurrence.copyWith(unit: value));
-                }),
-          ),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          AppLocalizations.of(context).repeatEvery.withColon,
+          style: AppTheme.getTheme().textTheme.titleSmall,
+        ),
+        gapW12,
+        Flexible(
+          child: NumberDropdownMenu(
+              selectedUnit:
+                  ref.read(formRecurrenceProvider).recurrence.occurrence,
+              onSelected: (value) {
+                ref.read(formRecurrenceProvider).updateRecurrence(
+                    updatedRecurrence.copyWith(occurrence: value));
+              }),
+        ),
+        gapW12,
+        Flexible(
+          child: UnitDropdownMenu(
+              selectedUnit: ref.read(formRecurrenceProvider).recurrence.unit,
+              onSelected: (value) {
+                ref
+                    .read(formRecurrenceProvider)
+                    .updateRecurrence(updatedRecurrence.copyWith(unit: value));
+              }),
+        ),
+      ],
     );
   }
 

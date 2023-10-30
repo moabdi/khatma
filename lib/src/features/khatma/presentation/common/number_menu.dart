@@ -21,7 +21,7 @@ class NumberDropdownMenu extends StatelessWidget {
     }
 
     return DropdownMenu<int>(
-      width: 80,
+      width: 90,
       textStyle: AppTheme.getTheme().textTheme.titleSmall,
       initialSelection: selectedUnit ?? 1,
       controller: unitController,
