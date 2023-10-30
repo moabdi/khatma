@@ -1,6 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/common/widgets/icon_boutton.dart';
+import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/drawer/main_drawer.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/list/katmat_list_view.dart';
@@ -9,7 +10,6 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/kpi/presentation/top_card.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
-import 'package:go_router/go_router.dart';
 
 /// Shows the list of khatmas with a search field at the top.
 class KhatmatListScreen extends StatelessWidget {
@@ -18,9 +18,8 @@ class KhatmatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("F5F5F8"),
       drawer: const MainDrawer(),
-      appBar: const KAppBar(title: "Home"),
+      appBar: KAppBar(title: AppLocalizations.of(context).appTitle),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -28,23 +27,24 @@ class KhatmatListScreen extends StatelessWidget {
             children: [
               const TopCard(),
               gapH20,
-              const Divider(),
+              const Divider(height: 0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Khatma liste",
-                    style: AppTheme.getTheme().textTheme.titleMedium,
+                    AppLocalizations.of(context).khatmaList.withColon,
+                    style: AppTheme.getTheme().textTheme.bodyLarge,
                   ),
-                  CIconButton(
-                      icon: FontAwesomeIcons.plus,
-                      label: "Nouvelle khatma",
+                  IconButton(
+                      icon: Icon(
+                        Icons.add_circle,
+                        color: AppTheme.primaryColors,
+                        size: 32,
+                      ),
                       onPressed: () => {context.goNamed(AppRoute.khatma.name)}),
                 ],
               ),
-              gapH20,
-              //ThemeTextStyle(),
-              gapH20,
+              gapH8,
               const KhatmatListView(),
             ],
           ),
@@ -56,18 +56,18 @@ class KhatmatListScreen extends StatelessWidget {
             AppTheme.getTheme().textTheme.labelSmall!.copyWith(fontSize: 10),
         selectedLabelStyle:
             AppTheme.getTheme().textTheme.labelSmall!.copyWith(fontSize: 10),
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
-            label: 'Home',
+            label: AppLocalizations.of(context).home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book),
-            label: 'Mushaf',
+            icon: Icon(FontAwesomeIcons.book),
+            label: AppLocalizations.of(context).quran,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
-            label: 'Create',
+            label: AppLocalizations.of(context).create,
           ),
         ],
         onTap: (value) => {
