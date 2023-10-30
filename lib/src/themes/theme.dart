@@ -232,66 +232,68 @@ class AppTheme {
 
     return base.copyWith(
       displayLarge: base.displayLarge?.copyWith(
-        fontSize: 48, // Adjust to match your design
+        fontSize: 48,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w900,
       ),
       displayMedium: base.displayMedium?.copyWith(
-        fontSize: 28, // Adjust to match your design
+        fontSize: 28,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w800,
       ),
       displaySmall: base.displaySmall?.copyWith(
-        fontSize: 22, // Adjust to match your design
+        fontSize: 22,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w700,
       ),
       headlineMedium: base.headlineMedium?.copyWith(
-        fontSize: 20, // Adjust to match your design
+        fontSize: 20,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
       headlineSmall: base.headlineSmall?.copyWith(
-        fontSize: 18, // Adjust to match your design
+        fontSize: 18,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
       titleLarge: base.titleLarge?.copyWith(
-        fontSize: 16, // Adjust to match your design
+        fontSize: 16,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
       titleMedium: base.titleMedium?.copyWith(
-        fontSize: 14, // Adjust to match your design
+        fontSize: 14,
         fontFamily: pFontFamily,
       ),
       titleSmall: base.titleSmall?.copyWith(
-        fontSize: 14, // Adjust to match your design
+        fontSize: 14,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w500,
       ),
       bodyLarge: base.bodyLarge?.copyWith(
-        fontSize: 14, // Adjust to match your design
+        fontSize: 14,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
       bodyMedium: base.bodyMedium?.copyWith(
-        fontSize: 16, // Adjust to match your design
+        fontSize: 16,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w300,
       ),
       labelLarge: base.labelLarge?.copyWith(
-        fontSize: 14, // Adjust to match your design
+        fontSize: 14,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
       bodySmall: base.bodySmall?.copyWith(
-        fontSize: 12, // Adjust to match your design
+        color: Colors.blueGrey.shade400,
+        fontSize: 12,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w400,
       ),
       labelSmall: base.labelSmall?.copyWith(
-        fontSize: 12, // Adjust to match your design
+        color: Colors.blueGrey.shade700,
+        fontSize: 12,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w300,
       ),

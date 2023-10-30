@@ -27,11 +27,10 @@ class UnitDropdownMenu extends StatelessWidget {
       initialSelection: selectedUnit ?? RecurrenceUnit.month,
       controller: unitController,
       dropdownMenuEntries: entries,
-      inputDecorationTheme: InputDecorationTheme(
+      inputDecorationTheme: const InputDecorationTheme(
         filled: true,
-        fillColor: Theme.of(context).disabledColor,
         isDense: true,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+        contentPadding: EdgeInsets.symmetric(horizontal: 15),
       ),
       onSelected: onSelected,
     );

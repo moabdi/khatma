@@ -65,15 +65,18 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       mainAxisSize: MainAxisSize.min,
       children: [
         _buildListView(),
+        gapH12,
         AnimatedSize(
           curve: Curves.ease,
           duration: const Duration(milliseconds: 600),
-          child: Padding(
+          child: Container(
+            color: Colors.blueGrey[50],
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: _buildForm(),
           ),
         ),
-        const Divider(indent: .2),
+        const Divider(height: 1),
+        gapH12,
         buildSave(),
         gapH32,
       ],
@@ -109,6 +112,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     }
     return Column(
       children: [
+        gapH12,
         DateField(
           label: AppLocalizations.of(context).startDate.withColon,
           value: updatedRecurrence.startDate,
@@ -128,6 +132,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         gapH12,
         _recurrence(),
+        gapH12,
       ],
     );
   }

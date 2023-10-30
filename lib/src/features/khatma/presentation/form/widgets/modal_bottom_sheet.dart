@@ -36,6 +36,7 @@ class ModalBottomSheet extends StatelessWidget {
           ),
           gapH12,
           child,
+          gapH20,
         ],
       ),
     );

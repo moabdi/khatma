@@ -28,7 +28,6 @@ class NumberDropdownMenu extends StatelessWidget {
       dropdownMenuEntries: entries,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Theme.of(context).disabledColor,
         isDense: true,
         contentPadding: const EdgeInsets.symmetric(horizontal: 15),
       ),
