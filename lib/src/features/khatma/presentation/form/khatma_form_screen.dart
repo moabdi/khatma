@@ -30,8 +30,6 @@ class AddKhatmaScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).newKhatma),
       ),
-      floatingActionButton: _saveButton(context, ref),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: SingleChildScrollView(
           child: FocusScope(
@@ -54,8 +52,9 @@ class AddKhatmaScreen extends ConsumerWidget {
                     _buildRecurrence(khatma, ref, context),
                     gapH20,
                     _buildShare(context, khatma, ref),
+                    gapH48,
+                    _saveButton(context, ref),
                     gapH64,
-                    gapH20,
                   ],
                 ),
               ),
@@ -173,20 +172,13 @@ class AddKhatmaScreen extends ConsumerWidget {
   }
 
   _saveButton(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: SizedBox(
-        width: double.infinity,
-        height: 45,
-        child: FloatingActionButton.extended(
-          backgroundColor: AppTheme.getTheme().primaryColor,
-          isExtended: true,
-          materialTapTargetSize: MaterialTapTargetSize.padded,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          label: Text(AppLocalizations.of(context).save),
-        ),
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Text(AppLocalizations.of(context).save),
       ),
     );
   }

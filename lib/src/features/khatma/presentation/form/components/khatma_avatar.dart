@@ -30,7 +30,7 @@ class KhatmaAvatar extends StatelessWidget {
           child: CircleAvatar(
             radius: 10,
             backgroundColor: HexColor(style.color),
-            child: const Icon(Icons.edit, size: 12),
+            child: const Icon(Icons.brush, size: 12),
           ),
         ),
       ]),
