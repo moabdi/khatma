@@ -7,6 +7,7 @@ import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_unit_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/common/number_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -70,7 +71,6 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
           curve: Curves.ease,
           duration: const Duration(milliseconds: 600),
           child: Container(
-            color: Colors.blueGrey[50],
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: _buildForm(),
           ),
@@ -84,9 +84,9 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   }
 
   Widget _buildListView() {
-    return ListView.separated(
-      separatorBuilder: (context, index) => const SizedBox(),
+    return ListView.builder(
       shrinkWrap: true,
+      padding: const EdgeInsets.all(0),
       itemCount: KhatmaScheduler.values.length,
       itemBuilder: (context, index) {
         KhatmaScheduler scheduler = KhatmaScheduler.values[index];
@@ -113,25 +113,30 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
     return Column(
       children: [
         gapH12,
-        DateField(
-          label: AppLocalizations.of(context).startDate.withColon,
+        DatePickerListTile(
+          leading: const Icon(Icons.today),
           value: updatedRecurrence.startDate,
           onChanged: (value) => ref
               .read(formRecurrenceProvider)
-              .updateRecurrence(
-                  updatedRecurrence.copyWith(startDate: parse(value))),
+              .updateRecurrence(updatedRecurrence.copyWith(startDate: value)),
         ),
         gapH12,
-        DateField(
-          label: AppLocalizations.of(context).endDate.withColon,
+        DatePickerListTile(
+          leading: const Icon(Icons.event_available),
           value: updatedRecurrence.endDate,
-          onChanged: (value) => {
-            ref.read(formRecurrenceProvider).updateRecurrence(
-                updatedRecurrence.copyWith(endDate: parse(value)))
-          },
+          onChanged: (value) => ref
+              .read(formRecurrenceProvider)
+              .updateRecurrence(updatedRecurrence.copyWith(endDate: value)),
         ),
         gapH12,
-        _recurrence(),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Theme.of(context).disabledColor,
+          ),
+          padding: EdgeInsets.all(5),
+          child: _recurrence(),
+        ),
         gapH12,
       ],
     );
@@ -147,7 +152,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       children: [
         Text(
           AppLocalizations.of(context).repeatEvery.withColon,
-          style: AppTheme.getTheme().textTheme.titleSmall,
+          style: AppTheme.getTheme().textTheme.labelMedium,
         ),
         gapW12,
         Flexible(
@@ -179,18 +184,15 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: Align(
-        alignment: Alignment.bottomRight,
-        child: ElevatedButton(
-            onPressed: isChanged
-                ? () {
-                    widget
-                        .onSelect(ref.read(formRecurrenceProvider).recurrence);
-                    Navigator.pop(context);
-                  }
-                : null,
-            child: Text(AppLocalizations.of(context).apply)),
-      ),
+      width: double.infinity,
+      child: ElevatedButton(
+          onPressed: isChanged
+              ? () {
+                  widget.onSelect(ref.read(formRecurrenceProvider).recurrence);
+                  Navigator.pop(context);
+                }
+              : null,
+          child: Text(AppLocalizations.of(context).apply)),
     );
   }
 }

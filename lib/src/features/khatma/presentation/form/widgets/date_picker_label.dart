@@ -22,7 +22,7 @@ class DateField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTheme.getTheme().textTheme.titleSmall,
+          style: AppTheme.getTheme().textTheme.labelSmall,
         ),
         const SizedBox(width: 10),
         Expanded(

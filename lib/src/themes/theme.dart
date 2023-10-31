@@ -86,6 +86,7 @@ class AppTheme {
         canvasColor: Colors.white,
         disabledColor: HexColor("F5F5F8"),
         buttonTheme: ButtonThemeData(
+          height: 45,
           colorScheme: const ColorScheme.light().copyWith(
             primary: primaryColor,
             secondary: primaryColor,
@@ -151,12 +152,13 @@ class AppTheme {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: primaryColor,
+            fixedSize: const Size(double.infinity, 45),
+            backgroundColor: primaryColors,
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            textStyle: textTheme.titleSmall!.copyWith(
+            textStyle: textTheme.titleLarge!.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),

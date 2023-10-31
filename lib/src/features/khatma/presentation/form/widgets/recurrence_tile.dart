@@ -20,20 +20,19 @@ class RecurrenceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isSelected = selectedValue == value;
 
-    return ListTile(
-        tileColor: isSelected
-            ? AppTheme.getTheme().primaryColor.withOpacity(.1)
-            : null,
-        title: Text(AppLocalizations.of(context).khatmaScheduler(value.name)),
-        subtitle: Text(AppLocalizations.of(context)
-            .khatmaSchedulerDescription(value.name)),
-        leading: icon,
-        onTap: onTap,
-        trailing: isSelected
-            ? Icon(
-                Icons.check,
-                color: AppTheme.getTheme().primaryColor,
-              )
-            : null);
+    return RadioListTile(
+      controlAffinity: ListTileControlAffinity.trailing,
+      selected: isSelected,
+      toggleable: true,
+      groupValue: selectedValue,
+      secondary: icon,
+      title: Text(AppLocalizations.of(context).khatmaScheduler(value.name)),
+      subtitle: Text(
+          AppLocalizations.of(context).khatmaSchedulerDescription(value.name)),
+      value: value,
+      onChanged: (KhatmaScheduler? value) {
+        onTap.call();
+      },
+    );
   }
 }
