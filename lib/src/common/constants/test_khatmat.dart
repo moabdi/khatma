@@ -48,7 +48,8 @@ var kTestKhatmat = [
   Khatma(
     id: '3',
     name: 'Khatma Mensuel',
-    description: 'Hizeb raatib',
+    description:
+        'This code provides a basic setup to create two buttons. The first button is a filled button with an upgrade icon, and the second one is an outlined button with a heart icon. Adjustments can be made based on your exact design and requirements',
     unit: SplitUnit.sourat,
     completedParts: [
       1,

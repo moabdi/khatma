@@ -152,16 +152,15 @@ class AppTheme {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            fixedSize: const Size(double.infinity, 45),
-            backgroundColor: primaryColors,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            textStyle: textTheme.titleLarge!.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+              fixedSize: const Size(double.infinity, 25),
+              backgroundColor: primaryColors,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              textStyle: textTheme.bodySmall!.copyWith(
+                fontWeight: FontWeight.w600,
+              )),
         ),
         colorScheme: colorScheme.copyWith(background: HexColor("F5F5F8")),
         dropdownMenuTheme: DropdownMenuThemeData(

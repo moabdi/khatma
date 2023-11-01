@@ -42,7 +42,7 @@ class PartTile extends ConsumerWidget {
       trailing: CircleAvatar(
         backgroundColor: color.withOpacity(.2),
         child: IconButton(
-          icon: const Icon(FontAwesomeIcons.book),
+          icon: const Icon(Icons.auto_stories, size: 18),
           color: color,
           onPressed: () => handleOnTap(context),
         ),
