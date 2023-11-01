@@ -23,7 +23,23 @@ class Avatar extends StatelessWidget {
     return CircleAvatar(
       radius: radius,
       backgroundColor: backgroundColor,
-      child: child,
+      child: Stack(
+        children: [
+          Padding(
+            padding: padding,
+            child: child,
+          ),
+          if (bottom != null)
+            Align(
+              alignment: Alignment.bottomRight,
+              child: CircleAvatar(
+                radius: bottom!.radius != radius ? bottom!.radius : 10,
+                backgroundColor: bottom!.backgroundColor,
+                child: bottom!.child,
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

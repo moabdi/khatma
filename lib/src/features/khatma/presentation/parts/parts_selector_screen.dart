@@ -29,7 +29,12 @@ class PartSelectorScreen extends ConsumerWidget {
           floatingActionButton: PartFloatingButton(khatmaId: khatma.id),
           body: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  khatma.name,
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
                 Card(
                   elevation: 0.4,
                   clipBehavior: Clip.antiAlias,
