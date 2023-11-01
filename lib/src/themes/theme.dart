@@ -116,6 +116,9 @@ class AppTheme {
         listTileTheme: ListTileThemeData(
           dense: true,
           style: ListTileStyle.list,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
           selectedColor: primaryColor,
           tileColor: Colors.white,
           selectedTileColor: primaryColor.withOpacity(0.13),

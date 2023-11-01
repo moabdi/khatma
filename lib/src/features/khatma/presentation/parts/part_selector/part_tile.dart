@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
@@ -27,7 +26,10 @@ class PartTile extends ConsumerWidget {
     return ListTile(
       dense: true,
       enabled: !isRead,
+      splashColor: color.withOpacity(.2),
       selected: isSelected,
+      selectedColor: color,
+      selectedTileColor: color.withOpacity(.1),
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       minVerticalPadding: 0,
       onTap: () => toggleSelection(ref),

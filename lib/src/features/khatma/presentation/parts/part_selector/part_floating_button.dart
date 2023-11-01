@@ -3,14 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class PartFloatingButton extends StatelessWidget {
   const PartFloatingButton({
     super.key,
     this.khatmaId,
+    required this.color,
   });
   final String? khatmaId;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,12 @@ class PartFloatingButton extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: color ?? Theme.of(context).primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
                 onPressed: () {
                   ref
                       .read(khatmasRepositoryProvider)

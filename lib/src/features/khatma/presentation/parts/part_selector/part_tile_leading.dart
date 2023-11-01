@@ -24,9 +24,13 @@ class PartTileLeading extends StatelessWidget {
           : isSelected
               ? color
               : color.withOpacity(.1),
-      child: Text(part.id.toString(),
-          style:
-              AppTheme.getTheme().textTheme.titleLarge!.copyWith(color: color)),
+      child: Text(
+        part.id.toString(),
+        style: AppTheme.getTheme().textTheme.titleMedium!.copyWith(
+              fontWeight: FontWeight.w600,
+              color: isSelected ? Colors.white : color,
+            ),
+      ),
     );
   }
 }

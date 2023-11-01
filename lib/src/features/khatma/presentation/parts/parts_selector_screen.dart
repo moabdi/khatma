@@ -16,6 +16,8 @@ import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dar
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
   const PartSelectorScreen({super.key, required this.khatmaId});
@@ -52,7 +54,10 @@ class PartSelectorScreen extends ConsumerWidget {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: PartFloatingButton(khatmaId: khatma!.id),
+          floatingActionButton: PartFloatingButton(
+            khatmaId: khatma!.id,
+            color: khatma.style.hexColor,
+          ),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -76,12 +81,33 @@ class PartSelectorScreen extends ConsumerWidget {
                           ),
                         )
                       : const SizedBox.shrink(),
+                  gapH8,
+                  Card(
+                    elevation: 0.5,
+                    clipBehavior: Clip.antiAlias,
+                    child: ExpansionTile(
+                      title: const Text('Completed parts'),
+                      subtitle: const Text('12 parts completed'),
+                      trailing: const Icon(Icons.arrow_drop_down_circle),
+                      children: <Widget>[
+                        ReadPartTiles(
+                          unit: khatma.unit,
+                          color: khatma.style.hexColor,
+                          completedParts: khatma.completedParts,
+                        ),
+                      ],
+                    ),
+                  ),
                   Card(
                     elevation: 0.4,
                     clipBehavior: Clip.antiAlias,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: buildBody(khatma),
+                      child: UnreadPartTiles(
+                        unit: khatma.unit,
+                        color: khatma.style.hexColor,
+                        completedParts: khatma.completedParts,
+                      ),
                     ),
                   ),
                   gapH64,
@@ -91,35 +117,6 @@ class PartSelectorScreen extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Consumer buildBody(Khatma khatma) {
-    return Consumer(
-      builder: (context, ref, _) {
-        final partsListValue = ref.watch(partsListFutureProvider(khatma!.unit));
-        List<int> selectedParts = ref.watch(selectedItemsNotifier);
-        return AsyncValueWidget<List<Part>>(
-          value: partsListValue,
-          data: (parts) => ListView.separated(
-            shrinkWrap: true,
-            primary: false,
-            separatorBuilder: (context, index) => const Divider(height: 2),
-            itemCount: parts.length,
-            itemBuilder: (BuildContext context, int index) {
-              var part = parts[index];
-              var isRead = khatma.completedParts != null &&
-                  khatma.completedParts!.contains(part.id);
-              return PartTile(
-                part,
-                selectedParts: selectedParts,
-                isRead: isRead,
-                color: khatma.style.hexColor,
-              );
-            },
-          ),
-        );
-      },
     );
   }
 
