@@ -24,28 +24,32 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: CircleAvatar(
-        radius: radius,
-        backgroundColor: backgroundColor,
-        child: Stack(
-          children: [
-            Center(
-              child: SizedBox(
-                height: height,
-                width: width,
-                child: FittedBox(child: child),
-              ),
-            ),
-            if (bottom != null)
-              Align(
-                alignment: Alignment.bottomRight,
-                child: CircleAvatar(
-                  radius: bottom!.radius != radius ? bottom!.radius : 10,
-                  backgroundColor: bottom!.backgroundColor,
-                  child: bottom!.child,
+      borderRadius: BorderRadius.circular(50),
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: CircleAvatar(
+          radius: radius,
+          backgroundColor: backgroundColor,
+          child: Stack(
+            children: [
+              Center(
+                child: SizedBox(
+                  height: height,
+                  width: width,
+                  child: FittedBox(child: child),
                 ),
-              )
-          ],
+              ),
+              if (bottom != null)
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: CircleAvatar(
+                    radius: bottom!.radius != radius ? bottom!.radius : 10,
+                    backgroundColor: bottom!.backgroundColor,
+                    child: bottom!.child,
+                  ),
+                )
+            ],
+          ),
         ),
       ),
     );
