@@ -7,8 +7,10 @@ class DatePickerListTile extends StatefulWidget {
     required this.value,
     required this.onChanged,
     required this.leading,
+    required this.title,
   });
 
+  final String title;
   final DateTime value;
   final Icon leading;
   final ValueChanged<DateTime> onChanged;
@@ -40,7 +42,7 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
       ),
       child: ListTile(
         dense: true,
-        title: const Text('Select a Date'),
+        title: Text(widget.title),
         subtitle: Text(widget.value.format()),
         onTap: () {
           _selectDate(context);

@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 LinkedHashMap<String, Color> khatmaColorMap =
@@ -22,3 +23,7 @@ LinkedHashMap<String, Color> khatmaColorMap =
 });
 
 List<String> khatmaColorHexList = khatmaColorMap.keys.toList();
+
+extension ColorExtension on KhatmaStyle {
+  Color get hexColor => HexColor(color);
+}

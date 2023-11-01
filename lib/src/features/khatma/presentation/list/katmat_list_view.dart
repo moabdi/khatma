@@ -40,6 +40,7 @@ class KhatmatListView extends ConsumerWidget {
       itemBuilder: (_, index) {
         final khatma = khatmat[index];
         return Card(
+          elevation: 0.4,
           clipBehavior: Clip.antiAlias,
           child: KhatmaTile(
             khatma: khatma,

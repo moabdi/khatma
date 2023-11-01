@@ -2,16 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class NumberDropdownMenu extends StatelessWidget {
-  NumberDropdownMenu({super.key, this.selectedUnit, this.onSelected});
+  const NumberDropdownMenu({
+    super.key,
+    this.initialValue,
+    this.maxValue = 10,
+    this.minValue = 1,
+    this.width = 90,
+    this.onSelected,
+  });
 
-  final int? selectedUnit;
+  final int? initialValue;
+  final int maxValue;
+  final int minValue;
+  final double width;
   final Function(int?)? onSelected;
-  final TextEditingController unitController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final List<DropdownMenuEntry<int>> entries = <DropdownMenuEntry<int>>[];
-    for (int unit = 1; unit <= 10; unit++) {
+    for (int unit = minValue; unit <= maxValue; unit++) {
       entries.add(
         DropdownMenuEntry<int>(
           value: unit,
@@ -21,15 +30,14 @@ class NumberDropdownMenu extends StatelessWidget {
     }
 
     return DropdownMenu<int>(
-      width: 90,
+      width: width,
       textStyle: AppTheme.getTheme().textTheme.titleSmall,
-      initialSelection: selectedUnit ?? 1,
-      controller: unitController,
+      initialSelection: initialValue ?? 1,
       dropdownMenuEntries: entries,
-      inputDecorationTheme: InputDecorationTheme(
+      inputDecorationTheme: const InputDecorationTheme(
         filled: true,
         isDense: true,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+        contentPadding: EdgeInsets.symmetric(horizontal: 15),
       ),
       onSelected: onSelected,
     );

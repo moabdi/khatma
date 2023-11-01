@@ -5,9 +5,9 @@ import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_unit_menu.dart';
-import 'package:khatma/src/features/khatma/presentation/common/number_menu.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_label.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/date_picker_tile.dart';
+import 'package:khatma/src/common/widgets/number_menu.dart';
+import 'package:khatma/src/common/widgets/date_picker_label.dart';
+import 'package:khatma/src/common/widgets/date_picker_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/recurrence_tile.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -114,6 +114,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
       children: [
         gapH12,
         DatePickerListTile(
+          title: AppLocalizations.of(context).startDate,
           leading: const Icon(Icons.today),
           value: updatedRecurrence.startDate,
           onChanged: (value) => ref
@@ -122,6 +123,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         gapH12,
         DatePickerListTile(
+          title: AppLocalizations.of(context).endDate,
           leading: const Icon(Icons.event_available),
           value: updatedRecurrence.endDate,
           onChanged: (value) => ref
@@ -157,7 +159,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         gapW12,
         Flexible(
           child: NumberDropdownMenu(
-              selectedUnit:
+              initialValue:
                   ref.read(formRecurrenceProvider).recurrence.occurrence,
               onSelected: (value) {
                 ref.read(formRecurrenceProvider).updateRecurrence(

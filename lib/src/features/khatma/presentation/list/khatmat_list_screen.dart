@@ -1,7 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/drawer/main_drawer.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/list/katmat_list_view.dart';
@@ -18,7 +17,7 @@ class KhatmatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("#f7fcfd"),
+      backgroundColor: Colors.white,
       drawer: const MainDrawer(),
       appBar: KAppBar(title: AppLocalizations.of(context).appTitle),
       body: SingleChildScrollView(
@@ -29,24 +28,48 @@ class KhatmatListScreen extends StatelessWidget {
               const TopCard(),
               gapH20,
               const Divider(height: 0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context).khatmaList.withColon,
-                    style: AppTheme.getTheme().textTheme.bodyLarge,
-                  ),
-                  IconButton(
-                      icon: Icon(
-                        Icons.add_circle,
-                        color: AppTheme.primaryColors,
-                        size: 32,
-                      ),
-                      onPressed: () => {context.goNamed(AppRoute.khatma.name)}),
-                ],
-              ),
               gapH8,
-              const KhatmatListView(),
+              Container(
+                decoration: BoxDecoration(
+                  color: HexColor("#f7fcfd"),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context).khatmaList,
+                          style: AppTheme.getTheme().textTheme.titleSmall,
+                        ),
+                        IconButton(
+                            icon: Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: AppTheme.getTheme()
+                                    .primaryColor
+                                    .withOpacity(.2),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Icon(
+                                Icons.add_circle,
+                                color: AppTheme.primaryColors,
+                                size: 24,
+                              ),
+                            ),
+                            onPressed: () =>
+                                {context.goNamed(AppRoute.khatma.name)}),
+                      ],
+                    ),
+                    gapH8,
+                    const KhatmatListView(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -84,75 +107,6 @@ class KhatmatListScreen extends StatelessWidget {
           else if (value == 2)
             {context.goNamed(AppRoute.khatma.name)}
         },
-      ),
-    );
-  }
-}
-
-class ThemeTextStyle extends StatelessWidget {
-  const ThemeTextStyle({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Display Large Text",
-            style: Theme.of(context).textTheme.displayLarge,
-          ),
-          Text(
-            "Display Medium Text",
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          Text(
-            "Display Small Text",
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
-          Text(
-            "Headline Medium Text",
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-          Text(
-            "Headline Small Text",
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          Text(
-            "Title Large Text",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          Text(
-            "Title Medium Text",
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          Text(
-            "Title Small Text",
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-          Text(
-            "Body Large Text",
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          Text(
-            "Body Medium Text",
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          Text(
-            "Label Large Text",
-            style: Theme.of(context).textTheme.labelLarge,
-          ),
-          Text(
-            "Body Small Text",
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-          Text(
-            "Label Small Text",
-            style: Theme.of(context).textTheme.labelSmall,
-          ),
-        ],
       ),
     );
   }

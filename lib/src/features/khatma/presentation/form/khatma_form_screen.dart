@@ -3,16 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
+import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/khatma_avatar.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/modal_bottom_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/unit_selector.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
   const AddKhatmaScreen({super.key});
@@ -67,7 +68,17 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   Widget _buildAvatar(BuildContext context, Khatma khatma, WidgetRef ref) {
     return Center(
-      child: InkWell(
+      child: Avatar(
+        backgroundColor: khatma.style.hexColor.withOpacity(.2),
+        bottom: Avatar(
+          radius: 10,
+          backgroundColor: khatma.style.hexColor,
+          child: const Icon(Icons.brush, size: 12),
+        ),
+        child: getImage(
+          khatma.style.icon,
+          color: khatma.style.hexColor,
+        ),
         onTap: () => _showModal(
             context,
             KhatmaStyleSelector(
@@ -77,7 +88,6 @@ class AddKhatmaScreen extends ConsumerWidget {
               ),
             ),
             AppLocalizations.of(context).chooseKhatmaStyle.withColon),
-        child: KhatmaAvatar(style: khatma.style),
       ),
     );
   }

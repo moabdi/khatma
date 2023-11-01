@@ -5,6 +5,7 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/data/parts_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class KhatmaCompletude extends ConsumerWidget {
@@ -44,8 +45,7 @@ class KhatmaCompletude extends ConsumerWidget {
           gapH4,
           LinearProgressIndicator(
             backgroundColor: AppTheme.getTheme().disabledColor,
-            valueColor:
-                AlwaysStoppedAnimation<Color>(khatma.style.color.toColor()),
+            valueColor: AlwaysStoppedAnimation<Color>(khatma.style.hexColor),
             value: khatma.completude,
           ),
         ],

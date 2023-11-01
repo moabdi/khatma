@@ -5,6 +5,7 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/enum_extension.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'khatma_completude.dart';
@@ -22,14 +23,13 @@ class KhatmaTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      hoverColor: khatma.style.color.toColor().withOpacity(.1),
+      hoverColor: khatma.style.hexColor.withOpacity(.1),
       contentPadding: const EdgeInsets.all(10),
       leading: CircleAvatar(
-        backgroundColor: khatma.style.color.toColor().withOpacity(.1),
+        backgroundColor: khatma.style.hexColor.withOpacity(.1),
         child: Padding(
           padding: const EdgeInsets.all(2.0),
-          child:
-              getImage(khatma.style.icon, color: khatma.style.color.toColor()),
+          child: getImage(khatma.style.icon, color: khatma.style.hexColor),
         ),
       ),
       title: Column(
@@ -65,7 +65,7 @@ class KhatmaTile extends StatelessWidget {
                   style: AppTheme.getTheme().textTheme.bodySmall),
             ],
           ),
-          gapH12,
+          gapH8,
           KhatmaCompletude(khatma: khatma),
         ],
       ),

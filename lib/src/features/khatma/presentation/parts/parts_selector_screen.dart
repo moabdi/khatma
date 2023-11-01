@@ -8,9 +8,9 @@ import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
   const PartSelectorScreen({super.key, required this.khatmaId});
@@ -62,7 +62,7 @@ class PartSelectorScreen extends ConsumerWidget {
                 part,
                 selectedParts: selectedParts,
                 isRead: isRead,
-                color: khatma.style.color.toColor(),
+                color: khatma.style.hexColor,
               );
             },
           ),
@@ -73,7 +73,7 @@ class PartSelectorScreen extends ConsumerWidget {
 
   KAppBar buildAppBar(Khatma khatma, BuildContext context) {
     return KAppBar(
-      backgroundColor: khatma.style.color.toColor().withOpacity(.3),
+      backgroundColor: khatma.style.hexColor.withOpacity(.3),
       title: khatma.name,
       leading: IconButton(
         icon: const Icon(Icons.chevron_left),
