@@ -4,19 +4,17 @@ class Avatar extends StatelessWidget {
   const Avatar({
     super.key,
     this.radius = 40,
-    this.width = 50,
-    this.height = 50,
     this.backgroundColor = Colors.transparent,
+    this.padding = const EdgeInsets.all(8),
     this.child,
     this.bottom,
     this.onTap,
   });
 
   final double radius;
-  final double width;
-  final double height;
-  final Widget? child;
   final Color backgroundColor;
+  final EdgeInsetsGeometry padding;
+  final Widget? child;
   final Avatar? bottom;
   final GestureTapCallback? onTap;
 
@@ -32,12 +30,9 @@ class Avatar extends StatelessWidget {
           backgroundColor: backgroundColor,
           child: Stack(
             children: [
-              Center(
-                child: SizedBox(
-                  height: height,
-                  width: width,
-                  child: FittedBox(child: child),
-                ),
+              Padding(
+                padding: padding,
+                child: child,
               ),
               if (bottom != null)
                 Align(
@@ -47,7 +42,7 @@ class Avatar extends StatelessWidget {
                     backgroundColor: bottom!.backgroundColor,
                     child: bottom!.child,
                   ),
-                )
+                ),
             ],
           ),
         ),
