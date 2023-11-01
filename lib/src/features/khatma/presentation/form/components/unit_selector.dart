@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/widgets/radio_icon.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
@@ -20,22 +21,14 @@ class UnitSelector extends StatelessWidget {
             var currentUnit = SplitUnit.values[index];
             var selected = unit == currentUnit;
             return ListTile(
-              tileColor: selected
-                  ? AppTheme.getTheme().primaryColor.withOpacity(.1)
-                  : null,
+              selected: selected,
               title: Text(AppLocalizations.of(context)
                   .khatmaSplitUnit(currentUnit.name)),
               subtitle: Text(AppLocalizations.of(context)
                   .khatmaSplitUnitDesc(currentUnit.name)),
               leading: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Icon(
-                  selected ? Icons.check_circle_rounded : Icons.circle_outlined,
-                  size: 32,
-                  color: selected
-                      ? AppTheme.getTheme().primaryColor
-                      : AppTheme.getTheme().dividerColor,
-                ),
+                child: RadioIcon(selected: selected),
               ),
               onTap: () {
                 Navigator.pop(context);

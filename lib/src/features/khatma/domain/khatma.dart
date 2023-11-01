@@ -50,6 +50,7 @@ enum SplitUnit {
   sourat(114),
   juzz(30),
   hizb(60),
+  half(120),
   rubue(240),
   thumun(480);
 

@@ -22,7 +22,6 @@ class KhatmaIconPicker extends StatelessWidget {
 
     return GridView.builder(
       shrinkWrap: true,
-      physics: BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: columns,
         crossAxisSpacing: 3,

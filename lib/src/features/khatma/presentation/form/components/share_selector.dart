@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/widgets/radio_icon.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -52,25 +53,16 @@ class ShareTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        tileColor:
-            selected ? AppTheme.getTheme().primaryColor.withOpacity(.1) : null,
-        title: Text(
-            AppLocalizations.of(context).khatmaShareType(currentUnit.name)),
-        subtitle: Text(AppLocalizations.of(context)
-            .khatmaShareTypeDescription(currentUnit.name)),
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: icon,
-        ),
-        onTap: () {
-          Navigator.pop(context);
-          onSelect(currentUnit);
-        },
-        trailing: selected
-            ? Icon(
-                Icons.check,
-                color: AppTheme.getTheme().primaryColor,
-              )
-            : null);
+      selected: selected,
+      title:
+          Text(AppLocalizations.of(context).khatmaShareType(currentUnit.name)),
+      subtitle: Text(AppLocalizations.of(context)
+          .khatmaShareTypeDescription(currentUnit.name)),
+      onTap: () {
+        Navigator.pop(context);
+        onSelect(currentUnit);
+      },
+      leading: RadioIcon(selected: selected),
+    );
   }
 }
