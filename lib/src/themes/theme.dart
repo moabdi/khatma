@@ -108,7 +108,7 @@ class AppTheme {
               textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w100),
         ),
         dividerTheme: DividerThemeData(
-          color: Colors.grey[300],
+          color: Colors.blueGrey[50],
           thickness: 1,
           endIndent: 1,
           indent: 1,
@@ -217,12 +217,12 @@ class AppTheme {
         brightness: ThemeData.dark().brightness,
         labelStyle: const TextStyle(),
       ),
-      dividerTheme: DividerThemeData(
-        color: Colors.grey[500],
-        thickness: 1,
-        endIndent: 1,
-        indent: 1,
-      ),
+      dividerTheme: const DividerThemeData(
+          color: Colors.blueGrey,
+          thickness: .5,
+          endIndent: .5,
+          indent: .5,
+          space: 0),
       inputDecorationTheme: const InputDecorationTheme(
         filled: true,
       ),

@@ -24,7 +24,7 @@ class KhatmaTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       hoverColor: khatma.style.hexColor.withOpacity(.1),
-      contentPadding: const EdgeInsets.all(10),
+      contentPadding: const EdgeInsets.all(5),
       leading: CircleAvatar(
         backgroundColor: khatma.style.hexColor.withOpacity(.1),
         child: Padding(
@@ -51,6 +51,7 @@ class KhatmaTile extends StatelessWidget {
               ),
             ],
           ),
+          gapH4,
           Row(
             children: [
               Icon(

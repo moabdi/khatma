@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_leading.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_subtitle.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_title.dart';
-import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 class PartTile extends ConsumerWidget {
@@ -25,13 +25,28 @@ class PartTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool isSelected = selectedParts!.contains(part.id);
     return ListTile(
+      dense: true,
       enabled: !isRead,
       selected: isSelected,
+      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+      minVerticalPadding: 0,
       onTap: () => toggleSelection(ref),
       leading: PartTileLeading(
-          isRead: isRead, isSelected: isSelected, part: part, color: color),
+        isRead: isRead,
+        isSelected: isSelected,
+        part: part,
+        color: color,
+      ),
       title: PartTileTitle(part: part, isRead: isRead),
       subtitle: PartTileSubtitle(part: part),
+      trailing: CircleAvatar(
+        backgroundColor: color.withOpacity(.2),
+        child: IconButton(
+          icon: const Icon(FontAwesomeIcons.book),
+          color: color,
+          onPressed: () => handleOnTap(context),
+        ),
+      ),
     );
   }
 

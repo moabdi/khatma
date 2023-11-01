@@ -22,33 +22,11 @@ class KhatmaCompletude extends ConsumerWidget {
     // for visibility
     return AsyncValueWidget<List<Part>>(
       value: partsList,
-      data: (parts) => Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                parts[khatma.nextPartToRead - 1].title.toString(),
-                style: AppTheme.getTheme().textTheme.labelSmall,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                khatma.completude <= 0
-                    ? ""
-                    : "${(khatma.completude * 100).toStringAsFixed(0)}%",
-                style: AppTheme.getTheme().textTheme.labelSmall,
-              ),
-            ],
-          ),
-          gapH4,
-          LinearProgressIndicator(
-            backgroundColor: AppTheme.getTheme().disabledColor,
-            valueColor: AlwaysStoppedAnimation<Color>(khatma.style.hexColor),
-            value: khatma.completude,
-          ),
-        ],
+      data: (parts) => LinearProgressIndicator(
+        borderRadius: BorderRadius.circular(10),
+        backgroundColor: AppTheme.getTheme().disabledColor,
+        valueColor: AlwaysStoppedAnimation<Color>(khatma.style.hexColor),
+        value: khatma.completude,
       ),
     );
   }

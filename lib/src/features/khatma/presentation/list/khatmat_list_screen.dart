@@ -17,7 +17,6 @@ class KhatmatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       drawer: const MainDrawer(),
       appBar: KAppBar(title: AppLocalizations.of(context).appTitle),
       body: SingleChildScrollView(
@@ -31,10 +30,10 @@ class KhatmatListScreen extends StatelessWidget {
               gapH8,
               Container(
                 decoration: BoxDecoration(
-                  color: HexColor("#f7fcfd"),
+                  color: Theme.of(context).primaryColor.withOpacity(.1),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +43,10 @@ class KhatmatListScreen extends StatelessWidget {
                       children: [
                         Text(
                           AppLocalizations.of(context).khatmaList,
-                          style: AppTheme.getTheme().textTheme.titleSmall,
+                          style:
+                              AppTheme.getTheme().textTheme.bodySmall!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         IconButton(
                             icon: Container(

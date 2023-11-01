@@ -18,22 +18,18 @@ class PartFloatingButton extends StatelessWidget {
       final selectedParts = ref.watch(selectedItemsNotifier);
       return CollectionUtils.isEmpty(selectedParts)
           ? Container()
-          : FloatingActionButton.extended(
-              extendedTextStyle: AppTheme.getTheme().textTheme.titleMedium,
-              onPressed: () {
-                ref
-                    .read(khatmasRepositoryProvider)
-                    .masrAsReadParts(khatmaId, selectedParts);
-                ref.read(selectedItemsNotifier.notifier).initSelection([]);
-              },
-              label: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  'Marquer comme lu (${selectedParts.length})',
-                ),
+          : Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+              child: ElevatedButton(
+                onPressed: () {
+                  ref
+                      .read(khatmasRepositoryProvider)
+                      .masrAsReadParts(khatmaId, selectedParts);
+                  ref.read(selectedItemsNotifier.notifier).initSelection([]);
+                },
+                child: Text('Marquer comme lu (${selectedParts.length})'),
               ),
-              icon: const Icon(Icons.check),
-              backgroundColor: AppTheme.getTheme().primaryColor,
             );
     });
   }

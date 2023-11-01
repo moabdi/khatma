@@ -15,15 +15,15 @@ class PartTileSubtitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SafeText(
           part.subtitle,
           style: AppTheme.getTheme().textTheme.bodySmall,
         ),
-        SafeText(
-          part.subname,
-          style: AppTheme.getTheme().textTheme.bodySmall,
-        ),
+        //SafeText(
+        //  part.subname,
+        //  style: AppTheme.getTheme().textTheme.bodySmall),
       ],
     );
   }

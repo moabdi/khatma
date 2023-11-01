@@ -30,7 +30,14 @@ class PartSelectorScreen extends ConsumerWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                buildBody(khatma),
+                Card(
+                  elevation: 0.4,
+                  clipBehavior: Clip.antiAlias,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: buildBody(khatma),
+                  ),
+                ),
                 gapH64,
               ],
             ),
@@ -50,9 +57,7 @@ class PartSelectorScreen extends ConsumerWidget {
           data: (parts) => ListView.separated(
             shrinkWrap: true,
             primary: false,
-            separatorBuilder: (context, index) => const Divider(
-              height: 2,
-            ),
+            separatorBuilder: (context, index) => const Divider(height: 2),
             itemCount: parts.length,
             itemBuilder: (BuildContext context, int index) {
               var part = parts[index];
