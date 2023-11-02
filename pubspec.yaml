@@ -38,6 +38,7 @@ dependencies:
   flutter_colorpicker: ^1.0.3
   hexcolor: ^2.0.4
   percent_indicator: ^4.2.3
+  readmore: ^2.2.0
 
 dev_dependencies:
   flutter_test:

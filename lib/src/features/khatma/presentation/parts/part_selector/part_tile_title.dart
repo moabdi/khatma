@@ -22,8 +22,10 @@ class PartTileTitle extends StatelessWidget {
           part.title,
           maxLength: 20,
           style: isRead
-              ? AppTheme.getTheme().textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).textTheme.bodySmall?.color)
+              ? AppTheme.getTheme().textTheme.titleSmall?.copyWith(
+                    color: Theme.of(context).textTheme.bodySmall?.color,
+                    fontSize: 13,
+                  )
               : null,
         ),
         // SafeText(part.name,

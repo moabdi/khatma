@@ -62,113 +62,114 @@ class AppTheme {
 
     TextTheme textTheme = _buildTextTheme(base.textTheme, "Lato");
     return base.copyWith(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        appBarTheme: AppBarTheme(
-          elevation: .2,
-          centerTitle: false,
-          titleTextStyle:
-              textTheme.headlineSmall!.copyWith(color: Colors.black),
-          backgroundColor: Colors.white,
-          iconTheme: base.iconTheme
-              .copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarIconBrightness:
-                Brightness.dark, // For Android (dark icons)
-            statusBarBrightness: Brightness.light, // For iOS (dark icons)
-          ),
+      useMaterial3: true,
+      brightness: Brightness.light,
+      appBarTheme: AppBarTheme(
+        elevation: .2,
+        centerTitle: false,
+        titleTextStyle: textTheme.headlineSmall!.copyWith(color: Colors.black),
+        backgroundColor: Colors.white,
+        iconTheme:
+            base.iconTheme.copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+          statusBarBrightness: Brightness.light, // For iOS (dark icons)
         ),
-        visualDensity: VisualDensity.comfortable,
-        primaryColor: primaryColor,
-        indicatorColor: Colors.white,
-        splashColor: primaryColors.withOpacity(0.2),
-        splashFactory: InkRipple.splashFactory,
-        canvasColor: Colors.white,
-        disabledColor: HexColor("F5F5F8"),
-        buttonTheme: ButtonThemeData(
-          height: 45,
-          colorScheme: const ColorScheme.light().copyWith(
-            primary: primaryColor,
-            secondary: primaryColor,
-          ),
-          textTheme: ButtonTextTheme.primary,
+      ),
+      visualDensity: VisualDensity.comfortable,
+      primaryColor: primaryColor,
+      indicatorColor: Colors.white,
+      splashColor: primaryColors.withOpacity(0.2),
+      splashFactory: InkRipple.splashFactory,
+      canvasColor: Colors.white,
+      disabledColor: HexColor("F5F5F8"),
+      buttonTheme: ButtonThemeData(
+        height: 45,
+        colorScheme: const ColorScheme.light().copyWith(
+          primary: primaryColor,
+          secondary: primaryColor,
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.black,
-          elevation: 20,
+        textTheme: ButtonTextTheme.primary,
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.black,
+        elevation: 20,
+      ),
+      textTheme: textTheme,
+      primaryTextTheme: _buildTextTheme(base.textTheme, "Lato"),
+      platform: TargetPlatform.iOS,
+      chipTheme: ChipThemeData.fromDefaults(
+        secondaryColor: primaryColor,
+        brightness: ThemeData.light().brightness,
+        labelStyle: textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w100),
+      ),
+      dividerTheme: DividerThemeData(
+        color: Colors.blueGrey[50],
+        thickness: 1,
+        endIndent: 1,
+        indent: 1,
+      ),
+      expansionTileTheme: ExpansionTileThemeData(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        collapsedShape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      listTileTheme: ListTileThemeData(
+        dense: true,
+        style: ListTileStyle.list,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        selectedColor: primaryColor,
+        tileColor: Colors.white,
+        selectedTileColor: primaryColor.withOpacity(0.13),
+        titleTextStyle: textTheme.labelLarge,
+        subtitleTextStyle: textTheme.bodySmall,
+        minLeadingWidth: 4,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.all(15),
+        hintStyle: TextStyle(
+          color: Colors.grey[400],
         ),
-        textTheme: textTheme,
-        primaryTextTheme: _buildTextTheme(base.textTheme, "Lato"),
-        platform: TargetPlatform.iOS,
-        chipTheme: ChipThemeData.fromDefaults(
-          secondaryColor: primaryColor,
-          brightness: ThemeData.light().brightness,
-          labelStyle:
-              textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w100),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1, color: Colors.grey.shade200),
         ),
-        dividerTheme: DividerThemeData(
-          color: Colors.blueGrey[50],
-          thickness: 1,
-          endIndent: 1,
-          indent: 1,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide:
+              BorderSide(width: 1.5, color: primaryColor.withOpacity(.4)),
         ),
-        listTileTheme: ListTileThemeData(
-          dense: true,
-          style: ListTileStyle.list,
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          selectedColor: primaryColor,
-          tileColor: Colors.white,
-          selectedTileColor: primaryColor.withOpacity(0.13),
-          titleTextStyle: textTheme.labelLarge,
-          subtitleTextStyle: textTheme.bodySmall,
-          minLeadingWidth: 4,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding: const EdgeInsets.all(15),
-          hintStyle: TextStyle(
-            color: Colors.grey[400],
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(width: 1, color: Colors.grey.shade200),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide:
-                BorderSide(width: 1.5, color: primaryColor.withOpacity(.4)),
+          textStyle: textTheme.titleSmall!.copyWith(
+            fontWeight: FontWeight.w600,
           ),
         ),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            fixedSize: const Size(double.infinity, 45),
+            backgroundColor: primaryColors,
+            foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(50),
             ),
-            textStyle: textTheme.titleSmall!.copyWith(
+            textStyle: textTheme.bodySmall!.copyWith(
               fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              fixedSize: const Size(double.infinity, 45),
-              backgroundColor: primaryColors,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-              textStyle: textTheme.bodySmall!.copyWith(
-                fontWeight: FontWeight.w600,
-              )),
-        ),
-        colorScheme: colorScheme.copyWith(background: HexColor("F5F5F8")),
-        dropdownMenuTheme: DropdownMenuThemeData(
-          textStyle: textTheme.displaySmall,
-        ));
+            )),
+      ),
+      colorScheme: colorScheme.copyWith(background: HexColor("F5F5F8")),
+      dropdownMenuTheme: DropdownMenuThemeData(
+        textStyle: textTheme.displaySmall,
+      ),
+    );
   }
 
   ListTileThemeData appMaterialLightListTileThemeData = const ListTileThemeData(
