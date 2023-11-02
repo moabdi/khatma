@@ -26,7 +26,7 @@ class PartFloatingButton extends StatelessWidget {
               onPressed: () {
                 ref
                     .read(khatmasRepositoryProvider)
-                    .masrAsReadParts(khatmaId, selectedParts);
+                    .markAsRead(khatmaId, selectedParts);
                 ref.read(selectedItemsNotifier.notifier).initSelection([]);
               },
               child: Text('Marquer comme lu (${selectedParts.length})'),

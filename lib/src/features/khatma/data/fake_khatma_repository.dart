@@ -20,7 +20,6 @@ class FakeKhatmaRepository {
   }
 
   Future<List<Khatma>> fetchKhatmaList() async {
-    await Future.delayed(const Duration(seconds: 1));
     return Future.value(_khatmat);
   }
 
@@ -33,12 +32,14 @@ class FakeKhatmaRepository {
         .map((khatmas) => khatmas.firstWhere((khatma) => khatma.id == id));
   }
 
-  void masrAsReadParts(String? khatmaId, List<int> partIds) {
+  void markAsRead(String? khatmaId, List<int> partIds) {
     if (khatmaId != null) {
       Khatma? khatma = getKhatma(khatmaId);
       List<int> completedParts = khatma!.completedParts ?? [];
-      completedParts.addAll(partIds);
-      khatma.copyWith(completedParts: completedParts);
+      List<int> combinedList = List<int>.from(completedParts, growable: true);
+      combinedList.addAll(partIds);
+      int index = _khatmat.indexWhere((khatma) => khatma.id == khatmaId);
+      _khatmat[index] = khatma.copyWith(completedParts: combinedList);
     }
   }
 }
