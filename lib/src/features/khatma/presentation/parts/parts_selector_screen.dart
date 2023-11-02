@@ -25,34 +25,11 @@ class PartSelectorScreen extends ConsumerWidget {
       body: AsyncValueWidget<Khatma?>(
         value: khatmaValue,
         data: (khatma) => Scaffold(
-          appBar: KAppBar(
-            title: khatma!.name,
-            actions: [
-              Avatar(
-                radius: 20,
-                backgroundColor: Theme.of(context).primaryColor.withOpacity(.3),
-                onTap: null,
-                bottom: Avatar(
-                  radius: 5,
-                  backgroundColor: Theme.of(context).primaryColor,
-                  child: const Icon(Icons.edit, size: 10),
-                ),
-                child: Center(
-                  child: getImage(
-                    khatma.style.icon,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              ),
-              gapW16,
-            ],
-          ),
+          appBar: buildAppBar(khatma!, context),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: PartFloatingButton(
-            khatmaId: khatma.id,
-            color: khatma.style.hexColor,
-          ),
+              khatmaId: khatma.id, color: khatma.style.hexColor),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -71,6 +48,31 @@ class PartSelectorScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  KAppBar buildAppBar(Khatma? khatma, BuildContext context) {
+    return KAppBar(
+      title: khatma!.name,
+      actions: [
+        Avatar(
+          radius: 20,
+          backgroundColor: Theme.of(context).primaryColor.withOpacity(.3),
+          onTap: null,
+          bottom: Avatar(
+            radius: 5,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(Icons.edit, size: 10),
+          ),
+          child: Center(
+            child: getImage(
+              khatma.style.icon,
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+        gapW16,
+      ],
     );
   }
 
@@ -156,29 +158,6 @@ class PartSelectorScreen extends ConsumerWidget {
               )),
       progressColor: Theme.of(context).primaryColor,
       backgroundColor: Theme.of(context).disabledColor,
-    );
-  }
-
-  KAppBar buildAppBar(Khatma khatma, BuildContext context) {
-    return KAppBar(
-      backgroundColor: khatma.style.hexColor.withOpacity(.3),
-      title: khatma.name,
-      leading: IconButton(
-        icon: const Icon(Icons.chevron_left),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-      actions: [
-        IconButton(
-          onPressed: () => {},
-          icon: const Icon(Icons.info_outline_rounded),
-        ),
-        IconButton(
-          onPressed: () => {},
-          icon: const Icon(Icons.edit),
-        ),
-      ],
     );
   }
 }
