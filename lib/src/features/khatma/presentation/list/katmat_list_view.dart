@@ -1,5 +1,7 @@
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/part_list_async_notifier.dart';
+import 'package:khatma/src/features/khatma/data/parts_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/list/khatma_tile.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
@@ -19,7 +21,7 @@ class KhatmatListView extends ConsumerWidget {
       value: khatmatListValue,
       data: (khatmat) => khatmat.isEmpty
           ? buildNoFound(context)
-          : buildKhatmaList(khatmat, context),
+          : buildKhatmaList(khatmat, context, ref),
     );
   }
 
@@ -32,7 +34,8 @@ class KhatmatListView extends ConsumerWidget {
     );
   }
 
-  ListView buildKhatmaList(List<Khatma> khatmat, BuildContext context) {
+  ListView buildKhatmaList(
+      List<Khatma> khatmat, BuildContext context, WidgetRef ref) {
     return ListView.builder(
       shrinkWrap: true,
       primary: false,
@@ -44,10 +47,10 @@ class KhatmatListView extends ConsumerWidget {
           clipBehavior: Clip.antiAlias,
           child: KhatmaTile(
             khatma: khatma,
-            onPressed: () => context.goNamed(
-              AppRoute.khatmaDetails.name,
-              pathParameters: {'id': khatma.id!},
-            ),
+            onPressed: () {
+              context.goNamed(AppRoute.khatmaDetails.name,
+                  pathParameters: {'id': khatma.id!});
+            },
           ),
         );
       },

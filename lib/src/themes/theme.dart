@@ -155,7 +155,7 @@ class AppTheme {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              fixedSize: const Size(double.infinity, 25),
+              fixedSize: const Size(double.infinity, 45),
               backgroundColor: primaryColors,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(

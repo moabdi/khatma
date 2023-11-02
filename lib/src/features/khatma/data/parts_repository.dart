@@ -47,7 +47,7 @@ final partsRepositoryProvider = Provider<PartsRepository>((ref) {
 });
 
 final partsListFutureProvider =
-    FutureProvider.family.autoDispose<List<Part>, SplitUnit>((ref, unit) {
+    FutureProvider.family<List<Part>, SplitUnit>((ref, unit) {
   final khatmasRepository = ref.watch(partsRepositoryProvider);
   switch (unit) {
     case SplitUnit.sourat:

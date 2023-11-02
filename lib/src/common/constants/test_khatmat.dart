@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 var random = Random();
 
@@ -11,9 +10,9 @@ var random = Random();
 var kTestKhatmat = [
   Khatma(
     id: '1',
-    name: 'Khatmati',
+    name: 'Khatmati sourat',
     description: '',
-    unit: SplitUnit.juzz,
+    unit: SplitUnit.sourat,
     completedParts: [1, 2, 3],
     createDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),

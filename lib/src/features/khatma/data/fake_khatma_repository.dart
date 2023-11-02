@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:khatma/src/common/constants/test_khatmat.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -34,10 +36,9 @@ class FakeKhatmaRepository {
   void masrAsReadParts(String? khatmaId, List<int> partIds) {
     if (khatmaId != null) {
       Khatma? khatma = getKhatma(khatmaId);
-      //if (khatma!.completedParts == null) {
-      //  khatma.completedParts = [];
-      //}
-      //khatma.completedParts!.addAll(partIds);
+      List<int> completedParts = khatma!.completedParts ?? [];
+      completedParts.addAll(partIds);
+      khatma.copyWith(completedParts: completedParts);
     }
   }
 }

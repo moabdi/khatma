@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/common/widgets/safe_text.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/data/parts_repository.dart';
-import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
 
@@ -55,7 +48,7 @@ class PartSelectorScreen extends ConsumerWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: PartFloatingButton(
-            khatmaId: khatma!.id,
+            khatmaId: khatma.id,
             color: khatma.style.hexColor,
           ),
           body: SingleChildScrollView(
@@ -82,34 +75,8 @@ class PartSelectorScreen extends ConsumerWidget {
                         )
                       : const SizedBox.shrink(),
                   gapH8,
-                  Card(
-                    elevation: 0.5,
-                    clipBehavior: Clip.antiAlias,
-                    child: ExpansionTile(
-                      title: const Text('Completed parts'),
-                      subtitle: const Text('12 parts completed'),
-                      trailing: const Icon(Icons.arrow_drop_down_circle),
-                      children: <Widget>[
-                        ReadPartTiles(
-                          unit: khatma.unit,
-                          color: khatma.style.hexColor,
-                          completedParts: khatma.completedParts,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Card(
-                    elevation: 0.4,
-                    clipBehavior: Clip.antiAlias,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: UnreadPartTiles(
-                        unit: khatma.unit,
-                        color: khatma.style.hexColor,
-                        completedParts: khatma.completedParts,
-                      ),
-                    ),
-                  ),
+                  newMethod(context, khatma),
+                  newMethodUnread(khatma),
                   gapH64,
                 ],
               ),
@@ -117,6 +84,40 @@ class PartSelectorScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Card newMethodUnread(Khatma khatma) {
+    return Card(
+      elevation: 0.4,
+      clipBehavior: Clip.antiAlias,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: UnReadPartTiles(
+          key: UniqueKey(),
+          unit: khatma.unit,
+          color: khatma.style.hexColor,
+          completedParts: khatma.completedParts,
+        ),
+      ),
+    );
+  }
+
+  Widget newMethod(BuildContext context, Khatma khatma) {
+    return ExpansionTile(
+      backgroundColor: Theme.of(context).cardColor,
+      title: const Text('Completed parts'),
+      subtitle: Text("${khatma.completedParts?.length} parts",
+          style: Theme.of(context).textTheme.bodySmall),
+      trailing: const Icon(Icons.arrow_drop_down_circle),
+      children: <Widget>[
+        ReadPartTiles(
+          key: UniqueKey(),
+          unit: khatma.unit,
+          color: khatma.style.hexColor,
+          completedParts: khatma.completedParts,
+        ),
+      ],
     );
   }
 

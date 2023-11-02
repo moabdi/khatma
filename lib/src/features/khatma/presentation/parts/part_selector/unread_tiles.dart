@@ -7,8 +7,8 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
 
-class UnreadPartTiles extends ConsumerWidget {
-  const UnreadPartTiles({
+class UnReadPartTiles extends ConsumerWidget {
+  const UnReadPartTiles({
     super.key,
     required this.unit,
     required this.color,
@@ -21,23 +21,25 @@ class UnreadPartTiles extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final partsListValue = ref.read(partsListFutureProvider(unit));
-    List<int> selectedParts = ref.watch(selectedItemsNotifier);
-    return AsyncValueWidget<List<Part>>(
-      value: partsListValue,
+    var asyncPartList = ref.watch(partsListFutureProvider(unit));
+    return AsyncValueWidget(
+      value: asyncPartList,
       data: (parts) {
-        parts.removeWhere((part) => completedParts?.contains(part.id) ?? false);
+        List<Part> filtredList =
+            parts.where((part) => !completedParts!.contains(part.id)).toList();
+        List<int> selectedParts = ref.read(selectedItemsNotifier);
         return ListView.separated(
           shrinkWrap: true,
           primary: false,
           separatorBuilder: (context, index) => const Divider(height: 2),
-          itemCount: parts.length,
+          itemCount: filtredList.length,
+          cacheExtent: 10,
           itemBuilder: (BuildContext context, int index) {
-            var part = parts[index];
+            var part = filtredList[index];
+            print('part.id: ${part.id}');
             return PartTile(
               part,
-              selectedParts: selectedParts,
-              isRead: false,
+              selected: selectedParts.contains(part.id),
               color: color,
             );
           },

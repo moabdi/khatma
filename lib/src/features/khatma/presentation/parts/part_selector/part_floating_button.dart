@@ -19,24 +19,17 @@ class PartFloatingButton extends StatelessWidget {
       final selectedParts = ref.watch(selectedItemsNotifier);
       return CollectionUtils.isEmpty(selectedParts)
           ? Container()
-          : Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: color ?? Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                onPressed: () {
-                  ref
-                      .read(khatmasRepositoryProvider)
-                      .masrAsReadParts(khatmaId, selectedParts);
-                  ref.read(selectedItemsNotifier.notifier).initSelection([]);
-                },
-                child: Text('Marquer comme lu (${selectedParts.length})'),
+          : ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color ?? Theme.of(context).primaryColor,
               ),
+              onPressed: () {
+                ref
+                    .read(khatmasRepositoryProvider)
+                    .masrAsReadParts(khatmaId, selectedParts);
+                ref.read(selectedItemsNotifier.notifier).initSelection([]);
+              },
+              child: Text('Marquer comme lu (${selectedParts.length})'),
             );
     });
   }

@@ -25,7 +25,7 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
       context: context,
       initialDate: widget.value,
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 10000)),
+      lastDate: DateTime.now().add(const Duration(days: 10000)),
     );
 
     if (picked != null && picked != widget.value) {
