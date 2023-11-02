@@ -36,7 +36,6 @@ class UnReadPartTiles extends ConsumerWidget {
           cacheExtent: 10,
           itemBuilder: (BuildContext context, int index) {
             var part = filtredList[index];
-            print('part.id: ${part.id}');
             return PartTile(
               part,
               selected: selectedParts.contains(part.id),
