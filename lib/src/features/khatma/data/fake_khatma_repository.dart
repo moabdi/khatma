@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:khatma/src/common/constants/test_khatmat.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 

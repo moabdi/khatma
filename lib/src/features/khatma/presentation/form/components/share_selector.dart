@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/radio_icon.dart';
@@ -14,11 +13,6 @@ class ShareSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Icon> icons = const [
-      Icon(FontAwesomeIcons.lock, color: Colors.orange),
-      Icon(Icons.public, color: Colors.blue),
-      Icon(Icons.group, color: Colors.purple),
-    ];
     return Column(
       children: [
         ListView.separated(

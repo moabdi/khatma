@@ -2,6 +2,7 @@ import 'package:khatma/src/features/authentication/data/fake_auth_repository.dar
 import 'package:khatma/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
+import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/parts_selector_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/list/khatmat_list_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
@@ -49,7 +50,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             path: 'khatma/create',
             name: AppRoute.khatma.name,
             builder: (context, state) {
-              return AddKhatmaScreen();
+              ref.watch(formKhatmaProvider).initialize();
+              return const AddKhatmaScreen();
             },
           ),
           GoRoute(

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
-import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -25,7 +22,7 @@ class PartSelectorScreen extends ConsumerWidget {
     final khatma = ref.watch(formKhatmaProvider).khatma;
 
     return Scaffold(
-      appBar: buildAppBar(khatma!, context),
+      appBar: buildAppBar(khatma, context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton:
           PartFloatingButton(khatmaId: khatma.id, color: khatma.style.hexColor),

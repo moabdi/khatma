@@ -23,29 +23,35 @@ class KhatmaNotifier extends ChangeNotifier {
     _khatma = _khatma.copyWith(completedParts: combinedList);
     notifyListeners();
   }
+
+  void initialize() {
+    _khatma = newKhatma();
+  }
 }
 
 final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
-  return KhatmaNotifier(
-    Khatma(
-      name: '',
-      unit: SplitUnit.hizb,
-      createDate: DateTime.now(),
-      share: KhatmaShareType.private,
-      recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
-        startDate: DateTime.now(),
-        endDate: DateTime.now().add(const Duration(days: 30)),
-        unit: RecurrenceUnit.month,
-        occurrence: 1,
-      ),
-      style: KhatmaStyle(
-        color: AppTheme.getTheme().primaryColor.toHex(),
-        icon: khatmaImagesMap.entries.first.key,
-      ),
+  return KhatmaNotifier(newKhatma());
+});
+
+Khatma newKhatma() {
+  return Khatma(
+    name: '',
+    unit: SplitUnit.hizb,
+    createDate: DateTime.now(),
+    share: KhatmaShareType.private,
+    recurrence: Recurrence(
+      scheduler: KhatmaScheduler.never,
+      startDate: DateTime.now(),
+      endDate: DateTime.now().add(const Duration(days: 30)),
+      unit: RecurrenceUnit.month,
+      occurrence: 1,
+    ),
+    style: KhatmaStyle(
+      color: AppTheme.getTheme().primaryColor.toHex(),
+      icon: khatmaImagesMap.entries.first.key,
     ),
   );
-});
+}
 
 class RecurrenceNotifier extends ChangeNotifier {
   Recurrence _recurrence;
