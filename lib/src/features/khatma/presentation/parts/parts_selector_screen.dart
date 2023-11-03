@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -76,20 +77,17 @@ class PartSelectorScreen extends ConsumerWidget {
     return Card(
       elevation: 0.5,
       clipBehavior: Clip.antiAlias,
-      child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: ListTile(
-          tileColor: Colors.transparent,
-          subtitle: ReadMoreText(
-            khatma.description ?? '',
-            trimLines: 3,
-            style: Theme.of(context).textTheme.bodySmall,
-            colorClickableText: Theme.of(context).primaryColor,
-            trimMode: TrimMode.Line,
-            textAlign: TextAlign.justify,
-            trimCollapsedText: ' > show more',
-            trimExpandedText: ' < show less',
-          ),
+      child: ListTile(
+        tileColor: Colors.transparent,
+        title: ReadMoreText(
+          khatma.description ?? '',
+          trimLines: 3,
+          style: Theme.of(context).textTheme.bodySmall,
+          colorClickableText: Theme.of(context).primaryColor,
+          trimMode: TrimMode.Line,
+          textAlign: TextAlign.justify,
+          trimCollapsedText: AppLocalizations.of(context).showMore,
+          trimExpandedText: AppLocalizations.of(context).showLess,
         ),
       ),
     );
@@ -115,43 +113,49 @@ class PartSelectorScreen extends ConsumerWidget {
     BuildContext context,
     Khatma khatma,
   ) {
-    return Card(
-      elevation: 0.4,
-      clipBehavior: Clip.antiAlias,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ExpansionTile(
-          backgroundColor: Theme.of(context).cardColor,
-          title: const Text('Completed parts'),
-          subtitle: Text("${khatma.completedParts?.length} parts",
-              style: Theme.of(context).textTheme.bodySmall),
-          trailing: const Icon(Icons.arrow_drop_down_circle),
-          leading: buildChart(context, khatma.completude),
-          children: <Widget>[
-            ReadPartTiles(
-              key: UniqueKey(),
-              unit: khatma.unit,
-              color: khatma.style.hexColor,
-              completedParts: khatma.completedParts,
+    return (khatma.completedParts == null ||
+            khatma.completedParts?.isEmpty == true)
+        ? const SizedBox.shrink()
+        : Card(
+            elevation: 0.4,
+            clipBehavior: Clip.antiAlias,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ExpansionTile(
+                backgroundColor: Theme.of(context).cardColor,
+                collapsedBackgroundColor: Colors.blueGrey.withOpacity(.1),
+                title: Text(AppLocalizations.of(context).completedParts),
+                subtitle: Text(
+                    AppLocalizations.of(context)
+                        .readedParts(khatma.completedParts?.length ?? 0),
+                    style: Theme.of(context).textTheme.bodySmall),
+                trailing: const Icon(Icons.arrow_drop_down_circle),
+                leading: buildChart(context, khatma.completude),
+                children: <Widget>[
+                  ReadPartTiles(
+                    key: UniqueKey(),
+                    unit: khatma.unit,
+                    color: khatma.style.hexColor,
+                    completedParts: khatma.completedParts,
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 
   Widget buildChart(BuildContext context, double percent) {
     return CircularPercentIndicator(
       radius: 20.0,
-      lineWidth: 3.5,
+      lineWidth: 4,
       percent: percent,
       center: Text("${(percent * 100).toStringAsFixed(0)}%",
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                fontSize: 9,
+                fontSize: 12,
                 fontWeight: FontWeight.w900,
               )),
       progressColor: Theme.of(context).primaryColor,
-      backgroundColor: Theme.of(context).disabledColor,
+      backgroundColor: Theme.of(context).primaryColor.withOpacity(.2),
     );
   }
 }

@@ -25,8 +25,11 @@ class UnReadPartTiles extends ConsumerWidget {
     return AsyncValueWidget(
       value: asyncPartList,
       data: (parts) {
-        List<Part> filtredList =
-            parts.where((part) => !completedParts!.contains(part.id)).toList();
+        List<Part> filtredList = completedParts == null
+            ? parts
+            : parts
+                .where((part) => !completedParts!.contains(part.id))
+                .toList();
         List<int> selectedParts = ref.read(selectedItemsNotifier);
         return ListView.separated(
           shrinkWrap: true,

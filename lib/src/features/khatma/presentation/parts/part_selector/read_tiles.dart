@@ -23,8 +23,9 @@ class ReadPartTiles extends ConsumerWidget {
     return AsyncValueWidget(
       value: ref.watch(partsListFutureProvider(unit)),
       data: (parts) {
-        List<Part> filtredList =
-            parts.where((part) => completedParts!.contains(part.id)).toList();
+        List<Part> filtredList = completedParts == null
+            ? []
+            : parts.where((part) => completedParts!.contains(part.id)).toList();
 
         return ListView.separated(
           shrinkWrap: true,

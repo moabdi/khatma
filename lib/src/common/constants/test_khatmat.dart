@@ -93,7 +93,7 @@ var kTestKhatmat = [
     id: '4',
     name: 'Mosquée plaisir',
     description: 'Comunité plaisir ',
-    unit: SplitUnit.rubue,
+    unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-12-01 10:15:00"),
     recurrence: Recurrence(
         scheduler: KhatmaScheduler.never,
@@ -109,7 +109,7 @@ var kTestKhatmat = [
     id: '5',
     name: 'Khatma Joumouaa',
     description: 'Lecture chque vendredi',
-    unit: SplitUnit.thumun,
+    unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-10-01 10:15:00"),
     recurrence: Recurrence(
         scheduler: KhatmaScheduler.never,
