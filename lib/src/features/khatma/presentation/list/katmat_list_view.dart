@@ -10,12 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-/// A widget that displays the list of khatmas that match the search query.
 class KhatmatListView extends ConsumerWidget {
   const KhatmatListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(formKhatmaProvider);
     final khatmatListValue = ref.watch(khatmasListStreamProvider);
     return AsyncValueWidget<List<Khatma>>(
       value: khatmatListValue,
