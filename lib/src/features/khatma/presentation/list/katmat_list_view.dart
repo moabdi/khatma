@@ -1,7 +1,9 @@
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/part_list_async_notifier.dart';
 import 'package:khatma/src/features/khatma/data/parts_repository.dart';
+import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/list/khatma_tile.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
@@ -16,6 +18,7 @@ class KhatmatListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(formKhatmaProvider);
     final khatmatListValue = ref.watch(khatmasListStreamProvider);
     return AsyncValueWidget<List<Khatma>>(
       value: khatmatListValue,
@@ -48,6 +51,8 @@ class KhatmatListView extends ConsumerWidget {
           child: KhatmaTile(
             khatma: khatma,
             onPressed: () {
+              ref.read(formKhatmaProvider).updateKhatma(khatma);
+              ref.read(selectedItemsNotifier.notifier).initSelection([]);
               context.goNamed(AppRoute.khatmaDetails.name,
                   pathParameters: {'id': khatma.id!});
             },

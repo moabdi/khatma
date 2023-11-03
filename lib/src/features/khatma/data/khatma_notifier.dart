@@ -15,6 +15,14 @@ class KhatmaNotifier extends ChangeNotifier {
     _khatma = updatedKhatma;
     notifyListeners();
   }
+
+  void markPartAsRead(List<int> partIds) {
+    List<int> completedParts = khatma.completedParts ?? [];
+    List<int> combinedList = List<int>.from(completedParts, growable: true);
+    combinedList.addAll(partIds);
+    _khatma = _khatma.copyWith(completedParts: combinedList);
+    notifyListeners();
+  }
 }
 
 final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {

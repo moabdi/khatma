@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:khatma/src/common/constants/test_khatmat.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
+import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class FakeKhatmaRepository {
@@ -63,5 +65,10 @@ final khatmasListFutureProvider =
 final khatmaProvider =
     StreamProvider.autoDispose.family<Khatma?, String>((ref, id) {
   final khatmasRepository = ref.watch(khatmasRepositoryProvider);
+  ref.listen(selectedItemsNotifier, (previous, next) {
+    if (previous!.isNotEmpty && next.isEmpty == true) {
+      ref.state = AsyncValue.data(khatmasRepository.getKhatma(id));
+    }
+  });
   return khatmasRepository.watchProduct(id);
 });

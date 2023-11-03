@@ -4,6 +4,8 @@ import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
+import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -20,31 +22,26 @@ class PartSelectorScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatmaValue = ref.watch(khatmaProvider(khatmaId));
+    final khatma = ref.watch(formKhatmaProvider).khatma;
+
     return Scaffold(
-      body: AsyncValueWidget<Khatma?>(
-        value: khatmaValue,
-        data: (khatma) => Scaffold(
-          appBar: buildAppBar(khatma!, context),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: PartFloatingButton(
-              khatmaId: khatma.id, color: khatma.style.hexColor),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildDescriptionCard(khatma, context),
-                  gapH8,
-                  buildReadPartCard(context, khatma),
-                  gapH8,
-                  buildUnReadPartCard(khatma),
-                  gapH64,
-                ],
-              ),
-            ),
+      appBar: buildAppBar(khatma!, context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton:
+          PartFloatingButton(khatmaId: khatma.id, color: khatma.style.hexColor),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildDescriptionCard(khatma, context),
+              gapH8,
+              buildReadPartCard(context, khatma),
+              gapH8,
+              buildUnReadPartCard(khatma),
+              gapH64,
+            ],
           ),
         ),
       ),
