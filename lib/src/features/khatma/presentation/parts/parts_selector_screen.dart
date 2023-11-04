@@ -24,7 +24,7 @@ class PartSelectorScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: buildAppBar(khatma, context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton:
           PartFloatingButton(khatmaId: khatma.id, color: khatma.style.hexColor),
       body: SingleChildScrollView(
