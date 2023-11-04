@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
@@ -28,7 +29,7 @@ class PartFloatingButton extends StatelessWidget {
                 ref
                     .read(khatmasRepositoryProvider)
                     .markAsRead(khatmaId, selectedParts);
-                ref.watch(formKhatmaProvider).markPartAsRead(selectedParts);
+                ref.read(formKhatmaProvider).markPartAsRead(selectedParts);
                 ref.read(selectedItemsNotifier.notifier).initSelection([]);
               },
               child: Text('Marquer comme lu (${selectedParts.length})'),
