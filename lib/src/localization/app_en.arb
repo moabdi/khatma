@@ -55,6 +55,8 @@
   "remainingParts": "Remaining parts",
   "parts": "Parts",
   "readedParts": "{count} parts",
+  "remainingPartsOfTotal": "{remaining} of {total} parts",
+  "completeParts": "Complete ({count} parts)",
   "chooseKhatmaStyle": "Choose your khatma's style",
   "recurrenceUnit": "{recurrence, select, day{Day} week{Week} month{Month} hijriMonth{Hijri-month} year{year} other{}}",
   "khatmaSplitUnit": "{unit, select, other{Sourat} juzz{Juzz} hizb{Hizb} half{Half-Hizb} rubue{Fourth-hizb} thumun{Eighth-hizb}}",
