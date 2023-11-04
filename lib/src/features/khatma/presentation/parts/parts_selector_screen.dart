@@ -122,35 +122,37 @@ class PartSelectorScreen extends ConsumerWidget {
     BuildContext context,
     Khatma khatma,
   ) {
-    return (khatma.completedParts == null ||
-            khatma.completedParts?.isEmpty == true)
-        ? const SizedBox.shrink()
-        : Card(
-            elevation: 0.4,
-            clipBehavior: Clip.antiAlias,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ExpansionTile(
-                backgroundColor: Theme.of(context).cardColor,
-                collapsedBackgroundColor: Colors.blueGrey.withOpacity(.1),
-                title: Text(AppLocalizations.of(context).completedParts),
-                subtitle: Text(
-                    AppLocalizations.of(context)
-                        .readedParts(khatma.completedParts?.length ?? 0),
-                    style: Theme.of(context).textTheme.bodySmall),
-                trailing: const Icon(Icons.arrow_drop_down_circle),
-                leading: buildChart(context, khatma.completude),
-                children: <Widget>[
-                  ReadPartTiles(
-                    key: UniqueKey(),
-                    unit: khatma.unit,
-                    color: khatma.style.hexColor,
-                    completedParts: khatma.completedParts,
-                  ),
-                ],
+    if ((khatma.completedParts == null ||
+        khatma.completedParts?.isEmpty == true)) {
+      return const SizedBox.shrink();
+    } else {
+      return Card(
+        elevation: 0.4,
+        clipBehavior: Clip.antiAlias,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ExpansionTile(
+            backgroundColor: Theme.of(context).cardColor,
+            collapsedBackgroundColor: Colors.blueGrey.withOpacity(.1),
+            title: Text(AppLocalizations.of(context).completedParts),
+            subtitle: Text(
+                AppLocalizations.of(context)
+                    .readedParts(khatma.completedParts?.length ?? 0),
+                style: Theme.of(context).textTheme.bodySmall),
+            trailing: const Icon(Icons.arrow_drop_down_circle),
+            leading: buildChart(context, khatma.completude),
+            children: <Widget>[
+              ReadPartTiles(
+                key: UniqueKey(),
+                unit: khatma.unit,
+                color: khatma.style.hexColor,
+                completedParts: khatma.completedParts,
               ),
-            ),
-          );
+            ],
+          ),
+        ),
+      );
+    }
   }
 
   Widget buildChart(BuildContext context, double percent) {
