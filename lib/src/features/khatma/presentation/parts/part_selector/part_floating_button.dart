@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 
-class PartFloatingButton extends StatelessWidget {
+class PartFloatingButton extends ConsumerStatefulWidget {
   const PartFloatingButton({
     super.key,
     this.khatmaId,
@@ -16,24 +15,36 @@ class PartFloatingButton extends StatelessWidget {
   final Color? color;
 
   @override
+  ConsumerState<PartFloatingButton> createState() => _PartFloatingButtonState();
+}
+
+class _PartFloatingButtonState extends ConsumerState<PartFloatingButton> {
+  bool _isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, ref, _) {
-      final selectedParts = ref.watch(selectedItemsNotifier);
-      return CollectionUtils.isEmpty(selectedParts)
-          ? Container()
-          : ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: color ?? Theme.of(context).primaryColor,
-              ),
-              onPressed: () {
-                ref
-                    .read(khatmasRepositoryProvider)
-                    .markAsRead(khatmaId, selectedParts);
-                ref.read(formKhatmaProvider).markPartAsRead(selectedParts);
-                ref.read(selectedItemsNotifier.notifier).initSelection([]);
-              },
-              child: Text('Marquer comme lu (${selectedParts.length})'),
-            );
-    });
+    final selectedParts = ref.watch(selectedItemsNotifier);
+    return CollectionUtils.isEmpty(selectedParts)
+        ? Container()
+        : ElevatedButton.icon(
+            onPressed: () => _onSubmit(context, ref, selectedParts),
+            style:
+                ElevatedButton.styleFrom(padding: const EdgeInsets.all(16.0)),
+            icon: _isLoading
+                ? const CircularProgressIndicator(
+                    color: Colors.white, strokeWidth: 3)
+                : const Icon(Icons.save),
+            label: Text('Marquer comme lu (${selectedParts.length})'),
+          );
+  }
+
+  _onSubmit(BuildContext context, WidgetRef ref, List<int> selectedParts) {
+    setState(() => _isLoading = true);
+    ref
+        .read(khatmasRepositoryProvider)
+        .markAsRead(widget.khatmaId, selectedParts);
+    ref.read(formKhatmaProvider).markPartAsRead(selectedParts);
+    ref.read(selectedItemsNotifier.notifier).initSelection([]);
+    setState(() => _isLoading = false);
   }
 }
