@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
+import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/data/parts_repository.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -23,6 +24,7 @@ class UnReadPartTiles extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var asyncPartList = ref.watch(partsListFutureProvider(unit));
     return AsyncValueWidget(
+      loading: const LoadingListTile(itemCount: 10),
       value: asyncPartList,
       data: (parts) {
         List<Part> filtredList = completedParts == null

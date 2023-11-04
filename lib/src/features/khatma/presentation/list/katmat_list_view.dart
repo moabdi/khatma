@@ -1,4 +1,5 @@
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
+import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
@@ -18,6 +19,7 @@ class KhatmatListView extends ConsumerWidget {
     ref.watch(formKhatmaProvider);
     final khatmatListValue = ref.watch(khatmasListStreamProvider);
     return AsyncValueWidget<List<Khatma>>(
+      loading: const LoadingListTile(itemCount: 10),
       value: khatmatListValue,
       data: (khatmat) => khatmat.isEmpty
           ? buildNoFound(context)
