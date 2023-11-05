@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:khatma/src/common/utils/collection_utils.dart';
+import 'package:khatma/src/common/utils/color_utils.dart';
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:khatma/src/common/utils/number_utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -45,11 +48,11 @@ abstract class Recurrence with _$Recurrence {
 abstract class KhatmaPart with _$KhatmaPart {
   const factory KhatmaPart({
     required int id,
-    String? readerId,
-    String? readerName,
+    String? userId,
+    String? userName,
     DateTime? addedDate,
     DateTime? finishedDate,
-    int? remind,
+    int? remindTimes,
   }) = _KhatmaPart;
 }
 
@@ -72,18 +75,40 @@ enum SplitUnit {
   const SplitUnit(this.count);
 }
 
+extension KhatmaPartExtension on KhatmaPart {
+  int get duration {
+    if (finishedDate == null) return 0;
+    return finishedDate!.difference(addedDate!).inSeconds;
+  }
+
+  int get daysSinceFinished {
+    if (finishedDate == null) return 0;
+    return finishedDate!.difference(DateTime.now()).inDays;
+  }
+
+  bool get isCompleted {
+    return finishedDate != null;
+  }
+
+  Color get color {
+    if (isCompleted) return Colors.green;
+    if (daysSinceFinished > 0) return Colors.red;
+    return Colors.grey;
+  }
+
+  Color get backgroundColor {
+    return Colors.red; // ColorUtils.generateColorFromUUID(userId ?? '0');
+  }
+}
+
 extension KhatmaExtension on Khatma {
   double get completude {
-    if (parts == null || parts!.isEmpty) return 0;
-    var completedParts = parts
-        ?.where((part) => part.finishedDate != null)
-        .map((part) => part.id)
-        .toSet();
+    if (isEmpty(parts)) return 0;
 
     if (SplitUnit.sourat == unit) {
-      return computeSouratCompletude(completedParts);
+      return computeSouratCompletude(completedPartIds);
     }
-    return completedParts!.length / unit.count;
+    return completedPartIds.length / unit.count;
   }
 
   int get nextPartToRead {
@@ -100,13 +125,36 @@ extension KhatmaExtension on Khatma {
     return completedParts ?? [];
   }
 
-  bool get isCompleted {
+  bool get isExpired {
+    return recurrence.endDate.isBefore(DateTime.now());
+  }
+
+  String get remainingDays {
+    if (isExpired) return '0';
+    return recurrence.endDate.difference(DateTime.now()).inDays.toString();
+  }
+
+  String get remainingParts {
+    return (unit.count - readParts.length).toString();
+  }
+
+  List<int> get remainingPartsList {
+    return List.generate(unit.count, (index) => index + 1)
+        .where((part) => !readParts.contains(part))
+        .toList();
+  }
+
+  List<int> get completedPartIds {
     return parts
             ?.where((part) => part.finishedDate != null)
             .map((part) => part.id)
             .toSet()
-            .length ==
-        unit.count;
+            .toList() ??
+        [];
+  }
+
+  bool get isCompleted {
+    return completedPartIds.length == unit.count;
   }
 
   bool get isStarted {

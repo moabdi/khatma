@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
+
 import 'package:flutter/cupertino.dart';
 
 class ColorUtils {
@@ -19,5 +22,19 @@ class ColorUtils {
       (dst.blue.toDouble() * (1.0 - opacity) + src.blue.toDouble() * opacity)
           .toInt(),
     );
+  }
+
+  static Color generateColorFromUUID(String uuid) {
+    // Use SHA-256 to create a hash of the UUID
+    final hash = sha256.convert(utf8.encode(uuid));
+    final hashBytes = hash.bytes;
+
+    // Take the first 3 bytes of the hash to create RGB values
+    final r = hashBytes[0];
+    final g = hashBytes[1];
+    final b = hashBytes[2];
+
+    // Create a color from the RGB values
+    return Color.fromARGB(255, r, g, b);
   }
 }

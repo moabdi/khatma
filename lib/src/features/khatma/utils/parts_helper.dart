@@ -1,6 +1,6 @@
 const sumOfTottalWords = 77797;
 
-double computeSouratCompletude(Set<int>? ids) {
+double computeSouratCompletude(List<int>? ids) {
   if (ids == null) return 0;
   int sum = 0;
   for (var id in ids) {

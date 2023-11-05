@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/data/parts_repository.dart';
@@ -21,7 +22,11 @@ class ReadPartTiles extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var partIds = completedParts.map((e) => e.id).toList();
+    var partIds = completedParts
+        .where((element) => element.finishedDate != null)
+        .map((e) => e.id)
+        .toList();
+
     return AsyncValueWidget(
       loading: const LoadingListTile(),
       value: ref.watch(partsListFutureProvider(unit)),
@@ -36,13 +41,24 @@ class ReadPartTiles extends ConsumerWidget {
           itemCount: filtredList.length,
           itemBuilder: (BuildContext context, int index) {
             var part = filtredList[index];
+            var khatmaPart =
+                completedParts.firstWhere((element) => element.id == part.id);
             return PartTile(
               part,
               enabled: false,
               color: color,
-              trailing: Icon(
-                Icons.done_all,
-                color: Theme.of(context).primaryColor.withOpacity(.3),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    khatmaPart.userName ?? '',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  Text(
+                    khatmaPart.finishedDate!.format(),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  )
+                ],
               ),
             );
           },

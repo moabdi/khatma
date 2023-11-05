@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
@@ -112,7 +113,7 @@ class PartSelectorScreen extends ConsumerWidget {
           key: UniqueKey(),
           unit: khatma.unit,
           color: khatma.style.hexColor,
-          completedParts: khatma.readParts,
+          completedParts: khatma.completedPartIds,
         ),
       ),
     );
@@ -122,7 +123,7 @@ class PartSelectorScreen extends ConsumerWidget {
     BuildContext context,
     Khatma khatma,
   ) {
-    if (khatma.readParts.isEmpty == true) {
+    if (isEmpty(khatma.parts)) {
       return const SizedBox.shrink();
     } else {
       return Card(
@@ -136,9 +137,9 @@ class PartSelectorScreen extends ConsumerWidget {
             title: Text(AppLocalizations.of(context).completedParts),
             subtitle: Text(
                 AppLocalizations.of(context)
-                    .readedParts(khatma.readParts.length),
+                    .readedParts(khatma.completedPartIds.length),
                 style: Theme.of(context).textTheme.bodySmall),
-            trailing: const Icon(Icons.arrow_drop_down_circle),
+            trailing: const Icon(Icons.arrow_drop_down),
             leading: buildChart(context, khatma.completude),
             children: <Widget>[
               ReadPartTiles(
