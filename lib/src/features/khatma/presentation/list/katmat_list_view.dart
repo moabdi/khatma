@@ -16,7 +16,6 @@ class KhatmatListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(formKhatmaProvider);
     final khatmatListValue = ref.watch(khatmasListStreamProvider);
     return AsyncValueWidget<List<Khatma>>(
       loading: const LoadingListTile(itemCount: 10),
@@ -44,6 +43,8 @@ class KhatmatListView extends ConsumerWidget {
       itemCount: khatmat.length,
       itemBuilder: (_, index) {
         final khatma = khatmat[index];
+        ref.watch(formKhatmaProvider).khatma.id == khatma.id;
+
         return Card(
           elevation: 0.4,
           clipBehavior: Clip.antiAlias,
