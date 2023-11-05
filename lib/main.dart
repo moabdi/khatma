@@ -21,7 +21,7 @@ void main() async {
   });
   // * Entry point of the app
   runApp(const ProviderScope(
-    child: MyApp(),
+    child: MainApp(),
   ));
 }
 
