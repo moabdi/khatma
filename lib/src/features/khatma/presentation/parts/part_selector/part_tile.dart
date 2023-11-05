@@ -9,7 +9,7 @@ import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_trailing.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
-class PartTile extends ConsumerStatefulWidget {
+class PartTile extends ConsumerWidget {
   const PartTile(
     this.part, {
     super.key,
@@ -22,50 +22,42 @@ class PartTile extends ConsumerStatefulWidget {
   final Color color;
 
   @override
-  ConsumerState<PartTile> createState() => _PartTileState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isSelected = ref.watch(selectedItemsNotifier).contains(part.id);
 
-class _PartTileState extends ConsumerState<PartTile> {
-  bool isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
     return ListTile(
-      enabled: widget.enabled,
-      splashColor: widget.color.withOpacity(.2),
+      enabled: enabled,
+      splashColor: color.withOpacity(.2),
       selected: isSelected,
-      selectedColor: widget.color,
-      selectedTileColor: widget.color.withOpacity(.1),
+      selectedColor: color,
+      selectedTileColor: color.withOpacity(.1),
       contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       minVerticalPadding: 0,
       onTap: () => toggleSelection(ref),
       leading: PartTileLeading(
-        enabled: widget.enabled,
+        enabled: enabled,
         selected: isSelected,
-        part: widget.part,
-        color: widget.color,
+        part: part,
+        color: color,
       ),
-      title: PartTileTitle(part: widget.part, enabled: widget.enabled),
-      subtitle: PartTileSubtitle(part: widget.part),
+      title: PartTileTitle(part: part, enabled: enabled),
+      subtitle: PartTileSubtitle(part: part),
       trailing: PartTileTrailing(
-        enabled: widget.enabled,
-        color: widget.color,
+        enabled: enabled,
+        color: color,
         onPressed: () => handleOnTap(context),
       ),
     );
   }
 
   void toggleSelection(WidgetRef ref) {
-    setState(() {
-      isSelected = !isSelected;
-    });
-    ref.read(selectedItemsNotifier.notifier).toggleSelection(widget.part.id);
+    ref.read(selectedItemsNotifier.notifier).toggleSelection(part.id);
   }
 
   void handleOnTap(BuildContext context) {
     context.pushNamed(AppRoute.quran.name, pathParameters: {
-      'idSourat': widget.part.start.sourat.toString(),
-      'idVerset': widget.part.start.verse.toString(),
+      'idSourat': part.start.sourat.toString(),
+      'idVerset': part.start.verse.toString(),
     });
   }
 }
