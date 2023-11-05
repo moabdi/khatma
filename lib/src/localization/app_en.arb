@@ -55,6 +55,8 @@
   "remainingParts": "Remaining parts",
   "parts": "Parts",
   "readedParts": "{count} parts",
+  "confirmDelete": "Are you sure you want to delete this khatma?",
+  "successCompleteParts": "{count} parts completed successfully",
   "remainingPartsOfTotal": "{remaining} of {total} parts",
   "completeParts": "Complete ({count} parts)",
   "chooseKhatmaStyle": "Choose your khatma's style",

@@ -164,6 +164,19 @@ class AppTheme {
               fontWeight: FontWeight.w600,
             )),
       ),
+      snackBarTheme: SnackBarThemeData(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        elevation: 10,
+        backgroundColor: Colors.black,
+        contentTextStyle: textTheme.bodyMedium!.copyWith(
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        actionTextColor: primaryColor,
+        showCloseIcon: true,
+      ),
       colorScheme: colorScheme.copyWith(background: HexColor("F5F5F8")),
       dropdownMenuTheme: DropdownMenuThemeData(
         textStyle: textTheme.displaySmall,

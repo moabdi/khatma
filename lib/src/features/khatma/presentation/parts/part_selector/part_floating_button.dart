@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
+import 'package:lottie/lottie.dart';
 
 class PartFloatingButton extends ConsumerWidget {
   const PartFloatingButton({
@@ -33,7 +36,7 @@ class PartFloatingButton extends ConsumerWidget {
               ],
             ),
             child: ElevatedButton.icon(
-              onPressed: () => _onSubmit(ref, selectedParts),
+              onPressed: () => _onSubmit(context, ref, selectedParts),
               style:
                   ElevatedButton.styleFrom(padding: const EdgeInsets.all(16.0)),
               icon: const Icon(Icons.check, size: 18),
@@ -43,9 +46,28 @@ class PartFloatingButton extends ConsumerWidget {
           );
   }
 
-  _onSubmit(WidgetRef ref, List<int> selectedParts) {
+  _onSubmit(BuildContext context, WidgetRef ref, List<int> selectedParts) {
     ref.read(khatmasRepositoryProvider).markAsRead(khatmaId, selectedParts);
     ref.read(formKhatmaProvider).markPartAsRead(selectedParts);
     ref.read(selectedItemsNotifier.notifier).initSelection([]);
+
+    final snackBar = SnackBar(
+      duration: const Duration(seconds: 2),
+      content: Row(
+        children: [
+          Lottie.asset(
+            'assets/lottie/check.json',
+            width: 35,
+            height: 35,
+            fit: BoxFit.fill,
+            repeat: false,
+          ),
+          gapW12,
+          Text(AppLocalizations.of(context)
+              .successCompleteParts(selectedParts.length)),
+        ],
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
