@@ -23,6 +23,7 @@ mixin _$Khatma {
   KhatmaStyle get style => throw _privateConstructorUsedError;
   DateTime? get lastRead => throw _privateConstructorUsedError;
   List<int>? get completedParts => throw _privateConstructorUsedError;
+  List<KhatmaPart>? get parts => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   DateTime get createDate => throw _privateConstructorUsedError;
   Recurrence get recurrence => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $KhatmaCopyWith<$Res> {
       KhatmaStyle style,
       DateTime? lastRead,
       List<int>? completedParts,
+      List<KhatmaPart>? parts,
       String name,
       DateTime createDate,
       Recurrence recurrence,
@@ -76,6 +78,7 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
     Object? style = null,
     Object? lastRead = freezed,
     Object? completedParts = freezed,
+    Object? parts = freezed,
     Object? name = null,
     Object? createDate = null,
     Object? recurrence = null,
@@ -111,6 +114,10 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.completedParts
           : completedParts // ignore: cast_nullable_to_non_nullable
               as List<int>?,
+      parts: freezed == parts
+          ? _value.parts
+          : parts // ignore: cast_nullable_to_non_nullable
+              as List<KhatmaPart>?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -166,6 +173,7 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
       KhatmaStyle style,
       DateTime? lastRead,
       List<int>? completedParts,
+      List<KhatmaPart>? parts,
       String name,
       DateTime createDate,
       Recurrence recurrence,
@@ -196,6 +204,7 @@ class __$$KhatmaImplCopyWithImpl<$Res>
     Object? style = null,
     Object? lastRead = freezed,
     Object? completedParts = freezed,
+    Object? parts = freezed,
     Object? name = null,
     Object? createDate = null,
     Object? recurrence = null,
@@ -231,6 +240,10 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value._completedParts
           : completedParts // ignore: cast_nullable_to_non_nullable
               as List<int>?,
+      parts: freezed == parts
+          ? _value._parts
+          : parts // ignore: cast_nullable_to_non_nullable
+              as List<KhatmaPart>?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -266,12 +279,14 @@ class _$KhatmaImpl implements _Khatma {
       required this.style,
       this.lastRead,
       final List<int>? completedParts,
+      final List<KhatmaPart>? parts,
       required this.name,
       required this.createDate,
       required this.recurrence,
       required this.unit,
       required this.share})
-      : _completedParts = completedParts;
+      : _completedParts = completedParts,
+        _parts = parts;
 
   @override
   final String? id;
@@ -295,6 +310,16 @@ class _$KhatmaImpl implements _Khatma {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<KhatmaPart>? _parts;
+  @override
+  List<KhatmaPart>? get parts {
+    final value = _parts;
+    if (value == null) return null;
+    if (_parts is EqualUnmodifiableListView) return _parts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String name;
   @override
@@ -308,7 +333,7 @@ class _$KhatmaImpl implements _Khatma {
 
   @override
   String toString() {
-    return 'Khatma(id: $id, description: $description, endDate: $endDate, creator: $creator, style: $style, lastRead: $lastRead, completedParts: $completedParts, name: $name, createDate: $createDate, recurrence: $recurrence, unit: $unit, share: $share)';
+    return 'Khatma(id: $id, description: $description, endDate: $endDate, creator: $creator, style: $style, lastRead: $lastRead, completedParts: $completedParts, parts: $parts, name: $name, createDate: $createDate, recurrence: $recurrence, unit: $unit, share: $share)';
   }
 
   @override
@@ -326,6 +351,7 @@ class _$KhatmaImpl implements _Khatma {
                 other.lastRead == lastRead) &&
             const DeepCollectionEquality()
                 .equals(other._completedParts, _completedParts) &&
+            const DeepCollectionEquality().equals(other._parts, _parts) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.createDate, createDate) ||
                 other.createDate == createDate) &&
@@ -345,6 +371,7 @@ class _$KhatmaImpl implements _Khatma {
       style,
       lastRead,
       const DeepCollectionEquality().hash(_completedParts),
+      const DeepCollectionEquality().hash(_parts),
       name,
       createDate,
       recurrence,
@@ -367,6 +394,7 @@ abstract class _Khatma implements Khatma {
       required final KhatmaStyle style,
       final DateTime? lastRead,
       final List<int>? completedParts,
+      final List<KhatmaPart>? parts,
       required final String name,
       required final DateTime createDate,
       required final Recurrence recurrence,
@@ -387,6 +415,8 @@ abstract class _Khatma implements Khatma {
   DateTime? get lastRead;
   @override
   List<int>? get completedParts;
+  @override
+  List<KhatmaPart>? get parts;
   @override
   String get name;
   @override
@@ -740,5 +770,231 @@ abstract class _Recurrence implements Recurrence {
   @override
   @JsonKey(ignore: true)
   _$$RecurrenceImplCopyWith<_$RecurrenceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$KhatmaPart {
+  String get id => throw _privateConstructorUsedError;
+  String? get readerId => throw _privateConstructorUsedError;
+  String? get readerName => throw _privateConstructorUsedError;
+  DateTime? get addedDate => throw _privateConstructorUsedError;
+  DateTime? get finishedDate => throw _privateConstructorUsedError;
+  int? get remind => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $KhatmaPartCopyWith<KhatmaPart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $KhatmaPartCopyWith<$Res> {
+  factory $KhatmaPartCopyWith(
+          KhatmaPart value, $Res Function(KhatmaPart) then) =
+      _$KhatmaPartCopyWithImpl<$Res, KhatmaPart>;
+  @useResult
+  $Res call(
+      {String id,
+      String? readerId,
+      String? readerName,
+      DateTime? addedDate,
+      DateTime? finishedDate,
+      int? remind});
+}
+
+/// @nodoc
+class _$KhatmaPartCopyWithImpl<$Res, $Val extends KhatmaPart>
+    implements $KhatmaPartCopyWith<$Res> {
+  _$KhatmaPartCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? readerId = freezed,
+    Object? readerName = freezed,
+    Object? addedDate = freezed,
+    Object? finishedDate = freezed,
+    Object? remind = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      readerId: freezed == readerId
+          ? _value.readerId
+          : readerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      readerName: freezed == readerName
+          ? _value.readerName
+          : readerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addedDate: freezed == addedDate
+          ? _value.addedDate
+          : addedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      finishedDate: freezed == finishedDate
+          ? _value.finishedDate
+          : finishedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remind: freezed == remind
+          ? _value.remind
+          : remind // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$KhatmaPartImplCopyWith<$Res>
+    implements $KhatmaPartCopyWith<$Res> {
+  factory _$$KhatmaPartImplCopyWith(
+          _$KhatmaPartImpl value, $Res Function(_$KhatmaPartImpl) then) =
+      __$$KhatmaPartImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String? readerId,
+      String? readerName,
+      DateTime? addedDate,
+      DateTime? finishedDate,
+      int? remind});
+}
+
+/// @nodoc
+class __$$KhatmaPartImplCopyWithImpl<$Res>
+    extends _$KhatmaPartCopyWithImpl<$Res, _$KhatmaPartImpl>
+    implements _$$KhatmaPartImplCopyWith<$Res> {
+  __$$KhatmaPartImplCopyWithImpl(
+      _$KhatmaPartImpl _value, $Res Function(_$KhatmaPartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? readerId = freezed,
+    Object? readerName = freezed,
+    Object? addedDate = freezed,
+    Object? finishedDate = freezed,
+    Object? remind = freezed,
+  }) {
+    return _then(_$KhatmaPartImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      readerId: freezed == readerId
+          ? _value.readerId
+          : readerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      readerName: freezed == readerName
+          ? _value.readerName
+          : readerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addedDate: freezed == addedDate
+          ? _value.addedDate
+          : addedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      finishedDate: freezed == finishedDate
+          ? _value.finishedDate
+          : finishedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remind: freezed == remind
+          ? _value.remind
+          : remind // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$KhatmaPartImpl implements _KhatmaPart {
+  const _$KhatmaPartImpl(
+      {required this.id,
+      this.readerId,
+      this.readerName,
+      this.addedDate,
+      this.finishedDate,
+      this.remind});
+
+  @override
+  final String id;
+  @override
+  final String? readerId;
+  @override
+  final String? readerName;
+  @override
+  final DateTime? addedDate;
+  @override
+  final DateTime? finishedDate;
+  @override
+  final int? remind;
+
+  @override
+  String toString() {
+    return 'KhatmaPart(id: $id, readerId: $readerId, readerName: $readerName, addedDate: $addedDate, finishedDate: $finishedDate, remind: $remind)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$KhatmaPartImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.readerId, readerId) ||
+                other.readerId == readerId) &&
+            (identical(other.readerName, readerName) ||
+                other.readerName == readerName) &&
+            (identical(other.addedDate, addedDate) ||
+                other.addedDate == addedDate) &&
+            (identical(other.finishedDate, finishedDate) ||
+                other.finishedDate == finishedDate) &&
+            (identical(other.remind, remind) || other.remind == remind));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, id, readerId, readerName, addedDate, finishedDate, remind);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$KhatmaPartImplCopyWith<_$KhatmaPartImpl> get copyWith =>
+      __$$KhatmaPartImplCopyWithImpl<_$KhatmaPartImpl>(this, _$identity);
+}
+
+abstract class _KhatmaPart implements KhatmaPart {
+  const factory _KhatmaPart(
+      {required final String id,
+      final String? readerId,
+      final String? readerName,
+      final DateTime? addedDate,
+      final DateTime? finishedDate,
+      final int? remind}) = _$KhatmaPartImpl;
+
+  @override
+  String get id;
+  @override
+  String? get readerId;
+  @override
+  String? get readerName;
+  @override
+  DateTime? get addedDate;
+  @override
+  DateTime? get finishedDate;
+  @override
+  int? get remind;
+  @override
+  @JsonKey(ignore: true)
+  _$$KhatmaPartImplCopyWith<_$KhatmaPartImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

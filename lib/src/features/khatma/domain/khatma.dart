@@ -13,6 +13,7 @@ abstract class Khatma with _$Khatma {
     required KhatmaStyle style,
     DateTime? lastRead,
     List<int>? completedParts,
+    List<KhatmaPart>? parts,
     required String name,
     required DateTime createDate,
     required Recurrence recurrence,
@@ -38,6 +39,18 @@ abstract class Recurrence with _$Recurrence {
     RecurrenceUnit? unit,
     int? occurrence,
   }) = _Recurrence;
+}
+
+@freezed
+abstract class KhatmaPart with _$KhatmaPart {
+  const factory KhatmaPart({
+    required String id,
+    String? readerId,
+    String? readerName,
+    DateTime? addedDate,
+    DateTime? finishedDate,
+    int? remind,
+  }) = _KhatmaPart;
 }
 
 enum KhatmaScheduler { never, autoRepeat, custom }
