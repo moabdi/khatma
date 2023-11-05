@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
-import 'package:khatma/src/common/utils/color_utils.dart';
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:khatma/src/common/utils/number_utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -94,10 +93,6 @@ extension KhatmaPartExtension on KhatmaPart {
     if (isCompleted) return Colors.green;
     if (daysSinceFinished > 0) return Colors.red;
     return Colors.grey;
-  }
-
-  Color get backgroundColor {
-    return Colors.red; // ColorUtils.generateColorFromUUID(userId ?? '0');
   }
 }
 
