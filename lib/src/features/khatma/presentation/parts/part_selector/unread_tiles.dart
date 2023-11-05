@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/data/parts_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
+import 'package:khatma/src/routing/app_router.dart';
 
 class UnReadPartTiles extends ConsumerWidget {
   const UnReadPartTiles({
@@ -40,10 +42,25 @@ class UnReadPartTiles extends ConsumerWidget {
             return PartTile(
               part,
               color: color,
+              trailing: CircleAvatar(
+                backgroundColor: color.withOpacity(.2),
+                child: IconButton(
+                  icon: const Icon(Icons.auto_stories, size: 18),
+                  color: color,
+                  onPressed: () => handleOnTap(context, part),
+                ),
+              ),
             );
           },
         );
       },
     );
+  }
+
+  void handleOnTap(BuildContext context, Part part) {
+    context.pushNamed(AppRoute.quran.name, pathParameters: {
+      'idSourat': part.start.sourat.toString(),
+      'idVerset': part.start.verse.toString(),
+    });
   }
 }

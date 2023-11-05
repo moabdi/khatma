@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -17,10 +18,20 @@ class KhatmaNotifier extends ChangeNotifier {
   }
 
   void completeParts(List<int> partIds) {
-    List<int> completedParts = khatma.completedParts ?? [];
-    List<int> combinedList = List<int>.from(completedParts, growable: true);
-    combinedList.addAll(partIds);
-    _khatma = _khatma.copyWith(completedParts: combinedList);
+    List<KhatmaPart> completedParts =
+        isNotEmpty(khatma.parts) ? List<KhatmaPart>.from(khatma.parts!) : [];
+
+    for (var partId in partIds) {
+      int index = completedParts.indexWhere((part) => part.id == partId);
+      if (index != -1) {
+        completedParts[index] =
+            completedParts[index].copyWith(finishedDate: DateTime.now());
+      } else {
+        completedParts
+            .add(KhatmaPart(id: partId, finishedDate: DateTime.now()));
+      }
+    }
+    _khatma = _khatma.copyWith(parts: completedParts);
     notifyListeners();
   }
 

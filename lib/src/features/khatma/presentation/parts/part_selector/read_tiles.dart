@@ -17,16 +17,17 @@ class ReadPartTiles extends ConsumerWidget {
 
   final Color color;
   final SplitUnit unit;
-  final List<int> completedParts;
+  final List<KhatmaPart> completedParts;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var partIds = completedParts.map((e) => e.id).toList();
     return AsyncValueWidget(
       loading: const LoadingListTile(),
       value: ref.watch(partsListFutureProvider(unit)),
       data: (parts) {
         List<Part> filtredList =
-            parts.where((part) => completedParts.contains(part.id)).toList();
+            parts.where((part) => partIds.contains(part.id)).toList();
 
         return ListView.separated(
           shrinkWrap: true,
@@ -39,6 +40,10 @@ class ReadPartTiles extends ConsumerWidget {
               part,
               enabled: false,
               color: color,
+              trailing: Icon(
+                Icons.done_all,
+                color: Theme.of(context).primaryColor.withOpacity(.3),
+              ),
             );
           },
         );

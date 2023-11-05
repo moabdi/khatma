@@ -775,7 +775,7 @@ abstract class _Recurrence implements Recurrence {
 
 /// @nodoc
 mixin _$KhatmaPart {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String? get readerId => throw _privateConstructorUsedError;
   String? get readerName => throw _privateConstructorUsedError;
   DateTime? get addedDate => throw _privateConstructorUsedError;
@@ -794,7 +794,7 @@ abstract class $KhatmaPartCopyWith<$Res> {
       _$KhatmaPartCopyWithImpl<$Res, KhatmaPart>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String? readerId,
       String? readerName,
       DateTime? addedDate,
@@ -826,7 +826,7 @@ class _$KhatmaPartCopyWithImpl<$Res, $Val extends KhatmaPart>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       readerId: freezed == readerId
           ? _value.readerId
           : readerId // ignore: cast_nullable_to_non_nullable
@@ -860,7 +860,7 @@ abstract class _$$KhatmaPartImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String? readerId,
       String? readerName,
       DateTime? addedDate,
@@ -890,7 +890,7 @@ class __$$KhatmaPartImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       readerId: freezed == readerId
           ? _value.readerId
           : readerId // ignore: cast_nullable_to_non_nullable
@@ -927,7 +927,7 @@ class _$KhatmaPartImpl implements _KhatmaPart {
       this.remind});
 
   @override
-  final String id;
+  final int id;
   @override
   final String? readerId;
   @override
@@ -974,7 +974,7 @@ class _$KhatmaPartImpl implements _KhatmaPart {
 
 abstract class _KhatmaPart implements KhatmaPart {
   const factory _KhatmaPart(
-      {required final String id,
+      {required final int id,
       final String? readerId,
       final String? readerName,
       final DateTime? addedDate,
@@ -982,7 +982,7 @@ abstract class _KhatmaPart implements KhatmaPart {
       final int? remind}) = _$KhatmaPartImpl;
 
   @override
-  String get id;
+  int get id;
   @override
   String? get readerId;
   @override

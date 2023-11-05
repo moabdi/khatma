@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_leading.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_subtitle.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_title.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_trailing.dart';
-import 'package:khatma/src/routing/app_router.dart';
 
 class PartTile extends ConsumerWidget {
   const PartTile(
@@ -15,11 +12,13 @@ class PartTile extends ConsumerWidget {
     super.key,
     this.enabled = true,
     required this.color,
+    this.trailing,
   });
 
   final Part part;
   final bool enabled;
   final Color color;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,22 +41,11 @@ class PartTile extends ConsumerWidget {
       ),
       title: PartTileTitle(part: part, enabled: enabled),
       subtitle: PartTileSubtitle(part: part),
-      trailing: PartTileTrailing(
-        enabled: enabled,
-        color: color,
-        onPressed: () => handleOnTap(context),
-      ),
+      trailing: trailing,
     );
   }
 
   void toggleSelection(WidgetRef ref) {
     ref.read(selectedItemsNotifier.notifier).toggleSelection(part.id);
-  }
-
-  void handleOnTap(BuildContext context) {
-    context.pushNamed(AppRoute.quran.name, pathParameters: {
-      'idSourat': part.start.sourat.toString(),
-      'idVerset': part.start.verse.toString(),
-    });
   }
 }

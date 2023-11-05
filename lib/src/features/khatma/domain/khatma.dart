@@ -44,7 +44,7 @@ abstract class Recurrence with _$Recurrence {
 @freezed
 abstract class KhatmaPart with _$KhatmaPart {
   const factory KhatmaPart({
-    required String id,
+    required int id,
     String? readerId,
     String? readerName,
     DateTime? addedDate,
@@ -74,9 +74,14 @@ enum SplitUnit {
 
 extension KhatmaExtension on Khatma {
   double get completude {
-    if (completedParts == null) return 0;
+    if (parts == null || parts!.isEmpty) return 0;
+    var completedParts = parts
+        ?.where((part) => part.finishedDate != null)
+        .map((part) => part.id)
+        .toSet();
+
     if (SplitUnit.sourat == unit) {
-      return computeSouratCompletude(completedParts!.toSet());
+      return computeSouratCompletude(completedParts);
     }
     return completedParts!.length / unit.count;
   }
@@ -93,5 +98,18 @@ extension KhatmaExtension on Khatma {
 
   List<int> get readParts {
     return completedParts ?? [];
+  }
+
+  bool get isCompleted {
+    return parts
+            ?.where((part) => part.finishedDate != null)
+            .map((part) => part.id)
+            .toSet()
+            .length ==
+        unit.count;
+  }
+
+  bool get isStarted {
+    return lastRead != null;
   }
 }
