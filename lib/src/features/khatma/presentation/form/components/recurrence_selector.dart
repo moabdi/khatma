@@ -95,7 +95,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               value: scheduler,
               icon: schedulerIcons[scheduler]!,
               selectedValue: updatedRecurrence.scheduler,
-              onTap: () => ref.read(formRecurrenceProvider).updateRecurrence(
+              onTap: () => ref.read(formRecurrenceProvider).update(
                     updatedRecurrence.copyWith(scheduler: scheduler),
                   ),
             ),
@@ -118,7 +118,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
           value: updatedRecurrence.startDate,
           onChanged: (value) => ref
               .read(formRecurrenceProvider)
-              .updateRecurrence(updatedRecurrence.copyWith(startDate: value)),
+              .update(updatedRecurrence.copyWith(startDate: value)),
         ),
         gapH12,
         DatePickerListTile(
@@ -127,7 +127,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
           value: updatedRecurrence.endDate,
           onChanged: (value) => ref
               .read(formRecurrenceProvider)
-              .updateRecurrence(updatedRecurrence.copyWith(endDate: value)),
+              .update(updatedRecurrence.copyWith(endDate: value)),
         ),
         gapH12,
         Container(
@@ -161,8 +161,9 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               initialValue:
                   ref.read(formRecurrenceProvider).recurrence.occurrence,
               onSelected: (value) {
-                ref.read(formRecurrenceProvider).updateRecurrence(
-                    updatedRecurrence.copyWith(occurrence: value));
+                ref
+                    .read(formRecurrenceProvider)
+                    .update(updatedRecurrence.copyWith(occurrence: value));
               }),
         ),
         gapW12,
@@ -172,7 +173,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               onSelected: (value) {
                 ref
                     .read(formRecurrenceProvider)
-                    .updateRecurrence(updatedRecurrence.copyWith(unit: value));
+                    .update(updatedRecurrence.copyWith(unit: value));
               }),
         ),
       ],

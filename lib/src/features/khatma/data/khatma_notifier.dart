@@ -25,15 +25,15 @@ class KhatmaNotifier extends ChangeNotifier {
   }
 
   void initialize() {
-    _khatma = newKhatma();
+    _khatma = initKhatma();
   }
 }
 
 final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
-  return KhatmaNotifier(newKhatma());
+  return KhatmaNotifier(initKhatma());
 });
 
-Khatma newKhatma() {
+Khatma initKhatma() {
   return Khatma(
     name: '',
     unit: SplitUnit.hizb,
@@ -60,7 +60,7 @@ class RecurrenceNotifier extends ChangeNotifier {
 
   RecurrenceNotifier(this._recurrence);
 
-  void updateRecurrence(Recurrence updatedRecurrence) {
+  void update(Recurrence updatedRecurrence) {
     _recurrence = updatedRecurrence;
     notifyListeners();
   }

@@ -150,7 +150,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       subtitle: AppLocalizations.of(context)
           .khatmaSchedulerDesc(khatma.recurrence.scheduler.name),
       onTap: () {
-        ref.read(formRecurrenceProvider).updateRecurrence(khatma.recurrence);
+        ref.read(formRecurrenceProvider).update(khatma.recurrence);
         _showModal(
           context,
           RecurrenceSelector(
