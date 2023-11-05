@@ -112,7 +112,7 @@ class PartSelectorScreen extends ConsumerWidget {
           key: UniqueKey(),
           unit: khatma.unit,
           color: khatma.style.hexColor,
-          completedParts: khatma.completedParts,
+          completedParts: khatma.readParts,
         ),
       ),
     );
@@ -146,7 +146,7 @@ class PartSelectorScreen extends ConsumerWidget {
                 key: UniqueKey(),
                 unit: khatma.unit,
                 color: khatma.style.hexColor,
-                completedParts: khatma.completedParts,
+                completedParts: khatma.readParts,
               ),
             ],
           ),

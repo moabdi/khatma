@@ -77,4 +77,8 @@ extension KhatmaExtension on Khatma {
     if (lastRead == null) return DateTime.now().difference(createDate);
     return DateTime.now().difference(lastRead!);
   }
+
+  List<int> get readParts {
+    return completedParts ?? [];
+  }
 }

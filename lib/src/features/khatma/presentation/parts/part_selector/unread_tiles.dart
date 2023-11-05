@@ -12,12 +12,12 @@ class UnReadPartTiles extends ConsumerWidget {
     super.key,
     required this.unit,
     required this.color,
-    this.completedParts,
+    required this.completedParts,
   });
 
   final Color color;
   final SplitUnit unit;
-  final List<int>? completedParts;
+  final List<int> completedParts;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,11 +26,9 @@ class UnReadPartTiles extends ConsumerWidget {
       loading: const LoadingListTile(itemCount: 10),
       value: asyncPartList,
       data: (parts) {
-        List<Part> filtredList = completedParts == null
-            ? parts
-            : parts
-                .where((part) => !completedParts!.contains(part.id))
-                .toList();
+        List<Part> filtredList =
+            parts.where((part) => !completedParts.contains(part.id)).toList();
+
         return ListView.separated(
           shrinkWrap: true,
           primary: false,
