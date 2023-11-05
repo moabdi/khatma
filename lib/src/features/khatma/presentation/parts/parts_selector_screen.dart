@@ -122,8 +122,7 @@ class PartSelectorScreen extends ConsumerWidget {
     BuildContext context,
     Khatma khatma,
   ) {
-    if ((khatma.completedParts == null ||
-        khatma.completedParts?.isEmpty == true)) {
+    if (khatma.readParts.isEmpty == true) {
       return const SizedBox.shrink();
     } else {
       return Card(
@@ -137,7 +136,7 @@ class PartSelectorScreen extends ConsumerWidget {
             title: Text(AppLocalizations.of(context).completedParts),
             subtitle: Text(
                 AppLocalizations.of(context)
-                    .readedParts(khatma.completedParts?.length ?? 0),
+                    .readedParts(khatma.readParts.length),
                 style: Theme.of(context).textTheme.bodySmall),
             trailing: const Icon(Icons.arrow_drop_down_circle),
             leading: buildChart(context, khatma.completude),
