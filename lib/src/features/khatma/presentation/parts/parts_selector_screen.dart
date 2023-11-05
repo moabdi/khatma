@@ -35,7 +35,7 @@ class PartSelectorScreen extends ConsumerWidget {
             children: [
               buildDescriptionCard(khatma, context),
               gapH8,
-              buildParts(context, ref, khatma),
+              buildParts(context, ref),
               gapH64,
             ],
           ),
@@ -44,7 +44,7 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  Column buildParts(BuildContext context, WidgetRef ref, Khatma khatma) {
+  Column buildParts(BuildContext context, WidgetRef ref) {
     final khatma = ref.watch(formKhatmaProvider).khatma;
     return Column(
       children: [
