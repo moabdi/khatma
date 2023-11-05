@@ -38,7 +38,7 @@ class ReadPartTiles extends ConsumerWidget {
             var part = filtredList[index];
             return PartTile(
               part,
-              isRead: true,
+              enabled: false,
               color: color,
             );
           },

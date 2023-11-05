@@ -13,14 +13,12 @@ class PartTile extends ConsumerStatefulWidget {
   const PartTile(
     this.part, {
     super.key,
-    this.selected = false,
-    this.isRead = false,
+    this.enabled = true,
     required this.color,
   });
 
   final Part part;
-  final bool selected;
-  final bool isRead;
+  final bool enabled;
   final Color color;
 
   @override
@@ -29,16 +27,11 @@ class PartTile extends ConsumerStatefulWidget {
 
 class _PartTileState extends ConsumerState<PartTile> {
   bool isSelected = false;
-  @override
-  void initState() {
-    isSelected = widget.selected;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      enabled: !widget.isRead,
+      enabled: widget.enabled,
       splashColor: widget.color.withOpacity(.2),
       selected: isSelected,
       selectedColor: widget.color,
@@ -47,15 +40,15 @@ class _PartTileState extends ConsumerState<PartTile> {
       minVerticalPadding: 0,
       onTap: () => toggleSelection(ref),
       leading: PartTileLeading(
-        isRead: widget.isRead,
-        isSelected: isSelected,
+        enabled: widget.enabled,
+        selected: isSelected,
         part: widget.part,
         color: widget.color,
       ),
-      title: PartTileTitle(part: widget.part, isRead: widget.isRead),
+      title: PartTileTitle(part: widget.part, enabled: widget.enabled),
       subtitle: PartTileSubtitle(part: widget.part),
       trailing: PartTileTrailing(
-        isRead: widget.isRead,
+        enabled: widget.enabled,
         color: widget.color,
         onPressed: () => handleOnTap(context),
       ),

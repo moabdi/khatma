@@ -7,11 +7,11 @@ class PartTileTitle extends StatelessWidget {
   const PartTileTitle({
     super.key,
     required this.part,
-    required this.isRead,
+    required this.enabled,
   });
 
   final Part part;
-  final bool isRead;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,12 @@ class PartTileTitle extends StatelessWidget {
         SafeText(
           part.title,
           maxLength: 20,
-          style: isRead
-              ? AppTheme.getTheme().textTheme.titleSmall?.copyWith(
+          style: enabled
+              ? null
+              : AppTheme.getTheme().textTheme.titleSmall?.copyWith(
                     color: Theme.of(context).textTheme.bodySmall?.color,
                     fontSize: 13,
-                  )
-              : null,
+                  ),
         ),
         // SafeText(part.name,
         //   maxLength: 25,

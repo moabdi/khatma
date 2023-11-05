@@ -32,7 +32,6 @@ class UnReadPartTiles extends ConsumerWidget {
             : parts
                 .where((part) => !completedParts!.contains(part.id))
                 .toList();
-        List<int> selectedParts = ref.read(selectedItemsNotifier);
         return ListView.separated(
           shrinkWrap: true,
           primary: false,
@@ -43,7 +42,6 @@ class UnReadPartTiles extends ConsumerWidget {
             var part = filtredList[index];
             return PartTile(
               part,
-              selected: selectedParts.contains(part.id),
               color: color,
             );
           },
