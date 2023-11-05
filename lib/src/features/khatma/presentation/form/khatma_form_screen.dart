@@ -210,6 +210,6 @@ class AddKhatmaScreen extends ConsumerWidget {
 
 extension ProviderRef on WidgetRef {
   updateKhatma(Khatma khatma) {
-    read(formKhatmaProvider).updateKhatma(khatma);
+    read(formKhatmaProvider).update(khatma);
   }
 }

@@ -11,12 +11,12 @@ class KhatmaNotifier extends ChangeNotifier {
 
   KhatmaNotifier(this._khatma);
 
-  void updateKhatma(Khatma updatedKhatma) {
+  void update(Khatma updatedKhatma) {
     _khatma = updatedKhatma;
     notifyListeners();
   }
 
-  void markPartAsRead(List<int> partIds) {
+  void completeParts(List<int> partIds) {
     List<int> completedParts = khatma.completedParts ?? [];
     List<int> combinedList = List<int>.from(completedParts, growable: true);
     combinedList.addAll(partIds);

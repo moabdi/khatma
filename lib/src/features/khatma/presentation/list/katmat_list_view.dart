@@ -51,7 +51,7 @@ class KhatmatListView extends ConsumerWidget {
           child: KhatmaTile(
             khatma: khatma,
             onPressed: () {
-              ref.read(formKhatmaProvider).updateKhatma(khatma);
+              ref.read(formKhatmaProvider).update(khatma);
               ref.read(selectedItemsNotifier.notifier).initSelection([]);
               context.goNamed(AppRoute.khatmaDetails.name,
                   pathParameters: {'id': khatma.id!});
