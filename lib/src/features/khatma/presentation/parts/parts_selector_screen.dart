@@ -5,6 +5,7 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
+import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
@@ -26,7 +27,7 @@ class PartSelectorScreen extends ConsumerWidget {
     final khatma = ref.read(khatmaDetailsProvider).khatma;
 
     return Scaffold(
-      appBar: buildAppBar(khatma, context),
+      appBar: buildAppBar(khatma, context, ref),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton:
           PartFloatingButton(khatmaId: khatma.id, color: khatma.style.hexColor),
@@ -48,7 +49,7 @@ class PartSelectorScreen extends ConsumerWidget {
   }
 
   Column buildParts(BuildContext context, WidgetRef ref) {
-    final khatma = ref.watch(khatmaDetailsProvider).khatma!;
+    final khatma = ref.watch(khatmaDetailsProvider).khatma;
     return Column(
       children: [
         buildReadPartCard(context, khatma),
@@ -58,26 +59,30 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  KAppBar buildAppBar(Khatma? khatma, BuildContext context) {
+  KAppBar buildAppBar(Khatma? khatma, BuildContext context, WidgetRef ref) {
     return KAppBar(
       title: khatma!.name,
       actions: [
         Avatar(
-            radius: 20,
-            backgroundColor: Theme.of(context).primaryColor.withOpacity(.3),
-            bottom: Avatar(
-              radius: 5,
-              backgroundColor: Theme.of(context).primaryColor,
-              child: const Icon(Icons.edit, size: 10),
+          radius: 20,
+          backgroundColor: Theme.of(context).primaryColor.withOpacity(.3),
+          bottom: Avatar(
+            radius: 5,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(Icons.edit, size: 10),
+          ),
+          child: Center(
+            child: getImage(
+              khatma.style.icon,
+              color: Theme.of(context).primaryColor,
             ),
-            child: Center(
-              child: getImage(
-                khatma.style.icon,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-            onTap: () => context.goNamed(AppRoute.editKhatma.name,
-                pathParameters: {'id': khatma.id!})),
+          ),
+          onTap: () => {
+            ref.read(formKhatmaProvider).update(khatma),
+            context.goNamed(AppRoute.editKhatma.name,
+                pathParameters: {'id': khatma.id!}),
+          },
+        ),
         gapW16,
       ],
     );

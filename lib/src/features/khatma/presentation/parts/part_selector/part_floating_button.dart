@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
@@ -51,7 +53,7 @@ class PartFloatingButton extends ConsumerWidget {
     ref.read(selectedItemsNotifier.notifier).initSelection([]);
 
     final snackBar = SnackBar(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
       content: Row(
         children: [
           Lottie.asset(
@@ -67,6 +69,8 @@ class PartFloatingButton extends ConsumerWidget {
         ],
       ),
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    Timer(const Duration(milliseconds: 500), () {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
   }
 }

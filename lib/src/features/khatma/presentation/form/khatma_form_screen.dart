@@ -31,7 +31,9 @@ class AddKhatmaScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).newKhatma),
+        title: Text(isBlank(khatma.id)
+            ? AppLocalizations.of(context).newKhatma
+            : AppLocalizations.of(context).editKhatma),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

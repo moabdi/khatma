@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
@@ -45,22 +46,21 @@ class PartsRepository {
 final partsRepositoryProvider = Provider<PartsRepository>((ref) {
   return PartsRepository();
 });
-
 final partsListFutureProvider =
-    FutureProvider.family<List<Part>, SplitUnit>((ref, unit) {
+    FutureProvider.family<List<Part>, SplitUnit>((ref, unit) async {
+  // Await a small delay if needed (e.g., to simulate loading time).
+  await Future.delayed(Duration(milliseconds: 300));
+
+  // Watch the partsRepositoryProvider to get the KhatmasRepository instance.
   final khatmasRepository = ref.watch(partsRepositoryProvider);
+
+  // Based on the SplitUnit, fetch the appropriate list.
   switch (unit) {
     case SplitUnit.sourat:
-      {
-        return khatmasRepository.fetchSouratList();
-      }
+      return khatmasRepository.fetchSouratList();
     case SplitUnit.juzz:
-      {
-        return khatmasRepository.fetchJuzzList();
-      }
+      return khatmasRepository.fetchJuzzList();
     default:
-      {
-        return khatmasRepository.fetchHizbList();
-      }
+      return khatmasRepository.fetchHizbList();
   }
 });

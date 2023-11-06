@@ -63,8 +63,9 @@ class KhatmatListScreen extends StatelessWidget {
                                 size: 24,
                               ),
                             ),
-                            onPressed: () =>
-                                context.goNamed(AppRoute.addKhatma.name)),
+                            onPressed: () => {
+                                  context.goNamed(AppRoute.addKhatma.name),
+                                }),
                       ],
                     ),
                     gapH8,
