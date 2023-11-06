@@ -16,7 +16,9 @@ import 'package:khatma/src/features/khatma/presentation/form/widgets/modal_botto
 import 'package:khatma/src/features/khatma/presentation/form/components/unit_selector.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
-  const AddKhatmaScreen({super.key});
+  const AddKhatmaScreen({super.key, this.khatmaId});
+
+  final String? khatmaId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -78,6 +80,7 @@ class AddKhatmaScreen extends ConsumerWidget {
         child: getImage(
           khatma.style.icon,
           color: khatma.style.hexColor,
+          size: 50,
         ),
         onTap: () => _showModal(
             context,

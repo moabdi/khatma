@@ -15,7 +15,8 @@ import 'package:go_router/go_router.dart';
 
 enum AppRoute {
   home,
-  khatma,
+  addKhatma,
+  editKhatma,
   khatmaDetails,
   account,
   signIn,
@@ -48,10 +49,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: 'khatma/create',
-            name: AppRoute.khatma.name,
+            name: AppRoute.addKhatma.name,
             builder: (context, state) {
               ref.read(formKhatmaProvider).initialize();
               return const AddKhatmaScreen();
+            },
+          ),
+          GoRoute(
+            path: 'khatma/edit/:id',
+            name: AppRoute.editKhatma.name,
+            builder: (context, state) {
+              final khatmaId = state.pathParameters['id']!;
+              return AddKhatmaScreen(khatmaId: khatmaId);
             },
           ),
           GoRoute(

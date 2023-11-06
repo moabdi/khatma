@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
@@ -12,6 +13,7 @@ import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
 
@@ -61,21 +63,21 @@ class PartSelectorScreen extends ConsumerWidget {
       title: khatma!.name,
       actions: [
         Avatar(
-          radius: 20,
-          backgroundColor: Theme.of(context).primaryColor.withOpacity(.3),
-          onTap: null,
-          bottom: Avatar(
-            radius: 5,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(Icons.edit, size: 10),
-          ),
-          child: Center(
-            child: getImage(
-              khatma.style.icon,
-              color: Theme.of(context).primaryColor,
+            radius: 20,
+            backgroundColor: Theme.of(context).primaryColor.withOpacity(.3),
+            bottom: Avatar(
+              radius: 5,
+              backgroundColor: Theme.of(context).primaryColor,
+              child: const Icon(Icons.edit, size: 10),
             ),
-          ),
-        ),
+            child: Center(
+              child: getImage(
+                khatma.style.icon,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+            onTap: () => context.goNamed(AppRoute.editKhatma.name,
+                pathParameters: {'id': khatma.id!})),
         gapW16,
       ],
     );

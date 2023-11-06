@@ -20,25 +20,28 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundColor: backgroundColor,
-      child: Stack(
-        children: [
-          Padding(
-            padding: padding,
-            child: child,
-          ),
-          if (bottom != null)
-            Align(
-              alignment: Alignment.bottomRight,
-              child: CircleAvatar(
-                radius: bottom!.radius != radius ? bottom!.radius : 10,
-                backgroundColor: bottom!.backgroundColor,
-                child: bottom!.child,
-              ),
+    return InkWell(
+      onTap: onTap,
+      child: CircleAvatar(
+        radius: radius,
+        backgroundColor: backgroundColor,
+        child: Stack(
+          children: [
+            Padding(
+              padding: padding,
+              child: Center(child: FittedBox(child: child)),
             ),
-        ],
+            if (bottom != null)
+              Align(
+                alignment: Alignment.bottomRight,
+                child: CircleAvatar(
+                  radius: bottom!.radius != radius ? bottom!.radius : 10,
+                  backgroundColor: bottom!.backgroundColor,
+                  child: bottom!.child,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

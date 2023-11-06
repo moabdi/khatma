@@ -64,7 +64,7 @@ class KhatmatListScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () =>
-                                {context.goNamed(AppRoute.khatma.name)}),
+                                context.goNamed(AppRoute.addKhatma.name)),
                       ],
                     ),
                     gapH8,
@@ -107,7 +107,7 @@ class KhatmatListScreen extends StatelessWidget {
               ),
             }
           else if (value == 2)
-            {context.goNamed(AppRoute.khatma.name)}
+            {context.goNamed(AppRoute.addKhatma.name)}
         },
       ),
     );
