@@ -51,7 +51,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             path: 'khatma/create',
             name: AppRoute.addKhatma.name,
             builder: (context, state) {
-              ref.read(formKhatmaProvider);
+              ref.read(formKhatmaProvider).initialize();
               return const AddKhatmaScreen();
             },
           ),

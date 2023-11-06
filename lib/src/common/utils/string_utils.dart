@@ -21,3 +21,7 @@ extension SubstringExtension on String {
 
   String get withColon => "$this:";
 }
+
+bool isBlank(String? value) {
+  return value == null || value.trim().isEmpty;
+}

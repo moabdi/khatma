@@ -1,6 +1,7 @@
 {
   "appTitle": "Khatma",
   "newKhatma": "New khatma",
+  "editKhatma": "edit khatma",
   "recurrence": "Recurrence",
   "schedule": "Schedule",
   "name": "Name",

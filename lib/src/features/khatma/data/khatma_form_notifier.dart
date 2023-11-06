@@ -6,25 +6,18 @@ import 'package:khatma/src/themes/theme.dart';
 
 class FormKhatmaNotifier extends ChangeNotifier {
   Khatma _khatma;
-  Khatma _origin;
 
   Khatma get khatma => _khatma;
 
-  FormKhatmaNotifier(this._khatma) : _origin = _khatma.copyWith();
+  FormKhatmaNotifier(this._khatma);
 
   void update(Khatma updatedKhatma) {
     _khatma = updatedKhatma;
     notifyListeners();
   }
 
-  void reset() {
-    _khatma = _origin.copyWith();
-    notifyListeners();
-  }
-
-  void init(Khatma khatma) {
-    _khatma = khatma;
-    _origin = khatma.copyWith();
+  void initialize() {
+    _khatma = initKhatma();
   }
 }
 
