@@ -48,12 +48,8 @@ class ReadPartTiles extends ConsumerWidget {
               enabled: false,
               color: color,
               trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    khatmaPart.userName ?? '',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
                   Text(
                     khatmaPart.finishedDate!.format(),
                     style: Theme.of(context).textTheme.bodySmall,
