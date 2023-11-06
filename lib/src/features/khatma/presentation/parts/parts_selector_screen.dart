@@ -23,7 +23,7 @@ class PartSelectorScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatma = ref.read(formKhatmaProvider).khatma;
+    final khatma = ref.read(khatmaDetailsProvider).khatma;
 
     return Scaffold(
       appBar: buildAppBar(khatma, context),
@@ -48,7 +48,7 @@ class PartSelectorScreen extends ConsumerWidget {
   }
 
   Column buildParts(BuildContext context, WidgetRef ref) {
-    final khatma = ref.watch(formKhatmaProvider).khatma;
+    final khatma = ref.watch(khatmaDetailsProvider).khatma!;
     return Column(
       children: [
         buildReadPartCard(context, khatma),

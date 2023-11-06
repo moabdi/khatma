@@ -29,7 +29,7 @@ class Avatar extends StatelessWidget {
           children: [
             Padding(
               padding: padding,
-              child: Center(child: FittedBox(child: child)),
+              child: Center(child: child),
             ),
             if (bottom != null)
               Align(

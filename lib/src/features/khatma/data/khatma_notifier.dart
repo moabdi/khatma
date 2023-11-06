@@ -2,8 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class KhatmaNotifier extends ChangeNotifier {
   Khatma _khatma;
@@ -12,8 +10,8 @@ class KhatmaNotifier extends ChangeNotifier {
 
   KhatmaNotifier(this._khatma);
 
-  void update(Khatma updatedKhatma) {
-    _khatma = updatedKhatma;
+  void withKhatma(Khatma khatma) {
+    _khatma = khatma;
     notifyListeners();
   }
 
@@ -34,13 +32,9 @@ class KhatmaNotifier extends ChangeNotifier {
     _khatma = _khatma.copyWith(parts: completedParts);
     notifyListeners();
   }
-
-  void initialize() {
-    _khatma = initKhatma();
-  }
 }
 
-final formKhatmaProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
+final khatmaDetailsProvider = ChangeNotifierProvider<KhatmaNotifier>((ref) {
   return KhatmaNotifier(initKhatma());
 });
 
@@ -55,37 +49,11 @@ Khatma initKhatma() {
       startDate: DateTime.now(),
       endDate: DateTime.now().add(const Duration(days: 30)),
       unit: RecurrenceUnit.month,
-      occurrence: 1,
+      occurrence: 0,
     ),
-    style: KhatmaStyle(
-      color: AppTheme.getTheme().primaryColor.toHex(),
-      icon: khatmaImagesMap.entries.first.key,
+    style: const KhatmaStyle(
+      color: '',
+      icon: '',
     ),
   );
 }
-
-class RecurrenceNotifier extends ChangeNotifier {
-  Recurrence _recurrence;
-
-  Recurrence get recurrence => _recurrence;
-
-  RecurrenceNotifier(this._recurrence);
-
-  void update(Recurrence updatedRecurrence) {
-    _recurrence = updatedRecurrence;
-    notifyListeners();
-  }
-}
-
-final formRecurrenceProvider =
-    ChangeNotifierProvider<RecurrenceNotifier>((ref) {
-  return RecurrenceNotifier(
-    Recurrence(
-      scheduler: KhatmaScheduler.never,
-      startDate: DateTime.now(),
-      endDate: DateTime.now().add(const Duration(days: 30)),
-      unit: RecurrenceUnit.month,
-      occurrence: 1,
-    ),
-  );
-});

@@ -47,7 +47,7 @@ class PartFloatingButton extends ConsumerWidget {
 
   _onSubmit(BuildContext context, WidgetRef ref, List<int> selectedParts) {
     ref.read(khatmasRepositoryProvider).markAsRead(khatmaId, selectedParts);
-    ref.read(formKhatmaProvider).completeParts(selectedParts);
+    ref.read(khatmaDetailsProvider).completeParts(selectedParts);
     ref.read(selectedItemsNotifier.notifier).initSelection([]);
 
     final snackBar = SnackBar(

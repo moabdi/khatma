@@ -42,16 +42,17 @@ class KhatmatListView extends ConsumerWidget {
       primary: false,
       itemCount: khatmat.length,
       itemBuilder: (_, index) {
-        final khatma = khatmat[index];
-        ref.watch(formKhatmaProvider).khatma.id == khatma.id;
-
+        final khatma =
+            ref.watch(khatmaDetailsProvider).khatma.id == khatmat[index].id
+                ? ref.watch(khatmaDetailsProvider).khatma
+                : khatmat[index];
         return Card(
           elevation: 0.4,
           clipBehavior: Clip.antiAlias,
           child: KhatmaTile(
             khatma: khatma,
             onPressed: () {
-              ref.read(formKhatmaProvider).update(khatma);
+              ref.read(khatmaDetailsProvider).withKhatma(khatma);
               ref.read(selectedItemsNotifier.notifier).initSelection([]);
               context.goNamed(AppRoute.khatmaDetails.name,
                   pathParameters: {'id': khatma.id!});
