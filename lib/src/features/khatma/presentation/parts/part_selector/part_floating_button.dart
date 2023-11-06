@@ -69,7 +69,7 @@ class PartFloatingButton extends ConsumerWidget {
         ],
       ),
     );
-    Timer(const Duration(milliseconds: 1000), () {
+    Timer(const Duration(milliseconds: 500), () {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
