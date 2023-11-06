@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class TopBarBottomSheet extends StatelessWidget {
@@ -12,36 +11,18 @@ class TopBarBottomSheet extends StatelessWidget {
     return Stack(
       alignment: Alignment.topRight,
       children: [
-        gapH16,
         Center(
-          child: Container(
-            width: 40,
-            padding: const EdgeInsets.only(bottom: 20.0),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppTheme.getTheme().dividerColor,
-                  width: 3.5,
-                ),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: InkWell(
-            hoverColor: Colors.transparent,
+          child: Padding(
+            padding:
+                const EdgeInsets.only(bottom: 5, top: 10, left: 10, right: 10),
             child: Container(
-              width: 30,
-              height: 30,
-              padding: const EdgeInsets.all(0),
+              width: 49,
+              height: 5,
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(50.0)),
-                color: AppTheme.getTheme().disabledColor,
+                borderRadius: BorderRadius.circular(45),
+                color: AppTheme.getTheme().dividerColor,
               ),
-              child: const Icon(Icons.close, size: 18, color: Colors.blueGrey),
             ),
-            onTap: () => Navigator.of(context).pop(),
           ),
         ),
       ],

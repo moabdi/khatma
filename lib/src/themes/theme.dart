@@ -120,9 +120,9 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         selectedColor: primaryColor,
         tileColor: Colors.white,
-        selectedTileColor: primaryColor.withOpacity(0.13),
-        titleTextStyle: textTheme.labelLarge,
-        subtitleTextStyle: textTheme.bodySmall,
+        selectedTileColor: primaryColor.withOpacity(0.1),
+        titleTextStyle: textTheme.bodyLarge,
+        subtitleTextStyle: textTheme.bodyMedium!.copyWith(color: Colors.grey),
         minLeadingWidth: 4,
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -157,11 +157,15 @@ class AppTheme {
             fixedSize: const Size(double.infinity, 45),
             backgroundColor: primaryColors,
             foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 58),
+            shadowColor: primaryColors,
+            elevation: 2,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(45),
             ),
-            textStyle: textTheme.bodySmall!.copyWith(
+            textStyle: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w600,
+              color: Colors.white,
             )),
       ),
       snackBarTheme: SnackBarThemeData(
@@ -268,6 +272,11 @@ class AppTheme {
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
+      headlineLarge: base.headlineLarge?.copyWith(
+        fontSize: 18,
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w600,
+      ),
       headlineSmall: base.headlineSmall?.copyWith(
         fontSize: 18,
         fontFamily: pFontFamily,
@@ -293,20 +302,21 @@ class AppTheme {
         fontWeight: FontWeight.w600,
       ),
       bodyMedium: base.bodyMedium?.copyWith(
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: pFontFamily,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w400,
+        color: HexColor("737A86"),
+      ),
+      bodySmall: base.bodySmall?.copyWith(
+        color: Colors.blueGrey.shade400,
+        fontSize: 13,
+        fontFamily: pFontFamily,
+        fontWeight: FontWeight.w400,
       ),
       labelLarge: base.labelLarge?.copyWith(
         fontSize: 14,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
-      ),
-      bodySmall: base.bodySmall?.copyWith(
-        color: Colors.blueGrey.shade400,
-        fontSize: 12,
-        fontFamily: pFontFamily,
-        fontWeight: FontWeight.w400,
       ),
       labelSmall: base.labelSmall?.copyWith(
         color: Colors.blueGrey.shade700,

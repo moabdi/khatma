@@ -14,11 +14,11 @@ class ModalBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
+    return Container(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       decoration: BoxDecoration(
-        color: AppTheme.getTheme().listTileTheme.tileColor,
+        color: AppTheme.getTheme().disabledColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -31,12 +31,18 @@ class ModalBottomSheet extends StatelessWidget {
         children: [
           const TopBarBottomSheet(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(title, style: AppTheme.getTheme().textTheme.titleLarge),
+            padding: const EdgeInsets.all(17),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: AppTheme.getTheme().textTheme.titleLarge),
+                gapH20,
+                child,
+                gapH20,
+              ],
+            ),
           ),
-          gapH12,
-          child,
-          gapH20,
         ],
       ),
     );

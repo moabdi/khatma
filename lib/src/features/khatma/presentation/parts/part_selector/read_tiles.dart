@@ -52,7 +52,7 @@ class ReadPartTiles extends ConsumerWidget {
                 children: [
                   Text(
                     khatmaPart.finishedDate!.format(),
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],
               ),

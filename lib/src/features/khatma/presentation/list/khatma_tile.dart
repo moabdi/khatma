@@ -63,7 +63,7 @@ class KhatmaTile extends StatelessWidget {
               TextOrEmpty(
                   formatDateAsTextDuration(
                       khatma.lastRead ?? khatma.createDate),
-                  style: AppTheme.getTheme().textTheme.bodySmall),
+                  style: AppTheme.getTheme().textTheme.bodyMedium),
             ],
           ),
           gapH8,

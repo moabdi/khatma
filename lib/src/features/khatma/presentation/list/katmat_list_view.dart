@@ -52,10 +52,10 @@ class KhatmatListView extends ConsumerWidget {
           child: KhatmaTile(
             khatma: khatma,
             onPressed: () {
-              ref.read(khatmaDetailsProvider).withKhatma(khatma);
-              ref.read(selectedItemsNotifier.notifier).initSelection([]);
               context.goNamed(AppRoute.khatmaDetails.name,
                   pathParameters: {'id': khatma.id!});
+              ref.read(khatmaDetailsProvider).withKhatma(khatma);
+              ref.read(selectedItemsNotifier.notifier).initSelection([]);
             },
           ),
         );

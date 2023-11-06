@@ -99,7 +99,7 @@ class PartSelectorScreen extends ConsumerWidget {
         title: ReadMoreText(
           khatma.description ?? '',
           trimLines: 3,
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.bodyMedium,
           colorClickableText: Theme.of(context).primaryColor,
           trimMode: TrimMode.Line,
           textAlign: TextAlign.justify,
@@ -145,7 +145,7 @@ class PartSelectorScreen extends ConsumerWidget {
             subtitle: Text(
                 AppLocalizations.of(context)
                     .readedParts(khatma.completedPartIds.length),
-                style: Theme.of(context).textTheme.bodySmall),
+                style: Theme.of(context).textTheme.bodyMedium),
             trailing: const Icon(Icons.arrow_drop_down),
             leading: buildChart(context, khatma.completude),
             children: <Widget>[
@@ -168,7 +168,7 @@ class PartSelectorScreen extends ConsumerWidget {
       lineWidth: 4,
       percent: percent,
       center: Text("${(percent * 100).toStringAsFixed(0)}%",
-          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 12,
                 fontWeight: FontWeight.w900,
               )),

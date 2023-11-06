@@ -43,6 +43,7 @@ dependencies:
   flutter_svg: ^2.0.9
   lottie: ^2.7.0
   crypto: ^3.0.3
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

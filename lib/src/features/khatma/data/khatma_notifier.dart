@@ -10,9 +10,9 @@ class KhatmaNotifier extends ChangeNotifier {
 
   KhatmaNotifier(this._khatma);
 
-  void withKhatma(Khatma khatma) {
+  Future<void> withKhatma(Khatma khatma) async {
     _khatma = khatma;
-    notifyListeners();
+    //notifyListeners();
   }
 
   void completeParts(List<int> partIds) {

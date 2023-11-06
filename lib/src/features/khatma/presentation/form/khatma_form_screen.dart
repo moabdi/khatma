@@ -141,7 +141,7 @@ class AddKhatmaScreen extends ConsumerWidget {
             onSelect: (value) {
               ref.updateKhatma(khatma.copyWith(unit: value));
             }),
-        AppLocalizations.of(context).splitUnit.withColon,
+        AppLocalizations.of(context).splitUnit,
       ),
     );
   }

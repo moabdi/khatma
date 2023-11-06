@@ -23,8 +23,8 @@ class PartTileTitle extends StatelessWidget {
           maxLength: 20,
           style: enabled
               ? null
-              : AppTheme.getTheme().textTheme.titleSmall?.copyWith(
-                    color: Theme.of(context).textTheme.bodySmall?.color,
+              : AppTheme.getTheme().textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
                     fontSize: 13,
                   ),
         ),

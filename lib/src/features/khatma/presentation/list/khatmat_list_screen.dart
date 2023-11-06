@@ -43,10 +43,12 @@ class KhatmatListScreen extends StatelessWidget {
                       children: [
                         Text(
                           AppLocalizations.of(context).khatmaList,
-                          style:
-                              AppTheme.getTheme().textTheme.bodySmall!.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: AppTheme.getTheme()
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                         IconButton(
                             icon: Container(
