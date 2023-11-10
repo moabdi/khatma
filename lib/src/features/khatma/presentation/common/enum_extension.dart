@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
-extension ShareIcon on KhatmaShareType {
+extension ShareIcon on ShareVisibility {
   IconData get icon {
     switch (this) {
-      case KhatmaShareType.public:
+      case ShareVisibility.public:
         return Icons.public;
-      case KhatmaShareType.private:
+      case ShareVisibility.private:
         return Icons.lock;
-      case KhatmaShareType.group:
+      case ShareVisibility.group:
         return Icons.group;
       default:
         return Icons.error;

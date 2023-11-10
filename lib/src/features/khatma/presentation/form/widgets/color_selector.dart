@@ -1,42 +1,27 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+class ColorSelector extends StatefulWidget {
+  final Color? color;
+  final bool? isSelected;
+  final Function(Color)? onTap;
 
-class MyApp extends StatelessWidget {
+  const ColorSelector({
+    Key? key,
+    this.color,
+    this.isSelected,
+    this.onTap,
+  }) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ThemeScreen(),
-    );
-  }
+  State<ColorSelector> createState() => _ColorSelectorState();
 }
 
-class ThemeScreen extends StatefulWidget {
-  @override
-  _ThemeScreenState createState() => _ThemeScreenState();
-}
-
-class _ThemeScreenState extends State<ThemeScreen> {
-  Color _selectedColor = Colors.blue; // The default selected color
-
+class _ColorSelectorState extends State<ColorSelector> {
+  Color _selectedColor = Colors.blue;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            // Handle back button press
-          },
-        ),
-        title: Text('Appearance'),
-      ),
-      body: newMethod(),
-    );
-  }
-
-  Widget newMethod() {
     return ListView(
+      shrinkWrap: true,
       children: <Widget>[
         ListTile(title: Text('Colour')),
         Container(
@@ -77,5 +62,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
         ),
       ],
     );
+    ;
   }
 }

@@ -1,36 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/common/widgets/radio_icon.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class ShareSelector extends StatelessWidget {
   const ShareSelector(
-      {super.key, this.unit = KhatmaShareType.private, required this.onSelect});
-  final KhatmaShareType unit;
-  final ValueChanged<KhatmaShareType> onSelect;
+      {super.key, this.unit = ShareVisibility.private, required this.onSelect});
+  final ShareVisibility unit;
+  final ValueChanged<ShareVisibility> onSelect;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(),
-          shrinkWrap: true,
-          itemCount: KhatmaShareType.values.length,
-          itemBuilder: (BuildContext context, int index) {
-            var currentUnit = KhatmaShareType.values[index];
-            var selected = unit == currentUnit;
-            return ShareTile(
-              selected: selected,
-              currentUnit: currentUnit,
-              onSelect: onSelect,
-            );
-          },
+    return Card(
+      color: Colors.white,
+      elevation: 0,
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Column(
+          children: [
+            ListView.separated(
+              separatorBuilder: (context, index) => const SizedBox(),
+              shrinkWrap: true,
+              itemCount: ShareVisibility.values.length,
+              itemBuilder: (BuildContext context, int index) {
+                var currentUnit = ShareVisibility.values[index];
+                var selected = unit == currentUnit;
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  child: ShareTile(
+                    selected: selected,
+                    currentUnit: currentUnit,
+                    onSelect: onSelect,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
-        gapH24,
-      ],
+      ),
     );
   }
 }
@@ -44,22 +54,47 @@ class ShareTile extends StatelessWidget {
   });
 
   final bool selected;
-  final KhatmaShareType currentUnit;
-  final ValueChanged<KhatmaShareType> onSelect;
+  final ShareVisibility currentUnit;
+  final ValueChanged<ShareVisibility> onSelect;
 
   @override
   Widget build(BuildContext context) {
+    Map<ShareVisibility, IconData> shareIcons = {
+      ShareVisibility.private: Icons.lock,
+      ShareVisibility.group: Icons.groups,
+      ShareVisibility.public: Icons.public,
+    };
+
     return ListTile(
+      dense: true,
+      contentPadding: const EdgeInsets.all(0),
+      minVerticalPadding: 0,
       selected: selected,
       title:
-          Text(AppLocalizations.of(context).khatmaShareType(currentUnit.name)),
-      subtitle: Text(AppLocalizations.of(context)
-          .khatmaShareTypeDescription(currentUnit.name)),
+          Text(AppLocalizations.of(context).shareVisibility(currentUnit.name)),
+      subtitle: Text(
+        AppLocalizations.of(context).shareVisibilityDesc(currentUnit.name),
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
       onTap: () {
         Navigator.pop(context);
         onSelect(currentUnit);
       },
-      leading: RadioIcon(selected: selected),
+      leading: Avatar(
+        radius: 30,
+        backgroundColor: selected
+            ? Theme.of(context).primaryColor.withOpacity(.15)
+            : Theme.of(context).disabledColor,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        bottom: selected
+            ? Avatar(radius: 10, child: RadioIcon(selected: selected, size: 18))
+            : null,
+        child: Icon(
+          shareIcons[currentUnit],
+          color: Theme.of(context).primaryColor,
+          size: 25,
+        ),
+      ),
     );
   }
 }

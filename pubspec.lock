@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.3"
+  animated_custom_dropdown:
+    dependency: "direct main"
+    description:
+      name: animated_custom_dropdown
+      sha256: "5d651fd00c770c32ef7c98978d19b9d8c0a9ebc6e305974af05c1e1a03692289"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   archive:
     dependency: transitive
     description:
@@ -1066,6 +1074,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.5"
+  weekday_selector:
+    dependency: "direct main"
+    description:
+      name: weekday_selector
+      sha256: "783954997aa30a8890b24196784543752dbf179282ca4d9139ecd70d63fea99e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   win32:
     dependency: transitive
     description:

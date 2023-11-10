@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/common/widgets/radio_icon.dart';
@@ -74,7 +73,6 @@ class UnitSelector extends StatelessWidget {
                 );
               },
             ),
-            gapH20,
           ],
         ),
       ),

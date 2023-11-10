@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
+import 'package:khatma/src/common/utils/day_of_week.dart';
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:khatma/src/common/utils/number_utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,18 +10,18 @@ part 'khatma.freezed.dart';
 abstract class Khatma with _$Khatma {
   const factory Khatma({
     String? id,
+    required String name,
     String? description,
+    required DateTime createDate,
     DateTime? endDate,
     String? creator,
     required KhatmaStyle style,
     DateTime? lastRead,
     List<int>? completedParts,
     List<KhatmaPart>? parts,
-    required String name,
-    required DateTime createDate,
-    required Recurrence recurrence,
+    Recurrence? recurrence,
     required SplitUnit unit,
-    required KhatmaShareType share,
+    required ShareVisibility share,
   }) = _Khatma;
 }
 
@@ -35,11 +36,12 @@ abstract class KhatmaStyle with _$KhatmaStyle {
 @freezed
 abstract class Recurrence with _$Recurrence {
   const factory Recurrence({
-    required KhatmaScheduler scheduler,
+    @Default(false) bool repeat,
     required DateTime startDate,
     required DateTime endDate,
-    RecurrenceUnit? unit,
-    int? occurrence,
+    @Default(RepeatInterval.auto) RepeatInterval unit,
+    List<int>? days,
+    int? frequency,
   }) = _Recurrence;
 }
 
@@ -55,11 +57,11 @@ abstract class KhatmaPart with _$KhatmaPart {
   }) = _KhatmaPart;
 }
 
-enum KhatmaScheduler { never, autoRepeat, custom }
+enum ShareVisibility { private, group, public }
 
-enum KhatmaShareType { private, group, public }
+enum RepeatInterval { auto, daily, weekly, monthly }
 
-enum RecurrenceUnit { day, week, month, hijriMonth, year }
+enum TimePeriods { day, week, month, year }
 
 enum SplitUnit {
   sourat(114),
@@ -72,6 +74,17 @@ enum SplitUnit {
   final int count;
 
   const SplitUnit(this.count);
+}
+
+extension RecurrenceExtention on Recurrence {
+  List<int> get daysOfWeek {
+    return days ?? [];
+  }
+
+  List<bool> get daysOfWeekSelected {
+    return List.generate(
+        7, (index) => daysOfWeek.contains(DayOfWeek.values[index].value));
+  }
 }
 
 extension KhatmaPartExtension on KhatmaPart {
@@ -121,12 +134,12 @@ extension KhatmaExtension on Khatma {
   }
 
   bool get isExpired {
-    return recurrence.endDate.isBefore(DateTime.now());
+    return recurrence != null && recurrence!.endDate.isBefore(DateTime.now());
   }
 
   String get remainingDays {
-    if (isExpired) return '0';
-    return recurrence.endDate.difference(DateTime.now()).inDays.toString();
+    if (recurrence == null || isExpired) return '0';
+    return recurrence!.endDate.difference(DateTime.now()).inDays.toString();
   }
 
   String get remainingParts {
@@ -154,5 +167,9 @@ extension KhatmaExtension on Khatma {
 
   bool get isStarted {
     return lastRead != null;
+  }
+
+  bool get repeats {
+    return recurrence != null && recurrence!.repeat;
   }
 }

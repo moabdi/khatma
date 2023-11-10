@@ -36,7 +36,11 @@ class ModalBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: AppTheme.getTheme().textTheme.titleLarge),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: Text(title,
+                      style: AppTheme.getTheme().textTheme.titleLarge),
+                ),
                 gapH20,
                 child,
                 gapH20,

@@ -21,14 +21,14 @@ var kTestKhatmat = [
     createDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.custom,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
   ),
   Khatma(
     id: '2',
@@ -43,14 +43,14 @@ var kTestKhatmat = [
     createDate: DateTime.parse("2023-01-15 13:27:00"),
     lastRead: DateTime.parse("2023-02-08 08:00:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.public,
+    share: ShareVisibility.public,
   ),
   Khatma(
     id: '3',
@@ -66,14 +66,14 @@ var kTestKhatmat = [
     createDate: DateTime.parse("2023-01-01 10:15:00"),
     lastRead: DateTime.now(),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.group,
+    share: ShareVisibility.group,
   ),
   Khatma(
     id: '4',
@@ -82,14 +82,14 @@ var kTestKhatmat = [
     unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-12-01 10:15:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
   ),
   Khatma(
     id: '5',
@@ -98,14 +98,14 @@ var kTestKhatmat = [
     unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-10-01 10:15:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
   ),
   Khatma(
     id: '6',
@@ -114,14 +114,14 @@ var kTestKhatmat = [
     unit: SplitUnit.sourat,
     createDate: DateTime.parse("2022-11-01 10:15:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
   ),
   Khatma(
     id: '7',
@@ -130,14 +130,14 @@ var kTestKhatmat = [
     unit: SplitUnit.juzz,
     createDate: DateTime.parse("2023-02-01 10:15:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
   ),
   Khatma(
     id: '8',
@@ -146,13 +146,13 @@ var kTestKhatmat = [
     unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-12-01 10:15:00"),
     recurrence: Recurrence(
-        scheduler: KhatmaScheduler.never,
+        repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
     style: KhatmaStyle(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
   ),
 ];

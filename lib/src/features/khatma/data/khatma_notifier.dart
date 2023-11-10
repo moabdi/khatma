@@ -43,13 +43,13 @@ Khatma initKhatma() {
     name: '',
     unit: SplitUnit.hizb,
     createDate: DateTime.now(),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
     recurrence: Recurrence(
-      scheduler: KhatmaScheduler.never,
+      repeat: true,
       startDate: DateTime.now(),
       endDate: DateTime.now().add(const Duration(days: 30)),
-      unit: RecurrenceUnit.month,
-      occurrence: 0,
+      unit: RepeatInterval.monthly,
+      frequency: 0,
     ),
     style: const KhatmaStyle(
       color: '',

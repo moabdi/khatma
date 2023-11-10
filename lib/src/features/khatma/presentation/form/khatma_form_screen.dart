@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
@@ -41,22 +42,41 @@ class AddKhatmaScreen extends ConsumerWidget {
             node: node,
             child: Form(
               key: formKey,
-              child: Container(
+              child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildAvatar(context, khatma, ref),
                     gapH20,
+                    gapH20,
                     _buildName(context, nameController, node, ref, khatma),
                     gapH20,
                     _buildDescription(context, descController, ref, khatma),
                     gapH20,
-                    _buildSplitUnit(khatma, context, ref),
+                    Card(
+                        color: Colors.white,
+                        elevation: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: _buildSplitUnit(khatma, context, ref),
+                        )),
                     gapH20,
-                    _buildRecurrence(khatma, ref, context),
+                    Card(
+                        color: Colors.white,
+                        elevation: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: _buildRecurrence(khatma, ref, context),
+                        )),
                     gapH20,
-                    _buildShare(context, khatma, ref),
+                    Card(
+                        color: Colors.white,
+                        elevation: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: _buildShare(context, khatma, ref),
+                        )),
                     gapH48,
                     _saveButton(context, ref),
                     gapH64,
@@ -153,16 +173,16 @@ class AddKhatmaScreen extends ConsumerWidget {
           color: Color.fromARGB(255, 120, 0, 212)),
       title: AppLocalizations.of(context).recurrence,
       subtitle: AppLocalizations.of(context)
-          .khatmaSchedulerDesc(khatma.recurrence.scheduler.name),
+          .shareVisibilityDesc(khatma.recurrence!.unit.name),
       onTap: () {
-        ref.read(formRecurrenceProvider).update(khatma.recurrence);
+        ref.read(formRecurrenceProvider).update(khatma.recurrence!);
         _showModal(
           context,
           RecurrenceSelector(
-              recurrence: khatma.recurrence,
+              recurrence: khatma.recurrence!,
               onSelect: (value) =>
                   ref.updateKhatma(khatma.copyWith(recurrence: value))),
-          AppLocalizations.of(context).recurrence.withColon,
+          AppLocalizations.of(context).recurrence,
         );
       },
     );
@@ -174,14 +194,14 @@ class AddKhatmaScreen extends ConsumerWidget {
       icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
       title: AppLocalizations.of(context).share,
       subtitle:
-          AppLocalizations.of(context).khatmaShareTypeDesc(khatma.share.name),
+          AppLocalizations.of(context).shareVisibilityDesc(khatma.share.name),
       onTap: () => _showModal(
         context,
         ShareSelector(
             unit: khatma.share,
             onSelect: (value) =>
                 ref.updateKhatma(khatma.copyWith(share: value))),
-        AppLocalizations.of(context).share.withColon,
+        AppLocalizations.of(context).share,
       ),
     );
   }

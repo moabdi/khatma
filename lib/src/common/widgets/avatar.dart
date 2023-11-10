@@ -22,6 +22,7 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(50),
       child: CircleAvatar(
         radius: radius,
         backgroundColor: backgroundColor,

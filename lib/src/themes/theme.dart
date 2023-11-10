@@ -149,6 +149,7 @@ class AppTheme {
           ),
           textStyle: textTheme.titleSmall!.copyWith(
             fontWeight: FontWeight.w600,
+            color: primaryColors,
           ),
         ),
       ),
@@ -157,14 +158,15 @@ class AppTheme {
             fixedSize: const Size(double.infinity, 45),
             backgroundColor: primaryColors,
             foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 58),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 58),
             shadowColor: primaryColors,
             elevation: 2,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(45),
             ),
-            textStyle: textTheme.bodyMedium!.copyWith(
-              fontWeight: FontWeight.w600,
+            textStyle: textTheme.bodyLarge!.copyWith(
+              fontWeight: FontWeight.w900,
+              fontSize: 16,
               color: Colors.white,
             )),
       ),
@@ -183,7 +185,21 @@ class AppTheme {
       ),
       colorScheme: colorScheme.copyWith(background: HexColor("F5F5F8")),
       dropdownMenuTheme: DropdownMenuThemeData(
-        textStyle: textTheme.displaySmall,
+        textStyle: textTheme.bodyLarge,
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          contentPadding: const EdgeInsets.all(15),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(width: 1, color: Colors.grey.shade200),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide:
+                BorderSide(width: 1.5, color: primaryColor.withOpacity(.4)),
+          ),
+          labelStyle: textTheme.bodyMedium,
+        ),
       ),
     );
   }

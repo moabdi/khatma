@@ -1,31 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/common/widgets/radio_icon.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class RecurrenceTile extends StatelessWidget {
-  const RecurrenceTile(
-      {super.key,
-      required this.value,
-      required this.icon,
-      required this.selectedValue,
-      required this.onTap});
+  const RecurrenceTile({super.key, required this.value, required this.onTap});
 
-  final KhatmaScheduler value;
-  final Widget icon;
-  final KhatmaScheduler selectedValue;
+  final bool value;
   final GestureTapCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected = selectedValue == value;
+    Map<bool, IconData> unitIcons = {
+      false: Icons.block_flipped,
+      true: Icons.autorenew
+    };
 
     return ListTile(
-      selected: isSelected,
-      leading: RadioIcon(selected: isSelected),
-      title: Text(AppLocalizations.of(context).khatmaScheduler(value.name)),
+      dense: true,
+      contentPadding: const EdgeInsets.all(0),
+      minVerticalPadding: 0,
+      selected: value,
+      leading: Avatar(
+        radius: 30,
+        backgroundColor: value
+            ? Theme.of(context).primaryColor.withOpacity(.15)
+            : Theme.of(context).disabledColor,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        bottom: value
+            ? Avatar(radius: 10, child: RadioIcon(selected: value, size: 18))
+            : null,
+        child: Icon(
+          unitIcons[value],
+          color: Theme.of(context).primaryColor,
+          size: 25,
+        ),
+      ),
+      title: Text(AppLocalizations.of(context).repeatOption(value.toString())),
       subtitle: Text(
-          AppLocalizations.of(context).khatmaSchedulerDescription(value.name)),
+        AppLocalizations.of(context).repeatOption(value.toString()),
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
       onTap: onTap,
     );
   }

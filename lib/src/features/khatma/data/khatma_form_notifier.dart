@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/common/utils/day_of_week.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -30,13 +31,13 @@ Khatma initKhatma() {
     name: '',
     unit: SplitUnit.hizb,
     createDate: DateTime.now(),
-    share: KhatmaShareType.private,
+    share: ShareVisibility.private,
     recurrence: Recurrence(
-      scheduler: KhatmaScheduler.never,
+      repeat: true,
       startDate: DateTime.now(),
       endDate: DateTime.now().add(const Duration(days: 30)),
-      unit: RecurrenceUnit.month,
-      occurrence: 1,
+      unit: RepeatInterval.monthly,
+      frequency: 1,
     ),
     style: KhatmaStyle(
       color: AppTheme.getTheme().primaryColor.toHex(),
@@ -56,17 +57,28 @@ class RecurrenceNotifier extends ChangeNotifier {
     _recurrence = updatedRecurrence;
     notifyListeners();
   }
+
+  void toggleDay(int day) {
+    var days = List<int>.from(_recurrence.days ?? []);
+    if (days.contains(day)) {
+      days.remove(day);
+    } else {
+      days.add(day);
+    }
+    _recurrence = _recurrence.copyWith(days: days);
+    notifyListeners();
+  }
 }
 
 final formRecurrenceProvider =
     ChangeNotifierProvider<RecurrenceNotifier>((ref) {
   return RecurrenceNotifier(
     Recurrence(
-      scheduler: KhatmaScheduler.never,
+      repeat: true,
       startDate: DateTime.now(),
       endDate: DateTime.now().add(const Duration(days: 30)),
-      unit: RecurrenceUnit.month,
-      occurrence: 1,
+      unit: RepeatInterval.auto,
+      frequency: 1,
     ),
   );
 });
