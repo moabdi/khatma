@@ -184,9 +184,12 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         gapH12,
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(
-              "${AppLocalizations.of(context).repeatEvery} ${updatedRecurrence.frequency} ${AppLocalizations.of(context).timePeriods(updatedRecurrence.unit.name).toLowerCase()}",
-              style: Theme.of(context).textTheme.bodyLarge),
+          child: updatedRecurrence.repeat
+              ? Text(
+                  "${AppLocalizations.of(context).repeatEvery} ${updatedRecurrence.frequency} ${AppLocalizations.of(context).timePeriods(updatedRecurrence.unit.name).toLowerCase()}",
+                  style: Theme.of(context).textTheme.bodyLarge)
+              : Text(AppLocalizations.of(context).noRepeatDescription,
+                  style: Theme.of(context).textTheme.bodyLarge),
         ),
       ],
     );
