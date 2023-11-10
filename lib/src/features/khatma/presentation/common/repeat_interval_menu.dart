@@ -5,14 +5,16 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class RepeatIntervalDropdownMenu extends StatelessWidget {
   const RepeatIntervalDropdownMenu(
-      {super.key, this.selectedUnit, this.onSelected});
+      {super.key, this.selectedUnit, this.onSelected, this.enabled = true});
 
   final RepeatInterval? selectedUnit;
   final Function(RepeatInterval?)? onSelected;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
     return CustomDropdownMenu(
+      enabled: enabled,
       value: selectedUnit ?? RepeatInterval.auto,
       onChanged: onSelected,
       items: RepeatInterval.values

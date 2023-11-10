@@ -8,11 +8,13 @@ class DatePickerListTile extends StatefulWidget {
     required this.onChanged,
     required this.leading,
     required this.title,
+    this.enabled = true,
   });
 
   final String title;
   final DateTime value;
   final Widget leading;
+  final bool enabled;
   final ValueChanged<DateTime> onChanged;
 
   @override
@@ -36,6 +38,7 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      enabled: widget.enabled,
       dense: true,
       contentPadding:
           const EdgeInsets.only(top: 0, bottom: 0, left: 0, right: 10),
@@ -49,7 +52,9 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
       subtitle: Text(
         widget.value.format(),
         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              color: Theme.of(context).primaryColor,
+              color: widget.enabled
+                  ? Theme.of(context).primaryColor
+                  : Theme.of(context).dividerColor,
             ),
       ),
       onTap: () {

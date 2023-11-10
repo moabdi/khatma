@@ -19,7 +19,7 @@ abstract class Khatma with _$Khatma {
     DateTime? lastRead,
     List<int>? completedParts,
     List<KhatmaPart>? parts,
-    Recurrence? recurrence,
+    required Recurrence recurrence,
     required SplitUnit unit,
     required ShareVisibility share,
   }) = _Khatma;

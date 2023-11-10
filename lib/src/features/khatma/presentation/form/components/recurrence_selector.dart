@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/day_of_week.dart';
+import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/common/widgets/num_dropdown_menu.dart';
 import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/common/widgets/date_picker_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/common/num_dropdown_menu.dart';
@@ -30,82 +30,48 @@ class RecurrenceSelector extends ConsumerStatefulWidget {
 class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   late RepeatInterval selectedCustomRecurrenceValue;
 
-  final TextEditingController _frequencyEditingController =
-      TextEditingController();
-  final TextEditingController unitController = TextEditingController();
-
-  late Recurrence updatedRecurrence;
-  late int oldRecurrenceHash;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedCustomRecurrenceValue = widget.recurrence.unit;
-    _frequencyEditingController.text = widget.recurrence.frequency.toString();
-    oldRecurrenceHash = widget.recurrence.hashCode;
-  }
-
-  @override
-  void dispose() {
-    _frequencyEditingController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
+    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Card(
-            color: Colors.white,
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: ListTile(
-                dense: true,
-                contentPadding: const EdgeInsets.all(0),
-                minVerticalPadding: 0,
-                title: Text("Repeat",
-                    style: Theme.of(context).textTheme.bodyLarge),
-                subtitle: Text("Enable recreate khatma",
-                    style: Theme.of(context).textTheme.bodyMedium),
-                leading: Avatar(
-                  radius: 30,
-                  backgroundColor: Theme.of(context).disabledColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Icon(
-                    Icons.autorenew,
-                    color: Theme.of(context).primaryColor,
-                    size: 25,
-                  ),
+            child: ListTile(
+              dense: true,
+              contentPadding: const EdgeInsets.all(0),
+              minVerticalPadding: 0,
+              title: Text(AppLocalizations.of(context).repeat,
+                  style: Theme.of(context).textTheme.bodyLarge),
+              subtitle: Text(AppLocalizations.of(context).repeatDescription,
+                  style: Theme.of(context).textTheme.bodyMedium),
+              leading: Avatar(
+                radius: 30,
+                backgroundColor: Theme.of(context).disabledColor,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Icon(
+                  Icons.autorenew,
+                  color: Theme.of(context).primaryColor,
+                  size: 25,
                 ),
-                trailing: Switch(value: true, onChanged: (value) {}),
               ),
+              trailing: Switch(
+                  value: updatedRecurrence.repeat,
+                  onChanged: (value) {
+                    ref
+                        .read(formRecurrenceProvider)
+                        .update(updatedRecurrence.copyWith(repeat: value));
+                  }),
             ),
           ),
           gapH12,
           Card(
-            color: Colors.white,
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: AnimatedSize(
-                curve: Curves.ease,
-                duration: const Duration(milliseconds: 600),
-                child: _buildForm(context),
-              ),
-            ),
+            child: _buildForm(context),
           ),
           gapH12,
           Card(
-            color: Colors.white,
-            elevation: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: _recurrence(),
-            ),
+            child: _recurrence(),
           ),
           gapH32,
           buildSave(),
@@ -116,9 +82,11 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   }
 
   Widget _buildForm(BuildContext context) {
+    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
     return Column(
       children: [
         DatePickerListTile(
+          enabled: updatedRecurrence.repeat,
           title: AppLocalizations.of(context).startDate,
           leading: Avatar(
             radius: 30,
@@ -134,6 +102,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         ),
         const Divider(height: 0),
         DatePickerListTile(
+          enabled: updatedRecurrence.repeat,
           title: AppLocalizations.of(context).endDate,
           leading: Avatar(
             radius: 30,
@@ -152,6 +121,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   }
 
   Widget _recurrence() {
+    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,31 +130,12 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
         Row(
           children: [
             gapW8,
-            Text("Recurrence:", style: Theme.of(context).textTheme.bodyMedium),
-            gapW16,
-            Row(
-              children: [
-                RepeatIntervalDropdownMenu(
-                  selectedUnit:
-                      ref.read(formRecurrenceProvider).recurrence.unit,
-                  onSelected: (value) {
-                    ref
-                        .read(formRecurrenceProvider)
-                        .update(updatedRecurrence.copyWith(unit: value!));
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-        gapH12,
-        Row(
-          children: [
-            gapW8,
-            Text("Repeat evry:", style: Theme.of(context).textTheme.bodyMedium),
+            Text(AppLocalizations.of(context).repeatEvery.withColon,
+                style: Theme.of(context).textTheme.bodyMedium),
             gapW8,
             NumberDropdownMenu(
-              value: ref.read(formRecurrenceProvider).recurrence.frequency,
+              enabled: updatedRecurrence.repeat,
+              value: updatedRecurrence.frequency,
               onChanged: (value) {
                 ref
                     .read(formRecurrenceProvider)
@@ -192,40 +143,49 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
               },
             ),
             gapW8,
-            Text("${ref.read(formRecurrenceProvider).recurrence.unit.name}",
-                style: Theme.of(context).textTheme.bodyMedium),
+            RepeatIntervalDropdownMenu(
+              enabled: updatedRecurrence.repeat,
+              selectedUnit: updatedRecurrence.unit,
+              onSelected: (value) {
+                ref
+                    .read(formRecurrenceProvider)
+                    .update(updatedRecurrence.copyWith(unit: value!));
+              },
+            ),
           ],
         ),
         gapH12,
-        Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 400),
-            child: WeekdaySelector(
-              elevation: 2,
-              firstDayOfWeek: 1,
-              onChanged: (value) =>
-                  ref.read(formRecurrenceProvider).toggleDay(value),
-              values: ref
-                  .read(formRecurrenceProvider)
-                  .recurrence
-                  .daysOfWeekSelected,
-              selectedFillColor: Theme.of(context).primaryColor,
-              selectedColor: Colors.white,
-              weekdays: DayOfWeek.values
-                  .map((day) => AppLocalizations.of(context).weekDay(day.name))
-                  .toList(),
-              shortWeekdays: DayOfWeek.values
-                  .map((day) =>
-                      AppLocalizations.of(context).shortWeekDay(day.name))
-                  .toList(),
+        if (updatedRecurrence.unit == RepeatInterval.weekly)
+          Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: WeekdaySelector(
+                elevation: 2,
+                firstDayOfWeek: 1,
+                onChanged: (value) =>
+                    ref.read(formRecurrenceProvider).toggleDay(value),
+                values: ref
+                    .read(formRecurrenceProvider)
+                    .recurrence
+                    .daysOfWeekSelected,
+                selectedFillColor: Theme.of(context).primaryColor,
+                selectedColor: Colors.white,
+                weekdays: DayOfWeek.values
+                    .map(
+                        (day) => AppLocalizations.of(context).weekDay(day.name))
+                    .toList(),
+                shortWeekdays: DayOfWeek.values
+                    .map((day) =>
+                        AppLocalizations.of(context).shortWeekDay(day.name))
+                    .toList(),
+              ),
             ),
           ),
-        ),
         gapH12,
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-              "Repeat  evry ${ref.read(formRecurrenceProvider).recurrence.frequency} ${ref.read(formRecurrenceProvider).recurrence.unit.name}",
+              "${AppLocalizations.of(context).repeatEvery} ${updatedRecurrence.frequency} ${AppLocalizations.of(context).timePeriods(updatedRecurrence.unit.name).toLowerCase()}",
               style: Theme.of(context).textTheme.bodyLarge),
         ),
       ],
@@ -233,7 +193,7 @@ class _RecurrenceSelectorState extends ConsumerState<RecurrenceSelector> {
   }
 
   Container buildSave() {
-    bool isChanged = oldRecurrenceHash !=
+    bool isChanged = ref.read(formKhatmaProvider).khatma.recurrence.hashCode !=
         ref.read(formRecurrenceProvider).recurrence.hashCode;
 
     return Container(

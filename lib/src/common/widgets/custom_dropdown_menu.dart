@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 
 class CustomDropdownMenu<T> extends StatelessWidget {
   CustomDropdownMenu(
-      {super.key, this.value, this.onChanged, required this.items});
+      {super.key,
+      this.value,
+      this.onChanged,
+      required this.items,
+      this.enabled = true});
 
   final T? value;
   final Function(T?)? onChanged;
   final List<DropdownMenuItem<T>>? items;
+  final bool enabled;
   final TextEditingController unitController = TextEditingController();
 
   @override
@@ -28,7 +33,7 @@ class CustomDropdownMenu<T> extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           value: value,
           onChanged: onChanged,
-          items: items,
+          items: enabled ? items : null,
         ),
       ),
     );

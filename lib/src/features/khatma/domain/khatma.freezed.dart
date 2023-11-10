@@ -26,7 +26,7 @@ mixin _$Khatma {
   DateTime? get lastRead => throw _privateConstructorUsedError;
   List<int>? get completedParts => throw _privateConstructorUsedError;
   List<KhatmaPart>? get parts => throw _privateConstructorUsedError;
-  Recurrence? get recurrence => throw _privateConstructorUsedError;
+  Recurrence get recurrence => throw _privateConstructorUsedError;
   SplitUnit get unit => throw _privateConstructorUsedError;
   ShareVisibility get share => throw _privateConstructorUsedError;
 
@@ -50,12 +50,12 @@ abstract class $KhatmaCopyWith<$Res> {
       DateTime? lastRead,
       List<int>? completedParts,
       List<KhatmaPart>? parts,
-      Recurrence? recurrence,
+      Recurrence recurrence,
       SplitUnit unit,
       ShareVisibility share});
 
   $KhatmaStyleCopyWith<$Res> get style;
-  $RecurrenceCopyWith<$Res>? get recurrence;
+  $RecurrenceCopyWith<$Res> get recurrence;
 }
 
 /// @nodoc
@@ -81,7 +81,7 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
     Object? lastRead = freezed,
     Object? completedParts = freezed,
     Object? parts = freezed,
-    Object? recurrence = freezed,
+    Object? recurrence = null,
     Object? unit = null,
     Object? share = null,
   }) {
@@ -126,10 +126,10 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.parts
           : parts // ignore: cast_nullable_to_non_nullable
               as List<KhatmaPart>?,
-      recurrence: freezed == recurrence
+      recurrence: null == recurrence
           ? _value.recurrence
           : recurrence // ignore: cast_nullable_to_non_nullable
-              as Recurrence?,
+              as Recurrence,
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -151,12 +151,8 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
 
   @override
   @pragma('vm:prefer-inline')
-  $RecurrenceCopyWith<$Res>? get recurrence {
-    if (_value.recurrence == null) {
-      return null;
-    }
-
-    return $RecurrenceCopyWith<$Res>(_value.recurrence!, (value) {
+  $RecurrenceCopyWith<$Res> get recurrence {
+    return $RecurrenceCopyWith<$Res>(_value.recurrence, (value) {
       return _then(_value.copyWith(recurrence: value) as $Val);
     });
   }
@@ -180,14 +176,14 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
       DateTime? lastRead,
       List<int>? completedParts,
       List<KhatmaPart>? parts,
-      Recurrence? recurrence,
+      Recurrence recurrence,
       SplitUnit unit,
       ShareVisibility share});
 
   @override
   $KhatmaStyleCopyWith<$Res> get style;
   @override
-  $RecurrenceCopyWith<$Res>? get recurrence;
+  $RecurrenceCopyWith<$Res> get recurrence;
 }
 
 /// @nodoc
@@ -211,7 +207,7 @@ class __$$KhatmaImplCopyWithImpl<$Res>
     Object? lastRead = freezed,
     Object? completedParts = freezed,
     Object? parts = freezed,
-    Object? recurrence = freezed,
+    Object? recurrence = null,
     Object? unit = null,
     Object? share = null,
   }) {
@@ -256,10 +252,10 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value._parts
           : parts // ignore: cast_nullable_to_non_nullable
               as List<KhatmaPart>?,
-      recurrence: freezed == recurrence
+      recurrence: null == recurrence
           ? _value.recurrence
           : recurrence // ignore: cast_nullable_to_non_nullable
-              as Recurrence?,
+              as Recurrence,
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -286,7 +282,7 @@ class _$KhatmaImpl implements _Khatma {
       this.lastRead,
       final List<int>? completedParts,
       final List<KhatmaPart>? parts,
-      this.recurrence,
+      required this.recurrence,
       required this.unit,
       required this.share})
       : _completedParts = completedParts,
@@ -329,7 +325,7 @@ class _$KhatmaImpl implements _Khatma {
   }
 
   @override
-  final Recurrence? recurrence;
+  final Recurrence recurrence;
   @override
   final SplitUnit unit;
   @override
@@ -401,7 +397,7 @@ abstract class _Khatma implements Khatma {
       final DateTime? lastRead,
       final List<int>? completedParts,
       final List<KhatmaPart>? parts,
-      final Recurrence? recurrence,
+      required final Recurrence recurrence,
       required final SplitUnit unit,
       required final ShareVisibility share}) = _$KhatmaImpl;
 
@@ -426,7 +422,7 @@ abstract class _Khatma implements Khatma {
   @override
   List<KhatmaPart>? get parts;
   @override
-  Recurrence? get recurrence;
+  Recurrence get recurrence;
   @override
   SplitUnit get unit;
   @override

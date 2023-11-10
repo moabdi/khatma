@@ -201,6 +201,15 @@ class AppTheme {
           labelStyle: textTheme.bodyMedium,
         ),
       ),
+      cardTheme: CardTheme(
+        elevation: 0,
+        margin: const EdgeInsets.all(3),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        shadowColor: Colors.grey.shade200,
+        color: Colors.white,
+      ),
     );
   }
 
