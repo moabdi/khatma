@@ -36,6 +36,8 @@
   "endDate": "End date",
   "every": "Every",
   "repeat": "Repeat",
+  "noRepeat": "No repeat",
+  "noRepeatDescription": "This khatma will not be repeated",
   "repeatDescription": "Active khatma recreation",
   "repeatEvery": "Repeat very",
   "chooseColor": "Choose color",
