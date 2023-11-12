@@ -28,7 +28,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
   Khatma(
     id: '2',
@@ -50,7 +50,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.public,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
   Khatma(
     id: '3',
@@ -73,7 +73,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.group,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
   Khatma(
     id: '4',
@@ -89,7 +89,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
   Khatma(
     id: '5',
@@ -105,7 +105,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
   Khatma(
     id: '6',
@@ -121,7 +121,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
   Khatma(
     id: '7',
@@ -137,7 +137,7 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
   Khatma(
     id: '8',
@@ -153,6 +153,6 @@ var kTestKhatmat = [
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
   ),
 ];

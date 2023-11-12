@@ -45,7 +45,7 @@ class KhatmaTile extends StatelessWidget {
               ),
               gapW4,
               Icon(
-                khatma.share.icon,
+                khatma.share.visibility.icon,
                 size: 13,
                 color: Colors.blueGrey.shade200,
               ),

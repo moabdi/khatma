@@ -5,45 +5,6 @@ import 'package:khatma/src/common/widgets/radio_icon.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
-class ShareSelector extends StatelessWidget {
-  const ShareSelector(
-      {super.key, this.unit = ShareVisibility.private, required this.onSelect});
-  final ShareVisibility unit;
-  final ValueChanged<ShareVisibility> onSelect;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: 0,
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: Column(
-          children: [
-            ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(),
-              shrinkWrap: true,
-              itemCount: ShareVisibility.values.length,
-              itemBuilder: (BuildContext context, int index) {
-                var currentUnit = ShareVisibility.values[index];
-                var selected = unit == currentUnit;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 3),
-                  child: ShareTile(
-                    selected: selected,
-                    currentUnit: currentUnit,
-                    onSelect: onSelect,
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class ShareTile extends StatelessWidget {
   const ShareTile({
     super.key,
@@ -76,7 +37,6 @@ class ShareTile extends StatelessWidget {
         style: Theme.of(context).textTheme.bodySmall,
       ),
       onTap: () {
-        Navigator.pop(context);
         onSelect(currentUnit);
       },
       leading: Avatar(

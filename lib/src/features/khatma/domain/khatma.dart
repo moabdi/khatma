@@ -21,7 +21,7 @@ abstract class Khatma with _$Khatma {
     List<KhatmaPart>? parts,
     required Recurrence recurrence,
     required SplitUnit unit,
-    required ShareVisibility share,
+    required KhatmaShare share,
   }) = _Khatma;
 }
 
@@ -55,6 +55,16 @@ abstract class KhatmaPart with _$KhatmaPart {
     DateTime? finishedDate,
     int? remindTimes,
   }) = _KhatmaPart;
+}
+
+@freezed
+abstract class KhatmaShare with _$KhatmaShare {
+  const factory KhatmaShare({
+    required ShareVisibility visibility,
+    int? maxPartToRead,
+    int? maxPartToReserve,
+    @Default(false) bool allowMultipleInstances,
+  }) = _KhatmaShare;
 }
 
 enum ShareVisibility { private, group, public }

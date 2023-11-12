@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common/utils/day_of_week.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -31,7 +30,7 @@ Khatma initKhatma() {
     name: '',
     unit: SplitUnit.hizb,
     createDate: DateTime.now(),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
     recurrence: Recurrence(
       repeat: true,
       startDate: DateTime.now(),
@@ -80,5 +79,24 @@ final formRecurrenceProvider =
       unit: RepeatInterval.auto,
       frequency: 1,
     ),
+  );
+});
+
+class ShareNotifier extends ChangeNotifier {
+  KhatmaShare _khatmaShare;
+
+  KhatmaShare get khatmaShare => _khatmaShare;
+
+  ShareNotifier(this._khatmaShare);
+
+  void update(KhatmaShare khatmaShare) {
+    _khatmaShare = khatmaShare;
+    notifyListeners();
+  }
+}
+
+final formShareProvider = ChangeNotifierProvider<ShareNotifier>((ref) {
+  return ShareNotifier(
+    const KhatmaShare(visibility: ShareVisibility.private),
   );
 });

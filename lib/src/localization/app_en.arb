@@ -80,5 +80,8 @@
   "shareVisibility": "{share, select, other{Private} public{Public} group{Group}}",
   "shareVisibilityDesc": "{share, select, other{This khatma is private} public{Everyone can access and participate} group{Shared only by code or QR code}}",
   "shareVisibilityDescription": "{share, select, other{The khatma will be kept private and exclusive to the organizer} public{Everyone is welcome to access and join the khatma} group{The khatma will be shared only with those who receive a specific number or QR code}}",
+  "maxParticipants": "{count, plural, =0{No participants} =1{1 participant} other{# participants}}",
+  "maxPartToRead": "Max part to read",
+  "maxPartToReserve": "Max part to reserve",
   "title": "Title"
 }

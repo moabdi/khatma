@@ -10,7 +10,7 @@ import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dar
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/share_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/modal_bottom_sheet.dart';
@@ -163,7 +163,7 @@ class AddKhatmaScreen extends ConsumerWidget {
           _showModal(
             context,
             RecurrenceSelector(
-                recurrence: khatma.recurrence!,
+                recurrence: khatma.recurrence,
                 onChanged: (value) =>
                     ref.updateKhatma(khatma.copyWith(recurrence: value))),
             AppLocalizations.of(context).recurrence,
@@ -179,13 +179,14 @@ class AddKhatmaScreen extends ConsumerWidget {
         icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
         title: AppLocalizations.of(context).share,
         subtitle: Text(
-            AppLocalizations.of(context).shareVisibilityDesc(khatma.share.name),
+            AppLocalizations.of(context)
+                .shareVisibilityDesc(khatma.share.visibility.name),
             style: Theme.of(context).textTheme.bodyMedium),
         onTap: () => _showModal(
           context,
           ShareSelector(
-              unit: khatma.share,
-              onSelect: (value) =>
+              share: khatma.share,
+              onChanged: (value) =>
                   ref.updateKhatma(khatma.copyWith(share: value))),
           AppLocalizations.of(context).share,
         ),

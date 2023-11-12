@@ -43,7 +43,7 @@ Khatma initKhatma() {
     name: '',
     unit: SplitUnit.hizb,
     createDate: DateTime.now(),
-    share: ShareVisibility.private,
+    share: KhatmaShare(visibility: ShareVisibility.private),
     recurrence: Recurrence(
       repeat: true,
       startDate: DateTime.now(),
