@@ -31,9 +31,15 @@ class ShareLimit extends ConsumerWidget {
                   maxValue: khatma.unit.count,
                   value: khatmaShare.maxPartToReserve ?? 1,
                   onChanged: (value) {
-                    ref
-                        .read(formShareProvider.notifier)
-                        .update(khatmaShare.copyWith(maxPartToReserve: value));
+                    if (khatmaShare.maxPartToRead == null ||
+                        value! > khatmaShare.maxPartToRead!) {
+                      ref.read(formShareProvider.notifier).update(
+                          khatmaShare.copyWith(
+                              maxPartToReserve: value, maxPartToRead: value));
+                    } else {
+                      ref.read(formShareProvider.notifier).update(
+                          khatmaShare.copyWith(maxPartToReserve: value));
+                    }
                   },
                 ),
               ],
@@ -50,9 +56,16 @@ class ShareLimit extends ConsumerWidget {
                   maxValue: khatma.unit.count,
                   value: khatmaShare.maxPartToRead ?? 1,
                   onChanged: (value) {
-                    ref
-                        .read(formShareProvider.notifier)
-                        .update(khatmaShare.copyWith(maxPartToRead: value));
+                    if (khatmaShare.maxPartToReserve == null ||
+                        value! < khatmaShare.maxPartToReserve!) {
+                      ref.read(formShareProvider.notifier).update(
+                          khatmaShare.copyWith(
+                              maxPartToReserve: value, maxPartToRead: value));
+                    } else {
+                      ref
+                          .read(formShareProvider.notifier)
+                          .update(khatmaShare.copyWith(maxPartToRead: value));
+                    }
                   },
                 ),
               ],

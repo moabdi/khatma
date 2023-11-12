@@ -142,6 +142,14 @@ class AddKhatmaScreen extends ConsumerWidget {
           UnitSelector(
               unit: khatma.unit,
               onSelect: (value) {
+                if (khatma.share.maxPartToRead != null &&
+                    khatma.share.maxPartToRead! > value.count) {
+                  ref.updateKhatma(khatma.copyWith(
+                      share: khatma.share.copyWith(
+                    maxPartToRead: 1,
+                    maxPartToReserve: 1,
+                  )));
+                }
                 ref.updateKhatma(khatma.copyWith(unit: value));
               }),
           AppLocalizations.of(context).splitUnit,
