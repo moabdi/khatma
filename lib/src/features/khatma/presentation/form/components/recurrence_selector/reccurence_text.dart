@@ -19,6 +19,8 @@ class RecurrenceText extends StatelessWidget {
 
   String _buildRepeatText(Recurrence recurrence, BuildContext context) {
     switch (recurrence.unit) {
+      case RepeatInterval.auto:
+        return AppLocalizations.of(context).autoRepeatDescription;
       case RepeatInterval.weekly:
         return _buildWeekText(context, recurrence);
       default:
