@@ -22,7 +22,7 @@ class RecurrenceSelector extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var isChanged = ref.read(formKhatmaProvider).khatma.recurrence.hashCode !=
-        ref.read(formRecurrenceProvider).recurrence.hashCode;
+        ref.watch(formRecurrenceProvider).recurrence.hashCode;
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
