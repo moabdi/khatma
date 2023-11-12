@@ -12,7 +12,7 @@ import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/modal_bottom_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/unit_selector.dart';
 
@@ -54,29 +54,11 @@ class AddKhatmaScreen extends ConsumerWidget {
                     gapH20,
                     _buildDescription(context, descController, ref, khatma),
                     gapH20,
-                    Card(
-                        color: Colors.white,
-                        elevation: 0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: _buildSplitUnit(khatma, context, ref),
-                        )),
+                    _buildSplitUnit(khatma, context, ref),
                     gapH20,
-                    Card(
-                        color: Colors.white,
-                        elevation: 0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: _buildRecurrence(khatma, ref, context),
-                        )),
+                    _buildRecurrence(khatma, ref, context),
                     gapH20,
-                    Card(
-                        color: Colors.white,
-                        elevation: 0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: _buildShare(context, khatma, ref),
-                        )),
+                    _buildShare(context, khatma, ref),
                     gapH48,
                     _saveButton(context, ref),
                     gapH64,
@@ -147,61 +129,64 @@ class AddKhatmaScreen extends ConsumerWidget {
     );
   }
 
-  KhatmaFormTile _buildSplitUnit(
-      Khatma khatma, BuildContext context, WidgetRef ref) {
-    return KhatmaFormTile(
-      icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
-      title: AppLocalizations.of(context).splitUnit,
-      subtitle:
-          AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
-      onTap: () => _showModal(
-        context,
-        UnitSelector(
-            unit: khatma.unit,
-            onSelect: (value) {
-              ref.updateKhatma(khatma.copyWith(unit: value));
-            }),
-        AppLocalizations.of(context).splitUnit,
+  Widget _buildSplitUnit(Khatma khatma, BuildContext context, WidgetRef ref) {
+    return Card(
+      child: KhatmaFormTile(
+        icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
+        title: AppLocalizations.of(context).splitUnit,
+        subtitle:
+            AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
+        onTap: () => _showModal(
+          context,
+          UnitSelector(
+              unit: khatma.unit,
+              onSelect: (value) {
+                ref.updateKhatma(khatma.copyWith(unit: value));
+              }),
+          AppLocalizations.of(context).splitUnit,
+        ),
       ),
     );
   }
 
-  KhatmaFormTile _buildRecurrence(
-      Khatma khatma, WidgetRef ref, BuildContext context) {
-    return KhatmaFormTile(
-      icon: const Icon(Icons.rotate_right,
-          color: Color.fromARGB(255, 120, 0, 212)),
-      title: AppLocalizations.of(context).recurrence,
-      subtitle: AppLocalizations.of(context)
-          .shareVisibilityDesc(khatma.recurrence!.unit.name),
-      onTap: () {
-        ref.read(formRecurrenceProvider).update(khatma.recurrence!);
-        _showModal(
-          context,
-          RecurrenceSelector(
-              recurrence: khatma.recurrence!,
-              onSelect: (value) =>
-                  ref.updateKhatma(khatma.copyWith(recurrence: value))),
-          AppLocalizations.of(context).recurrence,
-        );
-      },
+  Widget _buildRecurrence(Khatma khatma, WidgetRef ref, BuildContext context) {
+    return Card(
+      child: KhatmaFormTile(
+        icon: const Icon(Icons.rotate_right,
+            color: Color.fromARGB(255, 120, 0, 212)),
+        title: AppLocalizations.of(context).recurrence,
+        subtitle: AppLocalizations.of(context)
+            .shareVisibilityDesc(khatma.recurrence!.unit.name),
+        onTap: () {
+          ref.read(formRecurrenceProvider).update(khatma.recurrence!);
+          _showModal(
+            context,
+            RecurrenceSelector(
+                recurrence: khatma.recurrence!,
+                onChanged: (value) =>
+                    ref.updateKhatma(khatma.copyWith(recurrence: value))),
+            AppLocalizations.of(context).recurrence,
+          );
+        },
+      ),
     );
   }
 
-  KhatmaFormTile _buildShare(
-      BuildContext context, Khatma khatma, WidgetRef ref) {
-    return KhatmaFormTile(
-      icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
-      title: AppLocalizations.of(context).share,
-      subtitle:
-          AppLocalizations.of(context).shareVisibilityDesc(khatma.share.name),
-      onTap: () => _showModal(
-        context,
-        ShareSelector(
-            unit: khatma.share,
-            onSelect: (value) =>
-                ref.updateKhatma(khatma.copyWith(share: value))),
-        AppLocalizations.of(context).share,
+  Widget _buildShare(BuildContext context, Khatma khatma, WidgetRef ref) {
+    return Card(
+      child: KhatmaFormTile(
+        icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
+        title: AppLocalizations.of(context).share,
+        subtitle:
+            AppLocalizations.of(context).shareVisibilityDesc(khatma.share.name),
+        onTap: () => _showModal(
+          context,
+          ShareSelector(
+              unit: khatma.share,
+              onSelect: (value) =>
+                  ref.updateKhatma(khatma.copyWith(share: value))),
+          AppLocalizations.of(context).share,
+        ),
       ),
     );
   }

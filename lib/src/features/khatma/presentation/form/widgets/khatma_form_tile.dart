@@ -19,8 +19,8 @@ class KhatmaFormTile extends StatelessWidget {
     return ListTile(
       dense: true,
       leading: icon,
-      title: Text(title),
-      subtitle: Text(subtitle),
+      title: Text(title, style: Theme.of(context).textTheme.bodyLarge),
+      subtitle: Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
       onTap: onTap,
       trailing: const Icon(Icons.arrow_right),
     );

@@ -8,11 +8,13 @@ class DatePickerListTile extends StatefulWidget {
     required this.onChanged,
     required this.leading,
     required this.title,
+    this.firstDate,
     this.enabled = true,
   });
 
   final String title;
   final DateTime value;
+  final DateTime? firstDate;
   final Widget leading;
   final bool enabled;
   final ValueChanged<DateTime> onChanged;
@@ -26,7 +28,7 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: widget.value,
-      firstDate: DateTime.now(),
+      firstDate: widget.firstDate ?? DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 10000)),
     );
 
