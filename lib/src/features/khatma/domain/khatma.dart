@@ -177,8 +177,4 @@ extension KhatmaExtension on Khatma {
   bool get isStarted {
     return lastRead != null;
   }
-
-  bool get repeats {
-    return recurrence.repeat;
-  }
 }
