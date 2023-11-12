@@ -4,8 +4,9 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class RecurrenceText extends StatelessWidget {
   final Recurrence recurrence;
+  TextStyle? style;
 
-  const RecurrenceText(this.recurrence, {super.key});
+  RecurrenceText(this.recurrence, {super.key, this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class RecurrenceText extends StatelessWidget {
       recurrence.repeat
           ? _buildRepeatText(recurrence, context)
           : AppLocalizations.of(context).noRepeatDescription,
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: style ?? Theme.of(context).textTheme.bodyLarge,
     );
   }
 

@@ -9,6 +9,7 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_selector.dart';
@@ -133,8 +134,9 @@ class AddKhatmaScreen extends ConsumerWidget {
       child: KhatmaFormTile(
         icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
         title: AppLocalizations.of(context).splitUnit,
-        subtitle:
-            AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
+        subtitle: Text(
+            AppLocalizations.of(context).shareVisibilityDesc(khatma.unit.name),
+            style: Theme.of(context).textTheme.bodyMedium),
         onTap: () => _showModal(
           context,
           UnitSelector(
@@ -151,11 +153,11 @@ class AddKhatmaScreen extends ConsumerWidget {
   Widget _buildRecurrence(Khatma khatma, WidgetRef ref, BuildContext context) {
     return Card(
       child: KhatmaFormTile(
-        icon: const Icon(Icons.rotate_right,
+        icon: const Icon(Icons.autorenew,
             color: Color.fromARGB(255, 120, 0, 212)),
         title: AppLocalizations.of(context).recurrence,
-        subtitle: AppLocalizations.of(context)
-            .shareVisibilityDesc(khatma.recurrence!.unit.name),
+        subtitle: RecurrenceText(khatma.recurrence,
+            style: Theme.of(context).textTheme.bodySmall),
         onTap: () {
           ref.read(formRecurrenceProvider).update(khatma.recurrence!);
           _showModal(
@@ -176,8 +178,9 @@ class AddKhatmaScreen extends ConsumerWidget {
       child: KhatmaFormTile(
         icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
         title: AppLocalizations.of(context).share,
-        subtitle:
+        subtitle: Text(
             AppLocalizations.of(context).shareVisibilityDesc(khatma.share.name),
+            style: Theme.of(context).textTheme.bodyMedium),
         onTap: () => _showModal(
           context,
           ShareSelector(

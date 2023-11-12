@@ -330,7 +330,7 @@ class AppTheme {
         fontSize: 14,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w400,
-        color: HexColor("737A86"),
+        color: Colors.blueGrey.shade400,
       ),
       bodySmall: base.bodySmall?.copyWith(
         color: Colors.blueGrey.shade400,

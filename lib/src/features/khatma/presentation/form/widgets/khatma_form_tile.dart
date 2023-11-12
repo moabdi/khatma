@@ -11,7 +11,7 @@ class KhatmaFormTile extends StatelessWidget {
 
   final Icon icon;
   final String title;
-  final String subtitle;
+  final Widget subtitle;
   final GestureTapCallback onTap;
 
   @override
@@ -20,7 +20,7 @@ class KhatmaFormTile extends StatelessWidget {
       dense: true,
       leading: icon,
       title: Text(title, style: Theme.of(context).textTheme.bodyLarge),
-      subtitle: Text(subtitle, style: Theme.of(context).textTheme.bodyMedium),
+      subtitle: subtitle,
       onTap: onTap,
       trailing: const Icon(Icons.arrow_right),
     );
