@@ -1045,7 +1045,6 @@ mixin _$KhatmaShare {
   ShareVisibility get visibility => throw _privateConstructorUsedError;
   int? get maxPartToRead => throw _privateConstructorUsedError;
   int? get maxPartToReserve => throw _privateConstructorUsedError;
-  bool get allowMultipleInstances => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $KhatmaShareCopyWith<KhatmaShare> get copyWith =>
@@ -1059,10 +1058,7 @@ abstract class $KhatmaShareCopyWith<$Res> {
       _$KhatmaShareCopyWithImpl<$Res, KhatmaShare>;
   @useResult
   $Res call(
-      {ShareVisibility visibility,
-      int? maxPartToRead,
-      int? maxPartToReserve,
-      bool allowMultipleInstances});
+      {ShareVisibility visibility, int? maxPartToRead, int? maxPartToReserve});
 }
 
 /// @nodoc
@@ -1081,7 +1077,6 @@ class _$KhatmaShareCopyWithImpl<$Res, $Val extends KhatmaShare>
     Object? visibility = null,
     Object? maxPartToRead = freezed,
     Object? maxPartToReserve = freezed,
-    Object? allowMultipleInstances = null,
   }) {
     return _then(_value.copyWith(
       visibility: null == visibility
@@ -1096,10 +1091,6 @@ class _$KhatmaShareCopyWithImpl<$Res, $Val extends KhatmaShare>
           ? _value.maxPartToReserve
           : maxPartToReserve // ignore: cast_nullable_to_non_nullable
               as int?,
-      allowMultipleInstances: null == allowMultipleInstances
-          ? _value.allowMultipleInstances
-          : allowMultipleInstances // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -1113,10 +1104,7 @@ abstract class _$$KhatmaShareImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ShareVisibility visibility,
-      int? maxPartToRead,
-      int? maxPartToReserve,
-      bool allowMultipleInstances});
+      {ShareVisibility visibility, int? maxPartToRead, int? maxPartToReserve});
 }
 
 /// @nodoc
@@ -1133,7 +1121,6 @@ class __$$KhatmaShareImplCopyWithImpl<$Res>
     Object? visibility = null,
     Object? maxPartToRead = freezed,
     Object? maxPartToReserve = freezed,
-    Object? allowMultipleInstances = null,
   }) {
     return _then(_$KhatmaShareImpl(
       visibility: null == visibility
@@ -1148,10 +1135,6 @@ class __$$KhatmaShareImplCopyWithImpl<$Res>
           ? _value.maxPartToReserve
           : maxPartToReserve // ignore: cast_nullable_to_non_nullable
               as int?,
-      allowMultipleInstances: null == allowMultipleInstances
-          ? _value.allowMultipleInstances
-          : allowMultipleInstances // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1160,10 +1143,7 @@ class __$$KhatmaShareImplCopyWithImpl<$Res>
 
 class _$KhatmaShareImpl implements _KhatmaShare {
   const _$KhatmaShareImpl(
-      {required this.visibility,
-      this.maxPartToRead,
-      this.maxPartToReserve,
-      this.allowMultipleInstances = false});
+      {required this.visibility, this.maxPartToRead, this.maxPartToReserve});
 
   @override
   final ShareVisibility visibility;
@@ -1171,13 +1151,10 @@ class _$KhatmaShareImpl implements _KhatmaShare {
   final int? maxPartToRead;
   @override
   final int? maxPartToReserve;
-  @override
-  @JsonKey()
-  final bool allowMultipleInstances;
 
   @override
   String toString() {
-    return 'KhatmaShare(visibility: $visibility, maxPartToRead: $maxPartToRead, maxPartToReserve: $maxPartToReserve, allowMultipleInstances: $allowMultipleInstances)';
+    return 'KhatmaShare(visibility: $visibility, maxPartToRead: $maxPartToRead, maxPartToReserve: $maxPartToReserve)';
   }
 
   @override
@@ -1190,14 +1167,12 @@ class _$KhatmaShareImpl implements _KhatmaShare {
             (identical(other.maxPartToRead, maxPartToRead) ||
                 other.maxPartToRead == maxPartToRead) &&
             (identical(other.maxPartToReserve, maxPartToReserve) ||
-                other.maxPartToReserve == maxPartToReserve) &&
-            (identical(other.allowMultipleInstances, allowMultipleInstances) ||
-                other.allowMultipleInstances == allowMultipleInstances));
+                other.maxPartToReserve == maxPartToReserve));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, visibility, maxPartToRead,
-      maxPartToReserve, allowMultipleInstances);
+  int get hashCode =>
+      Object.hash(runtimeType, visibility, maxPartToRead, maxPartToReserve);
 
   @JsonKey(ignore: true)
   @override
@@ -1210,8 +1185,7 @@ abstract class _KhatmaShare implements KhatmaShare {
   const factory _KhatmaShare(
       {required final ShareVisibility visibility,
       final int? maxPartToRead,
-      final int? maxPartToReserve,
-      final bool allowMultipleInstances}) = _$KhatmaShareImpl;
+      final int? maxPartToReserve}) = _$KhatmaShareImpl;
 
   @override
   ShareVisibility get visibility;
@@ -1219,8 +1193,6 @@ abstract class _KhatmaShare implements KhatmaShare {
   int? get maxPartToRead;
   @override
   int? get maxPartToReserve;
-  @override
-  bool get allowMultipleInstances;
   @override
   @JsonKey(ignore: true)
   _$$KhatmaShareImplCopyWith<_$KhatmaShareImpl> get copyWith =>

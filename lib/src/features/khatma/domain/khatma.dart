@@ -63,7 +63,6 @@ abstract class KhatmaShare with _$KhatmaShare {
     required ShareVisibility visibility,
     int? maxPartToRead,
     int? maxPartToReserve,
-    @Default(false) bool allowMultipleInstances,
   }) = _KhatmaShare;
 }
 
