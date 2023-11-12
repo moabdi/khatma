@@ -135,7 +135,7 @@ class AddKhatmaScreen extends ConsumerWidget {
         icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
         title: AppLocalizations.of(context).splitUnit,
         subtitle: Text(
-            AppLocalizations.of(context).shareVisibilityDesc(khatma.unit.name),
+            AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
             style: Theme.of(context).textTheme.bodyMedium),
         onTap: () => _showModal(
           context,
