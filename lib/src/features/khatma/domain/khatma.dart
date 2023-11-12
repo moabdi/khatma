@@ -144,12 +144,12 @@ extension KhatmaExtension on Khatma {
   }
 
   bool get isExpired {
-    return recurrence != null && recurrence!.endDate.isBefore(DateTime.now());
+    return recurrence.endDate.isBefore(DateTime.now());
   }
 
   String get remainingDays {
-    if (recurrence == null || isExpired) return '0';
-    return recurrence!.endDate.difference(DateTime.now()).inDays.toString();
+    if (isExpired) return '0';
+    return recurrence.endDate.difference(DateTime.now()).inDays.toString();
   }
 
   String get remainingParts {
@@ -180,6 +180,6 @@ extension KhatmaExtension on Khatma {
   }
 
   bool get repeats {
-    return recurrence != null && recurrence!.repeat;
+    return recurrence.repeat;
   }
 }
