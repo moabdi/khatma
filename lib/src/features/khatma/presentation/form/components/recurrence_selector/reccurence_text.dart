@@ -4,9 +4,9 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class RecurrenceText extends StatelessWidget {
   final Recurrence recurrence;
-  TextStyle? style;
+  final TextStyle? style;
 
-  RecurrenceText(this.recurrence, {super.key, this.style});
+  const RecurrenceText(this.recurrence, {super.key, this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,17 @@ class RecurrenceText extends StatelessWidget {
         return _buildWeekText(context, recurrence);
       default:
         {
-          String unit =
-              AppLocalizations.of(context).repeatInterval(recurrence.unit.name);
-          return AppLocalizations.of(context).repeatEveryTimePeriodDescription(
-              recurrence.frequency.toString(), unit);
+          String unit = AppLocalizations.of(context)
+              .repeatInterval(recurrence.unit.name)
+              .toLowerCase();
+          if (recurrence.frequency == 1) {
+            return AppLocalizations.of(context)
+                .repeatEveryTimePeriodDescription(unit);
+          } else {
+            return AppLocalizations.of(context)
+                .repeatEveryTimePeriodsDescription(
+                    recurrence.frequency.toString(), unit);
+          }
         }
     }
   }
@@ -50,6 +57,10 @@ class RecurrenceText extends StatelessWidget {
       dayNamesString = selectedDayNames.join(", ");
     }
 
+    if (recurrence.frequency == 1) {
+      return AppLocalizations.of(context)
+          .repeatEverySelectedDayDescription(dayNamesString);
+    }
     return AppLocalizations.of(context).repeatEverySelectedDaysDescription(
         recurrence.frequency.toString(), dayNamesString);
   }
