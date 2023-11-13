@@ -65,11 +65,14 @@ class OccurenceForm extends ConsumerWidget {
                     .recurrence
                     .daysOfWeek
                     .isEmpty) {
-              ref.read(formRecurrenceProvider).toggleDay(DayOfWeek.mon.value);
+              ref
+                  .read(formRecurrenceProvider)
+                  .update(updatedRecurrence.copyWith(unit: value!, days: [1]));
+            } else {
+              ref
+                  .read(formRecurrenceProvider)
+                  .update(updatedRecurrence.copyWith(unit: value!));
             }
-            ref
-                .read(formRecurrenceProvider)
-                .update(updatedRecurrence.copyWith(unit: value!));
           },
         ),
       ],

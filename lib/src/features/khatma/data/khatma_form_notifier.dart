@@ -64,6 +64,7 @@ class RecurrenceNotifier extends ChangeNotifier {
     } else {
       days.add(day);
     }
+    if (days.isEmpty) days.add(1);
     _recurrence = _recurrence.copyWith(days: days);
     notifyListeners();
   }
