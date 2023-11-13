@@ -8,7 +8,7 @@ import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style/style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
