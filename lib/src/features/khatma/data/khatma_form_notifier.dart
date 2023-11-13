@@ -40,7 +40,7 @@ Khatma initKhatma() {
     ),
     style: KhatmaStyle(
       color: AppTheme.getTheme().primaryColor.toHex(),
-      icon: khatmaImagesMap.entries.first.key,
+      icon: khatmaIconsMap.entries.first.key,
     ),
   );
 }

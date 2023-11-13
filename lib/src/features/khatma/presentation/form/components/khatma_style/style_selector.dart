@@ -28,52 +28,51 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          KhatmaColorPicker(
-            color: updatedStyle.color,
-            onChanged: (value) => setState(() {
-              updatedStyle = updatedStyle.copyWith(color: value);
-            }),
-          ),
-          gapH20,
-          Text(
-            AppLocalizations.of(context).chooseIcon.withColon,
-            style: AppTheme.getTheme().textTheme.titleSmall,
-          ),
-          gapH20,
-          Flexible(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * .3,
-              child: KhatmaIconPicker(
-                style: updatedStyle,
-                onChanged: (value) => setState(() {
-                  updatedStyle = updatedStyle.copyWith(icon: value);
-                }),
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          AppLocalizations.of(context).color.withColon,
+          style: AppTheme.getTheme().textTheme.bodyLarge,
+        ),
+        gapH4,
+        KhatmaColorPicker(
+          color: updatedStyle.color,
+          onChanged: (value) => setState(() {
+            updatedStyle = updatedStyle.copyWith(color: value);
+          }),
+        ),
+        gapH20,
+        Text(
+          AppLocalizations.of(context).icon.withColon,
+          style: AppTheme.getTheme().textTheme.bodyLarge,
+        ),
+        gapH4,
+        Card(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * .3,
+            child: KhatmaIconPicker(
+              style: updatedStyle,
+              onChanged: (value) => setState(() {
+                updatedStyle = updatedStyle.copyWith(icon: value);
+              }),
             ),
           ),
-          gapH20,
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  widget.onChanged(updatedStyle);
-                  Navigator.pop(context);
-                },
-                child: Text(AppLocalizations.of(context).apply),
-              ),
-            ),
+        ),
+        gapH20,
+        Container(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              widget.onChanged(updatedStyle);
+              Navigator.pop(context);
+            },
+            child: Text(AppLocalizations.of(context).apply),
           ),
-          gapH20,
-        ],
-      ),
+        ),
+        gapH20,
+      ],
     );
   }
 }

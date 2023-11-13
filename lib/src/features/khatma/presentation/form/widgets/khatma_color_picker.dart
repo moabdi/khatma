@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class KhatmaColorPicker extends StatelessWidget {
   const KhatmaColorPicker({
@@ -16,36 +13,39 @@ class KhatmaColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    int columns = max(min((screenWidth / 45).floor(), 12), 1);
-
-    return Flexible(
-      child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: columns,
-          crossAxisSpacing: 2,
-          mainAxisSpacing: 2,
-        ),
-        shrinkWrap: true,
-        itemCount: khatmaColorHexList.length,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(50),
-            onTap: () => onChanged(khatmaColorHexList[index]),
-            child: CircleAvatar(
-              maxRadius: 10,
-              minRadius: 5,
-              backgroundImage: index == 0
-                  ? const AssetImage('assets/images/forbidden.png')
-                  : null,
-              backgroundColor: khatmaColorHexList[index].toColor(),
-              child: khatmaColorHexList[index] == color
-                  ? index == 0
-                      ? Container(color: Colors.white70)
-                      : const Icon(Icons.check)
-                  : null,
-            ),
+    return SizedBox(
+      height: 55,
+      width: double.infinity,
+      child: Card(
+        child: Center(
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: khatmaColorHexList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () => onChanged(khatmaColorHexList[index]),
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.all(2.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: color == khatmaColorHexList[index]
+                        ? Border.all(
+                            color: Theme.of(context).primaryColor, width: 3)
+                        : null,
+                  ),
+                  width: 40,
+                  height: 40,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: khatmaColorMap[khatmaColorHexList[index]],
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

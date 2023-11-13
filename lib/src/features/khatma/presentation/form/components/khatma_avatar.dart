@@ -22,7 +22,7 @@ class KhatmaAvatar extends StatelessWidget {
             height: 50,
             width: 50,
             child: FittedBox(
-                child: getImage(style.icon, color: HexColor(style.color))),
+                child: getIcon(style.icon, color: HexColor(style.color))),
           ),
         ),
         Align(

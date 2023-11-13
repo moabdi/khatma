@@ -81,7 +81,7 @@ class AddKhatmaScreen extends ConsumerWidget {
           backgroundColor: khatma.style.hexColor,
           child: const Icon(Icons.brush, size: 12),
         ),
-        child: getImage(
+        child: getIcon(
           khatma.style.icon,
           color: khatma.style.hexColor,
           size: 50,
@@ -94,7 +94,7 @@ class AddKhatmaScreen extends ConsumerWidget {
                 khatma.copyWith(style: value),
               ),
             ),
-            AppLocalizations.of(context).chooseKhatmaStyle.withColon),
+            AppLocalizations.of(context).khatmaStyle),
       ),
     );
   }

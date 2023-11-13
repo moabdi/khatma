@@ -39,7 +39,7 @@ class KhatmaIconPicker extends StatelessWidget {
               backgroundColor: key == style.icon
                   ? HexColor(style.color).withOpacity(.2)
                   : Colors.grey.shade50,
-              child: getImage(key, color: HexColor(style.color), size: 26),
+              child: getIcon(key, color: HexColor(style.color), size: 26),
             ),
           ),
         );

@@ -29,7 +29,7 @@ class KhatmaTile extends StatelessWidget {
         backgroundColor: khatma.style.hexColor.withOpacity(.1),
         child: Padding(
           padding: const EdgeInsets.all(2.0),
-          child: getImage(khatma.style.icon, color: khatma.style.hexColor),
+          child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
         ),
       ),
       title: Column(

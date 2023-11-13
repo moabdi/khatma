@@ -72,7 +72,7 @@ class PartSelectorScreen extends ConsumerWidget {
             child: const Icon(Icons.edit, size: 10),
           ),
           child: Center(
-            child: getImage(
+            child: getIcon(
               khatma.style.icon,
               color: Theme.of(context).primaryColor,
             ),
