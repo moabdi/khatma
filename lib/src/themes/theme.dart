@@ -322,19 +322,19 @@ class AppTheme {
         fontWeight: FontWeight.w500,
       ),
       bodyLarge: base.bodyLarge?.copyWith(
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w600,
       ),
       bodyMedium: base.bodyMedium?.copyWith(
-        fontSize: 14,
+        fontSize: 15,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w400,
         color: Colors.blueGrey.shade400,
       ),
       bodySmall: base.bodySmall?.copyWith(
         color: Colors.blueGrey.shade400,
-        fontSize: 13,
+        fontSize: 14,
         fontFamily: pFontFamily,
         fontWeight: FontWeight.w400,
       ),

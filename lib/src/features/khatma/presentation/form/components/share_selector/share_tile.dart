@@ -31,10 +31,13 @@ class ShareTile extends StatelessWidget {
       minVerticalPadding: 0,
       selected: selected,
       title:
-          Text(AppLocalizations.of(context).shareVisibility(currentUnit.name)),
+          Text(AppLocalizations.of(context).shareVisibility(currentUnit.name),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    color: selected ? Theme.of(context).primaryColor : null,
+                  )),
       subtitle: Text(
         AppLocalizations.of(context).shareVisibilityDesc(currentUnit.name),
-        style: Theme.of(context).textTheme.bodySmall,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
       onTap: () {
         onSelect(currentUnit);

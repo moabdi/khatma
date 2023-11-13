@@ -40,13 +40,17 @@ class UnitSelector extends StatelessWidget {
                     minVerticalPadding: 0,
                     selected: selected,
                     title: Text(
-                      AppLocalizations.of(context)
-                          .khatmaSplitUnit(currentUnit.name),
-                    ),
+                        AppLocalizations.of(context)
+                            .khatmaSplitUnit(currentUnit.name),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              color: selected
+                                  ? Theme.of(context).primaryColor
+                                  : null,
+                            )),
                     subtitle: Text(
                       AppLocalizations.of(context)
                           .khatmaSplitUnitDesc(currentUnit.name),
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     leading: Avatar(
                       radius: 30,
