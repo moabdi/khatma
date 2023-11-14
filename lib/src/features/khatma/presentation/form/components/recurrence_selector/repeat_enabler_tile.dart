@@ -12,26 +12,23 @@ class RepeatEnablerTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
     return ListTile(
-      dense: true,
-      contentPadding: const EdgeInsets.all(0),
-      minVerticalPadding: 0,
       title: Text(AppLocalizations.of(context).repeat,
           style: Theme.of(context).textTheme.bodyLarge),
       subtitle: Text(AppLocalizations.of(context).repeatDescription,
           style: Theme.of(context).textTheme.bodyMedium),
       leading: _buildLeading(context),
       trailing: _buildTrailing(updatedRecurrence, ref),
+      onTap: () => ref.read(formRecurrenceProvider).update(
+          updatedRecurrence.copyWith(repeat: !updatedRecurrence.repeat)),
     );
   }
 
   Switch _buildTrailing(Recurrence updatedRecurrence, WidgetRef ref) {
     return Switch(
         value: updatedRecurrence.repeat,
-        onChanged: (value) {
-          ref
-              .read(formRecurrenceProvider)
-              .update(updatedRecurrence.copyWith(repeat: value));
-        });
+        onChanged: (value) => ref
+            .read(formRecurrenceProvider)
+            .update(updatedRecurrence.copyWith(repeat: value)));
   }
 
   Avatar _buildLeading(BuildContext context) {

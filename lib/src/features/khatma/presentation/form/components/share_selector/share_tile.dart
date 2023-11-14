@@ -26,9 +26,6 @@ class ShareTile extends StatelessWidget {
     };
 
     return ListTile(
-      dense: true,
-      contentPadding: const EdgeInsets.all(0),
-      minVerticalPadding: 0,
       selected: selected,
       title:
           Text(AppLocalizations.of(context).shareVisibility(currentUnit.name),

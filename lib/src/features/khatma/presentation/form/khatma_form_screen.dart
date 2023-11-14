@@ -107,6 +107,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       Khatma khatma) {
     return TextFormField(
       controller: nameController,
+      style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).nameHint,
       ),
@@ -123,6 +124,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       controller: descController,
       keyboardType: TextInputType.multiline,
       maxLines: 3,
+      style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).descriptionHint,
       ),

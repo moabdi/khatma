@@ -16,24 +16,25 @@ class ShareOptions extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(3.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(),
+              separatorBuilder: (context, index) => const SizedBox(
+                height: 11,
+              ),
               shrinkWrap: true,
               itemCount: ShareVisibility.values.length,
               itemBuilder: (BuildContext context, int index) {
                 var currentUnit = ShareVisibility.values[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 3),
-                  child: ShareTile(
-                    selected: khatmaShare.visibility == currentUnit,
-                    currentUnit: currentUnit,
-                    onSelect: (unit) {
-                      ref
-                          .read(formShareProvider.notifier)
-                          .update(khatmaShare.copyWith(visibility: unit));
-                    },
-                  ),
+                return ShareTile(
+                  selected: khatmaShare.visibility == currentUnit,
+                  currentUnit: currentUnit,
+                  onSelect: (unit) {
+                    ref
+                        .read(formShareProvider.notifier)
+                        .update(khatmaShare.copyWith(visibility: unit));
+                  },
                 );
               },
             ),

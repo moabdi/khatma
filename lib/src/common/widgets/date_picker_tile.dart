@@ -41,10 +41,6 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
   Widget build(BuildContext context) {
     return ListTile(
       enabled: widget.enabled,
-      dense: true,
-      contentPadding:
-          const EdgeInsets.only(top: 0, bottom: 0, left: 0, right: 10),
-      minVerticalPadding: 0,
       leading: widget.leading,
       trailing: const Icon(Icons.arrow_right),
       title: Text(

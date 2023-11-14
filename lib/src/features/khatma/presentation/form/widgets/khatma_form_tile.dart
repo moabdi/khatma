@@ -17,7 +17,6 @@ class KhatmaFormTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      dense: true,
       leading: icon,
       title: Text(title, style: Theme.of(context).textTheme.bodyLarge),
       subtitle: subtitle,

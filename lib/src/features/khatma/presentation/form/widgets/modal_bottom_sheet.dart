@@ -31,7 +31,7 @@ class ModalBottomSheet extends StatelessWidget {
         children: [
           const TopBarBottomSheet(),
           Padding(
-            padding: const EdgeInsets.all(17),
+            padding: const EdgeInsets.all(8),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
