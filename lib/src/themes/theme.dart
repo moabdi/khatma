@@ -115,7 +115,6 @@ class AppTheme {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       listTileTheme: ListTileThemeData(
-        enableFeedback: true,
         style: ListTileStyle.list,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         selectedColor: primaryColor,
