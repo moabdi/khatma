@@ -168,7 +168,7 @@ class PartSelectorScreen extends ConsumerWidget {
       center: Text("${(percent * 100).toStringAsFixed(0)}%",
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 12,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w600,
               )),
       progressColor: Theme.of(context).primaryColor,
       backgroundColor: Theme.of(context).primaryColor.withOpacity(.2),

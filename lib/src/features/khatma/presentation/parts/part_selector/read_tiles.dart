@@ -37,7 +37,10 @@ class ReadPartTiles extends ConsumerWidget {
         return ListView.separated(
           shrinkWrap: true,
           primary: false,
-          separatorBuilder: (context, index) => const Divider(height: 2),
+          separatorBuilder: (context, index) => const Divider(
+            height: 2,
+            color: Colors.white,
+          ),
           itemCount: filtredList.length,
           itemBuilder: (BuildContext context, int index) {
             var part = filtredList[index];
@@ -51,7 +54,7 @@ class ReadPartTiles extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    khatmaPart.finishedDate!.format(),
+                    khatmaPart.finishedDate!.toHumanReadable(),
                     style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],

@@ -36,9 +36,12 @@ var kTestKhatmat = [
     description: 'A l' 'ocasion de ramadan 2023',
     unit: SplitUnit.hizb,
     parts: [
-      KhatmaPart(id: 1, userName: 'Ahmed', finishedDate: DateTime.now()),
-      KhatmaPart(id: 2, userName: 'Ahmed', finishedDate: DateTime.now()),
-      KhatmaPart(id: 3, userName: 'Ahmed', finishedDate: DateTime.now()),
+      KhatmaPart(
+          id: 1, userName: 'Ahmed', finishedDate: DateTime.parse("2022-09-08")),
+      KhatmaPart(
+          id: 2, userName: 'Ahmed', finishedDate: DateTime.parse("2023-09-08")),
+      KhatmaPart(
+          id: 3, userName: 'Ahmed', finishedDate: DateTime.parse("2022-11-08")),
     ],
     createDate: DateTime.parse("2023-01-15 13:27:00"),
     lastRead: DateTime.parse("2023-02-08 08:00:00"),
@@ -59,9 +62,12 @@ var kTestKhatmat = [
         'This code provides a basic setup to create two buttons. The first button is a filled button with an upgrade icon, and the second one is an outlined button with a heart icon. Adjustments can be made based on your exact design and requirements',
     unit: SplitUnit.sourat,
     parts: [
-      KhatmaPart(id: 1, userName: 'Ahmed', finishedDate: DateTime.now()),
-      KhatmaPart(id: 2, userName: 'Ahmed', finishedDate: DateTime.now()),
-      KhatmaPart(id: 3, userName: 'Ahmed', finishedDate: DateTime.now()),
+      KhatmaPart(
+          id: 1, userName: 'Ahmed', finishedDate: DateTime.parse("2022-09-08")),
+      KhatmaPart(
+          id: 2, userName: 'Ahmed', finishedDate: DateTime.parse("2023-09-08")),
+      KhatmaPart(
+          id: 3, userName: 'Ahmed', finishedDate: DateTime.parse("2022-11-08")),
     ],
     createDate: DateTime.parse("2023-01-01 10:15:00"),
     lastRead: DateTime.now(),

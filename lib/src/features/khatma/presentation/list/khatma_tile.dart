@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/duration_formatter.dart';
-import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/common/widgets/text_or_empty.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/common/enum_extension.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 import 'khatma_completude.dart';
 
