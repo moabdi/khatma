@@ -33,18 +33,6 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          AppLocalizations.of(context).color.withColon,
-          style: AppTheme.getTheme().textTheme.bodyLarge,
-        ),
-        gapH4,
-        KhatmaColorPicker(
-          color: updatedStyle.color,
-          onChanged: (value) => setState(() {
-            updatedStyle = updatedStyle.copyWith(color: value);
-          }),
-        ),
-        gapH20,
-        Text(
           AppLocalizations.of(context).icon.withColon,
           style: AppTheme.getTheme().textTheme.bodyLarge,
         ),
@@ -61,7 +49,19 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
           ),
         ),
         gapH20,
-        Container(
+        Text(
+          AppLocalizations.of(context).color.withColon,
+          style: AppTheme.getTheme().textTheme.bodyLarge,
+        ),
+        gapH4,
+        KhatmaColorPicker(
+          color: updatedStyle.color,
+          onChanged: (value) => setState(() {
+            updatedStyle = updatedStyle.copyWith(color: value);
+          }),
+        ),
+        gapH20,
+        SizedBox(
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {

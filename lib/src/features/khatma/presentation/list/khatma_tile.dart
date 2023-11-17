@@ -32,33 +32,26 @@ class KhatmaTile extends StatelessWidget {
           child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
         ),
       ),
-      title: Column(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(khatma.name),
+          gapW4,
+          Icon(
+            khatma.share.visibility.icon,
+            size: 13,
+            color: Colors.blueGrey.shade200,
+          ),
+        ],
+      ),
+      subtitle: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                khatma.name,
-                style: AppTheme.getTheme().textTheme.bodyLarge,
-              ),
-              gapW4,
-              Icon(
-                khatma.share.visibility.icon,
-                size: 13,
-                color: Colors.blueGrey.shade200,
-              ),
-            ],
-          ),
           gapH4,
           Row(
             children: [
-              Icon(
-                Icons.schedule,
-                size: 14,
-                color: AppTheme.getTheme().textTheme.bodySmall!.color,
-              ),
+              Icon(Icons.schedule, size: 14),
               gapW4,
               TextOrEmpty(
                   formatDateAsTextDuration(
@@ -66,7 +59,7 @@ class KhatmaTile extends StatelessWidget {
                   style: AppTheme.getTheme().textTheme.bodyMedium),
             ],
           ),
-          gapH8,
+          gapH12,
           KhatmaCompletude(khatma: khatma),
         ],
       ),

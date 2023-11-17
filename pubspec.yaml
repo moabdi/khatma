@@ -166,6 +166,41 @@ flutter:
           weight: 800
         - asset: assets/fonts/Poppins/Poppins-Black.ttf
           weight: 900
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Black.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-BlackItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Bold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-BoldItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Heavy.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-HeavyItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Light.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-LightItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Medium.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-MediumItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Regular.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-RegularItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Semibold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-SemiboldItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Thin.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-ThinItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Ultralight.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-UltralightItalic.ttf
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Bold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-BoldItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Heavy.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-HeavyItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Light.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-LightItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Medium.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-MediumItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Regular.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-RegularItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Semibold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-SemiboldItalic.ttf
+
   # example:
   # fonts:
   #   - family: Schyler

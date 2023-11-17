@@ -30,8 +30,6 @@ class PartTile extends ConsumerWidget {
       selected: isSelected,
       selectedColor: color,
       selectedTileColor: color.withOpacity(.1),
-      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-      minVerticalPadding: 0,
       onTap: () => toggleSelection(ref),
       leading: PartTileLeading(
         enabled: enabled,

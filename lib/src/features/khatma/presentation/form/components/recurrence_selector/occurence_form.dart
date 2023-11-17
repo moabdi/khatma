@@ -42,7 +42,7 @@ class OccurenceForm extends ConsumerWidget {
       children: [
         gapW8,
         Text(AppLocalizations.of(context).repeatEvery.withColon,
-            style: Theme.of(context).textTheme.bodyMedium),
+            style: Theme.of(context).textTheme.bodyLarge),
         gapW8,
         NumberDropdownMenu(
           enabled: updatedRecurrence.repeat &&

@@ -14,38 +14,47 @@ class KhatmaColorPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 55,
+      height: 60,
       width: double.infinity,
       child: Card(
-        child: Center(
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: khatmaColorHexList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () => onChanged(khatmaColorHexList[index]),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                  padding: const EdgeInsets.all(2.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: color == khatmaColorHexList[index]
-                        ? Border.all(
-                            color: Theme.of(context).primaryColor, width: 3)
-                        : null,
-                  ),
-                  width: 40,
-                  height: 40,
+        color: Theme.of(context).cardColor,
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Center(
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: khatmaColorHexList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  splashColor: khatmaColorMap[khatmaColorHexList[index]]!
+                      .withOpacity(.1),
+                  borderRadius: BorderRadius.circular(50),
+                  onTap: () => onChanged(khatmaColorHexList[index]),
                   child: Container(
+                    margin: const EdgeInsets.all(3.0),
+                    padding: const EdgeInsets.all(2.0),
                     decoration: BoxDecoration(
-                      color: khatmaColorMap[khatmaColorHexList[index]],
                       shape: BoxShape.circle,
+                      border: color == khatmaColorHexList[index]
+                          ? Border.all(
+                              color: Theme.of(context).primaryColor, width: 3)
+                          : null,
+                    ),
+                    width: 50,
+                    height: 50,
+                    child: Container(
+                      width: 42,
+                      height: 42,
+                      decoration: BoxDecoration(
+                        color: khatmaColorMap[khatmaColorHexList[index]],
+                        shape: BoxShape.circle,
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

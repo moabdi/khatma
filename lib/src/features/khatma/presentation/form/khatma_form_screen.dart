@@ -74,27 +74,43 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   Widget _buildAvatar(BuildContext context, Khatma khatma, WidgetRef ref) {
     return Center(
-      child: Avatar(
-        backgroundColor: khatma.style.hexColor.withOpacity(.2),
-        bottom: Avatar(
-          radius: 10,
-          backgroundColor: khatma.style.hexColor,
-          child: const Icon(Icons.brush, size: 12),
-        ),
-        child: getIcon(
-          khatma.style.icon,
-          color: khatma.style.hexColor,
-          size: 50,
-        ),
-        onTap: () => _showModal(
-            context,
-            KhatmaStyleSelector(
-              style: khatma.style,
-              onChanged: (value) => ref.updateKhatma(
-                khatma.copyWith(style: value),
-              ),
+      child: Container(
+        height: 85,
+        width: 85,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.transparent,
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).dividerColor,
+              blurRadius: 3,
             ),
-            AppLocalizations.of(context).khatmaStyle),
+          ],
+        ),
+        child: Center(
+          child: Avatar(
+            backgroundColor: khatma.style.hexColor.withOpacity(.2),
+            bottom: Avatar(
+              radius: 10,
+              backgroundColor: khatma.style.hexColor,
+              child: const Icon(Icons.brush, size: 12),
+            ),
+            child: getIcon(
+              khatma.style.icon,
+              color: khatma.style.hexColor,
+              size: 50,
+            ),
+            onTap: () => _showModal(
+                context,
+                KhatmaStyleSelector(
+                  style: khatma.style,
+                  onChanged: (value) => ref.updateKhatma(
+                    khatma.copyWith(style: value),
+                  ),
+                ),
+                AppLocalizations.of(context).khatmaStyle),
+          ),
+        ),
       ),
     );
   }
@@ -107,7 +123,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       Khatma khatma) {
     return TextFormField(
       controller: nameController,
-      style: Theme.of(context).textTheme.bodyMedium,
+      style: Theme.of(context).textTheme.bodyLarge,
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).nameHint,
       ),
@@ -124,7 +140,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       controller: descController,
       keyboardType: TextInputType.multiline,
       maxLines: 3,
-      style: Theme.of(context).textTheme.bodyMedium,
+      style: Theme.of(context).textTheme.bodyLarge,
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).descriptionHint,
       ),
@@ -132,74 +148,68 @@ class AddKhatmaScreen extends ConsumerWidget {
   }
 
   Widget _buildSplitUnit(Khatma khatma, BuildContext context, WidgetRef ref) {
-    return Card(
-      child: KhatmaFormTile(
-        icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
-        title: AppLocalizations.of(context).splitUnit,
-        subtitle: Text(
-            AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
-            style: Theme.of(context).textTheme.bodyMedium),
-        onTap: () => _showModal(
-          context,
-          UnitSelector(
-              unit: khatma.unit,
-              onSelect: (value) {
-                if (khatma.share.maxPartToRead != null &&
-                    khatma.share.maxPartToRead! > value.count) {
-                  ref.updateKhatma(khatma.copyWith(
-                      share: khatma.share.copyWith(
-                    maxPartToRead: 1,
-                    maxPartToReserve: 1,
-                  )));
-                }
-                ref.updateKhatma(khatma.copyWith(unit: value));
-              }),
-          AppLocalizations.of(context).splitUnit,
-        ),
+    return KhatmaFormTile(
+      icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
+      title: AppLocalizations.of(context).splitUnit,
+      subtitle: Text(
+          AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name)),
+      onTap: () => _showModal(
+        context,
+        UnitSelector(
+            unit: khatma.unit,
+            onSelect: (value) {
+              if (khatma.share.maxPartToRead != null &&
+                  khatma.share.maxPartToRead! > value.count) {
+                ref.updateKhatma(khatma.copyWith(
+                    share: khatma.share.copyWith(
+                  maxPartToRead: 1,
+                  maxPartToReserve: 1,
+                )));
+              }
+              ref.updateKhatma(khatma.copyWith(unit: value));
+            }),
+        AppLocalizations.of(context).splitUnit,
       ),
     );
   }
 
   Widget _buildRecurrence(Khatma khatma, WidgetRef ref, BuildContext context) {
-    return Card(
-      child: KhatmaFormTile(
-        icon: const Icon(Icons.autorenew,
-            color: Color.fromARGB(255, 120, 0, 212)),
-        title: AppLocalizations.of(context).recurrence,
-        subtitle: RecurrenceText(khatma.recurrence,
-            style: Theme.of(context).textTheme.bodySmall),
-        onTap: () {
-          ref.read(formRecurrenceProvider).update(khatma.recurrence!);
-          _showModal(
-            context,
-            RecurrenceSelector(
-                recurrence: khatma.recurrence,
-                onChanged: (value) =>
-                    ref.updateKhatma(khatma.copyWith(recurrence: value))),
-            AppLocalizations.of(context).recurrence,
-          );
-        },
-      ),
+    return KhatmaFormTile(
+      icon:
+          const Icon(Icons.autorenew, color: Color.fromARGB(255, 120, 0, 212)),
+      title: AppLocalizations.of(context).recurrence,
+      subtitle: RecurrenceText(khatma.recurrence),
+      onTap: () {
+        ref.read(formRecurrenceProvider).update(khatma.recurrence);
+        _showModal(
+          context,
+          RecurrenceSelector(
+              recurrence: khatma.recurrence,
+              onChanged: (value) =>
+                  ref.updateKhatma(khatma.copyWith(recurrence: value))),
+          AppLocalizations.of(context).recurrence,
+        );
+      },
     );
   }
 
   Widget _buildShare(BuildContext context, Khatma khatma, WidgetRef ref) {
-    return Card(
-      child: KhatmaFormTile(
-        icon: const Icon(Icons.group, color: Color.fromARGB(255, 0, 212, 102)),
-        title: AppLocalizations.of(context).share,
-        subtitle: Text(
-            AppLocalizations.of(context)
-                .shareVisibilityDesc(khatma.share.visibility.name),
-            style: Theme.of(context).textTheme.bodyMedium),
-        onTap: () => _showModal(
-          context,
-          ShareSelector(
-              share: khatma.share,
-              onChanged: (value) =>
-                  ref.updateKhatma(khatma.copyWith(share: value))),
-          AppLocalizations.of(context).share,
-        ),
+    return KhatmaFormTile(
+      icon: const Icon(
+        Icons.group,
+        color: Color.fromARGB(255, 0, 212, 102),
+        size: 24,
+      ),
+      title: AppLocalizations.of(context).share,
+      subtitle: Text(AppLocalizations.of(context)
+          .shareVisibilityDesc(khatma.share.visibility.name)),
+      onTap: () => _showModal(
+        context,
+        ShareSelector(
+            share: khatma.share,
+            onChanged: (value) =>
+                ref.updateKhatma(khatma.copyWith(share: value))),
+        AppLocalizations.of(context).share,
       ),
     );
   }

@@ -60,7 +60,7 @@ class AppTheme {
 
     final ThemeData base = ThemeData.light();
 
-    TextTheme textTheme = _buildTextTheme(base.textTheme, "Lato");
+    TextTheme textTheme = _buildTextTheme(base.textTheme, "SFProText");
     return base.copyWith(
       useMaterial3: true,
       brightness: Brightness.light,
@@ -97,7 +97,7 @@ class AppTheme {
         elevation: 20,
       ),
       textTheme: textTheme,
-      primaryTextTheme: _buildTextTheme(base.textTheme, "Lato"),
+      primaryTextTheme: _buildTextTheme(base.textTheme, "SFProText"),
       platform: TargetPlatform.iOS,
       chipTheme: ChipThemeData.fromDefaults(
         secondaryColor: primaryColor,
@@ -121,9 +121,11 @@ class AppTheme {
         selectedColor: primaryColor,
         tileColor: Colors.white,
         selectedTileColor: primaryColor.withOpacity(0.1),
-        titleTextStyle: textTheme.bodyLarge,
-        subtitleTextStyle: textTheme.bodyMedium!.copyWith(color: Colors.grey),
-        minLeadingWidth: 4,
+        titleTextStyle:
+            textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500),
+        subtitleTextStyle:
+            textTheme.bodyMedium!.copyWith(color: HexColor("#737A86")),
+        titleAlignment: ListTileTitleAlignment.center,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -155,7 +157,7 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            fixedSize: const Size(double.infinity, 55),
+            fixedSize: const Size(double.infinity, 50),
             backgroundColor: primaryColors,
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 58),
@@ -164,11 +166,7 @@ class AppTheme {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(45),
             ),
-            textStyle: textTheme.bodyLarge!.copyWith(
-              fontWeight: FontWeight.w900,
-              fontSize: 16,
-              color: Colors.white,
-            )),
+            textStyle: textTheme.bodyLarge),
       ),
       snackBarTheme: SnackBarThemeData(
         shape: RoundedRectangleBorder(
@@ -274,80 +272,102 @@ class AppTheme {
   }
 
   static TextTheme _buildTextTheme(TextTheme base, String pFontFamily) {
-    var pFontFamily = GoogleFonts.openSans().fontFamily;
-
+    pFontFamily = 'SFProDisplay';
     return base.copyWith(
-      displayLarge: base.displayLarge?.copyWith(
-        fontSize: 48,
-        fontFamily: pFontFamily,
+      displayLarge: const TextStyle(
+        fontSize: 72.0,
         fontWeight: FontWeight.w900,
+        fontFamily: 'SFProDisplay',
+        color: Colors.deepPurple,
       ),
-      displayMedium: base.displayMedium?.copyWith(
-        fontSize: 28,
-        fontFamily: pFontFamily,
+      displayMedium: const TextStyle(
+        fontSize: 60.0,
         fontWeight: FontWeight.w800,
+        fontStyle: FontStyle.normal,
+        fontFamily: 'SFProDisplay',
+        color: Colors.purple,
       ),
-      displaySmall: base.displaySmall?.copyWith(
-        fontSize: 22,
-        fontFamily: pFontFamily,
+      displaySmall: const TextStyle(
+        fontSize: 48.0,
         fontWeight: FontWeight.w700,
+        fontFamily: 'SFProDisplay',
+        color: Colors.purple,
       ),
-      headlineMedium: base.headlineMedium?.copyWith(
-        fontSize: 20,
-        fontFamily: pFontFamily,
+      headlineLarge: const TextStyle(
+        fontSize: 36.0,
+        fontStyle: FontStyle.normal,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'SFProText',
+        color: Colors.black,
+      ),
+      headlineMedium: const TextStyle(
+        fontSize: 24.0,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'SFProDisplay',
+        color: Colors.black,
+        wordSpacing: 0.5,
+      ),
+      headlineSmall: const TextStyle(
+        fontSize: 22.0,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'SFProDisplay',
+        color: Colors.black,
+      ),
+      titleLarge: const TextStyle(
+        fontSize: 21.0,
         fontWeight: FontWeight.w600,
+        fontFamily: 'SFProDisplay',
+        color: Colors.black,
+        wordSpacing: 0.5,
       ),
-      headlineLarge: base.headlineLarge?.copyWith(
-        fontSize: 18,
-        fontFamily: pFontFamily,
+      titleMedium: const TextStyle(
+        fontSize: 18.0,
         fontWeight: FontWeight.w600,
+        fontFamily: 'SFProDisplay',
+        color: Colors.black,
+        wordSpacing: 0.5,
       ),
-      headlineSmall: base.headlineSmall?.copyWith(
-        fontSize: 18,
-        fontFamily: pFontFamily,
-        fontWeight: FontWeight.w600,
+      titleSmall: const TextStyle(
+        fontSize: 17.0,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'SFProDisplay',
+        color: Colors.black,
+        wordSpacing: 0.4,
       ),
-      titleLarge: base.titleLarge?.copyWith(
-        fontSize: 16,
-        fontFamily: pFontFamily,
-        fontWeight: FontWeight.w600,
-      ),
-      titleMedium: base.titleMedium?.copyWith(
-        fontSize: 14,
-        fontFamily: pFontFamily,
-      ),
-      titleSmall: base.titleSmall?.copyWith(
-        fontSize: 14,
-        fontFamily: pFontFamily,
+      bodyLarge: const TextStyle(
+        fontSize: 15.0,
         fontWeight: FontWeight.w500,
+        fontFamily: 'SFProText',
+        color: Colors.black,
       ),
-      bodyLarge: base.bodyLarge?.copyWith(
-        fontSize: 16,
-        fontFamily: pFontFamily,
-        fontWeight: FontWeight.w600,
-      ),
-      bodyMedium: base.bodyMedium?.copyWith(
-        fontSize: 15,
-        fontFamily: pFontFamily,
+      bodyMedium: const TextStyle(
+        fontSize: 14.0,
         fontWeight: FontWeight.w400,
-        color: Colors.blueGrey.shade400,
+        fontFamily: 'SFProText',
+        color: Colors.black,
       ),
-      bodySmall: base.bodySmall?.copyWith(
-        color: Colors.blueGrey.shade400,
-        fontSize: 14,
-        fontFamily: pFontFamily,
+      bodySmall: const TextStyle(
+        fontSize: 13.0,
         fontWeight: FontWeight.w400,
+        fontFamily: 'SFProText',
+        color: Colors.black,
       ),
-      labelLarge: base.labelLarge?.copyWith(
-        fontSize: 14,
-        fontFamily: pFontFamily,
-        fontWeight: FontWeight.w600,
+      labelLarge: const TextStyle(
+        fontSize: 12.0,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'SFProText',
+        color: Colors.black,
       ),
-      labelSmall: base.labelSmall?.copyWith(
-        color: Colors.blueGrey.shade700,
-        fontSize: 12,
-        fontFamily: pFontFamily,
-        fontWeight: FontWeight.w300,
+      labelMedium: const TextStyle(
+        fontSize: 11.0,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'SFProText',
+      ),
+      labelSmall: const TextStyle(
+        fontSize: 10.0,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'SFProText',
+        wordSpacing: 0.5,
       ),
     );
   }

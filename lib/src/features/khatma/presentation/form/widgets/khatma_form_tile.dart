@@ -16,12 +16,16 @@ class KhatmaFormTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: icon,
-      title: Text(title, style: Theme.of(context).textTheme.bodyLarge),
-      subtitle: subtitle,
-      onTap: onTap,
-      trailing: const Icon(Icons.arrow_right),
+    return Card(
+      elevation: 0.5,
+      color: Theme.of(context).dividerColor,
+      child: ListTile(
+        leading: icon,
+        title: Text(title),
+        subtitle: subtitle,
+        onTap: onTap,
+        trailing: const Icon(Icons.arrow_right),
+      ),
     );
   }
 }

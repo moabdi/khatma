@@ -24,7 +24,7 @@ class ShareLimit extends ConsumerWidget {
               children: [
                 gapW8,
                 Text(AppLocalizations.of(context).maxPartToReserve.withColon,
-                    style: Theme.of(context).textTheme.bodyMedium),
+                    style: Theme.of(context).textTheme.bodyLarge),
                 gapW8,
                 NumberDropdownMenu(
                   enabled: khatmaShare.visibility != ShareVisibility.private,
@@ -49,7 +49,7 @@ class ShareLimit extends ConsumerWidget {
               children: [
                 gapW8,
                 Text(AppLocalizations.of(context).maxPartToRead.withColon,
-                    style: Theme.of(context).textTheme.bodyMedium),
+                    style: Theme.of(context).textTheme.bodyLarge),
                 gapW8,
                 NumberDropdownMenu(
                   enabled: khatmaShare.visibility != ShareVisibility.private,

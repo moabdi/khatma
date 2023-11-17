@@ -43,17 +43,10 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
       enabled: widget.enabled,
       leading: widget.leading,
       trailing: const Icon(Icons.arrow_right),
-      title: Text(
-        widget.title,
-        style: Theme.of(context).textTheme.bodyMedium,
-      ),
+      title: Text(widget.title, style: Theme.of(context).textTheme.bodyMedium),
       subtitle: Text(
         widget.value.format(),
-        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              color: widget.enabled
-                  ? Theme.of(context).primaryColor
-                  : Theme.of(context).dividerColor,
-            ),
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
       onTap: () {
         _selectDate(context);

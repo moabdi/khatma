@@ -29,23 +29,14 @@ class UnitSelector extends StatelessWidget {
               var currentUnit = SplitUnit.values[index];
               var selected = unit == currentUnit;
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.all(3),
                 child: ListTile(
                   minVerticalPadding: 0,
                   selected: selected,
-                  title: Text(
-                      AppLocalizations.of(context)
-                          .khatmaSplitUnit(currentUnit.name),
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: selected
-                                ? Theme.of(context).primaryColor
-                                : null,
-                          )),
-                  subtitle: Text(
-                    AppLocalizations.of(context)
-                        .khatmaSplitUnitDesc(currentUnit.name),
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  title: Text(AppLocalizations.of(context)
+                      .khatmaSplitUnit(currentUnit.name)),
+                  subtitle: Text(AppLocalizations.of(context)
+                      .khatmaSplitUnitDesc(currentUnit.name)),
                   leading: Avatar(
                     radius: 30,
                     backgroundColor: selected

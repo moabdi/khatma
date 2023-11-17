@@ -14,7 +14,6 @@ class RecurrenceText extends StatelessWidget {
       recurrence.repeat
           ? _buildRepeatText(recurrence, context)
           : AppLocalizations.of(context).noRepeatDescription,
-      style: style ?? Theme.of(context).textTheme.bodyMedium,
     );
   }
 

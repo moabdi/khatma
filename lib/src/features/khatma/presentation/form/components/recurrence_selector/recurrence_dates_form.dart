@@ -26,12 +26,9 @@ class RecurrenceDatePicker extends ConsumerWidget {
     return DatePickerListTile(
       enabled: updatedRecurrence.repeat,
       title: AppLocalizations.of(context).startDate,
-      leading: Avatar(
-        radius: 30,
-        backgroundColor: Theme.of(context).disabledColor,
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Icon(Icons.today,
-            size: 25, color: Theme.of(context).textTheme.bodyLarge!.color),
+      leading: Container(
+        padding: const EdgeInsets.all(10),
+        child: const Icon(Icons.today),
       ),
       value: updatedRecurrence.startDate,
       onChanged: (value) => {
@@ -52,12 +49,9 @@ class RecurrenceDatePicker extends ConsumerWidget {
     return DatePickerListTile(
       enabled: updatedRecurrence.repeat,
       title: AppLocalizations.of(context).endDate,
-      leading: Avatar(
-        radius: 30,
-        backgroundColor: Theme.of(context).disabledColor,
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Icon(Icons.event_available,
-            size: 25, color: Theme.of(context).textTheme.bodyLarge!.color),
+      leading: Container(
+        padding: const EdgeInsets.all(10),
+        child: const Icon(Icons.event_available),
       ),
       value: updatedRecurrence.endDate,
       firstDate: updatedRecurrence.startDate,

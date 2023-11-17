@@ -12,10 +12,8 @@ class RepeatEnablerTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
     return ListTile(
-      title: Text(AppLocalizations.of(context).repeat,
-          style: Theme.of(context).textTheme.bodyLarge),
-      subtitle: Text(AppLocalizations.of(context).repeatDescription,
-          style: Theme.of(context).textTheme.bodyMedium),
+      title: Text(AppLocalizations.of(context).repeat),
+      subtitle: Text(AppLocalizations.of(context).repeatDescription),
       leading: _buildLeading(context),
       trailing: _buildTrailing(updatedRecurrence, ref),
       onTap: () => ref.read(formRecurrenceProvider).update(
