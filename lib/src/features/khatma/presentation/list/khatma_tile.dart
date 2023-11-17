@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/duration_formatter.dart';
+import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/common/widgets/text_or_empty.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -23,27 +24,16 @@ class KhatmaTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
       hoverColor: khatma.style.hexColor.withOpacity(.1),
-      contentPadding: const EdgeInsets.all(5),
       leading: CircleAvatar(
         backgroundColor: khatma.style.hexColor.withOpacity(.1),
         child: Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.all(5.0),
           child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
         ),
       ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(khatma.name),
-          gapW4,
-          Icon(
-            khatma.share.visibility.icon,
-            size: 13,
-            color: Colors.blueGrey.shade200,
-          ),
-        ],
-      ),
+      title: Text(khatma.name),
       subtitle: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,16 +41,19 @@ class KhatmaTile extends StatelessWidget {
           gapH4,
           Row(
             children: [
-              Icon(Icons.schedule, size: 14),
+              Icon(
+                Icons.schedule,
+                size: 14,
+                color: Theme.of(context).listTileTheme.subtitleTextStyle!.color,
+              ),
               gapW4,
-              TextOrEmpty(
-                  formatDateAsTextDuration(
-                      khatma.lastRead ?? khatma.createDate),
-                  style: AppTheme.getTheme().textTheme.bodyMedium),
+              Text(formatDateAsTextDuration(
+                  khatma.lastRead ?? khatma.createDate)),
             ],
           ),
           gapH12,
           KhatmaCompletude(khatma: khatma),
+          gapH4,
         ],
       ),
       trailing: Container(

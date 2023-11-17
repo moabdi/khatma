@@ -3,8 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_leading.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_subtitle.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_title.dart';
 
 class PartTile extends ConsumerWidget {
   const PartTile(
@@ -37,8 +35,8 @@ class PartTile extends ConsumerWidget {
         part: part,
         color: color,
       ),
-      title: PartTileTitle(part: part, enabled: enabled),
-      subtitle: PartTileSubtitle(part: part),
+      title: Text(part.title),
+      subtitle: Text(part.subtitle),
       trailing: trailing,
     );
   }

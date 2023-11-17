@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static bool isLightTheme = true;
@@ -116,6 +115,7 @@ class AppTheme {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       listTileTheme: ListTileThemeData(
+        enableFeedback: true,
         style: ListTileStyle.list,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         selectedColor: primaryColor,
@@ -123,9 +123,10 @@ class AppTheme {
         selectedTileColor: primaryColor.withOpacity(0.1),
         titleTextStyle:
             textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500),
-        subtitleTextStyle:
-            textTheme.bodyMedium!.copyWith(color: HexColor("#737A86")),
+        subtitleTextStyle: textTheme.bodyMedium!
+            .copyWith(color: HexColor("#737A86"), height: 1.3),
         titleAlignment: ListTileTitleAlignment.center,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -330,6 +331,7 @@ class AppTheme {
       titleSmall: const TextStyle(
         fontSize: 17.0,
         fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal,
         fontFamily: 'SFProDisplay',
         color: Colors.black,
         wordSpacing: 0.4,
