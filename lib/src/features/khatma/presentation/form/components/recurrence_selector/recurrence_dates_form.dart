@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/common/widgets/date_picker_tile.dart';
 import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
