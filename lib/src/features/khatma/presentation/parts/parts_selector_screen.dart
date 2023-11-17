@@ -139,13 +139,11 @@ class PartSelectorScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ExpansionTile(
-            backgroundColor: Theme.of(context).cardColor,
-            collapsedBackgroundColor: Colors.blueGrey.withOpacity(.1),
+            backgroundColor: Theme.of(context).disabledColor,
+            collapsedBackgroundColor: Theme.of(context).disabledColor,
             title: Text(AppLocalizations.of(context).completedParts),
-            subtitle: Text(
-                AppLocalizations.of(context)
-                    .readedParts(khatma.completedPartIds.length),
-                style: Theme.of(context).textTheme.bodyMedium),
+            subtitle: Text(AppLocalizations.of(context)
+                .readedParts(khatma.completedPartIds.length)),
             trailing: const Icon(Icons.arrow_drop_down),
             leading: buildChart(context, khatma.completude),
             children: <Widget>[
@@ -170,7 +168,7 @@ class PartSelectorScreen extends ConsumerWidget {
       center: Text("${(percent * 100).toStringAsFixed(0)}%",
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 12,
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.w700,
               )),
       progressColor: Theme.of(context).primaryColor,
       backgroundColor: Theme.of(context).primaryColor.withOpacity(.2),
