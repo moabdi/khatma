@@ -123,7 +123,7 @@ class AppTheme {
         titleTextStyle:
             textTheme.titleSmall!.copyWith(fontWeight: FontWeight.w500),
         subtitleTextStyle: textTheme.bodyMedium!
-            .copyWith(color: HexColor("#737A86"), height: 1.3),
+            .copyWith(color: HexColor("#737A86"), height: 1.1),
         titleAlignment: ListTileTitleAlignment.center,
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
       ),
@@ -153,6 +153,15 @@ class AppTheme {
             fontWeight: FontWeight.w600,
             color: primaryColors,
           ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: primaryColors.withOpacity(.3),
+          foregroundColor: primaryColors,
+          shadowColor: primaryColors,
+          textStyle: textTheme.bodyLarge,
+          side: const BorderSide(color: Colors.transparent),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(

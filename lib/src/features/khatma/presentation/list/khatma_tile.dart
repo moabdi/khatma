@@ -24,18 +24,17 @@ class KhatmaTile extends StatelessWidget {
       hoverColor: khatma.style.hexColor.withOpacity(.1),
       leading: CircleAvatar(
         backgroundColor: khatma.style.hexColor.withOpacity(.1),
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
-        ),
+        child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
       ),
       title: Text(khatma.name),
       subtitle: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           gapH4,
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(
                 Icons.schedule,
