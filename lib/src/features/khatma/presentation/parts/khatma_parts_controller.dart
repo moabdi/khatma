@@ -1,3 +1,5 @@
+import 'package:khatma/src/features/khatma/application/khatma_provider.dart';
+import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -36,10 +38,9 @@ class KhatmaPartsController extends _$KhatmaPartsController {
     }
 
     // Update the khatma with the modified parts
-    await ref
-        .watch(localKhatmaRepositoryProvider)
-        .save(khatma.copyWith(parts: completedParts));
-
+    Khatma updatedKhatma = khatma.copyWith(parts: completedParts);
+    ref.read(asyncKhatmatProvider.notifier).updateKhatma(updatedKhatma);
+    ref.read(khatmaDetailsProvider.notifier).update(updatedKhatma);
     ref.read(selectedItemsNotifierProvider.notifier).clear();
   }
 }

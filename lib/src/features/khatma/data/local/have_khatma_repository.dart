@@ -9,18 +9,25 @@ import 'package:uuid/uuid.dart';
 class HaveKhatmaRepository extends LocalKhatmaRepository {
   static const String khatmaBox = "KHATMAT_BOX";
 
+  static Future<Box<String>> openIt() async {
+    var connectionBox = await Hive.openBox<String>(khatmaBox);
+    if (!connectionBox.isOpen) {
+      connectionBox = await Hive.openBox<String>(khatmaBox);
+    }
+
+    return connectionBox;
+  }
+
   Future<void> save(Khatma khatma) async {
-    var box = await Hive.openBox<String>(khatmaBox);
+    var box = await openIt();
     String jsonString = jsonEncode(khatma.toJson());
+
     await box.put(khatma.id, jsonString);
-    box.close();
   }
 
   Future<Khatma?> getById(String id) async {
-    print(id);
-    var box = await Hive.openBox<String>(khatmaBox);
+    var box = await openIt();
     String? jsonString = box.get(id);
-    print(jsonString);
 
     if (jsonString != null) {
       return Khatma.fromJson(jsonDecode(jsonString));
@@ -30,15 +37,31 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
   }
 
   Future<void> deleteById(String id) async {
-    var box = await Hive.openBox<String>(khatmaBox);
+    var box = await openIt();
     box.delete(id);
     box.close();
   }
 
   Future<List<Khatma>> fetchAll() async {
+    var box = await openIt();
+
+    var list = box.values
+        .map((jsonString) => Khatma.fromJson(jsonDecode(jsonString)))
+        .toList();
+
+    list.sort((k1, k2) => k1.createDate.compareTo(k2.createDate));
+    box.close();
+    return list;
+  }
+
+  Future<void> test() async {
     var uuid = Uuid();
 
     var box = await Hive.openBox<String>(khatmaBox);
+    box.clear();
+    box.keys.forEach((element) {
+      box.delete(element);
+    });
 
     String id;
     kTestKhatmat.forEach(
@@ -47,12 +70,6 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
         await box.put(id, jsonEncode(khatma.copyWith(id: id).toJson())),
       },
     );
-
-    var list = box.values
-        .map((jsonString) => Khatma.fromJson(jsonDecode(jsonString)))
-        .toList();
-
     box.close();
-    return list;
   }
 }
