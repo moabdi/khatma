@@ -74,43 +74,27 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   Widget _buildAvatar(BuildContext context, Khatma khatma, WidgetRef ref) {
     return Center(
-      child: Container(
-        height: 85,
-        width: 85,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: Colors.transparent,
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).dividerColor,
-              blurRadius: 3,
-            ),
-          ],
+      child: Avatar(
+        backgroundColor: khatma.style.hexColor.withOpacity(.2),
+        bottom: Avatar(
+          radius: 10,
+          backgroundColor: khatma.style.hexColor,
+          child: const Icon(Icons.brush, size: 12),
         ),
-        child: Center(
-          child: Avatar(
-            backgroundColor: khatma.style.hexColor.withOpacity(.2),
-            bottom: Avatar(
-              radius: 10,
-              backgroundColor: khatma.style.hexColor,
-              child: const Icon(Icons.brush, size: 12),
-            ),
-            child: getIcon(
-              khatma.style.icon,
-              color: khatma.style.hexColor,
-              size: 50,
-            ),
-            onTap: () => _showModal(
-                context,
-                KhatmaStyleSelector(
-                  style: khatma.style,
-                  onChanged: (value) => ref.updateKhatma(
-                    khatma.copyWith(style: value),
-                  ),
-                ),
-                AppLocalizations.of(context).khatmaStyle),
-          ),
+        child: getIcon(
+          khatma.style.icon,
+          color: khatma.style.hexColor,
+          size: 50,
         ),
+        onTap: () => _showModal(
+            context,
+            KhatmaStyleSelector(
+              style: khatma.style,
+              onChanged: (value) => ref.updateKhatma(
+                khatma.copyWith(style: value),
+              ),
+            ),
+            AppLocalizations.of(context).khatmaStyle),
       ),
     );
   }
