@@ -28,9 +28,34 @@ class KhatmatListScreen extends StatelessWidget {
               gapH20,
               const Divider(height: 0),
               gapH8,
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context).khatmaList,
+                      style:
+                          AppTheme.getTheme().textTheme.titleMedium!.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                    ),
+                    OutlinedButton.icon(
+                        icon: Icon(
+                          Icons.add_circle,
+                          color: AppTheme.primaryColors,
+                          size: 24,
+                        ),
+                        label: Text(AppLocalizations.of(context).add),
+                        onPressed: () => {
+                              context.goNamed(AppRoute.addKhatma.name),
+                            }),
+                  ],
+                ),
+              ),
               Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor.withOpacity(.1),
+                  color: Theme.of(context).colorScheme.background,
                   borderRadius: BorderRadius.circular(15),
                 ),
                 padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
@@ -38,38 +63,6 @@ class KhatmatListScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context).khatmaList,
-                          style: AppTheme.getTheme()
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                        IconButton(
-                            icon: Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: AppTheme.getTheme()
-                                    .primaryColor
-                                    .withOpacity(.2),
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: Icon(
-                                Icons.add_circle,
-                                color: AppTheme.primaryColors,
-                                size: 24,
-                              ),
-                            ),
-                            onPressed: () => {
-                                  context.goNamed(AppRoute.addKhatma.name),
-                                }),
-                      ],
-                    ),
                     gapH8,
                     const KhatmatListView(),
                   ],

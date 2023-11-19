@@ -157,7 +157,8 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          backgroundColor: primaryColors.withOpacity(.3),
+          fixedSize: const Size(double.infinity, 40),
+          backgroundColor: primaryColors.withOpacity(.2),
           foregroundColor: primaryColors,
           shadowColor: primaryColors,
           textStyle: textTheme.bodyLarge,
