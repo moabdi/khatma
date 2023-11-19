@@ -9,24 +9,19 @@ import 'package:uuid/uuid.dart';
 class HaveKhatmaRepository extends LocalKhatmaRepository {
   static const String khatmaBox = "KHATMAT_BOX";
 
-  static Future<Box<String>> openIt() async {
-    var connectionBox = await Hive.openBox<String>(khatmaBox);
-    if (!connectionBox.isOpen) {
-      connectionBox = await Hive.openBox<String>(khatmaBox);
-    }
-
-    return connectionBox;
+  static Future<Box<String>> openBox() async {
+    return await Hive.openBox<String>("KHATMAT_BOX");
   }
 
   Future<void> save(Khatma khatma) async {
-    var box = await openIt();
+    var box = await openBox();
     String jsonString = jsonEncode(khatma.toJson());
 
     await box.put(khatma.id, jsonString);
   }
 
   Future<Khatma?> getById(String id) async {
-    var box = await openIt();
+    var box = await openBox();
     String? jsonString = box.get(id);
 
     if (jsonString != null) {
@@ -37,13 +32,13 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
   }
 
   Future<void> deleteById(String id) async {
-    var box = await openIt();
+    var box = await openBox();
     box.delete(id);
     box.close();
   }
 
   Future<List<Khatma>> fetchAll() async {
-    var box = await openIt();
+    var box = await openBox();
 
     var list = box.values
         .map((jsonString) => Khatma.fromJson(jsonDecode(jsonString)))
