@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-part 'selected_items_notifier.g.dart';
+part 'selected_items_provider.g.dart';
 
 @riverpod
 class SelectedItemsNotifier extends _$SelectedItemsNotifier {

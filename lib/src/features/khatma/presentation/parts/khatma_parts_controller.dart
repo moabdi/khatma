@@ -1,7 +1,7 @@
+import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/application/khatma_provider.dart';
-import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
+import 'package:khatma/src/features/khatma/application/selected_items_provider.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

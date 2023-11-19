@@ -6,7 +6,7 @@ import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
-import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
+import 'package:khatma/src/features/khatma/application/khatma_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
