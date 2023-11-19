@@ -20,7 +20,8 @@ class PartTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isSelected = ref.watch(selectedItemsNotifier).contains(part.id);
+    final isSelected =
+        ref.watch(selectedItemsNotifierProvider).contains(part.id);
 
     return ListTile(
       enabled: enabled,
@@ -54,6 +55,6 @@ class PartTile extends ConsumerWidget {
   }
 
   void toggleSelection(WidgetRef ref) {
-    ref.read(selectedItemsNotifier.notifier).toggleSelection(part.id);
+    ref.read(selectedItemsNotifierProvider.notifier).toggleSelection(part.id);
   }
 }

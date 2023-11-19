@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Khatma _$KhatmaFromJson(Map<String, dynamic> json) {
+  return _Khatma.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Khatma {
   String? get id => throw _privateConstructorUsedError;
@@ -30,6 +34,7 @@ mixin _$Khatma {
   SplitUnit get unit => throw _privateConstructorUsedError;
   KhatmaShare get share => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $KhatmaCopyWith<Khatma> get copyWith => throw _privateConstructorUsedError;
 }
@@ -280,7 +285,7 @@ class __$$KhatmaImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$KhatmaImpl implements _Khatma {
   const _$KhatmaImpl(
       {this.id,
@@ -298,6 +303,9 @@ class _$KhatmaImpl implements _Khatma {
       required this.share})
       : _completedParts = completedParts,
         _parts = parts;
+
+  factory _$KhatmaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaImplFromJson(json);
 
   @override
   final String? id;
@@ -372,6 +380,7 @@ class _$KhatmaImpl implements _Khatma {
             (identical(other.share, share) || other.share == share));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -394,6 +403,13 @@ class _$KhatmaImpl implements _Khatma {
   @pragma('vm:prefer-inline')
   _$$KhatmaImplCopyWith<_$KhatmaImpl> get copyWith =>
       __$$KhatmaImplCopyWithImpl<_$KhatmaImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Khatma implements Khatma {
@@ -411,6 +427,8 @@ abstract class _Khatma implements Khatma {
       required final Recurrence recurrence,
       required final SplitUnit unit,
       required final KhatmaShare share}) = _$KhatmaImpl;
+
+  factory _Khatma.fromJson(Map<String, dynamic> json) = _$KhatmaImpl.fromJson;
 
   @override
   String? get id;
@@ -444,11 +462,16 @@ abstract class _Khatma implements Khatma {
       throw _privateConstructorUsedError;
 }
 
+KhatmaStyle _$KhatmaStyleFromJson(Map<String, dynamic> json) {
+  return _KhatmaStyle.fromJson(json);
+}
+
 /// @nodoc
 mixin _$KhatmaStyle {
   String get color => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $KhatmaStyleCopyWith<KhatmaStyle> get copyWith =>
       throw _privateConstructorUsedError;
@@ -531,9 +554,12 @@ class __$$KhatmaStyleImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$KhatmaStyleImpl implements _KhatmaStyle {
   const _$KhatmaStyleImpl({required this.color, required this.icon});
+
+  factory _$KhatmaStyleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaStyleImplFromJson(json);
 
   @override
   final String color;
@@ -554,6 +580,7 @@ class _$KhatmaStyleImpl implements _KhatmaStyle {
             (identical(other.icon, icon) || other.icon == icon));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, color, icon);
 
@@ -562,12 +589,22 @@ class _$KhatmaStyleImpl implements _KhatmaStyle {
   @pragma('vm:prefer-inline')
   _$$KhatmaStyleImplCopyWith<_$KhatmaStyleImpl> get copyWith =>
       __$$KhatmaStyleImplCopyWithImpl<_$KhatmaStyleImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaStyleImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _KhatmaStyle implements KhatmaStyle {
   const factory _KhatmaStyle(
       {required final String color,
       required final String icon}) = _$KhatmaStyleImpl;
+
+  factory _KhatmaStyle.fromJson(Map<String, dynamic> json) =
+      _$KhatmaStyleImpl.fromJson;
 
   @override
   String get color;
@@ -579,6 +616,10 @@ abstract class _KhatmaStyle implements KhatmaStyle {
       throw _privateConstructorUsedError;
 }
 
+Recurrence _$RecurrenceFromJson(Map<String, dynamic> json) {
+  return _Recurrence.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Recurrence {
   bool get repeat => throw _privateConstructorUsedError;
@@ -588,6 +629,7 @@ mixin _$Recurrence {
   List<int>? get days => throw _privateConstructorUsedError;
   int? get frequency => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RecurrenceCopyWith<Recurrence> get copyWith =>
       throw _privateConstructorUsedError;
@@ -722,7 +764,7 @@ class __$$RecurrenceImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$RecurrenceImpl implements _Recurrence {
   const _$RecurrenceImpl(
       {this.repeat = false,
@@ -732,6 +774,9 @@ class _$RecurrenceImpl implements _Recurrence {
       final List<int>? days,
       this.frequency})
       : _days = days;
+
+  factory _$RecurrenceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RecurrenceImplFromJson(json);
 
   @override
   @JsonKey()
@@ -776,6 +821,7 @@ class _$RecurrenceImpl implements _Recurrence {
                 other.frequency == frequency));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, repeat, startDate, endDate, unit,
       const DeepCollectionEquality().hash(_days), frequency);
@@ -785,6 +831,13 @@ class _$RecurrenceImpl implements _Recurrence {
   @pragma('vm:prefer-inline')
   _$$RecurrenceImplCopyWith<_$RecurrenceImpl> get copyWith =>
       __$$RecurrenceImplCopyWithImpl<_$RecurrenceImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RecurrenceImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Recurrence implements Recurrence {
@@ -795,6 +848,9 @@ abstract class _Recurrence implements Recurrence {
       final RepeatInterval unit,
       final List<int>? days,
       final int? frequency}) = _$RecurrenceImpl;
+
+  factory _Recurrence.fromJson(Map<String, dynamic> json) =
+      _$RecurrenceImpl.fromJson;
 
   @override
   bool get repeat;
@@ -814,6 +870,10 @@ abstract class _Recurrence implements Recurrence {
       throw _privateConstructorUsedError;
 }
 
+KhatmaPart _$KhatmaPartFromJson(Map<String, dynamic> json) {
+  return _KhatmaPart.fromJson(json);
+}
+
 /// @nodoc
 mixin _$KhatmaPart {
   int get id => throw _privateConstructorUsedError;
@@ -823,6 +883,7 @@ mixin _$KhatmaPart {
   DateTime? get finishedDate => throw _privateConstructorUsedError;
   int? get remindTimes => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $KhatmaPartCopyWith<KhatmaPart> get copyWith =>
       throw _privateConstructorUsedError;
@@ -957,7 +1018,7 @@ class __$$KhatmaPartImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$KhatmaPartImpl implements _KhatmaPart {
   const _$KhatmaPartImpl(
       {required this.id,
@@ -966,6 +1027,9 @@ class _$KhatmaPartImpl implements _KhatmaPart {
       this.addedDate,
       this.finishedDate,
       this.remindTimes});
+
+  factory _$KhatmaPartImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaPartImplFromJson(json);
 
   @override
   final int id;
@@ -1002,6 +1066,7 @@ class _$KhatmaPartImpl implements _KhatmaPart {
                 other.remindTimes == remindTimes));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, userId, userName, addedDate, finishedDate, remindTimes);
@@ -1011,6 +1076,13 @@ class _$KhatmaPartImpl implements _KhatmaPart {
   @pragma('vm:prefer-inline')
   _$$KhatmaPartImplCopyWith<_$KhatmaPartImpl> get copyWith =>
       __$$KhatmaPartImplCopyWithImpl<_$KhatmaPartImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaPartImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _KhatmaPart implements KhatmaPart {
@@ -1021,6 +1093,9 @@ abstract class _KhatmaPart implements KhatmaPart {
       final DateTime? addedDate,
       final DateTime? finishedDate,
       final int? remindTimes}) = _$KhatmaPartImpl;
+
+  factory _KhatmaPart.fromJson(Map<String, dynamic> json) =
+      _$KhatmaPartImpl.fromJson;
 
   @override
   int get id;
@@ -1040,12 +1115,17 @@ abstract class _KhatmaPart implements KhatmaPart {
       throw _privateConstructorUsedError;
 }
 
+KhatmaShare _$KhatmaShareFromJson(Map<String, dynamic> json) {
+  return _KhatmaShare.fromJson(json);
+}
+
 /// @nodoc
 mixin _$KhatmaShare {
   ShareVisibility get visibility => throw _privateConstructorUsedError;
   int? get maxPartToRead => throw _privateConstructorUsedError;
   int? get maxPartToReserve => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $KhatmaShareCopyWith<KhatmaShare> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1140,10 +1220,13 @@ class __$$KhatmaShareImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$KhatmaShareImpl implements _KhatmaShare {
   const _$KhatmaShareImpl(
       {required this.visibility, this.maxPartToRead, this.maxPartToReserve});
+
+  factory _$KhatmaShareImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaShareImplFromJson(json);
 
   @override
   final ShareVisibility visibility;
@@ -1170,6 +1253,7 @@ class _$KhatmaShareImpl implements _KhatmaShare {
                 other.maxPartToReserve == maxPartToReserve));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, visibility, maxPartToRead, maxPartToReserve);
@@ -1179,6 +1263,13 @@ class _$KhatmaShareImpl implements _KhatmaShare {
   @pragma('vm:prefer-inline')
   _$$KhatmaShareImplCopyWith<_$KhatmaShareImpl> get copyWith =>
       __$$KhatmaShareImplCopyWithImpl<_$KhatmaShareImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaShareImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _KhatmaShare implements KhatmaShare {
@@ -1186,6 +1277,9 @@ abstract class _KhatmaShare implements KhatmaShare {
       {required final ShareVisibility visibility,
       final int? maxPartToRead,
       final int? maxPartToReserve}) = _$KhatmaShareImpl;
+
+  factory _KhatmaShare.fromJson(Map<String, dynamic> json) =
+      _$KhatmaShareImpl.fromJson;
 
   @override
   ShareVisibility get visibility;

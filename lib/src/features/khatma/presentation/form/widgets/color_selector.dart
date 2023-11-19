@@ -62,6 +62,5 @@ class _ColorSelectorState extends State<ColorSelector> {
         ),
       ],
     );
-    ;
   }
 }

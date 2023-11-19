@@ -1,7 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'selected_items_notifier.g.dart';
 
-class SelectedItemsNotifier extends StateNotifier<List<int>> {
-  SelectedItemsNotifier() : super([]);
+@riverpod
+class SelectedItemsNotifier extends _$SelectedItemsNotifier {
+  @override
+  List<int> build() {
+    return [];
+  }
 
   void toggleSelection(int item) {
     if (state.contains(item)) {
@@ -11,12 +16,7 @@ class SelectedItemsNotifier extends StateNotifier<List<int>> {
     }
   }
 
-  void initSelection(List<int> items) {
-    state = items;
+  void clear() {
+    state = [];
   }
 }
-
-final selectedItemsNotifier =
-    StateNotifierProvider<SelectedItemsNotifier, List<int>>((ref) {
-  return SelectedItemsNotifier();
-});

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/widgets/loading_list_tile.dart';
-import 'package:khatma/src/features/khatma/data/parts_repository.dart';
+import 'package:khatma/src/features/khatma/application/part_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
@@ -29,7 +29,7 @@ class ReadPartTiles extends ConsumerWidget {
 
     return AsyncValueWidget(
       loading: const LoadingListTile(),
-      value: ref.watch(partsListFutureProvider(unit)),
+      value: ref.watch(partsProvider(unit.name)),
       data: (parts) {
         List<Part> filtredList =
             parts.where((part) => partIds.contains(part.id)).toList();

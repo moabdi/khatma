@@ -5,6 +5,7 @@ import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:khatma/src/common/utils/number_utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'khatma.freezed.dart';
+part 'khatma.g.dart';
 
 @freezed
 abstract class Khatma with _$Khatma {
@@ -23,6 +24,8 @@ abstract class Khatma with _$Khatma {
     required SplitUnit unit,
     required KhatmaShare share,
   }) = _Khatma;
+
+  factory Khatma.fromJson(Map<String, Object?> json) => _$KhatmaFromJson(json);
 }
 
 @freezed
@@ -31,6 +34,9 @@ abstract class KhatmaStyle with _$KhatmaStyle {
     required String color,
     required String icon,
   }) = _KhatmaStyle;
+
+  factory KhatmaStyle.fromJson(Map<String, Object?> json) =>
+      _$KhatmaStyleFromJson(json);
 }
 
 @freezed
@@ -43,6 +49,9 @@ abstract class Recurrence with _$Recurrence {
     List<int>? days,
     int? frequency,
   }) = _Recurrence;
+
+  factory Recurrence.fromJson(Map<String, Object?> json) =>
+      _$RecurrenceFromJson(json);
 }
 
 @freezed
@@ -55,6 +64,9 @@ abstract class KhatmaPart with _$KhatmaPart {
     DateTime? finishedDate,
     int? remindTimes,
   }) = _KhatmaPart;
+
+  factory KhatmaPart.fromJson(Map<String, Object?> json) =>
+      _$KhatmaPartFromJson(json);
 }
 
 @freezed
@@ -64,6 +76,9 @@ abstract class KhatmaShare with _$KhatmaShare {
     int? maxPartToRead,
     int? maxPartToReserve,
   }) = _KhatmaShare;
+
+  factory KhatmaShare.fromJson(Map<String, Object?> json) =>
+      _$KhatmaShareFromJson(json);
 }
 
 enum ShareVisibility { private, group, public }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 void main() {
   runApp(MyApp());

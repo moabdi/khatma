@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/features/khatma/data/fake_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/data/khatma_notifier.dart';
 import 'package:khatma/src/features/khatma/data/selected_items_notifier.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:lottie/lottie.dart';
 
@@ -21,7 +18,7 @@ class PartFloatingButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedParts = ref.watch(selectedItemsNotifier);
+    final selectedParts = ref.watch(selectedItemsNotifierProvider);
     return CollectionUtils.isEmpty(selectedParts)
         ? Container()
         : Container(
@@ -48,10 +45,6 @@ class PartFloatingButton extends ConsumerWidget {
   }
 
   _onSubmit(BuildContext context, WidgetRef ref, List<int> selectedParts) {
-    ref.read(khatmasRepositoryProvider).markAsRead(khatmaId, selectedParts);
-    ref.read(khatmaDetailsProvider).completeParts(selectedParts);
-    ref.read(selectedItemsNotifier.notifier).initSelection([]);
-
     final snackBar = SnackBar(
       duration: const Duration(seconds: 3),
       content: Row(
@@ -69,8 +62,10 @@ class PartFloatingButton extends ConsumerWidget {
         ],
       ),
     );
-    Timer(const Duration(milliseconds: 500), () {
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    });
+
+    ref
+        .read(khatmaPartsControllerProvider.notifier)
+        .completeParts(khatmaId!, selectedParts)
+        .then((value) => ScaffoldMessenger.of(context).showSnackBar(snackBar));
   }
 }

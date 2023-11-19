@@ -166,16 +166,17 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            fixedSize: const Size(double.infinity, 50),
-            backgroundColor: primaryColors,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 58),
-            shadowColor: primaryColors,
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(45),
-            ),
-            textStyle: textTheme.bodyLarge),
+          fixedSize: const Size(double.infinity, 50),
+          backgroundColor: primaryColors,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 58),
+          shadowColor: primaryColors,
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(45),
+          ),
+          textStyle: textTheme.titleSmall,
+        ),
       ),
       snackBarTheme: SnackBarThemeData(
         shape: RoundedRectangleBorder(
