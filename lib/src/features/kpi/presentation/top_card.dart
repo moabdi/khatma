@@ -7,12 +7,11 @@ class TopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-      onTap: () {},
-      child: Ink(
+    return Card(
+      child: Container(
         height: 120,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
             begin: Alignment.centerRight,
             end: Alignment.bottomLeft,
@@ -28,7 +27,10 @@ class TopCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const ReadingChart(),
-            Image.asset("assets/images/hifdz.png", fit: BoxFit.fill),
+            Opacity(
+              opacity: 0.2,
+              child: Image.asset("assets/images/hifdz.png", fit: BoxFit.fill),
+            ),
           ],
         ),
       ),

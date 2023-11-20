@@ -18,12 +18,8 @@ class AsyncKhatmat extends _$AsyncKhatmat {
 
   FutureOr<void> updateKhatma(Khatma khatma) async {
     state = const AsyncValue.loading();
-    try {
-      await ref.read(localKhatmaRepositoryProvider).save(khatma);
-      var values = await ref.read(localKhatmaRepositoryProvider).fetchAll();
-      state = AsyncValue.data(values);
-    } catch (e, stackTrace) {
-      state = AsyncValue.error(e, stackTrace);
-    }
+    await ref.read(localKhatmaRepositoryProvider).save(khatma);
+    var values = await ref.read(localKhatmaRepositoryProvider).fetchAll();
+    state = AsyncValue.data(values);
   }
 }

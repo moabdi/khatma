@@ -38,6 +38,7 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
   }
 
   Future<List<Khatma>> fetchAll() async {
+    //await test();
     var box = await openBox();
 
     var list = box.values
@@ -52,7 +53,7 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
   Future<void> test() async {
     var uuid = Uuid();
 
-    var box = await Hive.openBox<String>(khatmaBox);
+    var box = await openBox();
     box.clear();
     box.keys.forEach((element) {
       box.delete(element);

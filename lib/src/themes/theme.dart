@@ -43,7 +43,6 @@ class AppTheme {
 
   static ThemeData newLightTheme() {
     Color primaryColor = primaryColors;
-    Color secondaryColor = secondaryColors;
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
@@ -53,21 +52,22 @@ class AppTheme {
     );
 
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(
-      primary: primaryColor,
-      secondary: secondaryColor,
+      background: Colors.grey.shade100,
+      onBackground: Colors.red,
     );
 
     final ThemeData base = ThemeData.light();
 
     TextTheme textTheme = _buildTextTheme(base.textTheme, "SFProText");
     return base.copyWith(
-      useMaterial3: true,
       brightness: Brightness.light,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: colorScheme.background,
       appBarTheme: AppBarTheme(
         elevation: .2,
         centerTitle: false,
         titleTextStyle: textTheme.headlineSmall!.copyWith(color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: colorScheme.background,
         iconTheme:
             base.iconTheme.copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
         systemOverlayStyle: const SystemUiOverlayStyle(
@@ -192,7 +192,6 @@ class AppTheme {
         actionTextColor: primaryColor,
         showCloseIcon: true,
       ),
-      colorScheme: colorScheme.copyWith(background: HexColor("F5F5F8")),
       dropdownMenuTheme: DropdownMenuThemeData(
         textStyle: textTheme.bodyLarge,
         inputDecorationTheme: InputDecorationTheme(
