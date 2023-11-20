@@ -52,22 +52,23 @@ class AppTheme {
     );
 
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(
+      primary: primaryColors,
       background: Colors.grey.shade100,
-      onBackground: Colors.red,
     );
 
     final ThemeData base = ThemeData.light();
 
     TextTheme textTheme = _buildTextTheme(base.textTheme, "SFProText");
     return base.copyWith(
+      primaryColorLight: Colors.green,
       brightness: Brightness.light,
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: colorScheme.background,
+      // scaffoldBackgroundColor: colorScheme.background,
       appBarTheme: AppBarTheme(
         elevation: .2,
         centerTitle: false,
         titleTextStyle: textTheme.headlineSmall!.copyWith(color: Colors.black),
-        backgroundColor: colorScheme.background,
+        //backgroundColor: colorScheme.background,
         iconTheme:
             base.iconTheme.copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
         systemOverlayStyle: const SystemUiOverlayStyle(
