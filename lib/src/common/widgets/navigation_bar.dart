@@ -12,10 +12,14 @@ class MainNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       backgroundColor: AppTheme.getTheme().disabledColor,
-      unselectedLabelStyle:
-          AppTheme.getTheme().textTheme.labelSmall!.copyWith(fontSize: 10),
-      selectedLabelStyle:
-          AppTheme.getTheme().textTheme.labelSmall!.copyWith(fontSize: 10),
+      unselectedLabelStyle: AppTheme.getTheme()
+          .textTheme
+          .labelLarge!
+          .copyWith(fontSize: 11, fontWeight: FontWeight.w600),
+      selectedLabelStyle: AppTheme.getTheme()
+          .textTheme
+          .labelLarge!
+          .copyWith(fontSize: 11, fontWeight: FontWeight.w600),
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home_filled),
@@ -26,7 +30,7 @@ class MainNavigationBar extends StatelessWidget {
           label: AppLocalizations.of(context).quran,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.add),
+          icon: Icon(Icons.settings),
           label: AppLocalizations.of(context).create,
         ),
       ],
