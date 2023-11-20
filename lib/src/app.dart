@@ -20,7 +20,7 @@ class MainApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('en')],
+      supportedLocales: const [Locale('fr')],
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
