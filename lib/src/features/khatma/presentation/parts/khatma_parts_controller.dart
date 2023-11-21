@@ -1,6 +1,5 @@
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/application/khatma_provider.dart';
-import 'package:khatma/src/features/khatma/application/selected_items_provider.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -10,11 +9,25 @@ part 'khatma_parts_controller.g.dart';
 @riverpod
 class KhatmaPartsController extends _$KhatmaPartsController {
   @override
-  FutureOr<void> build() {}
+  List<int> build() {
+    return [];
+  }
 
-  Future<void> completeParts(String id, List<int> partIds) async {
-    // Fetch the khatma
-    Khatma? khatma = await ref.watch(localKhatmaRepositoryProvider).getById(id);
+  FutureOr<void> selectPart(int item) {
+    if (state.contains(item)) {
+      state = state.where((i) => i != item).toList();
+    } else {
+      state = [...state, item];
+    }
+  }
+
+  Future<void> completeParts() async {
+    Khatma khatmaDetails = await ref.watch(khatmaDetailsProvider).khatma;
+
+    // Fetch the khatma from db
+    Khatma? khatma = await ref
+        .watch(localKhatmaRepositoryProvider)
+        .getById(khatmaDetails.id!);
 
     if (khatma == null) {
       return;
@@ -24,7 +37,7 @@ class KhatmaPartsController extends _$KhatmaPartsController {
     List<KhatmaPart> completedParts = List<KhatmaPart>.from(khatma.parts ?? []);
 
     // Update the parts based on the provided partIds
-    for (var partId in partIds) {
+    for (var partId in state) {
       int index = completedParts.indexWhere((part) => part.id == partId);
       if (index != -1) {
         // Update the existing part
@@ -41,6 +54,6 @@ class KhatmaPartsController extends _$KhatmaPartsController {
     Khatma updatedKhatma = khatma.copyWith(parts: completedParts);
     ref.read(asyncKhatmatProvider.notifier).updateKhatma(updatedKhatma);
     ref.read(khatmaDetailsProvider.notifier).update(updatedKhatma);
-    ref.read(selectedItemsNotifierProvider.notifier).clear();
+    state = [];
   }
 }

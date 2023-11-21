@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/application/selected_items_provider.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile_leading.dart';
 
 class PartTile extends ConsumerWidget {
@@ -21,7 +21,7 @@ class PartTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isSelected =
-        ref.watch(selectedItemsNotifierProvider).contains(part.id);
+        ref.watch(khatmaPartsControllerProvider).contains(part.id);
 
     return ListTile(
       enabled: enabled,
@@ -55,6 +55,6 @@ class PartTile extends ConsumerWidget {
   }
 
   void toggleSelection(WidgetRef ref) {
-    ref.read(selectedItemsNotifierProvider.notifier).toggleSelection(part.id);
+    ref.read(khatmaPartsControllerProvider.notifier).selectPart(part.id);
   }
 }

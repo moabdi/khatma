@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/features/khatma/application/selected_items_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:lottie/lottie.dart';
@@ -18,7 +17,7 @@ class PartFloatingButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedParts = ref.watch(selectedItemsNotifierProvider);
+    final selectedParts = ref.watch(khatmaPartsControllerProvider);
     return CollectionUtils.isEmpty(selectedParts)
         ? Container()
         : Container(
@@ -65,7 +64,7 @@ class PartFloatingButton extends ConsumerWidget {
 
     ref
         .read(khatmaPartsControllerProvider.notifier)
-        .completeParts(khatmaId!, selectedParts)
+        .completeParts()
         .then((value) => ScaffoldMessenger.of(context).showSnackBar(snackBar));
   }
 }
