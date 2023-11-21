@@ -13,6 +13,7 @@ class AsyncKhatmat extends _$AsyncKhatmat {
 
   @override
   FutureOr<List<Khatma>> build() async {
+    state = const AsyncValue.loading();
     return _fetchAll();
   }
 
