@@ -51,7 +51,7 @@ class TopCard extends StatelessWidget {
           count.toString(),
           style: AppTheme.getTheme()
               .textTheme
-              .headline5!
+              .titleMedium!
               .copyWith(color: Colors.white70),
         ),
       ],
