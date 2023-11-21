@@ -9,7 +9,6 @@ import 'package:khatma/src/features/khatma/presentation/common/num_dropdown_menu
 import 'package:khatma/src/features/khatma/presentation/common/repeat_interval_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
 class OccurenceForm extends ConsumerWidget {
