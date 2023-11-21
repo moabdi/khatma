@@ -42,10 +42,7 @@ class KhatmatListView extends ConsumerWidget {
               primary: false,
               itemCount: khatmat.length,
               itemBuilder: (_, index) {
-                final khatma = ref.watch(khatmaDetailsProvider).khatma.id ==
-                        khatmat[index].id
-                    ? ref.watch(khatmaDetailsProvider).khatma
-                    : khatmat[index];
+                final khatma = khatmat[index];
                 return Card(
                   elevation: 0.4,
                   clipBehavior: Clip.antiAlias,
@@ -54,7 +51,7 @@ class KhatmatListView extends ConsumerWidget {
                     onPressed: () {
                       context.goNamed(AppRoute.khatmaDetails.name,
                           pathParameters: {'id': khatma.id!});
-                      ref.read(khatmaDetailsProvider).withKhatma(khatma);
+                      ref.read(khatmaNotifierProvider.notifier).update(khatma);
                     },
                   ),
                 );
