@@ -7,7 +7,7 @@ part of 'khatma_parts_controller.dart';
 // **************************************************************************
 
 String _$khatmaPartsControllerHash() =>
-    r'fbd4b3c2011a715d09827311f4f00b56a87a46ad';
+    r'7ae835145d1b715662ec55d2926d4a7a9b8bd2f5';
 
 /// See also [KhatmaPartsController].
 @ProviderFor(KhatmaPartsController)

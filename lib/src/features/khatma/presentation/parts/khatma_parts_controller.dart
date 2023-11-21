@@ -1,5 +1,4 @@
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/application/khatma_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,8 +19,8 @@ class KhatmaPartsController extends _$KhatmaPartsController {
     }
   }
 
-  Future<void> completeParts() async {
-    Khatma khatma = await ref.watch(khatmaNotifierProvider);
+  Future<void> completeParts(String id) async {
+    Khatma khatma = ref.watch(asyncKhatmatProvider.notifier).getKhatmaById(id);
 
     // Create a copy of the parts list to update
     List<KhatmaPart> completedParts = List<KhatmaPart>.from(khatma.parts ?? []);
@@ -43,7 +42,6 @@ class KhatmaPartsController extends _$KhatmaPartsController {
     // Update the khatma with the modified parts
     Khatma updatedKhatma = khatma.copyWith(parts: completedParts);
     ref.read(asyncKhatmatProvider.notifier).updateKhatma(updatedKhatma);
-    ref.read(khatmaNotifierProvider.notifier).update(updatedKhatma);
     state = [];
   }
 }

@@ -5,7 +5,7 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/features/khatma/application/khatma_provider.dart';
+import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -24,7 +24,8 @@ class PartSelectorScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatma = ref.read(khatmaNotifierProvider);
+    final khatma =
+        ref.read(asyncKhatmatProvider.notifier).getKhatmaById(khatmaId);
 
     return Scaffold(
       appBar: buildAppBar(khatma, context, ref),

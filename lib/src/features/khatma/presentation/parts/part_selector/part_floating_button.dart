@@ -64,7 +64,7 @@ class PartFloatingButton extends ConsumerWidget {
 
     ref
         .read(khatmaPartsControllerProvider.notifier)
-        .completeParts()
+        .completeParts(khatmaId!)
         .then((value) => ScaffoldMessenger.of(context).showSnackBar(snackBar));
   }
 }

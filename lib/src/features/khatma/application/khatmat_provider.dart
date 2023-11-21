@@ -23,4 +23,8 @@ class AsyncKhatmat extends _$AsyncKhatmat {
     var values = await ref.read(localKhatmaRepositoryProvider).fetchAll();
     state = AsyncValue.data(values);
   }
+
+  Khatma getKhatmaById(String id) {
+    return state.value!.firstWhere((khatma) => khatma.id == id);
+  }
 }

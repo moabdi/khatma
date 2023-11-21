@@ -6,7 +6,7 @@ part of 'khatmat_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$asyncKhatmatHash() => r'284bd130cf26f5821e47f09d6b106f1e497f8f6e';
+String _$asyncKhatmatHash() => r'5ef9d457429127f940bc556d4d2de5ff42efca03';
 
 /// See also [AsyncKhatmat].
 @ProviderFor(AsyncKhatmat)
