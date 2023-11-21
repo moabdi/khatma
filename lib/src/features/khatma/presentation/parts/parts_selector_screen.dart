@@ -5,12 +5,12 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/application/khatma_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/common/widgets/k_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
+import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
@@ -78,7 +78,7 @@ class PartSelectorScreen extends ConsumerWidget {
             ),
           ),
           onTap: () => {
-            ref.read(formKhatmaProvider).update(khatma),
+            ref.read(formKhatmaProvider.notifier).update(khatma),
             context.goNamed(AppRoute.editKhatma.name,
                 pathParameters: {'id': khatma.id!}),
           },

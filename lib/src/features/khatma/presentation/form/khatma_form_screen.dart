@@ -4,13 +4,14 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style/style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/modal_bottom_sheet.dart';
@@ -23,7 +24,7 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatma = ref.watch(formKhatmaProvider).khatma;
+    final khatma = ref.watch(formKhatmaProvider);
     final formKey = GlobalKey<FormState>();
     final node = FocusScopeNode();
     final nameController = TextEditingController(text: khatma.name);
@@ -164,7 +165,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       title: AppLocalizations.of(context).recurrence,
       subtitle: RecurrenceText(khatma.recurrence),
       onTap: () {
-        ref.read(formRecurrenceProvider).update(khatma.recurrence);
+        ref.read(recurrenceNotifierProvider.notifier).update(khatma.recurrence);
         _showModal(
           context,
           RecurrenceSelector(
@@ -227,6 +228,6 @@ class AddKhatmaScreen extends ConsumerWidget {
 
 extension ProviderRef on WidgetRef {
   updateKhatma(Khatma khatma) {
-    read(formKhatmaProvider).update(khatma);
+    read(formKhatmaProvider.notifier).update(khatma);
   }
 }

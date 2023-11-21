@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_tile.dart';
 
 class ShareOptions extends ConsumerWidget {
@@ -10,7 +10,7 @@ class ShareOptions extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    KhatmaShare khatmaShare = ref.watch(formShareProvider).khatmaShare;
+    KhatmaShare khatmaShare = ref.watch(shareNotifierProvider);
 
     return Card(
       child: Padding(
@@ -32,7 +32,7 @@ class ShareOptions extends ConsumerWidget {
                   currentUnit: currentUnit,
                   onSelect: (unit) {
                     ref
-                        .read(formShareProvider.notifier)
+                        .read(shareNotifierProvider.notifier)
                         .update(khatmaShare.copyWith(visibility: unit));
                   },
                 );

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_limit.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_options.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 
 class ShareSelector extends ConsumerWidget {
   const ShareSelector(
@@ -16,8 +17,8 @@ class ShareSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isChanged = ref.read(formKhatmaProvider).khatma.share.hashCode !=
-        ref.watch(formShareProvider).khatmaShare.hashCode;
+    bool isChanged = ref.read(formKhatmaProvider).share.hashCode !=
+        ref.watch(shareNotifierProvider).hashCode;
 
     return Column(
       children: [
@@ -31,7 +32,7 @@ class ShareSelector extends ConsumerWidget {
           child: ElevatedButton(
               onPressed: isChanged
                   ? () {
-                      onChanged(ref.read(formShareProvider).khatmaShare);
+                      onChanged(ref.read(shareNotifierProvider));
                       Navigator.pop(context);
                     }
                   : null,

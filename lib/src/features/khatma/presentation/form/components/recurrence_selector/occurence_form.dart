@@ -4,11 +4,12 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/utils/day_of_week.dart';
 import 'package:khatma/src/common/utils/string_utils.dart';
-import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/num_dropdown_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/common/repeat_interval_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
 class OccurenceForm extends ConsumerWidget {
@@ -18,7 +19,7 @@ class OccurenceForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
+    Recurrence updatedRecurrence = ref.watch(recurrenceNotifierProvider);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +38,7 @@ class OccurenceForm extends ConsumerWidget {
   }
 
   Row _buildRepeatInterval(BuildContext context, WidgetRef ref) {
-    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
+    Recurrence updatedRecurrence = ref.watch(recurrenceNotifierProvider);
     return Row(
       children: [
         gapW8,
@@ -50,7 +51,7 @@ class OccurenceForm extends ConsumerWidget {
           value: updatedRecurrence.frequency,
           onChanged: (value) {
             ref
-                .read(formRecurrenceProvider)
+                .read(recurrenceNotifierProvider.notifier)
                 .update(updatedRecurrence.copyWith(frequency: value));
           },
         ),
@@ -60,17 +61,13 @@ class OccurenceForm extends ConsumerWidget {
           selectedUnit: updatedRecurrence.unit,
           onSelected: (value) {
             if (value == RepeatInterval.weekly &&
-                ref
-                    .read(formRecurrenceProvider)
-                    .recurrence
-                    .daysOfWeek
-                    .isEmpty) {
+                ref.read(recurrenceNotifierProvider).daysOfWeek.isEmpty) {
               ref
-                  .read(formRecurrenceProvider)
+                  .read(recurrenceNotifierProvider.notifier)
                   .update(updatedRecurrence.copyWith(unit: value!, days: [1]));
             } else {
               ref
-                  .read(formRecurrenceProvider)
+                  .read(recurrenceNotifierProvider.notifier)
                   .update(updatedRecurrence.copyWith(unit: value!));
             }
           },
@@ -80,7 +77,7 @@ class OccurenceForm extends ConsumerWidget {
   }
 
   Widget _buildWeekDays(BuildContext context, WidgetRef ref) {
-    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
+    Recurrence updatedRecurrence = ref.watch(recurrenceNotifierProvider);
     if (updatedRecurrence.unit != RepeatInterval.weekly ||
         !updatedRecurrence.repeat) {
       return const SizedBox.shrink();
@@ -93,9 +90,8 @@ class OccurenceForm extends ConsumerWidget {
           elevation: 2,
           firstDayOfWeek: 1,
           onChanged: (value) =>
-              ref.read(formRecurrenceProvider).toggleDay(value),
-          values:
-              ref.read(formRecurrenceProvider).recurrence.daysOfWeekSelected,
+              ref.read(recurrenceNotifierProvider.notifier).toggleDay(value),
+          values: ref.read(recurrenceNotifierProvider).daysOfWeekSelected,
           selectedFillColor: Theme.of(context).primaryColor,
           selectedColor: Colors.white,
           weekdays: DayOfWeek.values

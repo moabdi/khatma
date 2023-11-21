@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/date_picker_tile.dart';
-import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
 
 class RecurrenceDatePicker extends ConsumerWidget {
   const RecurrenceDatePicker({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
+    Recurrence updatedRecurrence = ref.watch(recurrenceNotifierProvider);
     return Column(
       children: [
         _buildStartDate(updatedRecurrence, context, ref),
@@ -32,12 +32,13 @@ class RecurrenceDatePicker extends ConsumerWidget {
       value: updatedRecurrence.startDate,
       onChanged: (value) => {
         ref
-            .read(formRecurrenceProvider)
+            .read(recurrenceNotifierProvider.notifier)
             .update(updatedRecurrence.copyWith(startDate: value)),
-        if (ref.read(formRecurrenceProvider).recurrence.endDate.isBefore(value))
+        if (ref.read(recurrenceNotifierProvider).endDate.isBefore(value))
           {
-            ref.read(formRecurrenceProvider).update(updatedRecurrence.copyWith(
-                endDate: value.add(const Duration(days: 366))))
+            ref.read(recurrenceNotifierProvider.notifier).update(
+                updatedRecurrence.copyWith(
+                    endDate: value.add(const Duration(days: 366))))
           },
       },
     );
@@ -55,7 +56,7 @@ class RecurrenceDatePicker extends ConsumerWidget {
       value: updatedRecurrence.endDate,
       firstDate: updatedRecurrence.startDate,
       onChanged: (value) => ref
-          .read(formRecurrenceProvider)
+          .read(recurrenceNotifierProvider.notifier)
           .update(updatedRecurrence.copyWith(endDate: value)),
     );
   }

@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/features/khatma/data/khatma_form_notifier.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
 
 class RepeatEnablerTile extends ConsumerWidget {
   const RepeatEnablerTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Recurrence updatedRecurrence = ref.watch(formRecurrenceProvider).recurrence;
+    Recurrence updatedRecurrence = ref.watch(recurrenceNotifierProvider);
     return ListTile(
       title: Text(AppLocalizations.of(context).repeat),
       subtitle: Text(AppLocalizations.of(context).repeatDescription),
       leading: _buildLeading(context),
       trailing: _buildTrailing(updatedRecurrence, ref),
-      onTap: () => ref.read(formRecurrenceProvider).update(
+      onTap: () => ref.read(recurrenceNotifierProvider.notifier).update(
           updatedRecurrence.copyWith(repeat: !updatedRecurrence.repeat)),
     );
   }
@@ -25,7 +25,7 @@ class RepeatEnablerTile extends ConsumerWidget {
     return Switch(
         value: updatedRecurrence.repeat,
         onChanged: (value) => ref
-            .read(formRecurrenceProvider)
+            .read(recurrenceNotifierProvider.notifier)
             .update(updatedRecurrence.copyWith(repeat: value)));
   }
 
