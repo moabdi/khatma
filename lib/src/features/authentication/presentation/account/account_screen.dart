@@ -2,7 +2,7 @@ import 'package:khatma/src/common/widgets/alert_dialogs.dart';
 import 'package:khatma/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:khatma/src/features/authentication/presentation/account/account_screen_controller.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
-import 'package:khatma/src/common/utils/async_value_ui.dart';
+import 'package:khatma/src/common/extensions/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/widgets/action_text_button.dart';
 import 'package:khatma/src/common/widgets/responsive_center.dart';

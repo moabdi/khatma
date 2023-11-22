@@ -17,9 +17,7 @@ extension DateTimeFormater on DateTime {
   String format() {
     return dateFormat.format(this);
   }
-}
 
-extension DateTimeExtensions on DateTime {
   String toHumanReadable() {
     Duration difference = DateTime.now().difference(this);
 

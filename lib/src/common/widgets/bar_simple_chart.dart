@@ -51,25 +51,14 @@ class BarChartSampleState extends State<BarChartSample> {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   gapW12,
-                  Badge(
-                    backgroundColor: Colors.red.withOpacity(.05),
-                    textColor: Colors.red,
-                    label: Text(
-                      "-1",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge!
-                          .copyWith(color: Colors.red),
-                    ),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.red.withOpacity(.12),
-                      radius: 12,
-                      child: Center(
-                        child: Icon(
-                          Icons.trending_down,
-                          size: 20,
-                          color: Colors.red,
-                        ),
+                  CircleAvatar(
+                    backgroundColor: Colors.green.withOpacity(.12),
+                    radius: 12,
+                    child: Center(
+                      child: Icon(
+                        Icons.trending_up,
+                        size: 20,
+                        color: Colors.green,
                       ),
                     ),
                   ),

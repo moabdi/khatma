@@ -2,7 +2,7 @@ import 'package:khatma/src/features/authentication/presentation/sign_in/email_pa
 import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/string_validators.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
-import 'package:khatma/src/common/utils/async_value_ui.dart';
+import 'package:khatma/src/common/extensions/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:khatma/src/common/widgets/custom_text_button.dart';
