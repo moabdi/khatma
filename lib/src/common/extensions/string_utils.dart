@@ -19,7 +19,8 @@ extension SubstringExtension on String {
     return "${this[0].toLowerCase()}${substring(1)}";
   }
 
-  String get withColon => "$this:";
+  String get colon => "$this:";
+  String get spaceColon => "$this :";
 }
 
 bool isBlank(String? value) {

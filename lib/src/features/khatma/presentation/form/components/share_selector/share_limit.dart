@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/extensions/string_utils.dart';
+import 'package:khatma/src/common/extensions/string_extention.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/num_dropdown_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_provider.dart';
@@ -24,7 +24,7 @@ class ShareLimit extends ConsumerWidget {
             Row(
               children: [
                 gapW8,
-                Text(AppLocalizations.of(context).maxPartToReserve.withColon,
+                Text(AppLocalizations.of(context).maxPartToReserve.colon,
                     style: Theme.of(context).textTheme.bodyLarge),
                 gapW8,
                 NumberDropdownMenu(
@@ -49,7 +49,7 @@ class ShareLimit extends ConsumerWidget {
             Row(
               children: [
                 gapW8,
-                Text(AppLocalizations.of(context).maxPartToRead.withColon,
+                Text(AppLocalizations.of(context).maxPartToRead.colon,
                     style: Theme.of(context).textTheme.bodyLarge),
                 gapW8,
                 NumberDropdownMenu(
