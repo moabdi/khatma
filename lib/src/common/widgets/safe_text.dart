@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/extensions/string_extention.dart';
+import 'package:khatma/src/common/extensions/string_utils.dart';
 
 class SafeText extends StatelessWidget {
   const SafeText(
