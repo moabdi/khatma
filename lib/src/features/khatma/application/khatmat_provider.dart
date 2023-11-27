@@ -1,4 +1,3 @@
-import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
