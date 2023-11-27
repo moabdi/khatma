@@ -6,20 +6,35 @@ part of 'khatmat_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$asyncKhatmatHash() => r'5ef9d457429127f940bc556d4d2de5ff42efca03';
+String _$khatmaListHash() => r'0a8f243b4586313bee4b218b9838549302587b4d';
 
-/// See also [AsyncKhatmat].
-@ProviderFor(AsyncKhatmat)
-final asyncKhatmatProvider =
-    AutoDisposeAsyncNotifierProvider<AsyncKhatmat, List<Khatma>>.internal(
-  AsyncKhatmat.new,
-  name: r'asyncKhatmatProvider',
+/// See also [KhatmaList].
+@ProviderFor(KhatmaList)
+final khatmaListProvider =
+    AutoDisposeAsyncNotifierProvider<KhatmaList, List<Khatma>>.internal(
+  KhatmaList.new,
+  name: r'khatmaListProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$asyncKhatmatHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$khatmaListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AsyncKhatmat = AutoDisposeAsyncNotifier<List<Khatma>>;
+typedef _$KhatmaList = AutoDisposeAsyncNotifier<List<Khatma>>;
+String _$currentKhatmaHash() => r'58233dfa327489a1e9032b85c9c0159d9d9971af';
+
+/// See also [CurrentKhatma].
+@ProviderFor(CurrentKhatma)
+final currentKhatmaProvider = NotifierProvider<CurrentKhatma, Khatma?>.internal(
+  CurrentKhatma.new,
+  name: r'currentKhatmaProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$currentKhatmaHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$CurrentKhatma = Notifier<Khatma?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

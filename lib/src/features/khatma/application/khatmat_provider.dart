@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'khatmat_provider.g.dart';
 
 @riverpod
-class AsyncKhatmat extends _$AsyncKhatmat {
+class KhatmaList extends _$KhatmaList {
   FutureOr<List<Khatma>> _fetchAll() async {
     final provider = ref.watch(localKhatmaRepositoryProvider);
     return provider.fetchAll();
@@ -23,8 +23,16 @@ class AsyncKhatmat extends _$AsyncKhatmat {
     var values = await ref.read(localKhatmaRepositoryProvider).fetchAll();
     state = AsyncValue.data(values);
   }
+}
 
-  Khatma getKhatmaById(String id) {
-    return state.value!.firstWhere((khatma) => khatma.id == id);
+@Riverpod(keepAlive: true)
+class CurrentKhatma extends _$CurrentKhatma {
+  @override
+  Khatma? build() {
+    return null;
+  }
+
+  void updateValue(Khatma khatma) {
+    state = khatma;
   }
 }

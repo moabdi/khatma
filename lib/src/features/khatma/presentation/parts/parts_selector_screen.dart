@@ -24,8 +24,7 @@ class PartSelectorScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatma =
-        ref.read(asyncKhatmatProvider.notifier).getKhatmaById(khatmaId);
+    final khatma = ref.watch(currentKhatmaProvider)!;
 
     return Scaffold(
       appBar: buildAppBar(khatma, context, ref),

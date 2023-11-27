@@ -17,7 +17,7 @@ class SafeText extends StatelessWidget {
   Widget build(BuildContext context) {
     var value = maxLength == null || maxLength == 0 || maxLength! >= text.length
         ? text
-        : text.isArabic()
+        : text.isArabic
             ? "...${text.substring(0, maxLength)}"
             : "${text.substring(0, maxLength)}...";
     return Text(

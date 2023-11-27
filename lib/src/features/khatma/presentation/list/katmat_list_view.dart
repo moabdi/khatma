@@ -16,7 +16,7 @@ class KhatmatListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatmatListValue = ref.watch(asyncKhatmatProvider);
+    final khatmatListValue = ref.watch(khatmaListProvider);
     return AsyncValueWidget<List<Khatma>>(
       loading: const LoadingListTile(itemCount: 10),
       value: khatmatListValue,
@@ -48,6 +48,9 @@ class KhatmatListView extends ConsumerWidget {
                   child: KhatmaTile(
                     khatma: khatma,
                     onPressed: () {
+                      ref
+                          .read(currentKhatmaProvider.notifier)
+                          .updateValue(khatma);
                       context.goNamed(AppRoute.khatmaDetails.name,
                           pathParameters: {'id': khatma.id!});
                     },

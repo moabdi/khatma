@@ -20,7 +20,7 @@ class KhatmaPartsController extends _$KhatmaPartsController {
   }
 
   Future<void> completeParts(String id) async {
-    Khatma khatma = ref.watch(asyncKhatmatProvider.notifier).getKhatmaById(id);
+    Khatma khatma = ref.watch(currentKhatmaProvider)!;
 
     // Create a copy of the parts list to update
     List<KhatmaPart> completedParts = List<KhatmaPart>.from(khatma.parts ?? []);
@@ -41,7 +41,8 @@ class KhatmaPartsController extends _$KhatmaPartsController {
 
     // Update the khatma with the modified parts
     Khatma updatedKhatma = khatma.copyWith(parts: completedParts);
-    ref.read(asyncKhatmatProvider.notifier).updateKhatma(updatedKhatma);
+    ref.read(khatmaListProvider.notifier).updateKhatma(updatedKhatma);
+    ref.read(currentKhatmaProvider.notifier).updateValue(updatedKhatma);
     state = [];
   }
 }
