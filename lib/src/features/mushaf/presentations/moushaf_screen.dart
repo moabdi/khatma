@@ -23,6 +23,7 @@ class _MoushafScreenState extends State<MoushafScreen> {
   @override
   void initState() {
     super.initState();
+
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
     const PlatformWebViewControllerCreationParams params =
@@ -32,7 +33,7 @@ class _MoushafScreenState extends State<MoushafScreen> {
         WebViewController.fromPlatformCreationParams(params);
 
     controller
-      ..setBackgroundColor(HexColor("#FFF9EF"))
+      ..setBackgroundColor(HexColor("#E6E6EB"))
       ..enableZoom(true)
       ..goBack()
       ..canGoForward()
@@ -58,7 +59,7 @@ class _MoushafScreenState extends State<MoushafScreen> {
                 top: 0,
                 left: 0,
                 child: OutlinedButton.icon(
-                  onPressed: () => context.goNamed(AppRoute.home.name),
+                  onPressed: () => Navigator.pop(context),
                   icon: Icon(Icons.chevron_left),
                   label: Text("Return"),
                   style: ButtonStyle(
