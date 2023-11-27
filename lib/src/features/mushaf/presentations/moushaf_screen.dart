@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
-import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
