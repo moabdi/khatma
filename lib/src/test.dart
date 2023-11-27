@@ -1,81 +1,178 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'package:localstorage/localstorage.dart';
+
+void main() {
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ThemeScreen(),
+    return new MaterialApp(
+      title: 'Localstorage Demo',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: new HomePage(),
     );
   }
 }
 
-class ThemeScreen extends StatefulWidget {
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
+
   @override
-  _ThemeScreenState createState() => _ThemeScreenState();
+  _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _ThemeScreenState extends State<ThemeScreen> {
-  Color _selectedColor = Colors.blue; // The default selected color
+class TodoItem {
+  String title;
+  bool done;
+
+  TodoItem({required this.title, required this.done});
+
+  toJSONEncodable() {
+    Map<String, dynamic> m = new Map();
+
+    m['title'] = title;
+    m['done'] = done;
+
+    return m;
+  }
+}
+
+class TodoList {
+  List<TodoItem> items = [];
+
+  toJSONEncodable() {
+    return items.map((item) {
+      return item.toJSONEncodable();
+    }).toList();
+  }
+}
+
+class _MyHomePageState extends State<HomePage> {
+  final TodoList list = new TodoList();
+  final LocalStorage storage = new LocalStorage('todo_app.json');
+  bool initialized = false;
+  TextEditingController controller = new TextEditingController();
+
+  _toggleItem(TodoItem item) {
+    setState(() {
+      item.done = !item.done;
+      _saveToStorage();
+    });
+  }
+
+  _addItem(String title) {
+    setState(() {
+      final item = new TodoItem(title: title, done: false);
+      list.items.add(item);
+      _saveToStorage();
+    });
+  }
+
+  _saveToStorage() {
+    storage.setItem('todos', list.toJSONEncodable());
+  }
+
+  _clearStorage() async {
+    await storage.clear();
+
+    setState(() {
+      list.items = storage.getItem('todos') ?? [];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            // Handle back button press
-          },
-        ),
-        title: Text('Appearance'),
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Localstorage demo'),
       ),
-      body: newMethod(),
+      body: Container(
+          padding: EdgeInsets.all(10.0),
+          constraints: BoxConstraints.expand(),
+          child: FutureBuilder(
+            future: storage.ready,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.data == null) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (!initialized) {
+                var items = storage.getItem('todos');
+
+                if (items != null) {
+                  list.items = List<TodoItem>.from(
+                    (items as List).map(
+                      (item) => TodoItem(
+                        title: item['title'],
+                        done: item['done'],
+                      ),
+                    ),
+                  );
+                }
+
+                initialized = true;
+              }
+
+              List<Widget> widgets = list.items.map((item) {
+                return CheckboxListTile(
+                  value: item.done,
+                  title: Text(item.title),
+                  selected: item.done,
+                  onChanged: (_) {
+                    _toggleItem(item);
+                  },
+                );
+              }).toList();
+
+              return Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: ListView(
+                      children: widgets,
+                      itemExtent: 50.0,
+                    ),
+                  ),
+                  ListTile(
+                    title: TextField(
+                      controller: controller,
+                      decoration: InputDecoration(
+                        labelText: 'What to do?',
+                      ),
+                      onEditingComplete: _save,
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.save),
+                          onPressed: _save,
+                          tooltip: 'Save',
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: _clearStorage,
+                          tooltip: 'Clear storage',
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          )),
     );
   }
 
-  Widget newMethod() {
-    return ListView(
-      children: <Widget>[
-        ListTile(title: Text('Colour')),
-        Container(
-          height: 50,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 5,
-            itemBuilder: (BuildContext context, int index) {
-              List<Color> colorList = [
-                Colors.blue,
-                Colors.purple,
-                Colors.pink,
-                Colors.teal,
-                Colors.orange,
-              ];
-
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _selectedColor = colorList[index];
-                  });
-                },
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 8.0),
-                  decoration: BoxDecoration(
-                    color: colorList[index],
-                    shape: BoxShape.circle,
-                    border: _selectedColor == colorList[index]
-                        ? Border.all(color: Colors.black, width: 3)
-                        : null,
-                  ),
-                  width: 40,
-                  height: 40,
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
+  void _save() {
+    _addItem(controller.value.text);
+    controller.clear();
   }
 }

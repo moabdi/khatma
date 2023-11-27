@@ -1,3 +1,4 @@
+import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -22,6 +23,10 @@ class KhatmaList extends _$KhatmaList {
     await ref.read(localKhatmaRepositoryProvider).save(khatma);
     var values = await ref.read(localKhatmaRepositoryProvider).fetchAll();
     state = AsyncValue.data(values);
+  }
+
+  Khatma getById(String id) {
+    return state.value!.firstWhere((khatma) => khatma.id == id);
   }
 }
 

@@ -1,6 +1,9 @@
 import 'package:khatma/src/features/khatma/data/local/have_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/local/localstorage_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 part 'local_khatma_repository.g.dart';
 
 abstract class LocalKhatmaRepository {
@@ -15,5 +18,8 @@ abstract class LocalKhatmaRepository {
 
 @Riverpod(keepAlive: true)
 LocalKhatmaRepository localKhatmaRepository(LocalKhatmaRepositoryRef ref) {
+  if (kIsWeb) {
+    return LocalStorageKhatmaRepository();
+  }
   return HaveKhatmaRepository();
 }

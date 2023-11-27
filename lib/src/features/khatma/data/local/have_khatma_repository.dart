@@ -10,7 +10,7 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
   static const String khatmaBox = "KHATMAT_BOX";
 
   static Future<Box<String>> openBox() async {
-    return await Hive.openBox<String>("KHATMAT_BOX");
+    return await Hive.openBox<String>(khatmaBox);
   }
 
   Future<void> save(Khatma khatma) async {

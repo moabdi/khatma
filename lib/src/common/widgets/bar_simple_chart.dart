@@ -16,12 +16,12 @@ class BarChartSample extends StatefulWidget {
   final String subTitle;
   final Map<int, double> data = {
     0: 5,
-    1: 6.5,
+    1: 7,
     2: 5,
     3: 10,
     4: 2,
-    5: 3.5,
-    6: 62.5,
+    5: 3,
+    6: 6,
   };
 
   final Color barBackgroundColor = AppTheme.getTheme().disabledColor;
@@ -37,8 +37,8 @@ class BarChartSampleState extends State<BarChartSample> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.20,
       child: Stack(
         children: <Widget>[
           Column(
@@ -95,7 +95,7 @@ class BarChartSampleState extends State<BarChartSample> {
     double y, {
     bool isTouched = false,
     Color? barColor,
-    double width = 15,
+    double width = 7,
     List<int> showTooltips = const [],
   }) {
     barColor ??= widget.barColor;
