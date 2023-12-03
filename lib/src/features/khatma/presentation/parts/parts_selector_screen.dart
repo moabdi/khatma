@@ -15,6 +15,7 @@ import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
 
@@ -111,7 +112,23 @@ class PartSelectorScreen extends ConsumerWidget {
 
   Widget buildUnReadPartCard(Khatma khatma) {
     return khatma.isCompleted
-        ? Card()
+        ? Card(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Center(child: Text("data")),
+                Positioned(
+                  child: Lottie.asset(
+                    'assets/lottie/congratulation.json',
+                    width: double.infinity,
+                    height: 250,
+                    repeat: true,
+                    animate: true,
+                  ),
+                ),
+              ],
+            ),
+          )
         : Card(
             elevation: 0.4,
             clipBehavior: Clip.antiAlias,
