@@ -7,12 +7,14 @@ class KhatmaFormTile extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.onTap,
+    this.enabled = true,
   });
 
   final Icon icon;
   final String title;
   final Widget subtitle;
   final GestureTapCallback onTap;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class KhatmaFormTile extends StatelessWidget {
       elevation: 0.1,
       color: Theme.of(context).dividerColor,
       child: ListTile(
+        enabled: enabled,
         leading: icon,
         title: Text(title),
         subtitle: subtitle,

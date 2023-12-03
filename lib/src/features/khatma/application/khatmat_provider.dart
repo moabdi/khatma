@@ -27,6 +27,12 @@ class KhatmaList extends _$KhatmaList {
   Khatma getById(String id) {
     return state.value!.firstWhere((khatma) => khatma.id == id);
   }
+
+  void deleteById(KhatmaID khatmaID) async {
+    await ref.read(localKhatmaRepositoryProvider).deleteById(khatmaID);
+    state.value!.removeWhere((khatma) => khatma.id == khatmaID);
+    state = state;
+  }
 }
 
 @Riverpod(keepAlive: true)

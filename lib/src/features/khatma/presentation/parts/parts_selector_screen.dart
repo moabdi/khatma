@@ -64,16 +64,16 @@ class PartSelectorScreen extends ConsumerWidget {
       actions: [
         Avatar(
           radius: 20,
-          backgroundColor: Theme.of(context).primaryColor.withOpacity(.3),
+          backgroundColor: khatma.style.hexColor.withOpacity(.3),
           bottom: Avatar(
             radius: 5,
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: khatma.style.hexColor,
             child: const Icon(Icons.edit, size: 10),
           ),
           child: Center(
             child: getIcon(
               khatma.style.icon,
-              color: Theme.of(context).primaryColor,
+              color: khatma.style.hexColor,
             ),
           ),
           onTap: () => {

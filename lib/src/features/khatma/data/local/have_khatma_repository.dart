@@ -15,6 +15,9 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
 
   Future<void> save(Khatma khatma) async {
     var box = await openBox();
+    if (khatma.id == null) {
+      khatma = khatma.copyWith(id: Uuid().v4());
+    }
     String jsonString = jsonEncode(khatma.toJson());
 
     await box.put(khatma.id, jsonString);
@@ -38,7 +41,8 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
   }
 
   Future<List<Khatma>> fetchAll() async {
-    //await test();
+    // await test();
+    // delay(true);
     var box = await openBox();
 
     var list = box.values

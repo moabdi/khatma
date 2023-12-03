@@ -159,11 +159,10 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           fixedSize: const Size(double.infinity, 40),
-          backgroundColor: primaryColors.withOpacity(.2),
           foregroundColor: primaryColors,
           shadowColor: primaryColors,
           textStyle: textTheme.bodyLarge,
-          side: const BorderSide(color: Colors.transparent),
+          side: BorderSide(color: primaryColors),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -173,7 +172,7 @@ class AppTheme {
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 58),
           shadowColor: primaryColors,
-          elevation: 2,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(45),
           ),

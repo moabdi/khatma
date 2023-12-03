@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 
@@ -8,15 +10,37 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 /// the text.
 /// @param onPressed - callback to be called when the button is pressed.
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton(
-      {super.key, required this.text, this.isLoading = false, this.onPressed});
+  const PrimaryButton({
+    super.key,
+    required this.text,
+    this.isLoading = false,
+    this.onPressed,
+    this.shadowOffset = 3,
+    this.width,
+  });
+
   final String text;
   final bool isLoading;
   final VoidCallback? onPressed;
+  final double shadowOffset;
+  final double? width;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: Sizes.p48,
+      width: width,
+      decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(50),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).primaryColor,
+              blurRadius: shadowOffset,
+              spreadRadius: 0,
+              blurStyle: BlurStyle.outer,
+            )
+          ]),
+      padding: EdgeInsets.all(0),
       child: ElevatedButton(
         onPressed: onPressed,
         child: isLoading
@@ -26,7 +50,7 @@ class PrimaryButton extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
-                    .titleSmall!
+                    .titleMedium!
                     .copyWith(color: Colors.white),
               ),
       ),

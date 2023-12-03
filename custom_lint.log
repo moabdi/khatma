@@ -9176,3 +9176,53 @@ at:
 #9      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
 <asynchronous suspension>
 
+The Dart VM service is listening on http://127.0.0.1:50892/IIIScHKu-Jo=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:50892/IIIScHKu-Jo=/devtools?uri=ws://127.0.0.1:50892/IIIScHKu-Jo=/ws
+[custom_lint client] 2023-12-03T15:30:02.552374 PathNotFoundException: Cannot open file, path = '/Users/moabdi/development/khatma/lib/pubspec.yaml' (OS Error: No such file or directory, errno = 2)
+[custom_lint client] 2023-12-03T15:30:02.552374 #0      _checkForErrorResponse (dart:io/common.dart:55:9)
+[custom_lint client] 2023-12-03T15:30:02.552374 #1      _File.open.<anonymous closure> (dart:io/file_impl.dart:381:7)
+[custom_lint client] 2023-12-03T15:30:02.552374 #2      _rootRunUnary (dart:async/zone.dart:1407:47)
+[custom_lint client] 2023-12-03T15:30:02.552374 #3      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+[custom_lint client] 2023-12-03T15:30:02.552374 <asynchronous suspension>
+[custom_lint client] 2023-12-03T15:30:02.552374 #4      _File.readAsBytes.<anonymous closure> (dart:io/file_impl.dart:562:24)
+[custom_lint client] 2023-12-03T15:30:02.552374 <asynchronous suspension>
+[custom_lint client] 2023-12-03T15:30:02.552374 #5      _File.readAsString (dart:io/file_impl.dart:621:18)
+[custom_lint client] 2023-12-03T15:30:02.552374 <asynchronous suspension>
+[custom_lint client] 2023-12-03T15:30:02.552374 #6      parsePubspec (package:custom_lint/src/package_utils.dart:84:24)
+[custom_lint client] 2023-12-03T15:30:02.552374 <asynchronous suspension>
+[custom_lint client] 2023-12-03T15:30:02.552374
+The request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+A request throw the exception:PathNotFoundException: Cannot open file, path = '/Users/moabdi/development/khatma/lib/pubspec.yaml' (OS Error: No such file or directory, errno = 2)
+#0      _checkForErrorResponse (dart:io/common.dart:55:9)
+#1      _File.open.<anonymous closure> (dart:io/file_impl.dart:381:7)
+#2      _rootRunUnary (dart:async/zone.dart:1407:47)
+#3      _CustomZone.runUnary (dart:async/zone.dart:1308:19)
+<asynchronous suspension>
+#4      _File.readAsBytes.<anonymous closure> (dart:io/file_impl.dart:562:24)
+<asynchronous suspension>
+#5      _File.readAsString (dart:io/file_impl.dart:621:18)
+<asynchronous suspension>
+#6      parsePubspec (package:custom_lint/src/package_utils.dart:84:24)
+<asynchronous suspension>
+
+at:
+#0      SocketCustomLintServerToClientChannel.sendCustomLintRequest.<anonymous closure> (package:custom_lint/src/v2/server_to_client_channel.dart:271:11)
+#1      _$_CustomLintResponseAnalyzerPluginResponse.map (package:custom_lint/src/v2/protocol.freezed.dart:924:34)
+#2      SocketCustomLintServerToClientChannel.sendCustomLintRequest (package:custom_lint/src/v2/server_to_client_channel.dart:265:14)
+<asynchronous suspension>
+#3      SocketCustomLintServerToClientChannel.sendAnalyzerPluginRequest (package:custom_lint/src/v2/server_to_client_channel.dart:242:22)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:523:21)
+<asynchronous suspension>
+#5      SocketCustomLintServerToClientChannel.init (package:custom_lint/src/v2/server_to_client_channel.dart:136:5)
+<asynchronous suspension>
+#6      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:364:5)
+<asynchronous suspension>
+#7      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:328:9)
+<asynchronous suspension>
+#8      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#9      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
+<asynchronous suspension>
+

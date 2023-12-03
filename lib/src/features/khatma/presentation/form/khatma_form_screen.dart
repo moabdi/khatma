@@ -4,6 +4,8 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
+import 'package:khatma/src/common/widgets/buttons/delete_button.dart';
+import 'package:khatma/src/common/widgets/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
@@ -62,9 +64,31 @@ class AddKhatmaScreen extends ConsumerWidget {
                     _buildRecurrence(khatma, ref, context),
                     gapH20,
                     _buildShare(context, khatma, ref),
-                    gapH48,
-                    _saveButton(context, ref),
                     gapH64,
+                    PrimaryButton(
+                      width: double.infinity,
+                      shadowOffset: 8,
+                      text: AppLocalizations.of(context).save,
+                      onPressed: () {
+                        ref.read(khatmaControllerProvider.notifier).submit(
+                              nameController.text,
+                              descController.text,
+                            );
+                        Navigator.pop(context);
+                      },
+                    ),
+                    gapH20,
+                    if (khatmaId != null)
+                      DeleteButton(
+                        width: double.infinity,
+                        onPressed: () => {
+                          ref
+                              .read(khatmaControllerProvider.notifier)
+                              .delete(khatmaId!),
+                          Navigator.of(context).pop(),
+                        },
+                      ),
+                    gapH20,
                   ],
                 ),
               ),
@@ -140,15 +164,17 @@ class AddKhatmaScreen extends ConsumerWidget {
       title: AppLocalizations.of(context).splitUnit,
       subtitle: Text(
           AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name)),
-      onTap: () => _showModal(
-        context,
-        UnitSelector(
-            unit: khatma.unit,
-            onSelect: (value) => ref
-                .read(khatmaControllerProvider.notifier)
-                .updateUnit(khatma, value)),
-        AppLocalizations.of(context).splitUnit,
-      ),
+      onTap: () => khatma.isStarted
+          ? showSnackBar(context)
+          : _showModal(
+              context,
+              UnitSelector(
+                  unit: khatma.unit,
+                  onSelect: (value) => ref
+                      .read(khatmaControllerProvider.notifier)
+                      .updateUnit(khatma, value)),
+              AppLocalizations.of(context).splitUnit,
+            ),
     );
   }
 
@@ -182,27 +208,24 @@ class AddKhatmaScreen extends ConsumerWidget {
       title: AppLocalizations.of(context).share,
       subtitle: Text(AppLocalizations.of(context)
           .shareVisibilityDesc(khatma.share.visibility.name)),
-      onTap: () => _showModal(
-        context,
-        ShareSelector(
-            share: khatma.share,
-            onChanged: (value) =>
-                ref.updateKhatma(khatma.copyWith(share: value))),
-        AppLocalizations.of(context).share,
-      ),
+      onTap: () => khatma.isStarted
+          ? showSnackBar(context)
+          : _showModal(
+              context,
+              ShareSelector(
+                  share: khatma.share,
+                  onChanged: (value) =>
+                      ref.updateKhatma(khatma.copyWith(share: value))),
+              AppLocalizations.of(context).share,
+            ),
     );
   }
 
-  _saveButton(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        child: Text(AppLocalizations.of(context).save),
-      ),
-    );
+  void showSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Cannot update khatma while it is started'),
+    ));
   }
 
   void _showModal(BuildContext context, Widget child, String title) {

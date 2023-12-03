@@ -185,6 +185,10 @@ extension KhatmaExtension on Khatma {
   }
 
   bool get isStarted {
-    return lastRead != null;
+    return completedPartIds.isNotEmpty;
+  }
+
+  bool get isNotStarted {
+    return completedPartIds.isEmpty;
   }
 }

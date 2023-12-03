@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/widgets/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:lottie/lottie.dart';
@@ -20,32 +21,27 @@ class PartFloatingButton extends ConsumerWidget {
     final selectedParts = ref.watch(khatmaPartsControllerProvider);
     return CollectionUtils.isEmpty(selectedParts)
         ? Container()
-        : Container(
+        : PrimaryButton(
             width: MediaQuery.of(context).size.width * .9,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(.5),
-                  spreadRadius: 10,
-                  blurRadius: 100,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: ElevatedButton.icon(
-              onPressed: () => _onSubmit(context, ref, selectedParts),
-              style:
-                  ElevatedButton.styleFrom(padding: const EdgeInsets.all(16.0)),
-              icon: const Icon(Icons.check, size: 18),
-              label: Text(AppLocalizations.of(context)
-                  .completeParts(selectedParts.length)),
-            ),
+            shadowOffset: 10,
+            onPressed: () => _onSubmit(context, ref, selectedParts),
+            text: AppLocalizations.of(context)
+                .completeParts(selectedParts.length),
           );
   }
 
   _onSubmit(BuildContext context, WidgetRef ref, List<int> selectedParts) {
-    final snackBar = SnackBar(
-      duration: const Duration(seconds: 3),
+    final snackBar = buildSnackBar(context, selectedParts);
+    ref
+        .read(khatmaPartsControllerProvider.notifier)
+        .completeParts(khatmaId!)
+        .then((value) => ScaffoldMessenger.of(context).showSnackBar(snackBar));
+  }
+
+  SnackBar buildSnackBar(BuildContext context, List<int> selectedParts) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    return SnackBar(
+      duration: const Duration(seconds: 2),
       content: Row(
         children: [
           Lottie.asset(
@@ -61,10 +57,5 @@ class PartFloatingButton extends ConsumerWidget {
         ],
       ),
     );
-
-    ref
-        .read(khatmaPartsControllerProvider.notifier)
-        .completeParts(khatmaId!)
-        .then((value) => ScaffoldMessenger.of(context).showSnackBar(snackBar));
   }
 }
