@@ -109,20 +109,22 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  Card buildUnReadPartCard(Khatma khatma) {
-    return Card(
-      elevation: 0.4,
-      clipBehavior: Clip.antiAlias,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: UnReadPartTiles(
-          key: UniqueKey(),
-          unit: khatma.unit,
-          color: khatma.style.hexColor,
-          completedParts: khatma.completedPartIds,
-        ),
-      ),
-    );
+  Widget buildUnReadPartCard(Khatma khatma) {
+    return khatma.isCompleted
+        ? Card()
+        : Card(
+            elevation: 0.4,
+            clipBehavior: Clip.antiAlias,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: UnReadPartTiles(
+                key: UniqueKey(),
+                unit: khatma.unit,
+                color: khatma.style.hexColor,
+                completedParts: khatma.completedPartIds,
+              ),
+            ),
+          );
   }
 
   Widget buildReadPartCard(
