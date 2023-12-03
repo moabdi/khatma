@@ -7,7 +7,7 @@ import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/common/widgets/k_app_bar.dart';
+import 'package:khatma/src/common/widgets/app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
@@ -58,8 +58,8 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  KAppBar buildAppBar(Khatma? khatma, BuildContext context, WidgetRef ref) {
-    return KAppBar(
+  TopBar buildAppBar(Khatma? khatma, BuildContext context, WidgetRef ref) {
+    return TopBar(
       title: khatma!.name,
       actions: [
         Avatar(

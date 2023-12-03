@@ -8,8 +8,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// - [ShoppingCartIcon]
 /// - Orders button
 /// - Account or Sign-in button
-class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
-  const KAppBar({
+class TopBar extends ConsumerWidget implements PreferredSizeWidget {
+  const TopBar({
     super.key,
     this.title,
     this.leading,
@@ -26,7 +26,10 @@ class KAppBar extends ConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
       backgroundColor: backgroundColor,
-      title: TextOrEmpty(title),
+      title: TextOrEmpty(
+        title,
+        style: Theme.of(context).textTheme.headlineMedium,
+      ),
       leading: leading,
       actions: actions,
     );
