@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 
