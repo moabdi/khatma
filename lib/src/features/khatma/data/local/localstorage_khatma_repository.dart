@@ -30,10 +30,7 @@ class LocalStorageKhatmaRepository extends LocalKhatmaRepository {
   }
 
   Future<Khatma?> getById(String id) async {
-    String jsonString = storage.getItem(khatmaList) ?? '[]';
-    List<dynamic> jsonList = jsonDecode(jsonString);
-    List<Khatma> list =
-        jsonList.map((jsonItem) => Khatma.fromJson(jsonItem)).toList();
+    List<Khatma> list = await fetchAll();
     Khatma? foundKhatma =
         list.firstWhere((khatma) => khatma.id == id, orElse: null);
 

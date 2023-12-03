@@ -19,9 +19,6 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map<String, dynamic> json) => _$KhatmaImpl(
       lastRead: json['lastRead'] == null
           ? null
           : DateTime.parse(json['lastRead'] as String),
-      completedParts: (json['completedParts'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
       parts: (json['parts'] as List<dynamic>?)
           ?.map((e) => KhatmaPart.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -41,7 +38,6 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) =>
       'creator': instance.creator,
       'style': instance.style,
       'lastRead': instance.lastRead?.toIso8601String(),
-      'completedParts': instance.completedParts,
       'parts': instance.parts,
       'recurrence': instance.recurrence,
       'unit': _$SplitUnitEnumMap[instance.unit]!,

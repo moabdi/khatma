@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/day_of_week.dart';
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
-import 'package:khatma/src/common/utils/number_utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'khatma.freezed.dart';
 part 'khatma.g.dart';
 
+typedef KhatmaID = String;
+
 @freezed
 abstract class Khatma with _$Khatma {
   const factory Khatma({
-    String? id,
+    KhatmaID? id,
     required String name,
     String? description,
     required DateTime createDate,
@@ -18,7 +19,6 @@ abstract class Khatma with _$Khatma {
     String? creator,
     required KhatmaStyle style,
     DateTime? lastRead,
-    List<int>? completedParts,
     List<KhatmaPart>? parts,
     required Recurrence recurrence,
     required SplitUnit unit,
@@ -143,18 +143,13 @@ extension KhatmaExtension on Khatma {
     return completedPartIds.length / unit.count;
   }
 
-  int get nextPartToRead {
-    if (completedParts?.isEmpty ?? true) return 1;
-    return findSmallestMissingPositive(List.from(completedParts!)) + 1;
-  }
-
   Duration get duration {
     if (lastRead == null) return DateTime.now().difference(createDate);
     return DateTime.now().difference(lastRead!);
   }
 
   List<int> get readParts {
-    return completedParts ?? [];
+    return parts?.map((part) => part.id).toList() ?? [];
   }
 
   bool get isExpired {

@@ -9,6 +9,38 @@ var random = Random();
 /// Test khatmat to be used until a data source is implemented
 var kTestKhatmat = [
   Khatma(
+    name: 'Khatmati sourat',
+    description: 'test description',
+    unit: SplitUnit.sourat,
+    parts: [
+      KhatmaPart(id: 1, userName: "Ahmed", finishedDate: DateTime.now()),
+      KhatmaPart(id: 2, userName: 'Ahmed', finishedDate: DateTime.now()),
+      KhatmaPart(id: 3, userName: 'Ahmed', finishedDate: DateTime.now()),
+    ],
+    createDate: DateTime.parse("2022-12-26 13:27:00"),
+    lastRead: DateTime.parse("2023-01-01 13:27:00"),
+    endDate: DateTime.parse("2023-01-11 13:27:00"),
+    creator: "UIID",
+    recurrence: Recurrence(
+      repeat: true,
+      startDate: DateTime.now(),
+      endDate: DateTime.now().add(const Duration(days: 365)),
+      days: List.empty(),
+      unit: RepeatInterval.auto,
+    ),
+    style: KhatmaStyle(
+      color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
+      icon: imagesNames[random.nextInt(imagesNames.length)],
+    ),
+    share: KhatmaShare(
+      visibility: ShareVisibility.public,
+      maxPartToRead: 12,
+      maxPartToReserve: 2,
+    ),
+  ),
+];
+var kTestKhatmats = [
+  Khatma(
     id: '1',
     name: 'Khatmati sourat',
     description: '',
