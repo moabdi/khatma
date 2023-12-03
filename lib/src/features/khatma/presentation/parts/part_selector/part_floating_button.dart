@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/buttons/primary_button.dart';
+import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 import 'package:lottie/lottie.dart';

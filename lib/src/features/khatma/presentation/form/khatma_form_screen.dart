@@ -4,8 +4,8 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/common/widgets/buttons/delete_button.dart';
-import 'package:khatma/src/common/widgets/buttons/primary_button.dart';
+import 'package:khatma/src/common/buttons/delete_button.dart';
+import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
@@ -81,6 +81,8 @@ class AddKhatmaScreen extends ConsumerWidget {
                     if (khatmaId != null)
                       DeleteButton(
                         width: double.infinity,
+                        content:
+                            AppLocalizations.of(context).confirmDeleteKhatma,
                         onPressed: () => {
                           ref
                               .read(khatmaControllerProvider.notifier)

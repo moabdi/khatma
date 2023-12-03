@@ -86,5 +86,7 @@
   "maxParticipants": "{count, plural, =0{No participants} =1{1 participant} other{# participants}}",
   "maxPartToRead": "Max part to read",
   "maxPartToReserve": "Max part to reserve",
-  "title": "Title"
+  "title": "Title",
+  "areYouSure": "Are you sure?",
+  "confirmDeleteKhatma": "After deleting, this khatma will be permanently deleted"
 }

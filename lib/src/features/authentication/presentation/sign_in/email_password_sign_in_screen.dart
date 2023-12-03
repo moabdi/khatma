@@ -6,7 +6,7 @@ import 'package:khatma/src/common/extensions/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:khatma/src/common/widgets/custom_text_button.dart';
-import 'package:khatma/src/common/widgets/buttons/primary_button.dart';
+import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/common/widgets/responsive_scrollable_card.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

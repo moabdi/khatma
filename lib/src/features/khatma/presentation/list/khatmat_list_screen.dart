@@ -1,5 +1,5 @@
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/navigation_bar.dart';
+import 'package:khatma/src/features/common/navigation_bar.dart';
 import 'package:khatma/src/drawer/main_drawer.dart';
 import 'package:khatma/src/common/widgets/app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/list/katmat_list_view.dart';
