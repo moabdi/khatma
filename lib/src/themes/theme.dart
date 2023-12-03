@@ -177,7 +177,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(45),
           ),
-          textStyle: textTheme.titleSmall,
+          textStyle: textTheme.titleMedium,
         ),
       ),
       snackBarTheme: SnackBarThemeData(

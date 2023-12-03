@@ -67,4 +67,3 @@ class UnitSelector extends StatelessWidget {
     );
   }
 }
-// RadioIcon(selected: selected)

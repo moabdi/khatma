@@ -5,6 +5,7 @@ import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/num_dropdown_menu.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 
@@ -31,17 +32,9 @@ class ShareLimit extends ConsumerWidget {
                   enabled: khatmaShare.visibility != ShareVisibility.private,
                   maxValue: khatma.unit.count,
                   value: khatmaShare.maxPartToReserve ?? 1,
-                  onChanged: (value) {
-                    if (khatmaShare.maxPartToRead == null ||
-                        value! > khatmaShare.maxPartToRead!) {
-                      ref.read(shareNotifierProvider.notifier).update(
-                          khatmaShare.copyWith(
-                              maxPartToReserve: value, maxPartToRead: value));
-                    } else {
-                      ref.read(shareNotifierProvider.notifier).update(
-                          khatmaShare.copyWith(maxPartToReserve: value));
-                    }
-                  },
+                  onChanged: (value) => ref
+                      .read(shareControllerProvider.notifier)
+                      .updateMaxPartToReserve(value),
                 ),
               ],
             ),
@@ -56,18 +49,9 @@ class ShareLimit extends ConsumerWidget {
                   enabled: khatmaShare.visibility != ShareVisibility.private,
                   maxValue: khatma.unit.count,
                   value: khatmaShare.maxPartToRead ?? 1,
-                  onChanged: (value) {
-                    if (khatmaShare.maxPartToReserve == null ||
-                        value! < khatmaShare.maxPartToReserve!) {
-                      ref.read(shareNotifierProvider.notifier).update(
-                          khatmaShare.copyWith(
-                              maxPartToReserve: value, maxPartToRead: value));
-                    } else {
-                      ref
-                          .read(shareNotifierProvider.notifier)
-                          .update(khatmaShare.copyWith(maxPartToRead: value));
-                    }
-                  },
+                  onChanged: (value) => ref
+                      .read(shareControllerProvider.notifier)
+                      .updateMaxPartToRead(value),
                 ),
               ],
             ),

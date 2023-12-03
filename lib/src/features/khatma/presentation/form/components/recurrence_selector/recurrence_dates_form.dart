@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/date_picker_tile.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
 
 class RecurrenceDatePicker extends ConsumerWidget {
@@ -30,17 +31,9 @@ class RecurrenceDatePicker extends ConsumerWidget {
         child: const Icon(Icons.today),
       ),
       value: updatedRecurrence.startDate,
-      onChanged: (value) => {
-        ref
-            .read(recurrenceNotifierProvider.notifier)
-            .update(updatedRecurrence.copyWith(startDate: value)),
-        if (ref.read(recurrenceNotifierProvider).endDate.isBefore(value))
-          {
-            ref.read(recurrenceNotifierProvider.notifier).update(
-                updatedRecurrence.copyWith(
-                    endDate: value.add(const Duration(days: 366))))
-          },
-      },
+      onChanged: (value) => ref
+          .read(recurrenceControllerProvider.notifier)
+          .updateStartDate(value),
     );
   }
 

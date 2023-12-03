@@ -11,6 +11,7 @@ import 'package:khatma/src/features/khatma/presentation/form/components/khatma_s
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/khatma_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_selector.dart';
@@ -36,6 +37,7 @@ class AddKhatmaScreen extends ConsumerWidget {
         title: Text(isBlank(khatma.id)
             ? AppLocalizations.of(context).newKhatma
             : AppLocalizations.of(context).editKhatma),
+        leading: BackButton(onPressed: () => Navigator.of(context).pop()),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -142,17 +144,9 @@ class AddKhatmaScreen extends ConsumerWidget {
         context,
         UnitSelector(
             unit: khatma.unit,
-            onSelect: (value) {
-              if (khatma.share.maxPartToRead != null &&
-                  khatma.share.maxPartToRead! > value.count) {
-                ref.updateKhatma(khatma.copyWith(
-                    share: khatma.share.copyWith(
-                  maxPartToRead: 1,
-                  maxPartToReserve: 1,
-                )));
-              }
-              ref.updateKhatma(khatma.copyWith(unit: value));
-            }),
+            onSelect: (value) => ref
+                .read(khatmaControllerProvider.notifier)
+                .updateUnit(khatma, value)),
         AppLocalizations.of(context).splitUnit,
       ),
     );
