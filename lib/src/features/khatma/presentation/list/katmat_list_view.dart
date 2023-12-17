@@ -3,7 +3,6 @@ import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/list/khatma_not_found.dart';
 import 'package:khatma/src/features/khatma/presentation/list/khatma_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/list/top_list_khatma.dart';
 import 'package:khatma/src/routing/app_router.dart';
@@ -20,8 +19,9 @@ class KhatmatListView extends ConsumerWidget {
     return AsyncValueWidget<List<Khatma>>(
       loading: const LoadingListTile(itemCount: 10),
       value: khatmatListValue,
-      data: (khatmat) =>
-          khatmat.isEmpty ? Frame313() : buildKhatmaList(khatmat, context, ref),
+      data: (khatmat) => khatmat.isEmpty
+          ? SizedBox.shrink()
+          : buildKhatmaList(khatmat, context, ref),
     );
   }
 

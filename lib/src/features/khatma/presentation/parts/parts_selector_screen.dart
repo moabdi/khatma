@@ -18,6 +18,7 @@ import 'package:khatma/src/routing/app_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class PartSelectorScreen extends ConsumerWidget {
   const PartSelectorScreen({super.key, required this.khatmaId});
@@ -49,12 +50,12 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  Column buildParts(BuildContext context, Khatma khatma) {
+  Widget buildParts(BuildContext context, Khatma khatma) {
     return Column(
       children: [
         buildReadPartCard(context, khatma),
         gapH8,
-        buildUnReadPartCard(khatma),
+        buildUnReadPartCard(context, khatma),
       ],
     );
   }
@@ -110,24 +111,52 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  Widget buildUnReadPartCard(Khatma khatma) {
+  Widget buildUnReadPartCard(BuildContext context, Khatma khatma) {
     return khatma.isCompleted
-        ? Card(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Center(child: Text("data")),
-                Positioned(
-                  child: Lottie.asset(
-                    'assets/lottie/congratulation.json',
-                    width: double.infinity,
-                    height: 250,
-                    repeat: true,
-                    animate: true,
+        ? Stack(
+            alignment: Alignment.center,
+            children: [
+              Card(
+                color: Colors.green.shade200,
+                child: Container(
+                  width: double.infinity,
+                  height: 300,
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Lottie.asset(
+                        'assets/lottie/success.json',
+                        width: double.infinity,
+                        height: 200,
+                        repeat: false,
+                        animate: true,
+                      ),
+                      AnimatedTextKit(
+                        isRepeatingAnimation: false,
+                        animatedTexts: [
+                          TyperAnimatedText(
+                            AppLocalizations.of(context).congratulation,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .headlineLarge!
+                                .copyWith(color: Colors.green),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              Positioned(
+                child: Lottie.asset(
+                  'assets/lottie/congratulation.json',
+                  width: double.infinity,
+                  repeat: false,
+                  animate: true,
+                ),
+              ),
+            ],
           )
         : Card(
             elevation: 0.4,

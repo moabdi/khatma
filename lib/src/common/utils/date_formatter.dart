@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:time_machine/time_machine.dart';
 
 /// Date formatter to be used in the app.
 final kDateFormatter = DateFormat.MMMEd();
@@ -10,6 +11,14 @@ DateTime parse(String date) {
 }
 
 extension DateTimeFormater on DateTime {
+  LocalDate toLocalDate() {
+    return LocalDate(year, month, day);
+  }
+
+  int toInt() {
+    return int.parse('$year$month$day');
+  }
+
   DateTime from(String date) {
     return dateFormat.parse(date);
   }

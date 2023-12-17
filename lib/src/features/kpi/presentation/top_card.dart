@@ -8,32 +8,7 @@ class TopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        height: 120,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          gradient: LinearGradient(
-            begin: Alignment.centerRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              AppTheme.getTheme().primaryColor.withOpacity(.2),
-              AppTheme.getTheme().primaryColor.withOpacity(.7),
-            ],
-          ),
-          //borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const ReadingChart(),
-            Opacity(
-              opacity: 0.2,
-              child: Image.asset("assets/images/hifdz.png", fit: BoxFit.fill),
-            ),
-          ],
-        ),
-      ),
+      color: Colors.red,
     );
   }
 
