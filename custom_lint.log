@@ -9876,3 +9876,17 @@ at:
 #9      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:160:22)
 <asynchronous suspension>
 
+The Dart VM service is listening on http://127.0.0.1:54781/2iuk2KcE1o8=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54781/2iuk2KcE1o8=/devtools?uri=ws://127.0.0.1:54781/2iuk2KcE1o8=/ws
+The Dart VM service is listening on http://127.0.0.1:54852/8RsCF_68tMw=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54852/8RsCF_68tMw=/devtools?uri=ws://127.0.0.1:54852/8RsCF_68tMw=/ws
+The Dart VM service is listening on http://127.0.0.1:54920/RJWG7oQcq9U=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:54920/RJWG7oQcq9U=/devtools?uri=ws://127.0.0.1:54920/RJWG7oQcq9U=/ws
+The Dart VM service is listening on http://127.0.0.1:55374/GxvJgaoOlpU=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:55374/GxvJgaoOlpU=/devtools?uri=ws://127.0.0.1:55374/GxvJgaoOlpU=/ws
+The Dart VM service is listening on http://127.0.0.1:55434/flxTjINo8zQ=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:55434/flxTjINo8zQ=/devtools?uri=ws://127.0.0.1:55434/flxTjINo8zQ=/ws
+The Dart VM service is listening on http://127.0.0.1:55506/rex3HxtQAuY=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:55506/rex3HxtQAuY=/devtools?uri=ws://127.0.0.1:55506/rex3HxtQAuY=/ws
+The Dart VM service is listening on http://127.0.0.1:58503/1zj59_6abzc=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:58503/1zj59_6abzc=/devtools?uri=ws://127.0.0.1:58503/1zj59_6abzc=/ws

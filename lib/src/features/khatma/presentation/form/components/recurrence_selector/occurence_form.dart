@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/utils/day_of_week.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/num_dropdown_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/common/repeat_interval_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
-import 'package:weekday_selector/weekday_selector.dart';
 
 class OccurenceForm extends ConsumerWidget {
   const OccurenceForm({
@@ -85,7 +83,8 @@ class OccurenceForm extends ConsumerWidget {
     return Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 400),
-        child: WeekdaySelector(
+        child: SizedBox(),
+        /* WeekdaySelector(
           elevation: 2,
           firstDayOfWeek: 1,
           onChanged: (value) =>
@@ -101,7 +100,7 @@ class OccurenceForm extends ConsumerWidget {
               .map((day) => AppLocalizations.of(context)
                   .shortWeekDay(day.value.toString()))
               .toList(),
-        ),
+        ),*/
       ),
     );
   }
