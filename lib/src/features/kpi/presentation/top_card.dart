@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/kpi/presentation/reading_chart.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class TopCard extends StatelessWidget {
@@ -18,7 +17,8 @@ class TopCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundColor: AppTheme.getTheme().backgroundColor.withOpacity(0.5),
+          backgroundColor:
+              AppTheme.getTheme().colorScheme.background.withOpacity(0.5),
           radius: 25,
           child: icon,
         ),

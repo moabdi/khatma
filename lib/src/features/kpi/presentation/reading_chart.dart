@@ -14,8 +14,8 @@ class ReadingChart extends StatefulWidget {
 
 class _ReadingChartState extends State<ReadingChart> {
   List<Color> gradientColors = [
-    AppTheme.getTheme().backgroundColor.withOpacity(0.1),
-    AppTheme.getTheme().backgroundColor.withOpacity(0.4),
+    AppTheme.getTheme().colorScheme.background.withOpacity(0.1),
+    AppTheme.getTheme().colorScheme.background.withOpacity(0.4),
   ];
 
   @override
@@ -49,13 +49,13 @@ class _ReadingChartState extends State<ReadingChart> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: AppTheme.getTheme().backgroundColor,
+            color: AppTheme.getTheme().colorScheme.background,
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: AppTheme.getTheme().backgroundColor,
+            color: AppTheme.getTheme().colorScheme.background,
             strokeWidth: 1,
           );
         },

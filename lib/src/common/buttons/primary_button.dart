@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
-import 'package:path/path.dart';
 
 /// Primary button based on [ElevatedButton].
 /// Useful for CTAs in the app.

@@ -65,9 +65,9 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
 
     String id;
     kTestKhatmat.forEach(
-      (khatma) async => {
-        id = uuid.v4(),
-        await box.put(id, jsonEncode(khatma.copyWith(id: id).toJson())),
+      (khatma) async {
+        id = uuid.v4();
+        await box.put(id, jsonEncode(khatma.copyWith(id: id).toJson()));
       },
     );
     box.close();

@@ -249,7 +249,6 @@ class AppTheme {
       splashColor: HexColor("#1FAD85").withOpacity(0.5),
       splashFactory: InkRipple.splashFactory,
       canvasColor: Colors.white,
-      backgroundColor: Colors.black,
       scaffoldBackgroundColor: const Color(0xFF0F0F0F),
       buttonTheme: ButtonThemeData(
         colorScheme: colorScheme,
