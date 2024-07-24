@@ -192,7 +192,7 @@ class PartSelectorScreen extends ConsumerWidget {
             subtitle: Text(AppLocalizations.of(context)
                 .readedParts(khatma.completedPartIds.length)),
             trailing: const Icon(Icons.arrow_drop_down),
-            leading: buildChart(context, khatma.completude),
+            leading: buildChart(context, khatma),
             children: <Widget>[
               ReadPartTiles(
                 key: UniqueKey(),
@@ -207,18 +207,18 @@ class PartSelectorScreen extends ConsumerWidget {
     }
   }
 
-  Widget buildChart(BuildContext context, double percent) {
+  Widget buildChart(BuildContext context, Khatma khatma) {
     return CircularPercentIndicator(
       radius: 20.0,
       lineWidth: 4,
-      percent: percent,
-      center: Text("${(percent * 100).toStringAsFixed(0)}%",
+      percent: khatma.completude,
+      center: Text("${(khatma.completude * 100).toStringAsFixed(0)}%",
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               )),
-      progressColor: Theme.of(context).primaryColor,
-      backgroundColor: Theme.of(context).primaryColor.withOpacity(.2),
+      progressColor: khatma.style.hexColor, // Theme.of(context).primaryColor,
+      backgroundColor: khatma.style.hexColor.withOpacity(.2),
     );
   }
 }

@@ -22,6 +22,7 @@ class PartFloatingButton extends ConsumerWidget {
     return CollectionUtils.isEmpty(selectedParts)
         ? Container()
         : PrimaryButton(
+            color: color,
             width: MediaQuery.of(context).size.width * .9,
             shadowOffset: 10,
             onPressed: () => _onSubmit(context, ref, selectedParts),

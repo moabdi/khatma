@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:path/path.dart';
 
 /// Primary button based on [ElevatedButton].
 /// Useful for CTAs in the app.
@@ -15,6 +16,7 @@ class PrimaryButton extends StatelessWidget {
     this.onPressed,
     this.shadowOffset = 3,
     this.width,
+    this.color,
   });
 
   final String text;
@@ -22,6 +24,7 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double shadowOffset;
   final double? width;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +35,7 @@ class PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).primaryColor,
+              color: color ?? Theme.of(context).primaryColor,
               blurRadius: shadowOffset,
               spreadRadius: 0,
               blurStyle: BlurStyle.outer,
@@ -40,6 +43,7 @@ class PrimaryButton extends StatelessWidget {
           ]),
       padding: EdgeInsets.all(0),
       child: ElevatedButton(
+        style: ElevatedButton.styleFrom(backgroundColor: color),
         onPressed: onPressed,
         child: isLoading
             ? const CircularProgressIndicator()
