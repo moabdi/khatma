@@ -55,25 +55,24 @@ class AddKhatmaScreen extends ConsumerWidget {
                     _buildAvatar(context, khatma, ref),
                     gapH20,
                     gapH20,
-                    _buildName(context, nameController, node, ref, khatma),
+                    _buildName(context, nameController, descController, node,
+                        ref, khatma),
                     gapH20,
-                    _buildDescription(context, descController, ref, khatma),
+                    _buildDescription(
+                        context, nameController, descController, ref, khatma),
                     gapH20,
-                    _buildSplitUnit(khatma, context, ref),
+                    _buildSplitUnit(context, ref),
                     gapH20,
-                    _buildRecurrence(khatma, ref, context),
+                    _buildRecurrence(context, ref),
                     gapH20,
-                    _buildShare(context, khatma, ref),
+                    _buildShare(context, ref),
                     gapH64,
                     PrimaryButton(
                       width: double.infinity,
                       shadowOffset: 8,
                       text: AppLocalizations.of(context).save,
                       onPressed: () {
-                        ref.read(khatmaControllerProvider.notifier).submit(
-                              nameController.text,
-                              descController.text,
-                            );
+                        ref.read(khatmaControllerProvider.notifier).submit();
                         Navigator.pop(context);
                       },
                     ),
@@ -131,6 +130,7 @@ class AddKhatmaScreen extends ConsumerWidget {
   TextFormField _buildName(
       BuildContext context,
       TextEditingController nameController,
+      TextEditingController descController,
       FocusScopeNode node,
       WidgetRef ref,
       Khatma khatma) {
@@ -142,13 +142,17 @@ class AddKhatmaScreen extends ConsumerWidget {
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       autocorrect: false,
-      textInputAction: TextInputAction.next,
-      onEditingComplete: () => node.nextFocus(),
+      onTapOutside: (value) => ref.updateKhatma(khatma.copyWith(
+          name: nameController.text, description: descController.text)),
     );
   }
 
-  TextField _buildDescription(BuildContext context,
-      TextEditingController descController, WidgetRef ref, Khatma khatma) {
+  TextField _buildDescription(
+      BuildContext context,
+      TextEditingController nameController,
+      TextEditingController descController,
+      WidgetRef ref,
+      Khatma khatma) {
     return TextField(
       controller: descController,
       keyboardType: TextInputType.multiline,
@@ -157,10 +161,13 @@ class AddKhatmaScreen extends ConsumerWidget {
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).descriptionHint,
       ),
+      onTapOutside: (value) => ref.updateKhatma(khatma.copyWith(
+          name: nameController.text, description: descController.text)),
     );
   }
 
-  Widget _buildSplitUnit(Khatma khatma, BuildContext context, WidgetRef ref) {
+  Widget _buildSplitUnit(BuildContext context, WidgetRef ref) {
+    Khatma khatma = ref.watch(formKhatmaProvider);
     return KhatmaFormTile(
       icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
       title: AppLocalizations.of(context).splitUnit,
@@ -180,7 +187,8 @@ class AddKhatmaScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildRecurrence(Khatma khatma, WidgetRef ref, BuildContext context) {
+  Widget _buildRecurrence(BuildContext context, WidgetRef ref) {
+    Khatma khatma = ref.watch(formKhatmaProvider);
     return KhatmaFormTile(
       icon:
           const Icon(Icons.autorenew, color: Color.fromARGB(255, 120, 0, 212)),
@@ -200,7 +208,8 @@ class AddKhatmaScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildShare(BuildContext context, Khatma khatma, WidgetRef ref) {
+  Widget _buildShare(BuildContext context, WidgetRef ref) {
+    Khatma khatma = ref.watch(formKhatmaProvider);
     return KhatmaFormTile(
       icon: const Icon(
         Icons.group,

@@ -20,12 +20,10 @@ class KhatmaController extends _$KhatmaController {
     ref.read(formKhatmaProvider.notifier).update(khatma.copyWith(unit: value));
   }
 
-  void submit(String name, String description) {
-    Khatma updatedKhatma = ref
-        .read(formKhatmaProvider)
-        .copyWith(name: name, description: description);
-    ref.read(khatmaListProvider.notifier).updateKhatma(updatedKhatma);
-    ref.read(currentKhatmaProvider.notifier).updateValue(updatedKhatma);
+  void submit() {
+    Khatma khatma = ref.read(formKhatmaProvider);
+    ref.read(khatmaListProvider.notifier).updateKhatma(khatma);
+    ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
   }
 
   void delete(String khatmaId) {
