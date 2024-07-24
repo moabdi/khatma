@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'recurrence_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class RecurrenceNotifier extends _$RecurrenceNotifier {
   Recurrence build() {
     return Recurrence(

@@ -10,15 +10,14 @@ import 'package:khatma/src/features/khatma/presentation/form/components/share_se
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 
 class ShareSelector extends ConsumerWidget {
-  const ShareSelector(
-      {super.key, required this.share, required this.onChanged});
-  final KhatmaShare share;
+  const ShareSelector({super.key, required this.onChanged});
   final ValueChanged<KhatmaShare> onChanged;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isChanged = ref.read(formKhatmaProvider).share.hashCode !=
-        ref.watch(shareNotifierProvider).hashCode;
+    KhatmaShare share = ref.watch(shareNotifierProvider);
+    bool isChanged =
+        ref.read(formKhatmaProvider).share.hashCode != share.hashCode;
 
     return Column(
       children: [

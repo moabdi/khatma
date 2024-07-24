@@ -12,6 +12,7 @@ import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style/style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
@@ -221,14 +222,16 @@ class AddKhatmaScreen extends ConsumerWidget {
           .shareVisibilityDesc(khatma.share.visibility.name)),
       onTap: () => khatma.isStarted
           ? showSnackBar(context)
-          : _showModal(
-              context,
-              ShareSelector(
-                  share: khatma.share,
-                  onChanged: (value) =>
-                      ref.updateKhatma(khatma.copyWith(share: value))),
-              AppLocalizations.of(context).share,
-            ),
+          : {
+              ref.read(shareNotifierProvider.notifier).update(khatma.share),
+              _showModal(
+                context,
+                ShareSelector(
+                    onChanged: (value) =>
+                        ref.updateKhatma(khatma.copyWith(share: value))),
+                AppLocalizations.of(context).share,
+              )
+            },
     );
   }
 

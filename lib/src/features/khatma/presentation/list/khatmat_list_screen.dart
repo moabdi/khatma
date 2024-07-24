@@ -14,14 +14,14 @@ class KhatmatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const MainDrawer(),
+      //drawer: const MainDrawer(),
       appBar: TopBar(title: AppLocalizations.of(context).appTitle),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
-              WeeklyProgressChart(),
+              //WeeklyProgressChart(),
               gapH20,
               const KhatmatListView(),
             ],

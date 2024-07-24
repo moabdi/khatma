@@ -30,7 +30,7 @@ class MainNavigationBar extends StatelessWidget {
           label: AppLocalizations.of(context).quran,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
+          icon: Icon(Icons.new_label),
           label: AppLocalizations.of(context).create,
         ),
       ],
