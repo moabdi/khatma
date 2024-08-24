@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
+import 'package:khatma/firebase_options.dart';
 import 'package:khatma/src/app.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +12,10 @@ import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   // turn off the # in the URLs on the web
   usePathUrlStrategy();
   // * Register error handlers. For more info, se

@@ -1,7 +1,6 @@
-import 'package:khatma/src/features/authentication/data/fake_auth_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:khatma/src/features/authentication/presentation/sign_in/custom_sign_in_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/account/account_screen.dart';
-import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
-import 'package:khatma/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/parts_selector_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/list/khatmat_list_screen.dart';
@@ -23,12 +22,26 @@ enum AppRoute {
   quran,
 }
 
+final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
+  return FirebaseAuth.instance;
+});
+
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final authRepository = ref.watch(authRepositoryProvider);
+  final firebaseAuth = ref.watch(firebaseAuthProvier);
   return GoRouter(
     initialLocation: '/',
-    debugLogDiagnostics: false,
-    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
+    debugLogDiagnostics: true, // TO DELETE IN PROD
+    refreshListenable: GoRouterRefreshStream(firebaseAuth.authStateChanges()),
+    redirect: (context, state) {
+      final isLoggedIn = firebaseAuth.currentUser != null;
+      final path = state.uri.path;
+      if (!isLoggedIn) {
+        return '/sign-in';
+      } else if (path == '/sign-in') {
+        return '/';
+      }
+      return null;
+    },
     routes: [
       GoRoute(
         path: '/',
@@ -73,27 +86,25 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-          GoRoute(
-            path: 'account',
-            name: AppRoute.account.name,
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child: const AccountScreen(),
-            ),
-          ),
-          GoRoute(
-            path: 'signIn',
-            name: AppRoute.signIn.name,
-            pageBuilder: (context, state) => MaterialPage(
-              key: state.pageKey,
-              fullscreenDialog: true,
-              child: const EmailPasswordSignInScreen(
-                formType: EmailPasswordSignInFormType.signIn,
-              ),
-            ),
-          ),
         ],
+      ),
+      GoRoute(
+        path: '/profile',
+        name: AppRoute.account.name,
+        pageBuilder: (context, state) => MaterialPage(
+          key: state.pageKey,
+          fullscreenDialog: true,
+          child: const AccountScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/sign-in',
+        name: AppRoute.signIn.name,
+        pageBuilder: (context, state) => MaterialPage(
+          key: state.pageKey,
+          fullscreenDialog: true,
+          child: CustomSignInScreen(),
+        ),
       ),
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),

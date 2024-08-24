@@ -89,5 +89,7 @@
   "title": "Title",
   "areYouSure": "Are you sure?",
   "confirmDeleteKhatma": "After deleting, this khatma will be permanently deleted",
-  "congratulation": "Congratulations!"
+  "congratulation": "Congratulations!",
+  "emailInputLabel": "Enter your gemail",
+  "passwordInputLabel": "Enter your password"
 }

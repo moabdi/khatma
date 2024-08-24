@@ -1,3 +1,4 @@
+import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
@@ -14,11 +15,12 @@ class MainApp extends ConsumerWidget {
     final goRouter = ref.watch(goRouterProvider);
 
     return MaterialApp.router(
-      localizationsDelegates: const [
+      localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        FirebaseUILocalizations.delegate,
       ],
       supportedLocales: const [Locale('en')],
       routerConfig: goRouter,
