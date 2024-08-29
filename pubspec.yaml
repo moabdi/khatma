@@ -29,10 +29,11 @@ dependencies:
   fl_chart: ^0.64.0
   modal_bottom_sheet: ^2.1.2
   copy_with_extension: ^5.0.4
-  freezed: ^2.4.3
-  analyzer: ^6.2.0
+  freezed: ^2.5.2
+  analyzer: ^6.4.0
+  meta: ^1.12.0
   riverpod_annotation: ^3.0.0-dev.0
-  freezed_annotation: ^2.4.1
+  freezed_annotation: ^2.4.4
   flutter_iconpicker: ^3.2.4
   material_design_icons_flutter: 7.0.7296
   flutter_colorpicker: ^1.0.3
@@ -48,7 +49,7 @@ dependencies:
   # weekday_selector: ^1.1.0
   flutter_slidable: ^3.0.1
   hive: ^2.2.3
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   shared_preferences: ^2.2.2
   uuid: ^4.2.1
   localstorage: ^4.0.1+4
@@ -71,7 +72,7 @@ dev_dependencies:
   riverpod_generator: ^3.0.0-dev.2
   custom_lint: ^0.5.3
   riverpod_lint: ^3.0.0-dev.1
-  json_serializable: ^6.7.1
+  json_serializable: ^6.8.0
 
 # Custom app icon. For more info see: https://pub.dev/packages/flutterpub run flutter_launcher_icons_launcher_icons
 flutter_icons:

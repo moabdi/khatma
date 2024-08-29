@@ -32,3 +32,261 @@ The Dart VM service is listening on http://127.0.0.1:55943/7vVh-debbbw=/
 The Dart DevTools debugger and profiler is available at: http://127.0.0.1:55943/7vVh-debbbw=/devtools?uri=ws://127.0.0.1:55943/7vVh-debbbw=/ws
 The Dart VM service is listening on http://127.0.0.1:56894/SJjJ4mXY30c=/
 The Dart DevTools debugger and profiler is available at: http://127.0.0.1:56894/SJjJ4mXY30c=/devtools?uri=ws://127.0.0.1:56894/SJjJ4mXY30c=/ws
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 Plugin avoid_build_context_in_providers threw while analyzing /Users/moabdi/development/khatma/lib/main.dart:
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 type 'LibraryOrAugmentationScope' is not a subtype of type 'LocalScope' in type cast
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #0      ResolutionVisitor._define (package:analyzer/src/dart/resolver/resolution_visitor.dart:1560:17)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #1      ResolutionVisitor.visitDeclaredVariablePattern (package:analyzer/src/dart/resolver/resolution_visitor.dart:436:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #2      DeclaredVariablePatternImpl.accept (package:analyzer/src/dart/ast/ast.dart:5143:15)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #3      MapPatternEntryImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:11881:11)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #4      RecursiveAstVisitor.visitMapPatternEntry (package:analyzer/dart/ast/visitor.dart:1380:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #5      MapPatternEntryImpl.accept (package:analyzer/src/dart/ast/ast.dart:11876:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #6      NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #7      MapPatternImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:11964:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #8      RecursiveAstVisitor.visitMapPattern (package:analyzer/dart/ast/visitor.dart:1374:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #9      MapPatternImpl.accept (package:analyzer/src/dart/ast/ast.dart:11935:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #10     PatternFieldImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:14086:13)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #11     RecursiveAstVisitor.visitPatternField (package:analyzer/dart/ast/visitor.dart:1488:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #12     PatternFieldImpl.accept (package:analyzer/src/dart/ast/ast.dart:14081:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #13     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #14     ObjectPatternImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:13529:12)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #15     RecursiveAstVisitor.visitObjectPattern (package:analyzer/dart/ast/visitor.dart:1446:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #16     ObjectPatternImpl.accept (package:analyzer/src/dart/ast/ast.dart:13498:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #17     PatternAssignmentImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:14012:13)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #18     RecursiveAstVisitor.visitPatternAssignment (package:analyzer/dart/ast/visitor.dart:1482:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #19     ResolutionVisitor.visitPatternAssignment (package:analyzer/src/dart/resolver/resolution_visitor.dart:1155:11)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #20     PatternAssignmentImpl.accept (package:analyzer/src/dart/ast/ast.dart:14003:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #21     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #22     SetOrMapLiteralImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:15895:15)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #23     RecursiveAstVisitor.visitSetOrMapLiteral (package:analyzer/dart/ast/visitor.dart:1624:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #24     SetOrMapLiteralImpl.accept (package:analyzer/src/dart/ast/ast.dart:15869:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #25     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #26     ArgumentListImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:511:16)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #27     RecursiveAstVisitor.visitArgumentList (package:analyzer/dart/ast/visitor.dart:810:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #28     ArgumentListImpl.accept (package:analyzer/src/dart/ast/ast.dart:507:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #29     AnnotationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:413:17)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #30     RecursiveAstVisitor.visitAnnotation (package:analyzer/dart/ast/visitor.dart:804:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #31     ResolutionVisitor.visitAnnotation.<anonymous closure> (package:analyzer/src/dart/resolver/resolution_visitor.dart:186:13)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #32     ResolutionVisitor._withElementWalker (package:analyzer/src/dart/resolver/resolution_visitor.dart:1869:8)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #33     ResolutionVisitor.visitAnnotation (package:analyzer/src/dart/resolver/resolution_visitor.dart:185:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #34     AnnotationImpl.accept (package:analyzer/src/dart/ast/ast.dart:406:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #35     AstResolver.resolveAnnotation (package:analyzer/src/summary2/ast_resolver.dart:69:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #36     MetadataResolver.visitAnnotation (package:analyzer/src/summary2/metadata_resolver.dart:36:19)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #37     AnnotationImpl.accept (package:analyzer/src/dart/ast/ast.dart:406:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #38     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #39     MetadataResolver.visitClassDeclaration (package:analyzer/src/summary2/metadata_resolver.dart:49:19)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #40     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2899:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #41     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #42     MetadataResolver.visitCompilationUnit (package:analyzer/src/summary2/metadata_resolver.dart:69:23)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #43     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:3655:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #44     LibraryBuilder.resolveMetadata (package:analyzer/src/summary2/library_builder.dart:588:24)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #45     Linker._resolveMetadata (package:analyzer/src/summary2/link.dart:398:15)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #46     Linker._buildOutlines (package:analyzer/src/summary2/link.dart:235:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #47     Linker.link (package:analyzer/src/summary2/link.dart:102:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #48     link (package:analyzer/src/summary2/link.dart:40:3)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #49     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:195:24)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #50     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #51     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #52     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #53     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #54     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #55     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #56     LibraryContext.load.<anonymous closure> (package:analyzer/src/dart/analysis/library_context.dart:255:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #57     PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #58     LibraryContext.load (package:analyzer/src/dart/analysis/library_context.dart:253:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #59     AnalysisDriver._analyzeFile.<anonymous closure> (package:analyzer/src/dart/analysis/driver.dart:1337:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #60     PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #61     AnalysisDriver.performWork (package:analyzer/src/dart/analysis/driver.dart:1189:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #62     AnalysisDriverScheduler._run (package:analyzer/src/dart/analysis/driver.dart:2362:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #0      LibraryContext._throwLibraryCycleLinkException (package:analyzer/src/dart/analysis/library_context.dart:348:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #1      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:203:11)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #2      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #3      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #4      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #5      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #6      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #7      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #8      LibraryContext.load.<anonymous closure> (package:analyzer/src/dart/analysis/library_context.dart:255:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #9      PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #10     LibraryContext.load (package:analyzer/src/dart/analysis/library_context.dart:253:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #11     AnalysisDriver._analyzeFile.<anonymous closure> (package:analyzer/src/dart/analysis/driver.dart:1337:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #12     PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #13     AnalysisDriver.performWork (package:analyzer/src/dart/analysis/driver.dart:1189:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 #14     AnalysisDriverScheduler._run (package:analyzer/src/dart/analysis/driver.dart:2362:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.744162
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 Plugin avoid_build_context_in_providers threw while analyzing /Users/moabdi/development/khatma/lib/main.dart:
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 type 'LibraryOrAugmentationScope' is not a subtype of type 'LocalScope' in type cast
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #0      ResolutionVisitor._define (package:analyzer/src/dart/resolver/resolution_visitor.dart:1560:17)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #1      ResolutionVisitor.visitDeclaredVariablePattern (package:analyzer/src/dart/resolver/resolution_visitor.dart:436:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #2      DeclaredVariablePatternImpl.accept (package:analyzer/src/dart/ast/ast.dart:5143:15)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #3      MapPatternEntryImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:11881:11)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #4      RecursiveAstVisitor.visitMapPatternEntry (package:analyzer/dart/ast/visitor.dart:1380:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #5      MapPatternEntryImpl.accept (package:analyzer/src/dart/ast/ast.dart:11876:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #6      NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #7      MapPatternImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:11964:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #8      RecursiveAstVisitor.visitMapPattern (package:analyzer/dart/ast/visitor.dart:1374:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #9      MapPatternImpl.accept (package:analyzer/src/dart/ast/ast.dart:11935:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #10     PatternFieldImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:14086:13)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #11     RecursiveAstVisitor.visitPatternField (package:analyzer/dart/ast/visitor.dart:1488:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #12     PatternFieldImpl.accept (package:analyzer/src/dart/ast/ast.dart:14081:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #13     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #14     ObjectPatternImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:13529:12)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #15     RecursiveAstVisitor.visitObjectPattern (package:analyzer/dart/ast/visitor.dart:1446:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #16     ObjectPatternImpl.accept (package:analyzer/src/dart/ast/ast.dart:13498:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #17     PatternAssignmentImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:14012:13)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #18     RecursiveAstVisitor.visitPatternAssignment (package:analyzer/dart/ast/visitor.dart:1482:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #19     ResolutionVisitor.visitPatternAssignment (package:analyzer/src/dart/resolver/resolution_visitor.dart:1155:11)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #20     PatternAssignmentImpl.accept (package:analyzer/src/dart/ast/ast.dart:14003:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #21     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #22     SetOrMapLiteralImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:15895:15)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #23     RecursiveAstVisitor.visitSetOrMapLiteral (package:analyzer/dart/ast/visitor.dart:1624:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #24     SetOrMapLiteralImpl.accept (package:analyzer/src/dart/ast/ast.dart:15869:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #25     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #26     ArgumentListImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:511:16)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #27     RecursiveAstVisitor.visitArgumentList (package:analyzer/dart/ast/visitor.dart:810:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #28     ArgumentListImpl.accept (package:analyzer/src/dart/ast/ast.dart:507:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #29     AnnotationImpl.visitChildren (package:analyzer/src/dart/ast/ast.dart:413:17)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #30     RecursiveAstVisitor.visitAnnotation (package:analyzer/dart/ast/visitor.dart:804:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #31     ResolutionVisitor.visitAnnotation.<anonymous closure> (package:analyzer/src/dart/resolver/resolution_visitor.dart:186:13)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #32     ResolutionVisitor._withElementWalker (package:analyzer/src/dart/resolver/resolution_visitor.dart:1869:8)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #33     ResolutionVisitor.visitAnnotation (package:analyzer/src/dart/resolver/resolution_visitor.dart:185:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #34     AnnotationImpl.accept (package:analyzer/src/dart/ast/ast.dart:406:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #35     AstResolver.resolveAnnotation (package:analyzer/src/summary2/ast_resolver.dart:69:10)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #36     MetadataResolver.visitAnnotation (package:analyzer/src/summary2/metadata_resolver.dart:36:19)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #37     AnnotationImpl.accept (package:analyzer/src/dart/ast/ast.dart:406:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #38     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #39     MetadataResolver.visitClassDeclaration (package:analyzer/src/summary2/metadata_resolver.dart:49:19)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #40     ClassDeclarationImpl.accept (package:analyzer/src/dart/ast/ast.dart:2899:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #41     NodeListImpl.accept (package:analyzer/src/dart/ast/ast.dart:13022:20)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #42     MetadataResolver.visitCompilationUnit (package:analyzer/src/summary2/metadata_resolver.dart:69:23)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #43     CompilationUnitImpl.accept (package:analyzer/src/dart/ast/ast.dart:3655:50)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #44     LibraryBuilder.resolveMetadata (package:analyzer/src/summary2/library_builder.dart:588:24)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #45     Linker._resolveMetadata (package:analyzer/src/summary2/link.dart:398:15)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #46     Linker._buildOutlines (package:analyzer/src/summary2/link.dart:235:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #47     Linker.link (package:analyzer/src/summary2/link.dart:102:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #48     link (package:analyzer/src/summary2/link.dart:40:3)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #49     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:195:24)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #50     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #51     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #52     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #53     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #54     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #55     LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #56     LibraryContext.load.<anonymous closure> (package:analyzer/src/dart/analysis/library_context.dart:255:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #57     PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #58     LibraryContext.load (package:analyzer/src/dart/analysis/library_context.dart:253:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #59     AnalysisDriver._analyzeFile.<anonymous closure> (package:analyzer/src/dart/analysis/driver.dart:1337:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #60     PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #61     AnalysisDriver.performWork (package:analyzer/src/dart/analysis/driver.dart:1189:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #62     AnalysisDriverScheduler._run (package:analyzer/src/dart/analysis/driver.dart:2362:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #0      LibraryContext._throwLibraryCycleLinkException (package:analyzer/src/dart/analysis/library_context.dart:348:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #1      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:203:11)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #2      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #3      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #4      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #5      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #6      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #7      LibraryContext.load.loadBundle (package:analyzer/src/dart/analysis/library_context.dart:155:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #8      LibraryContext.load.<anonymous closure> (package:analyzer/src/dart/analysis/library_context.dart:255:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #9      PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #10     LibraryContext.load (package:analyzer/src/dart/analysis/library_context.dart:253:5)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #11     AnalysisDriver._analyzeFile.<anonymous closure> (package:analyzer/src/dart/analysis/driver.dart:1337:9)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #12     PerformanceLog.runAsync (package:analyzer/src/dart/analysis/performance_logger.dart:50:14)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #13     AnalysisDriver.performWork (package:analyzer/src/dart/analysis/driver.dart:1189:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 #14     AnalysisDriverScheduler._run (package:analyzer/src/dart/analysis/driver.dart:2362:7)
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701 <asynchronous suspension>
+[avoid_build_context_in_providers] 2024-08-26T11:41:08.750701
+The Dart VM service is listening on http://127.0.0.1:64587/k7b4D8FZV8Y=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:64587/k7b4D8FZV8Y=/devtools?uri=ws://127.0.0.1:64587/k7b4D8FZV8Y=/ws
+The Dart VM service is listening on http://127.0.0.1:64781/bd81ySvJoi8=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:64781/bd81ySvJoi8=/devtools?uri=ws://127.0.0.1:64781/bd81ySvJoi8=/ws
+The Dart VM service is listening on http://127.0.0.1:65028/EgOZN9DRsos=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:65028/EgOZN9DRsos=/devtools?uri=ws://127.0.0.1:65028/EgOZN9DRsos=/ws
+The Dart VM service is listening on http://127.0.0.1:65372/4luGbyAWgP8=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:65372/4luGbyAWgP8=/devtools?uri=ws://127.0.0.1:65372/4luGbyAWgP8=/ws
+The Dart VM service is listening on http://127.0.0.1:49168/2Hxhw-PnoUk=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:49168/2Hxhw-PnoUk=/devtools?uri=ws://127.0.0.1:49168/2Hxhw-PnoUk=/ws
+The Dart VM service is listening on http://127.0.0.1:49330/QtQYlnz30dA=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:49330/QtQYlnz30dA=/devtools?uri=ws://127.0.0.1:49330/QtQYlnz30dA=/ws
+The Dart VM service is listening on http://127.0.0.1:49495/sj8qdPB9Zuo=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:49495/sj8qdPB9Zuo=/devtools?uri=ws://127.0.0.1:49495/sj8qdPB9Zuo=/ws
+The Dart VM service is listening on http://127.0.0.1:49747/YshQe5IhTDU=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:49747/YshQe5IhTDU=/devtools?uri=ws://127.0.0.1:49747/YshQe5IhTDU=/ws
+The Dart VM service is listening on http://127.0.0.1:53136/JXrXBWPVdik=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:53136/JXrXBWPVdik=/devtools?uri=ws://127.0.0.1:53136/JXrXBWPVdik=/ws
+The Dart VM service is listening on http://127.0.0.1:53834/iqsGLI7SxqA=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:53834/iqsGLI7SxqA=/devtools?uri=ws://127.0.0.1:53834/iqsGLI7SxqA=/ws
+The Dart VM service is listening on http://127.0.0.1:55398/Ju7l02NAk0M=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:55398/Ju7l02NAk0M=/devtools?uri=ws://127.0.0.1:55398/Ju7l02NAk0M=/ws
+The Dart VM service is listening on http://127.0.0.1:57294/Bv0Ud1ufskk=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:57294/Bv0Ud1ufskk=/devtools?uri=ws://127.0.0.1:57294/Bv0Ud1ufskk=/ws
+The Dart VM service is listening on http://127.0.0.1:50472/8lsqgAiHzRk=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:50472/8lsqgAiHzRk=/devtools?uri=ws://127.0.0.1:50472/8lsqgAiHzRk=/ws
+The Dart VM service is listening on http://127.0.0.1:51878/dzWGBZ18nd0=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:51878/dzWGBZ18nd0=/devtools?uri=ws://127.0.0.1:51878/dzWGBZ18nd0=/ws
+The Dart VM service is listening on http://127.0.0.1:52089/0c9W6m1qEfA=/
+The Dart DevTools debugger and profiler is available at: http://127.0.0.1:52089/0c9W6m1qEfA=/devtools?uri=ws://127.0.0.1:52089/0c9W6m1qEfA=/ws

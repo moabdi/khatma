@@ -30,9 +30,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final firebaseAuth = ref.watch(firebaseAuthProvier);
   return GoRouter(
     initialLocation: '/',
-    debugLogDiagnostics: true, // TO DELETE IN PROD
+    debugLogDiagnostics: false,
     refreshListenable: GoRouterRefreshStream(firebaseAuth.authStateChanges()),
-    redirect: (context, state) {
+    /* redirect: (context, state) {
       final isLoggedIn = firebaseAuth.currentUser != null;
       final path = state.uri.path;
       if (!isLoggedIn) {
@@ -41,7 +41,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         return '/';
       }
       return null;
-    },
+    }, */
     routes: [
       GoRoute(
         path: '/',

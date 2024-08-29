@@ -1,4 +1,5 @@
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -22,7 +23,7 @@ class KhatmaController extends _$KhatmaController {
 
   void submit() {
     Khatma khatma = ref.read(formKhatmaProvider);
-    ref.read(khatmaListProvider.notifier).updateKhatma(khatma);
+    ref.read(khatmasRepositoryProvider).addKhatma(khatma);
     ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
   }
 
