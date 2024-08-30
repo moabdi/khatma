@@ -3,12 +3,14 @@ import 'dart:math';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
+import 'package:random_string/random_string.dart';
 
 var random = Random();
 
 /// Test khatmat to be used until a data source is implemented
 var kTestKhatmat = [
   Khatma(
+    code: randomAlphaNumeric(6),
     name: 'Khatmati sourat',
     description: 'test description',
     unit: SplitUnit.sourat,
@@ -42,6 +44,7 @@ var kTestKhatmat = [
 var kTestKhatmats = [
   Khatma(
     id: '1',
+    code: randomAlphaNumeric(6),
     name: 'Khatmati sourat',
     description: '',
     unit: SplitUnit.sourat,
@@ -64,6 +67,7 @@ var kTestKhatmats = [
   ),
   Khatma(
     id: '2',
+    code: randomAlphaNumeric(6),
     name: 'Ramadan 2023',
     description: 'A l' 'ocasion de ramadan 2023',
     unit: SplitUnit.hizb,
@@ -89,6 +93,7 @@ var kTestKhatmats = [
   ),
   Khatma(
     id: '3',
+    code: randomAlphaNumeric(6),
     name: 'Khatma Mensuel',
     description:
         'This code provides a basic setup to create two buttons. The first button is a filled button with an upgrade icon, and the second one is an outlined button with a heart icon. Adjustments can be made based on your exact design and requirements',
@@ -115,6 +120,7 @@ var kTestKhatmats = [
   ),
   Khatma(
     id: '4',
+    code: randomAlphaNumeric(6),
     name: 'Mosquée plaisir',
     description: 'Comunité plaisir ',
     unit: SplitUnit.hizb,
@@ -131,6 +137,7 @@ var kTestKhatmats = [
   ),
   Khatma(
     id: '5',
+    code: randomAlphaNumeric(6),
     name: 'Khatma Joumouaa',
     description: 'Lecture chque vendredi',
     unit: SplitUnit.hizb,
@@ -147,6 +154,7 @@ var kTestKhatmats = [
   ),
   Khatma(
     id: '6',
+    code: randomAlphaNumeric(6),
     name: 'Khatma classique',
     description: 'Description classique',
     unit: SplitUnit.sourat,
@@ -163,6 +171,7 @@ var kTestKhatmats = [
   ),
   Khatma(
     id: '7',
+    code: randomAlphaNumeric(6),
     name: 'Khatma 7',
     description: 'Description 7',
     unit: SplitUnit.juzz,
@@ -179,6 +188,7 @@ var kTestKhatmats = [
   ),
   Khatma(
     id: '8',
+    code: randomAlphaNumeric(6),
     name: 'Khatma 8',
     description: 'Description 8',
     unit: SplitUnit.hizb,

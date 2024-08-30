@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
@@ -20,6 +21,7 @@ import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_form
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/modal_bottom_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/unit_selector.dart';
+import 'package:khatma/src/routing/app_router.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
   const AddKhatmaScreen({super.key, this.khatmaId});
@@ -74,20 +76,19 @@ class AddKhatmaScreen extends ConsumerWidget {
                       text: AppLocalizations.of(context).save,
                       onPressed: () {
                         ref.read(khatmaControllerProvider.notifier).submit();
-                        Navigator.pop(context);
+                        Navigator.of(context).pop();
                       },
                     ),
                     gapH20,
                     if (khatmaId != null)
-                      DeleteButton(
+                      PrimaryButton(
                         width: double.infinity,
-                        content:
-                            AppLocalizations.of(context).confirmDeleteKhatma,
+                        text: AppLocalizations.of(context).confirmDeleteKhatma,
                         onPressed: () => {
                           ref
                               .read(khatmaControllerProvider.notifier)
                               .delete(khatmaId!),
-                          Navigator.of(context).pop(),
+                          context.goNamed(AppRoute.home.name)
                         },
                       ),
                     gapH20,

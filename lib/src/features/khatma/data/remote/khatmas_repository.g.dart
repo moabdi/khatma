@@ -21,7 +21,7 @@ final khatmasRepositoryProvider = Provider<KhatmasRepository>.internal(
 );
 
 typedef KhatmasRepositoryRef = ProviderRef<KhatmasRepository>;
-String _$khatmasListStreamHash() => r'c5394915348dfcbae1d350571170fa14b0108994';
+String _$khatmasListStreamHash() => r'43f909e4631062ec720cd9892d00491ff7f624b6';
 
 /// See also [khatmasListStream].
 @ProviderFor(khatmasListStream)
@@ -37,7 +37,7 @@ final khatmasListStreamProvider =
 );
 
 typedef KhatmasListStreamRef = AutoDisposeStreamProviderRef<List<Khatma>>;
-String _$khatmasListFutureHash() => r'68323dd13d1f839f39ce77a19767a7b6c042ffe6';
+String _$khatmasListFutureHash() => r'b2110c508d7fd3b8d9129d761e1d4e289f0bbc14';
 
 /// See also [khatmasListFuture].
 @ProviderFor(khatmasListFuture)
@@ -53,7 +53,7 @@ final khatmasListFutureProvider =
 );
 
 typedef KhatmasListFutureRef = AutoDisposeFutureProviderRef<List<Khatma>>;
-String _$khatmaStreamHash() => r'4237959947b300a273edfe9d304c28fa23cb2a17';
+String _$khatmaStreamHash() => r'c068d7a1add846be36c84995e35295495a4bf207';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -243,7 +243,7 @@ class _KhatmaStreamProviderElement
   KhatmaID get id => (origin as KhatmaStreamProvider).id;
 }
 
-String _$khatmaFutureHash() => r'48c57cab8f82be640f7ec84a445fd859b70be249';
+String _$khatmaFutureHash() => r'6d1917eb5f9a407b890ec9223c91cd0a77e98acf';
 
 /// See also [khatmaFuture].
 @ProviderFor(khatmaFuture)

@@ -8,6 +8,7 @@ part of 'khatma.dart';
 
 _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
       id: json['id'] as String?,
+      code: json['code'] as String,
       name: json['name'] as String,
       description: json['description'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
@@ -31,7 +32,10 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
     );
 
 Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
-  final val = <String, dynamic>{};
+  final val = <String, dynamic>{
+    'code': instance.code,
+    'name': instance.name,
+  };
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -39,8 +43,6 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
     }
   }
 
-  writeNotNull('id', instance.id);
-  val['name'] = instance.name;
   writeNotNull('description', instance.description);
   val['createDate'] = instance.createDate.toIso8601String();
   writeNotNull('endDate', instance.endDate?.toIso8601String());

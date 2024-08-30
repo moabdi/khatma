@@ -1,4 +1,5 @@
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -41,7 +42,7 @@ class KhatmaPartsController extends _$KhatmaPartsController {
 
     // Update the khatma with the modified parts
     Khatma updatedKhatma = khatma.copyWith(parts: completedParts);
-    ref.read(khatmaListProvider.notifier).updateKhatma(updatedKhatma);
+    ref.read(khatmaListProvider.notifier).saveOrUpdate(updatedKhatma);
     ref.read(currentKhatmaProvider.notifier).updateValue(updatedKhatma);
     state = [];
   }

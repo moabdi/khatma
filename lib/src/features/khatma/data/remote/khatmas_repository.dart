@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,82 +11,73 @@ class KhatmasRepository {
   const KhatmasRepository(this._firestore);
   final FirebaseFirestore _firestore;
 
-  static String khatmasPath() => 'khatmas';
-  static String khatmaPath(KhatmaID id) =>
-      'khatmas/${FirebaseAuth.instance.currentUser!.uid}/$id';
+  static String khatmasPath(String userUid) => 'users/$userUid/khatmat';
+  static String khatmaPath(String userUid, KhatmaID id) =>
+      'users/$userUid/khatmat/$id';
 
-  Future<List<Khatma>> fetchKhatmasList() async {
-    final ref = _khatmasRef();
+  Future<List<Khatma>> fetchKhatmasList(String userId) async {
+    final ref = _khatmasRef(userId);
     final snapshot = await ref.get();
     return snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
   }
 
-  Stream<List<Khatma>> watchKhatmasList() {
-    final ref = _khatmasRef();
+  Stream<List<Khatma>> watchKhatmasList(String userId) {
+    final ref = _khatmasRef(userId);
     return ref.snapshots().map((snapshot) =>
         snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
   }
 
-  Future<Khatma?> fetchKhatma(KhatmaID id) async {
-    final ref = _khatmaRef(id);
+  Future<Khatma?> fetchKhatma(String userId, KhatmaID id) async {
+    final ref = _khatmaRef(userId, id);
     final snapshot = await ref.get();
     return snapshot.data();
   }
 
-  Stream<Khatma?> watchKhatma(KhatmaID id) {
-    final ref = _khatmaRef(id);
+  Stream<Khatma?> watchKhatma(String userId, KhatmaID id) {
+    final ref = _khatmaRef(userId, id);
     return ref.snapshots().map((snapshot) => snapshot.data());
   }
 
-  Future<void> createKhatma(KhatmaID id, String imageUrl) {
-    print(_firestore.databaseId);
-    return _firestore.doc(khatmaPath(id)).set(
-      {
-        'id': id,
-        'imageUrl': imageUrl,
-      },
-      // use merge: true to keep old fields (if any)
-      SetOptions(merge: true),
-    );
+  Future create(String userId, Khatma khatma) async {
+    return _firestore.collection(khatmasPath(userId)).add(khatma.toJson());
   }
 
-  Future<Future<DocumentReference<Map<String, dynamic>>>> addKhatma(
-      Khatma khatma) async {
-    print(FirebaseAuth.instance.currentUser);
+  Future update(String userId, Khatma khatma) async {
     return _firestore
-        .collection('users/${FirebaseAuth.instance.currentUser!.uid}/khatmat')
-        .add(khatma.toJson());
+        .doc(khatmaPath(userId, khatma.id!))
+        .update(khatma.toJson());
   }
 
-  Future<void> updateKhatma(Khatma khatma) {
-    final ref = _khatmaRef(khatma.id!);
-    return ref.set(khatma);
+  Future<void> deleteById(String userId, KhatmaID id) {
+    return _firestore.doc(khatmaPath(userId, id)).delete();
   }
 
-  Future<void> deleteKhatma(KhatmaID id) {
-    return _firestore.doc(khatmaPath(id)).delete();
-  }
-
-  DocumentReference<Khatma> _khatmaRef(KhatmaID id) =>
-      _firestore.doc(khatmaPath(id)).withConverter(
-            fromFirestore: (doc, _) => Khatma.fromJson(doc.data()!),
+  DocumentReference<Khatma> _khatmaRef(String userId, KhatmaID id) =>
+      _firestore.doc(khatmaPath(userId, id)).withConverter(
+            fromFirestore: (doc, _) {
+              final data = doc.data()!;
+              data['id'] = doc.id;
+              return Khatma.fromJson(data);
+            },
             toFirestore: (Khatma khatma, options) => khatma.toJson(),
           );
 
-  Query<Khatma> _khatmasRef() => _firestore
-      .collection(khatmasPath())
-      .withConverter(
-        fromFirestore: (doc, _) => Khatma.fromJson(doc.data()!),
-        toFirestore: (Khatma khatma, options) => khatma.toJson(),
-      )
-      .orderBy('id');
+  Query<Khatma> _khatmasRef(String userId) =>
+      _firestore.collection(khatmasPath(userId)).withConverter(
+            fromFirestore: (doc, _) {
+              final data = doc.data()!;
+              data['id'] = doc.id;
+              return Khatma.fromJson(data);
+            },
+            toFirestore: (Khatma khatma, options) => khatma.toJson(),
+          );
 
   // * Temporary search implementation.
   // * Note: this is quite inefficient as it pulls the entire khatma list
   // * and then filters the data on the client
-  Future<List<Khatma>> search(String query) async {
+  Future<List<Khatma>> search(String userId, String query) async {
     // 1. Get all khatmas from Firestore
-    final khatmasList = await fetchKhatmasList();
+    final khatmasList = await fetchKhatmasList(userId);
     // 2. Perform client-side filtering
     return khatmasList
         .where(
@@ -103,23 +94,27 @@ KhatmasRepository khatmasRepository(KhatmasRepositoryRef ref) {
 @riverpod
 Stream<List<Khatma>> khatmasListStream(KhatmasListStreamRef ref) {
   final khatmasRepository = ref.watch(khatmasRepositoryProvider);
-  return khatmasRepository.watchKhatmasList();
+  String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+  return khatmasRepository.watchKhatmasList(userUid);
 }
 
 @riverpod
 Future<List<Khatma>> khatmasListFuture(KhatmasListFutureRef ref) {
   final khatmasRepository = ref.watch(khatmasRepositoryProvider);
-  return khatmasRepository.fetchKhatmasList();
+  String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+  return khatmasRepository.fetchKhatmasList(userUid);
 }
 
 @riverpod
 Stream<Khatma?> khatmaStream(KhatmaStreamRef ref, KhatmaID id) {
   final khatmasRepository = ref.watch(khatmasRepositoryProvider);
-  return khatmasRepository.watchKhatma(id);
+  String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+  return khatmasRepository.watchKhatma(userUid, id);
 }
 
 @riverpod
 Future<Khatma?> khatmaFuture(KhatmaFutureRef ref, KhatmaID id) {
   final khatmasRepository = ref.watch(khatmasRepositoryProvider);
-  return khatmasRepository.fetchKhatma(id);
+  String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+  return khatmasRepository.fetchKhatma(userUid, id);
 }

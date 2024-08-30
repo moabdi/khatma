@@ -11,7 +11,8 @@ typedef KhatmaID = String;
 @freezed
 abstract class Khatma with _$Khatma {
   const factory Khatma({
-    KhatmaID? id,
+    @JsonKey(includeFromJson: true, includeToJson: false) KhatmaID? id,
+    required String code,
     required String name,
     String? description,
     required DateTime createDate,

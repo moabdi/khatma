@@ -23,7 +23,7 @@ class KhatmaController extends _$KhatmaController {
 
   void submit() {
     Khatma khatma = ref.read(formKhatmaProvider);
-    ref.read(khatmasRepositoryProvider).addKhatma(khatma);
+    ref.read(khatmaListProvider.notifier).saveOrUpdate(khatma);
     ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
   }
 

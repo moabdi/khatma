@@ -11,6 +11,12 @@ class AuthRepository {
   AuthRepository(this._auth);
   final FirebaseAuth _auth;
 
+  Future<void> signInAnonymously() async {
+    if (FirebaseAuth.instance.currentUser == null) {
+      await _auth.signInAnonymously();
+    }
+  }
+
   Future<void> signInWithEmailAndPassword(String email, String password) {
     return _auth.signInWithEmailAndPassword(
       email: email,

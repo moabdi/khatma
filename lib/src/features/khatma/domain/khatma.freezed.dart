@@ -20,7 +20,9 @@ Khatma _$KhatmaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Khatma {
+  @JsonKey(includeFromJson: true, includeToJson: false)
   String? get id => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   DateTime get createDate => throw _privateConstructorUsedError;
@@ -44,7 +46,8 @@ abstract class $KhatmaCopyWith<$Res> {
       _$KhatmaCopyWithImpl<$Res, Khatma>;
   @useResult
   $Res call(
-      {String? id,
+      {@JsonKey(includeFromJson: true, includeToJson: false) String? id,
+      String code,
       String name,
       String? description,
       DateTime createDate,
@@ -76,6 +79,7 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
   @override
   $Res call({
     Object? id = freezed,
+    Object? code = null,
     Object? name = null,
     Object? description = freezed,
     Object? createDate = null,
@@ -93,6 +97,10 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -173,7 +181,8 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? id,
+      {@JsonKey(includeFromJson: true, includeToJson: false) String? id,
+      String code,
       String name,
       String? description,
       DateTime createDate,
@@ -206,6 +215,7 @@ class __$$KhatmaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? code = null,
     Object? name = null,
     Object? description = freezed,
     Object? createDate = null,
@@ -223,6 +233,10 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -275,7 +289,8 @@ class __$$KhatmaImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$KhatmaImpl implements _Khatma {
   const _$KhatmaImpl(
-      {this.id,
+      {@JsonKey(includeFromJson: true, includeToJson: false) this.id,
+      required this.code,
       required this.name,
       this.description,
       required this.createDate,
@@ -293,7 +308,10 @@ class _$KhatmaImpl implements _Khatma {
       _$$KhatmaImplFromJson(json);
 
   @override
+  @JsonKey(includeFromJson: true, includeToJson: false)
   final String? id;
+  @override
+  final String code;
   @override
   final String name;
   @override
@@ -327,7 +345,7 @@ class _$KhatmaImpl implements _Khatma {
 
   @override
   String toString() {
-    return 'Khatma(id: $id, name: $name, description: $description, createDate: $createDate, endDate: $endDate, creator: $creator, style: $style, lastRead: $lastRead, parts: $parts, recurrence: $recurrence, unit: $unit, share: $share)';
+    return 'Khatma(id: $id, code: $code, name: $name, description: $description, createDate: $createDate, endDate: $endDate, creator: $creator, style: $style, lastRead: $lastRead, parts: $parts, recurrence: $recurrence, unit: $unit, share: $share)';
   }
 
   @override
@@ -336,6 +354,7 @@ class _$KhatmaImpl implements _Khatma {
         (other.runtimeType == runtimeType &&
             other is _$KhatmaImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -358,6 +377,7 @@ class _$KhatmaImpl implements _Khatma {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      code,
       name,
       description,
       createDate,
@@ -386,7 +406,8 @@ class _$KhatmaImpl implements _Khatma {
 
 abstract class _Khatma implements Khatma {
   const factory _Khatma(
-      {final String? id,
+      {@JsonKey(includeFromJson: true, includeToJson: false) final String? id,
+      required final String code,
       required final String name,
       final String? description,
       required final DateTime createDate,
@@ -402,7 +423,10 @@ abstract class _Khatma implements Khatma {
   factory _Khatma.fromJson(Map<String, dynamic> json) = _$KhatmaImpl.fromJson;
 
   @override
+  @JsonKey(includeFromJson: true, includeToJson: false)
   String? get id;
+  @override
+  String get code;
   @override
   String get name;
   @override

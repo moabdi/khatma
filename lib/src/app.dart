@@ -1,6 +1,7 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(authRepositoryProvider).signInAnonymously();
     final goRouter = ref.watch(goRouterProvider);
 
     return MaterialApp.router(

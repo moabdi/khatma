@@ -1,6 +1,8 @@
+import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/themes/theme.dart';
+import 'package:random_string/random_string.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'khatma_form_provider.g.dart';
 
@@ -9,7 +11,8 @@ class FormKhatma extends _$FormKhatma {
   @override
   Khatma build() {
     return Khatma(
-      name: '',
+      code: randomAlphaNumeric(6).toUpperCase(),
+      name: 'Khatma-${DateTime.now().toInt().toString()}',
       unit: SplitUnit.hizb,
       createDate: DateTime.now(),
       share: KhatmaShare(visibility: ShareVisibility.private),
