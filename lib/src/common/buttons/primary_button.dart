@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma/src/common/constants/lottie_asset.dart';
 
 /// Primary button based on [ElevatedButton].
 /// Useful for CTAs in the app.
@@ -45,7 +46,7 @@ class PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(backgroundColor: color),
         onPressed: onPressed,
         child: isLoading
-            ? const CircularProgressIndicator()
+            ? lottieCompletePartsAsset
             : Text(
                 text,
                 textAlign: TextAlign.center,

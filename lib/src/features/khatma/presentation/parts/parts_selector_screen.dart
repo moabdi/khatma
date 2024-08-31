@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma/src/common/constants/lottie_asset.dart';
+import 'package:khatma/src/common/extensions/string_utils.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
+import 'package:khatma/src/common/widgets/empty_placeholder_widget.dart';
+import 'package:khatma/src/common/widgets/loading_list_tile.dart';
+import 'package:khatma/src/common/widgets/conditional_content.dart';
+import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/common/widgets/app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
@@ -15,7 +21,7 @@ import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
-import 'package:lottie/lottie.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -26,24 +32,35 @@ class PartSelectorScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatma = ref.watch(currentKhatmaProvider)!;
-
     return Scaffold(
-      appBar: buildAppBar(khatma, context, ref),
+      appBar: KhatmaAppBar(khatmaId: khatmaId),
+      floatingActionButton: PartFloatingButton(
+        khatmaId: khatmaId,
+        color: AppTheme.primaryColors,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:
-          PartFloatingButton(khatmaId: khatma.id, color: khatma.style.hexColor),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildDescriptionCard(khatma, context),
-              gapH8,
-              buildParts(context, khatma),
-              gapH64,
-            ],
+          child: Consumer(
+            builder: (context, ref, _) {
+              final khatmaValue = ref.watch(khatmaStreamProvider(khatmaId));
+              return AsyncValueWidget<Khatma?>(
+                loading: const LoadingListTile(),
+                value: khatmaValue,
+                data: (khatma) => khatma == null
+                    ? EmptyPlaceholderWidget(message: 'Khatma not found')
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          buildDescriptionCard(khatma!, context),
+                          gapH8,
+                          buildParts(context, khatma),
+                          gapH64,
+                        ],
+                      ),
+              );
+            },
           ),
         ),
       ),
@@ -60,37 +77,12 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  TopBar buildAppBar(Khatma? khatma, BuildContext context, WidgetRef ref) {
-    return TopBar(
-      title: khatma!.name,
-      actions: [
-        Avatar(
-          radius: 20,
-          backgroundColor: khatma.style.hexColor.withOpacity(.3),
-          bottom: Avatar(
-            radius: 5,
-            backgroundColor: khatma.style.hexColor,
-            child: const Icon(Icons.edit, size: 10),
-          ),
-          child: Center(
-            child: getIcon(
-              khatma.style.icon,
-              color: khatma.style.hexColor,
-            ),
-          ),
-          onTap: () => {
-            ref.read(formKhatmaProvider.notifier).update(khatma),
-            context.goNamed(AppRoute.editKhatma.name,
-                pathParameters: {'id': khatma.id!}),
-          },
-        ),
-        gapW16,
-      ],
-    );
+  Widget buildAppBar(KhatmaID khatma, BuildContext context, WidgetRef ref) {
+    return KhatmaAppBar(khatmaId: khatmaId);
   }
 
   Widget buildDescriptionCard(Khatma khatma, BuildContext context) {
-    if (khatma.description?.isEmpty == true) return const SizedBox.shrink();
+    if (isBlank(khatma.description)) return const SizedBox.shrink();
 
     return Card(
       elevation: 0.5,
@@ -112,75 +104,61 @@ class PartSelectorScreen extends ConsumerWidget {
   }
 
   Widget buildUnReadPartCard(BuildContext context, Khatma khatma) {
-    return khatma.isCompleted
-        ? Stack(
-            alignment: Alignment.center,
-            children: [
-              Card(
-                color: Colors.green.shade200,
-                child: Container(
-                  width: double.infinity,
-                  height: 300,
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Lottie.asset(
-                        'assets/lottie/success.json',
-                        width: double.infinity,
-                        height: 200,
-                        repeat: false,
-                        animate: true,
-                      ),
-                      AnimatedTextKit(
-                        isRepeatingAnimation: false,
-                        animatedTexts: [
-                          TyperAnimatedText(
-                            AppLocalizations.of(context).congratulation,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .headlineLarge!
-                                .copyWith(color: Colors.green),
-                          ),
-                        ],
+    return ConditionalContent(
+      condition: khatma.isCompleted,
+      primary: Stack(
+        alignment: Alignment.center,
+        children: [
+          Card(
+            color: Colors.green.shade200,
+            child: Container(
+              width: double.infinity,
+              height: 300,
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  lottieSuccessAsset,
+                  AnimatedTextKit(
+                    isRepeatingAnimation: false,
+                    animatedTexts: [
+                      TyperAnimatedText(
+                        AppLocalizations.of(context).congratulation,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .headlineLarge!
+                            .copyWith(color: Colors.green),
                       ),
                     ],
                   ),
-                ),
-              ),
-              Positioned(
-                child: Lottie.asset(
-                  'assets/lottie/congratulation.json',
-                  width: double.infinity,
-                  repeat: false,
-                  animate: true,
-                ),
-              ),
-            ],
-          )
-        : Card(
-            elevation: 0.4,
-            clipBehavior: Clip.antiAlias,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: UnReadPartTiles(
-                key: UniqueKey(),
-                unit: khatma.unit,
-                color: khatma.style.hexColor,
-                completedParts: khatma.completedPartIds,
+                ],
               ),
             ),
-          );
+          ),
+          Positioned(child: lottieCongratAsset),
+        ],
+      ),
+      secondary: Card(
+        elevation: 0.4,
+        clipBehavior: Clip.antiAlias,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: UnReadPartTiles(
+            key: UniqueKey(),
+            unit: khatma.unit,
+            color: khatma.style.hexColor,
+            completedParts: khatma.completedPartIds,
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget buildReadPartCard(
-    BuildContext context,
-    Khatma khatma,
-  ) {
-    if (isEmpty(khatma.parts)) {
-      return const SizedBox.shrink();
-    } else {
-      return Card(
+  Widget buildReadPartCard(BuildContext context, Khatma khatma) {
+    return ConditionalContent(
+      condition: isNotEmpty(khatma.parts),
+      secondary: const SizedBox.shrink(),
+      primary: Card(
         elevation: 0.4,
         clipBehavior: Clip.antiAlias,
         child: Padding(
@@ -198,13 +176,13 @@ class PartSelectorScreen extends ConsumerWidget {
                 key: UniqueKey(),
                 unit: khatma.unit,
                 color: khatma.style.hexColor,
-                completedParts: khatma.parts!,
+                parts: khatma.parts,
               ),
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
 
   Widget buildChart(BuildContext context, Khatma khatma) {
@@ -221,4 +199,58 @@ class PartSelectorScreen extends ConsumerWidget {
       backgroundColor: khatma.style.hexColor.withOpacity(.2),
     );
   }
+}
+
+class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const KhatmaAppBar({
+    super.key,
+    required this.khatmaId,
+  });
+
+  final String khatmaId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Consumer(
+        builder: (context, ref, _) {
+          return AsyncValueWidget<Khatma?>(
+            loading: const LoadingListTile(),
+            value: ref.watch(khatmaStreamProvider(khatmaId)),
+            data: (khatma) => khatma == null
+                ? TopBar(title: "Khatma")
+                : TopBar(
+                    title: khatma.name,
+                    actions: [
+                      Avatar(
+                        radius: 20,
+                        backgroundColor: khatma.style.hexColor.withOpacity(.3),
+                        bottom: Avatar(
+                          radius: 5,
+                          backgroundColor: khatma.style.hexColor,
+                          child: const Icon(Icons.edit, size: 10),
+                        ),
+                        child: Center(
+                          child: getIcon(
+                            khatma.style.icon,
+                            color: khatma.style.hexColor,
+                          ),
+                        ),
+                        onTap: () => {
+                          ref.read(formKhatmaProvider.notifier).update(khatma),
+                          context.goNamed(AppRoute.editKhatma.name,
+                              pathParameters: {'id': khatma.id!}),
+                        },
+                      ),
+                      gapW16,
+                    ],
+                  ),
+          );
+        },
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(60.0);
 }

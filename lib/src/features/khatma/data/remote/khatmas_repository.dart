@@ -43,9 +43,8 @@ class KhatmasRepository {
   }
 
   Future update(String userId, Khatma khatma) async {
-    return _firestore
-        .doc(khatmaPath(userId, khatma.id!))
-        .update(khatma.toJson());
+    final ref = _khatmaRef(userId, khatma.id!);
+    return ref.set(khatma);
   }
 
   Future<void> deleteById(String userId, KhatmaID id) {

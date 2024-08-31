@@ -37,7 +37,7 @@ class DeleteButton extends StatelessWidget {
             confirmTextColor: Colors.red,
           );
           if (confirm == true) {
-            onPressed;
+            onPressed!.call();
           }
         },
         child: Text("Delete"),

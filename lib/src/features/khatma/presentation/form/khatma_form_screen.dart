@@ -1,12 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma/src/common/constants/snack_bars.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/common/buttons/delete_button.dart';
 import 'package:khatma/src/common/buttons/primary_button.dart';
+import 'package:khatma/src/common/widgets/conditional_content.dart';
+import 'package:khatma/src/common/widgets/empty_placeholder_widget.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
@@ -34,8 +39,7 @@ class AddKhatmaScreen extends ConsumerWidget {
     final formKey = GlobalKey<FormState>();
     final node = FocusScopeNode();
     final nameController = TextEditingController(text: khatma.name);
-    final descController =
-        TextEditingController(text: khatma.description ?? '');
+    final descController = TextEditingController(text: khatma.description);
 
     return Scaffold(
       appBar: AppBar(
@@ -44,61 +48,83 @@ class AddKhatmaScreen extends ConsumerWidget {
             : AppLocalizations.of(context).editKhatma),
         leading: BackButton(onPressed: () => Navigator.of(context).pop()),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: FocusScope(
-            node: node,
-            child: Form(
-              key: formKey,
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildAvatar(context, khatma, ref),
-                    gapH20,
-                    gapH20,
-                    _buildName(context, nameController, descController, node,
-                        ref, khatma),
-                    gapH20,
-                    _buildDescription(
-                        context, nameController, descController, ref, khatma),
-                    gapH20,
-                    _buildSplitUnit(context, ref),
-                    gapH20,
-                    _buildRecurrence(context, ref),
-                    gapH20,
-                    _buildShare(context, ref),
-                    gapH64,
-                    PrimaryButton(
-                      width: double.infinity,
-                      shadowOffset: 8,
-                      text: AppLocalizations.of(context).save,
-                      onPressed: () {
-                        ref.read(khatmaControllerProvider.notifier).submit();
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    gapH20,
-                    if (khatmaId != null)
-                      PrimaryButton(
-                        width: double.infinity,
-                        text: AppLocalizations.of(context).confirmDeleteKhatma,
-                        onPressed: () => {
-                          ref
-                              .read(khatmaControllerProvider.notifier)
-                              .delete(khatmaId!),
-                          context.goNamed(AppRoute.home.name)
-                        },
+      body: khatma.id != khatmaId
+          ? EmptyPlaceholderWidget(message: 'Khatma not found')
+          : SafeArea(
+              child: SingleChildScrollView(
+                child: FocusScope(
+                  node: node,
+                  child: Form(
+                    key: formKey,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildAvatar(context, khatma, ref),
+                          gapH20,
+                          gapH20,
+                          _buildName(context, nameController, descController,
+                              node, ref, khatma),
+                          gapH20,
+                          _buildDescription(context, nameController,
+                              descController, ref, khatma),
+                          gapH20,
+                          _buildSplitUnit(context, ref),
+                          gapH20,
+                          _buildRecurrence(context, ref),
+                          gapH20,
+                          _buildShare(context, ref),
+                          gapH64,
+                          PrimaryButton(
+                            width: double.infinity,
+                            shadowOffset: 8,
+                            text: AppLocalizations.of(context).save,
+                            onPressed: () {
+                              ref
+                                  .read(khatmaControllerProvider.notifier)
+                                  .submit();
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          gapH20,
+                          ConditionalContent(
+                            condition: khatmaId != null,
+                            primary: DeleteButton(
+                              width: double.infinity,
+                              content: AppLocalizations.of(context)
+                                  .confirmDeleteKhatma,
+                              onPressed: () {
+                                final snackBar = buildSnackBar(
+                                  context,
+                                  Text(AppLocalizations.of(context).cancel),
+                                );
+                                ref
+                                    .read(khatmaControllerProvider.notifier)
+                                    .delete(khatmaId!)
+                                    .then(
+                                      (e) => {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar),
+                                        Timer(
+                                            Duration(
+                                                seconds: 2,
+                                                microseconds: 100), () {
+                                          context.goNamed(AppRoute.home.name);
+                                        }),
+                                      },
+                                    );
+                              },
+                            ),
+                          ),
+                          gapH20,
+                        ],
                       ),
-                    gapH20,
-                  ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
-      ),
     );
   }
 

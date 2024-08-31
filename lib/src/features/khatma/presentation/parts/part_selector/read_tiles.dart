@@ -13,15 +13,16 @@ class ReadPartTiles extends ConsumerWidget {
     super.key,
     required this.unit,
     required this.color,
-    required this.completedParts,
+    required this.parts,
   });
 
   final Color color;
   final SplitUnit unit;
-  final List<KhatmaPart> completedParts;
+  final List<KhatmaPart>? parts;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final completedParts = parts ?? [];
     var partIds = completedParts
         .where((element) => element.finishedDate != null)
         .map((e) => e.id)

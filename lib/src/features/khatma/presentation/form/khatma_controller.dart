@@ -1,5 +1,4 @@
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -27,7 +26,7 @@ class KhatmaController extends _$KhatmaController {
     ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
   }
 
-  void delete(String khatmaId) {
-    ref.read(khatmaListProvider.notifier).deleteById(khatmaId);
+  Future<void> delete(String khatmaId) async {
+    return ref.read(khatmaListProvider.notifier).deleteById(khatmaId);
   }
 }
