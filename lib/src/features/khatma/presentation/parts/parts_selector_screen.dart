@@ -33,39 +33,37 @@ class PartSelectorScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).disabledColor.withOpacity(.5),
-      appBar: KhatmaAppBar(khatmaId: khatmaId),
-      floatingActionButton: PartFloatingButton(
-        khatmaId: khatmaId,
-        color: AppTheme.primaryColors,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Consumer(
-            builder: (context, ref, _) {
-              final khatmaValue = ref.watch(khatmaStreamProvider(khatmaId));
-              return AsyncValueWidget<Khatma?>(
-                loading: const LoadingListTile(),
-                value: khatmaValue,
-                data: (khatma) => khatma == null
-                    ? EmptyPlaceholderWidget(message: 'Khatma not found')
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          buildDescriptionCard(khatma!, context),
-                          gapH8,
-                          buildParts(context, khatma),
-                          gapH64,
-                        ],
-                      ),
-              );
-            },
-          ),
-        ),
-      ),
+    final khatmaValue = ref.watch(khatmaStreamProvider(khatmaId));
+
+    return AsyncValueWidget<Khatma?>(
+      loading: const LoadingListTile(),
+      value: khatmaValue,
+      data: (khatma) => khatma == null
+          ? EmptyPlaceholderWidget(message: 'Khatma not found')
+          : Scaffold(
+              backgroundColor: Theme.of(context).disabledColor.withOpacity(.5),
+              appBar: KhatmaAppBar(khatmaId: khatmaId),
+              floatingActionButton: PartFloatingButton(
+                khatmaId: khatmaId,
+                color: khatma.style.hexColor,
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildDescriptionCard(khatma, context),
+                      gapH8,
+                      buildParts(context, khatma),
+                      gapH64,
+                    ],
+                  ),
+                ),
+              ),
+            ),
     );
   }
 

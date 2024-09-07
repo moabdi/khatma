@@ -42,7 +42,9 @@ class AddKhatmaScreen extends ConsumerWidget {
     final descController = TextEditingController(text: khatma.description);
 
     return Scaffold(
+      backgroundColor: Theme.of(context).disabledColor.withOpacity(.5),
       appBar: AppBar(
+        backgroundColor: khatma.style.hexColor.withOpacity(.5),
         title: Text(isBlank(khatma.id)
             ? AppLocalizations.of(context).newKhatma
             : AppLocalizations.of(context).editKhatma),
@@ -77,6 +79,7 @@ class AddKhatmaScreen extends ConsumerWidget {
                           _buildShare(context, ref),
                           gapH64,
                           PrimaryButton(
+                            color: khatma.style.hexColor,
                             width: double.infinity,
                             shadowOffset: 8,
                             text: AppLocalizations.of(context).save,
