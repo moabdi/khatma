@@ -34,6 +34,7 @@ class PartSelectorScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      backgroundColor: Theme.of(context).disabledColor.withOpacity(.5),
       appBar: KhatmaAppBar(khatmaId: khatmaId),
       floatingActionButton: PartFloatingButton(
         khatmaId: khatmaId,
@@ -219,13 +220,15 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
             loading: const LoadingListTile(),
             value: ref.watch(khatmaStreamProvider(khatmaId)),
             data: (khatma) => khatma == null
-                ? TopBar(title: "Khatma")
-                : TopBar(
-                    title: khatma.name,
+                ? AppBar(title: Text("Khatma"))
+                : AppBar(
+                    backgroundColor: khatma.style.hexColor.withOpacity(.05),
+                    title: Text(khatma.name),
                     actions: [
                       Avatar(
                         radius: 20,
-                        backgroundColor: khatma.style.hexColor.withOpacity(.3),
+                        backgroundColor:
+                            Theme.of(context).primaryColorDark.withOpacity(.5),
                         bottom: Avatar(
                           radius: 5,
                           backgroundColor: khatma.style.hexColor,

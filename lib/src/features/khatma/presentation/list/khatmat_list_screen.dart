@@ -1,4 +1,3 @@
-import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/common/navigation_bar.dart';
 import 'package:khatma/src/common/widgets/app_bar.dart';
@@ -14,7 +13,21 @@ class KhatmatListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //drawer: const MainDrawer(),
-      appBar: TopBar(title: AppLocalizations.of(context).appTitle),
+      appBar: TopBar(
+        title: AppLocalizations.of(context).appTitle,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: CircleAvatar(
+                backgroundColor: Theme.of(context).primaryColor,
+                child: Icon(
+                  Icons.notifications,
+                  color: Theme.of(context).primaryIconTheme.color,
+                  size: 24,
+                ),
+              ))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),

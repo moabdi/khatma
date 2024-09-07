@@ -27,39 +27,49 @@ class KhatmatListView extends ConsumerWidget {
   Widget buildKhatmaList(
       List<Khatma> khatmat, BuildContext context, WidgetRef ref) {
     return Card(
-      elevation: 0.1,
-      color: Theme.of(context).colorScheme.background,
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Column(
-          children: [
-            gapH8,
-            ListView.builder(
-              shrinkWrap: true,
-              primary: false,
-              itemCount: khatmat.length,
-              itemBuilder: (_, index) {
-                final khatma = khatmat[index];
-                return buildCardKhatma(khatma, ref, context);
-              },
+      color: Theme.of(context).primaryColor.withOpacity(.2),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+            child: Text(
+              "Khatmats en cours",
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  color: Theme.of(context).primaryColor.withOpacity(.9)),
             ),
-          ],
-        ),
+          ),
+          gapH8,
+          ListView.builder(
+            shrinkWrap: true,
+            primary: false,
+            itemCount: khatmat.length,
+            itemBuilder: (_, index) {
+              final khatma = khatmat[index];
+              return buildCardKhatma(khatma, ref, context);
+            },
+          ),
+          gapH8,
+        ],
       ),
     );
   }
 
-  Card buildCardKhatma(Khatma khatma, WidgetRef ref, BuildContext context) {
-    return Card(
-      elevation: 0.4,
-      clipBehavior: Clip.antiAlias,
-      child: KhatmaTile(
-        khatma: khatma,
-        onPressed: () {
-          ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
-          context.goNamed(AppRoute.khatmaDetails.name,
-              pathParameters: {'id': khatma.id!});
-        },
+  Widget buildCardKhatma(Khatma khatma, WidgetRef ref, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 4),
+      child: Card(
+        elevation: 0.4,
+        clipBehavior: Clip.antiAlias,
+        child: KhatmaTile(
+          khatma: khatma,
+          onPressed: () {
+            ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
+            context.goNamed(AppRoute.khatmaDetails.name,
+                pathParameters: {'id': khatma.id!});
+          },
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:khatma/src/common/providers/linear_progress.dart';
-import 'package:khatma/src/common/widgets/text_or_empty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/constants/app_sizes.dart';
@@ -29,9 +29,24 @@ class TopBar extends ConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
       backgroundColor: backgroundColor,
-      title: TextOrEmpty(
-        title,
-        style: Theme.of(context).textTheme.headlineMedium,
+      title: Row(
+        children: [
+          Image.asset(
+            "assets/images/khatma/khatma.png",
+            width: 32,
+          ),
+          gapW12,
+          AnimatedTextKit(
+            totalRepeatCount: 1,
+            animatedTexts: [
+              ColorizeAnimatedText(
+                title ?? "",
+                textStyle: Theme.of(context).textTheme.titleMedium!,
+                colors: [Colors.yellowAccent, Theme.of(context).primaryColor],
+              ),
+            ],
+          ),
+        ],
       ),
       leading: leading,
       actions: actions,
@@ -41,12 +56,7 @@ class TopBar extends ConsumerWidget implements PreferredSizeWidget {
             builder: (context, ref, _) {
               return ref.read(boolNotifierProvider)
                   ? LinearProgressIndicator()
-                  : Column(
-                      children: [
-                        TopCard(),
-                        gapH4,
-                      ],
-                    );
+                  : TopCard();
             },
           )),
     );
