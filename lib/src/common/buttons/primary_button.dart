@@ -46,7 +46,7 @@ class PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(backgroundColor: color),
         onPressed: onPressed,
         child: isLoading
-            ? lottieCompletePartsAsset
+            ? lottieStartReading
             : Text(
                 text,
                 textAlign: TextAlign.center,

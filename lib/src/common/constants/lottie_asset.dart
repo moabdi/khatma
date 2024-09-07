@@ -24,7 +24,13 @@ final lottieCongratAsset = Lottie.asset(
   animate: true,
 );
 
-final lottieCompletePartsAsset = Lottie.asset(
-  'assets/lottie/complete_parts.json',
+final lottieStartReading = Lottie.asset(
+  'assets/lottie/reading.json',
+  repeat: false,
+);
+
+final lottieNoData = Lottie.asset(
+  'assets/lottie/10.json',
   repeat: true,
+  animate: true,
 );

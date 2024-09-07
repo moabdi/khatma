@@ -33,7 +33,6 @@ class KhatmatListView extends ConsumerWidget {
         padding: const EdgeInsets.all(5.0),
         child: Column(
           children: [
-            //TopListKhatmat(),
             gapH8,
             ListView.builder(
               shrinkWrap: true,
@@ -41,24 +40,26 @@ class KhatmatListView extends ConsumerWidget {
               itemCount: khatmat.length,
               itemBuilder: (_, index) {
                 final khatma = khatmat[index];
-                return Card(
-                  elevation: 0.4,
-                  clipBehavior: Clip.antiAlias,
-                  child: KhatmaTile(
-                    khatma: khatma,
-                    onPressed: () {
-                      ref
-                          .read(currentKhatmaProvider.notifier)
-                          .updateValue(khatma);
-                      context.goNamed(AppRoute.khatmaDetails.name,
-                          pathParameters: {'id': khatma.id!});
-                    },
-                  ),
-                );
+                return buildCardKhatma(khatma, ref, context);
               },
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Card buildCardKhatma(Khatma khatma, WidgetRef ref, BuildContext context) {
+    return Card(
+      elevation: 0.4,
+      clipBehavior: Clip.antiAlias,
+      child: KhatmaTile(
+        khatma: khatma,
+        onPressed: () {
+          ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
+          context.goNamed(AppRoute.khatmaDetails.name,
+              pathParameters: {'id': khatma.id!});
+        },
       ),
     );
   }

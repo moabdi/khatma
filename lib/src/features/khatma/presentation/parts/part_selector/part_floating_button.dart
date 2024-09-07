@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/snack_bars.dart';
+import 'package:khatma/src/common/providers/linear_progress.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/khatma_parts_controller.dart';
@@ -33,13 +34,6 @@ class PartFloatingButton extends StatelessWidget {
   }
 
   _onSubmit(BuildContext context, WidgetRef ref, List<int> selectedParts) {
-    final snackBarodLoading = buildSnackBarLoading(
-      context,
-      Text(AppLocalizations.of(context)
-          .successCompleteParts(selectedParts.length)),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBarodLoading);
-
     final snackBar = buildSnackBar(
       context,
       Text(AppLocalizations.of(context)
@@ -49,6 +43,8 @@ class PartFloatingButton extends StatelessWidget {
     ref
         .read(khatmaPartsControllerProvider.notifier)
         .completeParts(khatmaId!)
-        .then((value) => ScaffoldMessenger.of(context).showSnackBar(snackBar));
+        .then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
   }
 }

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
+import 'package:khatma/src/common/providers/linear_progress.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
@@ -252,5 +253,5 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(60.0);
+  Size get preferredSize => const Size.fromHeight(66.0);
 }

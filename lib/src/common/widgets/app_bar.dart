@@ -1,6 +1,9 @@
+import 'package:khatma/src/common/providers/linear_progress.dart';
 import 'package:khatma/src/common/widgets/text_or_empty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma/src/features/common/top_card.dart';
 
 /// Custom [AppBar] widget that is reused by the [KhatmatListScreen] and
 /// [ProductScreen].
@@ -32,9 +35,23 @@ class TopBar extends ConsumerWidget implements PreferredSizeWidget {
       ),
       leading: leading,
       actions: actions,
+      bottom: PreferredSize(
+          preferredSize: preferredSize,
+          child: Consumer(
+            builder: (context, ref, _) {
+              return ref.read(boolNotifierProvider)
+                  ? LinearProgressIndicator()
+                  : Column(
+                      children: [
+                        TopCard(),
+                        gapH4,
+                      ],
+                    );
+            },
+          )),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(60.0);
+  Size get preferredSize => const Size.fromHeight(300.0);
 }

@@ -1,5 +1,6 @@
+import 'dart:async';
+
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

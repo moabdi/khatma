@@ -1,3 +1,4 @@
+import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/common/navigation_bar.dart';
 import 'package:khatma/src/common/widgets/app_bar.dart';
@@ -19,7 +20,6 @@ class KhatmatListScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
-              //WeeklyProgressChart(),
               gapH20,
               const KhatmatListView(),
             ],
