@@ -3,6 +3,7 @@ import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_color_picker.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_icon_picker.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -64,6 +65,9 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
+            style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                backgroundColor:
+                    WidgetStateProperty.all(updatedStyle.hexColor)),
             onPressed: () {
               widget.onChanged(updatedStyle);
               Navigator.pop(context);

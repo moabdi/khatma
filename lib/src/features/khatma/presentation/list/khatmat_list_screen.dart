@@ -17,15 +17,16 @@ class KhatmatListScreen extends StatelessWidget {
         title: AppLocalizations.of(context).appTitle,
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: CircleAvatar(
-                backgroundColor: Theme.of(context).primaryColor,
-                child: Icon(
-                  Icons.notifications,
-                  color: Theme.of(context).primaryIconTheme.color,
-                  size: 24,
-                ),
-              ))
+            onPressed: () {},
+            icon: CircleAvatar(
+              backgroundColor: Theme.of(context).primaryColor,
+              child: Icon(
+                Icons.notifications,
+                color: Theme.of(context).primaryIconTheme.color,
+                size: 24,
+              ),
+            ),
+          )
         ],
       ),
       body: SingleChildScrollView(

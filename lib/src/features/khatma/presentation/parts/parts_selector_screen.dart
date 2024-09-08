@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/common/extensions/string_utils.dart';
-import 'package:khatma/src/common/providers/linear_progress.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
@@ -14,7 +13,6 @@ import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma/src/common/widgets/conditional_content.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/common/widgets/app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
@@ -22,7 +20,6 @@ import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
-import 'package:khatma/src/themes/theme.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -34,7 +31,6 @@ class PartSelectorScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final khatmaValue = ref.watch(khatmaStreamProvider(khatmaId));
-
     return AsyncValueWidget<Khatma?>(
       loading: const LoadingListTile(),
       value: khatmaValue,
@@ -225,8 +221,7 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
                     actions: [
                       Avatar(
                         radius: 20,
-                        backgroundColor:
-                            Theme.of(context).primaryColorDark.withOpacity(.5),
+                        backgroundColor: khatma.style.hexColor.withOpacity(.2),
                         bottom: Avatar(
                           radius: 5,
                           backgroundColor: khatma.style.hexColor,
