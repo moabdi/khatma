@@ -17,9 +17,9 @@ class TopCard extends StatelessWidget {
           padding: EdgeInsets.only(right: 0),
           decoration: BoxDecoration(
             image: DecorationImage(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.centerRight,
               image: AssetImage('assets/images/hifdz.png'),
-              opacity: 0.2,
+              opacity: 0.3,
             ),
           ),
           width: double.infinity,
@@ -27,7 +27,7 @@ class TopCard extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.only(right: 0),
-          height: (height * .55),
+          height: (height * .5),
           width: double.infinity,
           child: SizedBox(
             width: height * .8,

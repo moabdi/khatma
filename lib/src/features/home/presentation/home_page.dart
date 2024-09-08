@@ -54,11 +54,14 @@ class KhatmatListScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    gapH24,
-                    KhatmatListView(),
-                  ],
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      gapH24,
+                      KhatmatListView(),
+                    ],
+                  ),
                 );
               },
               childCount: 1,
