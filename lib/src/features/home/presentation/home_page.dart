@@ -17,6 +17,8 @@ class KhatmatListScreen extends StatelessWidget {
             stretch: true,
             centerTitle: false,
             leadingWidth: 45,
+            pinned: true,
+            expandedHeight: 50.0,
             leading: Center(
               child: Padding(
                 padding: const EdgeInsets.only(left: 10),
@@ -24,8 +26,7 @@ class KhatmatListScreen extends StatelessWidget {
               ),
             ),
             backgroundColor: Theme.of(context).primaryColor,
-            pinned: true,
-            expandedHeight: 50.0,
+            surfaceTintColor: Theme.of(context).primaryColor,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: false,
               title: AnimatedTextKit(

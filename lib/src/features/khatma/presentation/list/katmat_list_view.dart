@@ -40,8 +40,8 @@ class KhatmatListView extends ConsumerWidget {
                   color: Theme.of(context).primaryColor.withOpacity(.9)),
             ),
           ),
-          gapH8,
           ListView.builder(
+            padding: EdgeInsets.all(5),
             shrinkWrap: true,
             primary: false,
             itemCount: khatmat.length,
@@ -58,7 +58,7 @@ class KhatmatListView extends ConsumerWidget {
 
   Widget buildCardKhatma(Khatma khatma, WidgetRef ref, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Card(
         elevation: 0.4,
         clipBehavior: Clip.antiAlias,
