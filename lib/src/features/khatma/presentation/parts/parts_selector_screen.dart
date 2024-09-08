@@ -37,7 +37,6 @@ class PartSelectorScreen extends ConsumerWidget {
       data: (khatma) => khatma == null
           ? EmptyPlaceholderWidget(message: 'Khatma not found')
           : Scaffold(
-              backgroundColor: Theme.of(context).disabledColor.withOpacity(.5),
               appBar: KhatmaAppBar(khatmaId: khatmaId),
               floatingActionButton: PartFloatingButton(
                 khatmaId: khatmaId,
@@ -46,16 +45,19 @@ class PartSelectorScreen extends ConsumerWidget {
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,
               body: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildDescriptionCard(khatma, context),
-                      gapH8,
-                      buildParts(context, khatma),
-                      gapH64,
-                    ],
+                child: Container(
+                  color: khatma.style.hexColor.withOpacity(.1),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        buildDescriptionCard(khatma, context),
+                        gapH8,
+                        buildParts(context, khatma),
+                        gapH64,
+                      ],
+                    ),
                   ),
                 ),
               ),

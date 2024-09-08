@@ -62,7 +62,7 @@ class AppTheme {
       primaryColorLight: Colors.green,
       brightness: Brightness.light,
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: primaryColor.withOpacity(.1),
+      scaffoldBackgroundColor: Colors.white,
       // scaffoldBackgroundColor: colorScheme.background,
       appBarTheme: AppBarTheme(
         elevation: .2,
