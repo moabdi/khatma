@@ -1,6 +1,6 @@
-import 'package:khatma/src/common/utils/common.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:khatma/src/features/common/navigation_bar.dart';
-import 'package:khatma/src/features/home/presentation/header/home_app_bar.dart';
+import 'package:khatma/src/features/home/presentation/header/top_card.dart';
 import 'package:khatma/src/features/khatma/presentation/list/katmat_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
@@ -11,34 +11,59 @@ class KhatmatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //drawer: const MainDrawer(),
-      appBar: HomeAppBar(
-        title: AppLocalizations.of(context).appTitle,
-        height: MediaQuery.of(context).size.height / 3,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: CircleAvatar(
-              backgroundColor: Theme.of(context).primaryColor,
-              child: Icon(
-                Icons.notifications,
-                color: Theme.of(context).primaryIconTheme.color,
-                size: 24,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            stretch: true,
+            centerTitle: false,
+            leadingWidth: 45,
+            leading: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Image.asset("assets/images/khatma/khatma.png"),
               ),
             ),
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              gapH20,
-              const KhatmatListView(),
-            ],
+            backgroundColor: Theme.of(context).primaryColor,
+            pinned: true,
+            expandedHeight: 50.0,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: false,
+              title: AnimatedTextKit(
+                totalRepeatCount: 1,
+                animatedTexts: [
+                  ColorizeAnimatedText(
+                    "Khatma",
+                    textStyle: Theme.of(context).textTheme.titleMedium!,
+                    colors: [
+                      Colors.yellowAccent,
+                      Colors.yellowAccent,
+                      Theme.of(context).primaryColor,
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
+          SliverToBoxAdapter(
+            child: Container(
+              color: Theme.of(context).primaryColor,
+              child: TopCard(height: MediaQuery.of(context).size.height / 6),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Column(
+                  children: [
+                    gapH24,
+                    KhatmatListView(),
+                  ],
+                );
+              },
+              childCount: 1,
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: MainNavigationBar(),
     );
