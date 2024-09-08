@@ -24,6 +24,8 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.16.4" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_auth_web-5.12.5" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_analytics_web-0.5.9+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_analytics-11.2.1" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

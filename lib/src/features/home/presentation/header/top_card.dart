@@ -1,31 +1,25 @@
+import 'dart:math';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/lottie_asset.dart';
 
 class TopCard extends StatelessWidget {
-  const TopCard({super.key});
+  const TopCard({super.key, required this.height});
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          height: 150,
+          height: height * .9,
           padding: EdgeInsets.only(right: 0),
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
             image: DecorationImage(
               alignment: Alignment.bottomRight,
               image: AssetImage('assets/images/hifdz.png'),
               opacity: 0.2,
-            ),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Theme.of(context).primaryColor.withOpacity(.01),
-                Theme.of(context).primaryColor,
-              ],
             ),
           ),
           width: double.infinity,
@@ -33,21 +27,10 @@ class TopCard extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.only(right: 0),
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Theme.of(context).primaryColor,
-                Theme.of(context).primaryColor,
-              ],
-            ),
-          ),
-          height: 80.0,
+          height: (height * .55),
           width: double.infinity,
           child: SizedBox(
-            width: 150.0,
+            width: height * .8,
             child: DefaultTextStyle(
               textAlign: TextAlign.right,
               style: Theme.of(context)
@@ -77,7 +60,10 @@ class TopCard extends StatelessWidget {
   ColorizeAnimatedText animateText(BuildContext context, String text) {
     return ColorizeAnimatedText(
       text,
-      textStyle: Theme.of(context).textTheme.headlineMedium!,
+      textStyle: Theme.of(context)
+          .textTheme
+          .headlineMedium!
+          .copyWith(fontSize: min(height * .25, 18)),
       colors: [Colors.white, Colors.yellowAccent],
       textDirection: TextDirection.rtl,
       speed: Duration(milliseconds: 100),

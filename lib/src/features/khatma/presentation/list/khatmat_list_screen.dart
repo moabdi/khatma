@@ -1,6 +1,6 @@
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/common/navigation_bar.dart';
-import 'package:khatma/src/common/widgets/app_bar.dart';
+import 'package:khatma/src/features/home/presentation/header/home_app_bar.dart';
 import 'package:khatma/src/features/khatma/presentation/list/katmat_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
@@ -13,8 +13,9 @@ class KhatmatListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //drawer: const MainDrawer(),
-      appBar: TopBar(
+      appBar: HomeAppBar(
         title: AppLocalizations.of(context).appTitle,
+        height: MediaQuery.of(context).size.height / 3,
         actions: [
           IconButton(
             onPressed: () {},
