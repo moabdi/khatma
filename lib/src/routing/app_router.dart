@@ -3,7 +3,7 @@ import 'package:khatma/src/features/authentication/presentation/sign_in/custom_s
 import 'package:khatma/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/parts_selector_screen.dart';
-import 'package:khatma/src/features/khatma/presentation/list/khatmat_list_screen.dart';
+import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';

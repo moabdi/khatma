@@ -5,7 +5,6 @@ import 'package:khatma/src/features/khatma/presentation/list/katmat_list_view.da
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/constants/app_sizes.dart';
 
-/// Shows the list of khatmas with a search field at the top.
 class KhatmatListScreen extends StatelessWidget {
   const KhatmatListScreen({super.key});
 
