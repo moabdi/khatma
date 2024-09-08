@@ -1,3 +1,4 @@
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -10,43 +11,69 @@ class MainNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var selectedLabelStyle = AppTheme.getTheme()
+        .textTheme
+        .labelLarge!
+        .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
+
+    var unselectedLabelStyle = AppTheme.getTheme()
+        .textTheme
+        .labelLarge!
+        .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
     return BottomNavigationBar(
-      backgroundColor: AppTheme.getTheme().disabledColor,
-      unselectedLabelStyle: AppTheme.getTheme()
-          .textTheme
-          .labelLarge!
-          .copyWith(fontSize: 11, fontWeight: FontWeight.w600),
-      selectedLabelStyle: AppTheme.getTheme()
-          .textTheme
-          .labelLarge!
-          .copyWith(fontSize: 11, fontWeight: FontWeight.w600),
+      type: BottomNavigationBarType.fixed,
+      //backgroundColor: AppTheme.getTheme().disabledColor,
+      fixedColor: Theme.of(context).primaryColor,
+      unselectedLabelStyle: unselectedLabelStyle,
+      selectedLabelStyle: selectedLabelStyle,
       items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_filled),
-          label: AppLocalizations.of(context).home,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.book),
-          label: AppLocalizations.of(context).quran,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.new_label),
-          label: AppLocalizations.of(context).create,
-        ),
+        item(context,
+            icon: Icons.home_filled, label: AppLocalizations.of(context).home),
+        item(context,
+            icon: FontAwesomeIcons.book,
+            label: AppLocalizations.of(context).quran),
+        item(context,
+            icon: Icons.add_box_outlined,
+            label: AppLocalizations.of(context).create),
+        item(context,
+            icon: Icons.person, label: AppLocalizations.of(context).parts),
       ],
-      onTap: (value) => {
-        if (value == 0)
-          {context.goNamed(AppRoute.home.name)}
-        else if (value == 1)
-          {
-            context.goNamed(
-              AppRoute.quran.name,
-              pathParameters: {'idSourat': "1", 'idVerset': "1"},
-            ),
-          }
-        else if (value == 2)
-          {context.goNamed(AppRoute.addKhatma.name)}
+      onTap: (value) {
+        switch (value) {
+          case 0:
+            goHome(context);
+            break;
+          case 1:
+            openQuran(context);
+            break;
+          case 2:
+            addKhatma(context);
+            break;
+          case 3:
+            addKhatma(context);
+            break;
+        }
       },
+    );
+  }
+
+  void addKhatma(BuildContext context) =>
+      context.goNamed(AppRoute.addKhatma.name);
+
+  void openQuran(BuildContext context) {
+    return context.goNamed(
+      AppRoute.quran.name,
+      pathParameters: {'idSourat': "1", 'idVerset': "1"},
+    );
+  }
+
+  void goHome(BuildContext context) => context.goNamed(AppRoute.home.name);
+
+  BottomNavigationBarItem item(BuildContext context,
+      {required IconData icon, required String label}) {
+    return BottomNavigationBarItem(
+      icon: Icon(icon),
+      label: label,
     );
   }
 }
