@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/utils/delay.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'khatmas_repository.g.dart';
@@ -106,13 +107,15 @@ Future<List<Khatma>> khatmasListFuture(KhatmasListFutureRef ref) {
 
 @riverpod
 Stream<Khatma?> khatmaStream(KhatmaStreamRef ref, KhatmaID id) {
+  delay(true);
   final khatmasRepository = ref.watch(khatmasRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
   return khatmasRepository.watchKhatma(userUid, id);
 }
 
 @riverpod
-Future<Khatma?> khatmaFuture(KhatmaFutureRef ref, KhatmaID id) {
+Future<Khatma?> khatmaFuture(KhatmaFutureRef ref, KhatmaID id) async {
+  await delay(true, milliseconds: 100);
   final khatmasRepository = ref.watch(khatmasRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
   return khatmasRepository.fetchKhatma(userUid, id);

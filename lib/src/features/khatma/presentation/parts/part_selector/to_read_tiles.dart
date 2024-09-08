@@ -9,8 +9,8 @@ import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_tile.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
-class UnReadPartTiles extends ConsumerWidget {
-  const UnReadPartTiles({
+class ToReadPartTiles extends ConsumerWidget {
+  const ToReadPartTiles({
     super.key,
     required this.unit,
     required this.color,

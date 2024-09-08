@@ -18,7 +18,7 @@ import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/unread_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/parts/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
@@ -70,7 +70,7 @@ class PartSelectorScreen extends ConsumerWidget {
       children: [
         buildReadPartCard(context, khatma),
         gapH8,
-        buildUnReadPartCard(context, khatma),
+        buildToReadPartCard(context, khatma),
       ],
     );
   }
@@ -101,7 +101,7 @@ class PartSelectorScreen extends ConsumerWidget {
     );
   }
 
-  Widget buildUnReadPartCard(BuildContext context, Khatma khatma) {
+  Widget buildToReadPartCard(BuildContext context, Khatma khatma) {
     return ConditionalContent(
       condition: khatma.isCompleted,
       primary: Stack(
@@ -141,7 +141,7 @@ class PartSelectorScreen extends ConsumerWidget {
         clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: UnReadPartTiles(
+          child: ToReadPartTiles(
             key: UniqueKey(),
             unit: khatma.unit,
             color: khatma.style.hexColor,

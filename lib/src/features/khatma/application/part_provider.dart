@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/utils/delay.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
 part 'part_provider.g.dart';
@@ -16,6 +17,7 @@ final Map unitPathMap = {
 
 @riverpod
 FutureOr<List<Part>> parts(PartsRef ref, String unit) async {
+  await delay(true, milliseconds: 300);
   final String responseData =
       await rootBundle.loadString('assets/quran/en/${unitPathMap[unit]}');
   final List<dynamic> dataSourat = json.decode(responseData);

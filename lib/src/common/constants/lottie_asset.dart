@@ -30,7 +30,8 @@ final lottieStartReading = Lottie.asset(
 );
 
 final lottieNoData = Lottie.asset(
-  'assets/lottie/10.json',
+  'assets/lottie/not_found.json',
+  width: 200,
   repeat: true,
   animate: true,
 );
