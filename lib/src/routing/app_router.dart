@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/custom_sign_in_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/parts_selector_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.dart';
 import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
@@ -73,7 +73,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             name: AppRoute.khatmaDetails.name,
             builder: (context, state) {
               final khatmaId = state.pathParameters['id']!;
-              return PartSelectorScreen(khatmaId: khatmaId);
+              return KhatmaReadScreen(khatmaId: khatmaId);
             },
             routes: [
               GoRoute(

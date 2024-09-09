@@ -16,16 +16,16 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/part_floating_button.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/read_tiles.dart';
-import 'package:khatma/src/features/khatma/presentation/parts/part_selector/to_read_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/read/part_selector/part_floating_button.dart';
+import 'package:khatma/src/features/khatma/presentation/read/part_selector/read_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/read/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-class PartSelectorScreen extends ConsumerWidget {
-  const PartSelectorScreen({super.key, required this.khatmaId});
+class KhatmaReadScreen extends ConsumerWidget {
+  const KhatmaReadScreen({super.key, required this.khatmaId});
   final String khatmaId;
 
   @override
