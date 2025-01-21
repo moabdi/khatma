@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/features/home/presentation/header/top_card.dart';
 
 class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {

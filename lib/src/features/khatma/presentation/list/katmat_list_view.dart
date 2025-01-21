@@ -1,4 +1,4 @@
-import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';

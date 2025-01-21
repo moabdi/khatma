@@ -9,7 +9,7 @@ class CustomDropdownMenu<T> extends StatelessWidget {
       this.enabled = true});
 
   final T? value;
-  final Function(T?)? onChanged;
+  final ValueChanged<T?>? onChanged;
   final List<DropdownMenuItem<T>>? items;
   final bool enabled;
   final TextEditingController unitController = TextEditingController();
@@ -17,20 +17,20 @@ class CustomDropdownMenu<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 43,
+      height: 40,
       decoration: BoxDecoration(
         color: Theme.of(context).disabledColor,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Center(
         child: DropdownButton<T>(
-          menuMaxHeight: 300,
           isDense: true,
-          focusColor: Theme.of(context).primaryColor.withOpacity(.3),
-          borderRadius: BorderRadius.circular(10),
-          underline: const SizedBox(),
           elevation: 12,
+          menuMaxHeight: 300,
+          alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          borderRadius: BorderRadius.circular(25),
+          underline: const SizedBox(),
           value: value,
           onChanged: onChanged,
           items: enabled ? items : null,

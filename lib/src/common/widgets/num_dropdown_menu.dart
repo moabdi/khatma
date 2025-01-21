@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/widgets/custom_dropdown_menu.dart';
+import 'package:khatma_ui/components/menu/custom_dropdown_menu.dart';
 
 class NumDropdownMenu extends StatelessWidget {
   NumDropdownMenu({

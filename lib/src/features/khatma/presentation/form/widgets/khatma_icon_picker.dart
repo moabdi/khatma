@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class KhatmaIconPicker extends StatelessWidget {

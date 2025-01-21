@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 
 class BannerPlaceholder extends StatelessWidget {
   const BannerPlaceholder({Key? key}) : super(key: key);

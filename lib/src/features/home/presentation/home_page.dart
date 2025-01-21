@@ -1,9 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/features/common/navigation_bar.dart';
 import 'package:khatma/src/features/home/presentation/header/top_card.dart';
 import 'package:khatma/src/features/khatma/presentation/list/katmat_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
 
 class KhatmatListScreen extends StatelessWidget {
   const KhatmatListScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma_ui/utils/date_formatter.dart';
 
 class DatePickerField extends StatefulWidget {
   const DatePickerField(

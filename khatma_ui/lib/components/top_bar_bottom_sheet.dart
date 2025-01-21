@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class TopBarBottomSheet extends StatelessWidget {
   const TopBarBottomSheet({
@@ -20,7 +19,7 @@ class TopBarBottomSheet extends StatelessWidget {
               height: 5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(45),
-                color: AppTheme.getTheme().dividerColor,
+                color: Theme.of(context).dividerColor,
               ),
             ),
           ),

@@ -24,7 +24,7 @@ class MainApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
         FirebaseUILocalizations.delegate,
       ],
-      supportedLocales: const [Locale('en')],
+      supportedLocales: const [Locale('fr')],
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',

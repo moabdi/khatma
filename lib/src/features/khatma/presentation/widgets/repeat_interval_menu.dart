@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/custom_dropdown_menu.dart';
+import 'package:khatma_ui/components/menu/custom_dropdown_menu.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class RepeatIntervalDropdownMenu extends StatelessWidget {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 
 class RecurrenceText extends StatelessWidget {
   final Recurrence recurrence;
@@ -10,11 +12,19 @@ class RecurrenceText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      recurrence.repeat
-          ? _buildRepeatText(recurrence, context)
-          : AppLocalizations.of(context).noRepeatDescription,
-    );
+    return recurrence.repeat
+        ? Text(_buildRepeatText(recurrence, context))
+        : Row(
+            children: [
+              Icon(
+                size: 12,
+                Icons.info,
+                color: Theme.of(context).colorScheme.warning,
+              ),
+              gapW4,
+              Text(AppLocalizations.of(context).noRepeatDescription),
+            ],
+          );
   }
 
   String _buildRepeatText(Recurrence recurrence, BuildContext context) {

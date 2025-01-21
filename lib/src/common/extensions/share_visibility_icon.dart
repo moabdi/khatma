@@ -10,8 +10,6 @@ extension ShareIcon on ShareVisibility {
         return Icons.lock;
       case ShareVisibility.group:
         return Icons.group;
-      default:
-        return Icons.error;
     }
   }
 }

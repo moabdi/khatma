@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/widgets/date_picker_field.dart';
-import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/components/input/date_picker_field.dart';
 
 class DateField extends StatelessWidget {
   const DateField({
@@ -22,7 +21,7 @@ class DateField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppTheme.getTheme().textTheme.labelSmall,
+          style: Theme.of(context).textTheme.labelSmall,
         ),
         const SizedBox(width: 10),
         Expanded(

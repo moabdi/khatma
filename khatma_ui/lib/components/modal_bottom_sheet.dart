@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
-import 'package:khatma/src/features/khatma/presentation/form/widgets/top_bar_bottom_sheet.dart';
-import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
+import 'package:khatma_ui/components/top_bar_bottom_sheet.dart';
 
 class ModalBottomSheet extends StatelessWidget {
   const ModalBottomSheet({
@@ -18,7 +17,7 @@ class ModalBottomSheet extends StatelessWidget {
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       decoration: BoxDecoration(
-        color: AppTheme.getTheme().disabledColor,
+        color: Theme.of(context).disabledColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -39,7 +38,7 @@ class ModalBottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 3),
                   child: Text(title,
-                      style: AppTheme.getTheme().textTheme.titleLarge),
+                      style: Theme.of(context).textTheme.titleLarge),
                 ),
                 gapH20,
                 child,

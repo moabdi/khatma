@@ -7,7 +7,7 @@ import 'package:khatma/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common_widgets/action_text_button.dart';
 import 'package:khatma/src/common_widgets/responsive_center.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Simple account screen showing some user info and a logout button.

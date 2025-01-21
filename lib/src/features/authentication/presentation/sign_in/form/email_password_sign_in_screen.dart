@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:khatma/src/common_widgets/custom_text_button.dart';
 import 'package:khatma/src/common_widgets/primary_button.dart';
 import 'package:khatma/src/common_widgets/responsive_scrollable_card.dart';
-import 'package:khatma/src/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Email & password sign in screen.

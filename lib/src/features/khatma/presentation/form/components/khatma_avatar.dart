@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
 
 class KhatmaAvatar extends StatelessWidget {
   const KhatmaAvatar({

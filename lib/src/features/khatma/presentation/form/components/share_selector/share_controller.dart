@@ -10,27 +10,15 @@ class ShareController extends _$ShareController {
 
   void updateMaxPartToReserve(int? value) {
     KhatmaShare share = ref.read(shareNotifierProvider);
-    if (share.maxPartToRead == null ||
-        (value != null && value > share.maxPartToRead!)) {
-      ref.read(shareNotifierProvider.notifier).update(
-          share.copyWith(maxPartToReserve: value, maxPartToRead: value));
-    } else {
-      ref
-          .read(shareNotifierProvider.notifier)
-          .update(share.copyWith(maxPartToReserve: value));
-    }
+    ref
+        .read(shareNotifierProvider.notifier)
+        .update(share.copyWith(maxPartToReserve: value));
   }
 
   void updateMaxPartToRead(int? value) {
     KhatmaShare share = ref.read(shareNotifierProvider);
-    if (share.maxPartToReserve == null ||
-        (value != null && value < share.maxPartToReserve!)) {
-      ref.read(shareNotifierProvider.notifier).update(
-          share.copyWith(maxPartToReserve: value, maxPartToRead: value));
-    } else {
-      ref
-          .read(shareNotifierProvider.notifier)
-          .update(share.copyWith(maxPartToRead: value));
-    }
+    ref
+        .read(shareNotifierProvider.notifier)
+        .update(share.copyWith(maxPartToRead: value));
   }
 }

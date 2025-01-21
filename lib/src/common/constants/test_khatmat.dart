@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/common/khatma_images.dart';
-import 'package:khatma/src/features/khatma/presentation/common/khatma_utils.dart';
+import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
 import 'package:random_string/random_string.dart';
 
 var random = Random();

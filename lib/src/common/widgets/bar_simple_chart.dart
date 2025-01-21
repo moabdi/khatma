@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 class BarChartSample extends StatefulWidget {

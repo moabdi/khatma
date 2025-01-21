@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/widgets/custom_dropdown_menu.dart';
+import 'package:khatma_ui/components/menu/custom_dropdown_menu.dart';
 
 class NumberDropdownMenu extends StatelessWidget {
   NumberDropdownMenu(
@@ -10,7 +10,7 @@ class NumberDropdownMenu extends StatelessWidget {
       this.maxValue = 20});
 
   final int? value;
-  final Function(int?)? onChanged;
+  final ValueChanged<int?>? onChanged;
   final bool enabled;
   final int maxValue;
   final TextEditingController unitController = TextEditingController();

@@ -1,9 +1,9 @@
+import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/buttons/primary_button.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:go_router/go_router.dart';
 
 /// Placeholder widget showing a message and CTA to go back to the home screen.

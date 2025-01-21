@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common/constants/app_sizes.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
 
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -8,7 +8,6 @@ import 'package:khatma/src/features/khatma/presentation/form/components/recurren
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_dates_form.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/repeat_enabler_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 
 class RecurrenceSelector extends ConsumerWidget {
   const RecurrenceSelector({
@@ -22,8 +21,6 @@ class RecurrenceSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var isChanged = ref.read(formKhatmaProvider).recurrence.hashCode !=
-        ref.watch(recurrenceNotifierProvider).hashCode;
     return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -37,12 +34,10 @@ class RecurrenceSelector extends ConsumerWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-                onPressed: isChanged
-                    ? () {
-                        onChanged(ref.read(recurrenceNotifierProvider));
-                        Navigator.pop(context);
-                      }
-                    : null,
+                onPressed: () {
+                  onChanged(ref.read(recurrenceNotifierProvider));
+                  Navigator.pop(context);
+                },
                 child: Text(AppLocalizations.of(context).apply)),
           ),
           gapH12,
