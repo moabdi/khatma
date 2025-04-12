@@ -1,7 +1,6 @@
-import 'dart:math';
-
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:khatma/src/features/khatma/presentation/khatma_bar_chart.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/themes/theme.dart';
 
@@ -10,23 +9,12 @@ class BarChartSample extends StatefulWidget {
     super.key,
     required this.title,
     required this.subTitle,
+    required this.khatma,
   });
 
+  final KhatmaHistory khatma;
   final String title;
   final String subTitle;
-  final Map<int, double> data = {
-    0: 5,
-    1: 7,
-    2: 5,
-    3: 10,
-    4: 2,
-    5: 3,
-    6: 6,
-    7: 6,
-    8: 6,
-    9: 6,
-    10: 6,
-  };
 
   final Color barBackgroundColor = AppTheme.getTheme().disabledColor;
   final Color barColor = AppTheme.primaryColors.withOpacity(.7);
@@ -80,165 +68,13 @@ class BarChartSampleState extends State<BarChartSample> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: BarChart(mainBarData()),
+                  child: KhatmaBarChart(khatma: widget.khatma),
                 ),
               ),
             ],
           ),
         ],
       ),
-    );
-  }
-
-  List<BarChartGroupData> showingGroups() => widget.data.entries
-      .map((entry) => makeGroupData(entry.key, entry.value))
-      .toList();
-
-  BarChartGroupData makeGroupData(
-    int x,
-    double y, {
-    bool isTouched = false,
-    Color? barColor,
-    double width = 7,
-    List<int> showTooltips = const [],
-  }) {
-    barColor ??= widget.barColor;
-    double maxToY =
-        max(10, widget.data.values.reduce((a, b) => a > b ? a : b).toDouble());
-    return BarChartGroupData(
-      x: x,
-      barRods: [
-        BarChartRodData(
-          toY: isTouched ? y + 1 : y,
-          color: isTouched ? widget.touchedBarColor : barColor,
-          width: width,
-          borderSide:
-              BorderSide(color: Theme.of(context).primaryColor, width: 0),
-          backDrawRodData: BackgroundBarChartRodData(
-            show: true,
-            color: widget.barBackgroundColor,
-            toY: maxToY,
-          ),
-        ),
-      ],
-      showingTooltipIndicators: showTooltips,
-    );
-  }
-
-  BarChartData mainBarData() {
-    return BarChartData(
-      barTouchData: BarTouchData(
-        enabled: true,
-        touchTooltipData: BarTouchTooltipData(
-          tooltipBgColor: Colors.white,
-          tooltipHorizontalAlignment: FLHorizontalAlignment.right,
-          tooltipMargin: -10,
-          getTooltipItem: (group, groupIndex, rod, rodIndex) {
-            String weekDay;
-            switch (group.x) {
-              case 0:
-                weekDay = 'Monday';
-                break;
-              case 1:
-                weekDay = 'Tuesday';
-                break;
-              case 2:
-                weekDay = 'Wednesday';
-                break;
-              case 3:
-                weekDay = 'Thursday';
-                break;
-              case 4:
-                weekDay = 'Friday';
-                break;
-              case 5:
-                weekDay = 'Saturday';
-                break;
-              case 6:
-                weekDay = 'Sunday';
-                break;
-              default:
-                throw Error();
-            }
-            return BarTooltipItem(
-              '$weekDay\n',
-              const TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: (rod.toY - 1).toString(),
-                  style: TextStyle(
-                    color: widget.touchedBarColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-      titlesData: FlTitlesData(
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            getTitlesWidget: getTitles,
-            reservedSize: 38,
-          ),
-        ),
-        leftTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-      ),
-      borderData: FlBorderData(show: false),
-      barGroups: showingGroups(),
-      gridData: const FlGridData(show: false),
-    );
-  }
-
-  Widget getTitles(double value, TitleMeta meta) {
-    var style = TextStyle(
-      color: Theme.of(context).primaryColor,
-      fontWeight: FontWeight.bold,
-      fontSize: 14,
-    );
-    Widget text;
-    switch (value.toInt()) {
-      case 0:
-        text = Text('M', style: style);
-        break;
-      case 1:
-        text = Text('T', style: style);
-        break;
-      case 2:
-        text = Text('W', style: style);
-        break;
-      case 3:
-        text = Text('T', style: style);
-        break;
-      case 4:
-        text = Text('F', style: style);
-        break;
-      case 5:
-        text = Text('S', style: style);
-        break;
-      case 6:
-        text = Text('S', style: style);
-        break;
-      default:
-        text = Text('', style: style);
-        break;
-    }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16,
-      child: text,
     );
   }
 }

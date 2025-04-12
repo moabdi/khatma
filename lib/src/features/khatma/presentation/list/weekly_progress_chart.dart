@@ -12,10 +12,7 @@ class WeeklyProgressChart extends StatelessWidget {
       elevation: 0.1,
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: BarChartSample(
-          title: 'Part completion',
-          subTitle: 'Moyenne quotidienne',
-        ),
+        child: Text("data"),
       ),
     );
   }

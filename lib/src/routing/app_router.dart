@@ -66,7 +66,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             name: AppRoute.addKhatma.name,
             builder: (context, state) {
               ref.invalidate(formKhatmaProvider);
-              return const KhatmaSuccessComplete();
+              return KhatmaSuccessComplete();
             },
           ),
           GoRoute(
