@@ -19,8 +19,9 @@ final lottieSuccessAsset = Lottie.asset(
 
 final lottieCongratAsset = Lottie.asset(
   'assets/lottie/congratulation.json',
-  width: double.infinity,
-  repeat: false,
+  width: 500,
+  height: 200,
+  repeat: true,
   animate: true,
 );
 

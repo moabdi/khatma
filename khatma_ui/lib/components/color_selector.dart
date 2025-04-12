@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ColorSelector extends StatefulWidget {
+  final String label;
   final Color? color;
   final bool? isSelected;
   final Function(Color)? onTap;
 
   const ColorSelector({
     super.key,
+    required this.label,
     this.color,
     this.isSelected,
     this.onTap,
@@ -23,8 +25,8 @@ class _ColorSelectorState extends State<ColorSelector> {
     return ListView(
       shrinkWrap: true,
       children: <Widget>[
-        ListTile(title: Text('Colour')),
-        Container(
+        const ListTile(title: Text('Colour')),
+        SizedBox(
           height: 50,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -45,7 +47,7 @@ class _ColorSelectorState extends State<ColorSelector> {
                   });
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 8.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
                   decoration: BoxDecoration(
                     color: colorList[index],
                     shape: BoxShape.circle,

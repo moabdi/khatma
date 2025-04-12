@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma_ui/extentions/string_utils.dart';
+import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma_ui/components/menu/num_dropdown_menu.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/repeat_interval_menu.dart';

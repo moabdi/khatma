@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class CIconButton extends StatelessWidget {
   const CIconButton(
@@ -19,17 +18,17 @@ class CIconButton extends StatelessWidget {
       onPressed: enabled == true ? onPressed : null,
       icon: Icon(
         icon,
-        color: AppTheme.getTheme().primaryColor,
+        color: Theme.of(context).primaryColor,
         size: 15,
       ),
       label: Text(label,
-          style: AppTheme.getTheme().textTheme.titleSmall!.copyWith(
-              color: AppTheme.getTheme().primaryColor,
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(
+              color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.w600)),
       style: ElevatedButton.styleFrom(
-          disabledBackgroundColor: AppTheme.getTheme().disabledColor,
-          shadowColor: AppTheme.getTheme().disabledColor.withOpacity(0.1),
-          backgroundColor: AppTheme.getTheme().primaryColor.withOpacity(0.1)),
+          disabledBackgroundColor: Theme.of(context).disabledColor,
+          shadowColor: Theme.of(context).disabledColor.withOpacity(0.1),
+          backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1)),
     );
   }
 }

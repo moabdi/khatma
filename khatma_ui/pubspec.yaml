@@ -13,3 +13,4 @@ dependencies:
   intl: any
   font_awesome_flutter: ^10.3.0 
   time_machine: ^0.9.17
+  lottie: ^2.7.0

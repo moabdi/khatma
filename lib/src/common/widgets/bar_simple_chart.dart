@@ -22,6 +22,10 @@ class BarChartSample extends StatefulWidget {
     4: 2,
     5: 3,
     6: 6,
+    7: 6,
+    8: 6,
+    9: 6,
+    10: 6,
   };
 
   final Color barBackgroundColor = AppTheme.getTheme().disabledColor;

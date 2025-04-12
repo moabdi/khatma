@@ -52,7 +52,7 @@ class PrimaryButton extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
-                    .titleMedium!
+                    .titleSmall!
                     .copyWith(color: Colors.white),
               ),
       ),

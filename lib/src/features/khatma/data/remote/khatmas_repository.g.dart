@@ -53,7 +53,7 @@ final khatmasListFutureProvider =
 );
 
 typedef KhatmasListFutureRef = AutoDisposeFutureProviderRef<List<Khatma>>;
-String _$khatmaStreamHash() => r'c068d7a1add846be36c84995e35295495a4bf207';
+String _$khatmaStreamHash() => r'f69f83331e1fc29eb631b6dd77b33512f1c3f4c7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -243,7 +243,7 @@ class _KhatmaStreamProviderElement
   KhatmaID get id => (origin as KhatmaStreamProvider).id;
 }
 
-String _$khatmaFutureHash() => r'6d1917eb5f9a407b890ec9223c91cd0a77e98acf';
+String _$khatmaFutureHash() => r'6f7460c6a585f8014627a5218e9fbd35dd081705';
 
 /// See also [khatmaFuture].
 @ProviderFor(khatmaFuture)

@@ -1,5 +1,5 @@
-import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
+import 'package:khatma_ui/extentions/string_extensions.dart';
 
 /// Generic function to show a platform-aware Material or Cupertino dialog
 Future<bool?> showAlertDialog({

@@ -4,7 +4,7 @@ import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma_ui/components/input/incremental_field.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-import 'package:khatma_ui/extentions/string_utils.dart';
+import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_controller.dart';
 
 class ShareLimit extends ConsumerWidget {
