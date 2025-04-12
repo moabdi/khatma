@@ -37,6 +37,19 @@ class KhatmaSuccessComplete extends StatelessWidget {
       parts: _generateRandomParts(),
     );
 
+    final privateKhatmaL = KhatmaHistory.private(
+      id: 'khatma_003',
+      unit: SplitUnit.hizb,
+      startDate: DateTime(2023, 3, 10),
+      endDate: DateTime(2023, 6, 10),
+      userId: 'user3',
+      parts: List.generate(
+        30,
+        (i) => KhatmaPartHistory(
+            id: i + 1, endDate: DateTime(2023, 3 + (i ~/ 7), 10 + (i % 5))),
+      ),
+    );
+
     return Container(
       width: double.infinity,
       child: Card(
@@ -58,11 +71,13 @@ class KhatmaSuccessComplete extends StatelessWidget {
               gapH12,
               DottedLine(dashLength: 10),
               KhatmaBarChart(
-                khatma: privateKhatma,
-                title: "Progress",
-                subTitle: "SubTitle",
+                khatma: privateKhatmaL,
+                title: "Completude",
+                subTitle: "Khatma Historique",
               ),
-              Spacer(),
+              gapH20,
+              Divider(),
+              gapH64,
               PrimaryButton(
                 color: Theme.of(context).primaryColor,
                 width: MediaQuery.of(context).size.width * .8,

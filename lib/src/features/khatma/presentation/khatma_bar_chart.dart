@@ -27,8 +27,17 @@ class KhatmaBarChart extends StatelessWidget {
     );
 
     final Map<String, int> partsPerDay = {};
+    final start = khatma.startDate;
+    final end = khatma.endDate;
+    final durationInDays = end.difference(start).inDays;
+
+    final bool groupByDay = durationInDays <= 15;
+
     for (final part in allParts) {
-      final dateStr = DateFormat('MM').format(part.endDate);
+      final dateStr = groupByDay
+          ? DateFormat('dd/MM').format(part.endDate)
+          : DateFormat('MMM').format(part.endDate);
+
       partsPerDay.update(dateStr, (val) => val + 1, ifAbsent: () => 1);
     }
 
@@ -51,17 +60,15 @@ class KhatmaBarChart extends StatelessWidget {
         ConditionalContent(
           condition: title != null,
           primary: ListTile(
-            titleAlignment: ListTileTitleAlignment.top,
+            titleAlignment: ListTileTitleAlignment.center,
             dense: true,
             leading: CircleAvatar(
               backgroundColor: AppTheme.primaryColors.withOpacity(.12),
               radius: 12,
-              child: Center(
-                child: Icon(
-                  Icons.trending_up,
-                  size: 20,
-                  color: AppTheme.primaryColors,
-                ),
+              child: Icon(
+                Icons.history_rounded,
+                size: 20,
+                color: AppTheme.primaryColors,
               ),
             ),
             title: Text(title ?? ""),
@@ -85,7 +92,6 @@ class KhatmaBarChart extends StatelessWidget {
       barRods: [
         BarChartRodData(
           toY: count.toDouble(),
-          color: AppTheme.primaryColors.withOpacity(.7),
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
@@ -142,7 +148,16 @@ class BarChartBuilder extends StatelessWidget {
                   return const SizedBox.shrink();
                 }
                 final date = sortedDates[index];
-                return Text(date);
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Transform.rotate(
+                    angle: -0.5,
+                    child: Text(
+                      date,
+                      style: const TextStyle(fontSize: 10),
+                    ),
+                  ),
+                );
               },
             ),
           ),

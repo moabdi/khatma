@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/widgets/bar_simple_chart.dart';
 
 class WeeklyProgressChart extends StatelessWidget {
   const WeeklyProgressChart({
