@@ -26,33 +26,79 @@ class KhatmaBarChart extends StatelessWidget {
       shared: (s) => s.parts.values.expand((list) => list).toList(),
     );
 
-    final Map<String, int> partsPerDay = {};
     final start = khatma.startDate;
-    final end = khatma.endDate;
-    final durationInDays = end.difference(start).inDays;
+    Map<DateTime, int> partsGrouped = {};
+    String Function(DateTime) labelFormatter =
+        (d) => DateFormat('dd/MM/yyyy').format(d);
+    String visualizationMode = 'par jour';
 
-    final bool groupByDay = durationInDays <= 15;
-
-    for (final part in allParts) {
-      final dateStr = groupByDay
-          ? DateFormat('dd/MM').format(part.endDate)
-          : DateFormat('MMM').format(part.endDate);
-
-      partsPerDay.update(dateStr, (val) => val + 1, ifAbsent: () => 1);
+    Map<DateTime, int> _groupBy(
+      List<KhatmaPartHistory> parts,
+      DateTime Function(DateTime) keyFn,
+    ) {
+      final map = <DateTime, int>{};
+      for (final part in parts) {
+        final key = keyFn(part.endDate);
+        map.update(key, (val) => val + 1, ifAbsent: () => 1);
+      }
+      return map;
     }
 
-    final sortedDates = partsPerDay.keys.toList()..sort();
-    final List<BarChartGroupData> barGroups = [];
-    final maxCount = partsPerDay.values.reduce((a, b) => a > b ? a : b);
+    partsGrouped = _groupBy(allParts, (d) => DateTime(d.year, d.month, d.day));
 
-    for (int i = 0; i < sortedDates.length; i++) {
-      final count = partsPerDay[sortedDates[i]]!;
-      double maxToY = maxCount.toDouble();
+    if (partsGrouped.length > 30) {
+      partsGrouped = _groupBy(allParts, (d) {
+        final daysSinceStart = d.difference(start).inDays;
+        final weekStart = start.add(Duration(days: (daysSinceStart ~/ 7) * 7));
+        return DateTime(weekStart.year, weekStart.month, weekStart.day);
+      });
+      visualizationMode = 'par semaine';
 
-      barGroups.add(
-        buildBarChartGroupData(i, count, context, maxToY),
-      );
+      if (partsGrouped.length > 20) {
+        partsGrouped = _groupBy(allParts, (d) => DateTime(d.year, d.month));
+        visualizationMode = 'par mois';
+
+        if (partsGrouped.length > 30) {
+          partsGrouped = _groupBy(allParts, (d) => DateTime(d.year));
+          labelFormatter = (d) => DateFormat('yyyy').format(d);
+          visualizationMode = 'par an';
+        } else {
+          final years = partsGrouped.keys.map((d) => d.year).toSet();
+          labelFormatter = (d) => years.length > 1
+              ? DateFormat('MMM yyyy').format(d)
+              : DateFormat('MMM').format(d);
+        }
+      } else {
+        final years = partsGrouped.keys.map((d) => d.year).toSet();
+        labelFormatter = (d) => years.length > 1
+            ? 'Semaine du ${DateFormat('dd/MM/yyyy').format(d)}'
+            : 'Semaine du ${DateFormat('dd/MM').format(d)}';
+      }
+    } else {
+      final years = partsGrouped.keys.map((d) => d.year).toSet();
+      labelFormatter = (d) => years.length > 1
+          ? DateFormat('dd/MM/yyyy').format(d)
+          : DateFormat('dd/MM').format(d);
     }
+
+    final sortedEntries = partsGrouped.entries.toList()
+      ..sort((a, b) => a.key.compareTo(b.key));
+
+    final sortedDates =
+        sortedEntries.map((e) => labelFormatter(e.key)).toList();
+
+    final maxToY = sortedEntries.map((e) => e.value).reduce(max).toDouble();
+
+    final barGroups = sortedEntries
+        .asMap()
+        .entries
+        .map((entry) => buildBarChartGroupData(
+              entry.key,
+              entry.value.value,
+              context,
+              maxToY,
+            ))
+        .toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,13 +112,13 @@ class KhatmaBarChart extends StatelessWidget {
               backgroundColor: AppTheme.primaryColors.withOpacity(.12),
               radius: 12,
               child: Icon(
-                Icons.history_rounded,
+                Icons.moving,
                 size: 20,
                 color: AppTheme.primaryColors,
               ),
             ),
             title: Text(title ?? ""),
-            subtitle: Text(subTitle ?? ""),
+            subtitle: Text('Visualisation $visualizationMode'),
           ),
         ),
         const SizedBox(height: 16),
@@ -91,6 +137,7 @@ class KhatmaBarChart extends StatelessWidget {
       x: i,
       barRods: [
         BarChartRodData(
+          // color: Theme.of(context).primaryColor.withOpacity(.5),
           toY: count.toDouble(),
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 0),
@@ -130,21 +177,12 @@ class BarChartBuilder extends StatelessWidget {
           leftTitles: AxisTitles(
             sideTitles: SideTitles(showTitles: false),
           ),
-          rightTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              interval: 2,
-              getTitlesWidget: (value, meta) {
-                return Text(value.toString());
-              },
-            ),
-          ),
           bottomTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
               getTitlesWidget: (value, meta) {
                 final index = value.toInt();
-                if (index % interval != 0) {
+                if (index % interval != 0 || index >= sortedDates.length) {
                   return const SizedBox.shrink();
                 }
                 final date = sortedDates[index];
@@ -170,10 +208,8 @@ class BarChartBuilder extends StatelessWidget {
 
   double computeInterval(BuildContext context, int totalBars) {
     final width = MediaQuery.of(context).size.width;
-
     final maxLabels = (width / 60).floor();
     final interval = (totalBars / maxLabels).ceilToDouble();
-
     return interval.clamp(1, totalBars.toDouble());
   }
 }
