@@ -12,6 +12,7 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
       name: json['name'] as String,
       description: json['description'] as String?,
       createDate: DateTime.parse(json['createDate'] as String),
+      startDate: DateTime.parse(json['startDate'] as String),
       endDate: json['endDate'] == null
           ? null
           : DateTime.parse(json['endDate'] as String),
@@ -29,6 +30,7 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
       unit: $enumDecode(_$SplitUnitEnumMap, json['unit']),
       share:
           KhatmaShare.fromJson(Map<String, Object?>.from(json['share'] as Map)),
+      repeats: (json['repeats'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
@@ -45,6 +47,7 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
 
   writeNotNull('description', instance.description);
   val['createDate'] = instance.createDate.toIso8601String();
+  val['startDate'] = instance.startDate.toIso8601String();
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   writeNotNull('creator', instance.creator);
   val['style'] = instance.style.toJson();
@@ -53,6 +56,7 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
   val['recurrence'] = instance.recurrence.toJson();
   val['unit'] = _$SplitUnitEnumMap[instance.unit]!;
   val['share'] = instance.share.toJson();
+  val['repeats'] = instance.repeats;
   return val;
 }
 

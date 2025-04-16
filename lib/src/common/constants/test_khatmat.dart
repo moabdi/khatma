@@ -20,6 +20,7 @@ var kTestKhatmat = [
       KhatmaPart(id: 3, userName: 'Ahmed', finishedDate: DateTime.now()),
     ],
     createDate: DateTime.parse("2022-12-26 13:27:00"),
+    startDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),
     endDate: DateTime.parse("2023-01-11 13:27:00"),
     creator: "UIID",
@@ -54,6 +55,7 @@ var kTestKhatmats = [
       KhatmaPart(id: 3, userName: 'Ahmed', finishedDate: DateTime.now()),
     ],
     createDate: DateTime.parse("2022-12-26 13:27:00"),
+    startDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),
     recurrence: Recurrence(
         repeat: true,
@@ -80,6 +82,7 @@ var kTestKhatmats = [
           id: 3, userName: 'Ahmed', finishedDate: DateTime.parse("2022-11-08")),
     ],
     createDate: DateTime.parse("2023-01-15 13:27:00"),
+    startDate: DateTime.parse("2023-01-15 13:27:00"),
     lastRead: DateTime.parse("2023-02-08 08:00:00"),
     recurrence: Recurrence(
         repeat: true,
@@ -107,6 +110,7 @@ var kTestKhatmats = [
           id: 3, userName: 'Ahmed', finishedDate: DateTime.parse("2022-11-08")),
     ],
     createDate: DateTime.parse("2023-01-01 10:15:00"),
+    startDate: DateTime.parse("2023-01-01 10:15:00"),
     lastRead: DateTime.now(),
     recurrence: Recurrence(
         repeat: true,
@@ -125,6 +129,7 @@ var kTestKhatmats = [
     description: 'Comunité plaisir ',
     unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-12-01 10:15:00"),
+    startDate: DateTime.parse("2022-12-01 10:15:00"),
     recurrence: Recurrence(
         repeat: true,
         startDate: DateTime.now(),
@@ -142,6 +147,7 @@ var kTestKhatmats = [
     description: 'Lecture chque vendredi',
     unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-10-01 10:15:00"),
+    startDate: DateTime.parse("2022-10-01 10:15:00"),
     recurrence: Recurrence(
         repeat: true,
         startDate: DateTime.now(),
@@ -159,6 +165,7 @@ var kTestKhatmats = [
     description: 'Description classique',
     unit: SplitUnit.sourat,
     createDate: DateTime.parse("2022-11-01 10:15:00"),
+    startDate: DateTime.parse("2022-11-01 10:15:00"),
     recurrence: Recurrence(
         repeat: true,
         startDate: DateTime.now(),
@@ -176,6 +183,7 @@ var kTestKhatmats = [
     description: 'Description 7',
     unit: SplitUnit.juzz,
     createDate: DateTime.parse("2023-02-01 10:15:00"),
+    startDate: DateTime.parse("2023-02-01 10:15:00"),
     recurrence: Recurrence(
         repeat: true,
         startDate: DateTime.now(),
@@ -193,6 +201,7 @@ var kTestKhatmats = [
     description: 'Description 8',
     unit: SplitUnit.hizb,
     createDate: DateTime.parse("2022-12-01 10:15:00"),
+    startDate: DateTime.parse("2022-12-01 10:15:00"),
     recurrence: Recurrence(
         repeat: true,
         startDate: DateTime.now(),

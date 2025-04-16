@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:khatma/src/features/khatma/presentation/complete/khatma_success_complete.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/common/constants/lottie_asset.dart';
@@ -36,32 +38,38 @@ class KhatmaReadScreen extends ConsumerWidget {
       value: khatmaValue,
       data: (khatma) => khatma == null
           ? EmptyPlaceholderWidget(message: 'Khatma not found')
-          : Scaffold(
-              appBar: KhatmaAppBar(khatmaId: khatmaId),
-              floatingActionButton: PartFloatingButton(
-                khatmaId: khatmaId,
-                color: khatma.style.hexColor,
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
-              body: SingleChildScrollView(
-                child: Container(
-                  color: khatma.style.hexColor.withOpacity(.1),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        buildDescriptionCard(khatma, context),
-                        gapH8,
-                        buildParts(context, khatma),
-                        gapH64,
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+          : khatma.isCompleted
+              ? KhatmaSuccessComplete(
+                  khatmaHistory: KhatmaHistory.fromKhatma(khatma))
+              : buildContent(khatma, context),
+    );
+  }
+
+  Widget buildContent(Khatma khatma, BuildContext context) {
+    return Scaffold(
+      appBar: KhatmaAppBar(khatmaId: khatma.id!),
+      floatingActionButton: PartFloatingButton(
+        khatmaId: khatma.id,
+        color: khatma.style.hexColor,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      body: SingleChildScrollView(
+        child: Container(
+          color: khatma.style.hexColor.withOpacity(.1),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildDescriptionCard(khatma, context),
+                gapH8,
+                buildParts(context, khatma),
+                gapH64,
+              ],
             ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -102,51 +110,16 @@ class KhatmaReadScreen extends ConsumerWidget {
   }
 
   Widget buildToReadPartCard(BuildContext context, Khatma khatma) {
-    return ConditionalContent(
-      condition: khatma.isCompleted,
-      primary: Stack(
-        alignment: Alignment.center,
-        children: [
-          Card(
-            color: Colors.green.shade200,
-            child: Container(
-              width: double.infinity,
-              height: 300,
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  lottieSuccessAsset,
-                  AnimatedTextKit(
-                    isRepeatingAnimation: false,
-                    animatedTexts: [
-                      TyperAnimatedText(
-                        AppLocalizations.of(context).congratulation,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .headlineLarge!
-                            .copyWith(color: Colors.green),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(child: lottieCongratAsset),
-        ],
-      ),
-      secondary: Card(
-        elevation: 0.4,
-        clipBehavior: Clip.antiAlias,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ToReadPartTiles(
-            key: UniqueKey(),
-            unit: khatma.unit,
-            color: khatma.style.hexColor,
-            completedParts: khatma.completedPartIds,
-          ),
+    return Card(
+      elevation: 0.4,
+      clipBehavior: Clip.antiAlias,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ToReadPartTiles(
+          key: UniqueKey(),
+          unit: khatma.unit,
+          color: khatma.style.hexColor,
+          completedParts: khatma.completedPartIds,
         ),
       ),
     );

@@ -16,6 +16,7 @@ abstract class Khatma with _$Khatma {
     required String name,
     String? description,
     required DateTime createDate,
+    required DateTime startDate,
     DateTime? endDate,
     String? creator,
     required KhatmaStyle style,
@@ -24,6 +25,7 @@ abstract class Khatma with _$Khatma {
     required Recurrence recurrence,
     required SplitUnit unit,
     required KhatmaShare share,
+    @Default(0) int repeats,
   }) = _Khatma;
 
   factory Khatma.fromJson(Map<String, Object?> json) => _$KhatmaFromJson(json);

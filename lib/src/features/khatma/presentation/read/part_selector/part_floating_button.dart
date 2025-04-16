@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/constants/snack_bars.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/buttons/primary_button.dart';
+import 'package:khatma/src/features/khatma/presentation/complete/khatma_success_complete.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 
@@ -44,6 +45,16 @@ class PartFloatingButton extends StatelessWidget {
         .completeParts(khatmaId!)
         .then((value) {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      if (value != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => KhatmaSuccessComplete(
+              khatmaHistory: value,
+            ),
+          ),
+        );
+      }
     });
   }
 }

@@ -5,8 +5,6 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 part 'khatma_history.freezed.dart';
 part 'khatma_history.g.dart';
 
-typedef KhatmaID = String;
-
 @freezed
 sealed class KhatmaHistory with _$KhatmaHistory {
   const factory KhatmaHistory.private({
@@ -29,6 +27,46 @@ sealed class KhatmaHistory with _$KhatmaHistory {
 
   factory KhatmaHistory.fromJson(Map<String, Object?> json) =>
       _$KhatmaHistoryFromJson(json);
+
+  static KhatmaHistory fromKhatma(Khatma khatma) {
+    final startDate = khatma.recurrence.startDate;
+    final endDate = khatma.recurrence.endDate;
+    final unit = khatma.unit;
+
+    if (khatma.share.visibility == ShareVisibility.private) {
+      return KhatmaHistory.private(
+        id: khatma.id!,
+        unit: unit,
+        startDate: startDate,
+        endDate: endDate,
+        userId: khatma.creator ?? "Unknown",
+        parts: khatma.parts
+                ?.where((p) => p.finishedDate != null)
+                .map((p) =>
+                    KhatmaPartHistory(id: p.id, endDate: p.finishedDate!))
+                .toList() ??
+            [],
+      );
+    } else {
+      final sharedParts = <String, List<KhatmaPartHistory>>{};
+      for (final part in khatma.parts ?? []) {
+        if (part.userId != null && part.finishedDate != null) {
+          sharedParts.putIfAbsent(part.userId!, () => []);
+          sharedParts[part.userId!]!
+              .add(KhatmaPartHistory(id: part.id, endDate: part.finishedDate!));
+        }
+      }
+
+      return KhatmaHistory.shared(
+        id: khatma.id!,
+        unit: unit,
+        startDate: startDate,
+        endDate: endDate,
+        userId: khatma.creator ?? "Unknown",
+        parts: sharedParts,
+      );
+    }
+  }
 }
 
 @freezed

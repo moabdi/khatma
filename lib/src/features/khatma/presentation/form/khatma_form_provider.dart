@@ -15,6 +15,7 @@ class FormKhatma extends _$FormKhatma {
       name: 'Khatma-${DateTime.now().toInt().toString()}',
       unit: SplitUnit.hizb,
       createDate: DateTime.now(),
+      startDate: DateTime.now(),
       share: KhatmaShare(visibility: ShareVisibility.private),
       recurrence: Recurrence(
         repeat: true,

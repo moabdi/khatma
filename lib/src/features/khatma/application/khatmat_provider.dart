@@ -1,6 +1,8 @@
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/khatma/data/remote/khatma_history_repository.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'khatmat_provider.g.dart';
@@ -44,6 +46,27 @@ class KhatmaList extends _$KhatmaList {
     String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
     await ref.read(khatmasRepositoryProvider).deleteById(userUid, khatmaId);
     state.value!.removeWhere((khatma) => khatma.id == khatmaId);
+    state = state;
+  }
+
+  void historize(KhatmaID id, bool repeat) async {
+    String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+    Khatma khatma = state.value!.firstWhere((khatma) => khatma.id == id);
+    // historize
+    KhatmaHistory khatmaHistory = KhatmaHistory.fromKhatma(khatma);
+    ref.read(khatmaHistoryRepositoryProvider).create(userUid, khatmaHistory);
+    if (repeat) {
+      Khatma newKhatma = khatma.copyWith(
+        startDate: DateTime.now(),
+        repeats: khatma.repeats + 1,
+        parts: List.empty(growable: true),
+        lastRead: null,
+      );
+      await ref.read(khatmasRepositoryProvider).update(userUid, newKhatma);
+    } else {
+      await ref.read(khatmasRepositoryProvider).deleteById(userUid, id);
+      state.value!.removeWhere((khatma) => khatma.id == id);
+    }
     state = state;
   }
 }
