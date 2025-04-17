@@ -5,15 +5,15 @@ import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class RecurrenceText extends StatelessWidget {
-  final Recurrence recurrence;
+  final Recurrence? recurrence;
   final TextStyle? style;
 
   const RecurrenceText(this.recurrence, {super.key, this.style});
 
   @override
   Widget build(BuildContext context) {
-    return recurrence.repeat
-        ? Text(_buildRepeatText(recurrence, context))
+    return (recurrence != null && recurrence!.repeat)
+        ? Text(_buildRepeatText(recurrence!, context))
         : Row(
             children: [
               Icon(

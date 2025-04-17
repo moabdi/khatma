@@ -7,7 +7,7 @@ part of 'recurrence_controller.dart';
 // **************************************************************************
 
 String _$recurrenceControllerHash() =>
-    r'435aea12ac8c8674d798e0d33bfa770f1ae7f65f';
+    r'a42b74a18446b752caef2a10b91d75e9877fef2b';
 
 /// See also [RecurrenceController].
 @ProviderFor(RecurrenceController)

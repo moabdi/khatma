@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'khatma_parts_controller.g.dart';
@@ -22,7 +21,7 @@ class KhatmaPartsController extends _$KhatmaPartsController {
     }
   }
 
-  Future<KhatmaHistory?> completeParts(String id) async {
+  Future<Khatma> completeParts(String id) async {
     Khatma khatma = ref.watch(currentKhatmaProvider)!;
 
     List<KhatmaPart> completedParts = List<KhatmaPart>.from(khatma.parts ?? []);
@@ -31,26 +30,23 @@ class KhatmaPartsController extends _$KhatmaPartsController {
       int index = completedParts.indexWhere((part) => part.id == partId);
       if (index != -1) {
         completedParts[index] =
-            completedParts[index].copyWith(finishedDate: DateTime.now());
+            completedParts[index].copyWith(endDate: DateTime.now());
       } else {
-        completedParts
-            .add(KhatmaPart(id: partId, finishedDate: DateTime.now()));
+        completedParts.add(KhatmaPart(id: partId, endDate: DateTime.now()));
       }
     }
 
     Khatma updatedKhatma = khatma.copyWith(parts: completedParts);
+    if (updatedKhatma.isCompleted) {
+      updatedKhatma = updatedKhatma.copyWith(endDate: DateTime.now());
+    }
     ref.read(khatmaListProvider.notifier).saveOrUpdate(updatedKhatma);
     ref.read(currentKhatmaProvider.notifier).updateValue(updatedKhatma);
     state = [];
-
-    if (updatedKhatma.isCompleted) {
-      return KhatmaHistory.fromKhatma(updatedKhatma);
-    }
-
-    return null;
+    return updatedKhatma;
   }
 
   FutureOr<void> historize(KhatmaID khatmaId, bool repeat) {
-    ref.read(khatmaListProvider.notifier).historize(khatmaId, repeat);
+    ref.read(khatmaListProvider.notifier).complete(khatmaId, repeat);
   }
 }

@@ -12,11 +12,11 @@ import 'package:khatma/src/features/khatma/presentation/form/components/recurren
 class RecurrenceSelector extends ConsumerWidget {
   const RecurrenceSelector({
     super.key,
-    required this.recurrence,
+    this.recurrence,
     required this.onChanged,
   });
 
-  final Recurrence recurrence;
+  final Recurrence? recurrence;
   final ValueChanged<Recurrence> onChanged;
 
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_bar_chart.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -12,7 +12,7 @@ class BarChartSample extends StatefulWidget {
     required this.khatma,
   });
 
-  final KhatmaHistory khatma;
+  final Khatma khatma;
   final String title;
   final String subTitle;
 

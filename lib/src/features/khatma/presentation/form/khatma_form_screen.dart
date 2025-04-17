@@ -152,7 +152,7 @@ class AddKhatmaScreen extends ConsumerWidget {
             KhatmaStyleSelector(
               style: khatma.style,
               onChanged: (value) => ref.updateKhatma(
-                khatma.copyWith(style: value),
+                khatma.copyWith(theme: value),
               ),
             ),
             AppLocalizations.of(context).khatmaStyle),
@@ -250,8 +250,8 @@ class AddKhatmaScreen extends ConsumerWidget {
         size: 24,
       ),
       title: AppLocalizations.of(context).share,
-      subtitle: Text(AppLocalizations.of(context)
-          .shareVisibilityDesc(khatma.share.visibility.name)),
+      subtitle: Text(AppLocalizations.of(context).shareVisibilityDesc(
+          khatma.share?.visibility.name ?? ShareVisibility.private.name)),
       onTap: () => khatma.isStarted
           ? showSnackBar(context)
           : {

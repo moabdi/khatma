@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/common/constants/lottie_asset.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/repeat_enabler_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/khatma_bar_chart.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
-class KhatmaSuccessComplete extends StatelessWidget {
+class KhatmaSuccessComplete extends ConsumerWidget {
   KhatmaSuccessComplete({
     super.key,
-    required this.khatmaHistory,
+    required this.khatma,
   });
 
-  final KhatmaHistory khatmaHistory;
+  final Khatma khatma;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       color: Theme.of(context).primaryColor,
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       child: Stack(
         children: [
-          topCard(context),
+          topCard(context, ref),
         ],
       ),
     );
   }
 
-  Container topCard(BuildContext context) {
+  Container topCard(BuildContext context, WidgetRef ref) {
     return Container(
       width: double.infinity,
       child: Card(
@@ -48,7 +53,7 @@ class KhatmaSuccessComplete extends StatelessWidget {
               gapH12,
               Divider(),
               KhatmaBarChart(
-                khatma: khatmaHistory,
+                khatma: khatma,
                 title: "Completude",
                 subTitle: "Khatma Historique",
               ),
@@ -61,7 +66,15 @@ class KhatmaSuccessComplete extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
                 width: MediaQuery.of(context).size.width * .85,
                 shadowOffset: 5,
-                onPressed: () => {},
+                onPressed: () {
+                  var repeat = ref.read(recurrenceNotifierProvider).repeat;
+                  ref.read(khatmaListProvider.notifier).complete(
+                        khatma.id!,
+                        repeat,
+                      );
+
+                  context.goNamed(AppRoute.home.name);
+                },
                 text: "Terminate",
               ),
               gapH32,

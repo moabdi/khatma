@@ -12,7 +12,7 @@ class KhatmaIconPicker extends StatelessWidget {
     required this.onChanged,
   });
 
-  final KhatmaStyle style;
+  final KhatmaTheme style;
   final ValueChanged<String> onChanged;
 
   @override

@@ -24,6 +24,7 @@ class KhatmaList extends _$KhatmaList {
   FutureOr<void> saveOrUpdate(Khatma khatma) async {
     state = const AsyncValue.loading();
     String userUid = _getUserId();
+
     if (khatma.id == null) {
       await ref.read(khatmasRepositoryProvider).create(userUid, khatma);
     } else {
@@ -49,25 +50,39 @@ class KhatmaList extends _$KhatmaList {
     state = state;
   }
 
-  void historize(KhatmaID id, bool repeat) async {
+  void complete(KhatmaID id, bool repeat) async {
     String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
     Khatma khatma = state.value!.firstWhere((khatma) => khatma.id == id);
     // historize
-    KhatmaHistory khatmaHistory = KhatmaHistory.fromKhatma(khatma);
-    ref.read(khatmaHistoryRepositoryProvider).create(userUid, khatmaHistory);
+    ref.read(khatmaHistoryRepositoryProvider).create(
+          userUid,
+          CompletionHistory(
+            khatmaId: khatma.id,
+            startDate: khatma.startDate,
+            endDate: DateTime.now(),
+          ),
+        );
+
     if (repeat) {
-      Khatma newKhatma = khatma.copyWith(
-        startDate: DateTime.now(),
-        repeats: khatma.repeats + 1,
-        parts: List.empty(growable: true),
-        lastRead: null,
-      );
-      await ref.read(khatmasRepositoryProvider).update(userUid, newKhatma);
+      await ref.read(khatmasRepositoryProvider).update(
+            userUid,
+            khatma.copyWith(
+              startDate: DateTime.now(),
+              repeats: khatma.repeats + 1,
+              parts: List.empty(growable: true),
+              lastRead: null,
+              endDate: null,
+            ),
+          );
     } else {
-      await ref.read(khatmasRepositoryProvider).deleteById(userUid, id);
-      state.value!.removeWhere((khatma) => khatma.id == id);
+      await ref.read(khatmasRepositoryProvider).deleteById(
+            userUid,
+            id,
+          );
     }
-    state = state;
+
+    var values = await _fetchAll();
+    state = AsyncValue.data(values);
   }
 }
 

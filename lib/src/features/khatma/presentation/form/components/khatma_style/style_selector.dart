@@ -12,14 +12,14 @@ class KhatmaStyleSelector extends StatefulWidget {
   const KhatmaStyleSelector(
       {super.key, required this.onChanged, required this.style});
 
-  final KhatmaStyle style;
-  final ValueChanged<KhatmaStyle> onChanged;
+  final KhatmaTheme style;
+  final ValueChanged<KhatmaTheme> onChanged;
   @override
   State<KhatmaStyleSelector> createState() => _KhatmaStyleSelectorState();
 }
 
 class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
-  late KhatmaStyle updatedStyle;
+  late KhatmaTheme updatedStyle;
 
   @override
   void initState() {

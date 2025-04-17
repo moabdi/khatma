@@ -12,7 +12,8 @@ class RecurrenceController extends _$RecurrenceController {
     ref
         .read(recurrenceNotifierProvider.notifier)
         .update(recurrence.copyWith(startDate: value));
-    if (ref.read(recurrenceNotifierProvider).endDate.isBefore(value)) {
+    var endDate = ref.read(recurrenceNotifierProvider).endDate;
+    if (endDate == null || endDate.isBefore(value)) {
       ref.read(recurrenceNotifierProvider.notifier).update(
           recurrence.copyWith(endDate: value.add(const Duration(days: 366))));
     }

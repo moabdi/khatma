@@ -24,7 +24,7 @@ class ReadPartTiles extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final completedParts = parts ?? [];
     var partIds = completedParts
-        .where((element) => element.finishedDate != null)
+        .where((element) => element.endDate != null)
         .map((e) => e.id)
         .toList();
 
@@ -55,7 +55,7 @@ class ReadPartTiles extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    khatmaPart.finishedDate!.toHumanReadable(),
+                    khatmaPart.endDate!.toHumanReadable(),
                     style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],

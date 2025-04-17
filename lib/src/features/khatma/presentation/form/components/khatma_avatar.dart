@@ -9,7 +9,7 @@ class KhatmaAvatar extends StatelessWidget {
     required this.style,
   });
 
-  final KhatmaStyle style;
+  final KhatmaTheme style;
 
   @override
   Widget build(BuildContext context) {

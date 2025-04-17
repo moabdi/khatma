@@ -15,15 +15,14 @@ var kTestKhatmat = [
     description: 'test description',
     unit: SplitUnit.sourat,
     parts: [
-      KhatmaPart(id: 1, userName: "Ahmed", finishedDate: DateTime.now()),
-      KhatmaPart(id: 2, userName: 'Ahmed', finishedDate: DateTime.now()),
-      KhatmaPart(id: 3, userName: 'Ahmed', finishedDate: DateTime.now()),
+      KhatmaPart(id: 1, userName: "Ahmed", endDate: DateTime.now()),
+      KhatmaPart(id: 2, userName: 'Ahmed', endDate: DateTime.now()),
+      KhatmaPart(id: 3, userName: 'Ahmed', endDate: DateTime.now()),
     ],
     createDate: DateTime.parse("2022-12-26 13:27:00"),
     startDate: DateTime.parse("2022-12-26 13:27:00"),
     lastRead: DateTime.parse("2023-01-01 13:27:00"),
     endDate: DateTime.parse("2023-01-11 13:27:00"),
-    creator: "UIID",
     recurrence: Recurrence(
       repeat: true,
       startDate: DateTime.now(),
@@ -31,7 +30,7 @@ var kTestKhatmat = [
       days: List.empty(),
       unit: RepeatInterval.auto,
     ),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -50,9 +49,9 @@ var kTestKhatmats = [
     description: '',
     unit: SplitUnit.sourat,
     parts: [
-      KhatmaPart(id: 1, userName: "Ahmed", finishedDate: DateTime.now()),
-      KhatmaPart(id: 2, userName: 'Ahmed', finishedDate: DateTime.now()),
-      KhatmaPart(id: 3, userName: 'Ahmed', finishedDate: DateTime.now()),
+      KhatmaPart(id: 1, userName: "Ahmed", endDate: DateTime.now()),
+      KhatmaPart(id: 2, userName: 'Ahmed', endDate: DateTime.now()),
+      KhatmaPart(id: 3, userName: 'Ahmed', endDate: DateTime.now()),
     ],
     createDate: DateTime.parse("2022-12-26 13:27:00"),
     startDate: DateTime.parse("2022-12-26 13:27:00"),
@@ -61,7 +60,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -75,11 +74,11 @@ var kTestKhatmats = [
     unit: SplitUnit.hizb,
     parts: [
       KhatmaPart(
-          id: 1, userName: 'Ahmed', finishedDate: DateTime.parse("2022-09-08")),
+          id: 1, userName: 'Ahmed', endDate: DateTime.parse("2022-09-08")),
       KhatmaPart(
-          id: 2, userName: 'Ahmed', finishedDate: DateTime.parse("2023-09-08")),
+          id: 2, userName: 'Ahmed', endDate: DateTime.parse("2023-09-08")),
       KhatmaPart(
-          id: 3, userName: 'Ahmed', finishedDate: DateTime.parse("2022-11-08")),
+          id: 3, userName: 'Ahmed', endDate: DateTime.parse("2022-11-08")),
     ],
     createDate: DateTime.parse("2023-01-15 13:27:00"),
     startDate: DateTime.parse("2023-01-15 13:27:00"),
@@ -88,7 +87,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -103,11 +102,11 @@ var kTestKhatmats = [
     unit: SplitUnit.sourat,
     parts: [
       KhatmaPart(
-          id: 1, userName: 'Ahmed', finishedDate: DateTime.parse("2022-09-08")),
+          id: 1, userName: 'Ahmed', endDate: DateTime.parse("2022-09-08")),
       KhatmaPart(
-          id: 2, userName: 'Ahmed', finishedDate: DateTime.parse("2023-09-08")),
+          id: 2, userName: 'Ahmed', endDate: DateTime.parse("2023-09-08")),
       KhatmaPart(
-          id: 3, userName: 'Ahmed', finishedDate: DateTime.parse("2022-11-08")),
+          id: 3, userName: 'Ahmed', endDate: DateTime.parse("2022-11-08")),
     ],
     createDate: DateTime.parse("2023-01-01 10:15:00"),
     startDate: DateTime.parse("2023-01-01 10:15:00"),
@@ -116,7 +115,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -134,7 +133,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -152,7 +151,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -170,7 +169,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -188,7 +187,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),
@@ -206,7 +205,7 @@ var kTestKhatmats = [
         repeat: true,
         startDate: DateTime.now(),
         endDate: DateTime.now().add(const Duration(days: 365))),
-    style: KhatmaStyle(
+    theme: KhatmaTheme(
       color: khatmaColorHexList[random.nextInt(khatmaColorHexList.length)],
       icon: imagesNames[random.nextInt(imagesNames.length)],
     ),

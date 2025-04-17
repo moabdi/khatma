@@ -7,7 +7,7 @@ part of 'recurrence_provider.dart';
 // **************************************************************************
 
 String _$recurrenceNotifierHash() =>
-    r'd1b07e2c69184d909f23d0c05a935e2b651b1ffa';
+    r'ed2678163353780631b334b820a1eeead8358cc8';
 
 /// See also [RecurrenceNotifier].
 @ProviderFor(RecurrenceNotifier)

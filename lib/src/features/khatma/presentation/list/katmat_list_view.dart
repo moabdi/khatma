@@ -1,3 +1,4 @@
+import 'package:khatma_ui/components/animation/flashing_widget.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
 import 'package:khatma/src/common/widgets/loading_list_tile.dart';
@@ -57,19 +58,21 @@ class KhatmatListView extends ConsumerWidget {
   }
 
   Widget buildCardKhatma(Khatma khatma, WidgetRef ref, BuildContext context) {
+    bool animate = DateTime.now().difference(khatma.startDate).inMinutes == 0;
+    var khatmaTile = KhatmaTile(
+      khatma: khatma,
+      onPressed: () {
+        ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
+        context.goNamed(AppRoute.khatmaDetails.name,
+            pathParameters: {'id': khatma.id!});
+      },
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Card(
         elevation: 0.4,
         clipBehavior: Clip.antiAlias,
-        child: KhatmaTile(
-          khatma: khatma,
-          onPressed: () {
-            ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
-            context.goNamed(AppRoute.khatmaDetails.name,
-                pathParameters: {'id': khatma.id!});
-          },
-        ),
+        child: animate ? FlashingListTile(child: khatmaTile) : khatmaTile,
       ),
     );
   }

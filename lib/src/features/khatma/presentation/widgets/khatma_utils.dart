@@ -16,6 +16,6 @@ LinkedHashMap<String, Color> khatmaColorMap =
 
 List<String> khatmaColorHexList = khatmaColorMap.keys.toList();
 
-extension ColorExtension on KhatmaStyle {
+extension ColorExtension on KhatmaTheme {
   Color get hexColor => HexColor(color);
 }

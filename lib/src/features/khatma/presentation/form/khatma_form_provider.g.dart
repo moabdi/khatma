@@ -6,7 +6,7 @@ part of 'khatma_form_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$formKhatmaHash() => r'80bafa3871a217b848de8272585d0208540dce8b';
+String _$formKhatmaHash() => r'f11a2d0fa4b28bef755507dc230d32e707531355';
 
 /// See also [FormKhatma].
 @ProviderFor(FormKhatma)

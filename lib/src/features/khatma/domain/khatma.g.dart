@@ -10,33 +10,41 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
       id: json['id'] as String?,
       code: json['code'] as String,
       name: json['name'] as String,
-      description: json['description'] as String?,
+      unit: $enumDecode(_$SplitUnitEnumMap, json['unit']),
       createDate: DateTime.parse(json['createDate'] as String),
       startDate: DateTime.parse(json['startDate'] as String),
+      description: json['description'] as String?,
+      repeats: (json['repeats'] as num?)?.toInt() ?? 0,
+      recurrence: json['recurrence'] == null
+          ? null
+          : Recurrence.fromJson(
+              Map<String, Object?>.from(json['recurrence'] as Map)),
+      share: json['share'] == null
+          ? null
+          : KhatmaShare.fromJson(
+              Map<String, Object?>.from(json['share'] as Map)),
+      theme: json['theme'] == null
+          ? null
+          : KhatmaTheme.fromJson(
+              Map<String, Object?>.from(json['theme'] as Map)),
       endDate: json['endDate'] == null
           ? null
           : DateTime.parse(json['endDate'] as String),
-      creator: json['creator'] as String?,
-      style:
-          KhatmaStyle.fromJson(Map<String, Object?>.from(json['style'] as Map)),
       lastRead: json['lastRead'] == null
           ? null
           : DateTime.parse(json['lastRead'] as String),
       parts: (json['parts'] as List<dynamic>?)
           ?.map((e) => KhatmaPart.fromJson(Map<String, Object?>.from(e as Map)))
           .toList(),
-      recurrence: Recurrence.fromJson(
-          Map<String, Object?>.from(json['recurrence'] as Map)),
-      unit: $enumDecode(_$SplitUnitEnumMap, json['unit']),
-      share:
-          KhatmaShare.fromJson(Map<String, Object?>.from(json['share'] as Map)),
-      repeats: (json['repeats'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
   final val = <String, dynamic>{
     'code': instance.code,
     'name': instance.name,
+    'unit': _$SplitUnitEnumMap[instance.unit]!,
+    'createDate': instance.createDate.toIso8601String(),
+    'startDate': instance.startDate.toIso8601String(),
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -46,17 +54,13 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
   }
 
   writeNotNull('description', instance.description);
-  val['createDate'] = instance.createDate.toIso8601String();
-  val['startDate'] = instance.startDate.toIso8601String();
+  val['repeats'] = instance.repeats;
+  writeNotNull('recurrence', instance.recurrence?.toJson());
+  writeNotNull('share', instance.share?.toJson());
+  writeNotNull('theme', instance.theme?.toJson());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
-  writeNotNull('creator', instance.creator);
-  val['style'] = instance.style.toJson();
   writeNotNull('lastRead', instance.lastRead?.toIso8601String());
   writeNotNull('parts', instance.parts?.map((e) => e.toJson()).toList());
-  val['recurrence'] = instance.recurrence.toJson();
-  val['unit'] = _$SplitUnitEnumMap[instance.unit]!;
-  val['share'] = instance.share.toJson();
-  val['repeats'] = instance.repeats;
   return val;
 }
 
@@ -69,23 +73,27 @@ const _$SplitUnitEnumMap = {
   SplitUnit.thumun: 'thumun',
 };
 
-_$KhatmaStyleImpl _$$KhatmaStyleImplFromJson(Map json) => _$KhatmaStyleImpl(
+_$KhatmaThemeImpl _$$KhatmaThemeImplFromJson(Map json) => _$KhatmaThemeImpl(
       color: json['color'] as String,
       icon: json['icon'] as String,
     );
 
-Map<String, dynamic> _$$KhatmaStyleImplToJson(_$KhatmaStyleImpl instance) =>
+Map<String, dynamic> _$$KhatmaThemeImplToJson(_$KhatmaThemeImpl instance) =>
     <String, dynamic>{
       'color': instance.color,
       'icon': instance.icon,
     };
 
 _$RecurrenceImpl _$$RecurrenceImplFromJson(Map json) => _$RecurrenceImpl(
-      repeat: json['repeat'] as bool? ?? false,
-      startDate: DateTime.parse(json['startDate'] as String),
-      endDate: DateTime.parse(json['endDate'] as String),
       unit: $enumDecodeNullable(_$RepeatIntervalEnumMap, json['unit']) ??
           RepeatInterval.auto,
+      repeat: json['repeat'] as bool? ?? true,
+      startDate: json['startDate'] == null
+          ? null
+          : DateTime.parse(json['startDate'] as String),
+      endDate: json['endDate'] == null
+          ? null
+          : DateTime.parse(json['endDate'] as String),
       days: (json['days'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
@@ -94,10 +102,8 @@ _$RecurrenceImpl _$$RecurrenceImplFromJson(Map json) => _$RecurrenceImpl(
 
 Map<String, dynamic> _$$RecurrenceImplToJson(_$RecurrenceImpl instance) {
   final val = <String, dynamic>{
-    'repeat': instance.repeat,
-    'startDate': instance.startDate.toIso8601String(),
-    'endDate': instance.endDate.toIso8601String(),
     'unit': _$RepeatIntervalEnumMap[instance.unit]!,
+    'repeat': instance.repeat,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -106,6 +112,8 @@ Map<String, dynamic> _$$RecurrenceImplToJson(_$RecurrenceImpl instance) {
     }
   }
 
+  writeNotNull('startDate', instance.startDate?.toIso8601String());
+  writeNotNull('endDate', instance.endDate?.toIso8601String());
   writeNotNull('days', instance.days);
   writeNotNull('frequency', instance.frequency);
   return val;
@@ -122,12 +130,12 @@ _$KhatmaPartImpl _$$KhatmaPartImplFromJson(Map json) => _$KhatmaPartImpl(
       id: (json['id'] as num).toInt(),
       userId: json['userId'] as String?,
       userName: json['userName'] as String?,
-      addedDate: json['addedDate'] == null
+      startDate: json['startDate'] == null
           ? null
-          : DateTime.parse(json['addedDate'] as String),
-      finishedDate: json['finishedDate'] == null
+          : DateTime.parse(json['startDate'] as String),
+      endDate: json['endDate'] == null
           ? null
-          : DateTime.parse(json['finishedDate'] as String),
+          : DateTime.parse(json['endDate'] as String),
       remindTimes: (json['remindTimes'] as num?)?.toInt(),
     );
 
@@ -144,8 +152,8 @@ Map<String, dynamic> _$$KhatmaPartImplToJson(_$KhatmaPartImpl instance) {
 
   writeNotNull('userId', instance.userId);
   writeNotNull('userName', instance.userName);
-  writeNotNull('addedDate', instance.addedDate?.toIso8601String());
-  writeNotNull('finishedDate', instance.finishedDate?.toIso8601String());
+  writeNotNull('startDate', instance.startDate?.toIso8601String());
+  writeNotNull('endDate', instance.endDate?.toIso8601String());
   writeNotNull('remindTimes', instance.remindTimes);
   return val;
 }

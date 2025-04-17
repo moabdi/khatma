@@ -8,7 +8,7 @@ class ShareNotifier extends _$ShareNotifier {
     return KhatmaShare(visibility: ShareVisibility.private);
   }
 
-  void update(KhatmaShare khatmaShare) {
-    state = khatmaShare;
+  void update(KhatmaShare? khatmaShare) {
+    state = khatmaShare ?? KhatmaShare(visibility: ShareVisibility.private);
   }
 }

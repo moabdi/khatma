@@ -24,12 +24,12 @@ final khatmaHistoryRepositoryProvider =
 
 typedef KhatmaHistoryRepositoryRef = ProviderRef<KhatmaHistoryRepository>;
 String _$khatmaHistoryRepositoryStreamHash() =>
-    r'ac93d7b839ad9337dea17008f565223f8b088382';
+    r'e358b31d598f2d3eee627e16c03462345cbeef7d';
 
 /// See also [khatmaHistoryRepositoryStream].
 @ProviderFor(khatmaHistoryRepositoryStream)
 final khatmaHistoryRepositoryStreamProvider =
-    AutoDisposeStreamProvider<List<KhatmaHistory>>.internal(
+    AutoDisposeStreamProvider<List<CompletionHistory>>.internal(
   khatmaHistoryRepositoryStream,
   name: r'khatmaHistoryRepositoryStreamProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -40,14 +40,14 @@ final khatmaHistoryRepositoryStreamProvider =
 );
 
 typedef KhatmaHistoryRepositoryStreamRef
-    = AutoDisposeStreamProviderRef<List<KhatmaHistory>>;
+    = AutoDisposeStreamProviderRef<List<CompletionHistory>>;
 String _$khatmaHistoryRepositoryFutureHash() =>
-    r'5c65d323df15edb07e5213f2ae3642de32f9aa93';
+    r'2e2439a3f606ba6a421e7cf0487eea2d12584423';
 
 /// See also [khatmaHistoryRepositoryFuture].
 @ProviderFor(khatmaHistoryRepositoryFuture)
 final khatmaHistoryRepositoryFutureProvider =
-    AutoDisposeFutureProvider<List<KhatmaHistory>>.internal(
+    AutoDisposeFutureProvider<List<CompletionHistory>>.internal(
   khatmaHistoryRepositoryFuture,
   name: r'khatmaHistoryRepositoryFutureProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -58,9 +58,9 @@ final khatmaHistoryRepositoryFutureProvider =
 );
 
 typedef KhatmaHistoryRepositoryFutureRef
-    = AutoDisposeFutureProviderRef<List<KhatmaHistory>>;
+    = AutoDisposeFutureProviderRef<List<CompletionHistory>>;
 String _$khatmaHistoryStreamHash() =>
-    r'6a9620972a1821a3c48fe8e66b01012ac531192f';
+    r'e764563e9beaf03d24bc5c26c90565922a844ffc';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -127,7 +127,7 @@ class KhatmaHistoryStreamFamily extends Family {
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
   Override overrideWith(
-      Stream<KhatmaHistory?> Function(KhatmaHistoryStreamRef ref) create) {
+      Stream<CompletionHistory?> Function(KhatmaHistoryStreamRef ref) create) {
     return _$KhatmaHistoryStreamFamilyOverride(this, create);
   }
 }
@@ -135,7 +135,7 @@ class KhatmaHistoryStreamFamily extends Family {
 class _$KhatmaHistoryStreamFamilyOverride implements FamilyOverride {
   _$KhatmaHistoryStreamFamilyOverride(this.overriddenFamily, this.create);
 
-  final Stream<KhatmaHistory?> Function(KhatmaHistoryStreamRef ref) create;
+  final Stream<CompletionHistory?> Function(KhatmaHistoryStreamRef ref) create;
 
   @override
   final KhatmaHistoryStreamFamily overriddenFamily;
@@ -150,7 +150,7 @@ class _$KhatmaHistoryStreamFamilyOverride implements FamilyOverride {
 
 /// See also [khatmaHistoryStream].
 class KhatmaHistoryStreamProvider
-    extends AutoDisposeStreamProvider<KhatmaHistory?> {
+    extends AutoDisposeStreamProvider<CompletionHistory?> {
   /// See also [khatmaHistoryStream].
   KhatmaHistoryStreamProvider(
     KhatmaID id,
@@ -185,7 +185,7 @@ class KhatmaHistoryStreamProvider
 
   @override
   Override overrideWith(
-    Stream<KhatmaHistory?> Function(KhatmaHistoryStreamRef ref) create,
+    Stream<CompletionHistory?> Function(KhatmaHistoryStreamRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -207,12 +207,12 @@ class KhatmaHistoryStreamProvider
   }
 
   @override
-  AutoDisposeStreamProviderElement<KhatmaHistory?> createElement() {
+  AutoDisposeStreamProviderElement<CompletionHistory?> createElement() {
     return _KhatmaHistoryStreamProviderElement(this);
   }
 
   KhatmaHistoryStreamProvider _copyWith(
-    Stream<KhatmaHistory?> Function(KhatmaHistoryStreamRef ref) create,
+    Stream<CompletionHistory?> Function(KhatmaHistoryStreamRef ref) create,
   ) {
     return KhatmaHistoryStreamProvider._internal(
       (ref) => create(ref as KhatmaHistoryStreamRef),
@@ -239,13 +239,14 @@ class KhatmaHistoryStreamProvider
   }
 }
 
-mixin KhatmaHistoryStreamRef on AutoDisposeStreamProviderRef<KhatmaHistory?> {
+mixin KhatmaHistoryStreamRef
+    on AutoDisposeStreamProviderRef<CompletionHistory?> {
   /// The parameter `id` of this provider.
   KhatmaID get id;
 }
 
 class _KhatmaHistoryStreamProviderElement
-    extends AutoDisposeStreamProviderElement<KhatmaHistory?>
+    extends AutoDisposeStreamProviderElement<CompletionHistory?>
     with KhatmaHistoryStreamRef {
   _KhatmaHistoryStreamProviderElement(super.provider);
 
@@ -254,7 +255,7 @@ class _KhatmaHistoryStreamProviderElement
 }
 
 String _$khatmaHistoryFutureHash() =>
-    r'a8c51a36a20557c7d5588fb4340bd07cbb1b28c6';
+    r'b55ea97af3d9789d9f856eb3c5eb77edbfb0bf96';
 
 /// See also [khatmaHistoryFuture].
 @ProviderFor(khatmaHistoryFuture)
@@ -300,7 +301,8 @@ class KhatmaHistoryFutureFamily extends Family {
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
   Override overrideWith(
-      FutureOr<KhatmaHistory?> Function(KhatmaHistoryFutureRef ref) create) {
+      FutureOr<CompletionHistory?> Function(KhatmaHistoryFutureRef ref)
+          create) {
     return _$KhatmaHistoryFutureFamilyOverride(this, create);
   }
 }
@@ -308,7 +310,8 @@ class KhatmaHistoryFutureFamily extends Family {
 class _$KhatmaHistoryFutureFamilyOverride implements FamilyOverride {
   _$KhatmaHistoryFutureFamilyOverride(this.overriddenFamily, this.create);
 
-  final FutureOr<KhatmaHistory?> Function(KhatmaHistoryFutureRef ref) create;
+  final FutureOr<CompletionHistory?> Function(KhatmaHistoryFutureRef ref)
+      create;
 
   @override
   final KhatmaHistoryFutureFamily overriddenFamily;
@@ -323,7 +326,7 @@ class _$KhatmaHistoryFutureFamilyOverride implements FamilyOverride {
 
 /// See also [khatmaHistoryFuture].
 class KhatmaHistoryFutureProvider
-    extends AutoDisposeFutureProvider<KhatmaHistory?> {
+    extends AutoDisposeFutureProvider<CompletionHistory?> {
   /// See also [khatmaHistoryFuture].
   KhatmaHistoryFutureProvider(
     KhatmaID id,
@@ -358,7 +361,7 @@ class KhatmaHistoryFutureProvider
 
   @override
   Override overrideWith(
-    FutureOr<KhatmaHistory?> Function(KhatmaHistoryFutureRef ref) create,
+    FutureOr<CompletionHistory?> Function(KhatmaHistoryFutureRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -380,12 +383,12 @@ class KhatmaHistoryFutureProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<KhatmaHistory?> createElement() {
+  AutoDisposeFutureProviderElement<CompletionHistory?> createElement() {
     return _KhatmaHistoryFutureProviderElement(this);
   }
 
   KhatmaHistoryFutureProvider _copyWith(
-    FutureOr<KhatmaHistory?> Function(KhatmaHistoryFutureRef ref) create,
+    FutureOr<CompletionHistory?> Function(KhatmaHistoryFutureRef ref) create,
   ) {
     return KhatmaHistoryFutureProvider._internal(
       (ref) => create(ref as KhatmaHistoryFutureRef),
@@ -412,13 +415,14 @@ class KhatmaHistoryFutureProvider
   }
 }
 
-mixin KhatmaHistoryFutureRef on AutoDisposeFutureProviderRef<KhatmaHistory?> {
+mixin KhatmaHistoryFutureRef
+    on AutoDisposeFutureProviderRef<CompletionHistory?> {
   /// The parameter `id` of this provider.
   KhatmaID get id;
 }
 
 class _KhatmaHistoryFutureProviderElement
-    extends AutoDisposeFutureProviderElement<KhatmaHistory?>
+    extends AutoDisposeFutureProviderElement<CompletionHistory?>
     with KhatmaHistoryFutureRef {
   _KhatmaHistoryFutureProviderElement(super.provider);
 

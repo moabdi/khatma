@@ -6,7 +6,7 @@ part of 'share_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$shareNotifierHash() => r'9c852aab79bf4238ec91d500f344d57ffa631af1';
+String _$shareNotifierHash() => r'a89589c3564ee8ca8a46ec11c9109a426dd71de8';
 
 /// See also [ShareNotifier].
 @ProviderFor(ShareNotifier)

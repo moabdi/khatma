@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
-import 'package:khatma/src/features/khatma/presentation/complete/khatma_success_complete.dart';
+import 'package:khatma/src/features/khatma/presentation/read/khatma_success_complete.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
-import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
@@ -24,7 +22,6 @@ import 'package:khatma/src/features/khatma/presentation/read/part_selector/to_re
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
 class KhatmaReadScreen extends ConsumerWidget {
   const KhatmaReadScreen({super.key, required this.khatmaId});
@@ -39,8 +36,7 @@ class KhatmaReadScreen extends ConsumerWidget {
       data: (khatma) => khatma == null
           ? EmptyPlaceholderWidget(message: 'Khatma not found')
           : khatma.isCompleted
-              ? KhatmaSuccessComplete(
-                  khatmaHistory: KhatmaHistory.fromKhatma(khatma))
+              ? KhatmaSuccessComplete(khatma: khatma)
               : buildContent(khatma, context),
     );
   }

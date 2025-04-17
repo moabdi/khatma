@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 
 class KhatmaBarChart extends StatelessWidget {
-  final KhatmaHistory khatma;
+  final Khatma khatma;
   final String? title;
   final String? subTitle;
 
@@ -21,10 +21,7 @@ class KhatmaBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<KhatmaPartHistory> allParts = khatma.map(
-      private: (p) => p.parts,
-      shared: (s) => s.parts.values.expand((list) => list).toList(),
-    );
+    List<KhatmaPartHistory> allParts = getAllParts();
 
     final start = khatma.startDate;
     Map<DateTime, int> partsGrouped = {};
@@ -131,6 +128,31 @@ class KhatmaBarChart extends StatelessWidget {
     );
   }
 
+  List<KhatmaPartHistory> getAllParts() {
+    List<KhatmaPartHistory> allParts;
+
+    if (khatma.share == null) {
+      allParts = khatma.parts
+              ?.where((p) => p.endDate != null)
+              .map((p) => KhatmaPartHistory(p.id, p.endDate!))
+              .toList() ??
+          [];
+    } else {
+      final sharedParts = <String, List<KhatmaPartHistory>>{};
+      for (final part in khatma.parts ?? []) {
+        if (part.userId != null && part.finishedDate != null) {
+          sharedParts.putIfAbsent(part.userId!, () => []);
+          sharedParts[part.userId!]!.add(
+            KhatmaPartHistory(part.id, part.finishedDate!),
+          );
+        }
+      }
+
+      allParts = sharedParts.values.expand((list) => list).toList();
+    }
+    return allParts;
+  }
+
   BarChartGroupData buildBarChartGroupData(
       int i, int count, BuildContext context, double maxToY) {
     return BarChartGroupData(
@@ -212,4 +234,13 @@ class BarChartBuilder extends StatelessWidget {
     final interval = (totalBars / maxLabels).ceilToDouble();
     return interval.clamp(1, totalBars.toDouble());
   }
+}
+
+class KhatmaPartHistory {
+  final int id;
+  final DateTime endDate;
+  KhatmaPartHistory(
+    this.id,
+    this.endDate,
+  );
 }

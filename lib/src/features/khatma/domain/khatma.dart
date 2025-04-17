@@ -3,6 +3,7 @@ import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/day_of_week.dart';
 import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:khatma/src/themes/theme.dart';
 part 'khatma.freezed.dart';
 part 'khatma.g.dart';
 
@@ -14,41 +15,40 @@ abstract class Khatma with _$Khatma {
     @JsonKey(includeFromJson: true, includeToJson: false) KhatmaID? id,
     required String code,
     required String name,
-    String? description,
+    required SplitUnit unit,
     required DateTime createDate,
     required DateTime startDate,
+    String? description,
+    @Default(0) int repeats,
+    Recurrence? recurrence,
+    KhatmaShare? share,
+    KhatmaTheme? theme,
     DateTime? endDate,
-    String? creator,
-    required KhatmaStyle style,
     DateTime? lastRead,
     List<KhatmaPart>? parts,
-    required Recurrence recurrence,
-    required SplitUnit unit,
-    required KhatmaShare share,
-    @Default(0) int repeats,
   }) = _Khatma;
 
   factory Khatma.fromJson(Map<String, Object?> json) => _$KhatmaFromJson(json);
 }
 
 @freezed
-abstract class KhatmaStyle with _$KhatmaStyle {
-  const factory KhatmaStyle({
+abstract class KhatmaTheme with _$KhatmaTheme {
+  const factory KhatmaTheme({
     required String color,
     required String icon,
-  }) = _KhatmaStyle;
+  }) = _KhatmaTheme;
 
-  factory KhatmaStyle.fromJson(Map<String, Object?> json) =>
-      _$KhatmaStyleFromJson(json);
+  factory KhatmaTheme.fromJson(Map<String, Object?> json) =>
+      _$KhatmaThemeFromJson(json);
 }
 
 @freezed
 abstract class Recurrence with _$Recurrence {
   const factory Recurrence({
-    @Default(false) bool repeat,
-    required DateTime startDate,
-    required DateTime endDate,
     @Default(RepeatInterval.auto) RepeatInterval unit,
+    @Default(true) bool repeat,
+    DateTime? startDate,
+    DateTime? endDate,
     List<int>? days,
     int? frequency,
   }) = _Recurrence;
@@ -63,8 +63,8 @@ abstract class KhatmaPart with _$KhatmaPart {
     required int id,
     String? userId,
     String? userName,
-    DateTime? addedDate,
-    DateTime? finishedDate,
+    DateTime? startDate,
+    DateTime? endDate,
     int? remindTimes,
   }) = _KhatmaPart;
 
@@ -116,17 +116,17 @@ extension RecurrenceExtention on Recurrence {
 
 extension KhatmaPartExtension on KhatmaPart {
   int get duration {
-    if (finishedDate == null) return 0;
-    return finishedDate!.difference(addedDate!).inSeconds;
+    if (endDate == null) return 0;
+    return endDate!.difference(startDate!).inSeconds;
   }
 
   int get daysSinceFinished {
-    if (finishedDate == null) return 0;
-    return finishedDate!.difference(DateTime.now()).inDays;
+    if (endDate == null) return 0;
+    return endDate!.difference(DateTime.now()).inDays;
   }
 
   bool get isCompleted {
-    return finishedDate != null;
+    return endDate != null;
   }
 
   Color get color {
@@ -156,12 +156,14 @@ extension KhatmaExtension on Khatma {
   }
 
   bool get isExpired {
-    return recurrence.endDate.isBefore(DateTime.now());
+    if (recurrence == null || recurrence!.endDate == null) return false;
+    return recurrence!.endDate!.isBefore(DateTime.now());
   }
 
   String get remainingDays {
     if (isExpired) return '0';
-    return recurrence.endDate.difference(DateTime.now()).inDays.toString();
+    if (recurrence == null || recurrence!.endDate == null) return '-1';
+    return recurrence!.endDate!.difference(DateTime.now()).inDays.toString();
   }
 
   String get remainingParts {
@@ -176,7 +178,7 @@ extension KhatmaExtension on Khatma {
 
   List<int> get completedPartIds {
     return parts
-            ?.where((part) => part.finishedDate != null)
+            ?.where((part) => part.endDate != null)
             .map((part) => part.id)
             .toSet()
             .toList() ??
@@ -193,5 +195,10 @@ extension KhatmaExtension on Khatma {
 
   bool get isNotStarted {
     return completedPartIds.isEmpty;
+  }
+
+  KhatmaTheme get style {
+    return this.theme ??
+        KhatmaTheme(color: AppTheme.primaryColors.toHex(), icon: "kaaba.ico");
   }
 }

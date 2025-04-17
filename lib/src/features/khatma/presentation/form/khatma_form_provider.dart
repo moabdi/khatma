@@ -19,12 +19,9 @@ class FormKhatma extends _$FormKhatma {
       share: KhatmaShare(visibility: ShareVisibility.private),
       recurrence: Recurrence(
         repeat: true,
-        startDate: DateTime.now(),
-        endDate: DateTime.now().add(const Duration(days: 30)),
-        unit: RepeatInterval.monthly,
-        frequency: 1,
+        unit: RepeatInterval.auto,
       ),
-      style: KhatmaStyle(
+      theme: KhatmaTheme(
         color: AppTheme.getTheme().primaryColor.toHex(),
         icon: khatmaIconsMap.entries.first.key,
       ),
