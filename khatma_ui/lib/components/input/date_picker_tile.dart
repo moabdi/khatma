@@ -5,7 +5,7 @@ export 'package:khatma_ui/utils/date_formatter.dart';
 class DatePickerListTile extends StatefulWidget {
   const DatePickerListTile({
     super.key,
-    required this.value,
+    this.value,
     required this.onChanged,
     required this.leading,
     required this.title,
@@ -14,7 +14,7 @@ class DatePickerListTile extends StatefulWidget {
   });
 
   final String title;
-  final DateTime value;
+  final DateTime? value;
   final DateTime? firstDate;
   final Widget leading;
   final bool enabled;
@@ -46,7 +46,7 @@ class _DatePickerListTileState extends State<DatePickerListTile> {
       trailing: const Icon(Icons.arrow_right),
       title: Text(widget.title, style: Theme.of(context).textTheme.bodyMedium),
       subtitle: Text(
-        widget.value.format(),
+        widget.value?.format() ?? '',
         style: Theme.of(context).textTheme.bodyLarge,
       ),
       onTap: () {
