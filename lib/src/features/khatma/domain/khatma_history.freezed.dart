@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CompletionHistory _$CompletionHistoryFromJson(Map<String, dynamic> json) {
-  return _KhatmaHistory.fromJson(json);
+  return _CompletionHistory.fromJson(json);
 }
 
 /// @nodoc
@@ -25,6 +25,8 @@ mixin _$CompletionHistory {
   DateTime get startDate => throw _privateConstructorUsedError;
   @DateConverter()
   DateTime get endDate => throw _privateConstructorUsedError;
+  int? get completionMode => throw _privateConstructorUsedError;
+  String? get completion => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,9 @@ abstract class $CompletionHistoryCopyWith<$Res> {
   $Res call(
       {String? khatmaId,
       @DateConverter() DateTime startDate,
-      @DateConverter() DateTime endDate});
+      @DateConverter() DateTime endDate,
+      int? completionMode,
+      String? completion});
 }
 
 /// @nodoc
@@ -60,6 +64,8 @@ class _$CompletionHistoryCopyWithImpl<$Res, $Val extends CompletionHistory>
     Object? khatmaId = freezed,
     Object? startDate = null,
     Object? endDate = null,
+    Object? completionMode = freezed,
+    Object? completion = freezed,
   }) {
     return _then(_value.copyWith(
       khatmaId: freezed == khatmaId
@@ -74,30 +80,40 @@ class _$CompletionHistoryCopyWithImpl<$Res, $Val extends CompletionHistory>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      completionMode: freezed == completionMode
+          ? _value.completionMode
+          : completionMode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      completion: freezed == completion
+          ? _value.completion
+          : completion // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$KhatmaHistoryImplCopyWith<$Res>
+abstract class _$$CompletionHistoryImplCopyWith<$Res>
     implements $CompletionHistoryCopyWith<$Res> {
-  factory _$$KhatmaHistoryImplCopyWith(
-          _$KhatmaHistoryImpl value, $Res Function(_$KhatmaHistoryImpl) then) =
-      __$$KhatmaHistoryImplCopyWithImpl<$Res>;
+  factory _$$CompletionHistoryImplCopyWith(_$CompletionHistoryImpl value,
+          $Res Function(_$CompletionHistoryImpl) then) =
+      __$$CompletionHistoryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? khatmaId,
       @DateConverter() DateTime startDate,
-      @DateConverter() DateTime endDate});
+      @DateConverter() DateTime endDate,
+      int? completionMode,
+      String? completion});
 }
 
 /// @nodoc
-class __$$KhatmaHistoryImplCopyWithImpl<$Res>
-    extends _$CompletionHistoryCopyWithImpl<$Res, _$KhatmaHistoryImpl>
-    implements _$$KhatmaHistoryImplCopyWith<$Res> {
-  __$$KhatmaHistoryImplCopyWithImpl(
-      _$KhatmaHistoryImpl _value, $Res Function(_$KhatmaHistoryImpl) _then)
+class __$$CompletionHistoryImplCopyWithImpl<$Res>
+    extends _$CompletionHistoryCopyWithImpl<$Res, _$CompletionHistoryImpl>
+    implements _$$CompletionHistoryImplCopyWith<$Res> {
+  __$$CompletionHistoryImplCopyWithImpl(_$CompletionHistoryImpl _value,
+      $Res Function(_$CompletionHistoryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,8 +122,10 @@ class __$$KhatmaHistoryImplCopyWithImpl<$Res>
     Object? khatmaId = freezed,
     Object? startDate = null,
     Object? endDate = null,
+    Object? completionMode = freezed,
+    Object? completion = freezed,
   }) {
-    return _then(_$KhatmaHistoryImpl(
+    return _then(_$CompletionHistoryImpl(
       khatmaId: freezed == khatmaId
           ? _value.khatmaId
           : khatmaId // ignore: cast_nullable_to_non_nullable
@@ -120,20 +138,30 @@ class __$$KhatmaHistoryImplCopyWithImpl<$Res>
           ? _value.endDate
           : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      completionMode: freezed == completionMode
+          ? _value.completionMode
+          : completionMode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      completion: freezed == completion
+          ? _value.completion
+          : completion // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$KhatmaHistoryImpl implements _KhatmaHistory {
-  const _$KhatmaHistoryImpl(
+class _$CompletionHistoryImpl implements _CompletionHistory {
+  const _$CompletionHistoryImpl(
       {this.khatmaId,
       @DateConverter() required this.startDate,
-      @DateConverter() required this.endDate});
+      @DateConverter() required this.endDate,
+      this.completionMode,
+      this.completion});
 
-  factory _$KhatmaHistoryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$KhatmaHistoryImplFromJson(json);
+  factory _$CompletionHistoryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CompletionHistoryImplFromJson(json);
 
   @override
   final String? khatmaId;
@@ -143,50 +171,62 @@ class _$KhatmaHistoryImpl implements _KhatmaHistory {
   @override
   @DateConverter()
   final DateTime endDate;
+  @override
+  final int? completionMode;
+  @override
+  final String? completion;
 
   @override
   String toString() {
-    return 'CompletionHistory(khatmaId: $khatmaId, startDate: $startDate, endDate: $endDate)';
+    return 'CompletionHistory(khatmaId: $khatmaId, startDate: $startDate, endDate: $endDate, completionMode: $completionMode, completion: $completion)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$KhatmaHistoryImpl &&
+            other is _$CompletionHistoryImpl &&
             (identical(other.khatmaId, khatmaId) ||
                 other.khatmaId == khatmaId) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate));
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.completionMode, completionMode) ||
+                other.completionMode == completionMode) &&
+            (identical(other.completion, completion) ||
+                other.completion == completion));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, khatmaId, startDate, endDate);
+  int get hashCode => Object.hash(
+      runtimeType, khatmaId, startDate, endDate, completionMode, completion);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$KhatmaHistoryImplCopyWith<_$KhatmaHistoryImpl> get copyWith =>
-      __$$KhatmaHistoryImplCopyWithImpl<_$KhatmaHistoryImpl>(this, _$identity);
+  _$$CompletionHistoryImplCopyWith<_$CompletionHistoryImpl> get copyWith =>
+      __$$CompletionHistoryImplCopyWithImpl<_$CompletionHistoryImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$KhatmaHistoryImplToJson(
+    return _$$CompletionHistoryImplToJson(
       this,
     );
   }
 }
 
-abstract class _KhatmaHistory implements CompletionHistory {
-  const factory _KhatmaHistory(
+abstract class _CompletionHistory implements CompletionHistory {
+  const factory _CompletionHistory(
       {final String? khatmaId,
       @DateConverter() required final DateTime startDate,
-      @DateConverter() required final DateTime endDate}) = _$KhatmaHistoryImpl;
+      @DateConverter() required final DateTime endDate,
+      final int? completionMode,
+      final String? completion}) = _$CompletionHistoryImpl;
 
-  factory _KhatmaHistory.fromJson(Map<String, dynamic> json) =
-      _$KhatmaHistoryImpl.fromJson;
+  factory _CompletionHistory.fromJson(Map<String, dynamic> json) =
+      _$CompletionHistoryImpl.fromJson;
 
   @override
   String? get khatmaId;
@@ -197,7 +237,11 @@ abstract class _KhatmaHistory implements CompletionHistory {
   @DateConverter()
   DateTime get endDate;
   @override
+  int? get completionMode;
+  @override
+  String? get completion;
+  @override
   @JsonKey(ignore: true)
-  _$$KhatmaHistoryImplCopyWith<_$KhatmaHistoryImpl> get copyWith =>
+  _$$CompletionHistoryImplCopyWith<_$CompletionHistoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
