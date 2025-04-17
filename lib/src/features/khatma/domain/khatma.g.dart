@@ -14,7 +14,7 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
       createDate: DateTime.parse(json['createDate'] as String),
       startDate: DateTime.parse(json['startDate'] as String),
       description: json['description'] as String?,
-      repeats: (json['repeats'] as num?)?.toInt() ?? 0,
+      repeats: (json['repeats'] as num?)?.toInt(),
       recurrence: json['recurrence'] == null
           ? null
           : Recurrence.fromJson(
@@ -33,7 +33,7 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
       lastRead: json['lastRead'] == null
           ? null
           : DateTime.parse(json['lastRead'] as String),
-      parts: (json['parts'] as List<dynamic>?)
+      readParts: (json['readParts'] as List<dynamic>?)
           ?.map((e) => KhatmaPart.fromJson(Map<String, Object?>.from(e as Map)))
           .toList(),
     );
@@ -54,13 +54,14 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
   }
 
   writeNotNull('description', instance.description);
-  val['repeats'] = instance.repeats;
+  writeNotNull('repeats', instance.repeats);
   writeNotNull('recurrence', instance.recurrence?.toJson());
   writeNotNull('share', instance.share?.toJson());
   writeNotNull('theme', instance.theme?.toJson());
   writeNotNull('endDate', instance.endDate?.toIso8601String());
   writeNotNull('lastRead', instance.lastRead?.toIso8601String());
-  writeNotNull('parts', instance.parts?.map((e) => e.toJson()).toList());
+  writeNotNull(
+      'readParts', instance.readParts?.map((e) => e.toJson()).toList());
   return val;
 }
 

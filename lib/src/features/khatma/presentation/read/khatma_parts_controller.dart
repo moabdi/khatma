@@ -24,7 +24,8 @@ class KhatmaPartsController extends _$KhatmaPartsController {
   Future<Khatma> completeParts(String id) async {
     Khatma khatma = ref.watch(currentKhatmaProvider)!;
 
-    List<KhatmaPart> completedParts = List<KhatmaPart>.from(khatma.parts ?? []);
+    List<KhatmaPart> completedParts =
+        List<KhatmaPart>.from(khatma.readParts ?? []);
 
     for (var partId in state) {
       int index = completedParts.indexWhere((part) => part.id == partId);
@@ -36,7 +37,7 @@ class KhatmaPartsController extends _$KhatmaPartsController {
       }
     }
 
-    Khatma updatedKhatma = khatma.copyWith(parts: completedParts);
+    Khatma updatedKhatma = khatma.copyWith(readParts: completedParts);
     if (updatedKhatma.isCompleted) {
       updatedKhatma = updatedKhatma.copyWith(endDate: DateTime.now());
     }

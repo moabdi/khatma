@@ -123,7 +123,7 @@ class KhatmaReadScreen extends ConsumerWidget {
 
   Widget buildReadPartCard(BuildContext context, Khatma khatma) {
     return ConditionalContent(
-      condition: isNotEmpty(khatma.parts),
+      condition: isNotEmpty(khatma.readParts),
       secondary: const SizedBox.shrink(),
       primary: Card(
         elevation: 0.4,
@@ -143,7 +143,7 @@ class KhatmaReadScreen extends ConsumerWidget {
                 key: UniqueKey(),
                 unit: khatma.unit,
                 color: khatma.style.hexColor,
-                parts: khatma.parts,
+                parts: khatma.readParts,
               ),
             ],
           ),
@@ -156,8 +156,8 @@ class KhatmaReadScreen extends ConsumerWidget {
     return CircularPercentIndicator(
       radius: 20.0,
       lineWidth: 4,
-      percent: khatma.completude,
-      center: Text("${(khatma.completude * 100).toStringAsFixed(0)}%",
+      percent: khatma.completionPercent,
+      center: Text("${(khatma.completionPercent * 100).toStringAsFixed(0)}%",
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

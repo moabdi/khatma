@@ -132,14 +132,14 @@ class KhatmaBarChart extends StatelessWidget {
     List<KhatmaPartHistory> allParts;
 
     if (khatma.share == null) {
-      allParts = khatma.parts
+      allParts = khatma.readParts
               ?.where((p) => p.endDate != null)
               .map((p) => KhatmaPartHistory(p.id, p.endDate!))
               .toList() ??
           [];
     } else {
       final sharedParts = <String, List<KhatmaPartHistory>>{};
-      for (final part in khatma.parts ?? []) {
+      for (final part in khatma.readParts ?? []) {
         if (part.userId != null && part.finishedDate != null) {
           sharedParts.putIfAbsent(part.userId!, () => []);
           sharedParts[part.userId!]!.add(

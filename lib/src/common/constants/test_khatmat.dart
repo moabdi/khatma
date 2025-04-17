@@ -14,7 +14,7 @@ var kTestKhatmat = [
     name: 'Khatmati sourat',
     description: 'test description',
     unit: SplitUnit.sourat,
-    parts: [
+    readParts: [
       KhatmaPart(id: 1, userName: "Ahmed", endDate: DateTime.now()),
       KhatmaPart(id: 2, userName: 'Ahmed', endDate: DateTime.now()),
       KhatmaPart(id: 3, userName: 'Ahmed', endDate: DateTime.now()),
@@ -48,7 +48,7 @@ var kTestKhatmats = [
     name: 'Khatmati sourat',
     description: '',
     unit: SplitUnit.sourat,
-    parts: [
+    readParts: [
       KhatmaPart(id: 1, userName: "Ahmed", endDate: DateTime.now()),
       KhatmaPart(id: 2, userName: 'Ahmed', endDate: DateTime.now()),
       KhatmaPart(id: 3, userName: 'Ahmed', endDate: DateTime.now()),
@@ -72,7 +72,7 @@ var kTestKhatmats = [
     name: 'Ramadan 2023',
     description: 'A l' 'ocasion de ramadan 2023',
     unit: SplitUnit.hizb,
-    parts: [
+    readParts: [
       KhatmaPart(
           id: 1, userName: 'Ahmed', endDate: DateTime.parse("2022-09-08")),
       KhatmaPart(
@@ -100,7 +100,7 @@ var kTestKhatmats = [
     description:
         'This code provides a basic setup to create two buttons. The first button is a filled button with an upgrade icon, and the second one is an outlined button with a heart icon. Adjustments can be made based on your exact design and requirements',
     unit: SplitUnit.sourat,
-    parts: [
+    readParts: [
       KhatmaPart(
           id: 1, userName: 'Ahmed', endDate: DateTime.parse("2022-09-08")),
       KhatmaPart(

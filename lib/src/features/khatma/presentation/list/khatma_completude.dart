@@ -18,7 +18,7 @@ class KhatmaCompletude extends ConsumerWidget {
       borderRadius: BorderRadius.circular(10),
       backgroundColor: AppTheme.getTheme().disabledColor,
       valueColor: AlwaysStoppedAnimation<Color>(khatma.style.hexColor),
-      value: khatma.completude,
+      value: khatma.completionPercent,
     );
   }
 }

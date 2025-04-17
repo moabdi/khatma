@@ -28,13 +28,13 @@ mixin _$Khatma {
   DateTime get createDate => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  int get repeats => throw _privateConstructorUsedError;
+  int? get repeats => throw _privateConstructorUsedError;
   Recurrence? get recurrence => throw _privateConstructorUsedError;
   KhatmaShare? get share => throw _privateConstructorUsedError;
   KhatmaTheme? get theme => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
   DateTime? get lastRead => throw _privateConstructorUsedError;
-  List<KhatmaPart>? get parts => throw _privateConstructorUsedError;
+  List<KhatmaPart>? get readParts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,13 +54,13 @@ abstract class $KhatmaCopyWith<$Res> {
       DateTime createDate,
       DateTime startDate,
       String? description,
-      int repeats,
+      int? repeats,
       Recurrence? recurrence,
       KhatmaShare? share,
       KhatmaTheme? theme,
       DateTime? endDate,
       DateTime? lastRead,
-      List<KhatmaPart>? parts});
+      List<KhatmaPart>? readParts});
 
   $RecurrenceCopyWith<$Res>? get recurrence;
   $KhatmaShareCopyWith<$Res>? get share;
@@ -87,13 +87,13 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
     Object? createDate = null,
     Object? startDate = null,
     Object? description = freezed,
-    Object? repeats = null,
+    Object? repeats = freezed,
     Object? recurrence = freezed,
     Object? share = freezed,
     Object? theme = freezed,
     Object? endDate = freezed,
     Object? lastRead = freezed,
-    Object? parts = freezed,
+    Object? readParts = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -124,10 +124,10 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      repeats: null == repeats
+      repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       recurrence: freezed == recurrence
           ? _value.recurrence
           : recurrence // ignore: cast_nullable_to_non_nullable
@@ -148,9 +148,9 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.lastRead
           : lastRead // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      parts: freezed == parts
-          ? _value.parts
-          : parts // ignore: cast_nullable_to_non_nullable
+      readParts: freezed == readParts
+          ? _value.readParts
+          : readParts // ignore: cast_nullable_to_non_nullable
               as List<KhatmaPart>?,
     ) as $Val);
   }
@@ -207,13 +207,13 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
       DateTime createDate,
       DateTime startDate,
       String? description,
-      int repeats,
+      int? repeats,
       Recurrence? recurrence,
       KhatmaShare? share,
       KhatmaTheme? theme,
       DateTime? endDate,
       DateTime? lastRead,
-      List<KhatmaPart>? parts});
+      List<KhatmaPart>? readParts});
 
   @override
   $RecurrenceCopyWith<$Res>? get recurrence;
@@ -241,13 +241,13 @@ class __$$KhatmaImplCopyWithImpl<$Res>
     Object? createDate = null,
     Object? startDate = null,
     Object? description = freezed,
-    Object? repeats = null,
+    Object? repeats = freezed,
     Object? recurrence = freezed,
     Object? share = freezed,
     Object? theme = freezed,
     Object? endDate = freezed,
     Object? lastRead = freezed,
-    Object? parts = freezed,
+    Object? readParts = freezed,
   }) {
     return _then(_$KhatmaImpl(
       id: freezed == id
@@ -278,10 +278,10 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      repeats: null == repeats
+      repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       recurrence: freezed == recurrence
           ? _value.recurrence
           : recurrence // ignore: cast_nullable_to_non_nullable
@@ -302,9 +302,9 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value.lastRead
           : lastRead // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      parts: freezed == parts
-          ? _value._parts
-          : parts // ignore: cast_nullable_to_non_nullable
+      readParts: freezed == readParts
+          ? _value._readParts
+          : readParts // ignore: cast_nullable_to_non_nullable
               as List<KhatmaPart>?,
     ));
   }
@@ -321,14 +321,14 @@ class _$KhatmaImpl implements _Khatma {
       required this.createDate,
       required this.startDate,
       this.description,
-      this.repeats = 0,
+      this.repeats,
       this.recurrence,
       this.share,
       this.theme,
       this.endDate,
       this.lastRead,
-      final List<KhatmaPart>? parts})
-      : _parts = parts;
+      final List<KhatmaPart>? readParts})
+      : _readParts = readParts;
 
   factory _$KhatmaImpl.fromJson(Map<String, dynamic> json) =>
       _$$KhatmaImplFromJson(json);
@@ -349,8 +349,7 @@ class _$KhatmaImpl implements _Khatma {
   @override
   final String? description;
   @override
-  @JsonKey()
-  final int repeats;
+  final int? repeats;
   @override
   final Recurrence? recurrence;
   @override
@@ -361,19 +360,19 @@ class _$KhatmaImpl implements _Khatma {
   final DateTime? endDate;
   @override
   final DateTime? lastRead;
-  final List<KhatmaPart>? _parts;
+  final List<KhatmaPart>? _readParts;
   @override
-  List<KhatmaPart>? get parts {
-    final value = _parts;
+  List<KhatmaPart>? get readParts {
+    final value = _readParts;
     if (value == null) return null;
-    if (_parts is EqualUnmodifiableListView) return _parts;
+    if (_readParts is EqualUnmodifiableListView) return _readParts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Khatma(id: $id, code: $code, name: $name, unit: $unit, createDate: $createDate, startDate: $startDate, description: $description, repeats: $repeats, recurrence: $recurrence, share: $share, theme: $theme, endDate: $endDate, lastRead: $lastRead, parts: $parts)';
+    return 'Khatma(id: $id, code: $code, name: $name, unit: $unit, createDate: $createDate, startDate: $startDate, description: $description, repeats: $repeats, recurrence: $recurrence, share: $share, theme: $theme, endDate: $endDate, lastRead: $lastRead, readParts: $readParts)';
   }
 
   @override
@@ -399,7 +398,8 @@ class _$KhatmaImpl implements _Khatma {
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.lastRead, lastRead) ||
                 other.lastRead == lastRead) &&
-            const DeepCollectionEquality().equals(other._parts, _parts));
+            const DeepCollectionEquality()
+                .equals(other._readParts, _readParts));
   }
 
   @JsonKey(ignore: true)
@@ -419,7 +419,7 @@ class _$KhatmaImpl implements _Khatma {
       theme,
       endDate,
       lastRead,
-      const DeepCollectionEquality().hash(_parts));
+      const DeepCollectionEquality().hash(_readParts));
 
   @JsonKey(ignore: true)
   @override
@@ -444,13 +444,13 @@ abstract class _Khatma implements Khatma {
       required final DateTime createDate,
       required final DateTime startDate,
       final String? description,
-      final int repeats,
+      final int? repeats,
       final Recurrence? recurrence,
       final KhatmaShare? share,
       final KhatmaTheme? theme,
       final DateTime? endDate,
       final DateTime? lastRead,
-      final List<KhatmaPart>? parts}) = _$KhatmaImpl;
+      final List<KhatmaPart>? readParts}) = _$KhatmaImpl;
 
   factory _Khatma.fromJson(Map<String, dynamic> json) = _$KhatmaImpl.fromJson;
 
@@ -470,7 +470,7 @@ abstract class _Khatma implements Khatma {
   @override
   String? get description;
   @override
-  int get repeats;
+  int? get repeats;
   @override
   Recurrence? get recurrence;
   @override
@@ -482,7 +482,7 @@ abstract class _Khatma implements Khatma {
   @override
   DateTime? get lastRead;
   @override
-  List<KhatmaPart>? get parts;
+  List<KhatmaPart>? get readParts;
   @override
   @JsonKey(ignore: true)
   _$$KhatmaImplCopyWith<_$KhatmaImpl> get copyWith =>

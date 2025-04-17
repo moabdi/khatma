@@ -19,13 +19,13 @@ abstract class Khatma with _$Khatma {
     required DateTime createDate,
     required DateTime startDate,
     String? description,
-    @Default(0) int repeats,
+    int? repeats,
     Recurrence? recurrence,
     KhatmaShare? share,
     KhatmaTheme? theme,
     DateTime? endDate,
     DateTime? lastRead,
-    List<KhatmaPart>? parts,
+    List<KhatmaPart>? readParts,
   }) = _Khatma;
 
   factory Khatma.fromJson(Map<String, Object?> json) => _$KhatmaFromJson(json);
@@ -137,8 +137,8 @@ extension KhatmaPartExtension on KhatmaPart {
 }
 
 extension KhatmaExtension on Khatma {
-  double get completude {
-    if (isEmpty(parts)) return 0;
+  double get completionPercent {
+    if (isEmpty(readParts)) return 0;
 
     if (SplitUnit.sourat == unit) {
       return computeSouratCompletude(completedPartIds);
@@ -151,8 +151,8 @@ extension KhatmaExtension on Khatma {
     return DateTime.now().difference(lastRead!);
   }
 
-  List<int> get readParts {
-    return parts?.map((part) => part.id).toList() ?? [];
+  List<int> get readPartIds {
+    return readParts?.map((part) => part.id).toList() ?? [];
   }
 
   bool get isExpired {
@@ -167,17 +167,17 @@ extension KhatmaExtension on Khatma {
   }
 
   String get remainingParts {
-    return (unit.count - readParts.length).toString();
+    return (unit.count - readPartIds.length).toString();
   }
 
   List<int> get remainingPartsList {
     return List.generate(unit.count, (index) => index + 1)
-        .where((part) => !readParts.contains(part))
+        .where((part) => !readPartIds.contains(part))
         .toList();
   }
 
   List<int> get completedPartIds {
-    return parts
+    return readParts
             ?.where((part) => part.endDate != null)
             .map((part) => part.id)
             .toSet()
