@@ -42,14 +42,14 @@ class PartTile extends ConsumerWidget {
               part.title,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-      subtitle: enabled
-          ? Text(part.subtitle)
-          : Text(
-              part.title,
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color:
-                      Theme.of(context).listTileTheme.subtitleTextStyle!.color),
+      subtitle: Text(
+        part.subtitle,
+        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: enabled
+                  ? Theme.of(context).listTileTheme.subtitleTextStyle!.color
+                  : Theme.of(context).hintColor,
             ),
+      ),
       trailing: trailing,
     );
   }
