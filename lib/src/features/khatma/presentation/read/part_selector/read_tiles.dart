@@ -55,7 +55,7 @@ class ReadPartTiles extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    khatmaPart.endDate!.toHumanReadable(),
+                    khatmaPart.endDate!.timeAgoSince(),
                     style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],

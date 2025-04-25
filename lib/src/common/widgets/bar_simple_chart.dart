@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/khatma_bar_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/read/khatma_bar_chart.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/themes/theme.dart';
 

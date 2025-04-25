@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/khatma/presentation/read/animate_khatma_chart.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_success_complete.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
@@ -17,10 +18,8 @@ import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.da
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/read/part_selector/part_floating_button.dart';
-import 'package:khatma/src/features/khatma/presentation/read/part_selector/read_tiles.dart';
 import 'package:khatma/src/features/khatma/presentation/read/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:readmore/readmore.dart';
 
 class KhatmaReadScreen extends ConsumerWidget {
@@ -130,40 +129,13 @@ class KhatmaReadScreen extends ConsumerWidget {
         clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ExpansionTile(
-            backgroundColor: Theme.of(context).disabledColor,
-            collapsedBackgroundColor: Theme.of(context).disabledColor,
-            title: Text(AppLocalizations.of(context).completedParts),
-            subtitle: Text(AppLocalizations.of(context)
-                .readedParts(khatma.completedPartIds.length)),
-            trailing: const Icon(Icons.arrow_drop_down),
-            leading: buildChart(context, khatma),
-            children: <Widget>[
-              ReadPartTiles(
-                key: UniqueKey(),
-                unit: khatma.unit,
-                color: khatma.style.hexColor,
-                parts: khatma.readParts,
-              ),
-            ],
-          ),
+          child: ListTile(
+              title: Text(AppLocalizations.of(context).completedParts),
+              subtitle: Text(AppLocalizations.of(context)
+                  .readedParts(khatma.completedPartIds.length)),
+              leading: AnimatedKhatmaChart(khatma: khatma)),
         ),
       ),
-    );
-  }
-
-  Widget buildChart(BuildContext context, Khatma khatma) {
-    return CircularPercentIndicator(
-      radius: 20.0,
-      lineWidth: 4,
-      percent: khatma.completionPercent,
-      center: Text("${(khatma.completionPercent * 100).toStringAsFixed(0)}%",
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              )),
-      progressColor: khatma.style.hexColor, // Theme.of(context).primaryColor,
-      backgroundColor: khatma.style.hexColor.withOpacity(.2),
     );
   }
 }

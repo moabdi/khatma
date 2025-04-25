@@ -37,19 +37,32 @@ class ToReadPartTiles extends ConsumerWidget {
           separatorBuilder: (context, index) => const Divider(height: 2),
           itemCount: filtredList.length,
           cacheExtent: 10,
-          itemBuilder: (BuildContext context, int index) {
-            var part = filtredList[index];
-            return PartTile(
-              part,
-              color: color,
-              trailing: CircleAvatar(
-                backgroundColor: color.withOpacity(.2),
-                child: IconButton(
-                  icon: const Icon(Icons.auto_stories, size: 18),
-                  color: color,
-                  onPressed: () => handleOnTap(context, part),
-                ),
-              ),
+          itemBuilder: (context, index) {
+            final part = filtredList[index];
+            return TweenAnimationBuilder<double>(
+              tween: Tween<double>(begin: 0, end: 1),
+              duration: Duration(milliseconds: 500 + index * 50),
+              curve: Curves.easeOut,
+              builder: (context, value, child) {
+                return Opacity(
+                  opacity: value,
+                  child: Transform.translate(
+                    offset: Offset(0, 30 * (1 - value)),
+                    child: PartTile(
+                      part,
+                      color: color,
+                      trailing: CircleAvatar(
+                        backgroundColor: color.withOpacity(.2),
+                        child: IconButton(
+                          icon: const Icon(Icons.auto_stories, size: 18),
+                          color: color,
+                          onPressed: () => handleOnTap(context, part),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           },
         );
