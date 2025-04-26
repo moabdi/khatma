@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/repeat_enabler_tile.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/common/constants/snack_bars.dart';
@@ -15,15 +16,10 @@ import 'package:khatma/src/common/widgets/empty_placeholder_widget.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/khatma_style/style_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/reccurence_text.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/share_selector/share_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/khatma_controller.dart';
-import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
 import 'package:khatma_ui/components/khatma_form_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_selector.dart';
 import 'package:khatma_ui/components/modal_bottom_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/unit_selector.dart';
 import 'package:khatma/src/routing/app_router.dart';
@@ -36,10 +32,6 @@ class AddKhatmaScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final khatma = ref.watch(formKhatmaProvider);
-    final formKey = GlobalKey<FormState>();
-    final node = FocusScopeNode();
-    final nameController = TextEditingController(text: khatma.name);
-    final descController = TextEditingController(text: khatma.description);
 
     return Scaffold(
       appBar: AppBar(
@@ -51,85 +43,120 @@ class AddKhatmaScreen extends ConsumerWidget {
       ),
       body: khatma.id != khatmaId
           ? EmptyPlaceholderWidget(message: 'Khatma not found')
-          : SafeArea(
-              child: SingleChildScrollView(
-                child: FocusScope(
-                  node: node,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height,
-                    color: khatma.style.hexColor.withOpacity(.1),
-                    child: Form(
-                      key: formKey,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildAvatar(context, khatma, ref),
-                            gapH12,
-                            _buildName(context, nameController, descController,
-                                node, ref, khatma),
-                            gapH12,
-                            _buildDescription(context, nameController,
-                                descController, ref, khatma),
-                            gapH12,
-                            _buildSplitUnit(context, ref),
-                            gapH12,
-                            _buildRecurrence(context, ref),
-                            gapH12,
-                            _buildShare(context, ref),
-                            gapH20,
-                            PrimaryButton(
-                              color: khatma.style.hexColor,
-                              width: double.infinity,
-                              shadowOffset: 8,
-                              text: AppLocalizations.of(context).save,
-                              onPressed: () {
-                                ref
-                                    .read(khatmaControllerProvider.notifier)
-                                    .submit();
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            gapH16,
-                            ConditionalContent(
-                              condition: khatmaId != null,
-                              primary: DeleteButton(
-                                width: double.infinity,
-                                content: AppLocalizations.of(context)
-                                    .confirmDeleteKhatma,
-                                onPressed: () {
-                                  final snackBar = buildSnackBar(
-                                    context,
-                                    Text(AppLocalizations.of(context).cancel),
-                                  );
-                                  ref
-                                      .read(khatmaControllerProvider.notifier)
-                                      .delete(khatmaId!)
-                                      .then(
-                                        (e) => {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(snackBar),
-                                          Timer(
-                                              Duration(
-                                                  seconds: 1,
-                                                  microseconds: 100), () {
-                                            context.goNamed(AppRoute.home.name);
-                                          }),
-                                        },
-                                      );
-                                },
-                              ),
-                            ),
-                            gapH20,
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          : _buildFormView(context, khatma, ref),
+    );
+  }
+
+  SafeArea _buildFormView(
+    BuildContext context,
+    Khatma khatma,
+    WidgetRef ref,
+  ) {
+    final formKey = GlobalKey<FormState>();
+    final node = FocusScopeNode();
+    final nameController = TextEditingController(text: khatma.name);
+    final descController = TextEditingController(text: khatma.description);
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: FocusScope(
+          node: node,
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            color: khatma.style.hexColor.withOpacity(.1),
+            child: _buildForm(formKey, context, khatma, ref, nameController,
+                descController, node),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Form _buildForm(
+      GlobalKey<FormState> formKey,
+      BuildContext context,
+      Khatma khatma,
+      WidgetRef ref,
+      TextEditingController nameController,
+      TextEditingController descController,
+      FocusScopeNode node) {
+    return Form(
+      key: formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            gapH24,
+            _buildAvatar(context, khatma, ref),
+            gapH16,
+            _buildName(
+                context, nameController, descController, node, ref, khatma),
+            gapH16,
+            _buildDescription(
+                context, nameController, descController, ref, khatma),
+            gapH16,
+            _buildSplitUnit(context, ref),
+            gapH16,
+            _buildEnableRepeat(khatma, ref),
+            Spacer(),
+            gapH20,
+            _buildSaveButton(khatma, context, ref),
+            gapH16,
+            _buildDeleteButton(context, ref),
+            gapH64,
+            gapH16,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Card _buildEnableRepeat(Khatma khatma, WidgetRef ref) {
+    return Card(
+      elevation: 0.1,
+      child: RepeatEnablerTile(
+        enabled: khatma.repeat,
+        onChanged: (enaled) =>
+            ref.updateKhatma(khatma.copyWith(repeat: !khatma.repeat)),
+      ),
+    );
+  }
+
+  PrimaryButton _buildSaveButton(
+      Khatma khatma, BuildContext context, WidgetRef ref) {
+    return PrimaryButton(
+      color: khatma.style.hexColor,
+      width: double.infinity,
+      shadowOffset: 8,
+      text: AppLocalizations.of(context).save,
+      onPressed: () {
+        ref.read(khatmaControllerProvider.notifier).submit();
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  ConditionalContent _buildDeleteButton(BuildContext context, WidgetRef ref) {
+    return ConditionalContent(
+      condition: khatmaId != null,
+      primary: DeleteButton(
+        width: double.infinity,
+        content: AppLocalizations.of(context).confirmDeleteKhatma,
+        onPressed: () {
+          final snackBar = buildSnackBar(
+            context,
+            Text(AppLocalizations.of(context).cancel),
+          );
+          ref.read(khatmaControllerProvider.notifier).delete(khatmaId!).then(
+                (e) => {
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar),
+                  Timer(Duration(seconds: 1, microseconds: 100), () {
+                    context.goNamed(AppRoute.home.name);
+                  }),
+                },
+              );
+        },
+      ),
     );
   }
 
@@ -217,53 +244,6 @@ class AddKhatmaScreen extends ConsumerWidget {
                       .updateUnit(khatma, value)),
               AppLocalizations.of(context).splitUnit,
             ),
-    );
-  }
-
-  Widget _buildRecurrence(BuildContext context, WidgetRef ref) {
-    Khatma khatma = ref.watch(formKhatmaProvider);
-    return KhatmaFormTile(
-      icon:
-          const Icon(Icons.autorenew, color: Color.fromARGB(255, 120, 0, 212)),
-      title: AppLocalizations.of(context).recurrence,
-      subtitle: RecurrenceText(khatma.recurrence),
-      onTap: () {
-        ref.read(recurrenceNotifierProvider.notifier).update(khatma.recurrence);
-        _showModal(
-          context,
-          RecurrenceSelector(
-              recurrence: khatma.recurrence,
-              onChanged: (value) =>
-                  ref.updateKhatma(khatma.copyWith(recurrence: value))),
-          AppLocalizations.of(context).recurrence,
-        );
-      },
-    );
-  }
-
-  Widget _buildShare(BuildContext context, WidgetRef ref) {
-    Khatma khatma = ref.watch(formKhatmaProvider);
-    return KhatmaFormTile(
-      icon: const Icon(
-        Icons.group,
-        color: Color.fromARGB(255, 0, 212, 102),
-        size: 24,
-      ),
-      title: AppLocalizations.of(context).share,
-      subtitle: Text(AppLocalizations.of(context).shareVisibilityDesc(
-          khatma.share?.visibility.name ?? ShareVisibility.private.name)),
-      onTap: () => khatma.isStarted
-          ? showSnackBar(context)
-          : {
-              ref.read(shareNotifierProvider.notifier).update(khatma.share),
-              _showModal(
-                context,
-                ShareSelector(
-                    onChanged: (value) =>
-                        ref.updateKhatma(khatma.copyWith(share: value))),
-                AppLocalizations.of(context).share,
-              )
-            },
     );
   }
 

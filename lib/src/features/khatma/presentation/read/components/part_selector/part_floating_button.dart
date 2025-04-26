@@ -5,7 +5,7 @@ import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_success_complete.dart';
-import 'package:khatma/src/features/khatma/presentation/read/khatma_parts_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/read/providers/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/utils/collection_utils.dart';
 
 class PartFloatingButton extends StatelessWidget {

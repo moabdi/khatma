@@ -6,9 +6,8 @@ import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/recurrence_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/recurrence_selector/repeat_enabler_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/read/khatma_bar_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/form/components/repeat_enabler_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/read/components/khatma_bar_chart.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -61,17 +60,18 @@ class KhatmaSuccessComplete extends ConsumerWidget {
               gapH20,
               Divider(),
               gapH20,
-              RepeatEnablerTile(),
+              RepeatEnablerTile(
+                enabled: khatma.repeat,
+              ),
               Spacer(),
               PrimaryButton(
                 color: Theme.of(context).primaryColor,
                 width: MediaQuery.of(context).size.width * .85,
                 shadowOffset: 5,
                 onPressed: () {
-                  var repeat = ref.read(recurrenceNotifierProvider).repeat;
                   ref.read(khatmaListProvider.notifier).complete(
                         khatma.id!,
-                        repeat,
+                        khatma.repeat,
                       );
 
                   context.goNamed(AppRoute.home.name);

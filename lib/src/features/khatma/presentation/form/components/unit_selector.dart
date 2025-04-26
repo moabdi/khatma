@@ -12,12 +12,8 @@ class UnitSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<SplitUnit, IconData> unitIcons = {
-      SplitUnit.sourat: Icons.brightness_5,
       SplitUnit.juzz: Icons.bookmarks,
       SplitUnit.hizb: Icons.bookmark,
-      SplitUnit.half: Icons.contrast,
-      SplitUnit.rubue: Icons.filter_4,
-      SplitUnit.thumun: Icons.filter_8,
     };
     return Card(
       child: Column(

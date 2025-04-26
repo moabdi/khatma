@@ -67,6 +67,9 @@ dependencies:
   random_string: ^2.3.1
   add_to_cart_button: ^0.0.6
   dotted_line: ^3.2.3
+  wave: ^0.2.2
+  url_launcher: ^6.3.1
+  device_info_plus: ^10.1.2
 
   khatma_ui:
     path: ./khatma_ui

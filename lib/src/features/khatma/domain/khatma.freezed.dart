@@ -28,6 +28,7 @@ mixin _$Khatma {
   DateTime get createDate => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  bool get repeat => throw _privateConstructorUsedError;
   int? get repeats => throw _privateConstructorUsedError;
   Recurrence? get recurrence => throw _privateConstructorUsedError;
   KhatmaShare? get share => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $KhatmaCopyWith<$Res> {
       DateTime createDate,
       DateTime startDate,
       String? description,
+      bool repeat,
       int? repeats,
       Recurrence? recurrence,
       KhatmaShare? share,
@@ -87,6 +89,7 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
     Object? createDate = null,
     Object? startDate = null,
     Object? description = freezed,
+    Object? repeat = null,
     Object? repeats = freezed,
     Object? recurrence = freezed,
     Object? share = freezed,
@@ -124,6 +127,10 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      repeat: null == repeat
+          ? _value.repeat
+          : repeat // ignore: cast_nullable_to_non_nullable
+              as bool,
       repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
@@ -207,6 +214,7 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
       DateTime createDate,
       DateTime startDate,
       String? description,
+      bool repeat,
       int? repeats,
       Recurrence? recurrence,
       KhatmaShare? share,
@@ -241,6 +249,7 @@ class __$$KhatmaImplCopyWithImpl<$Res>
     Object? createDate = null,
     Object? startDate = null,
     Object? description = freezed,
+    Object? repeat = null,
     Object? repeats = freezed,
     Object? recurrence = freezed,
     Object? share = freezed,
@@ -278,6 +287,10 @@ class __$$KhatmaImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      repeat: null == repeat
+          ? _value.repeat
+          : repeat // ignore: cast_nullable_to_non_nullable
+              as bool,
       repeats: freezed == repeats
           ? _value.repeats
           : repeats // ignore: cast_nullable_to_non_nullable
@@ -321,6 +334,7 @@ class _$KhatmaImpl implements _Khatma {
       required this.createDate,
       required this.startDate,
       this.description,
+      this.repeat = false,
       this.repeats,
       this.recurrence,
       this.share,
@@ -349,6 +363,9 @@ class _$KhatmaImpl implements _Khatma {
   @override
   final String? description;
   @override
+  @JsonKey()
+  final bool repeat;
+  @override
   final int? repeats;
   @override
   final Recurrence? recurrence;
@@ -372,7 +389,7 @@ class _$KhatmaImpl implements _Khatma {
 
   @override
   String toString() {
-    return 'Khatma(id: $id, code: $code, name: $name, unit: $unit, createDate: $createDate, startDate: $startDate, description: $description, repeats: $repeats, recurrence: $recurrence, share: $share, theme: $theme, endDate: $endDate, lastRead: $lastRead, readParts: $readParts)';
+    return 'Khatma(id: $id, code: $code, name: $name, unit: $unit, createDate: $createDate, startDate: $startDate, description: $description, repeat: $repeat, repeats: $repeats, recurrence: $recurrence, share: $share, theme: $theme, endDate: $endDate, lastRead: $lastRead, readParts: $readParts)';
   }
 
   @override
@@ -390,6 +407,7 @@ class _$KhatmaImpl implements _Khatma {
                 other.startDate == startDate) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.repeat, repeat) || other.repeat == repeat) &&
             (identical(other.repeats, repeats) || other.repeats == repeats) &&
             (identical(other.recurrence, recurrence) ||
                 other.recurrence == recurrence) &&
@@ -413,6 +431,7 @@ class _$KhatmaImpl implements _Khatma {
       createDate,
       startDate,
       description,
+      repeat,
       repeats,
       recurrence,
       share,
@@ -444,6 +463,7 @@ abstract class _Khatma implements Khatma {
       required final DateTime createDate,
       required final DateTime startDate,
       final String? description,
+      final bool repeat,
       final int? repeats,
       final Recurrence? recurrence,
       final KhatmaShare? share,
@@ -469,6 +489,8 @@ abstract class _Khatma implements Khatma {
   DateTime get startDate;
   @override
   String? get description;
+  @override
+  bool get repeat;
   @override
   int? get repeats;
   @override

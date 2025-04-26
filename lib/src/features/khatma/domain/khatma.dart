@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/day_of_week.dart';
-import 'package:khatma/src/features/khatma/utils/parts_helper.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/themes/theme.dart';
 part 'khatma.freezed.dart';
@@ -19,6 +18,7 @@ abstract class Khatma with _$Khatma {
     required DateTime createDate,
     required DateTime startDate,
     String? description,
+    @Default(false) bool repeat,
     int? repeats,
     Recurrence? recurrence,
     KhatmaShare? share,
@@ -91,12 +91,12 @@ enum RepeatInterval { auto, daily, weekly, monthly }
 enum TimePeriods { day, week, month, year }
 
 enum SplitUnit {
-  sourat(114),
+  //sourat(114),
   juzz(30),
-  hizb(60),
-  half(120),
-  rubue(240),
-  thumun(480);
+  hizb(60);
+  //half(120),
+  //rubue(240),
+  //thumun(480);
 
   final int count;
 
@@ -140,9 +140,9 @@ extension KhatmaExtension on Khatma {
   double get completionPercent {
     if (isEmpty(readParts)) return 0;
 
-    if (SplitUnit.sourat == unit) {
-      return computeSouratCompletude(completedPartIds);
-    }
+    //if (SplitUnit.sourat == unit) {
+    //  return computeSouratCompletude(completedPartIds);
+    //}
     return completedPartIds.length / unit.count;
   }
 

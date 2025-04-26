@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
@@ -13,17 +15,13 @@ class FormKhatma extends _$FormKhatma {
     return Khatma(
       code: randomAlphaNumeric(6).toUpperCase(),
       name: 'Khatma-${DateTime.now().toInt().toString()}',
-      unit: SplitUnit.hizb,
+      unit: SplitUnit.juzz,
       createDate: DateTime.now(),
       startDate: DateTime.now(),
-      share: KhatmaShare(visibility: ShareVisibility.private),
-      recurrence: Recurrence(
-        repeat: true,
-        unit: RepeatInterval.auto,
-      ),
       theme: KhatmaTheme(
         color: AppTheme.getTheme().primaryColor.toHex(),
-        icon: khatmaIconsMap.entries.first.key,
+        icon: khatmaIconsMap.keys
+            .elementAt(Random().nextInt(khatmaIconsMap.length)),
       ),
     );
   }

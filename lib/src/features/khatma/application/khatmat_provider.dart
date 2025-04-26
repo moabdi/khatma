@@ -68,8 +68,9 @@ class KhatmaList extends _$KhatmaList {
             userUid,
             khatma.copyWith(
               startDate: DateTime.now(),
+              repeat: repeat,
               repeats: (khatma.repeats ?? 0) + 1,
-              readParts: List.empty(growable: true),
+              readParts: null,
               lastRead: null,
               endDate: null,
             ),

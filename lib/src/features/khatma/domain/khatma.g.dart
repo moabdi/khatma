@@ -14,6 +14,7 @@ _$KhatmaImpl _$$KhatmaImplFromJson(Map json) => _$KhatmaImpl(
       createDate: DateTime.parse(json['createDate'] as String),
       startDate: DateTime.parse(json['startDate'] as String),
       description: json['description'] as String?,
+      repeat: json['repeat'] as bool? ?? false,
       repeats: (json['repeats'] as num?)?.toInt(),
       recurrence: json['recurrence'] == null
           ? null
@@ -54,6 +55,7 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
   }
 
   writeNotNull('description', instance.description);
+  val['repeat'] = instance.repeat;
   writeNotNull('repeats', instance.repeats);
   writeNotNull('recurrence', instance.recurrence?.toJson());
   writeNotNull('share', instance.share?.toJson());
@@ -66,12 +68,8 @@ Map<String, dynamic> _$$KhatmaImplToJson(_$KhatmaImpl instance) {
 }
 
 const _$SplitUnitEnumMap = {
-  SplitUnit.sourat: 'sourat',
   SplitUnit.juzz: 'juzz',
   SplitUnit.hizb: 'hizb',
-  SplitUnit.half: 'half',
-  SplitUnit.rubue: 'rubue',
-  SplitUnit.thumun: 'thumun',
 };
 
 _$KhatmaThemeImpl _$$KhatmaThemeImplFromJson(Map json) => _$KhatmaThemeImpl(

@@ -6,7 +6,7 @@ part of 'khatmat_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$khatmaListHash() => r'aa9ff65c426778c16b8bf69cd07c4730b65ec13c';
+String _$khatmaListHash() => r'c04695b182500099d4814267302721885c548adf';
 
 /// See also [KhatmaList].
 @ProviderFor(KhatmaList)

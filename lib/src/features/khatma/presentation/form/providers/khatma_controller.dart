@@ -1,6 +1,6 @@
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

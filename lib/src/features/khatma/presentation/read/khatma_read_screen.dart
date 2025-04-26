@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/presentation/read/animate_khatma_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/read/components/animate_khatma_chart.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_success_complete.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
@@ -16,9 +16,9 @@ import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
-import 'package:khatma/src/features/khatma/presentation/form/khatma_form_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/read/part_selector/part_floating_button.dart';
-import 'package:khatma/src/features/khatma/presentation/read/part_selector/to_read_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/read/components/part_selector/part_floating_button.dart';
+import 'package:khatma/src/features/khatma/presentation/read/components/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
 
