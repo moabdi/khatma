@@ -62,6 +62,7 @@ class KhatmaSuccessComplete extends ConsumerWidget {
               gapH20,
               RepeatEnablerTile(
                 enabled: khatma.repeat,
+                onChanged: (value) {},
               ),
               Spacer(),
               PrimaryButton(

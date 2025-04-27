@@ -34,22 +34,24 @@ class MainNavigationBar extends StatelessWidget {
         item(context,
             icon: Icons.add_box_outlined,
             label: AppLocalizations.of(context).create),
-        item(context,
-            icon: Icons.person, label: AppLocalizations.of(context).parts),
+        item(context, icon: Icons.person, label: "Profil"),
       ],
       onTap: (value) {
         switch (value) {
           case 0:
-            goHome(context);
+            context.goNamed(AppRoute.home.name);
             break;
           case 1:
-            openQuran(context);
+            context.goNamed(
+              AppRoute.quran.name,
+              pathParameters: {'idSourat': "1", 'idVerset': "1"},
+            );
             break;
           case 2:
-            addKhatma(context);
+            context.goNamed(AppRoute.addKhatma.name);
             break;
           case 3:
-            addKhatma(context);
+            context.goNamed(AppRoute.account.name);
             break;
         }
       },

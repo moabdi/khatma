@@ -8,11 +8,8 @@ import 'package:khatma/src/features/khatma/domain/part.dart';
 part 'part_provider.g.dart';
 
 final Map unitPathMap = {
-  //SplitUnit.sourat.name: "sourat.json",
   SplitUnit.juzz.name: "warsh/juzz.json",
   SplitUnit.hizb.name: "warsh/hizb.json",
-  //SplitUnit.rubue.name: "warsh/rubue.json",
-  //SplitUnit.thumun.name: "warsh/thumun.json",
 };
 
 @riverpod

@@ -6,6 +6,7 @@ import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.
 import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
+import 'package:khatma/src/features/profil/profil.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +95,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
           fullscreenDialog: true,
-          child: const AccountScreen(),
+          child: const ProfileMenuPage(),
         ),
       ),
       GoRoute(

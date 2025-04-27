@@ -4,9 +4,10 @@ import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/avatar.dart';
 
 class RepeatEnablerTile extends ConsumerWidget {
-  const RepeatEnablerTile({super.key, this.enabled = true, this.onChanged});
+  const RepeatEnablerTile(
+      {super.key, this.enabled = true, required this.onChanged});
 
-  final ValueChanged<bool>? onChanged;
+  final ValueChanged<bool> onChanged;
   final bool enabled;
 
   @override
@@ -18,11 +19,7 @@ class RepeatEnablerTile extends ConsumerWidget {
           : Text(AppLocalizations.of(context).noRepeatDescription),
       leading: _buildLeading(context),
       trailing: Switch(value: enabled, onChanged: onChanged),
-      onTap: () {
-        if (onChanged != null) {
-          onChanged!(!enabled);
-        }
-      },
+      onTap: () => onChanged(!enabled),
     );
   }
 
