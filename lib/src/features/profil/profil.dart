@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/profil/login_page.dart';
+import 'package:khatma/src/features/profil/mentions_legals_page.dart';
+import 'package:khatma/src/features/profil/settings_page.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -84,16 +87,36 @@ class ProfileMenuPage extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.zero,
       children: [
-        _buildMenuItem(context, Icons.edit, 'Modifier le profil', onTap: () {
-          context.goNamed(AppRoute.signIn.name);
+        _buildMenuItem(
+            context, Icons.account_circle, 'Se connecter / S' 'inscrire',
+            onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginPage()),
+          );
         }),
         Divider(),
-        _buildMenuItem(context, Icons.settings, 'Paramètres'),
+        _buildMenuItem(
+          context,
+          Icons.settings,
+          'Paramètres',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SettingsPage()),
+            );
+          },
+        ),
         Divider(),
-        _buildMenuItem(context, Icons.article, 'Mentions légales',
-            onTap: () {}),
+        _buildMenuItem(context, Icons.article, 'Mentions légales', onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const MentionsLegalesPage()),
+          );
+        }),
         Divider(),
-        _buildMenuItem(context, Icons.logout, 'Se déconnecter'),
+        _buildMenuItem(context, Icons.help, 'About us'),
       ],
     );
   }

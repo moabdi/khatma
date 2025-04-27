@@ -126,6 +126,8 @@ flutter:
     - assets/quran/en/translated/
     - assets/fonts/google_fonts/
     - assets/docs/
+    - assets/docs/mentions_legals.md
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
