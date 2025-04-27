@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/profil/login_page.dart';
-import 'package:khatma/src/features/profil/mentions_legals_page.dart';
 import 'package:khatma/src/features/profil/settings_page.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -90,10 +89,7 @@ class ProfileMenuPage extends StatelessWidget {
         _buildMenuItem(
             context, Icons.account_circle, 'Se connecter / S' 'inscrire',
             onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginPage()),
-          );
+          context.goNamed(AppRoute.login.name);
         }),
         Divider(),
         _buildMenuItem(
@@ -109,14 +105,12 @@ class ProfileMenuPage extends StatelessWidget {
         ),
         Divider(),
         _buildMenuItem(context, Icons.article, 'Mentions légales', onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MentionsLegalesPage()),
-          );
+          context.goNamed(AppRoute.MentionsLegales.name);
         }),
         Divider(),
-        _buildMenuItem(context, Icons.help, 'About us'),
+        _buildMenuItem(context, Icons.help, 'About us', onTap: () {
+          context.goNamed(AppRoute.aboutUs.name);
+        }),
       ],
     );
   }

@@ -51,7 +51,7 @@ class MainNavigationBar extends StatelessWidget {
             context.goNamed(AppRoute.addKhatma.name);
             break;
           case 3:
-            context.goNamed(AppRoute.account.name);
+            context.goNamed(AppRoute.profil.name);
             break;
         }
       },

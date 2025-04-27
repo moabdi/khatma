@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:khatma/src/common/widgets/markdown_reader.dart';
 import 'package:khatma/src/features/authentication/presentation/sign_in/custom_sign_in_screen.dart';
 import 'package:khatma/src/features/authentication/presentation/account/account_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
@@ -6,7 +7,11 @@ import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.
 import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
+import 'package:khatma/src/features/profil/create_password_page.dart';
+import 'package:khatma/src/features/profil/forgot_password_page.dart';
+import 'package:khatma/src/features/profil/login_page.dart';
 import 'package:khatma/src/features/profil/profil.dart';
+import 'package:khatma/src/features/profil/register_page.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +23,16 @@ enum AppRoute {
   addKhatma,
   editKhatma,
   khatmaDetails,
-  account,
-  signIn,
+  profil,
+  login,
+  register,
+  forgotPassword,
+  createPassword,
   quran,
+  MentionsLegales,
+  cgu,
+  aboutUs,
+  declarationDonnees,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
@@ -91,20 +103,80 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/profile',
-        name: AppRoute.account.name,
+        name: AppRoute.profil.name,
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
           fullscreenDialog: true,
           child: const ProfileMenuPage(),
         ),
+        routes: [
+          GoRoute(
+            name: AppRoute.login.name,
+            path: 'login',
+            builder: (context, state) => const LoginPage(),
+          ),
+          GoRoute(
+            name: AppRoute.register.name,
+            path: 'register',
+            builder: (context, state) => const RegisterPage(),
+          ),
+          GoRoute(
+            path: 'forgot_password',
+            name: AppRoute.forgotPassword.name,
+            builder: (context, state) => const ForgotPasswordPage(),
+          ),
+          GoRoute(
+            path: 'create_password',
+            name: AppRoute.createPassword.name,
+            builder: (context, state) => const CreatePasswordPage(),
+          ),
+        ],
       ),
+      /*
       GoRoute(
         path: '/sign-in',
-        name: AppRoute.signIn.name,
+        name: AppRoute.login.name,
         pageBuilder: (context, state) => MaterialPage(
           key: state.pageKey,
           fullscreenDialog: true,
           child: CustomSignInScreen(),
+        ),
+      ),
+      */
+      // Exemple pour CGU
+      GoRoute(
+        path: '/cgu',
+        name: AppRoute.cgu.name,
+        builder: (context, state) => const MarkdownReaderPage(
+          title: 'Conditions Générales',
+          assetPath: 'assets/docs/cgu.md',
+        ),
+      ),
+
+      GoRoute(
+        path: '/declaration-donnees',
+        name: AppRoute.declarationDonnees.name,
+        builder: (context, state) => const MarkdownReaderPage(
+          title: 'Protection des données',
+          assetPath: 'assets/docs/declaration_donnees.md',
+        ),
+      ),
+
+      GoRoute(
+        path: '/about-us',
+        name: AppRoute.aboutUs.name,
+        builder: (context, state) => const MarkdownReaderPage(
+          title: 'À propos',
+          assetPath: 'assets/docs/about_us.md',
+        ),
+      ),
+
+      GoRoute(
+        path: '/mentions-legals',
+        name: AppRoute.MentionsLegales.name,
+        builder: (context, state) => const MarkdownReaderPage(
+          title: 'Mentions légales',
+          assetPath: 'assets/docs/mentions_legals.md',
         ),
       ),
     ],

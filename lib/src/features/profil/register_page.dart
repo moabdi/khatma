@@ -2,16 +2,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/routing/app_router.dart';
-import 'package:khatma_ui/constants/app_sizes.dart'; // Assuming you have GoRouter set up
+import 'package:khatma_ui/constants/app_sizes.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Se connecter'),
+        title: const Text('Créer un compte'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -26,14 +26,24 @@ class LoginPage extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Theme.of(context).disabledColor,
                   radius: 50,
-                  backgroundImage: AssetImage(
-                      'assets/khatma.png'), // Add your logo in assets
+                  backgroundImage: const AssetImage('assets/khatma.png'),
                 ),
                 gapH64,
-                // Login field
+
+                // Name field
                 TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Identifiant',
+                  decoration: const InputDecoration(
+                    labelText: 'Nom & Prénom ou Pseudonyme',
+                    hintText: 'Entrez votre nom complet ou un pseudo',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 16),
+
+                // Email/Username field
+                TextField(
+                  decoration: const InputDecoration(
+                    labelText: 'Identifiant ou Email',
                     hintText: 'Entrez votre identifiant ou email',
                     border: OutlineInputBorder(),
                   ),
@@ -43,54 +53,50 @@ class LoginPage extends StatelessWidget {
                 // Password field
                 TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Mot de passe',
                     hintText: 'Entrez votre mot de passe',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
 
-                // Forgot password link
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      context.goNamed(AppRoute.forgotPassword.name);
-                    },
-                    child: const Text(
-                      'Mot de passe oublié ?',
-                      style: TextStyle(color: Colors.blue),
-                    ),
+                // Confirm Password field
+                TextField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Confirmer le mot de passe',
+                    hintText: 'Confirmez votre mot de passe',
+                    border: OutlineInputBorder(),
                   ),
                 ),
-
                 const SizedBox(height: 24),
 
-                // Login button
+                // Register button
                 ElevatedButton(
                   onPressed: () {
-                    // Handle login logic
+                    // Handle register logic
                   },
-                  child: const Text('Se connecter'),
+                  child: const Text('Créer un compte'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 50),
                   ),
                 ),
                 gapH24,
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Pas encore de compte? ",
+                      "Déjà un compte? ",
                       style: TextStyle(fontSize: 14),
                     ),
                     TextButton(
                       onPressed: () {
-                        context.goNamed(AppRoute.register.name);
+                        context.goNamed(AppRoute.login.name); // Retour au login
                       },
                       child: const Text(
-                        "S'inscrire",
+                        "Se connecter",
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.blueAccent,
@@ -116,13 +122,13 @@ class LoginPage extends StatelessWidget {
                 ),
                 gapH24,
 
-                // Google login button
+                // Google sign up button
                 ElevatedButton.icon(
                   onPressed: () {
-                    // Handle Google login logic
+                    // Handle Google register logic
                   },
                   icon: const Icon(Icons.login),
-                  label: const Text('Se connecter avec Google'),
+                  label: const Text('Créer un compte avec Google'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 50),
                     backgroundColor: Colors.blueAccent,
@@ -130,22 +136,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 gapH24,
 
-                // Google login button
-                ElevatedButton.icon(
-                  onPressed: () {
-                    // Handle Google login logic
-                  },
-                  icon: const Icon(Icons.masks_rounded),
-                  label: const Text('Continuer en tant qu\'invité'),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: Colors.grey.shade400,
-                  ),
-                ),
-
                 const SizedBox(height: 24),
 
-                // Footer text with direct clickable links in copyright
+                // Footer copyright
                 Padding(
                   padding: const EdgeInsets.only(top: 32.0),
                   child: RichText(
@@ -159,7 +152,7 @@ class LoginPage extends StatelessWidget {
                         const TextSpan(text: '© Khatma 2025 | '),
                         TextSpan(
                           text: 'Conditions Générales d\'Utilisation',
-                          style: TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               context.goNamed(AppRoute.cgu.name);
@@ -168,7 +161,7 @@ class LoginPage extends StatelessWidget {
                         const TextSpan(text: ' | '),
                         TextSpan(
                           text: 'Mentions Légales',
-                          style: TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               context.goNamed(AppRoute.MentionsLegales.name);
@@ -178,7 +171,7 @@ class LoginPage extends StatelessWidget {
                         TextSpan(
                           text:
                               'Déclaration relative à la protection des données',
-                          style: TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               context.goNamed(AppRoute.declarationDonnees.name);

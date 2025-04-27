@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/profil/choose_recitation_page.dart';
 import 'package:khatma/src/features/profil/language_page.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -22,6 +23,11 @@ class SettingsPage extends StatelessWidget {
           Divider(),
           _buildMenuItem(context, Icons.book, 'Mushaf', onTap: () {
             // Navigate to Mushaf settings page
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ChooseRecitationPage()),
+            );
           }),
           Divider(),
           _buildMenuItem(context, Icons.calendar_today, 'Khatma', onTap: () {
