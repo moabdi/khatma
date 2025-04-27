@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/profil/about_us.dart';
+import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 
 class LanguagePage extends StatefulWidget {
   const LanguagePage({super.key});
@@ -25,27 +29,31 @@ class _LanguagePageState extends State<LanguagePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 64),
-                const SizedBox(height: 32),
+                // Avatar and language icon at the top
+                CircleAvatar(
+                  backgroundColor:
+                      Theme.of(context).primaryColor.withOpacity(.5),
+                  radius: 40,
+                  child: const Icon(
+                    Icons.language,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
+                gapH32,
                 const Text(
                   "Sélectionnez la langue que vous souhaitez utiliser",
                   style: TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 24),
-                // Arabic Option
+                gapH24,
                 _buildLanguageOption(context, 'العربية 🇸🇦', 'ar'),
-                const SizedBox(height: 16),
-                // English Option
+                const Divider(),
                 _buildLanguageOption(context, 'English 🇬🇧', 'en'),
-                const SizedBox(height: 16),
-                // French Option
+                const Divider(),
                 _buildLanguageOption(context, 'Français 🇫🇷', 'fr'),
-                const SizedBox(height: 16),
-                // Spanish Option
+                const Divider(),
                 _buildLanguageOption(context, 'Español 🇪🇸', 'es'),
-                const SizedBox(height: 32),
-                // Footer text with copyright and links
               ],
             ),
           ),
@@ -74,7 +82,8 @@ class _LanguagePageState extends State<LanguagePage> {
         final locale = Locale(_selectedLocale);
         // No auto pop after selection
       },
-      tileColor: Theme.of(context).primaryColor.withOpacity(0.1),
+      tileColor:
+          isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
     );
   }
 }

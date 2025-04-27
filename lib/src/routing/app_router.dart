@@ -7,7 +7,9 @@ import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.
 import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
+import 'package:khatma/src/features/profil/contact.dart';
 import 'package:khatma/src/features/profil/create_password_page.dart';
+import 'package:khatma/src/features/profil/faq_page.dart';
 import 'package:khatma/src/features/profil/forgot_password_page.dart';
 import 'package:khatma/src/features/profil/login_page.dart';
 import 'package:khatma/src/features/profil/profil.dart';
@@ -33,6 +35,8 @@ enum AppRoute {
   cgu,
   aboutUs,
   declarationDonnees,
+  faq,
+  contact,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
@@ -178,6 +182,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           title: 'Mentions légales',
           assetPath: 'assets/docs/mentions_legals.md',
         ),
+      ),
+      GoRoute(
+        path: '/faq',
+        name: AppRoute.faq.name,
+        builder: (context, state) => const FAQPage(),
+      ),
+      GoRoute(
+        path: '/contact',
+        name: AppRoute.contact.name,
+        builder: (context, state) => const ContactUsPage(),
       ),
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),

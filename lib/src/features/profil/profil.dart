@@ -104,12 +104,21 @@ class ProfileMenuPage extends StatelessWidget {
           },
         ),
         Divider(),
+        _buildMenuItem(context, Icons.question_answer, 'FAQ', onTap: () {
+          context.goNamed(AppRoute.faq.name);
+        }),
+        Divider(),
         _buildMenuItem(context, Icons.article, 'Mentions légales', onTap: () {
           context.goNamed(AppRoute.MentionsLegales.name);
         }),
         Divider(),
         _buildMenuItem(context, Icons.help, 'About us', onTap: () {
           context.goNamed(AppRoute.aboutUs.name);
+        }),
+        Divider(),
+        _buildMenuItem(context, Icons.contact_page, 'Question/ Suggestion',
+            onTap: () {
+          context.goNamed(AppRoute.contact.name);
         }),
       ],
     );

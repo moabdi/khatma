@@ -1,23 +1,21 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart'; // Assuming you have GoRouter set up
 
-class ChooseRecitationPage extends StatefulWidget {
-  const ChooseRecitationPage({super.key});
+class ThemePage extends StatefulWidget {
+  const ThemePage({super.key});
 
   @override
-  _ChooseRecitationPageState createState() => _ChooseRecitationPageState();
+  State<ThemePage> createState() => _ThemePageState();
 }
 
-class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
-  // Variable to track selected recitation
-  String? _selectedRecitation;
+class _ThemePageState extends State<ThemePage> {
+  // Variable to track the selected theme
+  String _selectedTheme = 'system'; // Default to system theme
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Récitation'),
+        title: const Text('Sélectionner le thème'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -28,34 +26,29 @@ class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Avatar and icon at the top
+                // Avatar and theme icon at the top
                 CircleAvatar(
                   backgroundColor:
-                      Theme.of(context).primaryColor.withOpacity(.5),
+                      Theme.of(context).primaryColor.withOpacity(0.5),
                   radius: 40,
-                  child: const Icon(
-                    Icons.menu_book,
+                  child: Icon(
+                    Icons.brightness_6,
                     size: 40,
                     color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 32),
-
                 const Text(
-                  "Sélectionnez la récitation que vous souhaitez utiliser",
+                  "Sélectionnez le thème que vous souhaitez utiliser",
                   style: TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
-
-                // Warsh Option with divider
-                _buildRecitationOption(context, 'Warsh', 'warsh'),
+                _buildThemeOption(context, 'Clair', 'light'),
                 const Divider(),
-
-                // Hafs Option with divider
-                _buildRecitationOption(context, 'Hafs', 'hafs'),
+                _buildThemeOption(context, 'Sombre', 'dark'),
                 const Divider(),
-
+                _buildThemeOption(context, 'Système', 'system'),
                 const SizedBox(height: 32),
               ],
             ),
@@ -65,25 +58,35 @@ class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
     );
   }
 
-  Widget _buildRecitationOption(
-      BuildContext context, String recitationName, String recitationKey) {
-    final isSelected = _selectedRecitation == recitationKey;
+  Widget _buildThemeOption(
+      BuildContext context, String themeName, String themeValue) {
+    final isSelected = _selectedTheme == themeValue;
 
     return ListTile(
-      title: Text(recitationName),
+      title: Text(themeName),
       leading: isSelected
           ? const Icon(Icons.check_circle, color: Colors.green)
           : const Icon(Icons.circle_outlined, color: Colors.grey),
       onTap: () {
         setState(() {
-          _selectedRecitation = recitationKey;
+          _selectedTheme = themeValue;
         });
-
-        // Navigate to the respective recitation page
-        context.goNamed(recitationKey);
+        _applyTheme(context, _selectedTheme);
       },
       tileColor:
           isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
     );
+  }
+
+  void _applyTheme(BuildContext context, String theme) {
+    // Set the theme mode based on the user's choice
+    ThemeMode themeMode;
+    if (theme == 'light') {
+      themeMode = ThemeMode.light;
+    } else if (theme == 'dark') {
+      themeMode = ThemeMode.dark;
+    } else {
+      themeMode = ThemeMode.system; // Default to system theme
+    }
   }
 }

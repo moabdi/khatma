@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/profil/choose_recitation_page.dart';
 import 'package:khatma/src/features/profil/language_page.dart';
+import 'package:khatma/src/features/profil/notification_settings.dart';
+import 'package:khatma/src/features/profil/theme_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -14,38 +16,74 @@ class SettingsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          _buildMenuItem(context, Icons.language, 'Langues', onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const LanguagePage()),
-            );
-          }),
-          Divider(),
-          _buildMenuItem(context, Icons.book, 'Mushaf', onTap: () {
-            // Navigate to Mushaf settings page
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const ChooseRecitationPage()),
-            );
-          }),
-          Divider(),
-          _buildMenuItem(context, Icons.calendar_today, 'Khatma', onTap: () {
-            // Navigate to Khatma settings page
-          }),
-          Divider(),
-          _buildMenuItem(context, Icons.brightness_6, 'Thème', onTap: () {
-            // Navigate to theme settings page
-          }),
+          _buildMenuItem(
+            context,
+            Icons.language,
+            'Langues',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LanguagePage()),
+              );
+            },
+          ),
+          const Divider(),
+          _buildMenuItem(
+            context,
+            Icons.book,
+            'Mushaf',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ChooseRecitationPage(),
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          _buildMenuItem(
+            context,
+            Icons.notifications,
+            'Notification',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationSettingsPage(),
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          _buildMenuItem(
+            context,
+            Icons.brightness_6,
+            'Thème',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ThemePage(),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildMenuItem(BuildContext context, IconData icon, String title,
-      {VoidCallback? onTap}) {
+  Widget _buildMenuItem(
+    BuildContext context,
+    IconData icon,
+    String title, {
+    VoidCallback? onTap,
+  }) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(
+        icon,
+      ),
       title: Text(title),
       trailing: const Icon(Icons.chevron_right),
       onTap: onTap,
