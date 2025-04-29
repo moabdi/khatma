@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NotificationSettingsPage extends StatefulWidget {
-  const NotificationSettingsPage({super.key});
+class NotificationSettings extends StatefulWidget {
+  const NotificationSettings({super.key});
 
   @override
-  _NotificationSettingsPageState createState() =>
-      _NotificationSettingsPageState();
+  _NotificationSettingsState createState() => _NotificationSettingsState();
 }
 
-class _NotificationSettingsPageState extends State<NotificationSettingsPage> {
+class _NotificationSettingsState extends State<NotificationSettings> {
   // Variable to track notification settings (default is enabled)
   bool _isNotificationEnabled = true;
 

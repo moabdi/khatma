@@ -8,14 +8,13 @@ class ThemePage extends StatefulWidget {
 }
 
 class _ThemePageState extends State<ThemePage> {
-  // Variable to track the selected theme
-  String _selectedTheme = 'system'; // Default to system theme
+  String _selectedTheme = 'system'; // Default
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sélectionner le thème'),
+        title: const Text('Thème'),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -23,15 +22,12 @@ class _ThemePageState extends State<ThemePage> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Avatar and theme icon at the top
                 CircleAvatar(
                   backgroundColor:
                       Theme.of(context).primaryColor.withOpacity(0.5),
                   radius: 40,
-                  child: Icon(
+                  child: const Icon(
                     Icons.brightness_6,
                     size: 40,
                     color: Colors.white,
@@ -44,11 +40,29 @@ class _ThemePageState extends State<ThemePage> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
-                _buildThemeOption(context, 'Clair', 'light'),
+                _buildThemeOption(
+                  context,
+                  icon: Icons.light_mode,
+                  themeName: 'Clair',
+                  themeValue: 'light',
+                  iconColor: Colors.orangeAccent,
+                ),
                 const Divider(),
-                _buildThemeOption(context, 'Sombre', 'dark'),
+                _buildThemeOption(
+                  context,
+                  icon: Icons.dark_mode,
+                  themeName: 'Sombre',
+                  themeValue: 'dark',
+                  iconColor: Colors.deepPurple,
+                ),
                 const Divider(),
-                _buildThemeOption(context, 'Système', 'system'),
+                _buildThemeOption(
+                  context,
+                  icon: Icons.settings_suggest,
+                  themeName: 'Système',
+                  themeValue: 'system',
+                  iconColor: Colors.blueGrey,
+                ),
                 const SizedBox(height: 32),
               ],
             ),
@@ -59,34 +73,40 @@ class _ThemePageState extends State<ThemePage> {
   }
 
   Widget _buildThemeOption(
-      BuildContext context, String themeName, String themeValue) {
+    BuildContext context, {
+    required IconData icon,
+    required String themeName,
+    required String themeValue,
+    required Color iconColor,
+  }) {
     final isSelected = _selectedTheme == themeValue;
 
     return ListTile(
+      leading: Icon(icon, color: iconColor),
       title: Text(themeName),
-      leading: isSelected
+      trailing: isSelected
           ? const Icon(Icons.check_circle, color: Colors.green)
           : const Icon(Icons.circle_outlined, color: Colors.grey),
+      tileColor:
+          isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
       onTap: () {
         setState(() {
           _selectedTheme = themeValue;
         });
         _applyTheme(context, _selectedTheme);
       },
-      tileColor:
-          isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
     );
   }
 
   void _applyTheme(BuildContext context, String theme) {
-    // Set the theme mode based on the user's choice
     ThemeMode themeMode;
     if (theme == 'light') {
       themeMode = ThemeMode.light;
     } else if (theme == 'dark') {
       themeMode = ThemeMode.dark;
     } else {
-      themeMode = ThemeMode.system; // Default to system theme
+      themeMode = ThemeMode.system;
     }
+    // 🚀 Connect here to your App Theme Controller
   }
 }

@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/profil/about_us.dart';
-import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
-class LanguagePage extends StatefulWidget {
-  const LanguagePage({super.key});
+class LanguageSettings extends StatefulWidget {
+  const LanguageSettings({super.key});
 
   @override
-  State<LanguagePage> createState() => _LanguagePageState();
+  State<LanguageSettings> createState() => _LanguageSettingsState();
 }
 
-class _LanguagePageState extends State<LanguagePage> {
+class _LanguageSettingsState extends State<LanguageSettings> {
   String _selectedLocale = 'fr';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sélectionner la langue'),
+        title: const Text('Langue'),
         centerTitle: true,
       ),
       body: SafeArea(

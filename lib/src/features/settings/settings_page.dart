@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/profil/choose_recitation_page.dart';
-import 'package:khatma/src/features/profil/language_page.dart';
-import 'package:khatma/src/features/profil/notification_settings.dart';
-import 'package:khatma/src/features/profil/theme_page.dart';
+import 'package:khatma/src/features/settings/recitation_settings.dart';
+import 'package:khatma/src/features/settings/language_setting.dart';
+import 'package:khatma/src/features/settings/notification_settings.dart';
+import 'package:khatma/src/features/settings/theme_settings.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -18,25 +18,28 @@ class SettingsPage extends StatelessWidget {
         children: [
           _buildMenuItem(
             context,
-            Icons.language,
-            'Langues',
+            icon: Icons.language,
+            title: 'Langues',
+            iconColor: Colors.blueAccent,
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const LanguagePage()),
+                MaterialPageRoute(
+                    builder: (context) => const LanguageSettings()),
               );
             },
           ),
           const Divider(),
           _buildMenuItem(
             context,
-            Icons.book,
-            'Mushaf',
+            icon: Icons.menu_book,
+            title: 'Mushaf',
+            iconColor: Colors.brown,
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ChooseRecitationPage(),
+                  builder: (context) => const RecitationSettings(),
                 ),
               );
             },
@@ -44,13 +47,14 @@ class SettingsPage extends StatelessWidget {
           const Divider(),
           _buildMenuItem(
             context,
-            Icons.notifications,
-            'Notification',
+            icon: Icons.notifications,
+            title: 'Notification',
+            iconColor: Colors.redAccent,
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const NotificationSettingsPage(),
+                  builder: (context) => const NotificationSettings(),
                 ),
               );
             },
@@ -58,8 +62,9 @@ class SettingsPage extends StatelessWidget {
           const Divider(),
           _buildMenuItem(
             context,
-            Icons.brightness_6,
-            'Thème',
+            icon: Icons.brightness_6,
+            title: 'Thème',
+            iconColor: Colors.purpleAccent,
             onTap: () {
               Navigator.push(
                 context,
@@ -75,14 +80,16 @@ class SettingsPage extends StatelessWidget {
   }
 
   Widget _buildMenuItem(
-    BuildContext context,
-    IconData icon,
-    String title, {
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required Color iconColor,
     VoidCallback? onTap,
   }) {
     return ListTile(
       leading: Icon(
         icon,
+        color: iconColor,
       ),
       title: Text(title),
       trailing: const Icon(Icons.chevron_right),

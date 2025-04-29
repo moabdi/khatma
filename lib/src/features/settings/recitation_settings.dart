@@ -1,16 +1,14 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart'; // Assuming you have GoRouter set up
+import 'package:go_router/go_router.dart';
 
-class ChooseRecitationPage extends StatefulWidget {
-  const ChooseRecitationPage({super.key});
+class RecitationSettings extends StatefulWidget {
+  const RecitationSettings({super.key});
 
   @override
-  _ChooseRecitationPageState createState() => _ChooseRecitationPageState();
+  _RecitationSettingsState createState() => _RecitationSettingsState();
 }
 
-class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
-  // Variable to track selected recitation
+class _RecitationSettingsState extends State<RecitationSettings> {
   String? _selectedRecitation;
 
   @override
@@ -25,13 +23,10 @@ class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Avatar and icon at the top
                 CircleAvatar(
                   backgroundColor:
-                      Theme.of(context).primaryColor.withOpacity(.5),
+                      Theme.of(context).primaryColor.withOpacity(0.5),
                   radius: 40,
                   child: const Icon(
                     Icons.menu_book,
@@ -40,22 +35,30 @@ class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
                   ),
                 ),
                 const SizedBox(height: 32),
-
                 const Text(
                   "Sélectionnez la récitation que vous souhaitez utiliser",
                   style: TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
-
-                // Warsh Option with divider
-                _buildRecitationOption(context, 'Warsh', 'warsh'),
+                _buildRecitationOption(
+                  context,
+                  recitationName: 'Hafs',
+                  recitationKey: 'hafs',
+                  icon: Icons.menu_book_outlined,
+                  description:
+                      "La récitation la plus répandue dans le monde musulman, notamment au Moyen-Orient.",
+                ),
                 const Divider(),
-
-                // Hafs Option with divider
-                _buildRecitationOption(context, 'Hafs', 'hafs'),
+                _buildRecitationOption(
+                  context,
+                  recitationName: 'Warsh',
+                  recitationKey: 'warsh',
+                  icon: Icons.auto_stories,
+                  description:
+                      "Courante en Afrique du Nord. Légères différences de prononciation et d'orthographe.",
+                ),
                 const Divider(),
-
                 const SizedBox(height: 32),
               ],
             ),
@@ -66,14 +69,23 @@ class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
   }
 
   Widget _buildRecitationOption(
-      BuildContext context, String recitationName, String recitationKey) {
+    BuildContext context, {
+    required String recitationName,
+    required String recitationKey,
+    required IconData icon,
+    required String description,
+  }) {
     final isSelected = _selectedRecitation == recitationKey;
 
     return ListTile(
+      leading: Icon(icon, color: Theme.of(context).iconTheme.color),
       title: Text(recitationName),
-      leading: isSelected
+      subtitle: Text(description, style: Theme.of(context).textTheme.bodySmall),
+      trailing: isSelected
           ? const Icon(Icons.check_circle, color: Colors.green)
           : const Icon(Icons.circle_outlined, color: Colors.grey),
+      tileColor:
+          isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
       onTap: () {
         setState(() {
           _selectedRecitation = recitationKey;
@@ -82,8 +94,6 @@ class _ChooseRecitationPageState extends State<ChooseRecitationPage> {
         // Navigate to the respective recitation page
         context.goNamed(recitationKey);
       },
-      tileColor:
-          isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
     );
   }
 }

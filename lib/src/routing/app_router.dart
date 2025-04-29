@@ -7,13 +7,14 @@ import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.
 import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
-import 'package:khatma/src/features/profil/contact.dart';
-import 'package:khatma/src/features/profil/create_password_page.dart';
-import 'package:khatma/src/features/profil/faq_page.dart';
-import 'package:khatma/src/features/profil/forgot_password_page.dart';
-import 'package:khatma/src/features/profil/login_page.dart';
-import 'package:khatma/src/features/profil/profil.dart';
-import 'package:khatma/src/features/profil/register_page.dart';
+import 'package:khatma/src/features/info/contact.dart';
+import 'package:khatma/src/features/authentication/presentation/password/create_password_page.dart';
+import 'package:khatma/src/features/info/faq_page.dart';
+import 'package:khatma/src/features/authentication/presentation/password/forgot_password_page.dart';
+import 'package:khatma/src/features/authentication/presentation/login/login_page.dart';
+import 'package:khatma/src/features/profil/profile_menu_page.dart';
+import 'package:khatma/src/features/authentication/presentation/register/register_page.dart';
+import 'package:khatma/src/features/settings/settings_page.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ enum AppRoute {
   declarationDonnees,
   faq,
   contact,
+  settings,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
@@ -114,6 +116,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           child: const ProfileMenuPage(),
         ),
         routes: [
+          GoRoute(
+            name: AppRoute.settings.name,
+            path: 'setings',
+            builder: (context, state) => const SettingsPage(),
+          ),
           GoRoute(
             name: AppRoute.login.name,
             path: 'login',

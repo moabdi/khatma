@@ -1,7 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:khatma/src/routing/app_router.dart'; // Assuming GoRouter setup
 import 'package:khatma_ui/constants/app_sizes.dart'; // Assuming you have app sizes set
 
 class ContactUsPage extends StatefulWidget {

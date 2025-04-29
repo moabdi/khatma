@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/profil/login_page.dart';
-import 'package:khatma/src/features/profil/settings_page.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class ProfileMenuPage extends StatelessWidget {
@@ -16,6 +15,12 @@ class ProfileMenuPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Profil'),
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.goNamed(AppRoute.home.name);
+          },
+        ),
       ),
       body: Column(
         children: [
@@ -87,47 +92,80 @@ class ProfileMenuPage extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: [
         _buildMenuItem(
-            context, Icons.account_circle, 'Se connecter / S' 'inscrire',
-            onTap: () {
-          context.goNamed(AppRoute.login.name);
-        }),
-        Divider(),
-        _buildMenuItem(
           context,
-          Icons.settings,
-          'Paramètres',
+          icon: Icons.account_circle,
+          iconColor: Theme.of(context).colorScheme.warning,
+          title: 'Se connecter / S\'inscrire',
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SettingsPage()),
-            );
+            context.goNamed(AppRoute.login.name);
           },
         ),
-        Divider(),
-        _buildMenuItem(context, Icons.question_answer, 'FAQ', onTap: () {
-          context.goNamed(AppRoute.faq.name);
-        }),
-        Divider(),
-        _buildMenuItem(context, Icons.article, 'Mentions légales', onTap: () {
-          context.goNamed(AppRoute.MentionsLegales.name);
-        }),
-        Divider(),
-        _buildMenuItem(context, Icons.help, 'About us', onTap: () {
-          context.goNamed(AppRoute.aboutUs.name);
-        }),
-        Divider(),
-        _buildMenuItem(context, Icons.contact_page, 'Question/ Suggestion',
-            onTap: () {
-          context.goNamed(AppRoute.contact.name);
-        }),
+        const Divider(),
+        _buildMenuItem(
+          context,
+          icon: Icons.settings,
+          iconColor: Colors.blueGrey,
+          title: 'Paramètres',
+          onTap: () {
+            context.goNamed(AppRoute.settings.name);
+          },
+        ),
+        const Divider(),
+        _buildMenuItem(
+          context,
+          icon: Icons.question_answer,
+          iconColor: Colors.blueGrey,
+          title: 'FAQ',
+          onTap: () {
+            context.goNamed(AppRoute.faq.name);
+          },
+        ),
+        const Divider(),
+        _buildMenuItem(
+          context,
+          icon: Icons.article,
+          iconColor: Colors.blueGrey,
+          title: 'Mentions légales',
+          onTap: () {
+            context.goNamed(AppRoute.MentionsLegales.name);
+          },
+        ),
+        const Divider(),
+        _buildMenuItem(
+          context,
+          icon: Icons.help,
+          iconColor: Colors.blueGrey,
+          title: 'À propos de nous',
+          onTap: () {
+            context.goNamed(AppRoute.aboutUs.name);
+          },
+        ),
+        const Divider(),
+        _buildMenuItem(
+          context,
+          icon: Icons.feedback,
+          iconColor: Colors.blueGrey,
+          title: 'Question / Suggestion',
+          onTap: () {
+            context.goNamed(AppRoute.contact.name);
+          },
+        ),
       ],
     );
   }
 
-  Widget _buildMenuItem(BuildContext context, IconData icon, String title,
-      {VoidCallback? onTap}) {
+  Widget _buildMenuItem(
+    BuildContext context, {
+    required IconData icon,
+    required Color iconColor,
+    required String title,
+    VoidCallback? onTap,
+  }) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(
+        icon,
+        color: iconColor,
+      ),
       title: Text(title),
       trailing: const Icon(Icons.chevron_right),
       onTap: onTap,
@@ -145,7 +183,7 @@ class ProfileMenuPage extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'v1.0.0', // 🔥 Tu peux rendre dynamique plus tard
+          'v1.0.0', // 🔥 Peut être rendu dynamique plus tard
           style: Theme.of(context)
               .textTheme
               .bodySmall
