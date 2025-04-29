@@ -23,9 +23,6 @@ class AppUser {
     // no-op - implemented by subclasses
   }
 
-  // * Here we override methods from [Object] directly rather than using
-  // * [Equatable], since this class will be subclassed or implemented
-  // * by other classes.
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

@@ -11,7 +11,8 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Se connecter'),
+        title: const Text('Se connecter',
+            style: TextStyle(fontSize: 20, color: Colors.white)),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -26,8 +27,7 @@ class LoginPage extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Theme.of(context).disabledColor,
                   radius: 50,
-                  backgroundImage: AssetImage(
-                      'assets/khatma.png'), // Add your logo in assets
+                  backgroundImage: AssetImage('assets/khatma.png'),
                 ),
                 gapH64,
                 // Login field
@@ -162,7 +162,7 @@ class LoginPage extends StatelessWidget {
                           style: TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              context.goNamed(AppRoute.cgu.name);
+                              context.pushNamed(AppRoute.cgu.name);
                             },
                         ),
                         const TextSpan(text: ' | '),
@@ -171,7 +171,7 @@ class LoginPage extends StatelessWidget {
                           style: TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              context.goNamed(AppRoute.MentionsLegales.name);
+                              context.pushNamed(AppRoute.MentionsLegales.name);
                             },
                         ),
                         const TextSpan(text: ' | '),
@@ -181,7 +181,8 @@ class LoginPage extends StatelessWidget {
                           style: TextStyle(color: Colors.blue),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              context.goNamed(AppRoute.declarationDonnees.name);
+                              context
+                                  .pushNamed(AppRoute.declarationDonnees.name);
                             },
                         ),
                       ],

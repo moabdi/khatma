@@ -1,7 +1,7 @@
-import 'package:khatma/src/features/authentication/presentation/sign_in/form/email_password_sign_in_controller.dart';
-import 'package:khatma/src/features/authentication/presentation/sign_in/form/email_password_sign_in_form_type.dart';
-import 'package:khatma/src/features/authentication/presentation/sign_in/form/email_password_sign_in_validators.dart';
-import 'package:khatma/src/features/authentication/presentation/sign_in/form/string_validators.dart';
+import 'package:khatma/src/features/authentication/presentation/login/email_password_login_controller.dart';
+import 'package:khatma/src/features/authentication/presentation/login/email_password_login_form_type.dart';
+import 'package:khatma/src/features/authentication/presentation/login/email_password_login_validators.dart';
+import 'package:khatma/src/features/authentication/presentation/login/string_validators.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:khatma/src/utils/async_value_ui.dart';
 import 'package:flutter/material.dart';

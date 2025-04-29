@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'email_password_sign_in_controller.dart';
+part of 'email_password_login_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator

@@ -1,5 +1,5 @@
-import 'package:khatma/src/features/authentication/presentation/sign_in/form/email_password_sign_in_form_type.dart';
-import 'package:khatma/src/features/authentication/presentation/sign_in/form/string_validators.dart';
+import 'package:khatma/src/features/authentication/presentation/login/email_password_login_form_type.dart';
+import 'package:khatma/src/features/authentication/presentation/login/string_validators.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 
 /// Mixin class to be used for client-side email & password validation
