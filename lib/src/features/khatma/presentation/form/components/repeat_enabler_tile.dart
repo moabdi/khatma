@@ -1,38 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/avatar.dart';
 
-class RepeatEnablerTile extends ConsumerWidget {
-  const RepeatEnablerTile(
+class RepeatKhatmaTile extends StatelessWidget {
+  const RepeatKhatmaTile(
       {super.key, this.enabled = true, required this.onChanged});
 
   final ValueChanged<bool> onChanged;
   final bool enabled;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ListTile(
+  Widget build(BuildContext context) {
+    return SwitchListTile(
+      value: enabled,
       title: Text(AppLocalizations.of(context).repeat),
       subtitle: enabled
           ? Text(AppLocalizations.of(context).autoRepeatDescription)
           : Text(AppLocalizations.of(context).noRepeatDescription),
-      leading: _buildLeading(context),
-      trailing: Switch(value: enabled, onChanged: onChanged),
-      onTap: () => onChanged(!enabled),
-    );
-  }
-
-  Avatar _buildLeading(BuildContext context) {
-    return Avatar(
-      radius: 30,
-      backgroundColor: Theme.of(context).disabledColor,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Icon(
+      secondary: Icon(
         Icons.autorenew,
-        color: Theme.of(context).primaryColor,
-        size: 25,
+        color: enabled ? Theme.of(context).primaryColor : Colors.blueGrey,
       ),
+      onChanged: onChanged,
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/google_button.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart'; // Assuming you have GoRouter set up
 
@@ -115,18 +117,11 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 gapH24,
-
-                // Google login button
-                ElevatedButton.icon(
+                GoogleButton(
                   onPressed: () {
                     // Handle Google login logic
                   },
-                  icon: const Icon(Icons.login),
-                  label: const Text('Se connecter avec Google'),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: Colors.blueAccent,
-                  ),
+                  label: 'Se connecter avec Google',
                 ),
                 gapH24,
 
@@ -144,51 +139,7 @@ class LoginPage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 24),
-
-                // Footer text with direct clickable links in copyright
-                Padding(
-                  padding: const EdgeInsets.only(top: 32.0),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
-                      children: [
-                        const TextSpan(text: '© Khatma 2025 | '),
-                        TextSpan(
-                          text: 'Conditions Générales d\'Utilisation',
-                          style: TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.pushNamed(AppRoute.cgu.name);
-                            },
-                        ),
-                        const TextSpan(text: ' | '),
-                        TextSpan(
-                          text: 'Mentions Légales',
-                          style: TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.pushNamed(AppRoute.MentionsLegales.name);
-                            },
-                        ),
-                        const TextSpan(text: ' | '),
-                        TextSpan(
-                          text:
-                              'Déclaration relative à la protection des données',
-                          style: TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context
-                                  .pushNamed(AppRoute.declarationDonnees.name);
-                            },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                FooterLinks()
               ],
             ),
           ),

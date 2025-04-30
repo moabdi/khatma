@@ -20,7 +20,7 @@ enum AppRoute {
   forgotPassword,
   createPassword,
   quran,
-  MentionsLegales,
+  mentionsLegales,
   cgu,
   aboutUs,
   declarationDonnees,

@@ -127,7 +127,7 @@ class ProfileMenuPage extends StatelessWidget {
           iconColor: Colors.blueGrey,
           title: 'Mentions légales',
           onTap: () {
-            context.goNamed(AppRoute.MentionsLegales.name);
+            context.goNamed(AppRoute.mentionsLegales.name);
           },
         ),
         const Divider(),

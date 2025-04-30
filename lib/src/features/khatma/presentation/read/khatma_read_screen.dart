@@ -159,21 +159,15 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
             data: (khatma) => khatma == null
                 ? AppBar(title: Text("Khatma"))
                 : AppBar(
-                    backgroundColor: khatma.style.hexColor.withOpacity(.05),
                     title: Text(khatma.name),
                     actions: [
                       Avatar(
                         radius: 20,
-                        backgroundColor: khatma.style.hexColor.withOpacity(.2),
-                        bottom: Avatar(
-                          radius: 5,
-                          backgroundColor: khatma.style.hexColor,
-                          child: const Icon(Icons.edit, size: 10),
-                        ),
+                        backgroundColor: Theme.of(context).disabledColor,
                         child: Center(
-                          child: getIcon(
-                            khatma.style.icon,
-                            color: khatma.style.hexColor,
+                          child: Icon(
+                            Icons.edit,
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                         onTap: () => {

@@ -2,11 +2,12 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/common/widgets/markdown_reader.dart';
 import 'package:khatma/src/features/info/contact.dart';
 import 'package:khatma/src/features/info/faq_page.dart';
+import 'package:khatma/src/routing/app_router.dart';
 
 List<GoRoute> infoRoutes = [
   GoRoute(
     path: 'cgu',
-    name: 'cgu',
+    name: AppRoute.cgu.name,
     builder: (context, state) => const MarkdownReaderPage(
       title: 'Conditions Générales',
       assetPath: 'assets/docs/cgu.md',
@@ -14,7 +15,7 @@ List<GoRoute> infoRoutes = [
   ),
   GoRoute(
     path: 'declaration-donnees',
-    name: 'declarationDonnees',
+    name: AppRoute.declarationDonnees.name,
     builder: (context, state) => const MarkdownReaderPage(
       title: 'Protection des données',
       assetPath: 'assets/docs/declaration_donnees.md',
@@ -22,7 +23,7 @@ List<GoRoute> infoRoutes = [
   ),
   GoRoute(
     path: 'about-us',
-    name: 'aboutUs',
+    name: AppRoute.aboutUs.name,
     builder: (context, state) => const MarkdownReaderPage(
       title: 'À propos',
       assetPath: 'assets/docs/about_us.md',
@@ -30,7 +31,7 @@ List<GoRoute> infoRoutes = [
   ),
   GoRoute(
     path: 'mentions-legals',
-    name: 'MentionsLegales',
+    name: AppRoute.mentionsLegales.name,
     builder: (context, state) => const MarkdownReaderPage(
       title: 'Mentions légales',
       assetPath: 'assets/docs/mentions_legals.md',

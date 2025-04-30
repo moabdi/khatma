@@ -35,7 +35,6 @@ class AddKhatmaScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: khatma.style.hexColor.withOpacity(.5),
         title: Text(isBlank(khatma.id)
             ? AppLocalizations.of(context).newKhatma
             : AppLocalizations.of(context).editKhatma),
@@ -52,7 +51,7 @@ class AddKhatmaScreen extends ConsumerWidget {
     Khatma khatma,
     WidgetRef ref,
   ) {
-    final formKey = GlobalKey<FormState>();
+    // final formKey = GlobalKey<FormState>();
     final node = FocusScopeNode();
     final nameController = TextEditingController(text: khatma.name);
     final descController = TextEditingController(text: khatma.description);
@@ -63,58 +62,52 @@ class AddKhatmaScreen extends ConsumerWidget {
           child: Container(
             height: MediaQuery.of(context).size.height,
             color: khatma.style.hexColor.withOpacity(.1),
-            child: _buildForm(formKey, context, khatma, ref, nameController,
-                descController, node),
+            child: _buildForm(
+                context, khatma, ref, nameController, descController),
           ),
         ),
       ),
     );
   }
 
-  Form _buildForm(
-      GlobalKey<FormState> formKey,
-      BuildContext context,
-      Khatma khatma,
-      WidgetRef ref,
-      TextEditingController nameController,
-      TextEditingController descController,
-      FocusScopeNode node) {
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            gapH24,
-            _buildAvatar(context, khatma, ref),
-            gapH16,
-            _buildName(
-                context, nameController, descController, node, ref, khatma),
-            gapH16,
-            _buildDescription(
-                context, nameController, descController, ref, khatma),
-            gapH16,
-            _buildSplitUnit(context, ref),
-            gapH16,
-            _buildEnableRepeat(khatma, ref),
-            Spacer(),
-            gapH20,
-            _buildSaveButton(khatma, context, ref),
-            gapH16,
-            _buildDeleteButton(context, ref),
-            gapH64,
-            gapH16,
-          ],
-        ),
+  Widget _buildForm(
+    BuildContext context,
+    Khatma khatma,
+    WidgetRef ref,
+    TextEditingController nameController,
+    TextEditingController descController,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          gapH24,
+          _buildAvatar(context, khatma, ref),
+          gapH16,
+          _buildName(context, nameController, descController, ref, khatma),
+          gapH16,
+          _buildDescription(
+              context, nameController, descController, ref, khatma),
+          gapH16,
+          _buildSplitUnit(context, ref),
+          gapH16,
+          _buildEnableRepeat(khatma, ref),
+          Spacer(),
+          gapH20,
+          _buildSaveButton(khatma, context, ref),
+          gapH16,
+          _buildDeleteButton(context, ref),
+          gapH64,
+          gapH16,
+        ],
       ),
     );
   }
 
-  Card _buildEnableRepeat(Khatma khatma, WidgetRef ref) {
+  Widget _buildEnableRepeat(Khatma khatma, WidgetRef ref) {
     return Card(
-      elevation: 0.1,
-      child: RepeatEnablerTile(
+      child: RepeatKhatmaTile(
         enabled: khatma.repeat,
         onChanged: (enaled) =>
             ref.updateKhatma(khatma.copyWith(repeat: !khatma.repeat)),
@@ -191,7 +184,6 @@ class AddKhatmaScreen extends ConsumerWidget {
       BuildContext context,
       TextEditingController nameController,
       TextEditingController descController,
-      FocusScopeNode node,
       WidgetRef ref,
       Khatma khatma) {
     return TextFormField(

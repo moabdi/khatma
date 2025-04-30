@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:khatma/src/routing/app_router.dart'; // Assuming you have GoRouter set up
+import 'package:khatma_ui/constants/app_sizes.dart';
+
+import '../widgets/back_to_login.dart'; // Assuming you have GoRouter set up
 
 class CreatePasswordPage extends StatelessWidget {
   const CreatePasswordPage({super.key});
@@ -64,18 +65,8 @@ class CreatePasswordPage extends StatelessWidget {
                     minimumSize: const Size(double.infinity, 50),
                   ),
                 ),
-                const SizedBox(height: 24),
-                // Back to login
-                TextButton(
-                  onPressed: () {
-                    context
-                        .goNamed(AppRoute.login.name); // Return to login page
-                  },
-                  child: const Text(
-                    'Retour à la page de connexion',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ),
+                gapH24,
+                BackToLogin()
               ],
             ),
           ),

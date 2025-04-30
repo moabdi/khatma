@@ -60,7 +60,7 @@ class KhatmaSuccessComplete extends ConsumerWidget {
               gapH20,
               Divider(),
               gapH20,
-              RepeatEnablerTile(
+              RepeatKhatmaTile(
                 enabled: khatma.repeat,
                 onChanged: (value) {},
               ),

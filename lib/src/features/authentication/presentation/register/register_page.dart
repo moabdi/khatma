@@ -1,8 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
+
+import '../widgets/back_to_login.dart';
+import '../widgets/footer_links.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -83,104 +83,9 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
                 gapH24,
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Déjà un compte? ",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.goNamed(AppRoute.login.name); // Retour au login
-                      },
-                      child: const Text(
-                        "Se connecter",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.blueAccent,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                BackToLogin(),
                 gapH24,
-
-                // Divider with "Or" in the center
-                Row(
-                  children: const [
-                    Expanded(child: Divider()),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text('Ou',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ),
-                    Expanded(child: Divider()),
-                  ],
-                ),
-                gapH24,
-
-                // Google sign up button
-                ElevatedButton.icon(
-                  onPressed: () {
-                    // Handle Google register logic
-                  },
-                  icon: const Icon(Icons.login),
-                  label: const Text('Créer un compte avec Google'),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: Colors.blueAccent,
-                  ),
-                ),
-                gapH24,
-
-                const SizedBox(height: 24),
-
-                // Footer copyright
-                Padding(
-                  padding: const EdgeInsets.only(top: 32.0),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
-                      children: [
-                        const TextSpan(text: '© Khatma 2025 | '),
-                        TextSpan(
-                          text: 'Conditions Générales d\'Utilisation',
-                          style: const TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.goNamed(AppRoute.cgu.name);
-                            },
-                        ),
-                        const TextSpan(text: ' | '),
-                        TextSpan(
-                          text: 'Mentions Légales',
-                          style: const TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.goNamed(AppRoute.MentionsLegales.name);
-                            },
-                        ),
-                        const TextSpan(text: ' | '),
-                        TextSpan(
-                          text:
-                              'Déclaration relative à la protection des données',
-                          style: const TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              context.goNamed(AppRoute.declarationDonnees.name);
-                            },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                FooterLinks(),
               ],
             ),
           ),

@@ -67,12 +67,11 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         elevation: .2,
         centerTitle: false,
-        titleTextStyle: textTheme.headlineSmall!.copyWith(color: Colors.black),
-        backgroundColor: primaryColor.withOpacity(.8),
+        titleTextStyle: textTheme.headlineSmall!.copyWith(color: Colors.white),
+        backgroundColor: primaryColor,
         toolbarTextStyle: textTheme.bodyLarge?.copyWith(color: Colors.white),
         //backgroundColor: colorScheme.background,
-        iconTheme:
-            base.iconTheme.copyWith(color: const Color.fromARGB(255, 0, 0, 0)),
+        iconTheme: base.iconTheme.copyWith(color: Colors.white),
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
           statusBarBrightness: Brightness.light, // For iOS (dark icons)
