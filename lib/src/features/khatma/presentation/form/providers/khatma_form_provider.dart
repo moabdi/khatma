@@ -8,7 +8,7 @@ import 'package:random_string/random_string.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'khatma_form_provider.g.dart';
 
-@Riverpod(keepAlive: true)
+@Riverpod(keepAlive: false)
 class FormKhatma extends _$FormKhatma {
   @override
   Khatma build() {
