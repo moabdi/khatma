@@ -13,8 +13,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Se connecter',
-            style: TextStyle(fontSize: 20, color: Colors.white)),
+        title: const Text('Se connecter'),
         centerTitle: true,
       ),
       body: SafeArea(

@@ -163,7 +163,6 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
                     actions: [
                       Avatar(
                         radius: 20,
-                        backgroundColor: Theme.of(context).disabledColor,
                         child: Center(
                           child: Icon(
                             Icons.edit,

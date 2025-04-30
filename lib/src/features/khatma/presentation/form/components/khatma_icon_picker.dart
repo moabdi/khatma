@@ -37,8 +37,8 @@ class KhatmaIconPicker extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
             child: CircleAvatar(
               backgroundColor: key == style.icon
-                  ? HexColor(style.color).withOpacity(.2)
-                  : Colors.grey.shade50,
+                  ? HexColor(style.color).withOpacity(.5)
+                  : Colors.transparent,
               child: getIcon(key, color: HexColor(style.color), size: 26),
             ),
           ),

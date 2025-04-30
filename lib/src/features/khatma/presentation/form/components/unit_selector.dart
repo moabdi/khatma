@@ -35,9 +35,6 @@ class UnitSelector extends StatelessWidget {
                       .khatmaSplitUnitDesc(currentUnit.name)),
                   leading: Avatar(
                     radius: 30,
-                    backgroundColor: selected
-                        ? Theme.of(context).primaryColor.withOpacity(.15)
-                        : Theme.of(context).disabledColor,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     bottom: selected
                         ? Avatar(
