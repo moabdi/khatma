@@ -21,6 +21,8 @@ class RepeatKhatmaTile extends StatelessWidget {
         color: enabled ? Theme.of(context).primaryColor : Colors.blueGrey,
       ),
       onChanged: onChanged,
+      activeColor: Theme.of(context).primaryColor,
+      inactiveThumbColor: Colors.grey,
     );
   }
 }
