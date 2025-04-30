@@ -16,7 +16,7 @@ class TopListKhatmat extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context).khatmaList,
-          style: AppTheme.getTheme().textTheme.titleMedium!.copyWith(
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 fontWeight: FontWeight.bold,
               ),
         ),

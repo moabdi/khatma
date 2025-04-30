@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/settings/recitation_settings.dart';
-import 'package:khatma/src/features/settings/language_setting.dart';
-import 'package:khatma/src/features/settings/notification_settings.dart';
-import 'package:khatma/src/features/settings/theme_settings.dart';
+import 'package:khatma/src/features/settings/presentation/recitation_settings.dart';
+import 'package:khatma/src/features/settings/presentation/language_setting.dart';
+import 'package:khatma/src/features/settings/presentation/notification_settings.dart';
+import 'package:khatma/src/features/settings/presentation/theme_settings.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

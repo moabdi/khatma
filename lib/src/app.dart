@@ -2,11 +2,13 @@ import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/settings/logic/setting_provider.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma/src/themes/theme_provider.dart';
 
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
@@ -15,6 +17,7 @@ class MainApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.read(authRepositoryProvider).signInAnonymously();
     final goRouter = ref.watch(goRouterProvider);
+    var themeMode = ref.watch(themeProvider);
 
     return MaterialApp.router(
       localizationsDelegates: [
@@ -29,7 +32,9 @@ class MainApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
       onGenerateTitle: (BuildContext context) => 'Khatma'.hardcoded,
-      theme: AppTheme.getTheme(),
+      theme: AppTheme.newLightTheme(),
+      darkTheme: AppTheme.newDarkTheme(),
+      themeMode: themeMode,
     );
   }
 }

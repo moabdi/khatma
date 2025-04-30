@@ -35,7 +35,7 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
       children: [
         Text(
           AppLocalizations.of(context).icon.colon,
-          style: AppTheme.getTheme().textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         gapH4,
         Card(
@@ -52,7 +52,7 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
         gapH20,
         Text(
           AppLocalizations.of(context).color.colon,
-          style: AppTheme.getTheme().textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         gapH4,
         KhatmaColorPicker(

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
@@ -19,7 +20,7 @@ class FormKhatma extends _$FormKhatma {
       createDate: DateTime.now(),
       startDate: DateTime.now(),
       theme: KhatmaTheme(
-        color: AppTheme.getTheme().primaryColor.toHex(),
+        color: AppTheme.primaryColors.toHex(),
         icon: khatmaIconsMap.keys
             .elementAt(Random().nextInt(khatmaIconsMap.length)),
       ),

@@ -6,7 +6,7 @@ import 'package:khatma/src/themes/theme.dart';
 
 LinkedHashMap<String, Color> khatmaColorMap =
     LinkedHashMap<String, Color>.from({
-  AppTheme.getTheme().primaryColor.toHex(): AppTheme.getTheme().primaryColor,
+  HexColor("#00A862").toHex(): HexColor("#00A862"),
   Colors.deepPurple.toHex(): Colors.deepPurple,
   Colors.blue.toHex(): Colors.blue,
   Colors.deepOrange.toHex(): Colors.deepOrange,

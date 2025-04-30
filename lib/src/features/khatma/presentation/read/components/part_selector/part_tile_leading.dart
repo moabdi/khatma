@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class PartTileLeading extends StatelessWidget {
   const PartTileLeading({
@@ -23,10 +22,10 @@ class PartTileLeading extends StatelessWidget {
           ? selected
               ? color
               : color.withOpacity(.1)
-          : AppTheme.getTheme().cardColor,
+          : Theme.of(context).cardColor,
       child: Text(
         part.id.toString(),
-        style: AppTheme.getTheme().textTheme.titleMedium!.copyWith(
+        style: Theme.of(context).textTheme.titleMedium!.copyWith(
               fontWeight: FontWeight.w600,
               color: selected ? Colors.white : color,
             ),

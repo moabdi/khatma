@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/read/components/khatma_bar_chart.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class BarChartSample extends StatefulWidget {
   BarChartSample({
@@ -10,15 +9,18 @@ class BarChartSample extends StatefulWidget {
     required this.title,
     required this.subTitle,
     required this.khatma,
+    this.barBackgroundColor = Colors.grey,
+    this.barColor = Colors.blue,
+    this.touchedBarColor = Colors.orange,
   });
 
   final Khatma khatma;
   final String title;
   final String subTitle;
 
-  final Color barBackgroundColor = AppTheme.getTheme().disabledColor;
-  final Color barColor = AppTheme.primaryColors.withOpacity(.7);
-  final Color touchedBarColor = AppTheme.primaryColors;
+  final Color barBackgroundColor;
+  final Color barColor;
+  final Color touchedBarColor;
 
   @override
   State<StatefulWidget> createState() => BarChartSampleState();

@@ -10,18 +10,18 @@ class MainNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var selectedLabelStyle = AppTheme.getTheme()
+    var selectedLabelStyle = Theme.of(context)
         .textTheme
         .labelLarge!
         .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
 
-    var unselectedLabelStyle = AppTheme.getTheme()
+    var unselectedLabelStyle = Theme.of(context)
         .textTheme
         .labelLarge!
         .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      //backgroundColor: AppTheme.getTheme().disabledColor,
+      //backgroundColor: Theme.of(context).disabledColor,
       fixedColor: Theme.of(context).primaryColor,
       unselectedLabelStyle: unselectedLabelStyle,
       selectedLabelStyle: selectedLabelStyle,

@@ -5,7 +5,7 @@ import 'package:khatma/src/features/authentication/presentation/password/create_
 import 'package:khatma/src/features/authentication/presentation/password/forgot_password_page.dart';
 import 'package:khatma/src/features/authentication/presentation/register/register_page.dart';
 import 'package:khatma/src/features/profil/profile_menu_page.dart';
-import 'package:khatma/src/features/settings/settings_page.dart';
+import 'package:khatma/src/features/settings/presentation/settings_page.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 final profileRoutes = [

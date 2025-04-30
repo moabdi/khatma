@@ -91,7 +91,7 @@ class KhatmaBarChart extends StatelessWidget {
           borderSide: BorderSide(color: Theme.of(context).primaryColor),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            color: AppTheme.getTheme().disabledColor,
+            color: Theme.of(context).disabledColor,
             toY: max(3, maxToY),
           ),
         ),

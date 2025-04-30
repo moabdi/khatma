@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppTheme {
-  static bool isLightTheme = false;
   static Color primaryColors = HexColor("#00A862");
   // static Color primaryColors = Colors.blue;
   static Color secondaryColors = HexColor("#C66628");
@@ -32,14 +31,6 @@ class AppTheme {
   static const Color shrineErrorRed = Color(0xFFC5032B);
   static const Color shrineSurfaceWhite = Color(0xFFFFFBFA);
   static const Color shrineBackgroundWhite = Colors.white;
-
-  static ThemeData getTheme() {
-    if (isLightTheme) {
-      return newLightTheme();
-    } else {
-      return newDarkTheme();
-    }
-  }
 
   static ThemeData newLightTheme() {
     final Color primaryColor = primaryColors;
@@ -478,14 +469,19 @@ extension StringToColor on String {
 }
 
 extension CustomColorScheme on ColorScheme {
-  Color get backcolor =>
-      AppTheme.isLightTheme ? const Color(0xFFe0e0e0) : const Color(0xFE424242);
-  Color get success =>
-      AppTheme.isLightTheme ? const Color(0xFF28a745) : const Color(0xFF007E33);
-  Color get warning =>
-      AppTheme.isLightTheme ? const Color(0xFFffc107) : const Color(0xFFFF8800);
-  Color get danger =>
-      AppTheme.isLightTheme ? const Color(0xFFdc3545) : const Color(0xFFCC0000);
-  Color get info =>
-      AppTheme.isLightTheme ? const Color(0xFFE8F2FD) : const Color(0xFF0099CC);
+  Color get backcolor => brightness == Brightness.light
+      ? const Color(0xFFe0e0e0)
+      : const Color(0xFF424242);
+  Color get success => brightness == Brightness.light
+      ? const Color(0xFF28a745)
+      : const Color(0xFF007E33);
+  Color get warning => brightness == Brightness.light
+      ? const Color(0xFFffc107)
+      : const Color(0xFFFF8800);
+  Color get danger => brightness == Brightness.light
+      ? const Color(0xFFdc3545)
+      : const Color(0xFFCC0000);
+  Color get info => brightness == Brightness.light
+      ? const Color(0xFFE8F2FD)
+      : const Color(0xFF0099CC);
 }

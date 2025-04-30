@@ -1,14 +1,14 @@
 import 'dart:convert';
 
-class Preferences {
+class Settings {
   String language = 'en';
   bool useDarkTheme = false;
-  String riwaya;
+  String riwaya = "hafs";
 
-  Preferences({
+  Settings({
     this.language = 'en',
     this.useDarkTheme = false,
-    required this.riwaya,
+    this.riwaya = "hafs",
   });
 
   Map<String, dynamic> toMap() {
@@ -19,8 +19,8 @@ class Preferences {
     };
   }
 
-  factory Preferences.fromMap(Map<String, dynamic> map) {
-    return Preferences(
+  factory Settings.fromMap(Map<String, dynamic> map) {
+    return Settings(
       useDarkTheme: map['useDarkTheme'],
       riwaya: map['riwayat'],
       language: map['language'],
@@ -29,15 +29,15 @@ class Preferences {
 
   String toJson() => json.encode(toMap());
 
-  factory Preferences.fromJson(String source) =>
-      Preferences.fromMap(json.decode(source));
+  factory Settings.fromJson(String source) =>
+      Settings.fromMap(json.decode(source));
 
-  Preferences copyWith({
+  Settings copyWith({
     String? language,
     bool? useDarkTheme,
     String? riwaya,
   }) {
-    return Preferences(
+    return Settings(
       language: language ?? this.language,
       useDarkTheme: useDarkTheme ?? this.useDarkTheme,
       riwaya: riwaya ?? this.riwaya,
