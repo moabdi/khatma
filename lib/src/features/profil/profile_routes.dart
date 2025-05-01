@@ -4,11 +4,11 @@ import 'package:khatma/src/features/authentication/presentation/login/login_page
 import 'package:khatma/src/features/authentication/presentation/password/create_password_page.dart';
 import 'package:khatma/src/features/authentication/presentation/password/forgot_password_page.dart';
 import 'package:khatma/src/features/authentication/presentation/register/register_page.dart';
-import 'package:khatma/src/features/profil/ui/profile_menu_page.dart';
-import 'package:khatma/src/features/settings/ui/language_setting.dart';
-import 'package:khatma/src/features/settings/ui/recitation_settings.dart';
-import 'package:khatma/src/features/settings/ui/settings_page.dart';
-import 'package:khatma/src/features/settings/ui/theme_settings.dart';
+import 'package:khatma/src/features/profil/presentation/profile_menu_page.dart';
+import 'package:khatma/src/features/settings/presentation/language_setting.dart';
+import 'package:khatma/src/features/settings/presentation/recitation_settings.dart';
+import 'package:khatma/src/features/settings/presentation/settings_page.dart';
+import 'package:khatma/src/features/settings/presentation/theme_settings.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 final profileRoutes = [
