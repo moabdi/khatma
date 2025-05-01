@@ -54,12 +54,12 @@ final profileRoutes = [
         builder: (context, state) => const RegisterPage(),
       ),
       GoRoute(
-        path: 'forgot_password',
+        path: 'forgot-password',
         name: AppRoute.forgotPassword.name,
         builder: (context, state) => const ForgotPasswordPage(),
       ),
       GoRoute(
-        path: 'create_password',
+        path: 'create-password',
         name: AppRoute.createPassword.name,
         builder: (context, state) => const CreatePasswordPage(),
       ),

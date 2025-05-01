@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-
-import '../widgets/back_to_login.dart'; // Assuming you have GoRouter set up
 
 class CreatePasswordPage extends StatelessWidget {
   const CreatePasswordPage({super.key});
@@ -13,6 +12,7 @@ class CreatePasswordPage extends StatelessWidget {
         title: const Text('Créer un nouveau mot de passe'),
         centerTitle: true,
       ),
+      floatingActionButton: const FooterLinks(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -66,7 +66,6 @@ class CreatePasswordPage extends StatelessWidget {
                   ),
                 ),
                 gapH24,
-                BackToLogin()
               ],
             ),
           ),

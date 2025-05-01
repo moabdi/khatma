@@ -14,6 +14,7 @@ class RegisterPage extends StatelessWidget {
         title: const Text('Créer un compte'),
         centerTitle: true,
       ),
+      floatingActionButton: const FooterLinks(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -85,7 +86,6 @@ class RegisterPage extends StatelessWidget {
                 gapH24,
                 BackToLogin(),
                 gapH24,
-                FooterLinks(),
               ],
             ),
           ),

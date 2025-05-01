@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/back_to_login.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-
-import '../widgets/back_to_login.dart'; // Assuming you have GoRouter set up
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -13,6 +13,7 @@ class ForgotPasswordPage extends StatelessWidget {
         title: const Text('Récupérer le mot de passe'),
         centerTitle: true,
       ),
+      floatingActionButton: const FooterLinks(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -21,21 +22,19 @@ class ForgotPasswordPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 64),
+                gapH48,
                 CircleAvatar(
                   backgroundColor: Theme.of(context).disabledColor,
                   radius: 50,
                   backgroundImage:
                       AssetImage('assets/khatma.png'), // Ton logo ici
                 ),
-                const SizedBox(height: 32),
-                const Text(
+                gapH48,
+                Text(
                   "Entrez votre email pour récupérer votre mot de passe",
-                  style: TextStyle(fontSize: 16),
-                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                const SizedBox(height: 24),
-                // Email input
+                gapH24,
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -43,8 +42,7 @@ class ForgotPasswordPage extends StatelessWidget {
                     border: OutlineInputBorder(),
                   ),
                 ),
-                const SizedBox(height: 16),
-                // Submit button
+                gapH24,
                 ElevatedButton(
                   onPressed: () {
                     // Handle password recovery logic (e.g., send email)

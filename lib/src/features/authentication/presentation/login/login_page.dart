@@ -15,6 +15,7 @@ class LoginPage extends StatelessWidget {
         title: const Text('Se connecter'),
         centerTitle: true,
       ),
+      floatingActionButton: const FooterLinks(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -137,7 +138,6 @@ class LoginPage extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 24),
-                FooterLinks()
               ],
             ),
           ),

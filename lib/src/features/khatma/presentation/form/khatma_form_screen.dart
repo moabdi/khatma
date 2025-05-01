@@ -41,7 +41,7 @@ class AddKhatmaScreen extends ConsumerWidget {
         leading: BackButton(onPressed: () => Navigator.of(context).pop()),
       ),
       body: khatma.id != khatmaId
-          ? EmptyPlaceholderWidget(message: 'Khatma not found')
+          ? _buildFormView(context, khatma, ref)
           : _buildFormView(context, khatma, ref),
     );
   }
@@ -51,7 +51,6 @@ class AddKhatmaScreen extends ConsumerWidget {
     Khatma khatma,
     WidgetRef ref,
   ) {
-    // final formKey = GlobalKey<FormState>();
     final node = FocusScopeNode();
     final nameController = TextEditingController(text: khatma.name);
     final descController = TextEditingController(text: khatma.description);
