@@ -31,7 +31,7 @@ class AppTheme {
   static const Color shrineSurfaceWhite = Color(0xFFFFFBFA);
   static const Color shrineBackgroundWhite = Colors.white;
 
-  static ThemeData newLightTheme() {
+  static ThemeData lightTheme() {
     final Color primaryColor = primaryColors;
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(
       primary: primaryColor,
@@ -188,7 +188,7 @@ class AppTheme {
     enableFeedback: true,
   );
 
-  static ThemeData newDarkTheme() {
+  static ThemeData darkTheme() {
     Color primaryColor = primaryColors;
     final ColorScheme colorScheme = const ColorScheme.dark().copyWith(
       primary: primaryColor,
