@@ -6,8 +6,8 @@ import 'package:khatma/src/constants/lottie_asset.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/repeat_enabler_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/read/components/khatma_bar_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/read/ui/khatma_bar_chart.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 

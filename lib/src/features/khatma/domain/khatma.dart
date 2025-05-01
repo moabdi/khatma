@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/enums/day_of_week.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:khatma/src/themes/theme.dart';
 part 'khatma.freezed.dart';
 part 'khatma.g.dart';
 
@@ -132,72 +131,5 @@ extension KhatmaPartExtension on KhatmaPart {
     if (isCompleted) return Colors.green;
     if (daysSinceFinished > 0) return Colors.red;
     return Colors.grey;
-  }
-}
-
-extension KhatmaExtension on Khatma {
-  double get completionPercent {
-    if (readParts?.isEmpty ?? false) return 0;
-
-    //if (SplitUnit.sourat == unit) {
-    //  return computeSouratCompletude(completedPartIds);
-    //}
-    return completedPartIds.length / unit.count;
-  }
-
-  Duration get duration {
-    if (lastRead == null) return DateTime.now().difference(createDate);
-    return DateTime.now().difference(lastRead!);
-  }
-
-  List<int> get readPartIds {
-    return readParts?.map((part) => part.id).toList() ?? [];
-  }
-
-  bool get isExpired {
-    if (recurrence == null || recurrence!.endDate == null) return false;
-    return recurrence!.endDate!.isBefore(DateTime.now());
-  }
-
-  String get remainingDays {
-    if (isExpired) return '0';
-    if (recurrence == null || recurrence!.endDate == null) return '-1';
-    return recurrence!.endDate!.difference(DateTime.now()).inDays.toString();
-  }
-
-  String get remainingParts {
-    return (unit.count - readPartIds.length).toString();
-  }
-
-  List<int> get remainingPartsList {
-    return List.generate(unit.count, (index) => index + 1)
-        .where((part) => !readPartIds.contains(part))
-        .toList();
-  }
-
-  List<int> get completedPartIds {
-    return readParts
-            ?.where((part) => part.endDate != null)
-            .map((part) => part.id)
-            .toSet()
-            .toList() ??
-        [];
-  }
-
-  bool get isCompleted {
-    return completedPartIds.length == unit.count;
-  }
-
-  bool get isStarted {
-    return completedPartIds.isNotEmpty;
-  }
-
-  bool get isNotStarted {
-    return completedPartIds.isEmpty;
-  }
-
-  KhatmaTheme get style {
-    return this.theme ??
-        KhatmaTheme(color: AppTheme.primaryColors.toHex(), icon: "kaaba.ico");
   }
 }

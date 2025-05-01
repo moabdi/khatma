@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart'
-    show Khatma, KhatmaExtension;
-import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/extentions/khatma_extention.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class AnimatedFlashyChart extends StatefulWidget {

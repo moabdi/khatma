@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';
-import 'package:khatma/src/features/khatma/presentation/read/providers/khatma_parts_controller.dart';
-import 'package:khatma/src/features/khatma/presentation/read/components/part_selector/part_tile_leading.dart';
+import 'package:khatma/src/features/khatma/presentation/read/logic/khatma_parts_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/read/ui/part_selector/part_tile_leading.dart';
 
 class PartTile extends ConsumerWidget {
   const PartTile(

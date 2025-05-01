@@ -1,6 +1,6 @@
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'khatma_controller.g.dart';
 
@@ -12,17 +12,17 @@ class KhatmaController extends _$KhatmaController {
     if (khatma.share != null &&
         khatma.share!.maxPartToRead != null &&
         khatma.share!.maxPartToRead! > value.count) {
-      ref.read(formKhatmaProvider.notifier).update(khatma.copyWith(
+      ref.read(khatmaFormProvider.notifier).update(khatma.copyWith(
               share: khatma.share!.copyWith(
             maxPartToRead: 1,
             maxPartToReserve: 1,
           )));
     }
-    ref.read(formKhatmaProvider.notifier).update(khatma.copyWith(unit: value));
+    ref.read(khatmaFormProvider.notifier).update(khatma.copyWith(unit: value));
   }
 
   void submit() {
-    Khatma khatma = ref.read(formKhatmaProvider);
+    Khatma khatma = ref.read(khatmaFormProvider);
 
     khatma = khatma.copyWith(
       recurrence: khatma.recurrence,

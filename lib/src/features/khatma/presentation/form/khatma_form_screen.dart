@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/repeat_enabler_tile.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/extentions/khatma_extention.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/constants/snack_bars.dart';
@@ -13,15 +15,13 @@ import 'package:khatma/src/widgets/buttons/delete_button.dart';
 import 'package:khatma/src/widgets/buttons/primary_button.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
-import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/style_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_controller.dart';
-import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma_ui/components/khatma_form_tile.dart';
 import 'package:khatma_ui/components/modal_bottom_sheet.dart';
-import 'package:khatma/src/features/khatma/presentation/form/components/unit_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/unit_selector.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 class AddKhatmaScreen extends ConsumerWidget {
@@ -31,7 +31,7 @@ class AddKhatmaScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatma = ref.watch(formKhatmaProvider);
+    final khatma = ref.watch(khatmaFormProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -218,7 +218,7 @@ class AddKhatmaScreen extends ConsumerWidget {
   }
 
   Widget _buildSplitUnit(BuildContext context, WidgetRef ref) {
-    Khatma khatma = ref.watch(formKhatmaProvider);
+    Khatma khatma = ref.watch(khatmaFormProvider);
     return KhatmaFormTile(
       icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
       title: AppLocalizations.of(context).splitUnit,
@@ -262,6 +262,6 @@ class AddKhatmaScreen extends ConsumerWidget {
 
 extension ProviderRef on WidgetRef {
   updateKhatma(Khatma khatma) {
-    read(formKhatmaProvider.notifier).update(khatma);
+    read(khatmaFormProvider.notifier).update(khatma);
   }
 }

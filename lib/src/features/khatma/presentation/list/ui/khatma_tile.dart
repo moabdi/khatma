@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/extentions/khatma_extention.dart';
 import 'package:khatma/src/utils/duration_formatter.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
-import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
 
 import 'khatma_completude.dart';
 

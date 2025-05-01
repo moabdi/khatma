@@ -4,7 +4,7 @@ import 'package:khatma/src/widgets/async_value_widget.dart';
 import 'package:khatma/src/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/list/khatma_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/list/ui/khatma_tile.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

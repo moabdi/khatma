@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/presentation/extentions/khatma_extention.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'khatma_parts_controller.g.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/read/components/khatma_bar_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/read/ui/khatma_bar_chart.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class BarChartSample extends StatefulWidget {

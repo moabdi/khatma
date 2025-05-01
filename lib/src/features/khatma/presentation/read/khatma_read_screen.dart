@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/presentation/read/components/animate_khatma_chart.dart';
-import 'package:khatma/src/features/khatma/presentation/read/khatma_success_complete.dart';
+import 'package:khatma/src/features/khatma/presentation/extentions/khatma_extention.dart';
+import 'package:khatma/src/features/khatma/presentation/read/ui/animate_khatma_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/read/khatma_complete_screen.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
@@ -13,10 +14,9 @@ import 'package:khatma/src/widgets/loading_list_tile.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
-import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/read/components/part_selector/part_floating_button.dart';
-import 'package:khatma/src/features/khatma/presentation/read/components/part_selector/to_read_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/read/ui/part_selector/part_floating_button.dart';
+import 'package:khatma/src/features/khatma/presentation/read/ui/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
 
@@ -165,7 +165,7 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
                           color: khatma.style.color.toColor(),
                         ),
                         onPressed: () => {
-                          ref.read(formKhatmaProvider.notifier).update(khatma),
+                          ref.read(khatmaFormProvider.notifier).update(khatma),
                           context.goNamed(AppRoute.editKhatma.name,
                               pathParameters: {'id': khatma.id!}),
                         },
