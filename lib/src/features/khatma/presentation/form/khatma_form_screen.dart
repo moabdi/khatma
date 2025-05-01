@@ -41,7 +41,7 @@ class AddKhatmaScreen extends ConsumerWidget {
         leading: BackButton(onPressed: () => Navigator.of(context).pop()),
       ),
       body: khatma.id != khatmaId
-          ? _buildFormView(context, khatma, ref)
+          ? EmptyPlaceholderWidget(message: 'Khatma not found')
           : _buildFormView(context, khatma, ref),
     );
   }
