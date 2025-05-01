@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/localization/local_provider.dart';
+import 'package:khatma/src/i18n/local_provider.dart';
 import 'package:khatma_ui/constants/app_dividers.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 

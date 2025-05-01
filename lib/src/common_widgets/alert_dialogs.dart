@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:khatma/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

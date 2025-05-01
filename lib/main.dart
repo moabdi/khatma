@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:khatma/firebase_options.dart';
 import 'package:khatma/src/app.dart';
-import 'package:khatma/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

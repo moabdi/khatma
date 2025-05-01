@@ -1,4 +1,4 @@
-import 'package:khatma/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/common_widgets/primary_button.dart';

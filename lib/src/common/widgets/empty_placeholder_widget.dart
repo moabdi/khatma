@@ -1,8 +1,8 @@
 import 'package:khatma/src/common/buttons/primary_button.dart';
 import 'package:khatma/src/common/constants/lottie_asset.dart';
-import 'package:khatma/src/localization/string_hardcoded.dart';
-import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:flutter/material.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:go_router/go_router.dart';
 

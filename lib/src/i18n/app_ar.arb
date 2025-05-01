@@ -88,5 +88,10 @@
     "maxPartToReserve": "عدد الحجوزات المتزامنة",
     "title": "العنوان",
     "themeMode": "{mode, select, light{فاتح} dark{داكن} system{النظام} other{النظام}}",
-    "theme": "النمط"
+    "theme": "النمط",
+    "areYouSure": "هل أنت متأكد؟",
+    "confirmDeleteKhatma": "بعد الحذف، سيتم حذف هذه الختمة نهائيًا",
+    "congratulation": "تهانينا!",
+    "emailInputLabel": "أدخل بريدك الإلكتروني",
+    "passwordInputLabel": "أدخل كلمة المرور"
 }

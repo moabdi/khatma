@@ -88,5 +88,10 @@
   "maxPartToReserve": "Réservations simultanées",
   "title": "Titre",
   "themeMode": "{mode, select, light{Clair} dark{Sombre} system{Système} other{Système}}",
-  "theme": "Thème"
+  "theme": "Thème",
+  "areYouSure": "Êtes-vous sûr ?",
+  "confirmDeleteKhatma": "Après suppression, cette khatma sera définitivement supprimée",
+  "congratulation": "Félicitations !",
+  "emailInputLabel": "Entrez votre email",
+  "passwordInputLabel": "Entrez votre mot de passe"
 }

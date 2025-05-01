@@ -1,4 +1,4 @@
-import 'package:khatma/src/localization/string_hardcoded.dart';
+import 'package:khatma/src/i18n/string_hardcoded.dart';
 
 /// Form type for email & password authentication
 enum EmailPasswordSignInFormType { signIn, register }
