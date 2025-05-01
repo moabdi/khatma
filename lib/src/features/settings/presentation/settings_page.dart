@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/settings/presentation/recitation_settings.dart';
-import 'package:khatma/src/features/settings/presentation/language_setting.dart';
-import 'package:khatma/src/features/settings/presentation/notification_settings.dart';
-import 'package:khatma/src/features/settings/presentation/theme_settings.dart';
+import 'package:go_router/go_router.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -25,19 +23,14 @@ class SettingsPage extends StatelessWidget {
                   Text("Quran", style: Theme.of(context).textTheme.titleMedium),
             ),
             Card(
-              child: _buildMenuItem(
-                context,
-                icon: Icons.book_sharp,
-                title: 'Mushaf',
-                iconColor: Colors.brown,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RecitationSettings(),
-                    ),
-                  );
-                },
+              child: ListTile(
+                leading: Icon(
+                  Icons.book_sharp,
+                  color: Colors.brown,
+                ),
+                title: const Text('Mushaf'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.pushNamed(AppRoute.recitation.name),
               ),
             ),
             gapH8,
@@ -48,36 +41,25 @@ class SettingsPage extends StatelessWidget {
             ),
             Card(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.language,
-                    title: 'Langues',
-                    iconColor: Colors.blueAccent,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LanguageSettings()),
-                      );
-                    },
+                  ListTile(
+                    leading: Icon(
+                      Icons.language,
+                      color: Colors.blueAccent,
+                    ),
+                    title: const Text('Langues'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => context.pushNamed(AppRoute.languages.name),
                   ),
                   const Divider(height: 0),
-                  _buildMenuItem(
-                    context,
-                    icon: Icons.brightness_6,
-                    title: 'Thème',
-                    iconColor: Colors.purpleAccent,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ThemePage(),
-                        ),
-                      );
-                    },
+                  ListTile(
+                    leading: Icon(
+                      Icons.brightness_6,
+                      color: Colors.purpleAccent,
+                    ),
+                    title: const Text('Thème'),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => context.pushNamed(AppRoute.theme.name),
                   ),
                 ],
               ),
@@ -85,24 +67,6 @@ class SettingsPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildMenuItem(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required Color iconColor,
-    VoidCallback? onTap,
-  }) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: iconColor,
-      ),
-      title: Text(title),
-      trailing: const Icon(Icons.chevron_right),
-      onTap: onTap,
     );
   }
 }

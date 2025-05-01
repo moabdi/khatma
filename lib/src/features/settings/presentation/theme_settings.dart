@@ -5,13 +5,11 @@ import 'package:khatma/src/themes/theme_provider.dart';
 import 'package:khatma_ui/constants/app_dividers.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
-class ThemePage extends ConsumerWidget {
-  const ThemePage({super.key});
+class ThemeSettings extends ConsumerWidget {
+  const ThemeSettings({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentThemeMode = ref.watch(themeProvider);
-
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context).theme)),
       body: SafeArea(
@@ -34,21 +32,18 @@ class ThemePage extends ConsumerWidget {
                       themeMode: ThemeMode.light,
                       icon: Icons.light_mode,
                       iconColor: Colors.orangeAccent,
-                      currentThemeMode: currentThemeMode,
                     ),
                     dividerH1T0_5,
                     ThemeOption(
                       themeMode: ThemeMode.dark,
                       icon: Icons.dark_mode,
                       iconColor: Colors.deepPurple,
-                      currentThemeMode: currentThemeMode,
                     ),
                     dividerH1T0_5,
                     ThemeOption(
                       themeMode: ThemeMode.system,
                       icon: Icons.settings_suggest,
                       iconColor: Colors.blueGrey,
-                      currentThemeMode: currentThemeMode,
                     ),
                   ],
                 ),
@@ -67,16 +62,15 @@ class ThemeOption extends ConsumerWidget {
     required this.themeMode,
     required this.icon,
     required this.iconColor,
-    required this.currentThemeMode,
   });
 
   final ThemeMode themeMode;
   final IconData icon;
   final Color iconColor;
-  final ThemeMode currentThemeMode;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentThemeMode = ref.watch(themeProvider);
     final isSelected = currentThemeMode == themeMode;
     final color = Theme.of(context).colorScheme.primary;
 
@@ -84,9 +78,7 @@ class ThemeOption extends ConsumerWidget {
       minTileHeight: 50,
       leading: Icon(icon, color: iconColor),
       title: Text(AppLocalizations.of(context).themeMode(themeMode.name)),
-      trailing: isSelected
-          ? const Icon(Icons.check_circle, color: Colors.green)
-          : null,
+      trailing: isSelected ? Icon(Icons.check_circle, color: color) : null,
       tileColor: isSelected ? color.withAlpha(25) : null,
       onTap: () {
         ref.read(themeProvider.notifier).setThemeMode(themeMode);

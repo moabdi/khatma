@@ -128,7 +128,7 @@ class ProfileMenuPage extends StatelessWidget {
                   iconColor: Colors.blueGrey,
                   title: 'FAQ',
                   onTap: () {
-                    context.goNamed(AppRoute.faq.name);
+                    context.pushNamed(AppRoute.faq.name);
                   },
                 ),
                 _buildMenuItem(
@@ -137,7 +137,7 @@ class ProfileMenuPage extends StatelessWidget {
                   iconColor: Colors.blueGrey,
                   title: 'Mentions légales',
                   onTap: () {
-                    context.goNamed(AppRoute.mentionsLegales.name);
+                    context.pushNamed(AppRoute.mentionsLegales.name);
                   },
                 ),
                 _buildMenuItem(
@@ -146,7 +146,7 @@ class ProfileMenuPage extends StatelessWidget {
                   iconColor: Colors.blueGrey,
                   title: 'À propos de nous',
                   onTap: () {
-                    context.goNamed(AppRoute.aboutUs.name);
+                    context.pushNamed(AppRoute.aboutUs.name);
                   },
                 ),
                 const Divider(height: 0),
@@ -156,7 +156,7 @@ class ProfileMenuPage extends StatelessWidget {
                   iconColor: Colors.blueGrey,
                   title: 'Question / Suggestion',
                   onTap: () {
-                    context.goNamed(AppRoute.contact.name);
+                    context.pushNamed(AppRoute.contact.name);
                   },
                 ),
               ],
@@ -196,7 +196,7 @@ class ProfileMenuPage extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'v1.0.0', // 🔥 Peut être rendu dynamique plus tard
+          'v1.0.0',
           style: Theme.of(context)
               .textTheme
               .bodySmall

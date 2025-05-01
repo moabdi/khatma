@@ -10,9 +10,6 @@ class LanguageSettings extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedLocale = ref.watch(localeProvider).languageCode;
-    final primaryColor = Theme.of(context).primaryColor;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).language),
@@ -31,17 +28,29 @@ class LanguageSettings extends ConsumerWidget {
             Card(
               child: Column(
                 children: [
-                  _buildLanguageOption(
-                      ref, 'العربية', 'Arabic', 'ar', selectedLocale),
+                  LanguageOption(
+                    title: 'العربية',
+                    subTitle: 'Arabic',
+                    code: 'ar',
+                  ),
                   dividerH0_5T1,
-                  _buildLanguageOption(
-                      ref, 'English', 'Default', 'en', selectedLocale),
+                  LanguageOption(
+                    title: 'English',
+                    subTitle: 'Default',
+                    code: 'en',
+                  ),
                   dividerH0_5T1,
-                  _buildLanguageOption(
-                      ref, 'Français', 'Frensh', 'fr', selectedLocale),
+                  LanguageOption(
+                    title: 'Français',
+                    subTitle: 'Frensh',
+                    code: 'fr',
+                  ),
                   dividerH0_5T1,
-                  _buildLanguageOption(
-                      ref, 'Español', 'Espagnol', 'es', selectedLocale),
+                  LanguageOption(
+                    title: 'Español',
+                    subTitle: 'Espagnol',
+                    code: 'es',
+                  ),
                 ],
               ),
             ),
@@ -57,26 +66,34 @@ class LanguageSettings extends ConsumerWidget {
       ),
     );
   }
+}
 
-  Widget _buildLanguageOption(
-    WidgetRef ref,
-    String languageName,
-    String languageSubName,
-    String localeCode,
-    String selectedLocale,
-  ) {
-    final isSelected = selectedLocale == localeCode;
+class LanguageOption extends ConsumerWidget {
+  const LanguageOption({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.code,
+  });
+
+  final String title;
+  final String subTitle;
+  final String code;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedLocale = ref.watch(localeProvider).languageCode;
+    final isSelected = selectedLocale == code;
+    final color = Theme.of(context).colorScheme.primary;
 
     return ListTile(
-      title: Text(languageName),
-      subtitle: Text(languageSubName),
-      leading: isSelected
-          ? const Icon(Icons.check_circle, color: Colors.green)
-          : const Icon(Icons.circle_outlined, color: Colors.grey),
+      title: Text(title),
+      subtitle: Text(subTitle),
+      trailing: isSelected ? Icon(Icons.check_circle, color: color) : null,
       onTap: () {
-        ref.read(localeProvider.notifier).setLocale(localeCode);
+        ref.read(localeProvider.notifier).setLocale(code);
       },
-      tileColor: isSelected ? Colors.green.withOpacity(0.1) : null,
+      tileColor: isSelected ? Colors.green.withAlpha(10) : null,
     );
   }
 }

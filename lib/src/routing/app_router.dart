@@ -27,6 +27,9 @@ enum AppRoute {
   faq,
   contact,
   settings,
+  languages,
+  theme,
+  recitation,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
