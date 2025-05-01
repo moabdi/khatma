@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/mushaf/presentations/moushaf_screen.dart';
+import 'package:khatma/src/features/quran/presentations/moushaf_screen.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 List<GoRoute> quranRoutes = [
