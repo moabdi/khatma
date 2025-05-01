@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-class MarkdownReaderPage extends StatelessWidget {
+class MarkdownReader extends StatelessWidget {
   final String title;
   final String assetPath;
 
-  const MarkdownReaderPage({
+  const MarkdownReader({
     super.key,
     required this.title,
     required this.assetPath,

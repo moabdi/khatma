@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/utils/collection_utils.dart';
-import 'package:khatma/src/common/utils/day_of_week.dart';
+import 'package:khatma/src/enums/day_of_week.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/themes/theme.dart';
 part 'khatma.freezed.dart';
@@ -138,7 +137,7 @@ extension KhatmaPartExtension on KhatmaPart {
 
 extension KhatmaExtension on Khatma {
   double get completionPercent {
-    if (isEmpty(readParts)) return 0;
+    if (readParts?.isEmpty ?? false) return 0;
 
     //if (SplitUnit.sourat == unit) {
     //  return computeSouratCompletude(completedPartIds);

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
-import 'package:khatma/src/common/constants/test_khatmat.dart';
+import 'package:khatma/src/unused/test_khatmat.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:uuid/uuid.dart';

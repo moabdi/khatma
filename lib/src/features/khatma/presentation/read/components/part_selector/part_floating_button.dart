@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/common/constants/snack_bars.dart';
-import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/buttons/primary_button.dart';
+import 'package:khatma/src/constants/snack_bars.dart';
+import 'package:khatma/src/utils/common.dart';
+import 'package:khatma/src/widgets/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_success_complete.dart';
 import 'package:khatma/src/features/khatma/presentation/read/providers/khatma_parts_controller.dart';

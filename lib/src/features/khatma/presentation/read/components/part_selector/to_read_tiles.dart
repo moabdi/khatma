@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/common/widgets/async_value_widget.dart';
-import 'package:khatma/src/common/widgets/loading_list_tile.dart';
+import 'package:khatma/src/widgets/async_value_widget.dart';
+import 'package:khatma/src/widgets/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/application/part_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/part.dart';

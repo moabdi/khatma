@@ -1,6 +1,6 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/i18n/local_provider.dart';
 import 'package:khatma/src/i18n/string_hardcoded.dart';

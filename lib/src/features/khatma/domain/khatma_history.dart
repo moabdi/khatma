@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:khatma/src/common/utils/date_converter.dart';
+import 'package:khatma/src/converters/date_converter.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 part 'khatma_history.freezed.dart';

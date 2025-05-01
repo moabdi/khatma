@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/constants/lottie_asset.dart';
+import 'package:khatma/src/constants/lottie_asset.dart';
 
 class TopCard extends StatelessWidget {
   const TopCard({super.key, required this.height});

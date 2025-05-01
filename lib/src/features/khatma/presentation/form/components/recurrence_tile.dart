@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/avatar.dart';
-import 'package:khatma/src/common/widgets/radio_icon.dart';
+import 'package:khatma/src/utils/common.dart';
+import 'package:khatma/src/widgets/avatar.dart';
+import 'package:khatma/src/widgets/radio_icon.dart';
 
 class RecurrenceTile extends StatelessWidget {
   const RecurrenceTile({super.key, required this.value, required this.onTap});

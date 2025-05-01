@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/common/buttons/primary_button.dart';
-import 'package:khatma/src/common/constants/lottie_asset.dart';
-import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/widgets/buttons/primary_button.dart';
+import 'package:khatma/src/constants/lottie_asset.dart';
+import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/repeat_enabler_tile.dart';

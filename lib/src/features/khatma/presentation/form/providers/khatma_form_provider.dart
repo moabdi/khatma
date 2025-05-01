@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
 import 'package:khatma/src/themes/theme.dart';

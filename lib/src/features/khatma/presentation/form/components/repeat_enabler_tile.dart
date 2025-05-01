@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/utils/common.dart';
 
 class RepeatKhatmaTile extends StatelessWidget {
   const RepeatKhatmaTile(

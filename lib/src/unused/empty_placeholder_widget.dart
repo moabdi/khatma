@@ -1,8 +1,7 @@
-import 'package:khatma/src/common/buttons/primary_button.dart';
-import 'package:khatma/src/common/constants/lottie_asset.dart';
 import 'package:khatma/src/i18n/string_hardcoded.dart';
-import 'package:flutter/material.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:flutter/material.dart';
+import 'package:khatma/src/widgets/primary_button.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,13 +19,12 @@ class EmptyPlaceholderWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            lottieNoData,
             Text(
               message,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
-            gapH16,
+            gapH32,
             PrimaryButton(
               onPressed: () => context.goNamed(AppRoute.home.name),
               text: 'Go Home'.hardcoded,

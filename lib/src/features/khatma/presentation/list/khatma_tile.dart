@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/utils/duration_formatter.dart';
+import 'package:khatma/src/utils/duration_formatter.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';

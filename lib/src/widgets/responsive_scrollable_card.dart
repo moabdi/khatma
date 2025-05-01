@@ -1,6 +1,6 @@
 import 'package:khatma/src/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common_widgets/responsive_center.dart';
+import 'package:khatma/src/widgets/responsive_center.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 /// Scrollable widget that shows a responsive card with a given child widget.

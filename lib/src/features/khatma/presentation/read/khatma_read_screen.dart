@@ -6,11 +6,10 @@ import 'package:khatma/src/features/khatma/presentation/read/khatma_success_comp
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
-import 'package:khatma/src/common/utils/collection_utils.dart';
-import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/async_value_widget.dart';
-import 'package:khatma/src/common/widgets/empty_placeholder_widget.dart';
-import 'package:khatma/src/common/widgets/loading_list_tile.dart';
+import 'package:khatma/src/utils/common.dart';
+import 'package:khatma/src/widgets/async_value_widget.dart';
+import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
+import 'package:khatma/src/widgets/loading_list_tile.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -121,7 +120,7 @@ class KhatmaReadScreen extends ConsumerWidget {
 
   Widget buildReadPartCard(BuildContext context, Khatma khatma) {
     return ConditionalContent(
-      condition: isNotEmpty(khatma.readParts),
+      condition: khatma.readParts?.isNotEmpty ?? false,
       secondary: const SizedBox.shrink(),
       primary: Card(
         elevation: 0.4,

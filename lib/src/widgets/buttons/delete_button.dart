@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/common/utils/common.dart';
-import 'package:khatma/src/common/widgets/alert_dialogs.dart';
+import 'package:khatma/src/utils/common.dart';
+import 'package:khatma/src/widgets/alert_dialogs.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton({
