@@ -30,6 +30,7 @@ enum AppRoute {
   languages,
   theme,
   recitation,
+  khatma,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
