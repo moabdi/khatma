@@ -19,7 +19,7 @@ class AccountScreenController extends _$AccountScreenController {
   }
 
   Future<bool> sendEmailVerification(AppUser user) async {
-    final authRepository = ref.read(authRepositoryProvider);
+    // final authRepository = ref.read(authRepositoryProvider);
     state = const AsyncLoading();
     // state = await AsyncValue.guard(() => user.sendEmailVerification());
     return state.hasError == false;

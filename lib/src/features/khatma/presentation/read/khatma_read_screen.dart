@@ -9,7 +9,6 @@ import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/common/widgets/async_value_widget.dart';
-import 'package:khatma/src/common/widgets/avatar.dart';
 import 'package:khatma/src/common/widgets/empty_placeholder_widget.dart';
 import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma_ui/components/conditional_content.dart';

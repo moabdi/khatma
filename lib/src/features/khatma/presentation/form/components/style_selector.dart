@@ -6,7 +6,6 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_color_picker.dart';
 import 'package:khatma/src/features/khatma/presentation/form/components/khatma_icon_picker.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class KhatmaStyleSelector extends StatefulWidget {
   const KhatmaStyleSelector(
