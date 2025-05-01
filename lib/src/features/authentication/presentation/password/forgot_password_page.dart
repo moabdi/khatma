@@ -14,6 +14,7 @@ class ForgotPasswordPage extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: const FooterLinks(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

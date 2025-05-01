@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
 import 'package:khatma_ui/constants/app_sizes.dart'; // Assuming you have app sizes set
 
 class ContactUsPage extends StatefulWidget {
@@ -21,6 +22,8 @@ class _ContactUsPageState extends State<ContactUsPage> {
         title: const Text('Contact Us'),
         centerTitle: true,
       ),
+      floatingActionButton: const FooterLinks(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
