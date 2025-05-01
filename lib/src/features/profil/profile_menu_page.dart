@@ -88,69 +88,82 @@ class ProfileMenuPage extends StatelessWidget {
   }
 
   Widget _buildMenuItems(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.zero,
-      children: [
-        _buildMenuItem(
-          context,
-          icon: Icons.account_circle,
-          iconColor: Theme.of(context).colorScheme.warning,
-          title: 'Se connecter / S\'inscrire',
-          onTap: () {
-            context.goNamed(AppRoute.login.name);
-          },
-        ),
-        const Divider(),
-        _buildMenuItem(
-          context,
-          icon: Icons.settings,
-          iconColor: Colors.blueGrey,
-          title: 'Paramètres',
-          onTap: () {
-            context.goNamed(AppRoute.settings.name);
-          },
-        ),
-        const Divider(),
-        _buildMenuItem(
-          context,
-          icon: Icons.question_answer,
-          iconColor: Colors.blueGrey,
-          title: 'FAQ',
-          onTap: () {
-            context.goNamed(AppRoute.faq.name);
-          },
-        ),
-        const Divider(),
-        _buildMenuItem(
-          context,
-          icon: Icons.article,
-          iconColor: Colors.blueGrey,
-          title: 'Mentions légales',
-          onTap: () {
-            context.goNamed(AppRoute.mentionsLegales.name);
-          },
-        ),
-        const Divider(),
-        _buildMenuItem(
-          context,
-          icon: Icons.help,
-          iconColor: Colors.blueGrey,
-          title: 'À propos de nous',
-          onTap: () {
-            context.goNamed(AppRoute.aboutUs.name);
-          },
-        ),
-        const Divider(),
-        _buildMenuItem(
-          context,
-          icon: Icons.feedback,
-          iconColor: Colors.blueGrey,
-          title: 'Question / Suggestion',
-          onTap: () {
-            context.goNamed(AppRoute.contact.name);
-          },
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          Card(
+            child: Column(
+              children: [
+                _buildMenuItem(
+                  context,
+                  icon: Icons.account_circle,
+                  iconColor: Theme.of(context).colorScheme.warning,
+                  title: 'Se connecter / S\'inscrire',
+                  onTap: () {
+                    context.goNamed(AppRoute.login.name);
+                  },
+                ),
+                const Divider(height: 0),
+                _buildMenuItem(
+                  context,
+                  icon: Icons.settings,
+                  iconColor: Colors.blueGrey,
+                  title: 'Paramètres',
+                  onTap: () {
+                    context.goNamed(AppRoute.settings.name);
+                  },
+                ),
+              ],
+            ),
+          ),
+          const Divider(),
+          Card(
+            child: Column(
+              children: [
+                _buildMenuItem(
+                  context,
+                  icon: Icons.question_answer,
+                  iconColor: Colors.blueGrey,
+                  title: 'FAQ',
+                  onTap: () {
+                    context.goNamed(AppRoute.faq.name);
+                  },
+                ),
+                _buildMenuItem(
+                  context,
+                  icon: Icons.article,
+                  iconColor: Colors.blueGrey,
+                  title: 'Mentions légales',
+                  onTap: () {
+                    context.goNamed(AppRoute.mentionsLegales.name);
+                  },
+                ),
+                _buildMenuItem(
+                  context,
+                  icon: Icons.help,
+                  iconColor: Colors.blueGrey,
+                  title: 'À propos de nous',
+                  onTap: () {
+                    context.goNamed(AppRoute.aboutUs.name);
+                  },
+                ),
+                const Divider(height: 0),
+                _buildMenuItem(
+                  context,
+                  icon: Icons.feedback,
+                  iconColor: Colors.blueGrey,
+                  title: 'Question / Suggestion',
+                  onTap: () {
+                    context.goNamed(AppRoute.contact.name);
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

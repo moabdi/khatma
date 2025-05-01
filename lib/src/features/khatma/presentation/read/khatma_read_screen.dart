@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/presentation/read/components/animate_khatma_chart.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_success_complete.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/common/utils/collection_utils.dart';
@@ -14,7 +15,6 @@ import 'package:khatma/src/common/widgets/loading_list_tile.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/widgets/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/widgets/khatma_utils.dart';
 import 'package:khatma/src/features/khatma/presentation/form/providers/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/read/components/part_selector/part_floating_button.dart';
@@ -161,15 +161,12 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
                 : AppBar(
                     title: Text(khatma.name),
                     actions: [
-                      Avatar(
-                        radius: 20,
-                        child: Center(
-                          child: Icon(
-                            Icons.edit,
-                            color: Theme.of(context).primaryColor,
-                          ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.edit,
+                          color: khatma.style.color.toColor(),
                         ),
-                        onTap: () => {
+                        onPressed: () => {
                           ref.read(formKhatmaProvider.notifier).update(khatma),
                           context.goNamed(AppRoute.editKhatma.name,
                               pathParameters: {'id': khatma.id!}),

@@ -2,7 +2,7 @@ import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:khatma/src/common/utils/common.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
-import 'package:khatma/src/features/settings/logic/setting_provider.dart';
+import 'package:khatma/src/localization/local_provider.dart';
 import 'package:khatma/src/localization/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +16,6 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.read(authRepositoryProvider).signInAnonymously();
-    final goRouter = ref.watch(goRouterProvider);
-    var themeMode = ref.watch(themeProvider);
 
     return MaterialApp.router(
       localizationsDelegates: [
@@ -27,14 +25,25 @@ class MainApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
         FirebaseUILocalizations.delegate,
       ],
-      supportedLocales: const [Locale('fr')],
-      routerConfig: goRouter,
+      supportedLocales: supportedLocales,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
       onGenerateTitle: (BuildContext context) => 'Khatma'.hardcoded,
       theme: AppTheme.newLightTheme(),
       darkTheme: AppTheme.newDarkTheme(),
-      themeMode: themeMode,
+      locale: ref.watch(localeProvider),
+      routerConfig: ref.watch(goRouterProvider),
+      themeMode: ref.watch(themeProvider),
+      localeResolutionCallback: (deviceLocale, supportedLocales) {
+        if (deviceLocale != null) {
+          for (var locale in supportedLocales) {
+            if (locale.languageCode == deviceLocale.languageCode) {
+              return locale;
+            }
+          }
+        }
+        return supportedLocales.first;
+      },
     );
   }
 }

@@ -12,12 +12,11 @@ class AppTheme {
     secondary: shrinePink50,
     secondaryContainer: shrineBrown900,
     surface: shrineSurfaceWhite,
-    background: shrineBackgroundWhite,
     error: shrineErrorRed,
     onPrimary: shrineBrown900,
     onSecondary: shrineBrown900,
     onSurface: shrineBrown900,
-    onBackground: shrineBrown900,
+    surfaceContainerHighest: shrineBrown900,
     onError: shrineSurfaceWhite,
     brightness: Brightness.light,
   );
@@ -40,7 +39,7 @@ class AppTheme {
     );
     final ThemeData base = ThemeData.light();
 
-    final textTheme = _buildTextTheme(base.textTheme, "SFProText");
+    final textTheme = _buildTextTheme(base.textTheme);
 
     // Centralized shape and border values
     final BorderRadius borderRadius = BorderRadius.circular(10);
@@ -197,7 +196,7 @@ class AppTheme {
     );
     final ThemeData base = ThemeData.dark();
 
-    TextTheme textTheme = _buildTextTheme(base.textTheme, "SFProText");
+    TextTheme textTheme = _buildTextTheme(base.textTheme);
 
     return base.copyWith(
       colorScheme: colorScheme,
@@ -344,103 +343,102 @@ class AppTheme {
     );
   }
 
-  static TextTheme _buildTextTheme(TextTheme base, String pFontFamily) {
-    pFontFamily = 'SFProDisplay';
+  static TextTheme _buildTextTheme(TextTheme base) {
+    final largeFontFamily = 'SFProDisplay';
+    final normalFontFamily = 'SFProText';
+
     return base.copyWith(
-      displayLarge: const TextStyle(
+      displayLarge: TextStyle(
         fontSize: 72.0,
         fontWeight: FontWeight.w900,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.deepPurple,
       ),
-      displayMedium: const TextStyle(
+      displayMedium: TextStyle(
         fontSize: 60.0,
         fontWeight: FontWeight.w800,
-        fontStyle: FontStyle.normal,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.purple,
       ),
-      displaySmall: const TextStyle(
+      displaySmall: TextStyle(
         fontSize: 48.0,
         fontWeight: FontWeight.w700,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.purple,
       ),
-      headlineLarge: const TextStyle(
+      headlineLarge: TextStyle(
         fontSize: 36.0,
-        fontStyle: FontStyle.normal,
         fontWeight: FontWeight.w700,
-        fontFamily: 'SFProText',
+        fontFamily: normalFontFamily,
         color: Colors.black,
       ),
-      headlineMedium: const TextStyle(
+      headlineMedium: TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.w700,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.black,
         wordSpacing: 0.5,
       ),
-      headlineSmall: const TextStyle(
+      headlineSmall: TextStyle(
         fontSize: 22.0,
         fontWeight: FontWeight.w700,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.black,
       ),
-      titleLarge: const TextStyle(
+      titleLarge: TextStyle(
         fontSize: 21.0,
         fontWeight: FontWeight.w600,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.black,
         wordSpacing: 0.5,
       ),
-      titleMedium: const TextStyle(
+      titleMedium: TextStyle(
         fontSize: 18.0,
         fontWeight: FontWeight.w600,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.black,
         wordSpacing: 0.5,
       ),
-      titleSmall: const TextStyle(
+      titleSmall: TextStyle(
         fontSize: 17.0,
         fontWeight: FontWeight.w400,
-        fontStyle: FontStyle.normal,
-        fontFamily: 'SFProDisplay',
+        fontFamily: largeFontFamily,
         color: Colors.black,
         wordSpacing: 0.4,
       ),
-      bodyLarge: const TextStyle(
+      bodyLarge: TextStyle(
         fontSize: 15.0,
         fontWeight: FontWeight.w500,
-        fontFamily: 'SFProText',
+        fontFamily: normalFontFamily,
         color: Colors.black,
       ),
-      bodyMedium: const TextStyle(
+      bodyMedium: TextStyle(
         fontSize: 14.0,
         fontWeight: FontWeight.w400,
-        fontFamily: 'SFProText',
+        fontFamily: normalFontFamily,
         color: Colors.black,
       ),
-      bodySmall: const TextStyle(
+      bodySmall: TextStyle(
         fontSize: 13.0,
         fontWeight: FontWeight.w400,
-        fontFamily: 'SFProText',
+        fontFamily: normalFontFamily,
         color: Colors.black,
       ),
-      labelLarge: const TextStyle(
+      labelLarge: TextStyle(
         fontSize: 12.0,
         fontWeight: FontWeight.w500,
-        fontFamily: 'SFProText',
+        fontFamily: normalFontFamily,
         color: Colors.black,
       ),
-      labelMedium: const TextStyle(
+      labelMedium: TextStyle(
         fontSize: 11.0,
         fontWeight: FontWeight.w400,
-        fontFamily: 'SFProText',
+        fontFamily: normalFontFamily,
       ),
-      labelSmall: const TextStyle(
+      labelSmall: TextStyle(
         fontSize: 10.0,
         fontWeight: FontWeight.w400,
-        fontFamily: 'SFProText',
+        fontFamily: normalFontFamily,
         wordSpacing: 0.5,
       ),
     );

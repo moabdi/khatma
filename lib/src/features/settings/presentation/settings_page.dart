@@ -3,6 +3,7 @@ import 'package:khatma/src/features/settings/presentation/recitation_settings.da
 import 'package:khatma/src/features/settings/presentation/language_setting.dart';
 import 'package:khatma/src/features/settings/presentation/notification_settings.dart';
 import 'package:khatma/src/features/settings/presentation/theme_settings.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -14,67 +15,75 @@ class SettingsPage extends StatelessWidget {
         title: const Text('Paramètres'),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          _buildMenuItem(
-            context,
-            icon: Icons.language,
-            title: 'Langues',
-            iconColor: Colors.blueAccent,
-            onTap: () {
-              Navigator.push(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child:
+                  Text("Quran", style: Theme.of(context).textTheme.titleMedium),
+            ),
+            Card(
+              child: _buildMenuItem(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const LanguageSettings()),
-              );
-            },
-          ),
-          const Divider(),
-          _buildMenuItem(
-            context,
-            icon: Icons.menu_book,
-            title: 'Mushaf',
-            iconColor: Colors.brown,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const RecitationSettings(),
-                ),
-              );
-            },
-          ),
-          const Divider(),
-          _buildMenuItem(
-            context,
-            icon: Icons.notifications,
-            title: 'Notification',
-            iconColor: Colors.redAccent,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationSettings(),
-                ),
-              );
-            },
-          ),
-          const Divider(),
-          _buildMenuItem(
-            context,
-            icon: Icons.brightness_6,
-            title: 'Thème',
-            iconColor: Colors.purpleAccent,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ThemePage(),
-                ),
-              );
-            },
-          ),
-        ],
+                icon: Icons.book_sharp,
+                title: 'Mushaf',
+                iconColor: Colors.brown,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RecitationSettings(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            gapH8,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Text("Apparence",
+                  style: Theme.of(context).textTheme.titleMedium),
+            ),
+            Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildMenuItem(
+                    context,
+                    icon: Icons.language,
+                    title: 'Langues',
+                    iconColor: Colors.blueAccent,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LanguageSettings()),
+                      );
+                    },
+                  ),
+                  const Divider(height: 0),
+                  _buildMenuItem(
+                    context,
+                    icon: Icons.brightness_6,
+                    title: 'Thème',
+                    iconColor: Colors.purpleAccent,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ThemePage(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

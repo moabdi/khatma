@@ -91,5 +91,7 @@
   "confirmDeleteKhatma": "After deleting, this khatma will be permanently deleted",
   "congratulation": "Congratulations!",
   "emailInputLabel": "Enter your gemail",
-  "passwordInputLabel": "Enter your password"
+  "passwordInputLabel": "Enter your password",
+  "themeMode": "{mode, select, light{Light} dark{Dark} system{System} other{System}}",
+  "theme": "Theme"
 }

@@ -86,5 +86,7 @@
   "maxParticipants": "{count, plural, =0{Pas de participants} =1{1 participant} other{# participants}}",
   "maxPartToRead": "Lecture maximale autorisée",
   "maxPartToReserve": "Réservations simultanées",
-  "title": "Titre"
+  "title": "Titre",
+  "themeMode": "{mode, select, light{Clair} dark{Sombre} system{Système} other{Système}}",
+  "theme": "Thème"
 }

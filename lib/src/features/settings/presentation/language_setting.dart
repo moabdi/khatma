@@ -1,86 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/common/utils/common.dart';
+import 'package:khatma/src/localization/local_provider.dart';
+import 'package:khatma_ui/constants/app_dividers.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
-class LanguageSettings extends StatefulWidget {
+class LanguageSettings extends ConsumerWidget {
   const LanguageSettings({super.key});
 
   @override
-  State<LanguageSettings> createState() => _LanguageSettingsState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedLocale = ref.watch(localeProvider).languageCode;
+    final primaryColor = Theme.of(context).primaryColor;
 
-class _LanguageSettingsState extends State<LanguageSettings> {
-  String _selectedLocale = 'fr';
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Langue'),
+        title: Text(AppLocalizations.of(context).language),
         centerTitle: true,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Avatar and language icon at the top
-                CircleAvatar(
-                  backgroundColor:
-                      Theme.of(context).primaryColor.withOpacity(.5),
-                  radius: 40,
-                  child: const Icon(
-                    Icons.language,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                ),
-                gapH32,
-                const Text(
-                  "Sélectionnez la langue que vous souhaitez utiliser",
-                  style: TextStyle(fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
-                gapH24,
-                _buildLanguageOption(context, 'العربية 🇸🇦', 'ar'),
-                const Divider(),
-                _buildLanguageOption(context, 'English 🇬🇧', 'en'),
-                const Divider(),
-                _buildLanguageOption(context, 'Français 🇫🇷', 'fr'),
-                const Divider(),
-                _buildLanguageOption(context, 'Español 🇪🇸', 'es'),
-              ],
+        child: ListView(
+          padding: const EdgeInsets.all(16.0),
+          children: [
+            gapH32,
+            Text(
+              "Langues suggérées",
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-          ),
+            gapH24,
+            Card(
+              child: Column(
+                children: [
+                  _buildLanguageOption(
+                      ref, 'العربية', 'Arabic', 'ar', selectedLocale),
+                  dividerH0_5T1,
+                  _buildLanguageOption(
+                      ref, 'English', 'Default', 'en', selectedLocale),
+                  dividerH0_5T1,
+                  _buildLanguageOption(
+                      ref, 'Français', 'Frensh', 'fr', selectedLocale),
+                  dividerH0_5T1,
+                  _buildLanguageOption(
+                      ref, 'Español', 'Espagnol', 'es', selectedLocale),
+                ],
+              ),
+            ),
+            gapH12,
+            Text(
+              "Khatma est disponible en plusieurs langues. Choisissez la langue de votre choix pour une meilleure expérience.",
+              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: Colors.grey,
+                  ),
+            ),
+          ],
         ),
       ),
     );
   }
 
   Widget _buildLanguageOption(
-    BuildContext context,
+    WidgetRef ref,
     String languageName,
+    String languageSubName,
     String localeCode,
+    String selectedLocale,
   ) {
-    final isSelected = _selectedLocale == localeCode;
+    final isSelected = selectedLocale == localeCode;
 
     return ListTile(
       title: Text(languageName),
+      subtitle: Text(languageSubName),
       leading: isSelected
           ? const Icon(Icons.check_circle, color: Colors.green)
           : const Icon(Icons.circle_outlined, color: Colors.grey),
       onTap: () {
-        setState(() {
-          _selectedLocale = localeCode;
-        });
-
-        final locale = Locale(_selectedLocale);
-        // No auto pop after selection
+        ref.read(localeProvider.notifier).setLocale(localeCode);
       },
-      tileColor:
-          isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
+      tileColor: isSelected ? Colors.green.withOpacity(0.1) : null,
     );
   }
 }
