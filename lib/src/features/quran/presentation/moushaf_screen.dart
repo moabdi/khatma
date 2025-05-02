@@ -54,16 +54,19 @@ class _MoushafScreenState extends State<MoushafScreen> {
           children: [
             WebViewWidget(controller: _controller),
             Positioned(
-                top: 0,
-                left: 0,
-                child: OutlinedButton.icon(
-                  onPressed: () => Navigator.pop(context),
-                  icon: Icon(Icons.chevron_left),
-                  label: Text("Return"),
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(HexColor("#E6E6EB"))),
-                ))
+              top: 0,
+              left: 0,
+              child: OutlinedButton.icon(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.chevron_left),
+                label: Text("Return"),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    HexColor("#E6E6EB"),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

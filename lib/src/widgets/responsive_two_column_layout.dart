@@ -1,4 +1,4 @@
-import 'package:khatma/src/constants/breakpoints.dart';
+import 'package:khatma_ui/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
 
 /// Responsive layout that shows two child widgets side by side if there is

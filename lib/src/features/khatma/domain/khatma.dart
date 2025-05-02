@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/enums/day_of_week.dart';
+import 'package:khatma_ui/enums/day_of_week.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'khatma.freezed.dart';
 part 'khatma.g.dart';
