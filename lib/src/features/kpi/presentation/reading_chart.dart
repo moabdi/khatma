@@ -1,36 +1,31 @@
+import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class ReadingChart extends StatefulWidget {
-  const ReadingChart({super.key});
+  const ReadingChart({super.key, required this.data});
+  final List<Point<double>> data;
 
   @override
   State<ReadingChart> createState() => _ReadingChartState();
 }
 
 class _ReadingChartState extends State<ReadingChart> {
-  List<Color> gradientColors = [
-    AppTheme.getTheme().backgroundColor.withOpacity(0.1),
-    AppTheme.getTheme().backgroundColor.withOpacity(0.4),
-  ];
+  late List<Color> gradientColors;
+  late Color gridLineColor;
+  late Color borderColor;
 
-  final dataMain = const [
-    FlSpot(0, 3),
-    FlSpot(2.6, 2),
-    FlSpot(4.9, 5),
-    FlSpot(6.8, 3.1),
-    FlSpot(8, 4),
-    FlSpot(9.5, 3),
-    FlSpot(11, 4),
-    FlSpot(12, 3),
-    FlSpot(13, 2),
-    FlSpot(14, 5),
-    FlSpot(15, 3.1),
-    FlSpot(16, 4),
-    FlSpot(17, 3),
-    FlSpot(18, 0),
-  ];
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final theme = Theme.of(context);
+    gradientColors = [
+      theme.colorScheme.primary.withOpacity(0.1),
+      theme.colorScheme.primary.withOpacity(0.4),
+    ];
+    gridLineColor = theme.colorScheme.surfaceVariant;
+    borderColor = theme.disabledColor;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,39 +39,31 @@ class _ReadingChartState extends State<ReadingChart> {
               bottom: 0,
               right: 70,
             ),
-            child: LineChart(mainData()),
+            child: LineChart(mainData(widget.data)),
           ),
         ),
       ],
     );
   }
 
-  LineChartData mainData() {
+  LineChartData mainData(List<Point<double>> data) {
     return LineChartData(
-      titlesData: FlTitlesData(
-        show: false,
-      ),
+      titlesData: FlTitlesData(show: false),
       gridData: FlGridData(
         show: false,
         drawVerticalLine: false,
         horizontalInterval: 1,
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
-          return FlLine(
-            color: AppTheme.getTheme().backgroundColor,
-            strokeWidth: 1,
-          );
+          return FlLine(color: gridLineColor, strokeWidth: 1);
         },
         getDrawingVerticalLine: (value) {
-          return FlLine(
-            color: AppTheme.getTheme().backgroundColor,
-            strokeWidth: 1,
-          );
+          return FlLine(color: gridLineColor, strokeWidth: 1);
         },
       ),
       borderData: FlBorderData(
         show: false,
-        border: Border.all(color: AppTheme.getTheme().disabledColor),
+        border: Border.all(color: borderColor),
       ),
       minX: 0,
       maxX: 11,
@@ -84,7 +71,7 @@ class _ReadingChartState extends State<ReadingChart> {
       maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: dataMain,
+          spots: data.map((p) => FlSpot(p.x, p.x)).toList(),
           isCurved: true,
           gradient: LinearGradient(colors: gradientColors),
           barWidth: 3,
@@ -102,9 +89,7 @@ class _ReadingChartState extends State<ReadingChart> {
           ),
           belowBarData: BarAreaData(
             show: true,
-            gradient: LinearGradient(
-              colors: gradientColors.map((color) => color).toList(),
-            ),
+            gradient: LinearGradient(colors: gradientColors),
           ),
         ),
       ],

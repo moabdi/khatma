@@ -1,56 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/kpi/presentation/reading_chart.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class TopCard extends StatelessWidget {
   const TopCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-      onTap: () {},
-      child: Ink(
-        height: 120,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              AppTheme.getTheme().primaryColor.withOpacity(.2),
-              AppTheme.getTheme().primaryColor.withOpacity(.7),
-            ],
-          ),
-          //borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const ReadingChart(),
-            Image.asset("assets/images/hifdz.png", fit: BoxFit.fill),
-          ],
-        ),
-      ),
+    return Card(
+      color: Colors.red,
     );
   }
 
-  Widget buildIndicator(
-      {required Icon icon, required String title, required int count}) {
+  Widget buildIndicator({
+    required Icon icon,
+    required String title,
+    required int count,
+    required BuildContext context, // 👈 Needed for Theme access
+  }) {
+    final theme = Theme.of(context); // 👈 Use context-provided theme
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundColor: AppTheme.getTheme().backgroundColor.withOpacity(0.5),
+          backgroundColor: theme.colorScheme.background.withOpacity(0.5),
           radius: 25,
           child: icon,
         ),
         Text(
           count.toString(),
-          style: AppTheme.getTheme()
-              .textTheme
-              .headline5!
-              .copyWith(color: Colors.white70),
+          style: theme.textTheme.titleMedium!.copyWith(color: Colors.white70),
         ),
       ],
     );

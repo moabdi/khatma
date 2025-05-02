@@ -1,0 +1,100 @@
+import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/khatma/data/remote/khatma_history_repository.dart';
+import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'khatmat_provider.g.dart';
+
+@riverpod
+class KhatmaList extends _$KhatmaList {
+  @override
+  FutureOr<List<Khatma>> build() async {
+    state = const AsyncValue.loading();
+    return _fetchAll();
+  }
+
+  FutureOr<List<Khatma>> _fetchAll() async {
+    String userUid = _getUserId();
+    final provider = ref.watch(khatmasRepositoryProvider);
+    return provider.fetchKhatmasList(userUid);
+  }
+
+  FutureOr<void> saveOrUpdate(Khatma khatma) async {
+    state = const AsyncValue.loading();
+    String userUid = _getUserId();
+
+    if (khatma.id == null) {
+      await ref.read(khatmasRepositoryProvider).create(userUid, khatma);
+    } else {
+      await ref.read(khatmasRepositoryProvider).update(userUid, khatma);
+    }
+    var values = await _fetchAll();
+    state = AsyncValue.data(values);
+  }
+
+  String _getUserId() {
+    String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+    return userUid;
+  }
+
+  Khatma getById(String id) {
+    return state.value!.firstWhere((khatma) => khatma.id == id);
+  }
+
+  void deleteById(KhatmaID khatmaId) async {
+    String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+    await ref.read(khatmasRepositoryProvider).deleteById(userUid, khatmaId);
+    state.value!.removeWhere((khatma) => khatma.id == khatmaId);
+    state = state;
+  }
+
+  void complete(KhatmaID id, bool repeat) async {
+    String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
+    Khatma khatma = state.value!.firstWhere((khatma) => khatma.id == id);
+    // historize
+    ref.read(khatmaHistoryRepositoryProvider).create(
+          userUid,
+          CompletionHistory(
+            khatmaId: khatma.id,
+            startDate: khatma.startDate,
+            endDate: DateTime.now(),
+          ),
+        );
+
+    if (repeat) {
+      await ref.read(khatmasRepositoryProvider).update(
+            userUid,
+            khatma.copyWith(
+              startDate: DateTime.now(),
+              repeat: repeat,
+              repeats: (khatma.repeats ?? 0) + 1,
+              readParts: null,
+              lastRead: null,
+              endDate: null,
+            ),
+          );
+    } else {
+      await ref.read(khatmasRepositoryProvider).deleteById(
+            userUid,
+            id,
+          );
+    }
+
+    var values = await _fetchAll();
+    state = AsyncValue.data(values);
+  }
+}
+
+@Riverpod(keepAlive: true)
+class CurrentKhatma extends _$CurrentKhatma {
+  @override
+  Khatma? build() {
+    return null;
+  }
+
+  void updateValue(Khatma khatma) {
+    state = khatma;
+  }
+}

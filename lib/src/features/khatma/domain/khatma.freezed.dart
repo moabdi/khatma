@@ -12,24 +12,32 @@ part of 'khatma.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+Khatma _$KhatmaFromJson(Map<String, dynamic> json) {
+  return _Khatma.fromJson(json);
+}
 
 /// @nodoc
 mixin _$Khatma {
+  @JsonKey(includeFromJson: true, includeToJson: false)
   String? get id => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  DateTime? get endDate => throw _privateConstructorUsedError;
-  String? get creator => throw _privateConstructorUsedError;
-  KhatmaStyle get style => throw _privateConstructorUsedError;
-  DateTime? get lastRead => throw _privateConstructorUsedError;
-  List<int>? get completedParts => throw _privateConstructorUsedError;
-  List<KhatmaPart>? get parts => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  DateTime get createDate => throw _privateConstructorUsedError;
-  Recurrence get recurrence => throw _privateConstructorUsedError;
   SplitUnit get unit => throw _privateConstructorUsedError;
-  KhatmaShareType get share => throw _privateConstructorUsedError;
+  DateTime get createDate => throw _privateConstructorUsedError;
+  DateTime get startDate => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  bool get repeat => throw _privateConstructorUsedError;
+  int? get repeats => throw _privateConstructorUsedError;
+  Recurrence? get recurrence => throw _privateConstructorUsedError;
+  KhatmaShare? get share => throw _privateConstructorUsedError;
+  KhatmaTheme? get theme => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  DateTime? get lastRead => throw _privateConstructorUsedError;
+  List<KhatmaPart>? get readParts => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $KhatmaCopyWith<Khatma> get copyWith => throw _privateConstructorUsedError;
 }
@@ -40,22 +48,25 @@ abstract class $KhatmaCopyWith<$Res> {
       _$KhatmaCopyWithImpl<$Res, Khatma>;
   @useResult
   $Res call(
-      {String? id,
-      String? description,
-      DateTime? endDate,
-      String? creator,
-      KhatmaStyle style,
-      DateTime? lastRead,
-      List<int>? completedParts,
-      List<KhatmaPart>? parts,
+      {@JsonKey(includeFromJson: true, includeToJson: false) String? id,
+      String code,
       String name,
-      DateTime createDate,
-      Recurrence recurrence,
       SplitUnit unit,
-      KhatmaShareType share});
+      DateTime createDate,
+      DateTime startDate,
+      String? description,
+      bool repeat,
+      int? repeats,
+      Recurrence? recurrence,
+      KhatmaShare? share,
+      KhatmaTheme? theme,
+      DateTime? endDate,
+      DateTime? lastRead,
+      List<KhatmaPart>? readParts});
 
-  $KhatmaStyleCopyWith<$Res> get style;
-  $RecurrenceCopyWith<$Res> get recurrence;
+  $RecurrenceCopyWith<$Res>? get recurrence;
+  $KhatmaShareCopyWith<$Res>? get share;
+  $KhatmaThemeCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -72,88 +83,118 @@ class _$KhatmaCopyWithImpl<$Res, $Val extends Khatma>
   @override
   $Res call({
     Object? id = freezed,
-    Object? description = freezed,
-    Object? endDate = freezed,
-    Object? creator = freezed,
-    Object? style = null,
-    Object? lastRead = freezed,
-    Object? completedParts = freezed,
-    Object? parts = freezed,
+    Object? code = null,
     Object? name = null,
-    Object? createDate = null,
-    Object? recurrence = null,
     Object? unit = null,
-    Object? share = null,
+    Object? createDate = null,
+    Object? startDate = null,
+    Object? description = freezed,
+    Object? repeat = null,
+    Object? repeats = freezed,
+    Object? recurrence = freezed,
+    Object? share = freezed,
+    Object? theme = freezed,
+    Object? endDate = freezed,
+    Object? lastRead = freezed,
+    Object? readParts = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      creator: freezed == creator
-          ? _value.creator
-          : creator // ignore: cast_nullable_to_non_nullable
-              as String?,
-      style: null == style
-          ? _value.style
-          : style // ignore: cast_nullable_to_non_nullable
-              as KhatmaStyle,
-      lastRead: freezed == lastRead
-          ? _value.lastRead
-          : lastRead // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      completedParts: freezed == completedParts
-          ? _value.completedParts
-          : completedParts // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-      parts: freezed == parts
-          ? _value.parts
-          : parts // ignore: cast_nullable_to_non_nullable
-              as List<KhatmaPart>?,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createDate: null == createDate
-          ? _value.createDate
-          : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      recurrence: null == recurrence
-          ? _value.recurrence
-          : recurrence // ignore: cast_nullable_to_non_nullable
-              as Recurrence,
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as SplitUnit,
-      share: null == share
+      createDate: null == createDate
+          ? _value.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      repeat: null == repeat
+          ? _value.repeat
+          : repeat // ignore: cast_nullable_to_non_nullable
+              as bool,
+      repeats: freezed == repeats
+          ? _value.repeats
+          : repeats // ignore: cast_nullable_to_non_nullable
+              as int?,
+      recurrence: freezed == recurrence
+          ? _value.recurrence
+          : recurrence // ignore: cast_nullable_to_non_nullable
+              as Recurrence?,
+      share: freezed == share
           ? _value.share
           : share // ignore: cast_nullable_to_non_nullable
-              as KhatmaShareType,
+              as KhatmaShare?,
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as KhatmaTheme?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastRead: freezed == lastRead
+          ? _value.lastRead
+          : lastRead // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      readParts: freezed == readParts
+          ? _value.readParts
+          : readParts // ignore: cast_nullable_to_non_nullable
+              as List<KhatmaPart>?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $KhatmaStyleCopyWith<$Res> get style {
-    return $KhatmaStyleCopyWith<$Res>(_value.style, (value) {
-      return _then(_value.copyWith(style: value) as $Val);
+  $RecurrenceCopyWith<$Res>? get recurrence {
+    if (_value.recurrence == null) {
+      return null;
+    }
+
+    return $RecurrenceCopyWith<$Res>(_value.recurrence!, (value) {
+      return _then(_value.copyWith(recurrence: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RecurrenceCopyWith<$Res> get recurrence {
-    return $RecurrenceCopyWith<$Res>(_value.recurrence, (value) {
-      return _then(_value.copyWith(recurrence: value) as $Val);
+  $KhatmaShareCopyWith<$Res>? get share {
+    if (_value.share == null) {
+      return null;
+    }
+
+    return $KhatmaShareCopyWith<$Res>(_value.share!, (value) {
+      return _then(_value.copyWith(share: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $KhatmaThemeCopyWith<$Res>? get theme {
+    if (_value.theme == null) {
+      return null;
+    }
+
+    return $KhatmaThemeCopyWith<$Res>(_value.theme!, (value) {
+      return _then(_value.copyWith(theme: value) as $Val);
     });
   }
 }
@@ -166,24 +207,28 @@ abstract class _$$KhatmaImplCopyWith<$Res> implements $KhatmaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? id,
-      String? description,
-      DateTime? endDate,
-      String? creator,
-      KhatmaStyle style,
-      DateTime? lastRead,
-      List<int>? completedParts,
-      List<KhatmaPart>? parts,
+      {@JsonKey(includeFromJson: true, includeToJson: false) String? id,
+      String code,
       String name,
-      DateTime createDate,
-      Recurrence recurrence,
       SplitUnit unit,
-      KhatmaShareType share});
+      DateTime createDate,
+      DateTime startDate,
+      String? description,
+      bool repeat,
+      int? repeats,
+      Recurrence? recurrence,
+      KhatmaShare? share,
+      KhatmaTheme? theme,
+      DateTime? endDate,
+      DateTime? lastRead,
+      List<KhatmaPart>? readParts});
 
   @override
-  $KhatmaStyleCopyWith<$Res> get style;
+  $RecurrenceCopyWith<$Res>? get recurrence;
   @override
-  $RecurrenceCopyWith<$Res> get recurrence;
+  $KhatmaShareCopyWith<$Res>? get share;
+  @override
+  $KhatmaThemeCopyWith<$Res>? get theme;
 }
 
 /// @nodoc
@@ -198,264 +243,302 @@ class __$$KhatmaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? description = freezed,
-    Object? endDate = freezed,
-    Object? creator = freezed,
-    Object? style = null,
-    Object? lastRead = freezed,
-    Object? completedParts = freezed,
-    Object? parts = freezed,
+    Object? code = null,
     Object? name = null,
-    Object? createDate = null,
-    Object? recurrence = null,
     Object? unit = null,
-    Object? share = null,
+    Object? createDate = null,
+    Object? startDate = null,
+    Object? description = freezed,
+    Object? repeat = null,
+    Object? repeats = freezed,
+    Object? recurrence = freezed,
+    Object? share = freezed,
+    Object? theme = freezed,
+    Object? endDate = freezed,
+    Object? lastRead = freezed,
+    Object? readParts = freezed,
   }) {
     return _then(_$KhatmaImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      creator: freezed == creator
-          ? _value.creator
-          : creator // ignore: cast_nullable_to_non_nullable
-              as String?,
-      style: null == style
-          ? _value.style
-          : style // ignore: cast_nullable_to_non_nullable
-              as KhatmaStyle,
-      lastRead: freezed == lastRead
-          ? _value.lastRead
-          : lastRead // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      completedParts: freezed == completedParts
-          ? _value._completedParts
-          : completedParts // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
-      parts: freezed == parts
-          ? _value._parts
-          : parts // ignore: cast_nullable_to_non_nullable
-              as List<KhatmaPart>?,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createDate: null == createDate
-          ? _value.createDate
-          : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      recurrence: null == recurrence
-          ? _value.recurrence
-          : recurrence // ignore: cast_nullable_to_non_nullable
-              as Recurrence,
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as SplitUnit,
-      share: null == share
+      createDate: null == createDate
+          ? _value.createDate
+          : createDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      repeat: null == repeat
+          ? _value.repeat
+          : repeat // ignore: cast_nullable_to_non_nullable
+              as bool,
+      repeats: freezed == repeats
+          ? _value.repeats
+          : repeats // ignore: cast_nullable_to_non_nullable
+              as int?,
+      recurrence: freezed == recurrence
+          ? _value.recurrence
+          : recurrence // ignore: cast_nullable_to_non_nullable
+              as Recurrence?,
+      share: freezed == share
           ? _value.share
           : share // ignore: cast_nullable_to_non_nullable
-              as KhatmaShareType,
+              as KhatmaShare?,
+      theme: freezed == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as KhatmaTheme?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastRead: freezed == lastRead
+          ? _value.lastRead
+          : lastRead // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      readParts: freezed == readParts
+          ? _value._readParts
+          : readParts // ignore: cast_nullable_to_non_nullable
+              as List<KhatmaPart>?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$KhatmaImpl implements _Khatma {
   const _$KhatmaImpl(
-      {this.id,
-      this.description,
-      this.endDate,
-      this.creator,
-      required this.style,
-      this.lastRead,
-      final List<int>? completedParts,
-      final List<KhatmaPart>? parts,
+      {@JsonKey(includeFromJson: true, includeToJson: false) this.id,
+      required this.code,
       required this.name,
-      required this.createDate,
-      required this.recurrence,
       required this.unit,
-      required this.share})
-      : _completedParts = completedParts,
-        _parts = parts;
+      required this.createDate,
+      required this.startDate,
+      this.description,
+      this.repeat = false,
+      this.repeats,
+      this.recurrence,
+      this.share,
+      this.theme,
+      this.endDate,
+      this.lastRead,
+      final List<KhatmaPart>? readParts})
+      : _readParts = readParts;
+
+  factory _$KhatmaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaImplFromJson(json);
 
   @override
+  @JsonKey(includeFromJson: true, includeToJson: false)
   final String? id;
   @override
-  final String? description;
-  @override
-  final DateTime? endDate;
-  @override
-  final String? creator;
-  @override
-  final KhatmaStyle style;
-  @override
-  final DateTime? lastRead;
-  final List<int>? _completedParts;
-  @override
-  List<int>? get completedParts {
-    final value = _completedParts;
-    if (value == null) return null;
-    if (_completedParts is EqualUnmodifiableListView) return _completedParts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<KhatmaPart>? _parts;
-  @override
-  List<KhatmaPart>? get parts {
-    final value = _parts;
-    if (value == null) return null;
-    if (_parts is EqualUnmodifiableListView) return _parts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final String code;
   @override
   final String name;
   @override
-  final DateTime createDate;
-  @override
-  final Recurrence recurrence;
-  @override
   final SplitUnit unit;
   @override
-  final KhatmaShareType share;
-
+  final DateTime createDate;
   @override
-  String toString() {
-    return 'Khatma(id: $id, description: $description, endDate: $endDate, creator: $creator, style: $style, lastRead: $lastRead, completedParts: $completedParts, parts: $parts, name: $name, createDate: $createDate, recurrence: $recurrence, unit: $unit, share: $share)';
+  final DateTime startDate;
+  @override
+  final String? description;
+  @override
+  @JsonKey()
+  final bool repeat;
+  @override
+  final int? repeats;
+  @override
+  final Recurrence? recurrence;
+  @override
+  final KhatmaShare? share;
+  @override
+  final KhatmaTheme? theme;
+  @override
+  final DateTime? endDate;
+  @override
+  final DateTime? lastRead;
+  final List<KhatmaPart>? _readParts;
+  @override
+  List<KhatmaPart>? get readParts {
+    final value = _readParts;
+    if (value == null) return null;
+    if (_readParts is EqualUnmodifiableListView) return _readParts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
-  bool operator ==(dynamic other) {
+  String toString() {
+    return 'Khatma(id: $id, code: $code, name: $name, unit: $unit, createDate: $createDate, startDate: $startDate, description: $description, repeat: $repeat, repeats: $repeats, recurrence: $recurrence, share: $share, theme: $theme, endDate: $endDate, lastRead: $lastRead, readParts: $readParts)';
+  }
+
+  @override
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$KhatmaImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.createDate, createDate) ||
+                other.createDate == createDate) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.repeat, repeat) || other.repeat == repeat) &&
+            (identical(other.repeats, repeats) || other.repeats == repeats) &&
+            (identical(other.recurrence, recurrence) ||
+                other.recurrence == recurrence) &&
+            (identical(other.share, share) || other.share == share) &&
+            (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.creator, creator) || other.creator == creator) &&
-            (identical(other.style, style) || other.style == style) &&
             (identical(other.lastRead, lastRead) ||
                 other.lastRead == lastRead) &&
             const DeepCollectionEquality()
-                .equals(other._completedParts, _completedParts) &&
-            const DeepCollectionEquality().equals(other._parts, _parts) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.createDate, createDate) ||
-                other.createDate == createDate) &&
-            (identical(other.recurrence, recurrence) ||
-                other.recurrence == recurrence) &&
-            (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.share, share) || other.share == share));
+                .equals(other._readParts, _readParts));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      description,
-      endDate,
-      creator,
-      style,
-      lastRead,
-      const DeepCollectionEquality().hash(_completedParts),
-      const DeepCollectionEquality().hash(_parts),
+      code,
       name,
-      createDate,
-      recurrence,
       unit,
-      share);
+      createDate,
+      startDate,
+      description,
+      repeat,
+      repeats,
+      recurrence,
+      share,
+      theme,
+      endDate,
+      lastRead,
+      const DeepCollectionEquality().hash(_readParts));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$KhatmaImplCopyWith<_$KhatmaImpl> get copyWith =>
       __$$KhatmaImplCopyWithImpl<_$KhatmaImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Khatma implements Khatma {
   const factory _Khatma(
-      {final String? id,
-      final String? description,
-      final DateTime? endDate,
-      final String? creator,
-      required final KhatmaStyle style,
-      final DateTime? lastRead,
-      final List<int>? completedParts,
-      final List<KhatmaPart>? parts,
+      {@JsonKey(includeFromJson: true, includeToJson: false) final String? id,
+      required final String code,
       required final String name,
-      required final DateTime createDate,
-      required final Recurrence recurrence,
       required final SplitUnit unit,
-      required final KhatmaShareType share}) = _$KhatmaImpl;
+      required final DateTime createDate,
+      required final DateTime startDate,
+      final String? description,
+      final bool repeat,
+      final int? repeats,
+      final Recurrence? recurrence,
+      final KhatmaShare? share,
+      final KhatmaTheme? theme,
+      final DateTime? endDate,
+      final DateTime? lastRead,
+      final List<KhatmaPart>? readParts}) = _$KhatmaImpl;
+
+  factory _Khatma.fromJson(Map<String, dynamic> json) = _$KhatmaImpl.fromJson;
 
   @override
+  @JsonKey(includeFromJson: true, includeToJson: false)
   String? get id;
   @override
-  String? get description;
-  @override
-  DateTime? get endDate;
-  @override
-  String? get creator;
-  @override
-  KhatmaStyle get style;
-  @override
-  DateTime? get lastRead;
-  @override
-  List<int>? get completedParts;
-  @override
-  List<KhatmaPart>? get parts;
+  String get code;
   @override
   String get name;
   @override
-  DateTime get createDate;
-  @override
-  Recurrence get recurrence;
-  @override
   SplitUnit get unit;
   @override
-  KhatmaShareType get share;
+  DateTime get createDate;
+  @override
+  DateTime get startDate;
+  @override
+  String? get description;
+  @override
+  bool get repeat;
+  @override
+  int? get repeats;
+  @override
+  Recurrence? get recurrence;
+  @override
+  KhatmaShare? get share;
+  @override
+  KhatmaTheme? get theme;
+  @override
+  DateTime? get endDate;
+  @override
+  DateTime? get lastRead;
+  @override
+  List<KhatmaPart>? get readParts;
   @override
   @JsonKey(ignore: true)
   _$$KhatmaImplCopyWith<_$KhatmaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
+KhatmaTheme _$KhatmaThemeFromJson(Map<String, dynamic> json) {
+  return _KhatmaTheme.fromJson(json);
+}
+
 /// @nodoc
-mixin _$KhatmaStyle {
+mixin _$KhatmaTheme {
   String get color => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $KhatmaStyleCopyWith<KhatmaStyle> get copyWith =>
+  $KhatmaThemeCopyWith<KhatmaTheme> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $KhatmaStyleCopyWith<$Res> {
-  factory $KhatmaStyleCopyWith(
-          KhatmaStyle value, $Res Function(KhatmaStyle) then) =
-      _$KhatmaStyleCopyWithImpl<$Res, KhatmaStyle>;
+abstract class $KhatmaThemeCopyWith<$Res> {
+  factory $KhatmaThemeCopyWith(
+          KhatmaTheme value, $Res Function(KhatmaTheme) then) =
+      _$KhatmaThemeCopyWithImpl<$Res, KhatmaTheme>;
   @useResult
   $Res call({String color, String icon});
 }
 
 /// @nodoc
-class _$KhatmaStyleCopyWithImpl<$Res, $Val extends KhatmaStyle>
-    implements $KhatmaStyleCopyWith<$Res> {
-  _$KhatmaStyleCopyWithImpl(this._value, this._then);
+class _$KhatmaThemeCopyWithImpl<$Res, $Val extends KhatmaTheme>
+    implements $KhatmaThemeCopyWith<$Res> {
+  _$KhatmaThemeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -482,22 +565,22 @@ class _$KhatmaStyleCopyWithImpl<$Res, $Val extends KhatmaStyle>
 }
 
 /// @nodoc
-abstract class _$$KhatmaStyleImplCopyWith<$Res>
-    implements $KhatmaStyleCopyWith<$Res> {
-  factory _$$KhatmaStyleImplCopyWith(
-          _$KhatmaStyleImpl value, $Res Function(_$KhatmaStyleImpl) then) =
-      __$$KhatmaStyleImplCopyWithImpl<$Res>;
+abstract class _$$KhatmaThemeImplCopyWith<$Res>
+    implements $KhatmaThemeCopyWith<$Res> {
+  factory _$$KhatmaThemeImplCopyWith(
+          _$KhatmaThemeImpl value, $Res Function(_$KhatmaThemeImpl) then) =
+      __$$KhatmaThemeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String color, String icon});
 }
 
 /// @nodoc
-class __$$KhatmaStyleImplCopyWithImpl<$Res>
-    extends _$KhatmaStyleCopyWithImpl<$Res, _$KhatmaStyleImpl>
-    implements _$$KhatmaStyleImplCopyWith<$Res> {
-  __$$KhatmaStyleImplCopyWithImpl(
-      _$KhatmaStyleImpl _value, $Res Function(_$KhatmaStyleImpl) _then)
+class __$$KhatmaThemeImplCopyWithImpl<$Res>
+    extends _$KhatmaThemeCopyWithImpl<$Res, _$KhatmaThemeImpl>
+    implements _$$KhatmaThemeImplCopyWith<$Res> {
+  __$$KhatmaThemeImplCopyWithImpl(
+      _$KhatmaThemeImpl _value, $Res Function(_$KhatmaThemeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -506,7 +589,7 @@ class __$$KhatmaStyleImplCopyWithImpl<$Res>
     Object? color = null,
     Object? icon = null,
   }) {
-    return _then(_$KhatmaStyleImpl(
+    return _then(_$KhatmaThemeImpl(
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -520,9 +603,12 @@ class __$$KhatmaStyleImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
+@JsonSerializable()
+class _$KhatmaThemeImpl implements _KhatmaTheme {
+  const _$KhatmaThemeImpl({required this.color, required this.icon});
 
-class _$KhatmaStyleImpl implements _KhatmaStyle {
-  const _$KhatmaStyleImpl({required this.color, required this.icon});
+  factory _$KhatmaThemeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaThemeImplFromJson(json);
 
   @override
   final String color;
@@ -531,32 +617,43 @@ class _$KhatmaStyleImpl implements _KhatmaStyle {
 
   @override
   String toString() {
-    return 'KhatmaStyle(color: $color, icon: $icon)';
+    return 'KhatmaTheme(color: $color, icon: $icon)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$KhatmaStyleImpl &&
+            other is _$KhatmaThemeImpl &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.icon, icon) || other.icon == icon));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, color, icon);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$KhatmaStyleImplCopyWith<_$KhatmaStyleImpl> get copyWith =>
-      __$$KhatmaStyleImplCopyWithImpl<_$KhatmaStyleImpl>(this, _$identity);
+  _$$KhatmaThemeImplCopyWith<_$KhatmaThemeImpl> get copyWith =>
+      __$$KhatmaThemeImplCopyWithImpl<_$KhatmaThemeImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaThemeImplToJson(
+      this,
+    );
+  }
 }
 
-abstract class _KhatmaStyle implements KhatmaStyle {
-  const factory _KhatmaStyle(
+abstract class _KhatmaTheme implements KhatmaTheme {
+  const factory _KhatmaTheme(
       {required final String color,
-      required final String icon}) = _$KhatmaStyleImpl;
+      required final String icon}) = _$KhatmaThemeImpl;
+
+  factory _KhatmaTheme.fromJson(Map<String, dynamic> json) =
+      _$KhatmaThemeImpl.fromJson;
 
   @override
   String get color;
@@ -564,18 +661,24 @@ abstract class _KhatmaStyle implements KhatmaStyle {
   String get icon;
   @override
   @JsonKey(ignore: true)
-  _$$KhatmaStyleImplCopyWith<_$KhatmaStyleImpl> get copyWith =>
+  _$$KhatmaThemeImplCopyWith<_$KhatmaThemeImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+Recurrence _$RecurrenceFromJson(Map<String, dynamic> json) {
+  return _Recurrence.fromJson(json);
 }
 
 /// @nodoc
 mixin _$Recurrence {
-  KhatmaScheduler get scheduler => throw _privateConstructorUsedError;
-  DateTime get startDate => throw _privateConstructorUsedError;
-  DateTime get endDate => throw _privateConstructorUsedError;
-  RecurrenceUnit? get unit => throw _privateConstructorUsedError;
-  int? get occurrence => throw _privateConstructorUsedError;
+  RepeatInterval get unit => throw _privateConstructorUsedError;
+  bool get repeat => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
+  List<int>? get days => throw _privateConstructorUsedError;
+  int? get frequency => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RecurrenceCopyWith<Recurrence> get copyWith =>
       throw _privateConstructorUsedError;
@@ -588,11 +691,12 @@ abstract class $RecurrenceCopyWith<$Res> {
       _$RecurrenceCopyWithImpl<$Res, Recurrence>;
   @useResult
   $Res call(
-      {KhatmaScheduler scheduler,
-      DateTime startDate,
-      DateTime endDate,
-      RecurrenceUnit? unit,
-      int? occurrence});
+      {RepeatInterval unit,
+      bool repeat,
+      DateTime? startDate,
+      DateTime? endDate,
+      List<int>? days,
+      int? frequency});
 }
 
 /// @nodoc
@@ -608,32 +712,37 @@ class _$RecurrenceCopyWithImpl<$Res, $Val extends Recurrence>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? scheduler = null,
-    Object? startDate = null,
-    Object? endDate = null,
-    Object? unit = freezed,
-    Object? occurrence = freezed,
+    Object? unit = null,
+    Object? repeat = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? days = freezed,
+    Object? frequency = freezed,
   }) {
     return _then(_value.copyWith(
-      scheduler: null == scheduler
-          ? _value.scheduler
-          : scheduler // ignore: cast_nullable_to_non_nullable
-              as KhatmaScheduler,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      unit: freezed == unit
+      unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
-              as RecurrenceUnit?,
-      occurrence: freezed == occurrence
-          ? _value.occurrence
-          : occurrence // ignore: cast_nullable_to_non_nullable
+              as RepeatInterval,
+      repeat: null == repeat
+          ? _value.repeat
+          : repeat // ignore: cast_nullable_to_non_nullable
+              as bool,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      days: freezed == days
+          ? _value.days
+          : days // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      frequency: freezed == frequency
+          ? _value.frequency
+          : frequency // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -648,11 +757,12 @@ abstract class _$$RecurrenceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {KhatmaScheduler scheduler,
-      DateTime startDate,
-      DateTime endDate,
-      RecurrenceUnit? unit,
-      int? occurrence});
+      {RepeatInterval unit,
+      bool repeat,
+      DateTime? startDate,
+      DateTime? endDate,
+      List<int>? days,
+      int? frequency});
 }
 
 /// @nodoc
@@ -666,111 +776,151 @@ class __$$RecurrenceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? scheduler = null,
-    Object? startDate = null,
-    Object? endDate = null,
-    Object? unit = freezed,
-    Object? occurrence = freezed,
+    Object? unit = null,
+    Object? repeat = null,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? days = freezed,
+    Object? frequency = freezed,
   }) {
     return _then(_$RecurrenceImpl(
-      scheduler: null == scheduler
-          ? _value.scheduler
-          : scheduler // ignore: cast_nullable_to_non_nullable
-              as KhatmaScheduler,
-      startDate: null == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      unit: freezed == unit
+      unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
-              as RecurrenceUnit?,
-      occurrence: freezed == occurrence
-          ? _value.occurrence
-          : occurrence // ignore: cast_nullable_to_non_nullable
+              as RepeatInterval,
+      repeat: null == repeat
+          ? _value.repeat
+          : repeat // ignore: cast_nullable_to_non_nullable
+              as bool,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      days: freezed == days
+          ? _value._days
+          : days // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      frequency: freezed == frequency
+          ? _value.frequency
+          : frequency // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$RecurrenceImpl implements _Recurrence {
   const _$RecurrenceImpl(
-      {required this.scheduler,
-      required this.startDate,
-      required this.endDate,
-      this.unit,
-      this.occurrence});
+      {this.unit = RepeatInterval.auto,
+      this.repeat = true,
+      this.startDate,
+      this.endDate,
+      final List<int>? days,
+      this.frequency})
+      : _days = days;
+
+  factory _$RecurrenceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RecurrenceImplFromJson(json);
 
   @override
-  final KhatmaScheduler scheduler;
+  @JsonKey()
+  final RepeatInterval unit;
   @override
-  final DateTime startDate;
+  @JsonKey()
+  final bool repeat;
   @override
-  final DateTime endDate;
+  final DateTime? startDate;
   @override
-  final RecurrenceUnit? unit;
+  final DateTime? endDate;
+  final List<int>? _days;
   @override
-  final int? occurrence;
+  List<int>? get days {
+    final value = _days;
+    if (value == null) return null;
+    if (_days is EqualUnmodifiableListView) return _days;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final int? frequency;
 
   @override
   String toString() {
-    return 'Recurrence(scheduler: $scheduler, startDate: $startDate, endDate: $endDate, unit: $unit, occurrence: $occurrence)';
+    return 'Recurrence(unit: $unit, repeat: $repeat, startDate: $startDate, endDate: $endDate, days: $days, frequency: $frequency)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecurrenceImpl &&
-            (identical(other.scheduler, scheduler) ||
-                other.scheduler == scheduler) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.repeat, repeat) || other.repeat == repeat) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.occurrence, occurrence) ||
-                other.occurrence == occurrence));
+            const DeepCollectionEquality().equals(other._days, _days) &&
+            (identical(other.frequency, frequency) ||
+                other.frequency == frequency));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, scheduler, startDate, endDate, unit, occurrence);
+  int get hashCode => Object.hash(runtimeType, unit, repeat, startDate, endDate,
+      const DeepCollectionEquality().hash(_days), frequency);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RecurrenceImplCopyWith<_$RecurrenceImpl> get copyWith =>
       __$$RecurrenceImplCopyWithImpl<_$RecurrenceImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RecurrenceImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Recurrence implements Recurrence {
   const factory _Recurrence(
-      {required final KhatmaScheduler scheduler,
-      required final DateTime startDate,
-      required final DateTime endDate,
-      final RecurrenceUnit? unit,
-      final int? occurrence}) = _$RecurrenceImpl;
+      {final RepeatInterval unit,
+      final bool repeat,
+      final DateTime? startDate,
+      final DateTime? endDate,
+      final List<int>? days,
+      final int? frequency}) = _$RecurrenceImpl;
+
+  factory _Recurrence.fromJson(Map<String, dynamic> json) =
+      _$RecurrenceImpl.fromJson;
 
   @override
-  KhatmaScheduler get scheduler;
+  RepeatInterval get unit;
   @override
-  DateTime get startDate;
+  bool get repeat;
   @override
-  DateTime get endDate;
+  DateTime? get startDate;
   @override
-  RecurrenceUnit? get unit;
+  DateTime? get endDate;
   @override
-  int? get occurrence;
+  List<int>? get days;
+  @override
+  int? get frequency;
   @override
   @JsonKey(ignore: true)
   _$$RecurrenceImplCopyWith<_$RecurrenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+KhatmaPart _$KhatmaPartFromJson(Map<String, dynamic> json) {
+  return _KhatmaPart.fromJson(json);
 }
 
 /// @nodoc
@@ -778,10 +928,11 @@ mixin _$KhatmaPart {
   int get id => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
-  DateTime? get addedDate => throw _privateConstructorUsedError;
-  DateTime? get finishedDate => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
   int? get remindTimes => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $KhatmaPartCopyWith<KhatmaPart> get copyWith =>
       throw _privateConstructorUsedError;
@@ -797,8 +948,8 @@ abstract class $KhatmaPartCopyWith<$Res> {
       {int id,
       String? userId,
       String? userName,
-      DateTime? addedDate,
-      DateTime? finishedDate,
+      DateTime? startDate,
+      DateTime? endDate,
       int? remindTimes});
 }
 
@@ -818,8 +969,8 @@ class _$KhatmaPartCopyWithImpl<$Res, $Val extends KhatmaPart>
     Object? id = null,
     Object? userId = freezed,
     Object? userName = freezed,
-    Object? addedDate = freezed,
-    Object? finishedDate = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? remindTimes = freezed,
   }) {
     return _then(_value.copyWith(
@@ -835,13 +986,13 @@ class _$KhatmaPartCopyWithImpl<$Res, $Val extends KhatmaPart>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String?,
-      addedDate: freezed == addedDate
-          ? _value.addedDate
-          : addedDate // ignore: cast_nullable_to_non_nullable
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      finishedDate: freezed == finishedDate
-          ? _value.finishedDate
-          : finishedDate // ignore: cast_nullable_to_non_nullable
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       remindTimes: freezed == remindTimes
           ? _value.remindTimes
@@ -863,8 +1014,8 @@ abstract class _$$KhatmaPartImplCopyWith<$Res>
       {int id,
       String? userId,
       String? userName,
-      DateTime? addedDate,
-      DateTime? finishedDate,
+      DateTime? startDate,
+      DateTime? endDate,
       int? remindTimes});
 }
 
@@ -882,8 +1033,8 @@ class __$$KhatmaPartImplCopyWithImpl<$Res>
     Object? id = null,
     Object? userId = freezed,
     Object? userName = freezed,
-    Object? addedDate = freezed,
-    Object? finishedDate = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? remindTimes = freezed,
   }) {
     return _then(_$KhatmaPartImpl(
@@ -899,13 +1050,13 @@ class __$$KhatmaPartImplCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String?,
-      addedDate: freezed == addedDate
-          ? _value.addedDate
-          : addedDate // ignore: cast_nullable_to_non_nullable
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      finishedDate: freezed == finishedDate
-          ? _value.finishedDate
-          : finishedDate // ignore: cast_nullable_to_non_nullable
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       remindTimes: freezed == remindTimes
           ? _value.remindTimes
@@ -916,15 +1067,18 @@ class __$$KhatmaPartImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$KhatmaPartImpl implements _KhatmaPart {
   const _$KhatmaPartImpl(
       {required this.id,
       this.userId,
       this.userName,
-      this.addedDate,
-      this.finishedDate,
+      this.startDate,
+      this.endDate,
       this.remindTimes});
+
+  factory _$KhatmaPartImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaPartImplFromJson(json);
 
   @override
   final int id;
@@ -933,19 +1087,19 @@ class _$KhatmaPartImpl implements _KhatmaPart {
   @override
   final String? userName;
   @override
-  final DateTime? addedDate;
+  final DateTime? startDate;
   @override
-  final DateTime? finishedDate;
+  final DateTime? endDate;
   @override
   final int? remindTimes;
 
   @override
   String toString() {
-    return 'KhatmaPart(id: $id, userId: $userId, userName: $userName, addedDate: $addedDate, finishedDate: $finishedDate, remindTimes: $remindTimes)';
+    return 'KhatmaPart(id: $id, userId: $userId, userName: $userName, startDate: $startDate, endDate: $endDate, remindTimes: $remindTimes)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$KhatmaPartImpl &&
@@ -953,23 +1107,30 @@ class _$KhatmaPartImpl implements _KhatmaPart {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
-            (identical(other.addedDate, addedDate) ||
-                other.addedDate == addedDate) &&
-            (identical(other.finishedDate, finishedDate) ||
-                other.finishedDate == finishedDate) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.remindTimes, remindTimes) ||
                 other.remindTimes == remindTimes));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, userId, userName, addedDate, finishedDate, remindTimes);
+      runtimeType, id, userId, userName, startDate, endDate, remindTimes);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$KhatmaPartImplCopyWith<_$KhatmaPartImpl> get copyWith =>
       __$$KhatmaPartImplCopyWithImpl<_$KhatmaPartImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaPartImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _KhatmaPart implements KhatmaPart {
@@ -977,9 +1138,12 @@ abstract class _KhatmaPart implements KhatmaPart {
       {required final int id,
       final String? userId,
       final String? userName,
-      final DateTime? addedDate,
-      final DateTime? finishedDate,
+      final DateTime? startDate,
+      final DateTime? endDate,
       final int? remindTimes}) = _$KhatmaPartImpl;
+
+  factory _KhatmaPart.fromJson(Map<String, dynamic> json) =
+      _$KhatmaPartImpl.fromJson;
 
   @override
   int get id;
@@ -988,13 +1152,191 @@ abstract class _KhatmaPart implements KhatmaPart {
   @override
   String? get userName;
   @override
-  DateTime? get addedDate;
+  DateTime? get startDate;
   @override
-  DateTime? get finishedDate;
+  DateTime? get endDate;
   @override
   int? get remindTimes;
   @override
   @JsonKey(ignore: true)
   _$$KhatmaPartImplCopyWith<_$KhatmaPartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+KhatmaShare _$KhatmaShareFromJson(Map<String, dynamic> json) {
+  return _KhatmaShare.fromJson(json);
+}
+
+/// @nodoc
+mixin _$KhatmaShare {
+  ShareVisibility get visibility => throw _privateConstructorUsedError;
+  int? get maxPartToRead => throw _privateConstructorUsedError;
+  int? get maxPartToReserve => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $KhatmaShareCopyWith<KhatmaShare> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $KhatmaShareCopyWith<$Res> {
+  factory $KhatmaShareCopyWith(
+          KhatmaShare value, $Res Function(KhatmaShare) then) =
+      _$KhatmaShareCopyWithImpl<$Res, KhatmaShare>;
+  @useResult
+  $Res call(
+      {ShareVisibility visibility, int? maxPartToRead, int? maxPartToReserve});
+}
+
+/// @nodoc
+class _$KhatmaShareCopyWithImpl<$Res, $Val extends KhatmaShare>
+    implements $KhatmaShareCopyWith<$Res> {
+  _$KhatmaShareCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? visibility = null,
+    Object? maxPartToRead = freezed,
+    Object? maxPartToReserve = freezed,
+  }) {
+    return _then(_value.copyWith(
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
+              as ShareVisibility,
+      maxPartToRead: freezed == maxPartToRead
+          ? _value.maxPartToRead
+          : maxPartToRead // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxPartToReserve: freezed == maxPartToReserve
+          ? _value.maxPartToReserve
+          : maxPartToReserve // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$KhatmaShareImplCopyWith<$Res>
+    implements $KhatmaShareCopyWith<$Res> {
+  factory _$$KhatmaShareImplCopyWith(
+          _$KhatmaShareImpl value, $Res Function(_$KhatmaShareImpl) then) =
+      __$$KhatmaShareImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {ShareVisibility visibility, int? maxPartToRead, int? maxPartToReserve});
+}
+
+/// @nodoc
+class __$$KhatmaShareImplCopyWithImpl<$Res>
+    extends _$KhatmaShareCopyWithImpl<$Res, _$KhatmaShareImpl>
+    implements _$$KhatmaShareImplCopyWith<$Res> {
+  __$$KhatmaShareImplCopyWithImpl(
+      _$KhatmaShareImpl _value, $Res Function(_$KhatmaShareImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? visibility = null,
+    Object? maxPartToRead = freezed,
+    Object? maxPartToReserve = freezed,
+  }) {
+    return _then(_$KhatmaShareImpl(
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
+              as ShareVisibility,
+      maxPartToRead: freezed == maxPartToRead
+          ? _value.maxPartToRead
+          : maxPartToRead // ignore: cast_nullable_to_non_nullable
+              as int?,
+      maxPartToReserve: freezed == maxPartToReserve
+          ? _value.maxPartToReserve
+          : maxPartToReserve // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$KhatmaShareImpl implements _KhatmaShare {
+  const _$KhatmaShareImpl(
+      {required this.visibility, this.maxPartToRead, this.maxPartToReserve});
+
+  factory _$KhatmaShareImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KhatmaShareImplFromJson(json);
+
+  @override
+  final ShareVisibility visibility;
+  @override
+  final int? maxPartToRead;
+  @override
+  final int? maxPartToReserve;
+
+  @override
+  String toString() {
+    return 'KhatmaShare(visibility: $visibility, maxPartToRead: $maxPartToRead, maxPartToReserve: $maxPartToReserve)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$KhatmaShareImpl &&
+            (identical(other.visibility, visibility) ||
+                other.visibility == visibility) &&
+            (identical(other.maxPartToRead, maxPartToRead) ||
+                other.maxPartToRead == maxPartToRead) &&
+            (identical(other.maxPartToReserve, maxPartToReserve) ||
+                other.maxPartToReserve == maxPartToReserve));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, visibility, maxPartToRead, maxPartToReserve);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$KhatmaShareImplCopyWith<_$KhatmaShareImpl> get copyWith =>
+      __$$KhatmaShareImplCopyWithImpl<_$KhatmaShareImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$KhatmaShareImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _KhatmaShare implements KhatmaShare {
+  const factory _KhatmaShare(
+      {required final ShareVisibility visibility,
+      final int? maxPartToRead,
+      final int? maxPartToReserve}) = _$KhatmaShareImpl;
+
+  factory _KhatmaShare.fromJson(Map<String, dynamic> json) =
+      _$KhatmaShareImpl.fromJson;
+
+  @override
+  ShareVisibility get visibility;
+  @override
+  int? get maxPartToRead;
+  @override
+  int? get maxPartToReserve;
+  @override
+  @JsonKey(ignore: true)
+  _$$KhatmaShareImplCopyWith<_$KhatmaShareImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

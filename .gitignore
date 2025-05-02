@@ -13,11 +13,19 @@
 .pub/
 build/
 coverage/
-lib/generated_plugin_registrant.dart
 # For library packages, don’t commit the pubspec.lock file.
 # Regenerating the pubspec.lock file lets you test your package against the latest compatible versions of its dependencies.
 # See https://dart.dev/guides/libraries/private-files#pubspeclock
 #pubspec.lock
+
+# Firebase config files
+firebase.json
+lib/firebase_options.dart
+ios/Runner/GoogleService-Info.plist
+ios/firebase_app_id_file.json
+macos/Runner/GoogleService-Info.plist
+macos/firebase_app_id_file.json
+android/app/google-services.json
 
 # Android related
 **/android/**/gradle-wrapper.jar
@@ -79,3 +87,4 @@ windows/flutter/generated_plugin_registrant.cc
 windows/flutter/generated_plugin_registrant.h
 windows/flutter/generated_plugins.cmake
 .DS_Store
+.qodo

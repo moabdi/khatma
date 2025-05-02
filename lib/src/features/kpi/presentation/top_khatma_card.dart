@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/themes/theme.dart';
 
 class TopKhatmaCard extends StatelessWidget {
-  const TopKhatmaCard({
-    super.key,
-  });
+  const TopKhatmaCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return InkWell(
       borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       onTap: () {},
@@ -18,8 +17,8 @@ class TopKhatmaCard extends StatelessWidget {
             begin: Alignment.centerRight,
             end: Alignment.bottomLeft,
             colors: [
-              AppTheme.getTheme().primaryColor.withOpacity(.2),
-              AppTheme.getTheme().primaryColor.withOpacity(.7),
+              theme.primaryColor.withOpacity(.2),
+              theme.primaryColor.withOpacity(.7),
             ],
           ),
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -48,22 +47,25 @@ class TopKhatmaCard extends StatelessWidget {
     );
   }
 
-  Widget buildIndicator(
-      {required Icon icon, required String title, required int count}) {
+  Widget buildIndicator({
+    required BuildContext context,
+    required Icon icon,
+    required String title,
+    required int count,
+  }) {
+    final theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundColor: AppTheme.getTheme().backgroundColor.withOpacity(0.5),
+          backgroundColor: theme.colorScheme.background.withOpacity(0.5),
           radius: 25,
           child: icon,
         ),
         Text(
           count.toString(),
-          style: AppTheme.getTheme()
-              .textTheme
-              .headline5!
-              .copyWith(color: Colors.white70),
+          style: theme.textTheme.titleMedium!.copyWith(color: Colors.white70),
         ),
       ],
     );

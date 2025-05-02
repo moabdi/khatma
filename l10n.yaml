@@ -1,4 +1,6 @@
-arb-dir: lib/src/localization
 template-arb-file: app_en.arb
 output-localization-file: app_localizations.dart
 nullable-getter: false
+synthetic-package: false
+arb-dir: lib/src/i18n
+output-dir: lib/src/i18n/generated
