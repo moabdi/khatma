@@ -6,9 +6,9 @@ import 'package:khatma/src/features/authentication/presentation/login/string_val
 import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:khatma/src/widgets/custom_text_button.dart';
-import 'package:khatma/src/widgets/primary_button.dart';
-import 'package:khatma/src/widgets/responsive_scrollable_card.dart';
+import 'package:khatma_ui/components/custom_text_button.dart';
+import 'package:khatma_ui/components/primary_button.dart';
+import 'package:khatma_ui/components/responsive_scrollable_card.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

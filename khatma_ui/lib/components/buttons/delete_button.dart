@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/utils/common.dart';
-import 'package:khatma/src/widgets/alert_dialogs.dart';
+import 'package:khatma_ui/components/alert_dialogs.dart';
 
 class DeleteButton extends StatelessWidget {
   const DeleteButton({
@@ -8,11 +7,17 @@ class DeleteButton extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.content,
+    required this.title,
+    required this.cancelActionText,
+    required this.defaultActionText,
   });
 
   final VoidCallback? onPressed;
   final double? width;
   final String? content;
+  final String title;
+  final String cancelActionText;
+  final String defaultActionText;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +36,10 @@ class DeleteButton extends StatelessWidget {
         onPressed: () async {
           final confirm = await showAlertDialog(
             context: context,
-            title: AppLocalizations.of(context).areYouSure,
+            title: title,
             content: content,
-            cancelActionText: AppLocalizations.of(context).cancel,
-            defaultActionText: AppLocalizations.of(context).delete,
+            cancelActionText: cancelActionText,
+            defaultActionText: defaultActionText,
             confirmTextColor: Colors.red,
           );
           if (confirm == true) {

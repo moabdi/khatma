@@ -10,9 +10,9 @@ import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/constants/snack_bars.dart';
 import 'package:khatma/src/utils/common.dart';
-import 'package:khatma/src/widgets/avatar.dart';
-import 'package:khatma/src/widgets/buttons/delete_button.dart';
-import 'package:khatma/src/widgets/buttons/primary_button.dart';
+import 'package:khatma_ui/components/avatar.dart';
+import 'package:khatma_ui/components/buttons/delete_button.dart';
+import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
@@ -134,6 +134,9 @@ class AddKhatmaScreen extends ConsumerWidget {
       primary: DeleteButton(
         width: double.infinity,
         content: AppLocalizations.of(context).confirmDeleteKhatma,
+        title: AppLocalizations.of(context).title,
+        cancelActionText: AppLocalizations.of(context).cancel,
+        defaultActionText: AppLocalizations.of(context).delete,
         onPressed: () {
           final snackBar = buildSnackBar(
             context,

@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-import 'package:khatma/src/constants/lottie_asset.dart';
 
-/// Primary button based on [ElevatedButton].
-/// Useful for CTAs in the app.
-/// @param text - text to display on the button.
-/// @param isLoading - if true, a loading indicator will be displayed instead of
-/// the text.
-/// @param onPressed - callback to be called when the button is pressed.
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
@@ -45,16 +38,14 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: color),
         onPressed: onPressed,
-        child: isLoading
-            ? lottieStartReading
-            : Text(
-                text,
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall!
-                    .copyWith(color: Colors.white),
-              ),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall!
+              .copyWith(color: Colors.white),
+        ),
       ),
     );
   }

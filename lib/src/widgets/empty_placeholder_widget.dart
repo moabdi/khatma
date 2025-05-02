@@ -1,4 +1,4 @@
-import 'package:khatma/src/widgets/buttons/primary_button.dart';
+import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma/src/constants/lottie_asset.dart';
 import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:flutter/material.dart';

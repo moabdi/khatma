@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/unused/placeholders.dart';
+import 'package:khatma_ui/components/placeholders.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingListTile extends StatelessWidget {

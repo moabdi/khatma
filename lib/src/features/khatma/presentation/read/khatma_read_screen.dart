@@ -10,7 +10,7 @@ import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/widgets/async_value_widget.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
-import 'package:khatma/src/widgets/loading_list_tile.dart';
+import 'package:khatma_ui/components/loading_list_tile.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';

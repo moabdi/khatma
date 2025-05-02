@@ -1,7 +1,7 @@
 import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:khatma/src/widgets/primary_button.dart';
+import 'package:khatma_ui/components/primary_button.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:go_router/go_router.dart';
 
