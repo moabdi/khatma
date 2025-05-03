@@ -25,10 +25,10 @@ class PartTile extends ConsumerWidget {
 
     return ListTile(
       enabled: enabled,
-      splashColor: color.withOpacity(.2),
+      splashColor: color.withAlpha(51),
       selected: isSelected,
       selectedColor: color,
-      selectedTileColor: color.withOpacity(.1),
+      selectedTileColor: color.withAlpha(26),
       onTap: () => toggleSelection(ref),
       leading: PartTileLeading(
         enabled: enabled,

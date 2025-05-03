@@ -53,7 +53,7 @@ class AppTheme {
 
     final OutlineInputBorder focusedInputBorder = OutlineInputBorder(
       borderRadius: borderRadius,
-      borderSide: BorderSide(width: 1.5, color: primaryColor.withOpacity(.4)),
+      borderSide: BorderSide(width: 1.5, color: primaryColor.withAlpha(102)),
     );
 
     return base.copyWith(
@@ -75,7 +75,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
         selectedColor: primaryColor,
         tileColor: Colors.grey.shade50,
-        selectedTileColor: primaryColor.withOpacity(0.2),
+        selectedTileColor: primaryColor.withAlpha(51),
         titleTextStyle: textTheme.titleSmall,
         subtitleTextStyle:
             textTheme.bodyMedium!.copyWith(color: Colors.grey[600]),
@@ -219,7 +219,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         selectedColor: primaryColor,
         tileColor: const Color(0xFF1F1F1F),
-        selectedTileColor: primaryColor.withOpacity(0.2),
+        selectedTileColor: primaryColor.withAlpha(51),
         titleTextStyle: textTheme.titleSmall!.copyWith(color: Colors.white),
         subtitleTextStyle:
             textTheme.bodyMedium!.copyWith(color: Colors.grey[400]),
@@ -254,7 +254,7 @@ class AppTheme {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide:
-              BorderSide(width: 1.5, color: primaryColor.withOpacity(.6)),
+              BorderSide(width: 1.5, color: primaryColor.withAlpha(153)),
         ),
       ),
       textTheme:
@@ -327,7 +327,7 @@ class AppTheme {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide:
-                BorderSide(width: 1.5, color: primaryColor.withOpacity(.4)),
+                BorderSide(width: 1.5, color: primaryColor.withAlpha(102)),
           ),
           labelStyle: textTheme.bodyMedium!.copyWith(color: Colors.white),
         ),

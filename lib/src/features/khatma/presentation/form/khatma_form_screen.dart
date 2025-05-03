@@ -59,7 +59,7 @@ class AddKhatmaScreen extends ConsumerWidget {
           node: node,
           child: Container(
             height: MediaQuery.of(context).size.height,
-            color: khatma.style.hexColor.withOpacity(.1),
+            color: khatma.style.hexColor.withAlpha(26),
             child: _buildForm(
                 context, khatma, ref, nameController, descController),
           ),
@@ -157,7 +157,7 @@ class AddKhatmaScreen extends ConsumerWidget {
   Widget _buildAvatar(BuildContext context, Khatma khatma, WidgetRef ref) {
     return Center(
       child: Avatar(
-        backgroundColor: khatma.style.hexColor.withOpacity(.2),
+        backgroundColor: khatma.style.hexColor.withAlpha(51),
         bottom: Avatar(
           radius: 10,
           backgroundColor: khatma.style.hexColor,

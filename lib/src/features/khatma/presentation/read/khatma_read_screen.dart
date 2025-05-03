@@ -48,7 +48,7 @@ class KhatmaReadScreen extends ConsumerWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(
         child: Container(
-          color: khatma.style.hexColor.withOpacity(.1),
+          color: khatma.style.hexColor.withAlpha(26),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

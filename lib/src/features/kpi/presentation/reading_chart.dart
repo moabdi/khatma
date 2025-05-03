@@ -20,10 +20,10 @@ class _ReadingChartState extends State<ReadingChart> {
     super.didChangeDependencies();
     final theme = Theme.of(context);
     gradientColors = [
-      theme.colorScheme.primary.withOpacity(0.1),
-      theme.colorScheme.primary.withOpacity(0.4),
+      theme.colorScheme.primary.withAlpha(51),
+      theme.colorScheme.primary.withAlpha(102),
     ];
-    gridLineColor = theme.colorScheme.surfaceVariant;
+    gridLineColor = theme.colorScheme.surfaceContainerHighest;
     borderColor = theme.disabledColor;
   }
 

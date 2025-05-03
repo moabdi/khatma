@@ -17,8 +17,8 @@ class TopKhatmaCard extends StatelessWidget {
             begin: Alignment.centerRight,
             end: Alignment.bottomLeft,
             colors: [
-              theme.primaryColor.withOpacity(.2),
-              theme.primaryColor.withOpacity(.7),
+              theme.primaryColor.withAlpha(51),
+              theme.primaryColor.withAlpha(179),
             ],
           ),
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
@@ -59,7 +59,7 @@ class TopKhatmaCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundColor: theme.colorScheme.background.withOpacity(0.5),
+          backgroundColor: theme.colorScheme.surface.withAlpha(128),
           radius: 25,
           child: icon,
         ),

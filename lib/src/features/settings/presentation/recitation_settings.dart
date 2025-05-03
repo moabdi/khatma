@@ -26,7 +26,7 @@ class _RecitationSettingsState extends State<RecitationSettings> {
               children: [
                 CircleAvatar(
                   backgroundColor:
-                      Theme.of(context).primaryColor.withOpacity(0.5),
+                      Theme.of(context).primaryColor.withAlpha(128),
                   radius: 40,
                   child: const Icon(
                     Icons.menu_book,
@@ -85,7 +85,7 @@ class _RecitationSettingsState extends State<RecitationSettings> {
           ? const Icon(Icons.check_circle, color: Colors.green)
           : const Icon(Icons.circle_outlined, color: Colors.grey),
       tileColor:
-          isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
+          isSelected ? Theme.of(context).primaryColor.withAlpha(26) : null,
       onTap: () {
         setState(() {
           _selectedRecitation = recitationKey;

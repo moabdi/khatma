@@ -37,7 +37,7 @@ class KhatmatListView extends ConsumerWidget {
   Widget buildKhatmaList(
       List<Khatma> khatmat, BuildContext context, WidgetRef ref) {
     return Card(
-      color: Theme.of(context).primaryColor.withOpacity(.2),
+      color: Theme.of(context).primaryColor.withAlpha(51),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +47,7 @@ class KhatmatListView extends ConsumerWidget {
             child: Text(
               "Khatmats en cours",
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  color: Theme.of(context).primaryColor.withOpacity(.9)),
+                  color: Theme.of(context).primaryColor.withAlpha(230)),
             ),
           ),
           ListView.builder(

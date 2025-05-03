@@ -61,7 +61,7 @@ class _MoushafScreenState extends State<MoushafScreen> {
                 icon: Icon(Icons.chevron_left),
                 label: Text("Return"),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(
+                  backgroundColor: WidgetStatePropertyAll(
                     HexColor("#E6E6EB"),
                   ),
                 ),

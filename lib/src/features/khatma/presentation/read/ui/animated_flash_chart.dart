@@ -48,7 +48,7 @@ class _AnimatedFlashyChartState extends State<AnimatedFlashyChart>
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: _flash ? Colors.amber.withOpacity(0.2) : Colors.transparent,
+          color: _flash ? Colors.amber.withAlpha(51) : Colors.transparent,
           borderRadius: BorderRadius.circular(100),
         ),
         child: TweenAnimationBuilder<double>(
@@ -71,7 +71,7 @@ class _AnimatedFlashyChartState extends State<AnimatedFlashyChart>
                     ),
               ),
               progressColor: widget.khatma.style.hexColor,
-              backgroundColor: widget.khatma.style.hexColor.withOpacity(.2),
+              backgroundColor: widget.khatma.style.hexColor.withAlpha(51),
             );
           },
         ),

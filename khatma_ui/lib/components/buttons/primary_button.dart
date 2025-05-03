@@ -34,7 +34,7 @@ class PrimaryButton extends StatelessWidget {
               blurStyle: BlurStyle.outer,
             )
           ]),
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: color),
         onPressed: onPressed,

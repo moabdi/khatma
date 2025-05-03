@@ -15,7 +15,7 @@ class KhatmaAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 40,
-      backgroundColor: HexColor(style.color).withOpacity(.2),
+      backgroundColor: HexColor(style.color).withAlpha(51),
       child: Stack(children: [
         Center(
           child: SizedBox(

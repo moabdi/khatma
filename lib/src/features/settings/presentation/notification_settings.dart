@@ -29,7 +29,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                 // Avatar and notification icon at the top
                 CircleAvatar(
                   backgroundColor:
-                      Theme.of(context).primaryColor.withOpacity(0.5),
+                      Theme.of(context).primaryColor.withAlpha(128),
                   radius: 40,
                   child: Icon(
                     Icons.notifications,

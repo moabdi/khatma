@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma_ui/extentions/color_extensions.dart';
 
 class FlashingListTile extends StatefulWidget {
   final Widget child;
@@ -30,7 +31,7 @@ class _FlashingListTileState extends State<FlashingListTile>
     );
 
     _colorAnimation = ColorTween(
-      begin: widget.color.withOpacity(0.6),
+      begin: widget.color.applyOpacity(0.6),
       end: Colors.transparent,
     ).animate(CurvedAnimation(
       parent: _controller,

@@ -24,7 +24,7 @@ class RecurrenceTile extends StatelessWidget {
       leading: Avatar(
         radius: 30,
         backgroundColor: value
-            ? Theme.of(context).primaryColor.withOpacity(.15)
+            ? Theme.of(context).primaryColor.withAlpha(30)
             : Theme.of(context).disabledColor,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         bottom: value

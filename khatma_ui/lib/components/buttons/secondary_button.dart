@@ -28,12 +28,16 @@ class SecondaryButton extends StatelessWidget {
       height: Sizes.p48,
       width: min(double.infinity, width),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor.withOpacity(0.1),
+        color: Theme.of(context).primaryColor.withAlpha(26),
         borderRadius: BorderRadius.circular(50),
       ),
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       child: ElevatedButton(
         onPressed: onPressed,
+        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                backgroundColor: WidgetStateProperty.all<Color>(
+              Theme.of(context).primaryColor.withAlpha(26),
+            )),
         child: isLoading
             ? const CircularProgressIndicator()
             : Text(
@@ -44,10 +48,6 @@ class SecondaryButton extends StatelessWidget {
                     .titleMedium!
                     .copyWith(color: Theme.of(context).primaryColor),
               ),
-        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                backgroundColor: MaterialStateProperty.all<Color>(
-              Theme.of(context).primaryColor.withOpacity(0.1),
-            )),
       ),
     );
   }

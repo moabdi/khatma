@@ -21,7 +21,7 @@ class PartTileLeading extends StatelessWidget {
       backgroundColor: enabled
           ? selected
               ? color
-              : color.withOpacity(.1)
+              : color.withAlpha(26)
           : Theme.of(context).cardColor,
       child: Text(
         part.id.toString(),

@@ -29,7 +29,7 @@ class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Theme.of(context).primaryColor.withOpacity(.01),
+            Theme.of(context).primaryColor.withAlpha(2),
             Theme.of(context).primaryColor,
           ],
         ),

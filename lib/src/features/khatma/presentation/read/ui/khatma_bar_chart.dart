@@ -44,7 +44,7 @@ class KhatmaBarChart extends StatelessWidget {
             titleAlignment: ListTileTitleAlignment.center,
             dense: true,
             leading: CircleAvatar(
-              backgroundColor: AppTheme.primaryColors.withOpacity(.12),
+              backgroundColor: AppTheme.primaryColors.withAlpha(31),
               radius: 12,
               child:
                   Icon(Icons.moving, size: 20, color: AppTheme.primaryColors),

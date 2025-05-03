@@ -21,17 +21,17 @@ class DeleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       child: OutlinedButton.icon(
-        icon: Icon(Icons.delete),
+        icon: const Icon(Icons.delete),
         style: Theme.of(context).outlinedButtonTheme.style!.copyWith(
-            elevation: WidgetStatePropertyAll(0),
-            fixedSize: WidgetStatePropertyAll(Size(double.infinity, 45)),
+            elevation: const WidgetStatePropertyAll(0),
+            fixedSize: const WidgetStatePropertyAll(Size(double.infinity, 45)),
             backgroundColor:
-                WidgetStatePropertyAll(Colors.red.shade100.withOpacity(0.2)),
-            foregroundColor: WidgetStatePropertyAll(Colors.red),
-            side: WidgetStatePropertyAll(BorderSide(color: Colors.red)),
+                WidgetStatePropertyAll(Colors.red.shade100.withAlpha(51)),
+            foregroundColor: const WidgetStatePropertyAll(Colors.red),
+            side: const WidgetStatePropertyAll(BorderSide(color: Colors.red)),
             overlayColor: WidgetStatePropertyAll(Colors.red.shade500)),
         onPressed: () async {
           final confirm = await showAlertDialog(
@@ -46,7 +46,7 @@ class DeleteButton extends StatelessWidget {
             onPressed!.call();
           }
         },
-        label: Text("Delete"),
+        label: const Text("Delete"),
       ),
     );
   }

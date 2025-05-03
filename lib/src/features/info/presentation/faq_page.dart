@@ -53,10 +53,8 @@ class _FAQPageState extends State<FAQPage> {
                     title: Text(question),
                     children: [
                       Container(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withOpacity(0.1),
+                        color:
+                            Theme.of(context).colorScheme.primary.withAlpha(26),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: MarkdownBody(data: answer),

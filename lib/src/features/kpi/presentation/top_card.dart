@@ -22,7 +22,7 @@ class TopCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundColor: theme.colorScheme.background.withOpacity(0.5),
+          backgroundColor: theme.colorScheme.surface.withAlpha(128),
           radius: 25,
           child: icon,
         ),

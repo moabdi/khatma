@@ -52,7 +52,7 @@ class ToReadPartTiles extends ConsumerWidget {
                       part,
                       color: color,
                       trailing: CircleAvatar(
-                        backgroundColor: color.withOpacity(.2),
+                        backgroundColor: color.withAlpha(51),
                         child: IconButton(
                           icon: const Icon(Icons.auto_stories, size: 18),
                           color: color,

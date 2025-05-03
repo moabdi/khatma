@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_extention.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class AnimatedKhatmaChart extends StatefulWidget {
@@ -42,7 +41,7 @@ class _AnimatedKhatmaChartState extends State<AnimatedKhatmaChart> {
                 ),
           ),
           progressColor: widget.khatma.style.hexColor,
-          backgroundColor: widget.khatma.style.hexColor.withOpacity(.2),
+          backgroundColor: widget.khatma.style.hexColor.withAlpha(51),
         );
       },
     );

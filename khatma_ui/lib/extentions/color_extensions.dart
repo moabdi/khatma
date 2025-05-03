@@ -32,7 +32,17 @@ extension ColorExtension on Color {
   }
 
   String toHex() =>
-      '#${(value & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
+      '#${(toARGB32() & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
+
+  Color applyOpacity(double opacity) {
+    assert(opacity >= 0 && opacity <= 1);
+    return withValues(
+      alpha: a * opacity,
+      red: r,
+      green: g,
+      blue: b,
+    );
+  }
 }
 
 class HexColor extends Color {

@@ -43,7 +43,7 @@ class ProfileMenuPage extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.amber.withOpacity(0.1),
+        color: Colors.amber.withAlpha(26),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(

@@ -27,8 +27,8 @@ class KhatmaColorPicker extends StatelessWidget {
               itemCount: khatmaColorHexList.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
-                  splashColor: khatmaColorMap[khatmaColorHexList[index]]!
-                      .withOpacity(.1),
+                  splashColor:
+                      khatmaColorMap[khatmaColorHexList[index]]!.withAlpha(26),
                   borderRadius: BorderRadius.circular(50),
                   onTap: () => onChanged(khatmaColorHexList[index]),
                   child: Container(
