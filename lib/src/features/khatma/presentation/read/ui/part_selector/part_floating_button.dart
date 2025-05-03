@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/constants/snack_bars.dart';
-import 'package:khatma/src/features/khatma/presentation/extentions/khatma_extention.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_extention.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_complete_screen.dart';

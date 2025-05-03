@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
-import 'package:khatma_ui/constants/app_sizes.dart'; // Assuming you have app sizes set
+import 'package:khatma_ui/constants/app_sizes.dart';
 
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});
@@ -133,6 +133,9 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   ),
                 ),
                 gapH24,
+                Text(_email),
+                Text(_message),
+                Text(_name),
               ],
             ),
           ),

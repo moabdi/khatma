@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:khatma/src/features/khatma/presentation/extentions/khatma_extention.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_extention.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:random_string/random_string.dart';

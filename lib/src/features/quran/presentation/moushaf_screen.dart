@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/extentions/color_extensions.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MoushafScreen extends StatefulWidget {

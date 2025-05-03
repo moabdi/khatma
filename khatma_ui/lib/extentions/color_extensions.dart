@@ -30,4 +30,23 @@ extension ColorExtension on Color {
     final a = (this.a + other.a) ~/ 2;
     return Color.fromARGB(a, r, g, b);
   }
+
+  String toHex() =>
+      '#${(value & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF$hexColor";
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+
+extension StringToColor on String {
+  Color toColor() => HexColor(this);
 }

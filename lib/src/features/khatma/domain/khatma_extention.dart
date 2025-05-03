@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/extentions/color_extensions.dart';
 
 extension KhatmaExtension on Khatma {
   double get completionPercent {
@@ -63,7 +63,7 @@ extension KhatmaExtension on Khatma {
 
   KhatmaTheme get style {
     return this.theme ??
-        KhatmaTheme(color: AppTheme.primaryColors.toHex(), icon: "kaaba.ico");
+        KhatmaTheme(color: khatmaColorMap.keys.first, icon: "kaaba.ico");
   }
 }
 

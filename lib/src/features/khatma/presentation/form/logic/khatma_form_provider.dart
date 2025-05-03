@@ -1,8 +1,7 @@
 import 'dart:math';
 
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
-import 'package:khatma/src/themes/theme.dart';
 import 'package:random_string/random_string.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,7 +23,7 @@ class KhatmaForm extends _$KhatmaForm {
       createDate: now,
       startDate: now,
       theme: KhatmaTheme(
-        color: AppTheme.primaryColors.toHex(),
+        color: khatmaColorMap.entries.first.key,
         icon: khatmaIconsMap.keys.elementAt(
           _random.nextInt(khatmaIconsMap.length),
         ),

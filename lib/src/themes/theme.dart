@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:khatma_ui/extentions/color_extensions.dart';
 
 class AppTheme {
   static Color primaryColors = HexColor("#00A862");
@@ -443,27 +444,6 @@ class AppTheme {
       ),
     );
   }
-}
-
-class HexColor extends Color {
-  static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll("#", "");
-    if (hexColor.length == 6) {
-      hexColor = "FF$hexColor";
-    }
-    return int.parse(hexColor, radix: 16);
-  }
-
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-}
-
-extension ColorToHex on Color {
-  String toHex() =>
-      '#${(value & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
-}
-
-extension StringToColor on String {
-  Color toColor() => HexColor(this);
 }
 
 extension CustomColorScheme on ColorScheme {
