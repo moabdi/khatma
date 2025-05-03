@@ -116,15 +116,21 @@ flutter run -d chrome lib/main.dart
 
 ---
 
-## 📂 Project Structure (Example)
+## 📂 Project Structure
 
 ```
 lib/
 ├── main.dart
-├── core/
 ├── features/
-├── models/
-├── services/
+├──── authentication/
+├──── khatma/
+├────── application/
+├────── data/
+├────── domain/
+├────── presentation/
+├── i18n/
+├── themes/
+├── routing/
 └── firebase_options.dart
 ```
 
