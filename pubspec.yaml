@@ -17,23 +17,18 @@ dependencies:
     sdk: flutter
   intl: any
   go_router: ^12.1.1
-  flutter_riverpod: ^2.6.1
-  freezed: ^3.0.6
-  riverpod_annotation: ^2.6.1
-  freezed_annotation: ^3.0.0
-  analyzer: ^7.3.0
-  firebase_core: 3.3.0
-  firebase_ui_auth: 1.15.0
-  firebase_auth: 5.1.4
-  firebase_ui_localizations: 1.12.0
-  firebase_analytics: ^11.2.1
-  rxdart: ^0.28.0
+  flutter_riverpod: ^3.0.0-dev.0
+  rxdart: ^0.27.7
   google_fonts: ^6.1.0
   font_awesome_flutter: ^10.3.0
   webview_flutter: ^4.0.2
   fl_chart: ^0.64.0
   modal_bottom_sheet: ^2.1.2
+  freezed: ^2.5.2
+  analyzer: ^6.4.0
   meta: ^1.12.0
+  riverpod_annotation: ^3.0.0-dev.0
+  freezed_annotation: ^2.4.4
   hexcolor: ^3.0.1
   percent_indicator: ^4.2.3
   readmore: ^2.2.0
@@ -50,8 +45,13 @@ dependencies:
   path: ^1.8.2
   time_machine: ^0.9.17
   animated_text_kit: ^4.2.2
+  firebase_core: 3.3.0
+  firebase_ui_auth: 1.15.0
+  firebase_auth: 5.1.4
+  firebase_ui_localizations: 1.12.0
   cloud_firestore: 5.2.1
   cached_network_image: ^3.4.0
+  firebase_analytics: ^11.2.1
   random_string: ^2.3.1
   dotted_line: ^3.2.3
   wave: ^0.2.2
@@ -63,13 +63,13 @@ dependencies:
   flutter_markdown: ^0.7.7
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
-  build_runner: ^2.4.7
-  copy_with_extension: ^6.0.1
-  riverpod_generator: ^2.6.5
-  json_serializable: ^6.9.5
-  custom_lint: ^0.7.5
-  riverpod_lint: ^2.6.5
+  flutter_lints: ^3.0.1
+  build_runner: ^2.4.6
+  copy_with_extension_gen: ^5.0.4
+  riverpod_generator: ^3.0.0-dev.2
+  custom_lint: ^0.5.3
+  riverpod_lint: ^3.0.0-dev.1
+  json_serializable: ^6.8.0
 
 # Custom app icon. For more info see: https://pub.dev/packages/flutterpub run flutter_launcher_icons_launcher_icons
 flutter_icons:

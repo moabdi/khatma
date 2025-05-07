@@ -6,7 +6,7 @@ part 'khatma_history.freezed.dart';
 part 'khatma_history.g.dart';
 
 @freezed
-abstract class CompletionHistory with _$CompletionHistory {
+class CompletionHistory with _$CompletionHistory {
   const factory CompletionHistory({
     KhatmaID? khatmaId,
     @DateConverter() required DateTime startDate,
