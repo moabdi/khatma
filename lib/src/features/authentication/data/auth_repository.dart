@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/authentication/data/firebase_app_user.dart';
 import 'package:khatma/src/features/authentication/domain/app_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -55,26 +56,24 @@ class AuthRepository {
 }
 
 @Riverpod(keepAlive: true)
-AuthRepository authRepository(AuthRepositoryRef ref) {
+AuthRepository authRepository(Ref ref) {
   return AuthRepository(FirebaseAuth.instance);
 }
 
-// * Using keepAlive since other providers need it to be an
-// * [AlwaysAliveProviderListenable]
 @Riverpod(keepAlive: true)
-Stream<AppUser?> authStateChanges(AuthStateChangesRef ref) {
+Stream<AppUser?> authStateChanges(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.authStateChanges();
 }
 
 @Riverpod(keepAlive: true)
-Stream<AppUser?> idTokenChanges(IdTokenChangesRef ref) {
+Stream<AppUser?> idTokenChanges(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.idTokenChanges();
 }
 
 @riverpod
-FutureOr<bool> isCurrentUserAdmin(IsCurrentUserAdminRef ref) {
+FutureOr<bool> isCurrentUserAdmin(Ref ref) {
   final user = ref.watch(idTokenChangesProvider).value;
   if (user != null) {
     return user.isAdmin();
