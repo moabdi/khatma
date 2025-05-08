@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/authentication/application/auth_service.dart';
 import 'package:khatma/src/features/authentication/presentation/login/email_password_login_form_type.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,12 +24,12 @@ class EmailPasswordSignInController extends _$EmailPasswordSignInController {
 
   Future<void> _authenticate(
       String email, String password, EmailPasswordSignInFormType formType) {
-    final authRepository = ref.read(authRepositoryProvider);
+    final authService = ref.read(authServiceProvider.notifier);
     switch (formType) {
       case EmailPasswordSignInFormType.signIn:
-        return authRepository.signInWithEmailAndPassword(email, password);
+        return authService.signInWithEmailAndPassword(email, password);
       case EmailPasswordSignInFormType.register:
-        return authRepository.createUserWithEmailAndPassword(email, password);
+        return authService.createUserWithEmailAndPassword(email, password);
     }
   }
 }

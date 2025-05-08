@@ -31,7 +31,6 @@ void main() async {
   });
 
   registerErrorHandlers();
-
   runApp(const ProviderScope(child: MainApp()));
 }
 

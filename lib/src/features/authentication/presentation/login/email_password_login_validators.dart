@@ -2,7 +2,6 @@ import 'package:khatma/src/features/authentication/presentation/login/email_pass
 import 'package:khatma/src/features/authentication/presentation/login/string_validators.dart';
 import 'package:khatma/src/i18n/string_hardcoded.dart';
 
-/// Mixin class to be used for client-side email & password validation
 mixin EmailAndPasswordValidators {
   final StringValidator emailSubmitValidator = EmailSubmitRegexValidator();
   final StringValidator passwordRegisterSubmitValidator =
