@@ -12,8 +12,13 @@ class AuthRepository {
   final FirebaseAuth _auth;
 
   Future<void> signInAnonymously() async {
+    print('[AuthRepository] Checking if user is already signed in');
     if (FirebaseAuth.instance.currentUser == null) {
+      print('[AuthRepository] No user found, signing in anonymously...');
       await _auth.signInAnonymously();
+      print('[AuthRepository] Signed in anonymously ${_auth.currentUser?.uid}');
+    } else {
+      print('[AuthRepository] Already signed in: ${_auth.currentUser?.uid}');
     }
   }
 
@@ -50,8 +55,11 @@ class AuthRepository {
   AppUser? get currentUser => _convertUser(_auth.currentUser);
 
   /// Helper method to convert a [User] to an [AppUser]
-  AppUser? _convertUser(User? user) =>
-      user != null ? FirebaseAppUser(user) : null;
+  AppUser? _convertUser(User? user) {
+    print('[AuthRepository] Converting Firebase User to AppUser: $user');
+    return user != null ? FirebaseAppUser(user) : null;
+  }
+
 }
 
 @Riverpod(keepAlive: true)
@@ -64,13 +72,21 @@ AuthRepository authRepository(AuthRepositoryRef ref) {
 @Riverpod(keepAlive: true)
 Stream<AppUser?> authStateChanges(AuthStateChangesRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  return authRepository.authStateChanges();
+  print('[authStateChangesProvider] Watching auth state stream');
+  return authRepository.authStateChanges().map((user) {
+    print('[authStateChangesProvider] New auth state: $user');
+    return user;
+  });
 }
 
 @Riverpod(keepAlive: true)
 Stream<AppUser?> idTokenChanges(IdTokenChangesRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  return authRepository.idTokenChanges();
+  print('[idTokenChangesProvider] Watching token stream');
+  return authRepository.idTokenChanges().map((user) {
+    print('[idTokenChangesProvider] New token change: $user');
+    return user;
+  });
 }
 
 @riverpod

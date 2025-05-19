@@ -9,7 +9,7 @@ typedef KhatmaID = String;
 @freezed
 abstract class Khatma with _$Khatma {
   const factory Khatma({
-    @JsonKey(includeFromJson: true, includeToJson: false) KhatmaID? id,
+    KhatmaID? id,
     required String code,
     required String name,
     required SplitUnit unit,

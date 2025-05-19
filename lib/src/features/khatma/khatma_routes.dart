@@ -18,6 +18,7 @@ List<GoRoute> khatmaRoutes(Ref ref) => [
             name: AppRoute.addKhatma.name,
             builder: (context, state) {
               ref.invalidate(khatmaFormProvider);
+              print('[ROUTE] addKhatma khatma');
               return AddKhatmaScreen();
             },
           ),
@@ -26,6 +27,7 @@ List<GoRoute> khatmaRoutes(Ref ref) => [
             name: AppRoute.khatmaDetails.name,
             builder: (context, state) {
               final khatmaId = state.pathParameters['id']!;
+              print('[ROUTE] khatmaDetails khatma with id: $khatmaId');
               return KhatmaReadScreen(khatmaId: khatmaId);
             },
             routes: [
@@ -34,6 +36,7 @@ List<GoRoute> khatmaRoutes(Ref ref) => [
                 name: AppRoute.editKhatma.name,
                 builder: (context, state) {
                   final khatmaId = state.pathParameters['id']!;
+                  print('[ROUTE] editting khatma with id: $khatmaId');
                   return AddKhatmaScreen(khatmaId: khatmaId);
                 },
               ),

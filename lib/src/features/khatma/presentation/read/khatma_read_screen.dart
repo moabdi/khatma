@@ -30,11 +30,14 @@ class KhatmaReadScreen extends ConsumerWidget {
     return AsyncValueWidget<Khatma?>(
       loading: const LoadingListTile(),
       value: khatmaValue,
-      data: (khatma) => khatma == null
-          ? EmptyPlaceholderWidget(message: 'Khatma not found')
-          : khatma.isCompleted
-              ? KhatmaSuccessComplete(khatma: khatma)
-              : buildContent(khatma, context),
+      data: (khatma) {
+        if (khatma == null) {
+          return const EmptyPlaceholderWidget(message: 'Khatma not found');
+        }
+        return khatma.isCompleted
+            ? KhatmaSuccessComplete(khatma: khatma)
+            : buildContent(khatma, context);
+      },
     );
   }
 

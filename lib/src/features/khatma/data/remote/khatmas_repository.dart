@@ -1,20 +1,32 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hive/hive.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/utils/delay.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:uuid/uuid.dart';
+
+import '../local/have_khatma_repository.dart';
 
 part 'khatmas_repository.g.dart';
 
 class KhatmasRepository {
-  const KhatmasRepository(this._firestore);
+  const KhatmasRepository(this._firestore, this._localRepo, {required bool useLocal});
   final FirebaseFirestore _firestore;
 
+  final bool useLocal = true;
+
+  final LocalKhatmaRepository _localRepo;
+
   static String khatmasPath(String userUid) => 'users/$userUid/khatmat';
+
   static String khatmaPath(String userUid, KhatmaID id) =>
       'users/$userUid/khatmat/$id';
+
 
   Future<List<Khatma>> fetchKhatmasList(String userId) async {
     final ref = _khatmasRef(userId);
@@ -29,27 +41,49 @@ class KhatmasRepository {
   }
 
   Future<Khatma?> fetchKhatma(String userId, KhatmaID id) async {
-    final ref = _khatmaRef(userId, id);
-    final snapshot = await ref.get();
-    return snapshot.data();
+    if (useLocal) {
+      return _localRepo.getById(id);
+    } else {
+      final ref = _khatmaRef(userId, id);
+      final snapshot = await ref.get();
+      return snapshot.data();
+    }
   }
 
   Stream<Khatma?> watchKhatma(String userId, KhatmaID id) {
-    final ref = _khatmaRef(userId, id);
-    return ref.snapshots().map((snapshot) => snapshot.data());
+    if (useLocal) {
+      // fallback to just fetch once
+      return Stream.fromFuture(_localRepo.getById(id));
+    } else {
+      final ref = _khatmaRef(userId, id);
+      return ref.snapshots().map((snapshot) => snapshot.data());
+    }
   }
 
   Future create(String userId, Khatma khatma) async {
-    return _firestore.collection(khatmasPath(userId)).add(khatma.toJson());
+    if (useLocal) {
+      final id = khatma.id ?? const Uuid().v4();
+      await _localRepo.save(khatma.copyWith(id: id));
+    } else {
+      return _firestore.collection(khatmasPath(userId)).add(khatma.toJson());
+    }
   }
 
   Future update(String userId, Khatma khatma) async {
-    final ref = _khatmaRef(userId, khatma.id!);
-    return ref.set(khatma);
+    if (useLocal) {
+      await _localRepo.save(khatma);
+    } else {
+      final ref = _khatmaRef(userId, khatma.id!);
+      return ref.set(khatma);
+    }
   }
 
-  Future<void> deleteById(String userId, KhatmaID id) {
-    return _firestore.doc(khatmaPath(userId, id)).delete();
+  Future<void> deleteById(String userId, KhatmaID id) async {
+    if (useLocal) {
+      await _localRepo.deleteById(id);
+    } else {
+      return _firestore.doc(khatmaPath(userId, id)).delete();
+    }
   }
 
   DocumentReference<Khatma> _khatmaRef(String userId, KhatmaID id) =>
@@ -88,7 +122,9 @@ class KhatmasRepository {
 
 @Riverpod(keepAlive: true)
 KhatmasRepository khatmasRepository(KhatmasRepositoryRef ref) {
-  return KhatmasRepository(FirebaseFirestore.instance);
+  final firestore = FirebaseFirestore.instance;
+  final localRepo = ref.watch(localKhatmaRepositoryProvider);
+  return KhatmasRepository(firestore, localRepo, useLocal: true);
 }
 
 @riverpod

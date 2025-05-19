@@ -1,0 +1,2 @@
+/Users/perso/StudioProjects/khatma-mobile/android/app/.cxx/Debug/6c103x55/x86/CMakeFiles/rebuild_cache.dir
+/Users/perso/StudioProjects/khatma-mobile/android/app/.cxx/Debug/6c103x55/x86/CMakeFiles/edit_cache.dir

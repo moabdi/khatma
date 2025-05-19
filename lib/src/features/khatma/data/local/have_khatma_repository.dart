@@ -41,8 +41,6 @@ class HaveKhatmaRepository extends LocalKhatmaRepository {
   }
 
   Future<List<Khatma>> fetchAll() async {
-    // await test();
-    // delay(true);
     var box = await openBox();
 
     var list = box.values
