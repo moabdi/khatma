@@ -67,15 +67,31 @@ class KhatmatListView extends ConsumerWidget {
   }
 
   Widget buildCardKhatma(Khatma khatma, WidgetRef ref, BuildContext context) {
-    bool animate = DateTime.now().difference(khatma.startDate).inMinutes == 0;
+    final now = DateTime.now();
+    final differenceInMinutes = now.difference(khatma.startDate).inMinutes;
+    bool animate = differenceInMinutes == 0;
+
+    print('[buildCardKhatma] Now: $now');
+    print('[buildCardKhatma] Khatma Start Date: ${khatma.startDate}');
+    print('[buildCardKhatma] Difference in minutes: $differenceInMinutes');
+    print('[buildCardKhatma] Animate: $animate');
+    print('[buildCardKhatma] Khatma ID: ${khatma.id}');
+    print('[buildCardKhatma] Khatma Name: ${khatma.name}');
+
     var khatmaTile = KhatmaTile(
       khatma: khatma,
       onPressed: () {
+        print('[onPressed] Tapped Khatma: ${khatma.name} (${khatma.id})');
+
         ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
-        context.goNamed(AppRoute.khatmaDetails.name,
-            pathParameters: {'id': khatma.id!});
+
+        context.goNamed(
+          AppRoute.khatmaDetails.name,
+          pathParameters: {'id': khatma.id!},
+        );
       },
     );
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Card(
@@ -85,4 +101,5 @@ class KhatmatListView extends ConsumerWidget {
       ),
     );
   }
+
 }

@@ -15,8 +15,9 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(authRepositoryProvider).signInAnonymously();
-
+    ref.read(authRepositoryProvider).signInAnonymously().then((_) {
+      print('[MainApp] Anonymous sign-in triggered');
+    });
     return MaterialApp.router(
       localizationsDelegates: [
         AppLocalizations.delegate,
