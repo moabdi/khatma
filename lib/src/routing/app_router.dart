@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:khatma/src/features/info/info_routes.dart';
 import 'package:khatma/src/features/khatma/khatma_routes.dart';
 import 'package:khatma/src/features/home/presentation/home_page.dart';
+import 'package:khatma/src/features/onboarding/onboarding_screen.dart';
 import 'package:khatma/src/features/profil/profile_routes.dart';
 import 'package:khatma/src/features/quran/quran_routes.dart';
+import 'package:khatma/src/features/splash/splash.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,6 +34,9 @@ enum AppRoute {
   recitation,
   khatma,
   douaaKhatm,
+  onboarding,
+  splash,
+  link,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
@@ -47,9 +52,24 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: '/',
-        name: AppRoute.home.name,
-        builder: (context, state) => const KhatmatListScreen(),
+        name: AppRoute.splash.name,
+        builder: (context, state) => const SplashScreen(),
         routes: [
+          GoRoute(
+            name: AppRoute.onboarding.name,
+            path: 'onboarding',
+            builder: (context, state) => const OnboardingScreen(),
+          ),
+          GoRoute(
+            name: AppRoute.link.name,
+            path: 'link',
+            builder: (context, state) => const SplashScreen(),
+          ),
+          GoRoute(
+            name: AppRoute.home.name,
+            path: 'khatmat',
+            builder: (context, state) => const KhatmatListScreen(),
+          ),
           ...khatmaRoutes(ref),
           ...profileRoutes,
           ...quranRoutes,
@@ -57,6 +77,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ],
       ),
     ],
-    errorBuilder: (context, state) => const NotFoundScreen(),
+    errorBuilder: (context, state) =>
+        NotFoundScreen(errorMessage: state.error.toString()),
   );
 });

@@ -54,15 +54,13 @@ class AddKhatmaScreen extends ConsumerWidget {
     final nameController = TextEditingController(text: khatma.name);
     final descController = TextEditingController(text: khatma.description);
     return SafeArea(
-      child: SingleChildScrollView(
-        child: FocusScope(
-          node: node,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            color: khatma.style.hexColor.withAlpha(26),
-            child: _buildForm(
-                context, khatma, ref, nameController, descController),
-          ),
+      child: FocusScope(
+        node: node,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          color: khatma.style.hexColor.withAlpha(26),
+          child:
+              _buildForm(context, khatma, ref, nameController, descController),
         ),
       ),
     );
@@ -92,12 +90,10 @@ class AddKhatmaScreen extends ConsumerWidget {
           gapH16,
           _buildEnableRepeat(khatma, ref),
           Spacer(),
-          gapH20,
           _buildSaveButton(khatma, context, ref),
           gapH16,
           _buildDeleteButton(context, ref),
-          gapH64,
-          gapH16,
+          gapH24,
         ],
       ),
     );

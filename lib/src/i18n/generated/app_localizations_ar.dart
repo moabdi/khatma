@@ -451,4 +451,37 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get theme => 'النمط';
+
+  @override
+  String get onboarding1Title => 'أكمل ختمتك';
+
+  @override
+  String get onboarding1Description => 'تابع تلاوتك اليومية للقرآن الكريم وتتبع تقدمك نحو إكمال الختمة.';
+
+  @override
+  String get onboarding2Title => 'تلاوات جميلة';
+
+  @override
+  String get onboarding2Description => 'استمع لتلاوات واضحة من أشهر القراء مع تمييز الكلمات أثناء التلاوة.';
+
+  @override
+  String get onboarding3Title => 'تذكيرات يومية';
+
+  @override
+  String get onboarding3Description => 'اضبط تذكيرات روحانية للحفاظ على صلتك بالقرآن طوال يومك.';
+
+  @override
+  String get onboarding4Title => 'فهم عميق';
+
+  @override
+  String get onboarding4Description => 'احصل على شروحات التفسير والترجمات لإثراء فهمك القرآني.';
+
+  @override
+  String get skipButton => 'تخطي';
+
+  @override
+  String get continueButton => 'متابعة';
+
+  @override
+  String get startButton => 'ابدأ رحلتك مع القرآن';
 }

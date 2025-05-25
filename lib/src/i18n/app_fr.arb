@@ -93,5 +93,19 @@
   "confirmDeleteKhatma": "Après suppression, cette khatma sera définitivement supprimée",
   "congratulation": "Félicitations !",
   "emailInputLabel": "Entrez votre email",
-  "passwordInputLabel": "Entrez votre mot de passe"
+  "passwordInputLabel": "Entrez votre mot de passe",  
+  "onboarding1Title": "Complète ta Khatma",
+  "onboarding1Description": "Enregistre ta lecture quotidienne du Coran et visualise ta progression vers son achèvement.",
+  "onboarding2Title": "Récitations Magnifiques",
+  "onboarding2Description": "Plonge-toi dans un audio cristallin de récitateurs renommés avec un surlignage mot par mot.",
+  "onboarding3Title": "Rappels Quotidiens",
+  "onboarding3Description": "Définis des rappels spirituels pour maintenir ton lien avec le Coran tout au long de la journée.",
+  "onboarding4Title": "Compréhension Approfondie",
+  "onboarding4Description": "Accède à plusieurs explications de tafsir et traductions pour enrichir ta compréhension du Coran.",
+  "skipButton": "Passer",
+  "continueButton": "Continuer",
+  "startButton": "Commence ton voyage avec le Coran",
+  "@onboarding1Title": {
+    "description": "Titre de la première page concernant le suivi de la Khatma"
+  }
 }
