@@ -451,4 +451,37 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get theme => 'Thème';
+
+  @override
+  String get onboarding1Title => 'Complète ta Khatma';
+
+  @override
+  String get onboarding1Description => 'Enregistre ta lecture quotidienne du Coran et visualise ta progression vers son achèvement.';
+
+  @override
+  String get onboarding2Title => 'Récitations Magnifiques';
+
+  @override
+  String get onboarding2Description => 'Plonge-toi dans un audio cristallin de récitateurs renommés avec un surlignage mot par mot.';
+
+  @override
+  String get onboarding3Title => 'Rappels Quotidiens';
+
+  @override
+  String get onboarding3Description => 'Définis des rappels spirituels pour maintenir ton lien avec le Coran tout au long de la journée.';
+
+  @override
+  String get onboarding4Title => 'Compréhension Approfondie';
+
+  @override
+  String get onboarding4Description => 'Accède à plusieurs explications de tafsir et traductions pour enrichir ta compréhension du Coran.';
+
+  @override
+  String get skipButton => 'Passer';
+
+  @override
+  String get continueButton => 'Continuer';
+
+  @override
+  String get startButton => 'Commence ton voyage avec le Coran';
 }

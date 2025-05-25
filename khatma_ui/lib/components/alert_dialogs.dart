@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma_ui/extentions/string_extensions.dart';
+import 'package:khatma_ui/khatma_ui.dart';
 
 Future<bool?> showAlertDialog({
   required BuildContext context,

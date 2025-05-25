@@ -176,7 +176,7 @@ class _EmailPasswordSignInContentsState
                 onEditingComplete: () => _passwordEditingComplete(),
               ),
               gapH8,
-              PrimaryButton(
+              PrimaryButton2(
                 text: _formType.primaryButtonText,
                 isLoading: state.isLoading,
                 onPressed: state.isLoading ? null : () => _submit(),

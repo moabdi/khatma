@@ -13,9 +13,7 @@ class RepeatKhatmaTile extends StatelessWidget {
     return SwitchListTile(
       value: enabled,
       title: Text(AppLocalizations.of(context).repeat),
-      subtitle: enabled
-          ? Text(AppLocalizations.of(context).autoRepeatDescription)
-          : Text(AppLocalizations.of(context).noRepeatDescription),
+      subtitle: Text(AppLocalizations.of(context).autoRepeatDescription),
       secondary: Icon(
         Icons.autorenew,
         color: enabled ? Theme.of(context).primaryColor : Colors.blueGrey,

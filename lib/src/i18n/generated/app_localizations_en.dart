@@ -117,13 +117,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get every => 'Every';
 
   @override
-  String get repeat => 'Repeat';
+  String get repeat => 'Repeating Khatma';
 
   @override
   String get noRepeat => 'No repeat';
 
   @override
-  String get autoRepeatDescription => 'Khatma will be repeated automatically after completion';
+  String get autoRepeatDescription => 'Automatically restart when completed';
 
   @override
   String repeatEverySelectedDaysDescription(Object count, Object days) {
@@ -146,10 +146,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get noRepeatDescription => 'This khatma will not be repeated';
+  String get noRepeatDescription => 'Automatically restart when completed';
 
   @override
-  String get repeatDescription => 'Active khatma recreation';
+  String get repeatDescription => 'Automatically restart when completed';
 
   @override
   String get repeatEvery => 'Repeat very';
@@ -451,4 +451,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get theme => 'Theme';
+
+  @override
+  String get onboarding1Title => 'Complete Your Khatma';
+
+  @override
+  String get onboarding1Description => 'Track your daily Quran reading and visualize your progress toward completing the Holy Quran.';
+
+  @override
+  String get onboarding2Title => 'Beautiful Recitations';
+
+  @override
+  String get onboarding2Description => 'Immerse yourself with crystal-clear audio from renowned reciters with word-by-word highlighting.';
+
+  @override
+  String get onboarding3Title => 'Daily Reminders';
+
+  @override
+  String get onboarding3Description => 'Set spiritual reminders to maintain your connection with the Quran throughout your day.';
+
+  @override
+  String get onboarding4Title => 'Deep Understanding';
+
+  @override
+  String get onboarding4Description => 'Access multiple tafsir explanations and translations to enrich your Quranic knowledge.';
+
+  @override
+  String get skipButton => 'Skip';
+
+  @override
+  String get continueButton => 'Continue';
+
+  @override
+  String get startButton => 'Begin Quran Journey';
 }

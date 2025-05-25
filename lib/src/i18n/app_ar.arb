@@ -93,5 +93,19 @@
     "confirmDeleteKhatma": "بعد الحذف، سيتم حذف هذه الختمة نهائيًا",
     "congratulation": "تهانينا!",
     "emailInputLabel": "أدخل بريدك الإلكتروني",
-    "passwordInputLabel": "أدخل كلمة المرور"
+    "passwordInputLabel": "أدخل كلمة المرور",
+    "onboarding1Title": "أكمل ختمتك",
+    "onboarding1Description": "تابع تلاوتك اليومية للقرآن الكريم وتتبع تقدمك نحو إكمال الختمة.",
+    "onboarding2Title": "تلاوات جميلة",
+    "onboarding2Description": "استمع لتلاوات واضحة من أشهر القراء مع تمييز الكلمات أثناء التلاوة.",
+    "onboarding3Title": "تذكيرات يومية",
+    "onboarding3Description": "اضبط تذكيرات روحانية للحفاظ على صلتك بالقرآن طوال يومك.",
+    "onboarding4Title": "فهم عميق",
+    "onboarding4Description": "احصل على شروحات التفسير والترجمات لإثراء فهمك القرآني.",
+    "skipButton": "تخطي",
+    "continueButton": "متابعة",
+    "startButton": "ابدأ رحلتك مع القرآن",
+    "@onboarding1Title": {
+        "description": "عنوان الشاشة الأولى عن متابعة الختمة"
+    }
 }

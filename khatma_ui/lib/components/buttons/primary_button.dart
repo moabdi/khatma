@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khatma_ui/constants/app_sizes.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -21,7 +20,6 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Sizes.p48,
       width: width,
       decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,

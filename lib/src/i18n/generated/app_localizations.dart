@@ -316,7 +316,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeat.
   ///
   /// In en, this message translates to:
-  /// **'Repeat'**
+  /// **'Repeating Khatma'**
   String get repeat;
 
   /// No description provided for @noRepeat.
@@ -328,7 +328,7 @@ abstract class AppLocalizations {
   /// No description provided for @autoRepeatDescription.
   ///
   /// In en, this message translates to:
-  /// **'Khatma will be repeated automatically after completion'**
+  /// **'Automatically restart when completed'**
   String get autoRepeatDescription;
 
   /// No description provided for @repeatEverySelectedDaysDescription.
@@ -358,13 +358,13 @@ abstract class AppLocalizations {
   /// No description provided for @noRepeatDescription.
   ///
   /// In en, this message translates to:
-  /// **'This khatma will not be repeated'**
+  /// **'Automatically restart when completed'**
   String get noRepeatDescription;
 
   /// No description provided for @repeatDescription.
   ///
   /// In en, this message translates to:
-  /// **'Active khatma recreation'**
+  /// **'Automatically restart when completed'**
   String get repeatDescription;
 
   /// No description provided for @repeatEvery.
@@ -666,6 +666,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Theme'**
   String get theme;
+
+  /// Title for first onboarding screen about Khatma tracking
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Your Khatma'**
+  String get onboarding1Title;
+
+  /// No description provided for @onboarding1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your daily Quran reading and visualize your progress toward completing the Holy Quran.'**
+  String get onboarding1Description;
+
+  /// No description provided for @onboarding2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Beautiful Recitations'**
+  String get onboarding2Title;
+
+  /// No description provided for @onboarding2Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Immerse yourself with crystal-clear audio from renowned reciters with word-by-word highlighting.'**
+  String get onboarding2Description;
+
+  /// No description provided for @onboarding3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Reminders'**
+  String get onboarding3Title;
+
+  /// No description provided for @onboarding3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Set spiritual reminders to maintain your connection with the Quran throughout your day.'**
+  String get onboarding3Description;
+
+  /// No description provided for @onboarding4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Understanding'**
+  String get onboarding4Title;
+
+  /// No description provided for @onboarding4Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Access multiple tafsir explanations and translations to enrich your Quranic knowledge.'**
+  String get onboarding4Description;
+
+  /// No description provided for @skipButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skipButton;
+
+  /// No description provided for @continueButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueButton;
+
+  /// No description provided for @startButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin Quran Journey'**
+  String get startButton;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
