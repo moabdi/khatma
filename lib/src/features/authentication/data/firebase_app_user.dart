@@ -15,6 +15,9 @@ class FirebaseAppUser implements AppUser {
   @override
   bool get emailVerified => _user.emailVerified;
 
+  @override
+  bool get isAnonymous => _user.isAnonymous;
+
   // * Note: after calling this method, [emailVerified] isn't updated until the
   // * next time an ID token is generated for the user.
   // * Read this for more info: https://stackoverflow.com/a/63258198/436422

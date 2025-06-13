@@ -34,4 +34,17 @@ class KhatmaForm extends _$KhatmaForm {
   void update(Khatma updatedKhatma) {
     state = updatedKhatma;
   }
+
+  void updateUnit(Khatma khatma, SplitUnit value) {
+    if (khatma.share != null &&
+        khatma.share!.maxPartToRead != null &&
+        khatma.share!.maxPartToRead! > value.count) {
+      ref.read(khatmaFormProvider.notifier).update(khatma.copyWith(
+              share: khatma.share!.copyWith(
+            maxPartToRead: 1,
+            maxPartToReserve: 1,
+          )));
+    }
+    state = khatma.copyWith(unit: value);
+  }
 }

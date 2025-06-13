@@ -21,9 +21,12 @@ class KhatmaTile extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
       hoverColor: khatma.style.hexColor.withAlpha(26),
-      leading: CircleAvatar(
-        backgroundColor: khatma.style.hexColor.withAlpha(26),
-        child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
+      leading: SizedBox(
+        width: 40,
+        child: CircleAvatar(
+          backgroundColor: khatma.style.hexColor.withAlpha(26),
+          child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
+        ),
       ),
       title: Text(khatma.name),
       subtitle: Column(

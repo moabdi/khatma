@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
     if (!mounted) return;
 
     if (kIsWeb) {
-      context.replaceNamed(AppRoute.login.name);
+      context.replaceNamed(AppRoute.home.name);
     } else if (onboardingCompleted) {
       context.replaceNamed(AppRoute.home.name);
     } else {

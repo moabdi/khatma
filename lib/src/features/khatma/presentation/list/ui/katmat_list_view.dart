@@ -15,16 +15,7 @@ class KhatmatListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatmatListValue = ref.watch(khatmaListProvider);
-    if (khatmatListValue.hasError) {
-      return Center(
-        child: const Card(
-          child: Center(
-            child: Text("Vous n'avez pas de khatma en cours"),
-          ),
-        ),
-      );
-    }
+    final khatmatListValue = ref.watch(khatmaNotifierProvider).khatmas;
     return AsyncValueWidget<List<Khatma>>(
       loading: const LoadingListTile(itemCount: 10),
       value: khatmatListValue,
@@ -71,7 +62,7 @@ class KhatmatListView extends ConsumerWidget {
     var khatmaTile = KhatmaTile(
       khatma: khatma,
       onPressed: () {
-        ref.read(currentKhatmaProvider.notifier).updateValue(khatma);
+        ref.read(khatmaNotifierProvider.notifier).selectKhatma(khatma);
         context.goNamed(AppRoute.khatmaDetails.name,
             pathParameters: {'id': khatma.id!});
       },

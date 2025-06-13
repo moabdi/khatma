@@ -2,17 +2,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma_ui/converters/date_converter.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
-part 'khatma_history.freezed.dart';
-part 'khatma_history.g.dart';
+part 'completion_history.freezed.dart';
+part 'completion_history.g.dart';
 
 @freezed
 abstract class CompletionHistory with _$CompletionHistory {
   const factory CompletionHistory({
+    String? id,
     KhatmaID? khatmaId,
     @DateConverter() required DateTime startDate,
     @DateConverter() required DateTime endDate,
     int? completionMode,
     String? completion,
+    DateTime? lastSync,
+    @Default(false) bool needsSync,
+    @Default(false) bool isDeleted,
   }) = _CompletionHistory;
 
   factory CompletionHistory.fromJson(Map<String, Object?> json) =>

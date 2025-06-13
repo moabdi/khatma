@@ -1,65 +1,95 @@
-import 'dart:convert';
+import 'dart:async';
+import 'package:web/web.dart' as html;
 
-import 'package:khatma/src/fake/test_khatmat.dart';
-import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:localstorage/localstorage.dart';
-import 'package:uuid/uuid.dart';
+import 'package:khatma/src/features/khatma/data/local/base_khatma_repository.dart';
 
-class LocalStorageKhatmaRepository extends LocalKhatmaRepository {
-  static const String khatmaList = "khatmaList";
-  final LocalStorage storage = new LocalStorage('khatmat.json');
+class LocalStorageBox implements StorageBox {
+  final String boxName;
+  final html.Storage _storage = html.window.localStorage;
 
-  Future<void> save(Khatma khatma) async {
-    String jsonString = storage.getItem(khatmaList) ?? '[]';
-    List<dynamic> jsonList = jsonDecode(jsonString);
+  LocalStorageBox(this.boxName);
 
-    List<Khatma> list =
-        jsonList.map((jsonItem) => Khatma.fromJson(jsonItem)).toList();
+  List<String> get keys {
+    final prefix = '${boxName}_';
+    final storageKeys = <String>[];
 
-    int index = list.indexWhere((element) => element.id == khatma.id);
+    for (int i = 0; i < _storage.length; i++) {
+      final key = _storage.key(i);
+      if (key != null && key.startsWith(prefix)) {
+        storageKeys.add(key.substring(prefix.length));
+      }
+    }
+    return storageKeys;
+  }
 
-    if (index != -1) {
-      list[index] = khatma;
-    } else {
-      list.add(khatma);
+  @override
+  Iterable<String> get values {
+    final prefix = '${boxName}_';
+    final storageValues = <String>[];
+
+    for (int i = 0; i < _storage.length; i++) {
+      final key = _storage.key(i);
+      if (key != null && key.startsWith(prefix)) {
+        final value = _storage.getItem(key);
+        if (value != null && value.isNotEmpty) {
+          storageValues.add(value);
+        }
+      }
+    }
+    return storageValues;
+  }
+
+  @override
+  String? get(String key) {
+    return _storage.getItem('${boxName}_$key');
+  }
+
+  @override
+  Future<void> put(String key, String value) async {
+    _storage.setItem('${boxName}_$key', value);
+  }
+
+  @override
+  Future<void> delete(String key) async {
+    _storage.removeItem('${boxName}_$key');
+  }
+
+  @override
+  Future<void> clear() async {
+    final prefix = '${boxName}_';
+    final keysToRemove = <String>[];
+
+    for (int i = 0; i < _storage.length; i++) {
+      final key = _storage.key(i);
+      if (key != null && key.startsWith(prefix)) {
+        keysToRemove.add(key);
+      }
     }
 
-    jsonString = jsonEncode(list.map((khatma) => khatma.toJson()).toList());
-    await storage.setItem(khatmaList, jsonString);
-  }
-
-  Future<Khatma?> getById(String id) async {
-    List<Khatma> list = await fetchAll();
-    Khatma? foundKhatma =
-        list.firstWhere((khatma) => khatma.id == id, orElse: null);
-
-    return foundKhatma;
-  }
-
-  Future<void> deleteById(String id) async {
-    String jsonString = storage.getItem(khatmaList) ?? '[]';
-    List<dynamic> jsonList = jsonDecode(jsonString);
-    List<Khatma> list =
-        jsonList.map((jsonItem) => Khatma.fromJson(jsonItem)).toList();
-    list.removeWhere((khatma) => khatma.id == id);
-    jsonString = jsonEncode(list.map((khatma) => khatma.toJson()).toList());
-    await storage.setItem(khatmaList, jsonString);
-  }
-
-  Future<List<Khatma>> fetchAll() async {
-    if (storage.getItem(khatmaList) == null) {
-      await test();
+    for (String key in keysToRemove) {
+      _storage.removeItem(key);
     }
-    String jsonString = storage.getItem(khatmaList) ?? '[]';
-    List<dynamic> jsonList = jsonDecode(jsonString);
-    return jsonList.map((jsonItem) => Khatma.fromJson(jsonItem)).toList();
+  }
+}
+
+class LocalStorageKhatmaRepository extends BaseKhatmaRepository {
+  @override
+  Future<LocalStorageBox> openKhatmaBox() async {
+    return LocalStorageBox(khatmaBox);
   }
 
-  Future<void> test() async {
-    var uuid = Uuid();
-    kTestKhatmat.forEach(
-      (khatma) async => save(khatma.copyWith(id: uuid.v4())),
-    );
+  @override
+  Future<LocalStorageBox> openHistoryBox() async {
+    return LocalStorageBox(historyBox);
+  }
+
+  @override
+  Iterable<String> getBoxValues(StorageBox box) {
+    return (box as LocalStorageBox).values;
+  }
+
+  @override
+  Future<void> clearBox(StorageBox box) async {
+    await (box as LocalStorageBox).clear();
   }
 }

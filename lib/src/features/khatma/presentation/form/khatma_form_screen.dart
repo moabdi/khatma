@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -16,7 +17,6 @@ import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma_ui/components/khatma_form_tile.dart';
 import 'package:khatma_ui/components/modal_bottom_sheet.dart';
@@ -117,7 +117,7 @@ class AddKhatmaScreen extends ConsumerWidget {
       shadowOffset: 8,
       text: AppLocalizations.of(context).save,
       onPressed: () {
-        ref.read(khatmaControllerProvider.notifier).submit();
+        ref.read(khatmaNotifierProvider.notifier).saveKhatma(khatma);
         Navigator.of(context).pop();
       },
     );
@@ -137,7 +137,10 @@ class AddKhatmaScreen extends ConsumerWidget {
             context,
             Text(AppLocalizations.of(context).cancel),
           );
-          ref.read(khatmaControllerProvider.notifier).delete(khatmaId!).then(
+          ref
+              .read(khatmaNotifierProvider.notifier)
+              .deleteKhatma(khatmaId!)
+              .then(
                 (e) => {
                   ScaffoldMessenger.of(context).showSnackBar(snackBar),
                   Timer(Duration(seconds: 1, microseconds: 100), () {
@@ -229,7 +232,7 @@ class AddKhatmaScreen extends ConsumerWidget {
               UnitSelector(
                   unit: khatma.unit,
                   onSelect: (value) => ref
-                      .read(khatmaControllerProvider.notifier)
+                      .read(khatmaFormProvider.notifier)
                       .updateUnit(khatma, value)),
               AppLocalizations.of(context).splitUnit,
             ),

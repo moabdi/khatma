@@ -484,4 +484,199 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get startButton => 'Commence ton voyage avec le Coran';
+
+  @override
+  String get errorAuthUserNotLoggedIn => 'User not logged in.';
+
+  @override
+  String get errorAuthAnonymousNotAllowed => 'Anonymous login is not allowed.';
+
+  @override
+  String get errorAuthSessionExpired => 'Session has expired.';
+
+  @override
+  String get errorAuthPermissionDenied => 'Permission denied.';
+
+  @override
+  String get errorAuthInvalidAccount => 'Invalid account details.';
+
+  @override
+  String get errorNetConnectionFailed => 'Failed to connect to the internet.';
+
+  @override
+  String get errorNetTimeout => 'Network request timed out.';
+
+  @override
+  String get errorNetServerError => 'Server encountered an error.';
+
+  @override
+  String get errorNetNotFound => 'Requested resource not found.';
+
+  @override
+  String get errorNetUnauthorized => 'Unauthorized access.';
+
+  @override
+  String get errorNetRateLimit => 'Rate limit exceeded.';
+
+  @override
+  String get errorNetBadRequest => 'Bad request sent to server.';
+
+  @override
+  String get errorNetUnavailable => 'Network service is unavailable.';
+
+  @override
+  String get errorSyncGeneralFailure => 'Synchronization failed.';
+
+  @override
+  String get errorSyncConflict => 'Data conflict occurred during sync.';
+
+  @override
+  String get errorSyncCorruptData => 'Data is corrupted and cannot be synced.';
+
+  @override
+  String get errorSyncInProgress => 'A sync is already in progress.';
+
+  @override
+  String get errorSyncPartialFailure => 'Partial sync failure occurred.';
+
+  @override
+  String get errorSyncStatusFailed => 'Failed to retrieve sync status.';
+
+  @override
+  String get errorStorageSaveFailed => 'Failed to save data.';
+
+  @override
+  String get errorStorageDeleteFailed => 'Failed to delete data.';
+
+  @override
+  String get errorStorageLoadFailed => 'Failed to load data.';
+
+  @override
+  String get errorStorageFull => 'Storage is full.';
+
+  @override
+  String get errorStorageCorrupted => 'Storage is corrupted.';
+
+  @override
+  String get errorStoragePermissionDenied => 'Permission denied for storage access.';
+
+  @override
+  String get errorValidationInvalidData => 'Invalid data provided.';
+
+  @override
+  String get errorValidationMissingFields => 'Required fields are missing.';
+
+  @override
+  String get errorValidationInvalidFormat => 'Invalid data format.';
+
+  @override
+  String get errorValidationOutOfRange => 'Value is out of allowed range.';
+
+  @override
+  String get errorValidationInvalidDate => 'Invalid date provided.';
+
+  @override
+  String get errorKhatmaNotFound => 'Khatma not found.';
+
+  @override
+  String get errorKhatmaAlreadyCompleted => 'This Khatma is already completed.';
+
+  @override
+  String get errorKhatmaDeletionNotAllowed => 'Cannot delete this Khatma.';
+
+  @override
+  String get errorKhatmaArchiveFailed => 'Failed to archive Khatma.';
+
+  @override
+  String get errorKhatmaInvalidParts => 'Invalid Khatma parts.';
+
+  @override
+  String get errorKhatmaMarkCompletedFailed => 'Could not mark Khatma as completed.';
+
+  @override
+  String get errorKhatmaRepeatFailed => 'Failed to repeat Khatma.';
+
+  @override
+  String get errorLimitKhatmaMaxReached => 'Maximum number of Khatma reached.';
+
+  @override
+  String get errorLimitStorageQuotaExceeded => 'Storage quota exceeded.';
+
+  @override
+  String get errorLimitCreationNotAllowed => 'Creation not allowed due to limits.';
+
+  @override
+  String get errorHistoryCreateFailed => 'Failed to create history.';
+
+  @override
+  String get errorHistoryLoadFailed => 'Failed to load history.';
+
+  @override
+  String get errorHistoryDeleteFailed => 'Failed to delete history.';
+
+  @override
+  String get errorHistoryNotFound => 'History not found.';
+
+  @override
+  String get errorSearchFailed => 'Search failed.';
+
+  @override
+  String get errorSearchNoResults => 'No results found.';
+
+  @override
+  String get errorSearchInvalidQuery => 'Invalid search query.';
+
+  @override
+  String get errorSearchTimeout => 'Search timed out.';
+
+  @override
+  String get errorStatsCalculationFailed => 'Failed to calculate statistics.';
+
+  @override
+  String get errorStatsNoData => 'No data available for statistics.';
+
+  @override
+  String get errorStatsExportFailed => 'Failed to export statistics.';
+
+  @override
+  String get errorGeneralUnknown => 'An unknown error occurred.';
+
+  @override
+  String get errorGeneralCancelled => 'The operation was cancelled.';
+
+  @override
+  String get errorGeneralInvalidOperation => 'Invalid operation.';
+
+  @override
+  String get errorGeneralUnavailableResource => 'The resource is unavailable.';
+
+  @override
+  String get errorGeneralTimeout => 'The operation timed out.';
+
+  @override
+  String get errorGeneralOutOfMemory => 'The system is out of memory.';
+
+  @override
+  String get errorGeneralConfigError => 'Configuration error occurred.';
+
+  @override
+  String get errorGeneralInitializationFailed => 'Initialization failed.';
+
+  @override
+  String get errorDateRangeInvalid => 'The date range is invalid.';
+
+  @override
+  String get errorDateFormatInvalid => 'Date format is invalid.';
+
+  @override
+  String get errorDateParsingFailed => 'Failed to parse the date.';
+
+  @override
+  String get errorPermissionDenied => 'Permission denied.';
+
+  @override
+  String get errorPermissionFeatureDisabled => 'Feature is disabled due to permissions.';
+
+  @override
+  String get errorPermissionInsufficient => 'Insufficient permissions to proceed.';
 }

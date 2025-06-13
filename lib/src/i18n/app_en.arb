@@ -107,5 +107,82 @@
   "startButton": "Begin Quran Journey",
   "@onboarding1Title": {
     "description": "Title for first onboarding screen about Khatma tracking"
-  }
+  },
+  "errorAuthUserNotLoggedIn": "User not logged in.",
+  "errorAuthAnonymousNotAllowed": "Anonymous login is not allowed.",
+  "errorAuthSessionExpired": "Session has expired.",
+  "errorAuthPermissionDenied": "Permission denied.",
+  "errorAuthInvalidAccount": "Invalid account details.",
+
+  "errorNetConnectionFailed": "Failed to connect to the internet.",
+  "errorNetTimeout": "Network request timed out.",
+  "errorNetServerError": "Server encountered an error.",
+  "errorNetNotFound": "Requested resource not found.",
+  "errorNetUnauthorized": "Unauthorized access.",
+  "errorNetRateLimit": "Rate limit exceeded.",
+  "errorNetBadRequest": "Bad request sent to server.",
+  "errorNetUnavailable": "Network service is unavailable.",
+
+  "errorSyncGeneralFailure": "Synchronization failed.",
+  "errorSyncConflict": "Data conflict occurred during sync.",
+  "errorSyncCorruptData": "Data is corrupted and cannot be synced.",
+  "errorSyncInProgress": "A sync is already in progress.",
+  "errorSyncPartialFailure": "Partial sync failure occurred.",
+  "errorSyncStatusFailed": "Failed to retrieve sync status.",
+
+  "errorStorageSaveFailed": "Failed to save data.",
+  "errorStorageDeleteFailed": "Failed to delete data.",
+  "errorStorageLoadFailed": "Failed to load data.",
+  "errorStorageFull": "Storage is full.",
+  "errorStorageCorrupted": "Storage is corrupted.",
+  "errorStoragePermissionDenied": "Permission denied for storage access.",
+
+  "errorValidationInvalidData": "Invalid data provided.",
+  "errorValidationMissingFields": "Required fields are missing.",
+  "errorValidationInvalidFormat": "Invalid data format.",
+  "errorValidationOutOfRange": "Value is out of allowed range.",
+  "errorValidationInvalidDate": "Invalid date provided.",
+
+  "errorKhatmaNotFound": "Khatma not found.",
+  "errorKhatmaAlreadyCompleted": "This Khatma is already completed.",
+  "errorKhatmaDeletionNotAllowed": "Cannot delete this Khatma.",
+  "errorKhatmaArchiveFailed": "Failed to archive Khatma.",
+  "errorKhatmaInvalidParts": "Invalid Khatma parts.",
+  "errorKhatmaMarkCompletedFailed": "Could not mark Khatma as completed.",
+  "errorKhatmaRepeatFailed": "Failed to repeat Khatma.",
+
+  "errorLimitKhatmaMaxReached": "Maximum number of Khatma reached.",
+  "errorLimitStorageQuotaExceeded": "Storage quota exceeded.",
+  "errorLimitCreationNotAllowed": "Creation not allowed due to limits.",
+
+  "errorHistoryCreateFailed": "Failed to create history.",
+  "errorHistoryLoadFailed": "Failed to load history.",
+  "errorHistoryDeleteFailed": "Failed to delete history.",
+  "errorHistoryNotFound": "History not found.",
+
+  "errorSearchFailed": "Search failed.",
+  "errorSearchNoResults": "No results found.",
+  "errorSearchInvalidQuery": "Invalid search query.",
+  "errorSearchTimeout": "Search timed out.",
+
+  "errorStatsCalculationFailed": "Failed to calculate statistics.",
+  "errorStatsNoData": "No data available for statistics.",
+  "errorStatsExportFailed": "Failed to export statistics.",
+
+  "errorGeneralUnknown": "An unknown error occurred.",
+  "errorGeneralCancelled": "The operation was cancelled.",
+  "errorGeneralInvalidOperation": "Invalid operation.",
+  "errorGeneralUnavailableResource": "The resource is unavailable.",
+  "errorGeneralTimeout": "The operation timed out.",
+  "errorGeneralOutOfMemory": "The system is out of memory.",
+  "errorGeneralConfigError": "Configuration error occurred.",
+  "errorGeneralInitializationFailed": "Initialization failed.",
+
+  "errorDateRangeInvalid": "The date range is invalid.",
+  "errorDateFormatInvalid": "Date format is invalid.",
+  "errorDateParsingFailed": "Failed to parse the date.",
+
+  "errorPermissionDenied": "Permission denied.",
+  "errorPermissionFeatureDisabled": "Feature is disabled due to permissions.",
+  "errorPermissionInsufficient": "Insufficient permissions to proceed."
 }

@@ -98,3 +98,6 @@ windows/flutter/generated_plugins.cmake
 .qodo
 pubspec.lock
 custom_lint.log
+**/.DS_Store
+lib/.DS_Store
+lib/src/.DS_Store

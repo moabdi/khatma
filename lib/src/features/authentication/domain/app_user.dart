@@ -6,10 +6,12 @@ class AppUser {
     required this.uid,
     this.email,
     this.emailVerified = false,
+    this.isAnonymous = true,
   });
   final UserID uid;
   final String? email;
   final bool emailVerified;
+  final bool isAnonymous;
 
   Future<void> sendEmailVerification() async {
     // no-op - implemented by subclasses

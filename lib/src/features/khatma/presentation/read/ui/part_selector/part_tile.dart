@@ -55,6 +55,6 @@ class PartTile extends ConsumerWidget {
   }
 
   void toggleSelection(WidgetRef ref) {
-    ref.read(khatmaPartsControllerProvider.notifier).selectPart(part.id);
+    ref.read(khatmaPartsControllerProvider.notifier).togglePart(part.id);
   }
 }
