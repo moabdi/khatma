@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma/src/constants/lottie_asset.dart';
 import 'package:khatma/src/utils/common.dart';
-import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/read/ui/khatma_bar_chart.dart';
@@ -70,11 +69,6 @@ class KhatmaSuccessComplete extends ConsumerWidget {
                 width: MediaQuery.of(context).size.width * .85,
                 shadowOffset: 5,
                 onPressed: () {
-                  ref.read(khatmaListProvider.notifier).complete(
-                        khatma.id!,
-                        khatma.repeat,
-                      );
-
                   context.goNamed(AppRoute.home.name);
                 },
                 text: "Terminate",

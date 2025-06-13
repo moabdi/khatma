@@ -732,6 +732,396 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Begin Quran Journey'**
   String get startButton;
+
+  /// No description provided for @errorAuthUserNotLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'User not logged in.'**
+  String get errorAuthUserNotLoggedIn;
+
+  /// No description provided for @errorAuthAnonymousNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous login is not allowed.'**
+  String get errorAuthAnonymousNotAllowed;
+
+  /// No description provided for @errorAuthSessionExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Session has expired.'**
+  String get errorAuthSessionExpired;
+
+  /// No description provided for @errorAuthPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission denied.'**
+  String get errorAuthPermissionDenied;
+
+  /// No description provided for @errorAuthInvalidAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid account details.'**
+  String get errorAuthInvalidAccount;
+
+  /// No description provided for @errorNetConnectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to connect to the internet.'**
+  String get errorNetConnectionFailed;
+
+  /// No description provided for @errorNetTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Network request timed out.'**
+  String get errorNetTimeout;
+
+  /// No description provided for @errorNetServerError.
+  ///
+  /// In en, this message translates to:
+  /// **'Server encountered an error.'**
+  String get errorNetServerError;
+
+  /// No description provided for @errorNetNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Requested resource not found.'**
+  String get errorNetNotFound;
+
+  /// No description provided for @errorNetUnauthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Unauthorized access.'**
+  String get errorNetUnauthorized;
+
+  /// No description provided for @errorNetRateLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate limit exceeded.'**
+  String get errorNetRateLimit;
+
+  /// No description provided for @errorNetBadRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad request sent to server.'**
+  String get errorNetBadRequest;
+
+  /// No description provided for @errorNetUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Network service is unavailable.'**
+  String get errorNetUnavailable;
+
+  /// No description provided for @errorSyncGeneralFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronization failed.'**
+  String get errorSyncGeneralFailure;
+
+  /// No description provided for @errorSyncConflict.
+  ///
+  /// In en, this message translates to:
+  /// **'Data conflict occurred during sync.'**
+  String get errorSyncConflict;
+
+  /// No description provided for @errorSyncCorruptData.
+  ///
+  /// In en, this message translates to:
+  /// **'Data is corrupted and cannot be synced.'**
+  String get errorSyncCorruptData;
+
+  /// No description provided for @errorSyncInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'A sync is already in progress.'**
+  String get errorSyncInProgress;
+
+  /// No description provided for @errorSyncPartialFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Partial sync failure occurred.'**
+  String get errorSyncPartialFailure;
+
+  /// No description provided for @errorSyncStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to retrieve sync status.'**
+  String get errorSyncStatusFailed;
+
+  /// No description provided for @errorStorageSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save data.'**
+  String get errorStorageSaveFailed;
+
+  /// No description provided for @errorStorageDeleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete data.'**
+  String get errorStorageDeleteFailed;
+
+  /// No description provided for @errorStorageLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load data.'**
+  String get errorStorageLoadFailed;
+
+  /// No description provided for @errorStorageFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage is full.'**
+  String get errorStorageFull;
+
+  /// No description provided for @errorStorageCorrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage is corrupted.'**
+  String get errorStorageCorrupted;
+
+  /// No description provided for @errorStoragePermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission denied for storage access.'**
+  String get errorStoragePermissionDenied;
+
+  /// No description provided for @errorValidationInvalidData.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid data provided.'**
+  String get errorValidationInvalidData;
+
+  /// No description provided for @errorValidationMissingFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Required fields are missing.'**
+  String get errorValidationMissingFields;
+
+  /// No description provided for @errorValidationInvalidFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid data format.'**
+  String get errorValidationInvalidFormat;
+
+  /// No description provided for @errorValidationOutOfRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Value is out of allowed range.'**
+  String get errorValidationOutOfRange;
+
+  /// No description provided for @errorValidationInvalidDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid date provided.'**
+  String get errorValidationInvalidDate;
+
+  /// No description provided for @errorKhatmaNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma not found.'**
+  String get errorKhatmaNotFound;
+
+  /// No description provided for @errorKhatmaAlreadyCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'This Khatma is already completed.'**
+  String get errorKhatmaAlreadyCompleted;
+
+  /// No description provided for @errorKhatmaDeletionNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot delete this Khatma.'**
+  String get errorKhatmaDeletionNotAllowed;
+
+  /// No description provided for @errorKhatmaArchiveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to archive Khatma.'**
+  String get errorKhatmaArchiveFailed;
+
+  /// No description provided for @errorKhatmaInvalidParts.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid Khatma parts.'**
+  String get errorKhatmaInvalidParts;
+
+  /// No description provided for @errorKhatmaMarkCompletedFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not mark Khatma as completed.'**
+  String get errorKhatmaMarkCompletedFailed;
+
+  /// No description provided for @errorKhatmaRepeatFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to repeat Khatma.'**
+  String get errorKhatmaRepeatFailed;
+
+  /// No description provided for @errorLimitKhatmaMaxReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum number of Khatma reached.'**
+  String get errorLimitKhatmaMaxReached;
+
+  /// No description provided for @errorLimitStorageQuotaExceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage quota exceeded.'**
+  String get errorLimitStorageQuotaExceeded;
+
+  /// No description provided for @errorLimitCreationNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Creation not allowed due to limits.'**
+  String get errorLimitCreationNotAllowed;
+
+  /// No description provided for @errorHistoryCreateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create history.'**
+  String get errorHistoryCreateFailed;
+
+  /// No description provided for @errorHistoryLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load history.'**
+  String get errorHistoryLoadFailed;
+
+  /// No description provided for @errorHistoryDeleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete history.'**
+  String get errorHistoryDeleteFailed;
+
+  /// No description provided for @errorHistoryNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'History not found.'**
+  String get errorHistoryNotFound;
+
+  /// No description provided for @errorSearchFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Search failed.'**
+  String get errorSearchFailed;
+
+  /// No description provided for @errorSearchNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found.'**
+  String get errorSearchNoResults;
+
+  /// No description provided for @errorSearchInvalidQuery.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid search query.'**
+  String get errorSearchInvalidQuery;
+
+  /// No description provided for @errorSearchTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Search timed out.'**
+  String get errorSearchTimeout;
+
+  /// No description provided for @errorStatsCalculationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to calculate statistics.'**
+  String get errorStatsCalculationFailed;
+
+  /// No description provided for @errorStatsNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No data available for statistics.'**
+  String get errorStatsNoData;
+
+  /// No description provided for @errorStatsExportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to export statistics.'**
+  String get errorStatsExportFailed;
+
+  /// No description provided for @errorGeneralUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred.'**
+  String get errorGeneralUnknown;
+
+  /// No description provided for @errorGeneralCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'The operation was cancelled.'**
+  String get errorGeneralCancelled;
+
+  /// No description provided for @errorGeneralInvalidOperation.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid operation.'**
+  String get errorGeneralInvalidOperation;
+
+  /// No description provided for @errorGeneralUnavailableResource.
+  ///
+  /// In en, this message translates to:
+  /// **'The resource is unavailable.'**
+  String get errorGeneralUnavailableResource;
+
+  /// No description provided for @errorGeneralTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The operation timed out.'**
+  String get errorGeneralTimeout;
+
+  /// No description provided for @errorGeneralOutOfMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'The system is out of memory.'**
+  String get errorGeneralOutOfMemory;
+
+  /// No description provided for @errorGeneralConfigError.
+  ///
+  /// In en, this message translates to:
+  /// **'Configuration error occurred.'**
+  String get errorGeneralConfigError;
+
+  /// No description provided for @errorGeneralInitializationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Initialization failed.'**
+  String get errorGeneralInitializationFailed;
+
+  /// No description provided for @errorDateRangeInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The date range is invalid.'**
+  String get errorDateRangeInvalid;
+
+  /// No description provided for @errorDateFormatInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Date format is invalid.'**
+  String get errorDateFormatInvalid;
+
+  /// No description provided for @errorDateParsingFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to parse the date.'**
+  String get errorDateParsingFailed;
+
+  /// No description provided for @errorPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission denied.'**
+  String get errorPermissionDenied;
+
+  /// No description provided for @errorPermissionFeatureDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Feature is disabled due to permissions.'**
+  String get errorPermissionFeatureDisabled;
+
+  /// No description provided for @errorPermissionInsufficient.
+  ///
+  /// In en, this message translates to:
+  /// **'Insufficient permissions to proceed.'**
+  String get errorPermissionInsufficient;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
