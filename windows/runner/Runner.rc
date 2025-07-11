@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
+            VALUE "CompanyName", "com.ammsqy" "\0"
             VALUE "FileDescription", "khatma" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "khatma" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.ammsqy. All rights reserved." "\0"
             VALUE "OriginalFilename", "khatma.exe" "\0"
             VALUE "ProductName", "khatma" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

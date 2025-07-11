@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:khatma/src/exceptions/error_code.dart';
+import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatma_history_repository.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
@@ -124,22 +124,22 @@ class SyncManager extends _$SyncManager {
     }
   }
 
-  Future<ErrorCode?> _pullDataFromRemoteWithRetry() async {
+  Future<AppErrorCode?> _pullDataFromRemoteWithRetry() async {
     for (int attempt = 0; attempt < SyncConfig.maxRetryAttempts; attempt++) {
       try {
         final result = await pullDataFromRemote();
         return result; // Success or null
       } catch (e) {
         if (attempt == SyncConfig.maxRetryAttempts - 1) {
-          return ErrorCode.syncGeneralFailure; // Final attempt failed
+          return AppErrorCode.syncGeneralFailure; // Final attempt failed
         }
         await Future.delayed(SyncConfig.retryDelay * (attempt + 1));
       }
     }
-    return ErrorCode.syncGeneralFailure;
+    return AppErrorCode.syncGeneralFailure;
   }
 
-  Future<ErrorCode?> pullDataFromRemote() async {
+  Future<AppErrorCode?> pullDataFromRemote() async {
     if (!_isUserAuthenticated()) return null;
 
     try {
@@ -150,7 +150,7 @@ class SyncManager extends _$SyncManager {
 
       return null; // No error
     } catch (e) {
-      return ErrorCode.syncGeneralFailure;
+      return AppErrorCode.syncGeneralFailure;
     }
   }
 
