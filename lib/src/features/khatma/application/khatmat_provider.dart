@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:khatma/src/core/app_status.dart';
-import 'package:khatma/src/exceptions/error_code.dart';
+import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/application/khatma_state.dart';
 import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
@@ -20,9 +20,9 @@ class KhatmaNotifier extends _$KhatmaNotifier {
   @override
   KhatmaState build() {
     _localRepo = ref.read(localKhatmaRepositoryProvider);
-    final syncManager = ref.read(syncManagerProvider.notifier);
-    syncManager.scheduleStartupSync(onSyncComplete: refreshFromLocal);
-    syncManager.setupSynchronization();
+    //final syncManager = ref.read(syncManagerProvider.notifier);
+    //syncManager.scheduleStartupSync(onSyncComplete: refreshFromLocal);
+    //syncManager.setupSynchronization();
     refreshFromLocal();
     return const KhatmaState();
   }
@@ -43,7 +43,7 @@ class KhatmaNotifier extends _$KhatmaNotifier {
     } catch (e) {
       state = state.copyWith(
         status: AppStatus.error,
-        error: ErrorCode.syncGeneralFailure,
+        error: AppErrorCode.syncGeneralFailure,
       );
     }
   }
@@ -57,12 +57,12 @@ class KhatmaNotifier extends _$KhatmaNotifier {
     );
   }
 
-  Future<Result<Khatma, ErrorCode>> saveKhatma(Khatma khatma) async {
+  Future<Result<Khatma, AppErrorCode>> saveKhatma(Khatma khatma) async {
     state = state.copyWith(status: AppStatus.saving);
 
     try {
       final validation = khatma.validate();
-      if (validation != ErrorCode.noError) {
+      if (validation != AppErrorCode.noError) {
         state = state.copyWith(
           status: AppStatus.error,
           error: validation,
@@ -73,9 +73,9 @@ class KhatmaNotifier extends _$KhatmaNotifier {
       if (khatma.id == null && !canCreateNew()) {
         state = state.copyWith(
           status: AppStatus.error,
-          error: ErrorCode.limitKhatmaMaxReached,
+          error: AppErrorCode.limitKhatmaMaxReached,
         );
-        return Result.failure(ErrorCode.limitKhatmaMaxReached);
+        return Result.failure(AppErrorCode.limitKhatmaMaxReached);
       }
 
       final localKhatma = await _localRepo.save(khatma.copyWith(
@@ -94,18 +94,18 @@ class KhatmaNotifier extends _$KhatmaNotifier {
     } catch (e) {
       state = state.copyWith(
         status: AppStatus.error,
-        error: ErrorCode.storageSaveFailed,
+        error: AppErrorCode.storageSaveFailed,
       );
-      return Result.failure(ErrorCode.storageSaveFailed);
+      return Result.failure(AppErrorCode.storageSaveFailed);
     }
   }
 
-  Future<Result<Khatma, ErrorCode>> completeParts(
+  Future<Result<Khatma, AppErrorCode>> completeParts(
       String khatmaId, List<int> partIds) async {
     try {
       final currentKhatma = getKhatmaById(khatmaId);
       if (currentKhatma == null) {
-        return Result.failure(ErrorCode.khatmaNotFound);
+        return Result.failure(AppErrorCode.khatmaNotFound);
       }
 
       final updatedKhatma = currentKhatma.addCompletedParts(partIds);
@@ -126,16 +126,16 @@ class KhatmaNotifier extends _$KhatmaNotifier {
     } catch (e) {
       state = state.copyWith(
         status: AppStatus.error,
-        error: ErrorCode.storageSaveFailed,
+        error: AppErrorCode.storageSaveFailed,
       );
-      return Result.failure(ErrorCode.storageSaveFailed);
+      return Result.failure(AppErrorCode.storageSaveFailed);
     }
   }
 
-  Future<Result<void, ErrorCode>> deleteKhatma(String khatmaId) async {
+  Future<Result<void, AppErrorCode>> deleteKhatma(String khatmaId) async {
     final khatma = getKhatmaById(khatmaId);
     if (khatma == null) {
-      return Result.failure(ErrorCode.khatmaNotFound);
+      return Result.failure(AppErrorCode.khatmaNotFound);
     }
     state = state.copyWith(status: AppStatus.deleting);
 
@@ -162,9 +162,9 @@ class KhatmaNotifier extends _$KhatmaNotifier {
     } catch (e) {
       state = state.copyWith(
         status: AppStatus.error,
-        error: ErrorCode.storageDeleteFailed,
+        error: AppErrorCode.storageDeleteFailed,
       );
-      return Result.failure(ErrorCode.storageDeleteFailed);
+      return Result.failure(AppErrorCode.storageDeleteFailed);
     }
   }
 
@@ -223,7 +223,7 @@ class KhatmaNotifier extends _$KhatmaNotifier {
       state = state.copyWith(
         khatmas: AsyncValue.error(e, StackTrace.current),
         status: AppStatus.error,
-        error: ErrorCode.storageLoadFailed,
+        error: AppErrorCode.storageLoadFailed,
       );
     }
   }
@@ -275,7 +275,7 @@ Khatma? selectedKhatma(Ref ref) {
 }
 
 @riverpod
-List<Khatma> allKhatmas(Ref ref) {
+AsyncValue<List<Khatma>> allKhatmas(Ref ref) {
   final state = ref.watch(khatmaNotifierProvider);
-  return state.khatmas.valueOrNull ?? [];
+  return state.khatmas;
 }

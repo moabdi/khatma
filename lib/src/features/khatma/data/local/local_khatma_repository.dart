@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/data/local/have_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/data/local/localstorage_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/local/local_storage_box.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;

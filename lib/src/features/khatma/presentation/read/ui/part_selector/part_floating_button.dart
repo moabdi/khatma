@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/core/result.dart';
-import 'package:khatma/src/exceptions/error_code.dart';
-import 'package:khatma/src/exceptions/error_handler.dart';
+import 'package:khatma/src/error/app_error_code.dart';
+import 'package:khatma/src/error/app_error_handler.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/utils/common.dart';
@@ -72,7 +72,7 @@ class PartFloatingButton extends StatelessWidget {
       );
     } catch (e) {
       if (context.mounted) {
-        ErrorHandler.handleError(context, ErrorCode.generalUnknown);
+        AppErrorHandler.handleError(context, AppErrorCode.generalUnknown);
       }
     }
   }

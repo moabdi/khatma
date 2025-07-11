@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:khatma/src/exceptions/error_code.dart';
+import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma_ui/extentions/color_extensions.dart';
 
@@ -17,7 +17,7 @@ typedef KhatmaID = String;
 abstract class ValidationResult with _$ValidationResult {
   const factory ValidationResult({
     required bool isValid,
-    @Default([]) List<ErrorCode> errors,
+    @Default([]) List<AppErrorCode> errors,
   }) = _ValidationResult;
 }
 
@@ -105,28 +105,28 @@ abstract class Khatma with _$Khatma {
   }
 
   // Validation method
-  ErrorCode validate() {
+  AppErrorCode validate() {
     if (name.trim().isEmpty) {
-      return ErrorCode.validationMissingFields;
+      return AppErrorCode.validationMissingFields;
     }
 
     if (name.length > 100) {
-      return ErrorCode.validationInvalidData;
+      return AppErrorCode.validationInvalidData;
     }
 
     if (description != null && description!.length > 500) {
-      return ErrorCode.validationInvalidData;
+      return AppErrorCode.validationInvalidData;
     }
 
     if (endDate != null && endDate!.isBefore(startDate)) {
-      return ErrorCode.validationInvalidData;
+      return AppErrorCode.validationInvalidData;
     }
 
     if (share?.maxPartToRead != null && share!.maxPartToRead! > unit.count) {
-      return ErrorCode.validationInvalidData;
+      return AppErrorCode.validationInvalidData;
     }
 
-    return ErrorCode.noError;
+    return AppErrorCode.noError;
   }
 
   // Helper method for updating reading progress
@@ -302,11 +302,11 @@ enum SplitUnit {
 
 // Validator class
 class KhatmaValidator {
-  static ErrorCode validateKhatma(Khatma khatma) {
+  static AppErrorCode validateKhatma(Khatma khatma) {
     return khatma.validate();
   }
 
-  static ErrorCode validateKhatmaPart(KhatmaPart part) {
+  static AppErrorCode validateKhatmaPart(KhatmaPart part) {
     final errors = <String>[];
 
     if (part.id <= 0) {
@@ -319,7 +319,7 @@ class KhatmaValidator {
       }
     }
 
-    return ErrorCode.validationInvalidData; // Return appropriate error key
+    return AppErrorCode.validationInvalidData; // Return appropriate error key
     //return errors.isEmpty ? AppErrorKey.noError : AppErrorKey.validationInvalidData;
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/authentication/presentation/account/account_page.dart';
 import 'package:khatma/src/features/authentication/presentation/login/login_page.dart';
-import 'package:khatma/src/features/authentication/presentation/password/create_password_page.dart';
-import 'package:khatma/src/features/authentication/presentation/password/forgot_password_page.dart';
-import 'package:khatma/src/features/authentication/presentation/register/register_page.dart';
-import 'package:khatma/src/features/profil/presentation/profile_menu_page.dart';
+import 'package:khatma/src/features/authentication/presentation/login/create_password_page.dart';
+import 'package:khatma/src/features/authentication/presentation/login/forgot_password_page.dart';
+import 'package:khatma/src/features/authentication/presentation/login/register_page.dart';
+import 'package:khatma/src/features/profil/profile_menu_page.dart';
 import 'package:khatma/src/features/settings/presentation/language_setting.dart';
 import 'package:khatma/src/features/settings/presentation/recitation_settings.dart';
 import 'package:khatma/src/features/settings/presentation/settings_page.dart';
@@ -44,6 +45,11 @@ final profileRoutes = [
         ],
       ),
       GoRoute(
+        name: AppRoute.account.name,
+        path: 'account',
+        builder: (context, state) => const AccountPage(),
+      ),
+      GoRoute(
         name: AppRoute.login.name,
         path: 'login',
         builder: (context, state) => const LoginPage(),
@@ -61,7 +67,7 @@ final profileRoutes = [
       GoRoute(
         path: 'create-password',
         name: AppRoute.createPassword.name,
-        builder: (context, state) => const CreatePasswordPage(),
+        builder: (context, state) => const CreatePasswordPage(resetCode: ''),
       ),
     ],
   ),

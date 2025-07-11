@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
+import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/constants/app_sizes.dart';
+import 'package:khatma_ui/khatma_ui.dart';
 
 class RecitationSettings extends StatefulWidget {
   const RecitationSettings({super.key});
@@ -15,7 +19,7 @@ class _RecitationSettingsState extends State<RecitationSettings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Récitation'),
+        title: Text(context.loc.recitation),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -23,43 +27,36 @@ class _RecitationSettingsState extends State<RecitationSettings> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  backgroundColor:
-                      Theme.of(context).primaryColor.withAlpha(128),
-                  radius: 40,
-                  child: const Icon(
-                    Icons.menu_book,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                ),
                 const SizedBox(height: 32),
-                const Text(
-                  "Sélectionnez la récitation que vous souhaitez utiliser",
+                Text(
+                  context.loc.chooseRiwaya,
                   style: TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 24),
-                _buildRecitationOption(
-                  context,
-                  recitationName: 'Hafs',
-                  recitationKey: 'hafs',
-                  icon: Icons.menu_book_outlined,
-                  description:
-                      "La récitation la plus répandue dans le monde musulman, notamment au Moyen-Orient.",
+                gapH12,
+                Card(
+                  child: Column(
+                    children: [
+                      _buildRecitationOption(
+                        context,
+                        recitationName: context.loc.hafs,
+                        recitationKey: 'hafs',
+                        icon: Icons.menu_book_outlined,
+                        description: context.loc.hafsDescription,
+                      ),
+                      dividerH0_5T0_5,
+                      _buildRecitationOption(
+                        context,
+                        recitationName: context.loc.warsh,
+                        recitationKey: 'warsh',
+                        icon: Icons.auto_stories,
+                        description: context.loc.warshDescription,
+                      ),
+                    ],
+                  ),
                 ),
-                const Divider(),
-                _buildRecitationOption(
-                  context,
-                  recitationName: 'Warsh',
-                  recitationKey: 'warsh',
-                  icon: Icons.auto_stories,
-                  description:
-                      "Courante en Afrique du Nord. Légères différences de prononciation et d'orthographe.",
-                ),
-                const Divider(),
-                const SizedBox(height: 32),
               ],
             ),
           ),
@@ -78,14 +75,12 @@ class _RecitationSettingsState extends State<RecitationSettings> {
     final isSelected = _selectedRecitation == recitationKey;
 
     return ListTile(
-      leading: Icon(icon, color: Theme.of(context).iconTheme.color),
-      title: Text(recitationName),
-      subtitle: Text(description, style: Theme.of(context).textTheme.bodySmall),
       trailing: isSelected
           ? const Icon(Icons.check_circle, color: Colors.green)
-          : const Icon(Icons.circle_outlined, color: Colors.grey),
-      tileColor:
-          isSelected ? Theme.of(context).primaryColor.withAlpha(26) : null,
+          : null,
+      title: Text(recitationName),
+      subtitle: Text(description),
+      tileColor: isSelected ? context.theme.primaryColor.withAlpha(26) : null,
       onTap: () {
         setState(() {
           _selectedRecitation = recitationKey;

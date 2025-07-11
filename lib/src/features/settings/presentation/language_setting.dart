@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/i18n/local_provider.dart';
 import 'package:khatma_ui/constants/app_dividers.dart';
@@ -21,7 +22,7 @@ class LanguageSettings extends ConsumerWidget {
           children: [
             gapH32,
             Text(
-              "Langues suggérées",
+              context.loc.chooseLanguage,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             gapH24,
@@ -53,13 +54,6 @@ class LanguageSettings extends ConsumerWidget {
                   ),
                 ],
               ),
-            ),
-            gapH12,
-            Text(
-              "Khatma est disponible en plusieurs langues. Choisissez la langue de votre choix pour une meilleure expérience.",
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                    color: Colors.grey,
-                  ),
             ),
           ],
         ),
