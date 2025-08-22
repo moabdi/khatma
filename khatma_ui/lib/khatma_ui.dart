@@ -2,12 +2,10 @@
 
 library;
 
-export 'components/alert_dialogs.dart';
 export 'components/animation/flashing_widget.dart';
 export 'components/avatar.dart';
 export 'components/buttons/adjust_number_button.dart';
 export 'components/buttons/decrement_number_button.dart';
-export 'components/buttons/delete_button.dart';
 export 'components/buttons/elevated_button.dart';
 export 'components/buttons/increment_number_button.dart';
 export 'components/buttons/primary_button.dart';

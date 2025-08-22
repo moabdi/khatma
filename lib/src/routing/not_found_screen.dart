@@ -1,4 +1,4 @@
-import 'package:khatma/src/i18n/string_hardcoded.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +13,10 @@ class NotFoundScreen extends StatelessWidget {
     print('NotFoundScreen: $errorMessage');
     return Scaffold(
       appBar: AppBar(
-        title: Text("Page not found".hardcoded),
+        title: Text(context.loc.pageNotFound),
       ),
       body: EmptyPlaceholderWidget(
-        message: errorMessage ?? '404 - Page not found!'.hardcoded,
+        message: errorMessage ?? context.loc.pageNotFound404,
       ),
     );
   }

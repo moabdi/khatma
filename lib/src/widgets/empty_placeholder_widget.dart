@@ -1,6 +1,6 @@
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma/src/constants/lottie_asset.dart';
-import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -28,7 +28,7 @@ class EmptyPlaceholderWidget extends StatelessWidget {
             gapH16,
             PrimaryButton(
               onPressed: () => context.goNamed(AppRoute.home.name),
-              text: 'Go Home'.hardcoded,
+              text: context.loc.goToHome,
             )
           ],
         ),

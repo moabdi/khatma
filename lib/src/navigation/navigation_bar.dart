@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/utils/common.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 class MainNavigationBar extends StatelessWidget {
@@ -25,15 +25,10 @@ class MainNavigationBar extends StatelessWidget {
       unselectedLabelStyle: unselectedLabelStyle,
       selectedLabelStyle: selectedLabelStyle,
       items: <BottomNavigationBarItem>[
-        item(context,
-            icon: Icons.home_filled, label: AppLocalizations.of(context).home),
-        item(context,
-            icon: FontAwesomeIcons.book,
-            label: AppLocalizations.of(context).quran),
-        item(context,
-            icon: Icons.add_box_outlined,
-            label: AppLocalizations.of(context).create),
-        item(context, icon: Icons.person, label: "Profil"),
+        item(context, icon: Icons.home_filled, label: context.loc.home),
+        item(context, icon: FontAwesomeIcons.book, label: context.loc.quran),
+        item(context, icon: Icons.add_box_outlined, label: context.loc.create),
+        item(context, icon: Icons.person, label: context.loc.profile),
       ],
       onTap: (value) {
         switch (value) {

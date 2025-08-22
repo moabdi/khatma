@@ -81,6 +81,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get or => 'Or';
 
   @override
+  String get today => 'Today';
+
+  @override
+  String get yesterday => 'Yesterday';
+
+  @override
+  String daysAgo(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days ago',
+      one: 'Yesterday',
+      zero: 'Today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String monthsAgo(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count months ago',
+      one: 'Last month',
+      zero: 'This month',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String monthName(String month) {
+    String _temp0 = intl.Intl.selectLogic(
+      month,
+      {
+        '1': 'January',
+        '2': 'February',
+        '3': 'March',
+        '4': 'April',
+        '5': 'May',
+        '6': 'June',
+        '7': 'July',
+        '8': 'August',
+        '9': 'September',
+        '10': 'October',
+        '11': 'November',
+        '12': 'December',
+        'other': '',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get signIn => 'Sign In';
 
   @override
@@ -543,11 +596,72 @@ class AppLocalizationsEn extends AppLocalizations {
   String get areYouSure => 'Are you sure?';
 
   @override
-  String get confirmDelete => 'Are you sure you want to delete this khatma?';
+  String get confirmAction => 'Please confirm your action';
+
+  @override
+  String get confirmDeleteTitle => 'Deletion';
+
+  @override
+  String get confirmLogoutTitle => 'Logout';
+
+  @override
+  String get confirmExitTitle => 'Exit';
+
+  @override
+  String get confirmDelete => 'Are you sure you want to delete this item?';
+
+  @override
+  String confirmDeleteItem(Object itemName) {
+    return 'Are you sure you want to delete $itemName?';
+  }
 
   @override
   String get confirmDeleteKhatma =>
       'After deleting, this khatma will be permanently deleted';
+
+  @override
+  String get confirmLogout => 'Are you sure you want to log out?';
+
+  @override
+  String get confirmExitApp => 'Are you sure you want to exit the app?';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get exitApp => 'Exit App';
+
+  @override
+  String get exit => 'Exit';
+
+  @override
+  String get terminate => 'Terminate';
+
+  @override
+  String khatmaFinishedMessage(Object timeAgo) {
+    return 'You have just finished your khatma in $timeAgo.';
+  }
+
+  @override
+  String get completion => 'Completion';
+
+  @override
+  String get khatmaHistory => 'Khatma History';
+
+  @override
+  String get congratulations => 'Congratulations';
+
+  @override
+  String get khatmaListTitle => 'Khatma List';
+
+  @override
+  String get khatmaListSubtitle => 'Your ongoing khatmas';
+
+  @override
+  String get noKhatmaYet => 'You have no khatmas yet ?';
+
+  @override
+  String get createKhatmaToStart => 'Create a khatma to start';
 
   @override
   String get success => 'Success';
@@ -603,6 +717,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorCode => 'Error Code';
+
+  @override
+  String get cannotUpdateKhatmaWhileStarted =>
+      'Cannot update khatma while it is started';
+
+  @override
+  String get failedToSaveKhatma => 'Failed to save khatma. Please try again.';
+
+  @override
+  String get failedToLoadKhatma => 'Failed to load khatma. Please try again.';
+
+  @override
+  String get failedToDeleteKhatma =>
+      'Failed to delete khatma. Please try again.';
+
+  @override
+  String get failedToShareKhatma =>
+      'Are you sure you want to delete this item?';
+
+  @override
+  String get errorOccurred => 'An error occurred';
+
+  @override
+  String get pageNotFound => 'Page Not Found';
+
+  @override
+  String get pageNotFound404 => '404 - Page not found!';
+
+  @override
+  String get notImplemented => 'Not implemented';
+
+  @override
+  String get goToHome => 'Go to Home';
 
   @override
   String get errorAuthUserNotLoggedIn => 'User not logged in.';
@@ -929,6 +1076,23 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String khatmaSplitUnitWithDef(String unit) {
+    String _temp0 = intl.Intl.selectLogic(
+      unit,
+      {
+        'sourat': 'the surah',
+        'juzz': 'the juzz',
+        'hizb': 'the hizb',
+        'half': 'half the hizb',
+        'rubue': 'quarter the hizb',
+        'thumun': 'one-eighth the hizb',
+        'other': '',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
   String khatmaSplitUnitDesc(String unit) {
     String _temp0 = intl.Intl.selectLogic(
       unit,
@@ -939,6 +1103,77 @@ class AppLocalizationsEn extends AppLocalizations {
         'half': 'Half-Hizb (120 parts)',
         'rubue': 'Fourth-hizb (240 parts)',
         'thumun': 'Eighth-hizb (480 parts)',
+        'other': '',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ordinalPartNumber(String num) {
+    String _temp0 = intl.Intl.selectLogic(
+      num,
+      {
+        '1': 'The first',
+        '2': 'The second',
+        '3': 'The third',
+        '4': 'The fourth',
+        '5': 'The fifth',
+        '6': 'The sixth',
+        '7': 'The seventh',
+        '8': 'The eighth',
+        '9': 'The ninth',
+        '10': 'The tenth',
+        '11': 'The eleventh',
+        '12': 'The twelfth',
+        '13': 'The thirteenth',
+        '14': 'The fourteenth',
+        '15': 'The fifteenth',
+        '16': 'The sixteenth',
+        '17': 'The seventeenth',
+        '18': 'The eighteenth',
+        '19': 'The nineteenth',
+        '20': 'The twentieth',
+        '21': 'The twenty-first',
+        '22': 'The twenty-second',
+        '23': 'The twenty-third',
+        '24': 'The twenty-fourth',
+        '25': 'The twenty-fifth',
+        '26': 'The twenty-sixth',
+        '27': 'The twenty-seventh',
+        '28': 'The twenty-eighth',
+        '29': 'The twenty-ninth',
+        '30': 'The thirtieth',
+        '31': 'The thirty-first',
+        '32': 'The thirty-second',
+        '33': 'The thirty-third',
+        '34': 'The thirty-fourth',
+        '35': 'The thirty-fifth',
+        '36': 'The thirty-sixth',
+        '37': 'The thirty-seventh',
+        '38': 'The thirty-eighth',
+        '39': 'The thirty-ninth',
+        '40': 'The fortieth',
+        '41': 'The forty-first',
+        '42': 'The forty-second',
+        '43': 'The forty-third',
+        '44': 'The forty-fourth',
+        '45': 'The forty-fifth',
+        '46': 'The forty-sixth',
+        '47': 'The forty-seventh',
+        '48': 'The forty-eighth',
+        '49': 'The forty-ninth',
+        '50': 'The fiftieth',
+        '51': 'The fifty-first',
+        '52': 'The fifty-second',
+        '53': 'The fifty-third',
+        '54': 'The fifty-fourth',
+        '55': 'The fifty-fifth',
+        '56': 'The fifty-sixth',
+        '57': 'The fifty-seventh',
+        '58': 'The fifty-eighth',
+        '59': 'The fifty-ninth',
+        '60': 'The sixtieth',
         'other': '',
       },
     );
