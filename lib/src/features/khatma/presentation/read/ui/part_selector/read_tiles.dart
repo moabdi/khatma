@@ -48,8 +48,9 @@ class ReadPartTiles extends ConsumerWidget {
             var khatmaPart =
                 completedParts.firstWhere((element) => element.id == part.id);
             return PartTile(
-              enabled: false,
               part,
+              enabled: false,
+              unit: unit,
               color: color,
               trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.end,

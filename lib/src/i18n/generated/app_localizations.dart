@@ -244,6 +244,36 @@ abstract class AppLocalizations {
   /// **'Or'**
   String get or;
 
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// No description provided for @daysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Today} =1{Yesterday} other{{count} days ago}}'**
+  String daysAgo(num count);
+
+  /// No description provided for @monthsAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{This month} one{Last month} other{{count} months ago}}'**
+  String monthsAgo(num count);
+
+  /// No description provided for @monthName.
+  ///
+  /// In en, this message translates to:
+  /// **'{month, select, 1{January} 2{February} 3{March} 4{April} 5{May} 6{June} 7{July} 8{August} 9{September} 10{October} 11{November} 12{December} other{}}'**
+  String monthName(String month);
+
   /// No description provided for @signIn.
   ///
   /// In en, this message translates to:
@@ -1126,17 +1156,131 @@ abstract class AppLocalizations {
   /// **'Are you sure?'**
   String get areYouSure;
 
+  /// No description provided for @confirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your action'**
+  String get confirmAction;
+
+  /// No description provided for @confirmDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion'**
+  String get confirmDeleteTitle;
+
+  /// No description provided for @confirmLogoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get confirmLogoutTitle;
+
+  /// No description provided for @confirmExitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get confirmExitTitle;
+
   /// No description provided for @confirmDelete.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to delete this khatma?'**
+  /// **'Are you sure you want to delete this item?'**
   String get confirmDelete;
+
+  /// No description provided for @confirmDeleteItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {itemName}?'**
+  String confirmDeleteItem(Object itemName);
 
   /// No description provided for @confirmDeleteKhatma.
   ///
   /// In en, this message translates to:
   /// **'After deleting, this khatma will be permanently deleted'**
   String get confirmDeleteKhatma;
+
+  /// No description provided for @confirmLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get confirmLogout;
+
+  /// No description provided for @confirmExitApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to exit the app?'**
+  String get confirmExitApp;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @exitApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit App'**
+  String get exitApp;
+
+  /// No description provided for @exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
+
+  /// No description provided for @terminate.
+  ///
+  /// In en, this message translates to:
+  /// **'Terminate'**
+  String get terminate;
+
+  /// No description provided for @khatmaFinishedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have just finished your khatma in {timeAgo}.'**
+  String khatmaFinishedMessage(Object timeAgo);
+
+  /// No description provided for @completion.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion'**
+  String get completion;
+
+  /// No description provided for @khatmaHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma History'**
+  String get khatmaHistory;
+
+  /// No description provided for @congratulations.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations'**
+  String get congratulations;
+
+  /// No description provided for @khatmaListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma List'**
+  String get khatmaListTitle;
+
+  /// No description provided for @khatmaListSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your ongoing khatmas'**
+  String get khatmaListSubtitle;
+
+  /// No description provided for @noKhatmaYet.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no khatmas yet ?'**
+  String get noKhatmaYet;
+
+  /// No description provided for @createKhatmaToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a khatma to start'**
+  String get createKhatmaToStart;
 
   /// No description provided for @success.
   ///
@@ -1239,6 +1383,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error Code'**
   String get errorCode;
+
+  /// No description provided for @cannotUpdateKhatmaWhileStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot update khatma while it is started'**
+  String get cannotUpdateKhatmaWhileStarted;
+
+  /// No description provided for @failedToSaveKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save khatma. Please try again.'**
+  String get failedToSaveKhatma;
+
+  /// No description provided for @failedToLoadKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load khatma. Please try again.'**
+  String get failedToLoadKhatma;
+
+  /// No description provided for @failedToDeleteKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete khatma. Please try again.'**
+  String get failedToDeleteKhatma;
+
+  /// No description provided for @failedToShareKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this item?'**
+  String get failedToShareKhatma;
+
+  /// No description provided for @errorOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred'**
+  String get errorOccurred;
+
+  /// No description provided for @pageNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Page Not Found'**
+  String get pageNotFound;
+
+  /// No description provided for @pageNotFound404.
+  ///
+  /// In en, this message translates to:
+  /// **'404 - Page not found!'**
+  String get pageNotFound404;
+
+  /// No description provided for @notImplemented.
+  ///
+  /// In en, this message translates to:
+  /// **'Not implemented'**
+  String get notImplemented;
+
+  /// No description provided for @goToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Home'**
+  String get goToHome;
 
   /// No description provided for @errorAuthUserNotLoggedIn.
   ///
@@ -1846,11 +2050,23 @@ abstract class AppLocalizations {
   /// **'{unit, select, sourat{Sourat} juzz{Juzz} hizb{Hizb} half{Half-Hizb} rubue{Fourth-hizb} thumun{Eighth-hizb} other{}}'**
   String khatmaSplitUnit(String unit);
 
+  /// No description provided for @khatmaSplitUnitWithDef.
+  ///
+  /// In en, this message translates to:
+  /// **'{unit, select, sourat{the surah} juzz{the juzz} hizb{the hizb} half{half the hizb} rubue{quarter the hizb} thumun{one-eighth the hizb} other{}}'**
+  String khatmaSplitUnitWithDef(String unit);
+
   /// No description provided for @khatmaSplitUnitDesc.
   ///
   /// In en, this message translates to:
   /// **'{unit, select, sourat{Sourat (114 parts)} juzz{Juzz (30 parts)} hizb{Hizb (60 parts)} half{Half-Hizb (120 parts)} rubue{Fourth-hizb (240 parts)} thumun{Eighth-hizb (480 parts)} other{}}'**
   String khatmaSplitUnitDesc(String unit);
+
+  /// No description provided for @ordinalPartNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'{num, select, 1{The first} 2{The second} 3{The third} 4{The fourth} 5{The fifth} 6{The sixth} 7{The seventh} 8{The eighth} 9{The ninth} 10{The tenth} 11{The eleventh} 12{The twelfth} 13{The thirteenth} 14{The fourteenth} 15{The fifteenth} 16{The sixteenth} 17{The seventeenth} 18{The eighteenth} 19{The nineteenth} 20{The twentieth} 21{The twenty-first} 22{The twenty-second} 23{The twenty-third} 24{The twenty-fourth} 25{The twenty-fifth} 26{The twenty-sixth} 27{The twenty-seventh} 28{The twenty-eighth} 29{The twenty-ninth} 30{The thirtieth} 31{The thirty-first} 32{The thirty-second} 33{The thirty-third} 34{The thirty-fourth} 35{The thirty-fifth} 36{The thirty-sixth} 37{The thirty-seventh} 38{The thirty-eighth} 39{The thirty-ninth} 40{The fortieth} 41{The forty-first} 42{The forty-second} 43{The forty-third} 44{The forty-fourth} 45{The forty-fifth} 46{The forty-sixth} 47{The forty-seventh} 48{The forty-eighth} 49{The forty-ninth} 50{The fiftieth} 51{The fifty-first} 52{The fifty-second} 53{The fifty-third} 54{The fifty-fourth} 55{The fifty-fifth} 56{The fifty-sixth} 57{The fifty-seventh} 58{The fifty-eighth} 59{The fifty-ninth} 60{The sixtieth} other{}}'**
+  String ordinalPartNumber(String num);
 
   /// No description provided for @loading.
   ///

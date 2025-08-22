@@ -18,7 +18,7 @@ class KhatmaForm extends _$KhatmaForm {
 
     return Khatma(
       code: code,
-      name: 'Khatma-$code',
+      name: '',
       unit: SplitUnit.juzz,
       createDate: now,
       startDate: now,

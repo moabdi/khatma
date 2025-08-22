@@ -21,13 +21,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get apply => 'Appliquer';
 
   @override
-  String get back => 'Back';
+  String get back => 'Retour';
 
   @override
   String get cancel => 'Annuler';
 
   @override
-  String get change => 'Change';
+  String get change => 'Modifier';
 
   @override
   String get close => 'Fermer';
@@ -66,10 +66,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get previous => 'Précédent';
 
   @override
-  String get retry => 'Retry';
+  String get retry => 'Réessayer';
 
   @override
-  String get save => 'Sauvegarder';
+  String get save => 'Enregistrer';
 
   @override
   String get submit => 'Soumettre';
@@ -78,58 +78,111 @@ class AppLocalizationsFr extends AppLocalizations {
   String get yes => 'Oui';
 
   @override
-  String get or => 'Or';
+  String get or => 'Ou';
 
   @override
-  String get signIn => 'Sign In';
+  String get today => 'Today';
 
   @override
-  String get signUp => 'Sign up';
+  String get yesterday => 'Yesterday';
 
   @override
-  String get signOut => 'Sign Out';
+  String daysAgo(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days ago',
+      one: 'Yesterday',
+      zero: 'Today',
+    );
+    return '$_temp0';
+  }
 
   @override
-  String get register => 'Register';
+  String monthsAgo(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count months ago',
+      one: 'Last month',
+      zero: 'This month',
+    );
+    return '$_temp0';
+  }
 
   @override
-  String get welcome => 'Welcome!';
+  String monthName(String month) {
+    String _temp0 = intl.Intl.selectLogic(
+      month,
+      {
+        '1': 'January',
+        '2': 'February',
+        '3': 'March',
+        '4': 'April',
+        '5': 'May',
+        '6': 'June',
+        '7': 'July',
+        '8': 'August',
+        '9': 'September',
+        '10': 'October',
+        '11': 'November',
+        '12': 'December',
+        'other': '',
+      },
+    );
+    return '$_temp0';
+  }
 
   @override
-  String get joinUs => 'Join us!';
+  String get signIn => 'Se connecter';
 
   @override
-  String get createAccount => 'Create Account';
+  String get signUp => 'S\'inscrire';
 
   @override
-  String get createAnAccount => 'Create an account';
+  String get signOut => 'Se déconnecter';
 
   @override
-  String get createAccountToStart => 'Create your account to get started';
+  String get register => 'S\'inscrire';
 
   @override
-  String get createMyAccount => 'Create my account';
+  String get welcome => 'Bienvenue !';
 
   @override
-  String get signInToContinue => 'Sign in to continue';
+  String get joinUs => 'Rejoignez-nous !';
 
   @override
-  String get haveAccountSignIn => 'Have an account? Sign in';
+  String get createAccount => 'Créer un compte';
 
   @override
-  String get needAccountRegister => 'Need an account? Register';
+  String get createAnAccount => 'Créer un compte';
 
   @override
-  String get noAccountYet => 'No account yet? ';
+  String get createAccountToStart => 'Créez votre compte pour commencer';
 
   @override
-  String get orContinueWith => 'Or continue with';
+  String get createMyAccount => 'Créer mon compte';
 
   @override
-  String get continueWithGoogle => 'Continue with Google';
+  String get signInToContinue => 'Connectez-vous pour continuer';
 
   @override
-  String get continueAsGuest => 'Continue as guest';
+  String get haveAccountSignIn => 'Vous avez un compte ? Connectez-vous';
+
+  @override
+  String get needAccountRegister => 'Besoin d\'un compte ? Inscrivez-vous';
+
+  @override
+  String get noAccountYet => 'Pas encore de compte ? ';
+
+  @override
+  String get orContinueWith => 'Ou continuer avec';
+
+  @override
+  String get continueWithGoogle => 'Continuer avec Google';
+
+  @override
+  String get continueAsGuest => 'Continuer en tant qu\'invité';
 
   @override
   String get backToLogin => 'Retour à la page de connexion';
@@ -138,126 +191,128 @@ class AppLocalizationsFr extends AppLocalizations {
   String get name => 'Nom';
 
   @override
-  String get displayName => 'Display Name';
+  String get displayName => 'Nom d\'affichage';
 
   @override
-  String get fullNameOrNickname => 'Full name or nickname';
+  String get fullNameOrNickname => 'Nom complet ou surnom';
 
   @override
-  String get fullNameOrNicknameHint => 'Enter your full name or nickname';
+  String get fullNameOrNicknameHint =>
+      'Entrez votre nom complet ou votre surnom';
 
   @override
   String get email => 'Email';
 
   @override
-  String get emailHint => 'Enter your email address';
+  String get emailHint => 'Entrez votre adresse email';
 
   @override
   String get emailInputLabel => 'Entrez votre email';
 
   @override
-  String get password => 'Password';
+  String get password => 'Mot de passe';
 
   @override
-  String get yourPassword => 'Your password';
+  String get yourPassword => 'Votre mot de passe';
 
   @override
   String get passwordInputLabel => 'Entrez votre mot de passe';
 
   @override
-  String get passwordWith8Characters => 'Password (8+ characters)';
+  String get passwordWith8Characters => 'Mot de passe (8 caractères minimum)';
 
   @override
-  String get atLeast8Characters => 'At least 8 characters';
+  String get atLeast8Characters => 'Au moins 8 caractères';
 
   @override
-  String get confirmPassword => 'Confirm Password';
+  String get confirmPassword => 'Confirmer le mot de passe';
 
   @override
-  String get retypePassword => 'Retype your password';
+  String get retypePassword => 'Retapez votre mot de passe';
 
   @override
-  String get currentPassword => 'Current Password';
+  String get currentPassword => 'Mot de passe actuel';
 
   @override
-  String get newPassword => 'New Password';
+  String get newPassword => 'Nouveau mot de passe';
 
   @override
-  String get confirmNewPassword => 'Confirm New Password';
+  String get confirmNewPassword => 'Confirmer le nouveau mot de passe';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Mot de passe oublié ?';
 
   @override
-  String get forgotPasswordTitle => 'Forgot Password';
+  String get forgotPasswordTitle => 'Mot de passe oublié';
 
   @override
   String get forgotPasswordDescription =>
-      'Enter your email address to receive a password reset link.';
+      'Entrez votre adresse email pour recevoir un lien de réinitialisation du mot de passe.';
 
   @override
-  String get sendPasswordResetEmail => 'Send Password Reset Email';
+  String get sendPasswordResetEmail => 'Envoyer l\'email de réinitialisation';
 
   @override
-  String get createNewPassword => 'Create a new password';
+  String get createNewPassword => 'Créer un nouveau mot de passe';
 
   @override
   String get newPasswordDescription =>
-      'Enter a new password to reset your account.';
+      'Entrez un nouveau mot de passe pour réinitialiser votre compte.';
 
   @override
-  String get updatePassword => 'Update Password';
+  String get updatePassword => 'Mettre à jour le mot de passe';
 
   @override
-  String get changePassword => 'Change Password';
+  String get changePassword => 'Changer le mot de passe';
 
   @override
   String get changePasswordSubtitle =>
-      'Change your password to keep your account secure.';
+      'Changez votre mot de passe pour sécuriser votre compte.';
 
   @override
-  String get updateYourPassword => 'Update your password';
+  String get updateYourPassword => 'Mettez à jour votre mot de passe';
 
   @override
-  String get passwordResetEmailSent => 'Password reset email sent';
+  String get passwordResetEmailSent => 'Email de réinitialisation envoyé';
 
   @override
   String get passwordResetEmailSentDescription =>
-      'A password reset email has been sent to your email address. Please check your inbox and follow the instructions to reset your password.';
+      'Un email de réinitialisation a été envoyé à votre adresse email. Veuillez vérifier votre boîte de réception et suivre les instructions pour réinitialiser votre mot de passe.';
 
   @override
   String get checkInboxForPasswordReset =>
-      'Please check your inbox for the password reset email.';
+      'Veuillez vérifier votre boîte de réception pour l\'email de réinitialisation.';
 
   @override
   String get checkSpamFolder =>
-      'If you don\'t see the email, check your spam or junk folder.';
+      'Si vous ne voyez pas l\'email, vérifiez votre dossier spam ou courrier indésirable.';
 
   @override
-  String get resendEmail => 'Resend Email';
+  String get resendEmail => 'Renvoyer l\'email';
 
   @override
-  String get emailSent => 'Email sent';
+  String get emailSent => 'Email envoyé';
 
   @override
-  String get passwordUpdated => 'Password updated successfully!';
+  String get passwordUpdated => 'Mot de passe mis à jour avec succès !';
 
   @override
-  String get passwordUpdatedSuccessfully => 'Password updated successfully!';
+  String get passwordUpdatedSuccessfully =>
+      'Mot de passe mis à jour avec succès !';
 
   @override
   String get passwordUpdatedDescription =>
-      'Your password has been updated successfully. You can now log in with your new password.';
+      'Votre mot de passe a été mis à jour avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.';
 
   @override
   String get rememberPasswordBackToLogin =>
-      'Remembered your password? Back to login';
+      'Vous vous souvenez de votre mot de passe ? Retour à la connexion';
 
   @override
-  String get redirectingToLogin => 'Redirecting to login...';
+  String get redirectingToLogin => 'Redirection vers la connexion...';
 
   @override
-  String get goToLoginPage => 'Go to Login Page';
+  String get goToLoginPage => 'Aller à la page de connexion';
 
   @override
   String get show => 'Afficher';
@@ -266,609 +321,726 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hide => 'Masquer';
 
   @override
-  String get passwordRequirements => 'Password Requirements';
+  String get passwordRequirements => 'Exigences du mot de passe';
 
   @override
-  String get passwordCriteria => 'Password criteria:';
+  String get passwordCriteria => 'Critères du mot de passe :';
 
   @override
-  String get atLeast8CharsCriterion => 'At least 8 characters';
+  String get atLeast8CharsCriterion => 'Au moins 8 caractères';
 
   @override
-  String get oneUppercaseCriterion => 'One uppercase letter';
+  String get oneUppercaseCriterion => 'Une lettre majuscule';
 
   @override
-  String get oneLowercaseCriterion => 'One lowercase letter';
+  String get oneLowercaseCriterion => 'Une lettre minuscule';
 
   @override
-  String get oneDigitCriterion => 'One digit';
+  String get oneDigitCriterion => 'Un chiffre';
 
   @override
-  String get passwordsMatch => 'Passwords match';
+  String get passwordsMatch => 'Les mots de passe correspondent';
 
   @override
-  String get passwordStrengthWeak => 'Strength';
+  String get passwordStrengthWeak => 'Faible';
 
   @override
-  String get passwordStrengthMedium => 'Medium';
+  String get passwordStrengthMedium => 'Moyen';
 
   @override
-  String get passwordStrengthGood => 'Good';
+  String get passwordStrengthGood => 'Bon';
 
   @override
-  String get passwordStrengthStrong => 'Strong';
+  String get passwordStrengthStrong => 'Fort';
 
   @override
-  String get acceptTerms => 'I accept the ';
+  String get acceptTerms => 'J\'accepte les ';
 
   @override
-  String get termsOfService => 'Terms of Service';
+  String get termsOfService => 'Conditions de service';
 
   @override
-  String get andThe => ' and the ';
+  String get andThe => ' et la ';
 
   @override
-  String get privacyPolicy => 'Privacy Policy';
+  String get privacyPolicy => 'Politique de confidentialité';
 
   @override
-  String get termsAndConditions => 'Terms and Conditions';
+  String get termsAndConditions => 'Conditions générales';
 
   @override
-  String get legalNotices => 'Legal Notices';
+  String get legalNotices => 'Mentions légales';
 
   @override
-  String get mustAcceptTerms => 'You must accept the terms of service';
+  String get mustAcceptTerms => 'Vous devez accepter les conditions de service';
 
   @override
-  String get myAccount => 'My Account';
+  String get myAccount => 'Mon compte';
 
   @override
-  String get profile => 'Profile';
+  String get profile => 'Profil';
 
   @override
-  String get editProfile => 'Edit Profile';
+  String get editProfile => 'Modifier le profil';
 
   @override
-  String get accountSettings => 'Account Settings';
+  String get accountSettings => 'Paramètres du compte';
 
   @override
-  String get changeDisplayName => 'Change Display Name';
+  String get changeDisplayName => 'Modifier le nom d\'affichage';
 
   @override
   String get changeDisplayNameSubtitle =>
-      'Change your display name to personalize your account.';
+      'Modifiez votre nom d\'affichage pour personnaliser votre compte.';
 
   @override
-  String get verifyEmail => 'Verify Email';
+  String get verifyEmail => 'Vérifier l\'email';
 
   @override
-  String get confirmEmailAddress => 'Confirm Email Address';
+  String get confirmEmailAddress => 'Confirmer l\'adresse email';
 
   @override
-  String get refreshData => 'Refresh Data';
+  String get refreshData => 'Actualiser les données';
 
   @override
-  String get updateAccountInformation => 'Update Account Information';
+  String get updateAccountInformation =>
+      'Mettre à jour les informations du compte';
 
   @override
-  String get profileUpdatedSuccessfully => 'Profile updated successfully!';
+  String get profileUpdatedSuccessfully => 'Profil mis à jour avec succès !';
 
   @override
-  String get dataRefreshed => 'Data refreshed successfully!';
+  String get dataRefreshed => 'Données actualisées avec succès !';
 
   @override
-  String get security => 'Security';
+  String get security => 'Sécurité';
 
   @override
-  String get dangerZone => 'Danger Zone';
+  String get dangerZone => 'Zone de danger';
 
   @override
-  String get deleteAccount => 'Delete Account';
+  String get deleteAccount => 'Supprimer le compte';
 
   @override
-  String get permanentlyDeleteAccount => 'Permanently delete your account';
+  String get permanentlyDeleteAccount =>
+      'Supprimer définitivement votre compte';
 
   @override
   String get deleteAccountWarning =>
-      'This action will permanently delete your account and all associated data. This action cannot be undone.';
+      'Cette action supprimera définitivement votre compte et toutes les données associées. Cette action ne peut pas être annulée.';
 
   @override
-  String get confirmWithPassword => 'Confirm with your password';
+  String get confirmWithPassword => 'Confirmer avec votre mot de passe';
 
   @override
   String get accountDeletedSuccessfully =>
-      'Your account has been deleted successfully.';
+      'Votre compte a été supprimé avec succès.';
 
   @override
-  String get deletePermantly => 'Delete Permanently';
+  String get deletePermantly => 'Supprimer définitivement';
 
   @override
-  String get confirmSignOut => 'Are you sure you want to sign out?';
+  String get confirmSignOut => 'Êtes-vous sûr de vouloir vous déconnecter ?';
 
   @override
-  String get closeYourSession => 'Close your session';
+  String get closeYourSession => 'Fermer votre session';
 
   @override
-  String get becomeMember => 'Become a member';
+  String get becomeMember => 'Devenir membre';
 
   @override
-  String get anonymousUser => 'Anonymous User';
+  String get anonymousUser => 'Utilisateur anonyme';
 
   @override
-  String get anonymous => 'Anonymous';
+  String get anonymous => 'Anonyme';
 
   @override
-  String get guest => 'Guest';
+  String get guest => 'Invité';
 
   @override
-  String get user => 'User';
+  String get user => 'Utilisateur';
 
   @override
-  String get guestAccount => 'Guest Account';
+  String get guestAccount => 'Compte invité';
 
   @override
-  String get userAccount => 'User Account';
+  String get userAccount => 'Compte utilisateur';
 
   @override
-  String get verifiedUser => 'Verified User';
+  String get verifiedUser => 'Utilisateur vérifié';
 
   @override
-  String get unverifiedUser => 'Unverified User';
+  String get unverifiedUser => 'Utilisateur non vérifié';
 
   @override
-  String get emailVerified => 'Email Verified';
+  String get emailVerified => 'Email vérifié';
 
   @override
-  String get emailNotVerified => 'Email Not Verified';
+  String get emailNotVerified => 'Email non vérifié';
 
   @override
-  String get verified => 'Verified';
+  String get verified => 'Vérifié';
 
   @override
-  String get unverified => 'Unverified';
+  String get unverified => 'Non vérifié';
 
   @override
   String get verificationEmailSent =>
-      'A verification email has been sent to your email address. Please check your inbox and follow the instructions to verify your email.';
+      'Un email de vérification a été envoyé à votre adresse email. Veuillez vérifier votre boîte de réception et suivre les instructions pour vérifier votre email.';
 
   @override
-  String get unlockAllFeatures => 'Unlock all features';
+  String get unlockAllFeatures => 'Débloquer toutes les fonctionnalités';
 
   @override
-  String get signInOrSignUp => 'Sign in or sign up';
+  String get signInOrSignUp => 'Se connecter ou s\'inscrire';
 
   @override
-  String get manageYourAccount => 'Manage your account';
+  String get manageYourAccount => 'Gérer votre compte';
 
   @override
-  String get accessYourData => 'Access your data';
+  String get accessYourData => 'Accéder à vos données';
 
   @override
-  String get nameCannotBeEmpty => 'Name cannot be empty';
+  String get nameCannotBeEmpty => 'Le nom ne peut pas être vide';
 
   @override
-  String get nameMinLength => 'Name must be at least 2 characters long';
+  String get nameMinLength => 'Le nom doit contenir au moins 2 caractères';
 
   @override
-  String get displayNameRequired => 'Display name is required';
+  String get displayNameRequired => 'Le nom d\'affichage est requis';
 
   @override
   String get displayNameTooShort =>
-      'Display name must be at least 2 characters';
+      'Le nom d\'affichage doit contenir au moins 2 caractères';
 
   @override
-  String get emailCannotBeEmpty => 'Email cannot be empty';
+  String get emailCannotBeEmpty => 'L\'email ne peut pas être vide';
 
   @override
-  String get invalidEmailFormat => 'Invalid email format';
+  String get invalidEmailFormat => 'Format d\'email invalide';
 
   @override
-  String get loginEmailCannotBeEmpty => 'Email cannot be empty';
+  String get loginEmailCannotBeEmpty => 'L\'email ne peut pas être vide';
 
   @override
-  String get loginInvalidEmailFormat => 'Invalid email format';
+  String get loginInvalidEmailFormat => 'Format d\'email invalide';
 
   @override
-  String get passwordCannotBeEmpty => 'Password cannot be empty';
+  String get passwordCannotBeEmpty => 'Le mot de passe ne peut pas être vide';
 
   @override
-  String get passwordMinLength => 'Password must be at least 8 characters long';
+  String get passwordMinLength =>
+      'Le mot de passe doit contenir au moins 8 caractères';
 
   @override
   String get passwordMustBeAtLeast8Characters =>
-      'Password must be at least 8 characters long';
+      'Le mot de passe doit contenir au moins 8 caractères';
 
   @override
-  String get passwordTooShort => 'Password must be at least 6 characters';
+  String get passwordTooShort =>
+      'Le mot de passe doit contenir au moins 6 caractères';
 
   @override
   String get passwordTooWeak =>
-      'Password is too weak. Please use a stronger password';
+      'Le mot de passe est trop faible. Veuillez utiliser un mot de passe plus fort';
 
   @override
   String get passwordComplexityRequirement =>
-      'Password must contain at least one uppercase letter, one lowercase letter, and one digit';
+      'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre';
 
   @override
   String get passwordMustContainUpperLowerAndDigit =>
-      'Password must contain at least one uppercase letter, one lowercase letter, and one digit';
+      'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre';
 
   @override
   String get passwordNeedsLowercase =>
-      'Password must contain at least one lowercase letter';
+      'Le mot de passe doit contenir au moins une lettre minuscule';
 
   @override
   String get passwordNeedsUppercase =>
-      'Password must contain at least one uppercase letter';
+      'Le mot de passe doit contenir au moins une lettre majuscule';
 
   @override
-  String get passwordNeedsDigit => 'Password must contain at least one digit';
+  String get passwordNeedsDigit =>
+      'Le mot de passe doit contenir au moins un chiffre';
 
   @override
-  String get pleaseConfirmPassword => 'Please confirm your password';
+  String get pleaseConfirmPassword => 'Veuillez confirmer votre mot de passe';
 
   @override
-  String get pleaseConfirmYourPassword => 'Please confirm your password';
+  String get pleaseConfirmYourPassword =>
+      'Veuillez confirmer votre mot de passe';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'Les mots de passe ne correspondent pas';
 
   @override
-  String get currentPasswordRequired => 'Current password is required';
+  String get currentPasswordRequired => 'Le mot de passe actuel est requis';
 
   @override
-  String get newPasswordRequired => 'New password is required';
+  String get newPasswordRequired => 'Le nouveau mot de passe est requis';
 
   @override
-  String get confirmPasswordRequired => 'Please confirm your password';
+  String get confirmPasswordRequired => 'Veuillez confirmer votre mot de passe';
 
   @override
-  String get incorrectCurrentPassword => 'Current password is incorrect';
+  String get incorrectCurrentPassword => 'Le mot de passe actuel est incorrect';
 
   @override
-  String get loginPasswordCannotBeEmpty => 'Password cannot be empty';
+  String get loginPasswordCannotBeEmpty =>
+      'Le mot de passe ne peut pas être vide';
 
   @override
   String get loginPasswordTooShort =>
-      'Password must be at least 8 characters long';
+      'Le mot de passe doit contenir au moins 8 caractères';
 
   @override
   String get fixErrorsBeforeSubmitting =>
-      'Please fix the errors before submitting.';
+      'Veuillez corriger les erreurs avant de soumettre.';
 
   @override
-  String get invalidDisplayName => 'Invalid display name';
+  String get invalidDisplayName => 'Nom d\'affichage invalide';
 
   @override
   String get areYouSure => 'Êtes-vous sûr ?';
 
   @override
+  String get confirmAction => 'Veuillez confirmer votre action';
+
+  @override
+  String get confirmDeleteTitle => 'Suppression';
+
+  @override
+  String get confirmLogoutTitle => 'Déconnexion';
+
+  @override
+  String get confirmExitTitle => 'Quitter';
+
+  @override
   String get confirmDelete =>
-      'Êtes-vous sûr de vouloir supprimer cette khatma ?';
+      'Êtes-vous sûr de vouloir supprimer cet élément ?';
+
+  @override
+  String confirmDeleteItem(Object itemName) {
+    return 'Êtes-vous sûr de vouloir supprimer $itemName ?';
+  }
 
   @override
   String get confirmDeleteKhatma =>
       'Après suppression, cette khatma sera définitivement supprimée';
 
   @override
-  String get success => 'Success';
+  String get confirmLogout => 'Êtes-vous sûr de vouloir vous déconnecter ?';
+
+  @override
+  String get confirmExitApp =>
+      'Êtes-vous sûr de vouloir quitter l\'application ?';
+
+  @override
+  String get logout => 'Déconnexion';
+
+  @override
+  String get exitApp => 'Quitter l\'application';
+
+  @override
+  String get exit => 'Quitter';
+
+  @override
+  String get terminate => 'Terminer';
+
+  @override
+  String khatmaFinishedMessage(Object timeAgo) {
+    return 'Vous venez de terminer votre khatma il y a $timeAgo.';
+  }
+
+  @override
+  String get completion => 'Achèvement';
+
+  @override
+  String get khatmaHistory => 'Historique des Khatma';
+
+  @override
+  String get congratulations => 'Félicitations';
+
+  @override
+  String get khatmaListTitle => 'Khatma List';
+
+  @override
+  String get khatmaListSubtitle => 'Your ongoing khatmas';
+
+  @override
+  String get noKhatmaYet => 'You have no khatmas yet ?';
+
+  @override
+  String get createKhatmaToStart => 'Create a khatma to start';
+
+  @override
+  String get success => 'Succès';
 
   @override
   String get congratulation => 'Félicitations !';
 
   @override
-  String get accountCreatedSuccessfully => 'Account created successfully!';
+  String get accountCreatedSuccessfully => 'Compte créé avec succès !';
 
   @override
   String successCompleteParts(Object count) {
-    return '$count parties complétées avec succès';
+    return '$count parties terminées avec succès';
   }
 
   @override
-  String get signInFailed => 'Sign in failed';
+  String get signInFailed => 'Échec de la connexion';
 
   @override
-  String get loginFailed => 'Login failed';
+  String get loginFailed => 'Échec de la connexion';
 
   @override
   String get registrationFailed =>
-      'Registration failed. Please try again later.';
+      'Échec de l\'inscription. Veuillez réessayer plus tard.';
 
   @override
-  String get anonymousSignInFailed => 'Anonymous sign-in failed';
+  String get anonymousSignInFailed => 'Échec de la connexion anonyme';
 
   @override
-  String get googleSignInFailed => 'Google sign-in failed';
+  String get googleSignInFailed => 'Échec de la connexion Google';
 
   @override
-  String get updateProfileError => 'Failed to update profile. Please try again';
+  String get updateProfileError =>
+      'Échec de la mise à jour du profil. Veuillez réessayer';
 
   @override
   String get errorLoadingProfile =>
-      'Error loading profile. Please try again later.';
+      'Erreur lors du chargement du profil. Veuillez réessayer plus tard.';
 
   @override
-  String get networkError => 'Network error. Please check your connection';
+  String get networkError => 'Erreur réseau. Veuillez vérifier votre connexion';
 
   @override
-  String get permissionDenied => 'Permission denied';
+  String get permissionDenied => 'Permission refusée';
 
   @override
-  String get pleaseTryAgain => 'Please try again.';
+  String get pleaseTryAgain => 'Veuillez réessayer.';
 
   @override
-  String get criticalError => 'Critical Error';
+  String get criticalError => 'Erreur critique';
 
   @override
-  String get error => 'Error';
+  String get error => 'Erreur';
 
   @override
-  String get errorCode => 'Error Code';
+  String get errorCode => 'Code d\'erreur';
 
   @override
-  String get errorAuthUserNotLoggedIn => 'User not logged in.';
+  String get cannotUpdateKhatmaWhileStarted =>
+      'Impossible de mettre à jour la khatma pendant qu\'elle est démarrée';
 
   @override
-  String get errorAuthAnonymousNotAllowed => 'Anonymous login is not allowed.';
+  String get failedToSaveKhatma =>
+      'Échec de la sauvegarde de la khatma. Veuillez réessayer.';
 
   @override
-  String get errorAuthSessionExpired => 'Session has expired.';
+  String get failedToLoadKhatma =>
+      'Échec du chargement de la khatma. Veuillez réessayer.';
 
   @override
-  String get errorAuthPermissionDenied => 'Permission denied.';
+  String get failedToDeleteKhatma =>
+      'Échec de la suppression de la khatma. Veuillez réessayer.';
 
   @override
-  String get errorAuthInvalidAccount => 'Invalid account details.';
+  String get failedToShareKhatma =>
+      'Échec du partage de la khatma. Veuillez réessayer.';
+
+  @override
+  String get errorOccurred => 'An error occurred';
+
+  @override
+  String get pageNotFound => 'Page Not Found';
+
+  @override
+  String get pageNotFound404 => '404 - Page not found!';
+
+  @override
+  String get notImplemented => 'Not implemented';
+
+  @override
+  String get goToHome => 'Go to Home';
+
+  @override
+  String get errorAuthUserNotLoggedIn => 'Utilisateur non connecté.';
+
+  @override
+  String get errorAuthAnonymousNotAllowed =>
+      'La connexion anonyme n\'est pas autorisée.';
+
+  @override
+  String get errorAuthSessionExpired => 'La session a expiré.';
+
+  @override
+  String get errorAuthPermissionDenied => 'Permission refusée.';
+
+  @override
+  String get errorAuthInvalidAccount => 'Détails du compte invalides.';
 
   @override
   String get errorAuthAccountExistsWithDifferentCredentials =>
-      'An account already exists with different credentials.';
+      'Un compte existe déjà avec des identifiants différents.';
 
   @override
-  String get errorAuthInvalidCredentials => 'Invalid credentials provided.';
+  String get errorAuthInvalidCredentials => 'Identifiants fournis invalides.';
 
   @override
-  String get errorAuthInvalidEmail => 'Invalid email address.';
+  String get errorAuthInvalidEmail => 'Adresse email invalide.';
 
   @override
-  String get errorAuthOperationNotAllowed => 'Operation not allowed.';
+  String get errorAuthOperationNotAllowed => 'Opération non autorisée.';
 
   @override
-  String get errorAuthUserDisabled => 'User account is disabled.';
+  String get errorAuthUserDisabled => 'Le compte utilisateur est désactivé.';
 
   @override
-  String get errorAuthUserNotFound => 'User not found.';
+  String get errorAuthUserNotFound => 'Utilisateur non trouvé.';
 
   @override
-  String get errorAuthEmailAlreadyInUse => 'Email address is already in use.';
+  String get errorAuthEmailAlreadyInUse =>
+      'L\'adresse email est déjà utilisée.';
 
   @override
-  String get errorAuthWeakPassword => 'Weak password provided.';
+  String get errorAuthWeakPassword => 'Mot de passe faible fourni.';
 
   @override
-  String get errorAuthRequiresRecentLogin => 'Recent login required.';
+  String get errorAuthRequiresRecentLogin => 'Connexion récente requise.';
 
   @override
-  String get errorAuthTooManyRequests => 'Too many requests made.';
+  String get errorAuthTooManyRequests => 'Trop de demandes effectuées.';
 
   @override
-  String get errorAuthNetworkRequestFailed => 'Network request failed.';
+  String get errorAuthNetworkRequestFailed => 'Échec de la demande réseau.';
 
   @override
-  String get errorAuthPopupBlocked => 'Popup blocked by browser.';
+  String get errorAuthPopupBlocked => 'Popup bloqué par le navigateur.';
 
   @override
-  String get errorAuthPopClosedByUser => 'Popup closed by user.';
+  String get errorAuthPopClosedByUser => 'Popup fermé par l\'utilisateur.';
 
   @override
-  String get errorNetConnectionFailed => 'Failed to connect to the internet.';
+  String get errorNetConnectionFailed => 'Échec de la connexion à Internet.';
 
   @override
-  String get errorNetTimeout => 'Network request timed out.';
+  String get errorNetTimeout =>
+      'Délai d\'attente de la demande réseau dépassé.';
 
   @override
-  String get errorNetServerError => 'Server encountered an error.';
+  String get errorNetServerError => 'Le serveur a rencontré une erreur.';
 
   @override
-  String get errorNetNotFound => 'Requested resource not found.';
+  String get errorNetNotFound => 'Ressource demandée non trouvée.';
 
   @override
-  String get errorNetUnauthorized => 'Unauthorized access.';
+  String get errorNetUnauthorized => 'Accès non autorisé.';
 
   @override
-  String get errorNetRateLimit => 'Rate limit exceeded.';
+  String get errorNetRateLimit => 'Limite de taux dépassée.';
 
   @override
-  String get errorNetBadRequest => 'Bad request sent to server.';
+  String get errorNetBadRequest => 'Mauvaise demande envoyée au serveur.';
 
   @override
-  String get errorNetUnavailable => 'Network service is unavailable.';
+  String get errorNetUnavailable => 'Le service réseau n\'est pas disponible.';
 
   @override
   String get errorAuthActionCancelled =>
-      'The authentication action was cancelled.';
+      'L\'action d\'authentification a été annulée.';
 
   @override
-  String get errorSyncGeneralFailure => 'Synchronization failed.';
+  String get errorSyncGeneralFailure => 'Échec de la synchronisation.';
 
   @override
-  String get errorSyncConflict => 'Data conflict occurred during sync.';
+  String get errorSyncConflict =>
+      'Conflit de données survenu pendant la synchronisation.';
 
   @override
-  String get errorSyncCorruptData => 'Data is corrupted and cannot be synced.';
+  String get errorSyncCorruptData =>
+      'Les données sont corrompues et ne peuvent pas être synchronisées.';
 
   @override
-  String get errorSyncInProgress => 'A sync is already in progress.';
+  String get errorSyncInProgress => 'Une synchronisation est déjà en cours.';
 
   @override
-  String get errorSyncPartialFailure => 'Partial sync failure occurred.';
+  String get errorSyncPartialFailure => 'Échec partiel de la synchronisation.';
 
   @override
-  String get errorSyncStatusFailed => 'Failed to retrieve sync status.';
+  String get errorSyncStatusFailed =>
+      'Échec de la récupération du statut de synchronisation.';
 
   @override
-  String get errorStorageSaveFailed => 'Failed to save data.';
+  String get errorStorageSaveFailed => 'Échec de la sauvegarde des données.';
 
   @override
-  String get errorStorageDeleteFailed => 'Failed to delete data.';
+  String get errorStorageDeleteFailed => 'Échec de la suppression des données.';
 
   @override
-  String get errorStorageLoadFailed => 'Failed to load data.';
+  String get errorStorageLoadFailed => 'Échec du chargement des données.';
 
   @override
-  String get errorStorageFull => 'Storage is full.';
+  String get errorStorageFull => 'Le stockage est plein.';
 
   @override
-  String get errorStorageCorrupted => 'Storage is corrupted.';
+  String get errorStorageCorrupted => 'Le stockage est corrompu.';
 
   @override
   String get errorStoragePermissionDenied =>
-      'Permission denied for storage access.';
+      'Permission refusée pour l\'accès au stockage.';
 
   @override
-  String get errorValidationInvalidData => 'Invalid data provided.';
+  String get errorValidationInvalidData => 'Données fournies invalides.';
 
   @override
-  String get errorValidationMissingFields => 'Required fields are missing.';
+  String get errorValidationMissingFields => 'Champs requis manquants.';
 
   @override
-  String get errorValidationInvalidFormat => 'Invalid data format.';
+  String get errorValidationInvalidFormat => 'Format de données invalide.';
 
   @override
-  String get errorValidationOutOfRange => 'Value is out of allowed range.';
+  String get errorValidationOutOfRange => 'Valeur hors de la plage autorisée.';
 
   @override
-  String get errorValidationInvalidDate => 'Invalid date provided.';
+  String get errorValidationInvalidDate => 'Date fournie invalide.';
 
   @override
-  String get errorValidationInvalidOperation => 'Invalid operation attempted.';
+  String get errorValidationInvalidOperation => 'Opération invalide tentée.';
 
   @override
-  String get errorKhatmaNotFound => 'Khatma not found.';
+  String get errorKhatmaNotFound => 'Khatma non trouvée.';
 
   @override
-  String get errorKhatmaAlreadyCompleted => 'This Khatma is already completed.';
+  String get errorKhatmaAlreadyCompleted => 'Cette Khatma est déjà terminée.';
 
   @override
-  String get errorKhatmaDeletionNotAllowed => 'Cannot delete this Khatma.';
+  String get errorKhatmaDeletionNotAllowed =>
+      'Impossible de supprimer cette Khatma.';
 
   @override
-  String get errorKhatmaArchiveFailed => 'Failed to archive Khatma.';
+  String get errorKhatmaArchiveFailed => 'Échec de l\'archivage de la Khatma.';
 
   @override
-  String get errorKhatmaInvalidParts => 'Invalid Khatma parts.';
+  String get errorKhatmaInvalidParts => 'Parties de Khatma invalides.';
 
   @override
   String get errorKhatmaMarkCompletedFailed =>
-      'Could not mark Khatma as completed.';
+      'Impossible de marquer la Khatma comme terminée.';
 
   @override
-  String get errorKhatmaRepeatFailed => 'Failed to repeat Khatma.';
+  String get errorKhatmaRepeatFailed => 'Échec de la répétition de la Khatma.';
 
   @override
-  String get errorNoPartsSelected => 'No parts selected.';
+  String get errorNoPartsSelected => 'Aucune partie sélectionnée.';
 
   @override
-  String get errorNoKhatmaSelected => 'No Khatma selected.';
+  String get errorNoKhatmaSelected => 'Aucune Khatma sélectionnée.';
 
   @override
-  String get errorLimitKhatmaMaxReached => 'Maximum number of Khatma reached.';
+  String get errorLimitKhatmaMaxReached => 'Nombre maximum de Khatma atteint.';
 
   @override
-  String get errorLimitStorageQuotaExceeded => 'Storage quota exceeded.';
+  String get errorLimitStorageQuotaExceeded => 'Quota de stockage dépassé.';
 
   @override
   String get errorLimitCreationNotAllowed =>
-      'Creation not allowed due to limits.';
+      'Création non autorisée en raison des limites.';
 
   @override
-  String get errorHistoryCreateFailed => 'Failed to create history.';
+  String get errorHistoryCreateFailed =>
+      'Échec de la création de l\'historique.';
 
   @override
-  String get errorHistoryLoadFailed => 'Failed to load history.';
+  String get errorHistoryLoadFailed => 'Échec du chargement de l\'historique.';
 
   @override
-  String get errorHistoryDeleteFailed => 'Failed to delete history.';
+  String get errorHistoryDeleteFailed =>
+      'Échec de la suppression de l\'historique.';
 
   @override
-  String get errorHistoryNotFound => 'History not found.';
+  String get errorHistoryNotFound => 'Historique non trouvé.';
 
   @override
-  String get errorSearchFailed => 'Search failed.';
+  String get errorSearchFailed => 'Échec de la recherche.';
 
   @override
-  String get errorSearchNoResults => 'No results found.';
+  String get errorSearchNoResults => 'Aucun résultat trouvé.';
 
   @override
-  String get errorSearchInvalidQuery => 'Invalid search query.';
+  String get errorSearchInvalidQuery => 'Requête de recherche invalide.';
 
   @override
-  String get errorSearchTimeout => 'Search timed out.';
+  String get errorSearchTimeout => 'Délai de recherche dépassé.';
 
   @override
-  String get errorStatsCalculationFailed => 'Failed to calculate statistics.';
+  String get errorStatsCalculationFailed => 'Échec du calcul des statistiques.';
 
   @override
-  String get errorStatsNoData => 'No data available for statistics.';
+  String get errorStatsNoData =>
+      'Aucune donnée disponible pour les statistiques.';
 
   @override
-  String get errorStatsExportFailed => 'Failed to export statistics.';
+  String get errorStatsExportFailed =>
+      'Échec de l\'exportation des statistiques.';
 
   @override
-  String get errorGeneralUnknown => 'An unknown error occurred.';
+  String get errorGeneralUnknown => 'Une erreur inconnue s\'est produite.';
 
   @override
-  String get errorGeneralCancelled => 'The operation was cancelled.';
+  String get errorGeneralCancelled => 'L\'opération a été annulée.';
 
   @override
-  String get errorGeneralInvalidOperation => 'Invalid operation.';
+  String get errorGeneralInvalidOperation => 'Opération invalide.';
 
   @override
-  String get errorGeneralUnavailableResource => 'The resource is unavailable.';
+  String get errorGeneralUnavailableResource =>
+      'La ressource n\'est pas disponible.';
 
   @override
-  String get errorGeneralTimeout => 'The operation timed out.';
+  String get errorGeneralTimeout => 'L\'opération a expiré.';
 
   @override
-  String get errorGeneralOutOfMemory => 'The system is out of memory.';
+  String get errorGeneralOutOfMemory => 'Le système est à court de mémoire.';
 
   @override
-  String get errorGeneralConfigError => 'Configuration error occurred.';
+  String get errorGeneralConfigError => 'Erreur de configuration survenue.';
 
   @override
-  String get errorGeneralInitializationFailed => 'Initialization failed.';
+  String get errorGeneralInitializationFailed => 'Échec de l\'initialisation.';
 
   @override
-  String get errorDateRangeInvalid => 'The date range is invalid.';
+  String get errorDateRangeInvalid => 'La plage de dates est invalide.';
 
   @override
-  String get errorDateFormatInvalid => 'Date format is invalid.';
+  String get errorDateFormatInvalid => 'Le format de date est invalide.';
 
   @override
-  String get errorDateParsingFailed => 'Failed to parse the date.';
+  String get errorDateParsingFailed => 'Échec de l\'analyse de la date.';
 
   @override
-  String get errorPermissionDenied => 'Permission denied.';
+  String get errorPermissionDenied => 'Permission refusée.';
 
   @override
   String get errorPermissionFeatureDisabled =>
-      'Feature is disabled due to permissions.';
+      'Fonctionnalité désactivée en raison des permissions.';
 
   @override
   String get errorPermissionInsufficient =>
-      'Insufficient permissions to proceed.';
+      'Permissions insuffisantes pour continuer.';
 
   @override
   String get newKhatma => 'Nouvelle khatma';
 
   @override
-  String get editKhatma => 'Éditer la khatma';
+  String get editKhatma => 'Modifier la khatma';
 
   @override
   String get khatma => 'Khatma';
 
   @override
-  String get khatmaList => 'Liste des khatmas';
+  String get khatmaList => 'Liste des khatma';
 
   @override
   String get shareKhatma => 'Partager la khatma';
@@ -877,7 +1049,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get chooseKhatmaStyle => 'Choisissez le style de votre khatma';
 
   @override
-  String get khatmaStyle => 'Style de Khatma';
+  String get khatmaStyle => 'Style de khatma';
 
   @override
   String get quran => 'Coran';
@@ -892,7 +1064,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get description => 'Description';
 
   @override
-  String get descriptionHint => 'Entrez une description (facultatif)';
+  String get descriptionHint => 'Entrez une description (optionnel)';
 
   @override
   String get icon => 'Icône';
@@ -921,8 +1093,25 @@ class AppLocalizationsFr extends AppLocalizations {
         'juzz': 'Juzz',
         'hizb': 'Hizb',
         'half': 'Demi-Hizb',
-        'rubue': 'Quart de Hizb',
-        'thumun': 'Huitième de Hizb',
+        'rubue': 'Quart-hizb',
+        'thumun': 'Huitième-hizb',
+        'other': '',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String khatmaSplitUnitWithDef(String unit) {
+    String _temp0 = intl.Intl.selectLogic(
+      unit,
+      {
+        'sourat': 'the surah',
+        'juzz': 'the juzz',
+        'hizb': 'the hizb',
+        'half': 'half the hizb',
+        'rubue': 'quarter the hizb',
+        'thumun': 'one-eighth the hizb',
         'other': '',
       },
     );
@@ -938,8 +1127,79 @@ class AppLocalizationsFr extends AppLocalizations {
         'juzz': 'Juzz (30 parties)',
         'hizb': 'Hizb (60 parties)',
         'half': 'Demi-Hizb (120 parties)',
-        'rubue': 'Quart de Hizb (240 parties)',
-        'thumun': 'Huitième de Hizb (480 parties)',
+        'rubue': 'Quart-hizb (240 parties)',
+        'thumun': 'Huitième-hizb (480 parties)',
+        'other': '',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ordinalPartNumber(String num) {
+    String _temp0 = intl.Intl.selectLogic(
+      num,
+      {
+        '1': 'The first',
+        '2': 'The second',
+        '3': 'The third',
+        '4': 'The fourth',
+        '5': 'The fifth',
+        '6': 'The sixth',
+        '7': 'The seventh',
+        '8': 'The eighth',
+        '9': 'The ninth',
+        '10': 'The tenth',
+        '11': 'The eleventh',
+        '12': 'The twelfth',
+        '13': 'The thirteenth',
+        '14': 'The fourteenth',
+        '15': 'The fifteenth',
+        '16': 'The sixteenth',
+        '17': 'The seventeenth',
+        '18': 'The eighteenth',
+        '19': 'The nineteenth',
+        '20': 'The twentieth',
+        '21': 'The twenty-first',
+        '22': 'The twenty-second',
+        '23': 'The twenty-third',
+        '24': 'The twenty-fourth',
+        '25': 'The twenty-fifth',
+        '26': 'The twenty-sixth',
+        '27': 'The twenty-seventh',
+        '28': 'The twenty-eighth',
+        '29': 'The twenty-ninth',
+        '30': 'The thirtieth',
+        '31': 'The thirty-first',
+        '32': 'The thirty-second',
+        '33': 'The thirty-third',
+        '34': 'The thirty-fourth',
+        '35': 'The thirty-fifth',
+        '36': 'The thirty-sixth',
+        '37': 'The thirty-seventh',
+        '38': 'The thirty-eighth',
+        '39': 'The thirty-ninth',
+        '40': 'The fortieth',
+        '41': 'The forty-first',
+        '42': 'The forty-second',
+        '43': 'The forty-third',
+        '44': 'The forty-fourth',
+        '45': 'The forty-fifth',
+        '46': 'The forty-sixth',
+        '47': 'The forty-seventh',
+        '48': 'The forty-eighth',
+        '49': 'The forty-ninth',
+        '50': 'The fiftieth',
+        '51': 'The fifty-first',
+        '52': 'The fifty-second',
+        '53': 'The fifty-third',
+        '54': 'The fifty-fourth',
+        '55': 'The fifty-fifth',
+        '56': 'The fifty-sixth',
+        '57': 'The fifty-seventh',
+        '58': 'The fifty-eighth',
+        '59': 'The fifty-ninth',
+        '60': 'The sixtieth',
         'other': '',
       },
     );
@@ -953,13 +1213,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get loadingKhatma => 'Chargement de la khatma';
 
   @override
-  String get loadingKhatmaList => 'Chargement de la liste des khatmas';
+  String get loadingKhatmaList => 'Chargement de la liste des khatma';
 
   @override
   String get completed => 'Terminé';
 
   @override
-  String get completedParts => 'Parties complétées';
+  String get completedParts => 'Parties terminées';
 
   @override
   String get remainingParts => 'Parties restantes';
@@ -979,20 +1239,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String completeParts(Object count) {
-    return 'Compléter ($count parties)';
+    return 'Terminer ($count parties)';
   }
 
   @override
-  String get maxPartToRead => 'Lecture maximale autorisée';
+  String get maxPartToRead => 'Partie max à lire';
 
   @override
-  String get maxPartToReserve => 'Réservations simultanées';
+  String get maxPartToReserve => 'Partie max à réserver';
 
   @override
   String get recurrence => 'Récurrence';
 
   @override
-  String get schedule => 'Calendrier';
+  String get schedule => 'Horaire';
 
   @override
   String get startDate => 'Date de début';
@@ -1004,7 +1264,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get every => 'Chaque';
 
   @override
-  String get repeat => 'Répéter';
+  String get repeat => 'Khatma répétitive';
 
   @override
   String get noRepeat => 'Pas de répétition';
@@ -1013,7 +1273,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeatEvery => 'Répéter tous les';
 
   @override
-  String get autoRepeatDescription => 'Reprise automatique après achèvement';
+  String get autoRepeatDescription =>
+      'Redémarrer automatiquement une fois terminé';
 
   @override
   String repeatEverySelectedDaysDescription(Object count, Object days) {
@@ -1036,10 +1297,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get noRepeatDescription => 'Cette khatma ne se renouvellera pas';
+  String get noRepeatDescription =>
+      'Redémarrer automatiquement une fois terminé';
 
   @override
-  String get repeatDescription => 'Re-création active de la khatma';
+  String get repeatDescription => 'Redémarrer automatiquement une fois terminé';
 
   @override
   String repeatInterval(String recurrence) {
@@ -1141,7 +1403,7 @@ class AppLocalizationsFr extends AppLocalizations {
       {
         'other': 'Cette khatma est privée',
         'public': 'Tout le monde peut accéder et participer',
-        'group': 'Partagé seulement par code ou QR code',
+        'group': 'Partagé uniquement par code ou QR code',
       },
     );
     return '$_temp0';
@@ -1153,7 +1415,8 @@ class AppLocalizationsFr extends AppLocalizations {
       share,
       {
         'other': 'La khatma restera privée et exclusive à l\'organisateur',
-        'public': 'Tout le monde est invité à accéder et rejoindre la khatma',
+        'public':
+            'Tout le monde est bienvenu pour accéder et rejoindre la khatma',
         'group':
             'La khatma sera partagée uniquement avec ceux qui reçoivent un numéro spécifique ou un QR code',
       },
@@ -1168,7 +1431,7 @@ class AppLocalizationsFr extends AppLocalizations {
       locale: localeName,
       other: '# participants',
       one: '1 participant',
-      zero: 'Pas de participants',
+      zero: 'Aucun participant',
     );
     return '$_temp0';
   }
@@ -1183,25 +1446,25 @@ class AppLocalizationsFr extends AppLocalizations {
   String get about => 'À propos';
 
   @override
-  String get appPreferences => 'App Preferences';
+  String get appPreferences => 'Préférences de l\'application';
 
   @override
-  String get aboutUs => 'About Us';
+  String get aboutUs => 'À propos de nous';
 
   @override
-  String get learnMoreAboutApp => 'Learn more about the app';
+  String get learnMoreAboutApp => 'En savoir plus sur l\'application';
 
   @override
-  String get readMode => 'Mode de lecture';
+  String get readMode => 'Mode lecture';
 
   @override
   String get readLess => 'Lire moins';
 
   @override
-  String get showMore => 'montrer plus';
+  String get showMore => ' afficher plus';
 
   @override
-  String get showLess => 'montrer moins';
+  String get showLess => ' afficher moins';
 
   @override
   String get language => 'Langue';
@@ -1213,7 +1476,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get riwaya => 'Riwaya';
 
   @override
-  String get chooseRiwaya => 'Choose Riwaya';
+  String get chooseRiwaya => 'Choisir la Riwaya';
 
   @override
   String get recitation => 'Récitation';
@@ -1256,203 +1519,203 @@ class AppLocalizationsFr extends AppLocalizations {
   String get faq => 'FAQ';
 
   @override
-  String get frequentlyAskedQuestions => 'Frequently Asked Questions';
+  String get frequentlyAskedQuestions => 'Questions fréquemment posées';
 
   @override
-  String get contactSupport => 'Contact Support';
+  String get contactSupport => 'Contacter le support';
 
   @override
-  String get questionsAndSuggestions => 'Questions and suggestions';
+  String get questionsAndSuggestions => 'Questions et suggestions';
 
   @override
-  String get onboarding1Title => 'Complète ta Khatma';
+  String get onboarding1Title => 'Terminez votre Khatma';
 
   @override
   String get onboarding1Description =>
-      'Enregistre ta lecture quotidienne du Coran et visualise ta progression vers son achèvement.';
+      'Suivez votre lecture quotidienne du Coran et visualisez votre progression vers l\'achèvement du Saint Coran.';
 
   @override
-  String get onboarding2Title => 'Récitations Magnifiques';
+  String get onboarding2Title => 'Belles récitations';
 
   @override
   String get onboarding2Description =>
-      'Plonge-toi dans un audio cristallin de récitateurs renommés avec un surlignage mot par mot.';
+      'Immergez-vous avec un audio cristallin de récitateurs renommés avec mise en évidence mot par mot.';
 
   @override
-  String get onboarding3Title => 'Rappels Quotidiens';
+  String get onboarding3Title => 'Rappels quotidiens';
 
   @override
   String get onboarding3Description =>
-      'Définis des rappels spirituels pour maintenir ton lien avec le Coran tout au long de la journée.';
+      'Définissez des rappels spirituels pour maintenir votre connexion avec le Coran tout au long de votre journée.';
 
   @override
-  String get onboarding4Title => 'Compréhension Approfondie';
+  String get onboarding4Title => 'Compréhension profonde';
 
   @override
   String get onboarding4Description =>
-      'Accède à plusieurs explications de tafsir et traductions pour enrichir ta compréhension du Coran.';
+      'Accédez à plusieurs explications de tafsir et traductions pour enrichir vos connaissances coraniques.';
 
   @override
-  String get skipButton => 'Passer';
+  String get skipButton => 'Ignorer';
 
   @override
   String get continueButton => 'Continuer';
 
   @override
-  String get startButton => 'Commence ton voyage avec le Coran';
+  String get startButton => 'Commencer le voyage coranique';
 
   @override
-  String get registration_validation => 'Registration validation messages';
+  String get registration_validation => 'Messages de validation d\'inscription';
 
   @override
-  String get login_validation => 'Login validation messages';
+  String get login_validation => 'Messages de validation de connexion';
 
   @override
-  String get registration_ui => 'Registration interface';
+  String get registration_ui => 'Interface d\'inscription';
 
   @override
-  String get login_ui => 'Login interface';
+  String get login_ui => 'Interface de connexion';
 
   @override
-  String get form_types => 'Form types';
+  String get form_types => 'Types de formulaires';
 
   @override
-  String get shared_fields => 'Shared fields';
+  String get shared_fields => 'Champs partagés';
 
   @override
-  String get validation_messages => 'Validation messages';
+  String get validation_messages => 'Messages de validation';
 
   @override
-  String get password_criteria => 'Password criteria';
+  String get password_criteria => 'Critères de mot de passe';
 
   @override
-  String get terms_and_actions => 'Terms and actions';
+  String get terms_and_actions => 'Conditions et actions';
 
   @override
-  String get rememberMe => 'Remember me';
+  String get rememberMe => 'Se souvenir de moi';
 
   @override
-  String get ui_labels => 'UI labels';
+  String get ui_labels => 'Étiquettes d\'interface';
 
   @override
-  String get openSettings => 'Open Settings';
+  String get openSettings => 'Ouvrir les paramètres';
 
   @override
-  String get tryAgain => 'Try Again';
+  String get tryAgain => 'Réessayer';
 
   @override
-  String get authenticationError => 'Authentication Error';
+  String get authenticationError => 'Erreur d\'authentification';
 
   @override
-  String get syncError => 'Sync Error';
+  String get syncError => 'Erreur de synchronisation';
 
   @override
-  String get storageError => 'Storage Error';
+  String get storageError => 'Erreur de stockage';
 
   @override
-  String get validationError => 'Validation Error';
+  String get validationError => 'Erreur de validation';
 
   @override
-  String get khatmaError => 'Khatma Error';
+  String get khatmaError => 'Erreur de Khatma';
 
   @override
-  String get limitError => 'Limit Reached';
+  String get limitError => 'Limite atteinte';
 
   @override
-  String get historyError => 'History Error';
+  String get historyError => 'Erreur d\'historique';
 
   @override
-  String get searchError => 'Search Error';
+  String get searchError => 'Erreur de recherche';
 
   @override
-  String get statsError => 'Statistics Error';
+  String get statsError => 'Erreur de statistiques';
 
   @override
-  String get dateError => 'Date Error';
+  String get dateError => 'Erreur de date';
 
   @override
-  String get permissionError => 'Permission Error';
+  String get permissionError => 'Erreur de permission';
 
   @override
-  String get errorDialogExamples => 'Error Dialog Examples';
+  String get errorDialogExamples => 'Exemples de dialogues d\'erreur';
 
   @override
-  String get networkErrors => 'Network Errors';
+  String get networkErrors => 'Erreurs réseau';
 
   @override
-  String get authenticationErrors => 'Authentication Errors';
+  String get authenticationErrors => 'Erreurs d\'authentification';
 
   @override
-  String get storageErrors => 'Storage Errors';
+  String get storageErrors => 'Erreurs de stockage';
 
   @override
-  String get validationErrors => 'Validation Errors';
+  String get validationErrors => 'Erreurs de validation';
 
   @override
-  String get khatmaErrors => 'Khatma Errors';
+  String get khatmaErrors => 'Erreurs de Khatma';
 
   @override
-  String get connectionFailed => 'Connection Failed';
+  String get connectionFailed => 'Échec de connexion';
 
   @override
-  String get timeout => 'Timeout';
+  String get timeout => 'Délai dépassé';
 
   @override
-  String get serverError => 'Server Error';
+  String get serverError => 'Erreur serveur';
 
   @override
-  String get userNotLoggedIn => 'User Not Logged In';
+  String get userNotLoggedIn => 'Utilisateur non connecté';
 
   @override
-  String get sessionExpired => 'Session Expired';
+  String get sessionExpired => 'Session expirée';
 
   @override
-  String get storageFull => 'Storage Full';
+  String get storageFull => 'Stockage plein';
 
   @override
-  String get storageCorrupted => 'Storage Corrupted';
+  String get storageCorrupted => 'Stockage corrompu';
 
   @override
-  String get saveFailed => 'Save Failed';
+  String get saveFailed => 'Échec de sauvegarde';
 
   @override
-  String get invalidData => 'Invalid Data';
+  String get invalidData => 'Données invalides';
 
   @override
-  String get missingFields => 'Missing Fields';
+  String get missingFields => 'Champs manquants';
 
   @override
-  String get invalidDate => 'Invalid Date';
+  String get invalidDate => 'Date invalide';
 
   @override
-  String get khatmaNotFound => 'Khatma Not Found';
+  String get khatmaNotFound => 'Khatma non trouvée';
 
   @override
-  String get alreadyCompleted => 'Already Completed';
+  String get alreadyCompleted => 'Déjà terminé';
 
   @override
-  String get invalidParts => 'Invalid Parts';
+  String get invalidParts => 'Parties invalides';
 
   @override
-  String get retrying => 'Retrying...';
+  String get retrying => 'Nouvelle tentative...';
 
   @override
-  String get openingSignIn => 'Opening sign in...';
+  String get openingSignIn => 'Ouverture de la connexion...';
 
   @override
-  String get openingSettings => 'Opening settings...';
+  String get openingSettings => 'Ouverture des paramètres...';
 
   @override
-  String get actionPerformed => 'Action performed';
+  String get actionPerformed => 'Action effectuée';
 
   @override
   String get displayNameTooLong =>
-      'Display name must be less than 50 characters';
+      'Le nom d\'affichage doit contenir moins de 50 caractères';
 
   @override
   String get displayNameInvalidCharacters =>
-      'Display name contains invalid characters';
+      'Le nom d\'affichage contient des caractères invalides';
 
   @override
-  String get unexpectedError => 'An unexpected error occurred';
+  String get unexpectedError => 'Une erreur inattendue s\'est produite';
 }

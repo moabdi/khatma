@@ -50,6 +50,7 @@ class ToReadPartTiles extends ConsumerWidget {
                     offset: Offset(0, 30 * (1 - value)),
                     child: PartTile(
                       part,
+                      unit: unit,
                       color: color,
                       trailing: CircleAvatar(
                         backgroundColor: color.withAlpha(51),

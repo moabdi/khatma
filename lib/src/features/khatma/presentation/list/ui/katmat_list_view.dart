@@ -1,3 +1,5 @@
+import 'package:khatma/src/features/khatma/presentation/welcome_home.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/components/animation/flashing_widget.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/widgets/async_value_widget.dart';
@@ -20,7 +22,7 @@ class KhatmatListView extends ConsumerWidget {
       loading: const LoadingListTile(itemCount: 10),
       value: khatmatListValue,
       data: (khatmat) => khatmat.isEmpty
-          ? SizedBox.shrink()
+          ? WelcomeHome()
           : buildKhatmaList(khatmat, context, ref),
     );
   }
@@ -36,7 +38,7 @@ class KhatmatListView extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
             child: Text(
-              "Khatmats en cours",
+              context.loc.khatmaListSubtitle,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Theme.of(context).primaryColor.withAlpha(230)),
             ),
