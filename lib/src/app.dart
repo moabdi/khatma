@@ -1,9 +1,8 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/utils/common.dart';
-import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/i18n/local_provider.dart';
-import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,8 +14,6 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(authRepositoryProvider).signInAnonymously();
-
     return MaterialApp.router(
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -28,7 +25,7 @@ class MainApp extends ConsumerWidget {
       supportedLocales: supportedLocales,
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
-      onGenerateTitle: (BuildContext context) => 'Khatma'.hardcoded,
+      onGenerateTitle: (BuildContext context) => context.loc.khatma,
       theme: AppTheme.lightTheme(),
       darkTheme: AppTheme.darkTheme(),
       locale: ref.watch(localeProvider),

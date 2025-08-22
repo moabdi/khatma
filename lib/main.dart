@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:khatma/firebase_options.dart';
@@ -13,9 +14,8 @@ import 'package:path_provider/path_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+// Initialize Firebase
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   usePathUrlStrategy();
 
@@ -30,20 +30,34 @@ void main() async {
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
 
-  registerErrorHandlers();
+  await registerErrorHandlers();
 
   runApp(const ProviderScope(child: MainApp()));
 }
 
-void registerErrorHandlers() {
+Future<void> registerErrorHandlers() async {
+  if (!kIsWeb) {
+    // Enable Crashlytics
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+
+    // Non-fatal Flutter errors
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    // Fatal errors (Dart/Platform level)
+    PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      debugPrint(error.toString());
+      return true;
+    };
+  } else {
+    // Fatal errors (Dart/Platform level)
+    PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
+      debugPrint(error.toString());
+      return true;
+    };
+  }
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.presentError(details);
     debugPrint(details.toString());
-  };
-
-  PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
-    debugPrint(error.toString());
-    return true;
   };
 
   ErrorWidget.builder = (FlutterErrorDetails details) {

@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:khatma/src/features/khatma/domain/completion_history.dart';
 import 'package:khatma/src/utils/delay.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -73,30 +74,26 @@ class KhatmaHistoryRepository {
 }
 
 @Riverpod(keepAlive: true)
-KhatmaHistoryRepository khatmaHistoryRepository(
-    KhatmaHistoryRepositoryRef ref) {
+KhatmaHistoryRepository khatmaHistoryRepository(Ref ref) {
   return KhatmaHistoryRepository(FirebaseFirestore.instance);
 }
 
 @riverpod
-Stream<List<CompletionHistory>> khatmaHistoryRepositoryStream(
-    KhatmaHistoryRepositoryStreamRef ref) {
+Stream<List<CompletionHistory>> khatmaHistoryRepositoryStream(Ref ref) {
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
   return khatmasRepository.watchKhatmasList(userUid);
 }
 
 @riverpod
-Future<List<CompletionHistory>> khatmaHistoryRepositoryFuture(
-    KhatmaHistoryRepositoryFutureRef ref) {
+Future<List<CompletionHistory>> khatmaHistoryRepositoryFuture(Ref ref) {
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
   return khatmasRepository.fetchKhatmasList(userUid);
 }
 
 @riverpod
-Stream<CompletionHistory?> khatmaHistoryStream(
-    KhatmaHistoryStreamRef ref, KhatmaID id) {
+Stream<CompletionHistory?> khatmaHistoryStream(Ref ref, KhatmaID id) {
   delay(true);
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
@@ -104,8 +101,7 @@ Stream<CompletionHistory?> khatmaHistoryStream(
 }
 
 @riverpod
-Future<CompletionHistory?> khatmaHistoryFuture(
-    KhatmaHistoryFutureRef ref, KhatmaID id) async {
+Future<CompletionHistory?> khatmaHistoryFuture(Ref ref, KhatmaID id) async {
   await delay(true, milliseconds: 100);
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;

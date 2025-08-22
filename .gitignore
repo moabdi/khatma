@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/flutter
 # Edit at https://www.toptal.com/developers/gitignore?templates=flutter
 
+# IDE related
+.idea/
+.vscode/
+
 ### Flutter ###
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -94,3 +98,10 @@ windows/flutter/generated_plugins.cmake
 .qodo
 pubspec.lock
 custom_lint.log
+**/.DS_Store
+lib/.DS_Store
+lib/src/.DS_Store
+lib/src/.DS_Store
+.DS_Store
+.DS_Store
+lib/src/.DS_Store

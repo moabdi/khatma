@@ -1,44 +1,94 @@
-import 'package:khatma/src/features/authentication/domain/app_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:khatma/src/features/authentication/domain/app_user.dart';
+import 'package:khatma/src/core/result.dart';
+import 'package:khatma/src/error/app_error_code.dart';
 
-/// Wrapper for the [User] class inside the firebase_auth package
-class FirebaseAppUser implements AppUser {
-  const FirebaseAppUser(this._user);
+class FirebaseAppUser extends AppUser {
+  FirebaseAppUser(this._user)
+      : super(
+          uid: _user.uid,
+          email: _user.email,
+          displayName: _user.displayName,
+          emailVerified: _user.emailVerified,
+          isAnonymous: _user.isAnonymous,
+        );
+
   final User _user;
 
   @override
-  UserID get uid => _user.uid;
-
-  @override
-  String? get email => _user.email;
-
-  @override
-  bool get emailVerified => _user.emailVerified;
-
-  // * Note: after calling this method, [emailVerified] isn't updated until the
-  // * next time an ID token is generated for the user.
-  // * Read this for more info: https://stackoverflow.com/a/63258198/436422
-  @override
-  Future<void> sendEmailVerification() => _user.sendEmailVerification();
-
-  /// Check if the user is an admin by fetching the Firebase ID token and
-  /// checking the custom claims inside it.
-  @override
-  Future<bool> isAdmin() async {
-    // * Note: when a Firebase user is first created, the custom claim is not
-    // * set until [setCustomUserClaims] is called in the
-    // * [makeAdminIfWhitelisted] cloud function.
-    // * There are two workarounds for this:
-    // * 1. Sign out and sign in again (since this will force a token refresh)
-    // * 2. Force refresh the token programmatically
-    final idTokenResult = await _user.getIdTokenResult();
-    final claims = idTokenResult.claims;
-    if (claims != null) {
-      return claims['admin'] == true;
+  Future<Result<void, AppErrorCode>> sendEmailVerification() async {
+    try {
+      await _user.sendEmailVerification();
+      return const Result.success(null);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(_mapFirebaseAuthException(e));
+    } catch (e) {
+      return const Result.failure(AppErrorCode.generalUnknown);
     }
-    return false;
   }
 
   @override
-  Future<void> forceRefreshIdToken() => _user.getIdToken(true);
+  Future<Result<bool, AppErrorCode>> isAdmin() async {
+    try {
+      final idTokenResult = await _user.getIdTokenResult();
+      final claims = idTokenResult.claims;
+
+      final isAdminUser = claims?['admin'] == true ||
+          claims?['role'] == 'admin' ||
+          claims?['isAdmin'] == true;
+
+      return Result.success(isAdminUser);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(_mapFirebaseAuthException(e));
+    } catch (e) {
+      return const Result.failure(AppErrorCode.generalUnknown);
+    }
+  }
+
+  @override
+  Future<Result<void, AppErrorCode>> forceRefreshIdToken() async {
+    try {
+      await _user.reload();
+      await _user.getIdToken(true);
+      return const Result.success(null);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(_mapFirebaseAuthException(e));
+    } catch (e) {
+      return const Result.failure(AppErrorCode.generalUnknown);
+    }
+  }
+
+  @override
+  Future<Result<String?, AppErrorCode>> getIdToken(
+      {bool forceRefresh = false}) async {
+    try {
+      final token = await _user.getIdToken(forceRefresh);
+      return Result.success(token);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(_mapFirebaseAuthException(e));
+    } catch (e) {
+      return const Result.failure(AppErrorCode.generalUnknown);
+    }
+  }
+
+  AppErrorCode _mapFirebaseAuthException(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'user-not-found':
+        return AppErrorCode.authUserNotLoggedIn;
+      case 'too-many-requests':
+        return AppErrorCode.netRateLimit;
+      case 'network-request-failed':
+        return AppErrorCode.netConnectionFailed;
+      case 'requires-recent-login':
+        return AppErrorCode.authSessionExpired;
+      case 'user-disabled':
+        return AppErrorCode.authInvalidAccount;
+      case 'operation-not-allowed':
+        return AppErrorCode.authPermissionDenied;
+      case 'invalid-email':
+        return AppErrorCode.validationInvalidFormat;
+      default:
+        return AppErrorCode.generalUnknown;
+    }
+  }
 }

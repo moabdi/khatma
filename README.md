@@ -64,22 +64,24 @@ To use Firebase, follow these steps:
 - Create a project or select an existing one.
 - Add a Web App to get configuration keys.
 
-### 2. Install Firebase Packages
-
-Example (adapt to your needs):
-
-```bash
-flutter pub add firebase_core
-flutter pub add firebase_auth
-flutter pub add cloud_firestore
-```
-
-### 3. Generate Firebase Options File
+### 2. Generate Firebase Options File
 
 If using [`flutterfire_cli`](https://firebase.flutter.dev/docs/cli/), run:
+             
+```bash
+sudo npm install -g firebase-tools      
+```
 
 ```bash
-flutterfire configure
+dart pub global activate flutterfire_cli   
+```  
+
+```bash
+export PATH="$PATH":"$HOME/.pub-cache/bin" 
+```  
+
+```bash
+flutterfire configure    
 ```
 
 This generates `firebase_options.dart`.

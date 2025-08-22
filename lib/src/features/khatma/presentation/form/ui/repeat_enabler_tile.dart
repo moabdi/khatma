@@ -2,27 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:khatma/src/utils/common.dart';
 
 class RepeatKhatmaTile extends StatelessWidget {
-  const RepeatKhatmaTile(
-      {super.key, this.enabled = true, required this.onChanged});
+  const RepeatKhatmaTile({
+    super.key,
+    required this.enabled,
+    required this.onChanged,
+  });
 
-  final ValueChanged<bool> onChanged;
   final bool enabled;
+  final ValueChanged<bool> onChanged;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SwitchListTile(
       value: enabled,
-      title: Text(AppLocalizations.of(context).repeat),
-      subtitle: enabled
-          ? Text(AppLocalizations.of(context).autoRepeatDescription)
-          : Text(AppLocalizations.of(context).noRepeatDescription),
-      secondary: Icon(
-        Icons.autorenew,
-        color: enabled ? Theme.of(context).primaryColor : Colors.blueGrey,
+      title: Text(
+        AppLocalizations.of(context).repeat,
+        style: theme.textTheme.titleMedium,
+      ),
+      subtitle: Text(
+        AppLocalizations.of(context).autoRepeatDescription,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: theme.textTheme.bodySmall?.color,
+        ),
+      ),
+      secondary: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        child: Icon(
+          Icons.autorenew,
+          color: enabled ? theme.primaryColor : theme.disabledColor,
+        ),
       ),
       onChanged: onChanged,
-      activeColor: Theme.of(context).primaryColor,
-      inactiveThumbColor: Colors.grey,
+      activeColor: theme.primaryColor,
+      inactiveThumbColor: theme.disabledColor,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     );
   }
 }

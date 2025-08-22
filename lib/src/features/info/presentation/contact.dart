@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/app_logo.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -32,15 +33,9 @@ class _ContactUsPageState extends State<ContactUsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                gapH64,
-                CircleAvatar(
-                  backgroundColor: Theme.of(context).disabledColor,
-                  radius: 50,
-                  backgroundImage: AssetImage(
-                    'assets/khatma.png', // Add your logo in assets
-                  ),
-                ),
-                gapH64,
+                gapH32,
+                AppLogo(),
+                gapH32,
 
                 // Name field
                 TextField(
@@ -104,7 +99,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                     minimumSize: const Size(double.infinity, 50),
                   ),
                 ),
-                gapH24,
+                gapH12,
 
                 // Divider with "Or" in the center
                 Row(
@@ -118,7 +113,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                     Expanded(child: Divider()),
                   ],
                 ),
-                gapH24,
+                gapH12,
 
                 // Contact via social links (e.g., Google)
                 ElevatedButton.icon(

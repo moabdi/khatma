@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma/src/constants/lottie_asset.dart';
 import 'package:khatma/src/utils/common.dart';
-import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/read/ui/khatma_bar_chart.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma_ui/constants/app_dividers.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class KhatmaSuccessComplete extends ConsumerWidget {
@@ -21,13 +22,14 @@ class KhatmaSuccessComplete extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      color: Theme.of(context).primaryColor,
-      padding: EdgeInsets.all(5),
-      child: Stack(
-        children: [
-          topCard(context, ref),
-        ],
+    return Scaffold(
+      appBar: KhatmaAppBar(khatmaId: khatma.id!),
+      body: Container(
+        child: Stack(
+          children: [
+            topCard(context, ref),
+          ],
+        ),
       ),
     );
   }
@@ -42,42 +44,33 @@ class KhatmaSuccessComplete extends ConsumerWidget {
             children: [
               lottieSuccessAsset,
               Text(
-                "Congratulations",
+                context.loc.congratulations,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               gapH8,
               Text(
-                "You have just finished your khatma in ${khatma.endDate!.timeAgoSince(khatma.startDate)}",
+                context.loc.khatmaFinishedMessage(
+                    khatma.endDate!.timeAgoSince(khatma.startDate)),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               gapH12,
               Divider(),
               KhatmaBarChart(
                 khatma: khatma,
-                title: "Completude",
-                subTitle: "Khatma Historique",
+                title: context.loc.completion,
+                subTitle: context.loc.khatmaHistory,
               ),
               gapH20,
-              Divider(),
-              gapH20,
-              RepeatKhatmaTile(
-                enabled: khatma.repeat,
-                onChanged: (value) {},
-              ),
+              dividerH1T1,
               Spacer(),
               PrimaryButton(
                 color: Theme.of(context).primaryColor,
                 width: MediaQuery.of(context).size.width * .85,
                 shadowOffset: 5,
                 onPressed: () {
-                  ref.read(khatmaListProvider.notifier).complete(
-                        khatma.id!,
-                        khatma.repeat,
-                      );
-
                   context.goNamed(AppRoute.home.name);
                 },
-                text: "Terminate",
+                text: context.loc.terminate,
               ),
               gapH32,
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/utils/duration_formatter.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
@@ -21,9 +22,12 @@ class KhatmaTile extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
       hoverColor: khatma.style.hexColor.withAlpha(26),
-      leading: CircleAvatar(
-        backgroundColor: khatma.style.hexColor.withAlpha(26),
-        child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
+      leading: SizedBox(
+        width: 40,
+        child: CircleAvatar(
+          backgroundColor: khatma.style.hexColor.withAlpha(26),
+          child: getIcon(khatma.style.icon, color: khatma.style.hexColor),
+        ),
       ),
       title: Text(khatma.name),
       subtitle: Column(
@@ -42,7 +46,7 @@ class KhatmaTile extends StatelessWidget {
               ),
               gapW4,
               Text(formatDateAsTextDuration(
-                  khatma.lastRead ?? khatma.createDate)),
+                  context.loc, khatma.lastRead ?? khatma.createDate)),
             ],
           ),
           gapH12,
