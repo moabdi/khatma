@@ -23,7 +23,7 @@ class DeleteAccountSection extends ConsumerWidget {
         children: [
           // Delete Account
           SettingsTile(
-            icon: Icons.delete_outline,
+            icon: Icons.heart_broken,
             leadingColor: Colors.red.shade700,
             title: context.loc.deleteAccount,
             subtitle: context.loc.permanentlyDeleteAccount,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -83,22 +84,16 @@ class _SplashScreenState extends State<SplashScreen>
                     ],
                   ),
                   const SizedBox(height: 32),
-                  const Text(
+                  Text(
                     'ختمة',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF065F46),
-                    ),
+                    style: context.textTheme.displaySmall!
+                        .copyWith(color: Color(0xFF065F46)),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     'Khatma',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF047857),
-                    ),
+                    style: context.textTheme.headlineLarge!
+                        .copyWith(color: Color(0xFF065F46)),
                   ),
                   const SizedBox(height: 8),
                   const Text(

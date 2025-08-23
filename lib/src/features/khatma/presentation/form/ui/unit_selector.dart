@@ -44,7 +44,7 @@ class UnitSelector extends StatelessWidget {
                     child: Icon(
                       unitIcons[currentUnit],
                       color: Theme.of(context).primaryColor,
-                      size: 25,
+                      size: 32,
                     ),
                   ),
                   onTap: () {

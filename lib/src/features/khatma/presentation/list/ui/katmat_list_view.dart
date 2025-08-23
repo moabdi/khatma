@@ -17,7 +17,7 @@ class KhatmatListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatmatListValue = ref.watch(allKhatmasProvider);
+    final khatmatListValue = ref.watch(khatmaNotifierProvider).khatmas;
     return AsyncValueWidget<List<Khatma>>(
       loading: const LoadingListTile(itemCount: 10),
       value: khatmatListValue,

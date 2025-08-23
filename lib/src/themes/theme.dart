@@ -107,10 +107,10 @@ class AppTheme {
         tileColor: isDark ? const Color(0xFF1F1F1F) : Colors.grey.shade50,
         selectedTileColor: primaryColors.withAlpha(51),
         titleTextStyle: isDark
-            ? textTheme.titleSmall!.copyWith(color: Colors.white)
-            : textTheme.titleSmall,
-        subtitleTextStyle: textTheme.bodyMedium!
-            .copyWith(color: isDark ? Colors.grey[400] : Colors.grey[600]),
+            ? textTheme.titleMedium!.copyWith(color: Colors.white)
+            : textTheme.titleMedium,
+        subtitleTextStyle: textTheme.titleSmall!.copyWith(
+            color: isDark ? HexColor("#737A86") : HexColor("#737A86")),
         titleAlignment: ListTileTitleAlignment.center,
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
       ),
@@ -202,10 +202,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+          textStyle: textTheme.titleMedium,
         ),
       ),
       snackBarTheme: SnackBarThemeData(
@@ -315,21 +312,21 @@ class AppTheme {
         wordSpacing: 0.5,
       ),
       titleMedium: const TextStyle(
-        fontSize: 18.0,
-        fontWeight: FontWeight.w600,
+        fontSize: 15.0,
+        fontWeight: FontWeight.w500,
         fontFamily: largeFontFamily,
         color: Colors.black,
-        wordSpacing: 0.5,
+        wordSpacing: 0.4,
       ),
       titleSmall: const TextStyle(
-        fontSize: 17.0,
+        fontSize: 14.0,
         fontWeight: FontWeight.w400,
         fontFamily: largeFontFamily,
         color: Colors.black,
         wordSpacing: 0.4,
       ),
       bodyLarge: const TextStyle(
-        fontSize: 15.0,
+        fontSize: 17.0,
         fontWeight: FontWeight.w500,
         fontFamily: normalFontFamily,
         color: Colors.black,

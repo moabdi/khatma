@@ -12,12 +12,12 @@ class MainNavigationBar extends StatelessWidget {
     var selectedLabelStyle = Theme.of(context)
         .textTheme
         .labelLarge!
-        .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
+        .copyWith(fontSize: 14, fontWeight: FontWeight.w600);
 
-    var unselectedLabelStyle = Theme.of(context)
-        .textTheme
-        .labelLarge!
-        .copyWith(fontSize: 11, fontWeight: FontWeight.w600);
+    var unselectedLabelStyle = Theme.of(context).textTheme.labelLarge!.copyWith(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+        );
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       //backgroundColor: Theme.of(context).disabledColor,

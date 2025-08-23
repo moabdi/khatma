@@ -32,10 +32,11 @@ class RepeatKhatmaTile extends StatelessWidget {
         child: Icon(
           Icons.autorenew,
           color: enabled ? theme.primaryColor : theme.disabledColor,
+          size: 32,
         ),
       ),
       onChanged: onChanged,
-      activeColor: theme.primaryColor,
+      activeThumbColor: theme.primaryColor,
       inactiveThumbColor: theme.disabledColor,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     );

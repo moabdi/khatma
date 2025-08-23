@@ -8,6 +8,7 @@ import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/constants/snack_bars.dart';
 import 'package:khatma/src/utils/common.dart';
@@ -82,6 +83,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
 
   AppBar _buildAppBar(BuildContext context, bool isEditing) {
     return AppBar(
+      centerTitle: true,
       title: Text(
         isEditing
             ? AppLocalizations.of(context).editKhatma
@@ -100,11 +102,13 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     }
 
     return SafeArea(
-      child: FocusScope(
-        node: _focusNode,
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: _buildForm(context, khatma),
+      child: SingleChildScrollView(
+        child: FocusScope(
+          node: _focusNode,
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: _buildForm(context, khatma),
+          ),
         ),
       ),
     );
@@ -128,7 +132,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             _buildSplitUnitSelector(context, khatma),
             gapH16,
             _buildRepeatToggle(khatma),
-            const Spacer(),
+            gapH64,
             _buildSaveButton(context, khatma),
             gapH16,
             _buildDeleteButton(context),
@@ -161,7 +165,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   Widget _buildNameField(BuildContext context, Khatma khatma) {
     return TextFormField(
       controller: _nameController,
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: context.textTheme.bodyLarge,
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context).nameHint,
         border: const OutlineInputBorder(),
@@ -190,7 +194,11 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
 
   Widget _buildSplitUnitSelector(BuildContext context, Khatma khatma) {
     return KhatmaFormTile(
-      icon: const Icon(Icons.dynamic_feed, color: Colors.amber),
+      icon: const Icon(
+        Icons.dynamic_feed,
+        color: Colors.amber,
+        size: 32,
+      ),
       title: AppLocalizations.of(context).splitUnit,
       subtitle: Text(
         AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),

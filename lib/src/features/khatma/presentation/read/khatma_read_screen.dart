@@ -149,6 +149,7 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? AppBar(title: Text("Khatma"))
               : AppBar(
                   title: Text(khatma.name),
+                  centerTitle: true,
                   actions: [
                     IconButton(
                       icon: Icon(
