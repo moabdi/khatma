@@ -28,7 +28,7 @@ class AccountSettingsSection extends ConsumerWidget {
                   icon: Icons.mark_email_unread_outlined,
                   title: context.loc.verifyEmail,
                   subtitle: context.loc.confirmEmailAddress,
-                  leadingColor: context.colorScheme.warning,
+                  leadingColor: context.warningColor,
                   onTap: () =>
                       EmailVerificationHandler.sendVerification(context, ref),
                 ),

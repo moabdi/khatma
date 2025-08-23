@@ -64,7 +64,7 @@ class ProfileHeader extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: user!.emailVerified
                         ? context.colorScheme.primary
-                        : context.colorScheme.warning,
+                        : context.warningColor,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.white,

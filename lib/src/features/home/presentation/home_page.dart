@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/navigation/navigation_bar.dart';
 import 'package:khatma/src/features/home/presentation/header/top_card.dart';
@@ -25,8 +26,8 @@ class KhatmatListScreen extends StatelessWidget {
                 child: Image.asset("assets/images/khatma/khatma.png"),
               ),
             ),
-            backgroundColor: Theme.of(context).primaryColor,
-            surfaceTintColor: Theme.of(context).primaryColor,
+            backgroundColor: context.colorScheme.primary,
+            surfaceTintColor: context.colorScheme.primary,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: false,
               title: AnimatedTextKit(
@@ -47,7 +48,7 @@ class KhatmatListScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              color: Theme.of(context).primaryColor,
+              color: context.colorScheme.primary,
               child: TopCard(height: MediaQuery.of(context).size.height / 6),
             ),
           ),

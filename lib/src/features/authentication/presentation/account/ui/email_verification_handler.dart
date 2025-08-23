@@ -21,7 +21,7 @@ class EmailVerificationHandler {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.verificationEmailSent),
-            backgroundColor: context.colorScheme.success,
+            backgroundColor: context.successColor,
             behavior: SnackBarBehavior.floating,
           ),
         );

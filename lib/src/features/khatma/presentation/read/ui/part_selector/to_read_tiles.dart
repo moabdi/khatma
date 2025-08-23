@@ -34,7 +34,7 @@ class ToReadPartTiles extends ConsumerWidget {
         return ListView.separated(
           shrinkWrap: true,
           primary: false,
-          separatorBuilder: (context, index) => const Divider(height: 2),
+          separatorBuilder: (context, index) => const Divider(height: 2.5),
           itemCount: filtredList.length,
           cacheExtent: 10,
           itemBuilder: (context, index) {

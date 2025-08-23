@@ -193,17 +193,19 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   }
 
   Widget _buildSplitUnitSelector(BuildContext context, Khatma khatma) {
-    return KhatmaFormTile(
-      icon: const Icon(
-        Icons.dynamic_feed,
-        color: Colors.amber,
-        size: 32,
+    return Card(
+      child: ListTile(
+        leading: const Icon(
+          Icons.dynamic_feed,
+          color: Colors.amber,
+          size: 32,
+        ),
+        title: Text(AppLocalizations.of(context).splitUnit),
+        subtitle: Text(
+          AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
+        ),
+        onTap: () => _handleSplitUnitTap(context, khatma),
       ),
-      title: AppLocalizations.of(context).splitUnit,
-      subtitle: Text(
-        AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
-      ),
-      onTap: () => _handleSplitUnitTap(context, khatma),
     );
   }
 
@@ -246,10 +248,12 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     final khatma = ref.watch(khatmaFormProvider);
     if (khatma.id == null) return const SizedBox.shrink();
 
-    return OutlinedButton(
+    return OutlinedButton.icon(
       onPressed: () => _handleDelete(context, khatma),
-      child: Text(AppLocalizations.of(context).delete),
+      icon: Icon(Icons.delete),
+      label: Text(AppLocalizations.of(context).delete),
       style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.red.shade50,
         foregroundColor: Colors.red,
         side: BorderSide(color: Colors.red),
       ),

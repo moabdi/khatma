@@ -63,7 +63,7 @@ class _CreatePasswordPageState extends ConsumerState<CreatePasswordPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.passwordUpdatedSuccessfully),
-            backgroundColor: context.colorScheme.success,
+            backgroundColor: context.successColor,
             duration: const Duration(seconds: 3),
             behavior: SnackBarBehavior.floating,
           ),

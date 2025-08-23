@@ -65,7 +65,7 @@ class ProfileMenuPage extends ConsumerWidget {
                   SettingsTile(
                     icon: Icons.login,
                     title: context.loc.signInOrSignUp,
-                    titleColor: context.theme.primaryColor,
+                    titleColor: context.theme.colorScheme.primary,
                     onTap: () => context.goNamed(AppRoute.login.name),
                   ),
                 if (user != null)
@@ -74,7 +74,7 @@ class ProfileMenuPage extends ConsumerWidget {
                     title: context.loc.myAccount,
                     onTap: () => context.goNamed(AppRoute.account.name),
                   ),
-                gapH8,
+                gapH2,
                 SettingsTile(
                   icon: Icons.settings,
                   title: context.loc.settings,
@@ -95,19 +95,19 @@ class ProfileMenuPage extends ConsumerWidget {
                   title: context.loc.faq,
                   onTap: () => context.pushNamed(AppRoute.faq.name),
                 ),
-                gapH8,
+                gapH2,
                 SettingsTile(
                   icon: Icons.article,
                   title: context.loc.legalNotices,
                   onTap: () => context.pushNamed(AppRoute.mentionsLegales.name),
                 ),
-                gapH8,
+                gapH2,
                 SettingsTile(
                   icon: Icons.help,
                   title: context.loc.aboutUs,
                   onTap: () => context.pushNamed(AppRoute.aboutUs.name),
                 ),
-                gapH8,
+                gapH2,
                 SettingsTile(
                   icon: Icons.feedback,
                   title: context.loc.contactSupport,

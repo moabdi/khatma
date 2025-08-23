@@ -28,7 +28,7 @@ class DeleteAccountSection extends ConsumerWidget {
             title: context.loc.deleteAccount,
             subtitle: context.loc.permanentlyDeleteAccount,
             titleColor: Colors.red.shade700,
-            subtitleColor: Colors.red.shade600,
+            //  subtitleColor: Colors.red.shade600,
             onTap: () => _showDeleteAccountDialog(context, ref),
           ),
         ],
@@ -151,7 +151,7 @@ class _DeleteAccountSheetState extends ConsumerState<_DeleteAccountSheet>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(context.loc.accountDeletedSuccessfully),
-              backgroundColor: context.colorScheme.success,
+              backgroundColor: context.successColor,
               behavior: SnackBarBehavior.floating,
             ),
           );

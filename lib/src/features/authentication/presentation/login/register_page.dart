@@ -104,7 +104,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.accountCreatedSuccessfully),
-            backgroundColor: Theme.of(context).colorScheme.success,
+            backgroundColor: context.successColor,
             behavior: SnackBarBehavior.floating,
           ),
         );

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class MainNavigationBar extends StatelessWidget {
   const MainNavigationBar({super.key});
@@ -20,8 +21,7 @@ class MainNavigationBar extends StatelessWidget {
         );
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      //backgroundColor: Theme.of(context).disabledColor,
-      fixedColor: Theme.of(context).primaryColor,
+      fixedColor: context.colorScheme.primary,
       unselectedLabelStyle: unselectedLabelStyle,
       selectedLabelStyle: selectedLabelStyle,
       items: <BottomNavigationBarItem>[

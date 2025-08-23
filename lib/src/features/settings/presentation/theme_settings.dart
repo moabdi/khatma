@@ -33,13 +33,13 @@ class ThemeSettings extends ConsumerWidget {
                       icon: Icons.light_mode,
                       iconColor: Colors.orangeAccent,
                     ),
-                    dividerH1T0_5,
+                    Divider(height: 3),
                     ThemeOption(
                       themeMode: ThemeMode.dark,
                       icon: Icons.dark_mode,
                       iconColor: Colors.deepPurple,
                     ),
-                    dividerH1T0_5,
+                    Divider(height: 3),
                     ThemeOption(
                       themeMode: ThemeMode.system,
                       icon: Icons.settings_suggest,
@@ -75,11 +75,10 @@ class ThemeOption extends ConsumerWidget {
     final color = Theme.of(context).colorScheme.primary;
 
     return ListTile(
-      minTileHeight: 50,
       leading: Icon(icon, color: iconColor),
       title: Text(AppLocalizations.of(context).themeMode(themeMode.name)),
       trailing: isSelected ? Icon(Icons.check_circle, color: color) : null,
-      tileColor: isSelected ? color.withAlpha(25) : null,
+      selected: isSelected,
       onTap: () {
         ref.read(themeProvider.notifier).setThemeMode(themeMode);
       },

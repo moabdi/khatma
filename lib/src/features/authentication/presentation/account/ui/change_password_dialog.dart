@@ -173,7 +173,7 @@ class _ChangePasswordFormState extends ConsumerState<ChangePasswordForm>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(context.loc.passwordUpdatedSuccessfully),
-              backgroundColor: context.colorScheme.success,
+              backgroundColor: context.successColor,
               behavior: SnackBarBehavior.floating,
             ),
           );
