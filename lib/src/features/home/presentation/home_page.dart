@@ -39,7 +39,7 @@ class KhatmatListScreen extends StatelessWidget {
                     colors: [
                       Colors.yellowAccent,
                       Colors.yellowAccent,
-                      Theme.of(context).primaryColor,
+                      context.colorScheme.primary,
                     ],
                   ),
                 ],
