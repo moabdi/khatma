@@ -25,7 +25,7 @@ class ProfileHeader extends StatelessWidget {
                     radius: 50,
                     child: Icon(
                       Icons.person_outline,
-                      color: context.colorScheme.inversePrimary,
+                      color: context.colorScheme.onPrimary,
                       size: 50,
                     ),
                   )
