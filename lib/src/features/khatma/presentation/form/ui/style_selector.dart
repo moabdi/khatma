@@ -32,23 +32,6 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          AppLocalizations.of(context).icon.colon,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        gapH4,
-        Card(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * .3,
-            child: KhatmaIconPicker(
-              style: updatedStyle,
-              onChanged: (value) => setState(() {
-                updatedStyle = updatedStyle.copyWith(icon: value);
-              }),
-            ),
-          ),
-        ),
-        gapH20,
-        Text(
           AppLocalizations.of(context).color.colon,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
@@ -58,6 +41,23 @@ class _KhatmaStyleSelectorState extends State<KhatmaStyleSelector> {
           onChanged: (value) => setState(() {
             updatedStyle = updatedStyle.copyWith(color: value);
           }),
+        ),
+        gapH20,
+        Text(
+          AppLocalizations.of(context).icon.colon,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        gapH4,
+        Card(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * .35,
+            child: KhatmaIconPicker(
+              style: updatedStyle,
+              onChanged: (value) => setState(() {
+                updatedStyle = updatedStyle.copyWith(icon: value);
+              }),
+            ),
+          ),
         ),
         gapH20,
         SizedBox(

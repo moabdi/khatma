@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -17,7 +18,6 @@ import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
-import 'package:khatma_ui/components/khatma_form_tile.dart';
 import 'package:khatma_ui/components/modal_bottom_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/unit_selector.dart';
 import 'package:khatma/src/routing/app_router.dart';
@@ -123,7 +123,10 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             gapH24,
-            _buildAvatar(context, khatma),
+            KhatmaAvatarMaterial(
+              khatma: khatma,
+              onTap: () => _showStyleSelector(context, khatma),
+            ),
             gapH16,
             _buildNameField(context, khatma),
             gapH16,
@@ -133,7 +136,10 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             gapH16,
             _buildRepeatToggle(khatma),
             gapH64,
-            _buildSaveButton(context, khatma),
+            ElevatedButton(
+              child: Text(AppLocalizations.of(context).save),
+              onPressed: () => _handleSave(context, khatma),
+            ),
             gapH16,
             _buildDeleteButton(context),
             gapH24,
@@ -143,39 +149,33 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildAvatar(BuildContext context, Khatma khatma) {
-    return Center(
-      child: Avatar(
-        backgroundColor: khatma.style.hexColor.withAlpha(51),
-        bottom: Avatar(
-          radius: 10,
-          backgroundColor: khatma.style.hexColor,
-          child: const Icon(Icons.brush, size: 12),
-        ),
-        child: getIcon(
-          khatma.style.icon,
-          color: khatma.style.hexColor,
-          size: 50,
-        ),
-        onTap: () => _showStyleSelector(context, khatma),
-      ),
-    );
-  }
-
   Widget _buildNameField(BuildContext context, Khatma khatma) {
-    return TextFormField(
-      controller: _nameController,
-      style: context.textTheme.bodyLarge,
-      decoration: InputDecoration(
-        hintText: AppLocalizations.of(context).nameHint,
-        border: const OutlineInputBorder(),
-        labelText: '${AppLocalizations.of(context).name}',
-        counterText: '${_nameController.text.length}/50',
-      ),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      autocorrect: false,
-      maxLength: 50,
-      validator: (value) => _validateName(context, value),
+    return ListenableBuilder(
+      listenable: _nameController,
+      builder: (context, _) {
+        return TextFormField(
+          controller: _nameController,
+          style: context.textTheme.bodyLarge,
+          decoration: InputDecoration(
+            hintText: context.loc.nameHint,
+            labelText: context.loc.name,
+            prefixIcon: const Icon(Icons.drive_file_rename_outline),
+            suffixIcon: _nameController.text.isNotEmpty
+                ? IconButton(
+                    icon: const Icon(Icons.clear),
+                    onPressed: () => _nameController.clear(),
+                  )
+                : null,
+            counterText: '${_nameController.text.length}/50',
+          ),
+          textInputAction: TextInputAction.next,
+          textCapitalization: TextCapitalization.words,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autocorrect: false,
+          maxLength: 50,
+          validator: (value) => _validateName(context, value),
+        );
+      },
     );
   }
 
@@ -189,16 +189,21 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
         hintText: AppLocalizations.of(context).descriptionHint,
         border: const OutlineInputBorder(),
       ),
+      maxLength: 200,
     );
   }
 
   Widget _buildSplitUnitSelector(BuildContext context, Khatma khatma) {
     return Card(
       child: ListTile(
-        leading: const Icon(
-          Icons.dynamic_feed,
-          color: Colors.amber,
-          size: 32,
+        contentPadding: EdgeInsets.symmetric(horizontal: 8),
+        leading: CircleAvatar(
+          backgroundColor: context.theme.primaryColor.withAlpha(25),
+          child: Icon(
+            Icons.apps,
+            color: context.colorScheme.primary,
+            size: 32,
+          ),
         ),
         title: Text(AppLocalizations.of(context).splitUnit),
         subtitle: Text(
@@ -234,13 +239,6 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
               khatma.copyWith(repeat: enabled),
             ),
       ),
-    );
-  }
-
-  Widget _buildSaveButton(BuildContext context, Khatma khatma) {
-    return ElevatedButton(
-      child: Text(AppLocalizations.of(context).save),
-      onPressed: () => _handleSave(context, khatma),
     );
   }
 

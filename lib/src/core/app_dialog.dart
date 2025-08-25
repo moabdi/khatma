@@ -44,17 +44,17 @@ class AppDialog {
               gapH24,
 
               // Buttons
-              Row(
-                children: [
-                  Expanded(
-                    child: TextButton(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
                       onPressed: () => Navigator.of(context).pop(false),
                       child: Text(cancelText ?? l10n.cancel),
                     ),
-                  ),
-                  gapW12,
-                  Expanded(
-                    child: TextButton(
+                    gapW20,
+                    TextButton(
                       style: TextButton.styleFrom(
                         backgroundColor: color,
                         foregroundColor: Colors.white,
@@ -62,8 +62,8 @@ class AppDialog {
                       onPressed: () => Navigator.of(context).pop(true),
                       child: Text(confirmText),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

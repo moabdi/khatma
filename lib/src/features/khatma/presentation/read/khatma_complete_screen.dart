@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma/src/constants/lottie_asset.dart';
 import 'package:khatma/src/utils/common.dart';
@@ -23,7 +24,6 @@ class KhatmaSuccessComplete extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: KhatmaAppBar(khatmaId: khatma.id!),
       body: Container(
         child: Stack(
           children: [
@@ -64,7 +64,7 @@ class KhatmaSuccessComplete extends ConsumerWidget {
               dividerH1T1,
               Spacer(),
               PrimaryButton(
-                color: Theme.of(context).primaryColor,
+                color: context.colorScheme.primary,
                 width: MediaQuery.of(context).size.width * .85,
                 shadowOffset: 5,
                 onPressed: () {
