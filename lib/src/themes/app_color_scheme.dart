@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'app_colors.dart';
 
 /// Material Design 3 compliant color schemes
 class AppColorScheme {

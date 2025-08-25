@@ -66,6 +66,7 @@ class AppTheme {
 
       // System UI
       //systemUiOverlayStyle: _buildSystemUiOverlayStyle(isDark),
+      applyElevationOverlayColor: true,
     );
   }
 
