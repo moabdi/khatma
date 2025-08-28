@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/flutter
 # Edit at https://www.toptal.com/developers/gitignore?templates=flutter
 
+builds/
+logs/
+*.log
+release_*.log
+
 # IDE related
 .idea/
 .vscode/
@@ -105,3 +110,8 @@ lib/src/.DS_Store
 .DS_Store
 .DS_Store
 lib/src/.DS_Store
+
+# Flutter Release Script
+builds/
+logs/
+*.log
