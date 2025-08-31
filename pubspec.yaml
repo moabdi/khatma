@@ -128,13 +128,9 @@ flutter:
     - assets/images/
     - assets/lottie/
     - assets/images/khatma/
-    - assets/quran/ar/
-    - assets/quran/en/
-    - assets/quran/ar/hafs/
-    - assets/quran/ar/warsh/
-    - assets/quran/en/hafs/
-    - assets/quran/en/warsh/
-    - assets/quran/en/translated/
+    - assets/quran/hafs/
+    - assets/quran/warsh/
+    - assets/quran/translated/
     - assets/fonts/google_fonts/
     - assets/docs/
     - assets/docs/mentions_legals.md

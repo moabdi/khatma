@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma_ui/components/avatar.dart';
-import 'package:khatma_ui/components/radio_icon.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class UnitSelector extends StatelessWidget {

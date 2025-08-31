@@ -212,6 +212,14 @@
   "congratulation": "تهانينا!",
   "accountCreatedSuccessfully": "تم إنشاء الحساب بنجاح!",
   "successCompleteParts": "تم إنجاز {count} أجزاء بنجاح",
+  "createKhatmaToStart": "أنشئ ختمة للبدء",
+  "errorOccurred": "حدث خطأ",
+  "goToHome": "الانتقال إلى الصفحة الرئيسية",
+  "noKhatmaYet": "لا توجد ختمة بعد",
+  "notImplemented": "الميزة غير متوفرة",
+  "pageNotFound": "الصفحة غير موجودة",
+  "pageNotFound404": "خطأ 404 - الصفحة غير موجودة",
+
   
   "signInFailed": "فشل تسجيل الدخول",
   "loginFailed": "فشل تسجيل الدخول",

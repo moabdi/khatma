@@ -654,10 +654,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get khatmaListSubtitle => 'ختماتك الجارية';
 
   @override
-  String get noKhatmaYet => 'You have no khatmas yet ?';
+  String get noKhatmaYet => 'لا توجد ختمة بعد';
 
   @override
-  String get createKhatmaToStart => 'Create a khatma to start';
+  String get createKhatmaToStart => 'أنشئ ختمة للبدء';
 
   @override
   String get success => 'نجح';
@@ -733,19 +733,19 @@ class AppLocalizationsAr extends AppLocalizations {
       'فشل مشاركة الختمة. يرجى المحاولة مرة أخرى.';
 
   @override
-  String get errorOccurred => 'An error occurred';
+  String get errorOccurred => 'حدث خطأ';
 
   @override
-  String get pageNotFound => 'Page Not Found';
+  String get pageNotFound => 'الصفحة غير موجودة';
 
   @override
-  String get pageNotFound404 => '404 - Page not found!';
+  String get pageNotFound404 => 'خطأ 404 - الصفحة غير موجودة';
 
   @override
-  String get notImplemented => 'Not implemented';
+  String get notImplemented => 'الميزة غير متوفرة';
 
   @override
-  String get goToHome => 'Go to Home';
+  String get goToHome => 'الانتقال إلى الصفحة الرئيسية';
 
   @override
   String get errorAuthUserNotLoggedIn => 'المستخدم غير مسجل الدخول.';

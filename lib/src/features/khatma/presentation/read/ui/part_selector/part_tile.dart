@@ -41,6 +41,7 @@ class PartTile extends ConsumerWidget {
     }
 
     return ListTile(
+      dense: true,
       enabled: enabled,
       splashColor: color.withAlpha(51),
       selected: isSelected,

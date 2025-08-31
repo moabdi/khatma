@@ -117,7 +117,10 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
         ),
-        textStyle: textTheme.bodyLarge,
+        textStyle: textTheme.bodyMedium?.copyWith(
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+        ),
         elevation: 1,
       ),
     );
@@ -135,8 +138,10 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
         ),
-        side: BorderSide(color: colorScheme.outline),
-        textStyle: textTheme.bodyMedium,
+        side: BorderSide(color: colorScheme.primary),
+        textStyle: textTheme.bodyMedium?.copyWith(
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }

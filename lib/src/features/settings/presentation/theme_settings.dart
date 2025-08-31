@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/themes/theme_provider.dart';
-import 'package:khatma_ui/constants/app_dividers.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class ThemeSettings extends ConsumerWidget {

@@ -13,9 +13,7 @@ import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/constants/snack_bars.dart';
 import 'package:khatma/src/utils/common.dart';
-import 'package:khatma_ui/components/avatar.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma_ui/components/modal_bottom_sheet.dart';
@@ -135,7 +133,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             _buildSplitUnitSelector(context, khatma),
             gapH16,
             _buildRepeatToggle(khatma),
-            gapH64,
+            gapH48,
             ElevatedButton(
               child: Text(AppLocalizations.of(context).save),
               onPressed: () => _handleSave(context, khatma),

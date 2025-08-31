@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/settings/application/setting_provider.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
-import 'package:khatma/src/themes/theme.dart';
-import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/khatma_ui.dart';
 
-class RecitationSettings extends StatefulWidget {
+class RecitationSettings extends ConsumerWidget {
   const RecitationSettings({super.key});
 
   @override
-  _RecitationSettingsState createState() => _RecitationSettingsState();
-}
-
-class _RecitationSettingsState extends State<RecitationSettings> {
-  String? _selectedRecitation;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.loc.recitation),
@@ -41,14 +33,18 @@ class _RecitationSettingsState extends State<RecitationSettings> {
                     children: [
                       _buildRecitationOption(
                         context,
+                        ref,
                         recitationName: context.loc.hafs,
                         recitationKey: 'hafs',
                         icon: Icons.menu_book_outlined,
                         description: context.loc.hafsDescription,
                       ),
-                      dividerH0_5T0_5,
+                      gapH2,
+                      Divider(height: 1),
+                      gapH2,
                       _buildRecitationOption(
                         context,
+                        ref,
                         recitationName: context.loc.warsh,
                         recitationKey: 'warsh',
                         icon: Icons.auto_stories,
@@ -66,13 +62,14 @@ class _RecitationSettingsState extends State<RecitationSettings> {
   }
 
   Widget _buildRecitationOption(
-    BuildContext context, {
+    BuildContext context,
+    WidgetRef ref, {
     required String recitationName,
     required String recitationKey,
     required IconData icon,
     required String description,
   }) {
-    final isSelected = _selectedRecitation == recitationKey;
+    final isSelected = ref.watch(settingsProvider).riwaya == recitationKey;
 
     return ListTile(
       trailing: isSelected
@@ -80,14 +77,9 @@ class _RecitationSettingsState extends State<RecitationSettings> {
           : null,
       title: Text(recitationName),
       subtitle: Text(description),
-      tileColor: isSelected ? context.theme.primaryColor.withAlpha(26) : null,
+      selected: isSelected,
       onTap: () {
-        setState(() {
-          _selectedRecitation = recitationKey;
-        });
-
-        // Navigate to the respective recitation page
-        context.goNamed(recitationKey);
+        ref.read(settingsProvider.notifier).updateRiwaya(recitationKey);
       },
     );
   }

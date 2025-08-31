@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/i18n/generated/app_localizations.dart';
-import 'package:khatma_ui/khatma_ui.dart';
 
 class AppDialog {
   static Future<bool?> _show(
@@ -18,14 +17,16 @@ class AppDialog {
     return showDialog<bool>(
       context: context,
       barrierDismissible: true,
+      fullscreenDialog: true,
       barrierColor: Colors.black54,
+      barrierLabel: "Labe",
       builder: (context) => Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
         elevation: 8,
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -82,16 +83,17 @@ class AppDialog {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
                     Flexible(
                       flex: 1,
                       child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: color,
-                            foregroundColor: Colors.white,
-                          ),
+                              backgroundColor: color,
+                              foregroundColor: Colors.white,
+                              textStyle: TextStyle(
+                                fontSize: 15,
+                              )),
                           onPressed: () => Navigator.of(context).pop(true),
                           child: Text(confirmText),
                         ),
