@@ -520,5 +520,11 @@
       }
     }
   },
-  "sentViaKhatmaApp": "Envoyé via l'application Khatma"
-}
+  "sentViaKhatmaApp": "Envoyé via l'application Khatma",
+  "chooseContactMethod": "Choisir la méthode de contact",
+  "selectContactTypeDescription": "Sélectionnez le type de demande pour obtenir une meilleure assistance",
+  "directEmailContact": "Contact email direct",
+  "openEmailApp": "Ouvrir l'application email",
+  "unableToOpenEmail": "Impossible d'ouvrir l'application email",
+  "emailNotAvailable": "Application email non disponible sur cet appareil"
+  }

@@ -2955,6 +2955,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sent via Khatma App'**
   String get sentViaKhatmaApp;
+
+  /// No description provided for @chooseContactMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Contact Method'**
+  String get chooseContactMethod;
+
+  /// No description provided for @selectContactTypeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the type of inquiry to get better assistance'**
+  String get selectContactTypeDescription;
+
+  /// No description provided for @directEmailContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct Email Contact'**
+  String get directEmailContact;
+
+  /// No description provided for @openEmailApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Email App'**
+  String get openEmailApp;
+
+  /// No description provided for @unableToOpenEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open email app'**
+  String get unableToOpenEmail;
+
+  /// No description provided for @emailNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Email app not available on this device'**
+  String get emailNotAvailable;
 }
 
 class _AppLocalizationsDelegate

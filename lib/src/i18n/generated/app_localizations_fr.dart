@@ -1753,4 +1753,24 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get sentViaKhatmaApp => 'Envoyé via l\'application Khatma';
+
+  @override
+  String get chooseContactMethod => 'Choisir la méthode de contact';
+
+  @override
+  String get selectContactTypeDescription =>
+      'Sélectionnez le type de demande pour obtenir une meilleure assistance';
+
+  @override
+  String get directEmailContact => 'Contact email direct';
+
+  @override
+  String get openEmailApp => 'Ouvrir l\'application email';
+
+  @override
+  String get unableToOpenEmail => 'Impossible d\'ouvrir l\'application email';
+
+  @override
+  String get emailNotAvailable =>
+      'Application email non disponible sur cet appareil';
 }

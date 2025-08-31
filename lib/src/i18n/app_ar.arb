@@ -521,5 +521,11 @@
       }
     }
   },
-  "sentViaKhatmaApp": "مُرسل عبر تطبيق ختمة"
+  "sentViaKhatmaApp": "مُرسل عبر تطبيق ختمة",
+  "chooseContactMethod": "اختر طريقة التواصل",
+  "selectContactTypeDescription": "حدد نوع الاستفسار للحصول على مساعدة أفضل",
+  "directEmailContact": "تواصل مباشر عبر البريد الإلكتروني",
+  "openEmailApp": "فتح تطبيق البريد الإلكتروني",
+  "unableToOpenEmail": "تعذر فتح تطبيق البريد الإلكتروني",
+  "emailNotAvailable": "تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز"
 }

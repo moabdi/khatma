@@ -1758,4 +1758,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sentViaKhatmaApp => 'مُرسل عبر تطبيق ختمة';
+
+  @override
+  String get chooseContactMethod => 'اختر طريقة التواصل';
+
+  @override
+  String get selectContactTypeDescription =>
+      'حدد نوع الاستفسار للحصول على مساعدة أفضل';
+
+  @override
+  String get directEmailContact => 'تواصل مباشر عبر البريد الإلكتروني';
+
+  @override
+  String get openEmailApp => 'فتح تطبيق البريد الإلكتروني';
+
+  @override
+  String get unableToOpenEmail => 'تعذر فتح تطبيق البريد الإلكتروني';
+
+  @override
+  String get emailNotAvailable =>
+      'تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز';
 }

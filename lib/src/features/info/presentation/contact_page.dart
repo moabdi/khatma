@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/app_logo.dart';
-import 'package:khatma/src/features/info/validators/contact_validators.dart';
+import 'package:khatma/src/features/info/presentation/validators/contact_validators.dart';
+import 'package:khatma/src/features/info/presentation/widgets/contact_method_bottom_sheet.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -122,6 +123,10 @@ class _ContactUsPageState extends State<ContactUsPage>
       case ContactType.other:
         return context.loc.other;
     }
+  }
+
+  void _showContactMethodModal() {
+    ContactMethodBottomSheet.show(context);
   }
 
   @override
@@ -250,18 +255,18 @@ class _ContactUsPageState extends State<ContactUsPage>
                   ),
                   gapH12,
 
-                  // Contact via email button
+                  // Contact via email button - now opens modal
                   ElevatedButton.icon(
-                    onPressed: () {
-                      // Handle external contact method (e.g., open email app)
-                      // You can use url_launcher to open email: mailto:support@yourapp.com
-                    },
+                    onPressed: _showContactMethodModal,
                     icon: const Icon(Icons.mail),
                     label: Text(context.loc.contactViaEmail),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.blueAccent,
                       foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                   gapH24,
