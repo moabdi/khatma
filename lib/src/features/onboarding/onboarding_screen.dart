@@ -21,7 +21,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   bool _isLastPage = false;
-  double _progressValue = 0.0;
 
   List<OnboardingItem> _onboardingItems(context) => [
         OnboardingItem(
@@ -60,8 +59,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     setState(() {
       _currentPage = _pageController.page?.round() ?? 0;
       _isLastPage = _currentPage == _onboardingItems(context).length - 1;
-      _progressValue =
-          (_pageController.page ?? 0) / (_onboardingItems(context).length - 1);
     });
   }
 

@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
     if (kIsWeb) {
       context.goNamed(AppRoute.home.name);
     } else if (onboardingCompleted) {
-      context.goNamed(AppRoute.onboarding.name);
+      context.goNamed(AppRoute.home.name);
     } else {
       context.goNamed(AppRoute.onboarding.name);
     }
