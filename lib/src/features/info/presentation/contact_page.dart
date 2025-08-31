@@ -125,10 +125,6 @@ class _ContactUsPageState extends State<ContactUsPage>
     }
   }
 
-  void _showContactMethodModal() {
-    ContactMethodBottomSheet.show(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -257,7 +253,7 @@ class _ContactUsPageState extends State<ContactUsPage>
 
                   // Contact via email button - now opens modal
                   ElevatedButton.icon(
-                    onPressed: _showContactMethodModal,
+                    onPressed: () => ContactMethodBottomSheet.show(context),
                     icon: const Icon(Icons.mail),
                     label: Text(context.loc.contactViaEmail),
                     style: ElevatedButton.styleFrom(
