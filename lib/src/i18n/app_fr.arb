@@ -487,5 +487,38 @@
   "actionPerformed": "Action effectuée",
   "displayNameTooLong": "Le nom d'affichage doit contenir moins de 50 caractères",
   "displayNameInvalidCharacters": "Le nom d'affichage contient des caractères invalides",
-  "unexpectedError": "Une erreur inattendue s'est produite"
+  "unexpectedError": "Une erreur inattendue s'est produite",
+  "contactUs": "Nous contacter",
+  "contactType": "Type de contact",
+  "bugReport": "Signalement de bug",
+  "suggestion": "Suggestion",
+  "feedback": "Commentaire",
+  "other": "Autre",
+  "yourName": "Votre nom",
+  "enterYourName": "Entrez votre nom",
+  "enterYourEmail": "Entrez votre adresse email",
+  "message": "Message",
+  "writeYourMessage": "Écrivez votre message",
+  "sendMessage": "Envoyer le message",
+  "contactViaEmail": "Contacter par email",
+  
+  "pleaseEnterYourName": "Veuillez entrer votre nom",
+  "nameMustBeAtLeast2Characters": "Le nom doit contenir au moins 2 caractères",
+  "pleaseEnterYourEmail": "Veuillez entrer votre email",
+  "pleaseEnterValidEmail": "Veuillez entrer une adresse email valide",
+  "pleaseEnterYourMessage": "Veuillez entrer votre message",
+  "messageMustBeAtLeast10Characters": "Le message doit contenir au moins 10 caractères",
+  "pleaseFillAllFieldsValid": "Veuillez remplir tous les champs avec des informations valides.",
+  "messageSentSuccessfully": "Message envoyé avec succès !",
+  "failedToSendMessage": "Échec de l'envoi du message. Veuillez réessayer.",
+  
+  "contactFormSubject": "{contactType} : Soumission du formulaire de contact",
+  "@contactFormSubject": {
+    "placeholders": {
+      "contactType": {
+        "type": "String"
+      }
+    }
+  },
+  "sentViaKhatmaApp": "Envoyé via l'application Khatma"
 }

@@ -1690,4 +1690,81 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unexpectedError => 'An unexpected error occurred';
+
+  @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get contactType => 'Contact Type';
+
+  @override
+  String get bugReport => 'Bug Report';
+
+  @override
+  String get suggestion => 'Suggestion';
+
+  @override
+  String get feedback => 'Feedback';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get yourName => 'Your Name';
+
+  @override
+  String get enterYourName => 'Enter your name';
+
+  @override
+  String get enterYourEmail => 'Enter your email address';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get writeYourMessage => 'Write your message';
+
+  @override
+  String get sendMessage => 'Send Message';
+
+  @override
+  String get contactViaEmail => 'Contact via Email';
+
+  @override
+  String get pleaseEnterYourName => 'Please enter your name';
+
+  @override
+  String get nameMustBeAtLeast2Characters =>
+      'Name must be at least 2 characters';
+
+  @override
+  String get pleaseEnterYourEmail => 'Please enter your email';
+
+  @override
+  String get pleaseEnterValidEmail => 'Please enter a valid email address';
+
+  @override
+  String get pleaseEnterYourMessage => 'Please enter your message';
+
+  @override
+  String get messageMustBeAtLeast10Characters =>
+      'Message must be at least 10 characters';
+
+  @override
+  String get pleaseFillAllFieldsValid =>
+      'Please fill in all fields with valid information.';
+
+  @override
+  String get messageSentSuccessfully => 'Message sent successfully!';
+
+  @override
+  String get failedToSendMessage => 'Failed to send message. Please try again.';
+
+  @override
+  String contactFormSubject(String contactType) {
+    return '$contactType: Contact Form Submission';
+  }
+
+  @override
+  String get sentViaKhatmaApp => 'Sent via Khatma App';
 }

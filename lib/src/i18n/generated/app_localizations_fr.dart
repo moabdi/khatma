@@ -1674,4 +1674,83 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get unexpectedError => 'Une erreur inattendue s\'est produite';
+
+  @override
+  String get contactUs => 'Nous contacter';
+
+  @override
+  String get contactType => 'Type de contact';
+
+  @override
+  String get bugReport => 'Signalement de bug';
+
+  @override
+  String get suggestion => 'Suggestion';
+
+  @override
+  String get feedback => 'Commentaire';
+
+  @override
+  String get other => 'Autre';
+
+  @override
+  String get yourName => 'Votre nom';
+
+  @override
+  String get enterYourName => 'Entrez votre nom';
+
+  @override
+  String get enterYourEmail => 'Entrez votre adresse email';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get writeYourMessage => 'Écrivez votre message';
+
+  @override
+  String get sendMessage => 'Envoyer le message';
+
+  @override
+  String get contactViaEmail => 'Contacter par email';
+
+  @override
+  String get pleaseEnterYourName => 'Veuillez entrer votre nom';
+
+  @override
+  String get nameMustBeAtLeast2Characters =>
+      'Le nom doit contenir au moins 2 caractères';
+
+  @override
+  String get pleaseEnterYourEmail => 'Veuillez entrer votre email';
+
+  @override
+  String get pleaseEnterValidEmail =>
+      'Veuillez entrer une adresse email valide';
+
+  @override
+  String get pleaseEnterYourMessage => 'Veuillez entrer votre message';
+
+  @override
+  String get messageMustBeAtLeast10Characters =>
+      'Le message doit contenir au moins 10 caractères';
+
+  @override
+  String get pleaseFillAllFieldsValid =>
+      'Veuillez remplir tous les champs avec des informations valides.';
+
+  @override
+  String get messageSentSuccessfully => 'Message envoyé avec succès !';
+
+  @override
+  String get failedToSendMessage =>
+      'Échec de l\'envoi du message. Veuillez réessayer.';
+
+  @override
+  String contactFormSubject(String contactType) {
+    return '$contactType : Soumission du formulaire de contact';
+  }
+
+  @override
+  String get sentViaKhatmaApp => 'Envoyé via l\'application Khatma';
 }

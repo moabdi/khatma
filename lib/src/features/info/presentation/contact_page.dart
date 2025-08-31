@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/app_logo.dart';
-import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 enum ContactType {
-  bug('Bug Report', Icons.bug_report),
-  suggestion('Suggestion', Icons.lightbulb_outline),
-  feedback('Feedback', Icons.feedback_outlined),
-  other('Other', Icons.help_outline);
+  bug('bug_report', Icons.bug_report),
+  suggestion('suggestion', Icons.lightbulb_outline),
+  feedback('feedback', Icons.feedback_outlined),
+  other('other', Icons.help_outline);
 
-  const ContactType(this.label, this.icon);
-  final String label;
+  const ContactType(this.key, this.icon);
+  final String key;
   final IconData icon;
 }
 
@@ -37,24 +38,34 @@ class ContactFormData {
     return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
-  String get formattedSubject =>
-      '${contactType.label}: Contact Form Submission';
+  String getLocalizedSubject(BuildContext context) {
+    final contactTypeName = _getContactTypeName(context);
+    return context.loc.contactFormSubject(contactTypeName);
+  }
 
-  String get formattedBody => '''
-Name: $name
-Email: $email
-Contact Type: ${contactType.label}
+  String _getContactTypeName(BuildContext context) {
+    switch (contactType) {
+      case ContactType.bug:
+        return context.loc.bugReport;
+      case ContactType.suggestion:
+        return context.loc.suggestion;
+      case ContactType.feedback:
+        return context.loc.feedback;
+      case ContactType.other:
+        return context.loc.other;
+    }
+  }
 
-Message:
-$message
+  String getLocalizedBody(BuildContext context) => '''
+    $message
 
----
-Sent via Khatma App Contact Form
-''';
+    ---
+    ${context.loc.sentViaKhatmaApp}
+  ''';
 
   @override
   String toString() {
-    return 'ContactFormData(name: $name, email: $email, type: ${contactType.label})';
+    return 'ContactFormData(name: $name, email: $email, type: ${contactType.key})';
   }
 }
 
@@ -94,35 +105,41 @@ class _ContactUsPageState extends State<ContactUsPage> {
 
     final formData = _formData;
     if (!formData.isValid) {
-      _showSnackBar('Please fill in all fields with valid information.',
-          isError: true);
+      _showSnackBar(context.loc.pleaseFillAllFieldsValid, isError: true);
       return;
     }
 
     setState(() => _isLoading = true);
 
     try {
-      // TODO: Replace this with your actual email service integration
-      await _simulateEmailSending(formData);
+      // Send email using flutter_email_sender
+      await _sendEmail(formData);
 
-      _showSnackBar('Message sent successfully!');
+      _showSnackBar(context.loc.messageSentSuccessfully);
       _clearForm();
     } catch (e) {
-      _showSnackBar('Failed to send message. Please try again.', isError: true);
+      _showSnackBar(context.loc.failedToSendMessage, isError: true);
+      print('Error sending contact form: $e');
     } finally {
       setState(() => _isLoading = false);
     }
   }
 
-  Future<void> _simulateEmailSending(ContactFormData formData) async {
-    // Simulate network delay
-    await Future.delayed(const Duration(seconds: 1));
+  Future<void> _sendEmail(ContactFormData formData) async {
+    final Email email = Email(
+      body: formData.getLocalizedBody(context),
+      subject: formData.getLocalizedSubject(context),
+      recipients: ['support@khatma.app'], // Replace with your support email
+      isHTML: false,
+    );
 
-    // Here you would integrate with your email service
-    // Example: EmailService.send(formData);
-    print('Email would be sent with:');
-    print('Subject: ${formData.formattedSubject}');
-    print('Body: ${formData.formattedBody}');
+    try {
+      await FlutterEmailSender.send(email);
+    } catch (error) {
+      print('Email sending error: $error');
+      // Re-throw to be caught by the calling method
+      throw Exception('Failed to send email: $error');
+    }
   }
 
   void _clearForm() {
@@ -144,43 +161,54 @@ class _ContactUsPageState extends State<ContactUsPage> {
 
   String? _validateName(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter your name';
+      return context.loc.pleaseEnterYourName;
     }
     if (value.trim().length < 2) {
-      return 'Name must be at least 2 characters';
+      return context.loc.nameMustBeAtLeast2Characters;
     }
     return null;
   }
 
   String? _validateEmail(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter your email';
+      return context.loc.pleaseEnterYourEmail;
     }
     if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-      return 'Please enter a valid email address';
+      return context.loc.pleaseEnterValidEmail;
     }
     return null;
   }
 
   String? _validateMessage(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Please enter your message';
+      return context.loc.pleaseEnterYourMessage;
     }
     if (value.trim().length < 10) {
-      return 'Message must be at least 10 characters';
+      return context.loc.messageMustBeAtLeast10Characters;
     }
     return null;
+  }
+
+  String _getContactTypeLabel(ContactType type) {
+    switch (type) {
+      case ContactType.bug:
+        return context.loc.bugReport;
+      case ContactType.suggestion:
+        return context.loc.suggestion;
+      case ContactType.feedback:
+        return context.loc.feedback;
+      case ContactType.other:
+        return context.loc.other;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Contact Us'),
+        title: Text(context.loc.contactUs),
         centerTitle: true,
       ),
-      floatingActionButton: const FooterLinks(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -198,10 +226,10 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   // Contact Type Dropdown
                   DropdownButtonFormField<ContactType>(
                     value: _selectedContactType,
-                    decoration: const InputDecoration(
-                      labelText: 'Contact Type',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.category_outlined),
+                    decoration: InputDecoration(
+                      labelText: context.loc.contactType,
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.category_outlined),
                     ),
                     items: ContactType.values.map((type) {
                       return DropdownMenuItem<ContactType>(
@@ -210,7 +238,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                           children: [
                             Icon(type.icon, size: 20),
                             const SizedBox(width: 12),
-                            Text(type.label),
+                            Text(_getContactTypeLabel(type)),
                           ],
                         ),
                       );
@@ -226,11 +254,11 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   // Name field
                   TextFormField(
                     controller: _nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'Your Name',
-                      hintText: 'Enter your name',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person_outline),
+                    decoration: InputDecoration(
+                      labelText: context.loc.yourName,
+                      hintText: context.loc.enterYourName,
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.person_outline),
                     ),
                     validator: _validateName,
                     textCapitalization: TextCapitalization.words,
@@ -240,11 +268,11 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   // Email field
                   TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      hintText: 'Enter your email address',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.email_outlined),
+                    decoration: InputDecoration(
+                      labelText: context.loc.email,
+                      hintText: context.loc.enterYourEmail,
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.email_outlined),
                     ),
                     validator: _validateEmail,
                     keyboardType: TextInputType.emailAddress,
@@ -255,11 +283,11 @@ class _ContactUsPageState extends State<ContactUsPage> {
                   TextFormField(
                     controller: _messageController,
                     maxLines: 5,
-                    decoration: const InputDecoration(
-                      labelText: 'Message',
-                      hintText: 'Write your message',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.message_outlined),
+                    decoration: InputDecoration(
+                      labelText: context.loc.message,
+                      hintText: context.loc.writeYourMessage,
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.message_outlined),
                       alignLabelWithHint: true,
                     ),
                     validator: _validateMessage,
@@ -279,22 +307,22 @@ class _ContactUsPageState extends State<ContactUsPage> {
                             width: 20,
                             child: CircularProgressIndicator(strokeWidth: 2),
                           )
-                        : const Text('Send Message'),
+                        : Text(context.loc.sendMessage),
                   ),
                   gapH12,
 
                   // Divider with "Or" in the center
-                  const Row(
+                  Row(
                     children: [
-                      Expanded(child: Divider()),
+                      const Expanded(child: Divider()),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          'Or',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          context.loc.or,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Expanded(child: Divider()),
+                      const Expanded(child: Divider()),
                     ],
                   ),
                   gapH12,
@@ -306,7 +334,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       // You can use url_launcher to open email: mailto:support@yourapp.com
                     },
                     icon: const Icon(Icons.mail),
-                    label: const Text('Contact via Email'),
+                    label: Text(context.loc.contactViaEmail),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.blueAccent,

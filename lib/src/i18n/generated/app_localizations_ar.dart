@@ -1681,4 +1681,81 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unexpectedError => 'حدث خطأ غير متوقع';
+
+  @override
+  String get contactUs => 'اتصل بنا';
+
+  @override
+  String get contactType => 'نوع التواصل';
+
+  @override
+  String get bugReport => 'تقرير خطأ';
+
+  @override
+  String get suggestion => 'اقتراح';
+
+  @override
+  String get feedback => 'تعليق';
+
+  @override
+  String get other => 'آخر';
+
+  @override
+  String get yourName => 'اسمك';
+
+  @override
+  String get enterYourName => 'أدخل اسمك';
+
+  @override
+  String get enterYourEmail => 'أدخل عنوان بريدك الإلكتروني';
+
+  @override
+  String get message => 'رسالة';
+
+  @override
+  String get writeYourMessage => 'اكتب رسالتك';
+
+  @override
+  String get sendMessage => 'إرسال الرسالة';
+
+  @override
+  String get contactViaEmail => 'التواصل عبر البريد الإلكتروني';
+
+  @override
+  String get pleaseEnterYourName => 'يرجى إدخال اسمك';
+
+  @override
+  String get nameMustBeAtLeast2Characters =>
+      'يجب أن يكون الاسم على الأقل حرفين';
+
+  @override
+  String get pleaseEnterYourEmail => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get pleaseEnterValidEmail => 'يرجى إدخال عنوان بريد إلكتروني صحيح';
+
+  @override
+  String get pleaseEnterYourMessage => 'يرجى إدخال رسالتك';
+
+  @override
+  String get messageMustBeAtLeast10Characters =>
+      'يجب أن تكون الرسالة على الأقل 10 أحرف';
+
+  @override
+  String get pleaseFillAllFieldsValid => 'يرجى ملء جميع الحقول بمعلومات صحيحة.';
+
+  @override
+  String get messageSentSuccessfully => 'تم إرسال الرسالة بنجاح!';
+
+  @override
+  String get failedToSendMessage =>
+      'فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String contactFormSubject(String contactType) {
+    return '$contactType: إرسال نموذج التواصل';
+  }
+
+  @override
+  String get sentViaKhatmaApp => 'مُرسل عبر تطبيق ختمة';
 }

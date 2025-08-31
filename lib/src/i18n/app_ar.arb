@@ -488,5 +488,38 @@
   "actionPerformed": "تم تنفيذ الإجراء",
   "displayNameTooLong": "الاسم المعروض يجب أن يكون أقل من 50 حرف",
   "displayNameInvalidCharacters": "الاسم المعروض يحتوي على أحرف غير صحيحة",
-  "unexpectedError": "حدث خطأ غير متوقع"
+  "unexpectedError": "حدث خطأ غير متوقع",
+  "contactUs": "اتصل بنا",
+  "contactType": "نوع التواصل",
+  "bugReport": "تقرير خطأ",
+  "suggestion": "اقتراح",
+  "feedback": "تعليق",
+  "other": "آخر",
+  "yourName": "اسمك",
+  "enterYourName": "أدخل اسمك",
+  "enterYourEmail": "أدخل عنوان بريدك الإلكتروني",
+  "message": "رسالة",
+  "writeYourMessage": "اكتب رسالتك",
+  "sendMessage": "إرسال الرسالة",
+  "contactViaEmail": "التواصل عبر البريد الإلكتروني",
+  
+  "pleaseEnterYourName": "يرجى إدخال اسمك",
+  "nameMustBeAtLeast2Characters": "يجب أن يكون الاسم على الأقل حرفين",
+  "pleaseEnterYourEmail": "يرجى إدخال بريدك الإلكتروني",
+  "pleaseEnterValidEmail": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+  "pleaseEnterYourMessage": "يرجى إدخال رسالتك",
+  "messageMustBeAtLeast10Characters": "يجب أن تكون الرسالة على الأقل 10 أحرف",
+  "pleaseFillAllFieldsValid": "يرجى ملء جميع الحقول بمعلومات صحيحة.",
+  "messageSentSuccessfully": "تم إرسال الرسالة بنجاح!",
+  "failedToSendMessage": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+  
+  "contactFormSubject": "{contactType}: إرسال نموذج التواصل",
+  "@contactFormSubject": {
+    "placeholders": {
+      "contactType": {
+        "type": "String"
+      }
+    }
+  },
+  "sentViaKhatmaApp": "مُرسل عبر تطبيق ختمة"
 }
