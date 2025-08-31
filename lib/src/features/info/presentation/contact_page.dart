@@ -1,73 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/app_logo.dart';
+import 'package:khatma/src/features/info/validators/contact_validators.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-
-enum ContactType {
-  bug('bug_report', Icons.bug_report),
-  suggestion('suggestion', Icons.lightbulb_outline),
-  feedback('feedback', Icons.feedback_outlined),
-  other('other', Icons.help_outline);
-
-  const ContactType(this.key, this.icon);
-  final String key;
-  final IconData icon;
-}
-
-class ContactFormData {
-  final String name;
-  final String email;
-  final String message;
-  final ContactType contactType;
-
-  const ContactFormData({
-    required this.name,
-    required this.email,
-    required this.message,
-    required this.contactType,
-  });
-
-  bool get isValid =>
-      name.trim().isNotEmpty &&
-      email.trim().isNotEmpty &&
-      message.trim().isNotEmpty &&
-      _isValidEmail(email);
-
-  bool _isValidEmail(String email) {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
-  }
-
-  String getLocalizedSubject(BuildContext context) {
-    final contactTypeName = _getContactTypeName(context);
-    return context.loc.contactFormSubject(contactTypeName);
-  }
-
-  String _getContactTypeName(BuildContext context) {
-    switch (contactType) {
-      case ContactType.bug:
-        return context.loc.bugReport;
-      case ContactType.suggestion:
-        return context.loc.suggestion;
-      case ContactType.feedback:
-        return context.loc.feedback;
-      case ContactType.other:
-        return context.loc.other;
-    }
-  }
-
-  String getLocalizedBody(BuildContext context) => '''
-    $message
-
-    ---
-    ${context.loc.sentViaKhatmaApp}
-  ''';
-
-  @override
-  String toString() {
-    return 'ContactFormData(name: $name, email: $email, type: ${contactType.key})';
-  }
-}
 
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});
@@ -76,7 +12,8 @@ class ContactUsPage extends StatefulWidget {
   State<ContactUsPage> createState() => _ContactUsPageState();
 }
 
-class _ContactUsPageState extends State<ContactUsPage> {
+class _ContactUsPageState extends State<ContactUsPage>
+    with ContactFormValidatorsMixin {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -101,10 +38,22 @@ class _ContactUsPageState extends State<ContactUsPage> {
       );
 
   Future<void> _handleSubmit() async {
+    // Set the submitted flag to show validation errors
+    setFormSubmitted();
+    setState(() {}); // Trigger rebuild to show validation errors
+
+    // Validate the form
     if (!_formKey.currentState!.validate()) return;
 
-    final formData = _formData;
-    if (!formData.isValid) {
+    // Double-check with our mixin validation
+    final validatedData = getValidatedContactFormData(
+      name: _nameController.text,
+      email: _emailController.text,
+      message: _messageController.text,
+      contactType: _selectedContactType,
+    );
+
+    if (validatedData == null) {
       _showSnackBar(context.loc.pleaseFillAllFieldsValid, isError: true);
       return;
     }
@@ -113,7 +62,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
 
     try {
       // Send email using flutter_email_sender
-      await _sendEmail(formData);
+      await _sendEmail(validatedData);
 
       _showSnackBar(context.loc.messageSentSuccessfully);
       _clearForm();
@@ -146,7 +95,10 @@ class _ContactUsPageState extends State<ContactUsPage> {
     _nameController.clear();
     _emailController.clear();
     _messageController.clear();
-    setState(() => _selectedContactType = ContactType.feedback);
+    setState(() {
+      _selectedContactType = ContactType.feedback;
+      resetFormSubmitted(); // Reset the submitted state
+    });
   }
 
   void _showSnackBar(String message, {bool isError = false}) {
@@ -157,36 +109,6 @@ class _ContactUsPageState extends State<ContactUsPage> {
         behavior: SnackBarBehavior.floating,
       ),
     );
-  }
-
-  String? _validateName(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return context.loc.pleaseEnterYourName;
-    }
-    if (value.trim().length < 2) {
-      return context.loc.nameMustBeAtLeast2Characters;
-    }
-    return null;
-  }
-
-  String? _validateEmail(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return context.loc.pleaseEnterYourEmail;
-    }
-    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-      return context.loc.pleaseEnterValidEmail;
-    }
-    return null;
-  }
-
-  String? _validateMessage(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return context.loc.pleaseEnterYourMessage;
-    }
-    if (value.trim().length < 10) {
-      return context.loc.messageMustBeAtLeast10Characters;
-    }
-    return null;
   }
 
   String _getContactTypeLabel(ContactType type) {
@@ -260,7 +182,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       border: const OutlineInputBorder(),
                       prefixIcon: const Icon(Icons.person_outline),
                     ),
-                    validator: _validateName,
+                    validator: (value) => validateContactName(value, context),
                     textCapitalization: TextCapitalization.words,
                   ),
                   const SizedBox(height: 16),
@@ -274,7 +196,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       border: const OutlineInputBorder(),
                       prefixIcon: const Icon(Icons.email_outlined),
                     ),
-                    validator: _validateEmail,
+                    validator: (value) => validateContactEmail(value, context),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(height: 16),
@@ -290,7 +212,8 @@ class _ContactUsPageState extends State<ContactUsPage> {
                       prefixIcon: const Icon(Icons.message_outlined),
                       alignLabelWithHint: true,
                     ),
-                    validator: _validateMessage,
+                    validator: (value) =>
+                        validateContactMessage(value, context),
                     textCapitalization: TextCapitalization.sentences,
                   ),
                   const SizedBox(height: 24),

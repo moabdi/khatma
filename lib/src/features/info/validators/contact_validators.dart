@@ -6,8 +6,8 @@ import 'package:khatma/src/i18n/app_localizations_context.dart';
 
 class ContactValidators {
   // Use existing validators from AuthValidators
-  static final _emailValidator = AuthValidators._emailValidator;
-  static final _nameValidator = AuthValidators._nameValidator;
+  static final _emailValidator = AuthValidators.emailValidator;
+  static final _nameValidator = AuthValidators.nameValidator;
 
   // Contact-specific validator
   static final MinLengthStringValidator _messageValidator =
