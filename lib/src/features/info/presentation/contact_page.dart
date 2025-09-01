@@ -31,13 +31,6 @@ class _ContactUsPageState extends State<ContactUsPage>
     super.dispose();
   }
 
-  ContactFormData get _formData => ContactFormData(
-        name: _nameController.text,
-        email: _emailController.text,
-        message: _messageController.text,
-        contactType: _selectedContactType,
-      );
-
   Future<void> _handleSubmit() async {
     // Set the submitted flag to show validation errors
     setFormSubmitted();
