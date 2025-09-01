@@ -370,7 +370,7 @@ class DeviceInformation {
     );
   }
 
-  String toSupportString() {
+  String debugInfos() {
     final buffer = StringBuffer();
     buffer.writeln('- Platform: $platform');
     buffer.writeln('- Device: $deviceModel');
@@ -390,6 +390,19 @@ class DeviceInformation {
       buffer.writeln();
     }
 
+    buffer.writeln('- Generated: ${DateTime.now().toIso8601String()}');
+
+    return buffer.toString();
+  }
+
+  String appInfos() {
+    final buffer = StringBuffer();
+    buffer.writeln('- Platform: $platform');
+    buffer.writeln('- Locale: $locale');
+    buffer.writeln('- Timezone: $timeZone');
+    buffer.writeln('- App Name: $appName');
+    buffer.writeln('- Version: $appVersion');
+    buffer.writeln('- Build: $buildNumber');
     buffer.writeln('- Generated: ${DateTime.now().toIso8601String()}');
 
     return buffer.toString();

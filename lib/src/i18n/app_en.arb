@@ -531,7 +531,7 @@
   "chooseContactMethod": "Choose Contact Method",
   "selectContactTypeDescription": "Select the type of inquiry to get better assistance",
   "directEmailContact": "Direct Email Contact",
-  "openEmailApp": "Open Email App",
+  "openEmailApp": "Email support",
   "unableToOpenEmail": "Unable to open email app",
   "emailNotAvailable": "Email app not available on this device"
 }

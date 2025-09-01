@@ -5,8 +5,8 @@ import 'package:khatma/src/i18n/app_localizations_context.dart';
 
 class ContactConfig {
   // Email configuration
-  static const String supportEmail = 'support@khatma.app';
-  static const String appName = 'Khatma App';
+  static const String supportEmail = 'houari.mostapha@gmail.com';
+  static const String appName = 'Khatma';
 
   // Response time information
   static const String responseTimeHours = '24-48';
@@ -83,7 +83,6 @@ extension EmailTemplateExtension on EmailTemplate {
 
   Future<String> getBodyTemplate(BuildContext context,
       {String? customMessage}) async {
-    final baseBody = customMessage ?? '';
     final deviceInfo = await DeviceInfoService().getDeviceInfo();
 
     switch (this) {
@@ -95,7 +94,7 @@ extension EmailTemplateExtension on EmailTemplate {
 
 ---
 Bug report Details:
-  ${deviceInfo.toSupportString()}
+  ${deviceInfo.debugInfos()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';
@@ -107,7 +106,7 @@ ${context.loc.sentViaKhatmaApp}
 
 ---
 Suggestion Details:
-${deviceInfo.toSupportString()}
+${deviceInfo.appInfos()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';
@@ -120,7 +119,7 @@ ${context.loc.sentViaKhatmaApp}
 
 ---
 Feedback Details:
-${deviceInfo.toSupportString()}
+${deviceInfo.appInfos()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';
@@ -132,7 +131,7 @@ ${context.loc.sentViaKhatmaApp}
 
 ---
 Feedback Details:
-${deviceInfo.toSupportString()}
+${deviceInfo.appInfos()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';

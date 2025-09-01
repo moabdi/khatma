@@ -2971,7 +2971,7 @@ abstract class AppLocalizations {
   /// No description provided for @contactFormSubject.
   ///
   /// In en, this message translates to:
-  /// **'{contactType}: Contact Form Submission'**
+  /// **'[{contactType}]: '**
   String contactFormSubject(String contactType);
 
   /// No description provided for @sentViaKhatmaApp.
@@ -3001,7 +3001,7 @@ abstract class AppLocalizations {
   /// No description provided for @openEmailApp.
   ///
   /// In en, this message translates to:
-  /// **'Open Email App'**
+  /// **'Email support'**
   String get openEmailApp;
 
   /// No description provided for @unableToOpenEmail.

@@ -1763,7 +1763,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String contactFormSubject(String contactType) {
-    return '$contactType : Soumission du formulaire de contact';
+    return '[$contactType] : ';
   }
 
   @override
@@ -1780,7 +1780,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get directEmailContact => 'Contact email direct';
 
   @override
-  String get openEmailApp => 'Ouvrir l\'application email';
+  String get openEmailApp => 'Email de contact';
 
   @override
   String get unableToOpenEmail => 'Impossible d\'ouvrir l\'application email';

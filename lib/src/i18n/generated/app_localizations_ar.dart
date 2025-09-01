@@ -1765,7 +1765,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String contactFormSubject(String contactType) {
-    return '$contactType: إرسال نموذج التواصل';
+    return '[$contactType]: ';
   }
 
   @override
@@ -1782,7 +1782,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get directEmailContact => 'تواصل مباشر عبر البريد الإلكتروني';
 
   @override
-  String get openEmailApp => 'فتح تطبيق البريد الإلكتروني';
+  String get openEmailApp => 'البريد الإلكتروني';
 
   @override
   String get unableToOpenEmail => 'تعذر فتح تطبيق البريد الإلكتروني';
