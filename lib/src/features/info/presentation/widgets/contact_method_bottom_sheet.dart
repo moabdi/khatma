@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:khatma/src/features/info/presentation/validators/contact_validators.dart';
 import 'package:khatma/src/features/info/presentation/config/contact_config.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactMethodBottomSheet {
   static void show(BuildContext context) {
@@ -29,29 +29,25 @@ class _ContactMethodContent extends StatelessWidget {
     // Close the modal first
     Navigator.of(context).pop();
 
-    final config = ContactConfig.getContactTypeConfig(context, contactType);
-    final subject =
-        config.emailTemplate.getSubjectTemplate(context, config.label);
-    final body = config.emailTemplate.getBodyTemplate(context);
-
-    final emailUri = Uri(
-      scheme: 'mailto',
-      path: ContactConfig.supportEmail,
-      queryParameters: {
-        'subject': subject,
-        'body': body,
-      },
-    );
-
     try {
-      final canLaunch = await canLaunchUrl(emailUri);
-      if (canLaunch) {
-        await launchUrl(emailUri);
-      } else {
-        _showSnackBar(context, context.loc.unableToOpenEmail, isError: true);
+      final config = ContactConfig.getContactTypeConfig(context, contactType);
+      var body = await config.emailTemplate.getBodyTemplate(context);
+      final Email email = Email(
+        body: body,
+        subject: config.emailTemplate.getSubjectTemplate(context, config.label),
+        recipients: [ContactConfig.supportEmail],
+        isHTML: false,
+      );
+
+      try {
+        await FlutterEmailSender.send(email);
+      } catch (error) {
+        print('Email sending error: $error');
+        // Re-throw to be caught by the calling method
+        throw Exception('Failed to send email: $error');
       }
     } catch (e) {
-      print('Error launching email: $e');
+      print('Error sending email: $e');
       _showSnackBar(context, context.loc.emailNotAvailable, isError: true);
     }
   }

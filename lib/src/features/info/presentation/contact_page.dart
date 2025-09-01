@@ -79,7 +79,7 @@ class _ContactUsPageState extends State<ContactUsPage>
     final Email email = Email(
       body: formData.getLocalizedBody(context),
       subject: formData.getLocalizedSubject(context),
-      recipients: ['support@khatma.app'], // Replace with your support email
+      recipients: ['support@khatma.app'],
       isHTML: false,
     );
 

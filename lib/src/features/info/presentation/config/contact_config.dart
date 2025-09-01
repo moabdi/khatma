@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/core/services/device_info_service.dart';
 import 'package:khatma/src/features/info/presentation/validators/contact_validators.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 
@@ -80,20 +81,16 @@ extension EmailTemplateExtension on EmailTemplate {
     return context.loc.contactFormSubject(contactTypeName);
   }
 
-  String getBodyTemplate(BuildContext context, {String? customMessage}) {
+  Future<String> getBodyTemplate(BuildContext context,
+      {String? customMessage}) async {
     final baseBody = customMessage ?? '';
+    final deviceInfo = await DeviceInfoService().getDeviceInfo();
 
     switch (this) {
       case EmailTemplate.bugReport:
         return '''
-$baseBody
-
 ---
-Bug Report Details:
-- Device: [Please specify your device]
-- App Version: [Please specify app version]
-- Steps to reproduce: [Please describe the steps]
-
+${deviceInfo.toSupportString()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';

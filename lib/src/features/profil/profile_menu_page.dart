@@ -5,6 +5,7 @@ import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/features/authentication/presentation/account/ui/security_section.dart';
 import 'package:khatma/src/features/authentication/presentation/account/ui/settings_tile.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/profile_header.dart';
+import 'package:khatma/src/features/info/presentation/widgets/contact_method_bottom_sheet.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -111,7 +112,7 @@ class ProfileMenuPage extends ConsumerWidget {
                 SettingsTile(
                   icon: Icons.feedback,
                   title: context.loc.contactSupport,
-                  onTap: () => context.pushNamed(AppRoute.contact.name),
+                  onTap: () => ContactMethodBottomSheet.show(context),
                 ),
               ],
             ),
