@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:khatma/src/features/info/presentation/validators/contact_validators.dart';
 import 'package:khatma/src/features/info/presentation/config/contact_config.dart';
+import 'package:khatma/src/features/info/presentation/validators/contact_validators.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 
 class ContactMethodBottomSheet {
@@ -11,6 +12,7 @@ class ContactMethodBottomSheet {
       useSafeArea: true,
       isScrollControlled: true,
       showDragHandle: true,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -26,12 +28,13 @@ class _ContactMethodContent extends StatelessWidget {
     BuildContext context,
     ContactType contactType,
   ) async {
-    Navigator.of(context).pop(); // Fermer le bottom sheet d’abord
+    Navigator.of(context).pop();
 
     final messenger = ScaffoldMessenger.of(context);
+    final theme = Theme.of(context);
+
     try {
       final config = ContactConfig.getContactTypeConfig(context, contactType);
-
       final body = await config.emailTemplate.getBodyTemplate(context);
       final subject =
           config.emailTemplate.getSubjectTemplate(context, config.label);
@@ -48,18 +51,22 @@ class _ContactMethodContent extends StatelessWidget {
       messenger.showSnackBar(
         SnackBar(
           content: Text(context.loc.openEmailApp),
-          backgroundColor: Colors.green[600],
+          backgroundColor: theme.colorScheme.primary,
           behavior: SnackBarBehavior.floating,
         ),
       );
-    } catch (e) {
+
+      HapticFeedback.selectionClick();
+    } catch (_) {
       messenger.showSnackBar(
         SnackBar(
           content: Text(context.loc.emailNotAvailable),
-          backgroundColor: Colors.red[600],
+          backgroundColor: theme.colorScheme.error,
           behavior: SnackBarBehavior.floating,
         ),
       );
+
+      HapticFeedback.vibrate();
     }
   }
 
@@ -74,78 +81,40 @@ class _ContactMethodContent extends StatelessWidget {
         right: 20,
         top: 8,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// Header
-          Text(
-            context.loc.chooseContactMethod,
-            style: theme.textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.w600,
+      child: SafeArea(
+        top: false,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// Header
+            Text(
+              context.loc.chooseContactMethod,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            context.loc.selectContactTypeDescription,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.7),
+            const SizedBox(height: 8),
+            Text(
+              context.loc.selectContactTypeDescription,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurface.withOpacity(0.7),
+              ),
             ),
-          ),
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
 
-          /// Liste des types de contact
-          ...ContactType.values.map(
-            (type) => ContactListTile(
-              contactType: type,
-              onTap: () => _launchEmailForContactType(context, type),
+            /// Contact types
+            ...ContactType.values.map(
+              (type) => ContactListTile(
+                contactType: type,
+                onTap: () => _launchEmailForContactType(context, type),
+              ),
             ),
-          ),
 
-          const SizedBox(height: 16),
-
-          /// Footer info
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceVariant.withOpacity(0.3),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.email,
-                  color: theme.colorScheme.onSurfaceVariant,
-                  size: 20,
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        context.loc.openEmailApp,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: theme.colorScheme.onSurfaceVariant,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        ContactConfig.supportEmail,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: theme.colorScheme.onSurfaceVariant
-                              .withOpacity(0.7),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+            const SizedBox(height: 20),
+            const ContactFooterInfo(),
+          ],
+        ),
       ),
     );
   }
@@ -166,38 +135,88 @@ class ContactListTile extends StatelessWidget {
     final config = ContactConfig.getContactTypeConfig(context, contactType);
     final theme = Theme.of(context);
 
-    return Column(
-      children: [
-        ListTile(
-          dense: true,
-          leading: CircleAvatar(
-            backgroundColor: config.color.withOpacity(0.1),
-            child: Icon(config.icon, color: config.color, size: 20),
-          ),
-          title: Text(
-            config.label,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          subtitle: Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              config.description,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.6),
-                height: 1.3,
-              ),
-            ),
-          ),
-          trailing: Icon(Icons.open_in_new, color: config.color, size: 18),
-          onTap: onTap,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: ListTile(
+        dense: true,
+        contentPadding: EdgeInsets.zero,
+        leading: CircleAvatar(
+          backgroundColor: config.color.withOpacity(0.1),
+          child: Icon(config.icon, color: config.color, size: 20),
+        ),
+        title: Text(
+          config.label,
+          style: theme.textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w600,
           ),
         ),
-        Divider(height: 1, thickness: 0.5),
-      ],
+        subtitle: Text(
+          config.description,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurface.withOpacity(0.6),
+            height: 1.3,
+          ),
+        ),
+        trailing: Icon(
+          Icons.open_in_new,
+          color: config.color,
+          size: 18,
+          semanticLabel: '${config.label} ${context.loc.openEmailApp}',
+        ),
+        onTap: onTap,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+}
+
+class ContactFooterInfo extends StatelessWidget {
+  const ContactFooterInfo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceVariant.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.email,
+            color: theme.colorScheme.onSurfaceVariant,
+            size: 20,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  context.loc.openEmailApp,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  ContactConfig.supportEmail,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: theme.colorScheme.onSurfaceVariant.withOpacity(0.7),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
