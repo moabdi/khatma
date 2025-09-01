@@ -13,6 +13,7 @@ class ContactMethodBottomSheet {
       isScrollControlled: true,
       showDragHandle: true,
       backgroundColor: Theme.of(context).colorScheme.surface,
+      barrierColor: Theme.of(context).disabledColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -112,6 +113,7 @@ class _ContactMethodContent extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
+            Divider(height: 10),
             const ContactFooterInfo(),
           ],
         ),
@@ -152,7 +154,7 @@ class ContactListTile extends StatelessWidget {
         ),
         subtitle: Text(
           config.description,
-          style: theme.textTheme.bodySmall?.copyWith(
+          style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurface.withOpacity(0.6),
             height: 1.3,
           ),
