@@ -372,13 +372,9 @@ class DeviceInformation {
 
   String toSupportString() {
     final buffer = StringBuffer();
-
-    buffer.writeln('Bug Report Details:');
     buffer.writeln('- Platform: $platform');
     buffer.writeln('- Device: $deviceModel');
     buffer.writeln('- OS Version: $osVersion');
-    buffer.writeln(
-        '- Physical Device: ${isPhysicalDevice ? 'Yes' : 'No (Emulator/Simulator)'}');
     buffer.writeln('- Locale: $locale');
     buffer.writeln('- Timezone: $timeZone');
     buffer.writeln('- App Name: $appName');

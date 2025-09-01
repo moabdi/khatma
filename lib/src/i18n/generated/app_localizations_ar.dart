@@ -1689,16 +1689,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get contactType => 'نوع التواصل';
 
   @override
-  String get bugReport => 'تقرير خطأ';
+  String get bugReport => 'تبليغ عن خطأ';
+
+  @override
+  String get bugReportDescription => 'بلّغ عن مشاكل تقنية أو أعطال في التطبيق';
 
   @override
   String get suggestion => 'اقتراح';
 
   @override
-  String get feedback => 'تعليق';
+  String get suggestionDescription => 'شارك أفكارك لتحسين تجربة التطبيق';
 
   @override
-  String get other => 'آخر';
+  String get feedback => 'ملاحظات';
+
+  @override
+  String get feedbackDescription => 'أعطِ رأيك بشكل عام عن تجربتك مع التطبيق';
+
+  @override
+  String get other => 'غير ذلك';
+
+  @override
+  String get otherDescription => 'أي استفسار أو سؤال آخر';
 
   @override
   String get yourName => 'اسمك';

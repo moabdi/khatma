@@ -1701,13 +1701,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bugReport => 'Bug Report';
 
   @override
+  String get bugReportDescription =>
+      'Report technical issues or problems with the app';
+
+  @override
   String get suggestion => 'Suggestion';
+
+  @override
+  String get suggestionDescription =>
+      'Share ideas to improve the app experience';
 
   @override
   String get feedback => 'Feedback';
 
   @override
+  String get feedbackDescription =>
+      'General feedback about your app experience';
+
+  @override
   String get other => 'Other';
+
+  @override
+  String get otherDescription => 'Any other inquiries or questions';
 
   @override
   String get yourName => 'Your Name';

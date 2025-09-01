@@ -493,9 +493,13 @@
   "contactUs": "Contact Us",
   "contactType": "Contact Type",
   "bugReport": "Bug Report",
+  "bugReportDescription": "Report technical issues or problems with the app",
   "suggestion": "Suggestion",
+  "suggestionDescription": "Share ideas to improve the app experience",
   "feedback": "Feedback",
+  "feedbackDescription": "General feedback about your app experience",
   "other": "Other",
+  "otherDescription": "Any other inquiries or questions",
   "yourName": "Your Name",
   "enterYourName": "Enter your name",
   "enterYourEmail": "Enter your email address",
@@ -514,7 +518,7 @@
   "messageSentSuccessfully": "Message sent successfully!",
   "failedToSendMessage": "Failed to send message. Please try again.",
   
-  "contactFormSubject": "{contactType}: Contact Form Submission",
+  "contactFormSubject": "[{contactType}]: ",
   "@contactFormSubject": {
     "placeholders": {
       "contactType": {

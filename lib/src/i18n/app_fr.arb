@@ -490,10 +490,14 @@
   "unexpectedError": "Une erreur inattendue s'est produite",
   "contactUs": "Nous contacter",
   "contactType": "Type de contact",
-  "bugReport": "Signalement de bug",
+  "bugReport": "Rapport de bug",
+  "bugReportDescription": "Signalez des problèmes techniques ou des dysfonctionnements dans l’application",
   "suggestion": "Suggestion",
-  "feedback": "Commentaire",
+  "suggestionDescription": "Partagez vos idées pour améliorer l’expérience de l’application",
+  "feedback": "Retour d’expérience",
+  "feedbackDescription": "Retour général sur votre expérience avec l’application",
   "other": "Autre",
+  "otherDescription": "Toute autre demande ou question",
   "yourName": "Votre nom",
   "enterYourName": "Entrez votre nom",
   "enterYourEmail": "Entrez votre adresse email",
@@ -512,7 +516,7 @@
   "messageSentSuccessfully": "Message envoyé avec succès !",
   "failedToSendMessage": "Échec de l'envoi du message. Veuillez réessayer.",
   
-  "contactFormSubject": "{contactType} : Soumission du formulaire de contact",
+  "contactFormSubject": "[{contactType}] : ",
   "@contactFormSubject": {
     "placeholders": {
       "contactType": {

@@ -20,7 +20,7 @@ class ContactConfig {
       case ContactType.bug:
         return ContactTypeConfig(
           label: context.loc.bugReport,
-          description: 'Report technical issues or problems with the app',
+          description: context.loc.bugReportDescription,
           icon: Icons.bug_report,
           color: Colors.red.shade600,
           emailTemplate: EmailTemplate.bugReport,
@@ -28,7 +28,7 @@ class ContactConfig {
       case ContactType.suggestion:
         return ContactTypeConfig(
           label: context.loc.suggestion,
-          description: 'Share ideas to improve the app experience',
+          description: context.loc.suggestionDescription,
           icon: Icons.lightbulb_outline,
           color: Colors.blue.shade600,
           emailTemplate: EmailTemplate.suggestion,
@@ -36,7 +36,7 @@ class ContactConfig {
       case ContactType.feedback:
         return ContactTypeConfig(
           label: context.loc.feedback,
-          description: 'General feedback about your app experience',
+          description: context.loc.feedbackDescription,
           icon: Icons.feedback_outlined,
           color: Colors.green.shade600,
           emailTemplate: EmailTemplate.feedback,
@@ -44,7 +44,7 @@ class ContactConfig {
       case ContactType.other:
         return ContactTypeConfig(
           label: context.loc.other,
-          description: 'Any other inquiries or questions',
+          description: context.loc.otherDescription,
           icon: Icons.help_outline,
           color: Colors.orange.shade600,
           emailTemplate: EmailTemplate.other,
@@ -89,41 +89,50 @@ extension EmailTemplateExtension on EmailTemplate {
     switch (this) {
       case EmailTemplate.bugReport:
         return '''
+
+
+
+
 ---
-${deviceInfo.toSupportString()}
+Bug report Details:
+  ${deviceInfo.toSupportString()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';
       case EmailTemplate.suggestion:
         return '''
-$baseBody
+
+
+
 
 ---
 Suggestion Details:
-- Feature Request: [Please describe the feature]
-- Expected Behavior: [How should it work?]
-- Use Case: [When would you use this?]
-
+${deviceInfo.toSupportString()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';
       case EmailTemplate.feedback:
         return '''
-$baseBody
+
+
+
+
 
 ---
 Feedback Details:
-- Overall Experience: [Rate your experience]
-- What you liked: [Tell us what works well]
-- What could be improved: [Tell us what needs work]
-
+${deviceInfo.toSupportString()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';
       case EmailTemplate.other:
         return '''
-$baseBody
 
+
+
+
+---
+Feedback Details:
+${deviceInfo.toSupportString()}
 ---
 ${context.loc.sentViaKhatmaApp}
         ''';

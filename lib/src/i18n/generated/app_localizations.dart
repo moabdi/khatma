@@ -2830,11 +2830,23 @@ abstract class AppLocalizations {
   /// **'Bug Report'**
   String get bugReport;
 
+  /// No description provided for @bugReportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Report technical issues or problems with the app'**
+  String get bugReportDescription;
+
   /// No description provided for @suggestion.
   ///
   /// In en, this message translates to:
   /// **'Suggestion'**
   String get suggestion;
+
+  /// No description provided for @suggestionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Share ideas to improve the app experience'**
+  String get suggestionDescription;
 
   /// No description provided for @feedback.
   ///
@@ -2842,11 +2854,23 @@ abstract class AppLocalizations {
   /// **'Feedback'**
   String get feedback;
 
+  /// No description provided for @feedbackDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'General feedback about your app experience'**
+  String get feedbackDescription;
+
   /// No description provided for @other.
   ///
   /// In en, this message translates to:
   /// **'Other'**
   String get other;
+
+  /// No description provided for @otherDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Any other inquiries or questions'**
+  String get otherDescription;
 
   /// No description provided for @yourName.
   ///

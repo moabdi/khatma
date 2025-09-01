@@ -1682,16 +1682,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String get contactType => 'Type de contact';
 
   @override
-  String get bugReport => 'Signalement de bug';
+  String get bugReport => 'Rapport de bug';
+
+  @override
+  String get bugReportDescription =>
+      'Signalez des problèmes techniques ou des dysfonctionnements dans l’application';
 
   @override
   String get suggestion => 'Suggestion';
 
   @override
-  String get feedback => 'Commentaire';
+  String get suggestionDescription =>
+      'Partagez vos idées pour améliorer l’expérience de l’application';
+
+  @override
+  String get feedback => 'Retour d’expérience';
+
+  @override
+  String get feedbackDescription =>
+      'Retour général sur votre expérience avec l’application';
 
   @override
   String get other => 'Autre';
+
+  @override
+  String get otherDescription => 'Toute autre demande ou question';
 
   @override
   String get yourName => 'Votre nom';

@@ -491,10 +491,14 @@
   "unexpectedError": "حدث خطأ غير متوقع",
   "contactUs": "اتصل بنا",
   "contactType": "نوع التواصل",
-  "bugReport": "تقرير خطأ",
+  "bugReport": "تبليغ عن خطأ",
+  "bugReportDescription": "بلّغ عن مشاكل تقنية أو أعطال في التطبيق",
   "suggestion": "اقتراح",
-  "feedback": "تعليق",
-  "other": "آخر",
+  "suggestionDescription": "شارك أفكارك لتحسين تجربة التطبيق",
+  "feedback": "ملاحظات",
+  "feedbackDescription": "أعطِ رأيك بشكل عام عن تجربتك مع التطبيق",
+  "other": "غير ذلك",
+  "otherDescription": "أي استفسار أو سؤال آخر",
   "yourName": "اسمك",
   "enterYourName": "أدخل اسمك",
   "enterYourEmail": "أدخل عنوان بريدك الإلكتروني",
@@ -513,7 +517,7 @@
   "messageSentSuccessfully": "تم إرسال الرسالة بنجاح!",
   "failedToSendMessage": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
   
-  "contactFormSubject": "{contactType}: إرسال نموذج التواصل",
+  "contactFormSubject": "[{contactType}]: ",
   "@contactFormSubject": {
     "placeholders": {
       "contactType": {
