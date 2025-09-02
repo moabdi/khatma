@@ -15,12 +15,12 @@ Vous pouvez diviser votre Khatma en différentes unités comme les **Sourates** 
 Créer une nouvelle Khatma est simple :
 
 1. **Appuyez sur le bouton "+"** sur l'écran d'accueil
-2. **Personnalisez** avec des couleurs et icônes
+2. **Personnalisez** avec des couleurs et icônes (optionnel)
 3. **Définissez un titre** pour votre Khatma
 4. **Ajoutez une description** (optionnel)
-5. **Choisissez votre méthode de division** (Sourate, Juzz, Hizb, etc.)
+5. **Choisissez votre méthode de division** (Sourate, Juzz, Hizb)
 6. **Sélectionnez les paramètres de renouvellement** (Auto création)
-7. **Appuyez sur "Créer"** pour commencer votre parcours
+7. **Appuyez sur "Sauvegarder"** pour commencer votre parcours
 
 Votre Khatma sera prête à suivre vos progrès de lecture !
 
@@ -48,18 +48,18 @@ Trois options de partage disponibles :
 - Vous seul pouvez y accéder
 - Parcours de lecture personnel
 
-**Public** 🌍
+**_Public_** 🌍 (Bientôt disponible)
 - N'importe qui peut découvrir et rejoindre
 - Participation communautaire
 
-**Groupe** 👥
+**_Groupe_** 👥 (Bientôt disponible)
 - Partagez avec des personnes spécifiques
 - Utilisez un code QR ou code d'invitation
 - Parfait pour les familles/amis
 
 Changez les paramètres de confidentialité à tout moment dans les paramètres de Khatma.
 
-# Comment fonctionne la lecture en groupe ?
+# _Comment fonctionne la lecture en groupe ?_ *(Bientôt disponible)*
 
 La Khatma de groupe rassemble les gens :
 
@@ -96,8 +96,8 @@ Changez dans **Paramètres > Récitation** selon vos préférences.
 
 Vos progrès sont **automatiquement sauvegardés** dans le cloud :
 
-**Synchronisation en temps réel :**
-- Progrès sauvegardé instantanément avec internet
+**Synchronisation périodique :**
+- Progrès sauvegardé périodique avec internet
 - Accès depuis n'importe quel appareil
 - Ne perdez jamais votre historique de lecture
 
@@ -132,7 +132,6 @@ Le téléchargement se termine automatiquement lors de la première utilisation.
 - Tous les progrès de Khatma
 - Historique de lecture
 - Paramètres personnels
-- Signets et notes
 
 **Comment assurer la sauvegarde :**
 - Restez connecté à votre compte
@@ -154,7 +153,7 @@ Plusieurs façons d'obtenir de l'aide :
 
 **Aide dans l'application** 📱
 - Cette section FAQ
-- Guidance des messages d'erreur
+- Guidance des messages via **_Paramètres > Contacter le support_**
 
 
 Pour les **problèmes urgents** ou **rapports de bugs**, veuillez envoyer un email avec les détails de l'appareil et la description de l'erreur.

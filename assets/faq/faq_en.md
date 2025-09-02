@@ -2,7 +2,7 @@
 
 A **Khatma** is the complete reading of the Holy Quran from beginning to end.
 
-Our app helps you:
+Our application helps you:
 - Track your daily reading progress
 - Visualize completion percentage
 - Share with family and friends
@@ -10,63 +10,61 @@ Our app helps you:
 
 You can divide your Khatma into different units like **Surahs** (114 parts), **Juzz** (30 parts), or **Hizb** (60 parts).
 
-# How do I create a new Khatma?
+# How to create a new Khatma?
 
 Creating a new Khatma is simple:
 
 1. **Tap the "+" button** on the home screen
-6. **Customize** with colors and icons
+2. **Customize** with colors and icons (optional)
 3. **Set a title** for your Khatma
-4. **Add description** (optional)
-2. **Choose your division method** (Surah, Juzz, Hizb, etc.)
-5. **Select auto creation settings** (Enabled, re-create automaticly the same khatma after completion)
+4. **Add a description** (optional)
+5. **Choose your division method** (Surah, Juzz, Hizb)
+6. **Select renewal settings** (Auto creation)
 7. **Tap "Save"** to start your journey
 
 Your Khatma will be ready to track your reading progress!
 
-# What are the different division types?
+# What are the different types of division?
 
-Choose the division that fits your reading pace:
+Choose the division that matches your reading pace:
 
 **Surah** (114 parts)
-- Each part is one complete chapter
+- Each part is a complete chapter
 - Perfect for detailed study
 
-**Juzz** (30 parts) 
+**Juzz** (30 parts)
 - Traditional 30-day completion
 - Most popular choice
 
 **Hizb** (60 parts)
-- Twice daily reading
+- Reading twice daily
 - Good for consistent practice
-
 
 # How can I share my Khatma?
 
 Three sharing options available:
 
 **Private** 🔒
-- Only you can access
+- Only you can access it
 - Personal reading journey
 
-**Public** 🌍 (coming soon)
+**_Public_** 🌍 (Coming soon)
 - Anyone can discover and join
 - Community participation
 
-**Group** 👥 (coming soon)
+**_Group_** 👥 (Coming soon)
 - Share with specific people
-- Use QR code or invite code
+- Use QR code or invitation code
 - Perfect for families/friends
 
 Change privacy settings anytime in Khatma settings.
 
+# _How does group reading work?_ *(Coming soon)*
 
-# How does group reading work?
-
-Group Khatma brings people together: (coming soon)
+Group Khatma brings people together:
 
 **How it works:**
-- Multiple participants join one Khatma
+- Multiple participants join a Khatma
 - Each person claims different sections
 - Everyone sees overall progress
 - Completion notifications for all
@@ -79,7 +77,7 @@ Group Khatma brings people together: (coming soon)
 
 *Beautiful way to complete the Quran as a community!*
 
-# What recitation styles are supported?
+# Which recitation styles are supported?
 
 We support two main **Riwayat** (recitation styles):
 
@@ -90,16 +88,16 @@ We support two main **Riwayat** (recitation styles):
 
 **Warsh** 📖
 - Common in North Africa (Morocco, Algeria, Tunisia)
-- Slight pronunciation and spelling differences
+- Slight differences in pronunciation and spelling
 
-Change in **Settings > Recitation** to match your preference.
+Change in **Settings > Recitation** according to your preference.
 
 # How is my progress synchronized?
 
 Your progress is **automatically saved** to the cloud:
 
-**Periodic-time sync:**
-- Progress saved with internet
+**Periodic synchronization:**
+- Progress saved periodically with internet
 - Access from any device
 - Never lose your reading history
 
@@ -115,17 +113,22 @@ Sign in to your account to ensure backup across all devices.
 **Yes!** Full offline support included:
 
 **Available offline:**
-- Complete Quran text
 - Reading progress tracking
-- Personal Khatma access
+- Access to personal Khatma
+- Local bookmarks and notes
+
+**Requires internet:**
+- Sharing and group features
+- Cloud synchronization
+- App updates
 
 Download completes automatically on first use.
 
-# How do I backup my data?
+# How to backup my data?
 
 **Automatic backup** when signed in:
 
-**What's backed up:**
+**What gets backed up:**
 - All Khatma progress
 - Reading history
 - Personal settings
@@ -135,20 +138,21 @@ Download completes automatically on first use.
 - Connect to internet periodically
 - Data syncs automatically
 
-**Restore on new device:**
-- Sign in with same account
+**Restoration on new device:**
+- Sign in with the same account
 - All data restored automatically
 - Continue where you left off
 
-# How can I get support?
+# How to get help?
 
-Multiple ways to get help:
+Several ways to get assistance:
 
 **Email Support** 📧
 - houari.mostapha@gmail.com
-- 24-48 hour response time
+- Response time 24-48 hours
 
-**In-App Help** 📱
+**In-app Help** 📱
 - This FAQ section
+- Message guidance via **_Settings > Contact Support_**
 
 For **urgent issues** or **bug reports**, please email with device details and error description.
