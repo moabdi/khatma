@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../domain/faq_entry.dart';
@@ -18,21 +20,6 @@ class FaqPage extends ConsumerStatefulWidget {
 
 class _FaqPageState extends ConsumerState<FaqPage> {
   late List<bool> _expanded = [];
-  String? _currentLocale;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final locale = Localizations.localeOf(context).languageCode;
-
-    // Reset expansion state when locale changes
-    if (_currentLocale != locale) {
-      _currentLocale = locale;
-      setState(() {
-        _expanded = [];
-      });
-    }
-  }
 
   void _initializeExpansionState(int length) {
     if (_expanded.length != length) {
@@ -42,13 +29,12 @@ class _FaqPageState extends ConsumerState<FaqPage> {
 
   @override
   Widget build(BuildContext context) {
-    final locale = Localizations.localeOf(context).languageCode;
     final theme = Theme.of(context);
     final faqAsync = ref.watch(faqProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_getTitle(locale)),
+        title: Text(context.loc.faq),
         backgroundColor: theme.colorScheme.surface,
         foregroundColor: theme.colorScheme.onSurface,
         elevation: 0,
@@ -91,19 +77,19 @@ class _FaqPageState extends ConsumerState<FaqPage> {
         },
         children: List.generate(
           faqs.length,
-          (i) => _buildPanel(faqs[i], i, theme),
+          (i) => _buildPanel(faqs[i], i, context),
         ),
       ),
     );
   }
 
-  ExpansionPanel _buildPanel(FaqEntry entry, int index, ThemeData theme) {
+  ExpansionPanel _buildPanel(FaqEntry entry, int index, BuildContext context) {
     final isCurrentlyExpanded = _expanded[index];
 
     return ExpansionPanel(
       isExpanded: isCurrentlyExpanded,
       canTapOnHeader: true,
-      backgroundColor: theme.colorScheme.surface,
+      backgroundColor: context.colorScheme.surface,
       headerBuilder: (context, isExpanded) {
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 8),
@@ -113,13 +99,13 @@ class _FaqPageState extends ConsumerState<FaqPage> {
               height: 36,
               decoration: BoxDecoration(
                 color: isExpanded
-                    ? theme.colorScheme.primary
-                    : theme.colorScheme.primary.withOpacity(0.8),
+                    ? context.colorScheme.primary
+                    : context.colorScheme.primary.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: isExpanded
                     ? [
                         BoxShadow(
-                          color: theme.colorScheme.primary.withOpacity(0.3),
+                          color: context.colorScheme.primary.withOpacity(0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -130,7 +116,7 @@ class _FaqPageState extends ConsumerState<FaqPage> {
                 child: Text(
                   '${index + 1}',
                   style: TextStyle(
-                    color: theme.colorScheme.onPrimary,
+                    color: context.colorScheme.onPrimary,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
@@ -139,11 +125,11 @@ class _FaqPageState extends ConsumerState<FaqPage> {
             ),
             title: Text(
               entry.question,
-              style: theme.textTheme.titleMedium?.copyWith(
+              style: context.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: isExpanded
-                    ? theme.colorScheme.primary
-                    : theme.colorScheme.onSurface,
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSurface,
               ),
             ),
           ),
@@ -160,62 +146,62 @@ class _FaqPageState extends ConsumerState<FaqPage> {
             MarkdownBody(
               data: entry.answer,
               styleSheet: MarkdownStyleSheet(
-                p: theme.textTheme.bodyMedium?.copyWith(
+                p: context.textTheme.bodyMedium?.copyWith(
                   height: 1.6,
-                  color: theme.colorScheme.onSurface.withOpacity(0.85),
+                  color: context.colorScheme.onSurface.withOpacity(0.85),
                 ),
-                h1: theme.textTheme.titleLarge?.copyWith(
+                h1: context.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: theme.colorScheme.primary,
+                  color: context.colorScheme.primary,
                   height: 1.3,
                 ),
-                h2: theme.textTheme.titleMedium?.copyWith(
+                h2: context.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: theme.colorScheme.primary,
+                  color: context.colorScheme.primary,
                   height: 1.3,
                 ),
-                h3: theme.textTheme.titleSmall?.copyWith(
+                h3: context.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: theme.colorScheme.onSurface,
+                  color: context.colorScheme.onSurface,
                 ),
                 strong: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: theme.colorScheme.onSurface,
+                  color: context.colorScheme.onSurface,
                 ),
                 em: TextStyle(
                   fontStyle: FontStyle.italic,
-                  color: theme.colorScheme.onSurface.withOpacity(0.8),
+                  color: context.colorScheme.onSurface.withOpacity(0.8),
                 ),
                 a: TextStyle(
-                  color: theme.colorScheme.primary,
+                  color: context.colorScheme.primary,
                   decoration: TextDecoration.underline,
                 ),
                 code: TextStyle(
-                  backgroundColor: theme.colorScheme.surfaceVariant,
-                  color: theme.colorScheme.onSurfaceVariant,
+                  backgroundColor: context.colorScheme.surfaceVariant,
+                  color: context.colorScheme.onSurfaceVariant,
                   fontFamily: 'monospace',
                   fontSize: 14,
                 ),
                 codeblockDecoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceVariant.withOpacity(0.5),
+                  color: context.colorScheme.surfaceVariant.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                blockquote: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                blockquote: context.textTheme.bodyMedium?.copyWith(
+                  color: context.colorScheme.onSurface.withOpacity(0.7),
                   fontStyle: FontStyle.italic,
                 ),
                 blockquoteDecoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceVariant.withOpacity(0.3),
+                  color: context.colorScheme.surfaceVariant.withOpacity(0.3),
                   border: Border(
                     left: BorderSide(
-                      color: theme.colorScheme.primary,
+                      color: context.colorScheme.primary,
                       width: 4,
                     ),
                   ),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                listBullet: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.primary,
+                listBullet: context.textTheme.bodyMedium?.copyWith(
+                  color: context.colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
