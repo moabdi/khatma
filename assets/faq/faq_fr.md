@@ -59,7 +59,7 @@ Trois options de partage disponibles :
 
 Changez les paramètres de confidentialité à tout moment dans les paramètres de Khatma.
 
-# _Comment fonctionne la lecture en groupe ?_ *(Bientôt disponible)*
+# Comment fonctionne la lecture en groupe ? (Bientôt disponible)
 
 La Khatma de groupe rassemble les gens :
 

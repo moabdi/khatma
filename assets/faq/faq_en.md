@@ -59,7 +59,7 @@ Three sharing options available:
 
 Change privacy settings anytime in Khatma settings.
 
-# _How does group reading work?_ *(Coming soon)*
+# How does group reading work? (Coming soon)
 
 Group Khatma brings people together:
 
