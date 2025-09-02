@@ -135,6 +135,7 @@ flutter:
     - assets/quran/translated/
     - assets/fonts/google_fonts/
     - assets/docs/
+    - assets/docs/about/
     - assets/faq/
 
   fonts:
