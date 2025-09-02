@@ -15,11 +15,11 @@ Vous pouvez diviser votre Khatma en différentes unités comme les **Sourates** 
 Créer une nouvelle Khatma est simple :
 
 1. **Appuyez sur le bouton "+"** sur l'écran d'accueil
-2. **Choisissez votre méthode de division** (Sourate, Juzz, Hizb, etc.)
+2. **Personnalisez** avec des couleurs et icônes
 3. **Définissez un titre** pour votre Khatma
 4. **Ajoutez une description** (optionnel)
-5. **Sélectionnez les paramètres de confidentialité** (Privé, Public, ou Groupe)
-6. **Personnalisez** avec des couleurs et icônes
+5. **Choisissez votre méthode de division** (Sourate, Juzz, Hizb, etc.)
+6. **Sélectionnez les paramètres de renouvellement** (Auto création)
 7. **Appuyez sur "Créer"** pour commencer votre parcours
 
 Votre Khatma sera prête à suivre vos progrès de lecture !
@@ -39,10 +39,6 @@ Choisissez la division qui correspond à votre rythme de lecture :
 **Hizb** (60 parties)
 - Lecture deux fois par jour
 - Bon pour la pratique constante
-
-**Demi-Hizb** (120 parties)
-- Portions quotidiennes plus courtes
-- Idéal pour les horaires chargés
 
 # Comment puis-je partager ma Khatma ?
 
@@ -117,13 +113,11 @@ Connectez-vous à votre compte pour assurer la sauvegarde sur tous les appareils
 **Oui !** Support hors ligne complet inclus :
 
 **Disponible hors ligne :**
-- Texte complet du Coran
 - Suivi des progrès de lecture
 - Accès à la Khatma personnelle
 - Signets et notes locaux
 
 **Nécessite internet :**
-- Récitations audio
 - Fonctionnalités de partage et de groupe
 - Synchronisation cloud
 - Mises à jour de l'application
@@ -155,16 +149,12 @@ Le téléchargement se termine automatiquement lors de la première utilisation.
 Plusieurs façons d'obtenir de l'aide :
 
 **Support Email** 📧
-- support@khatma-app.com
+- houari.mostapha@gmail.com
 - Temps de réponse 24-48 heures
 
 **Aide dans l'application** 📱
 - Cette section FAQ
-- Tutoriels intégrés
 - Guidance des messages d'erreur
 
-**Communauté** 👥
-- Forums utilisateurs (bientôt disponible)
-- Mises à jour réseaux sociaux
 
 Pour les **problèmes urgents** ou **rapports de bugs**, veuillez envoyer un email avec les détails de l'appareil et la description de l'erreur.

@@ -60,11 +60,10 @@ Three sharing options available:
 
 Change privacy settings anytime in Khatma settings.
 
-<!-- 
 
 # How does group reading work?
 
-Group Khatma brings people together:
+Group Khatma brings people together: (coming soon)
 
 **How it works:**
 - Multiple participants join one Khatma
@@ -79,7 +78,7 @@ Group Khatma brings people together:
 - Mosque congregations
 
 *Beautiful way to complete the Quran as a community!*
--->
+
 # What recitation styles are supported?
 
 We support two main **Riwayat** (recitation styles):
@@ -100,7 +99,7 @@ Change in **Settings > Recitation** to match your preference.
 Your progress is **automatically saved** to the cloud:
 
 **Periodic-time sync:**
-- Progress saved instantly with internet
+- Progress saved with internet
 - Access from any device
 - Never lose your reading history
 
@@ -151,9 +150,5 @@ Multiple ways to get help:
 
 **In-App Help** 📱
 - This FAQ section
-
-**Community** 👥
-- User forums (coming soon)
-- Social media updates
 
 For **urgent issues** or **bug reports**, please email with device details and error description.
