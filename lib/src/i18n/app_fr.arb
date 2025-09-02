@@ -419,7 +419,7 @@
   "chooseTheme": "Choisir le thème",
   "themeMode": "{mode, select, light{Clair} dark{Sombre} system{Système} other{Système}}",
   
-  "faq": "FAQ",
+  "faq": "Questions fréquentes",
   "frequentlyAskedQuestions": "Questions fréquemment posées",
   "contactSupport": "Contacter le support",
   "questionsAndSuggestions": "Questions et suggestions",

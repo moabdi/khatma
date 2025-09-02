@@ -421,7 +421,7 @@
   "chooseTheme": "Choose theme",
   "themeMode": "{mode, select, light{Light} dark{Dark} system{System} other{System}}",
   
-  "faq": "FAQ",
+  "faq": "Common Questions",
   "frequentlyAskedQuestions": "Frequently Asked Questions",
   "contactSupport": "Contact Support",
   "questionsAndSuggestions": "Questions and suggestions",

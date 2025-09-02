@@ -1488,7 +1488,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get faq => 'FAQ';
+  String get faq => 'Common Questions';
 
   @override
   String get frequentlyAskedQuestions => 'Frequently Asked Questions';

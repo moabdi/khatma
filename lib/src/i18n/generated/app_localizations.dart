@@ -2419,7 +2419,7 @@ abstract class AppLocalizations {
   /// No description provided for @faq.
   ///
   /// In en, this message translates to:
-  /// **'FAQ'**
+  /// **'Common Questions'**
   String get faq;
 
   /// No description provided for @frequentlyAskedQuestions.

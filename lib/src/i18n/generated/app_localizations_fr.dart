@@ -1472,7 +1472,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get faq => 'FAQ';
+  String get faq => 'Questions fréquentes';
 
   @override
   String get frequentlyAskedQuestions => 'Questions fréquemment posées';
