@@ -135,7 +135,7 @@ flutter:
     - assets/quran/translated/
     - assets/fonts/google_fonts/
     - assets/docs/
-    - assets/docs/mentions_legals.md
+    - assets/faq/
 
   fonts:
     - family: Airbnb

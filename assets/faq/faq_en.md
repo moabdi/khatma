@@ -15,12 +15,12 @@ You can divide your Khatma into different units like **Surahs** (114 parts), **J
 Creating a new Khatma is simple:
 
 1. **Tap the "+" button** on the home screen
-2. **Choose your division method** (Surah, Juzz, Hizb, etc.)
+6. **Customize** with colors and icons
 3. **Set a title** for your Khatma
 4. **Add description** (optional)
-5. **Select privacy settings** (Private, Public, or Group)
-6. **Customize** with colors and icons
-7. **Tap "Create"** to start your journey
+2. **Choose your division method** (Surah, Juzz, Hizb, etc.)
+5. **Select auto creation settings** (Enabled, re-create automaticly the same khatma after completion)
+7. **Tap "Save"** to start your journey
 
 Your Khatma will be ready to track your reading progress!
 
@@ -40,51 +40,6 @@ Choose the division that fits your reading pace:
 - Twice daily reading
 - Good for consistent practice
 
-**Half-# What is a Khatma?
-
-A **Khatma** is the complete reading of the Holy Quran from beginning to end.
-
-Our app helps you:
-- Track your daily reading progress
-- Visualize completion percentage
-- Share with family and friends
-- Set reading reminders
-
-You can divide your Khatma into different units like **Surahs** (114 parts), **Juzz** (30 parts), or **Hizb** (60 parts).
-
-# How do I create a new Khatma?
-
-Creating a new Khatma is simple:
-
-1. **Tap the "+" button** on the home screen
-2. **Choose your division method** (Surah, Juzz, Hizb, etc.)
-3. **Set a title** for your Khatma
-4. **Add description** (optional)
-5. **Select privacy settings** (Private, Public, or Group)
-6. **Customize** with colors and icons
-7. **Tap "Create"** to start your journey
-
-Your Khatma will be ready to track your reading progress!
-
-# What are the different division types?
-
-Choose the division that fits your reading pace:
-
-**Surah** (114 parts)
-- Each part is one complete chapter
-- Perfect for detailed study
-
-**Juzz** (30 parts) 
-- Traditional 30-day completion
-- Most popular choice
-
-**Hizb** (60 parts)
-- Twice daily reading
-- Good for consistent practice
-
-**Half-Hizb** (120 parts)
-- Shorter daily portions
-- Ideal for busy schedules
 
 # How can I share my Khatma?
 
@@ -94,16 +49,18 @@ Three sharing options available:
 - Only you can access
 - Personal reading journey
 
-**Public** 🌍
+**Public** 🌍 (coming soon)
 - Anyone can discover and join
 - Community participation
 
-**Group** 👥
+**Group** 👥 (coming soon)
 - Share with specific people
 - Use QR code or invite code
 - Perfect for families/friends
 
 Change privacy settings anytime in Khatma settings.
+
+<!-- 
 
 # How does group reading work?
 
@@ -122,7 +79,7 @@ Group Khatma brings people together:
 - Mosque congregations
 
 *Beautiful way to complete the Quran as a community!*
-
+-->
 # What recitation styles are supported?
 
 We support two main **Riwayat** (recitation styles):
@@ -142,7 +99,7 @@ Change in **Settings > Recitation** to match your preference.
 
 Your progress is **automatically saved** to the cloud:
 
-**Real-time sync:**
+**Periodic-time sync:**
 - Progress saved instantly with internet
 - Access from any device
 - Never lose your reading history
@@ -162,13 +119,6 @@ Sign in to your account to ensure backup across all devices.
 - Complete Quran text
 - Reading progress tracking
 - Personal Khatma access
-- Local bookmarks and notes
-
-**Requires internet:**
-- Audio recitations
-- Sharing and group features
-- Cloud synchronization
-- App updates
 
 Download completes automatically on first use.
 
@@ -180,7 +130,6 @@ Download completes automatically on first use.
 - All Khatma progress
 - Reading history
 - Personal settings
-- Bookmarks and notes
 
 **How to ensure backup:**
 - Stay signed in to your account
@@ -197,13 +146,11 @@ Download completes automatically on first use.
 Multiple ways to get help:
 
 **Email Support** 📧
-- support@khatma-app.com
+- houari.mostapha@gmail.com
 - 24-48 hour response time
 
 **In-App Help** 📱
 - This FAQ section
-- Built-in tutorials
-- Error message guidance
 
 **Community** 👥
 - User forums (coming soon)
