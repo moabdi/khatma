@@ -3015,6 +3015,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email app not available on this device'**
   String get emailNotAvailable;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// No description provided for @failedToLoadFaq.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load FAQ'**
+  String get failedToLoadFaq;
+
+  /// No description provided for @noFaqAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No FAQ available'**
+  String get noFaqAvailable;
 }
 
 class _AppLocalizationsDelegate

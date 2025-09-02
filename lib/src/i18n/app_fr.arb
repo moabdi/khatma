@@ -530,5 +530,8 @@
   "directEmailContact": "Contact email direct",
   "openEmailApp": "Email de contact",
   "unableToOpenEmail": "Impossible d'ouvrir l'application email",
-  "emailNotAvailable": "Application email non disponible sur cet appareil"
+  "emailNotAvailable": "Application email non disponible sur cet appareil",
+  "refresh": "Actualiser",
+  "failedToLoadFaq": "Échec du chargement de la FAQ",
+  "noFaqAvailable": "Aucune FAQ disponible"
   }

@@ -1788,4 +1788,13 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get emailNotAvailable =>
       'Application email non disponible sur cet appareil';
+
+  @override
+  String get refresh => 'Actualiser';
+
+  @override
+  String get failedToLoadFaq => 'Échec du chargement de la FAQ';
+
+  @override
+  String get noFaqAvailable => 'Aucune FAQ disponible';
 }

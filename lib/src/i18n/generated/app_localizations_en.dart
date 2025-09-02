@@ -1801,4 +1801,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emailNotAvailable => 'Email app not available on this device';
+
+  @override
+  String get refresh => 'Refresh';
+
+  @override
+  String get failedToLoadFaq => 'Failed to load FAQ';
+
+  @override
+  String get noFaqAvailable => 'No FAQ available';
 }

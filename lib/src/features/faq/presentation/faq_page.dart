@@ -41,29 +41,28 @@ class _FaqPageState extends ConsumerState<FaqPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
+            tooltip: context.loc.refresh,
             onPressed: () => ref.invalidate(faqProvider),
-            tooltip: 'Refresh FAQ',
           ),
         ],
       ),
       body: faqAsync.when(
         loading: () => const FaqLoadingView(),
-        error: (error, stackTrace) => FaqErrorView(
-          message: 'Failed to load FAQ: ${error.toString()}',
+        error: (error, _) => FaqErrorView(
+          message: '${context.loc.failedToLoadFaq}: $error',
         ),
         data: (faqs) {
           if (faqs.isEmpty) {
-            return const FaqErrorView(message: 'No FAQ available');
+            return FaqErrorView(message: context.loc.noFaqAvailable);
           }
-
           _initializeExpansionState(faqs.length);
-          return _buildFaqList(faqs, theme);
+          return _buildFaqList(faqs, context);
         },
       ),
     );
   }
 
-  Widget _buildFaqList(List<FaqEntry> faqs, ThemeData theme) {
+  Widget _buildFaqList(List<FaqEntry> faqs, BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: ExpansionPanelList(
@@ -215,17 +214,6 @@ class _FaqPageState extends ConsumerState<FaqPage> {
         ),
       ),
     );
-  }
-
-  String _getTitle(String locale) {
-    switch (locale) {
-      case 'ar':
-        return 'الأسئلة الشائعة';
-      case 'fr':
-        return 'Questions fréquemment posées';
-      default:
-        return 'Frequently Asked Questions';
-    }
   }
 
   Future<void> _openLink(String href) async {

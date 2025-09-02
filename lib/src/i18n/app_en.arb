@@ -533,5 +533,8 @@
   "directEmailContact": "Direct Email Contact",
   "openEmailApp": "Email support",
   "unableToOpenEmail": "Unable to open email app",
-  "emailNotAvailable": "Email app not available on this device"
+  "emailNotAvailable": "Email app not available on this device",
+  "refresh": "Refresh",
+  "failedToLoadFaq": "Failed to load FAQ",
+  "noFaqAvailable": "No FAQ available"
 }

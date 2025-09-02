@@ -1790,4 +1790,13 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get emailNotAvailable =>
       'تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز';
+
+  @override
+  String get refresh => 'تحديث';
+
+  @override
+  String get failedToLoadFaq => 'فشل في تحميل الأسئلة الشائعة';
+
+  @override
+  String get noFaqAvailable => 'لا توجد أسئلة شائعة متاحة';
 }
