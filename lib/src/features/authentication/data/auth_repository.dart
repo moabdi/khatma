@@ -510,6 +510,42 @@ class AuthRepository {
     }
   }
 
+  Future<Result<void, AppErrorCode>> reauthenticateWithGoogle() async {
+    final user = _auth.currentUser;
+    if (user == null) {
+      return const Result.failure(AppErrorCode.authUserNotLoggedIn);
+    }
+
+    try {
+      // Trigger the Google sign-in flow
+      final googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        return const Result.failure(AppErrorCode.authUserNotLoggedIn);
+      }
+
+      // Obtain the Google authentication details
+      final googleAuth = await googleUser.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Reauthenticate
+      await user.reauthenticateWithCredential(credential);
+
+      if (kDebugMode) {
+        print('🔐 Reauthentication with Google successful');
+      }
+      return const Result.success(null);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(_mapFirebaseAuthException(e));
+    } catch (e) {
+      return const Result.failure(AppErrorCode.generalUnknown);
+    }
+  }
+
   /// Delete user account
   Future<Result<void, AppErrorCode>> deleteAccount() async {
     final user = _auth.currentUser;

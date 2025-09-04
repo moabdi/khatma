@@ -32,12 +32,7 @@ class _AccountPageState extends ConsumerState<AccountPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.loc.myAccount),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -57,7 +52,7 @@ class _AccountPageState extends ConsumerState<AccountPage> {
                   onTap: () => context.goNamed(AppRoute.login.name),
                 ),
               gapH8,
-              if (!user.isAnonymous) const DeleteAccountSection(),
+              if (!user.isAnonymous) DeleteAccountSection(user),
               gapH32,
             ],
           ),

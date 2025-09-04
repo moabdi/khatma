@@ -5,7 +5,7 @@ class AppTextTheme {
   AppTextTheme._();
 
   // Font families
-  static const String _displayFontFamily = 'Airbnb'; // Your existing font
+  static const String _displayFontFamily = 'Lato'; // Your existing font
   static const String _bodyFontFamily = 'Lato'; // Your existing font
 
   /// Generate text theme based on color scheme

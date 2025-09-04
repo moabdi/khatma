@@ -79,7 +79,7 @@ class AppColorScheme {
     onTertiaryContainer: Color(0xFFFFF8DC),
 
     // Error colors
-    error: Color(0xFFFFB4AB),
+    error: Color(0xFFBA1A1A),
     onError: Color(0xFF690005),
     errorContainer: Color(0xFF93000A),
     onErrorContainer: Color(0xFFFFDAD6),

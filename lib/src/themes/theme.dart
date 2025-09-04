@@ -53,10 +53,10 @@ class AppTheme {
       textButtonTheme: _buildTextButtonTheme(colorScheme, textTheme),
 
       // Input fields
-      inputDecorationTheme: _buildInputDecorationTheme(colorScheme, isDark),
+      inputDecorationTheme: _buildInputDecorationTheme(colorScheme),
 
       // List tiles
-      listTileTheme: _buildListTileTheme(colorScheme, textTheme, isDark),
+      listTileTheme: _buildListTileTheme(colorScheme, textTheme),
 
       // Other components
       chipTheme: _buildChipTheme(colorScheme, textTheme),
@@ -165,7 +165,6 @@ class AppTheme {
   /// Input Decoration Theme
   static InputDecorationTheme _buildInputDecorationTheme(
     ColorScheme colorScheme,
-    bool isDark,
   ) {
     return InputDecorationTheme(
       filled: true,
@@ -200,7 +199,6 @@ class AppTheme {
   static ListTileThemeData _buildListTileTheme(
     ColorScheme colorScheme,
     TextTheme textTheme,
-    bool isDark,
   ) {
     return ListTileThemeData(
       shape: RoundedRectangleBorder(
