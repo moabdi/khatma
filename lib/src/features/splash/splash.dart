@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen>
                     children: [
                       AvatarGlow(
                         startDelay: const Duration(milliseconds: 600),
-                        glowColor: Theme.of(context).primaryColor,
+                        glowColor: Theme.of(context).colorScheme.primary,
                         glowShape: BoxShape.circle,
                         glowRadiusFactor: 1.5,
                         repeat: false,
