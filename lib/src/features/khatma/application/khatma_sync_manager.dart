@@ -12,7 +12,7 @@ part 'khatma_sync_manager.g.dart';
 
 /// Configuration for sync manager
 class SyncConfig {
-  static const Duration autoSyncInterval = Duration(minutes: 1);
+  static const Duration autoSyncInterval = Duration(seconds: 1);
   static const Duration startupSyncDelay = Duration(seconds: 1);
   static const int maxRetryAttempts = 3;
   static const Duration retryDelay = Duration(seconds: 2);
