@@ -17,12 +17,11 @@ dependencies:
   # Core packages
   intl: any
   go_router: 16.2.1
-  flutter_riverpod: ^2.6.1
-  freezed: ^3.0.6
-  riverpod_annotation: ^2.6.1
-  freezed_annotation: ^3.0.0
+  flutter_riverpod: 2.6.1
+  freezed: 3.0.6
+  riverpod_annotation: 2.6.1
+  freezed_annotation: 3.1.0
   meta: 1.16.0
-  analyzer: ^7.3.0
 
   # Firebase packages
   firebase_core: 3.13.0
@@ -31,10 +30,10 @@ dependencies:
   firebase_ui_localizations: 1.13.1
   firebase_analytics: 11.4.5
   cloud_firestore: 5.6.7
-  firebase_crashlytics: ^4.3.5
+  firebase_crashlytics: 4.3.5
 
   # Google Services
-  google_sign_in: ^6.3.0
+  google_sign_in: 6.3.0
   google_fonts: 6.3.1
 
   # HTTP & Network
@@ -94,12 +93,13 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: 6.0.0
-  build_runner: ^2.4.7
+  riverpod_lint: 2.6.5
   copy_with_extension: 9.1.1
-  riverpod_generator: ^2.6.5
-  json_serializable: ^6.9.5
-  custom_lint: ^0.7.5
-  riverpod_lint: ^2.6.5
+  riverpod_generator: 2.6.5
+  json_serializable: 6.9.5 # compatible riverpod_generator 2.6.5 : 6.9.5
+  build_runner: 2.5.4 # compatible riverpod_generator 2.6.5 : 2.5.4
+  custom_lint: 0.7.5 # compatible riverpod_generator 2.6.5 : 0.7.5
+  analyzer: 7.3.0 # compatible custom_lint: 0.7.5 : 7.3.0
 
 flutter_icons:
   ios: true
