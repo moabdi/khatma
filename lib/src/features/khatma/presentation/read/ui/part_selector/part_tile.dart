@@ -6,6 +6,7 @@ import 'package:khatma/src/features/khatma/presentation/read/logic/khatma_parts_
 import 'package:khatma/src/features/khatma/presentation/read/ui/part_selector/part_tile_leading.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/i18n/local_provider.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class PartTile extends ConsumerWidget {
   const PartTile(
@@ -54,8 +55,18 @@ class PartTile extends ConsumerWidget {
         part: part,
         color: color,
       ),
-      title: Text(partTitle),
-      subtitle: Text(partSubtitle),
+      title: Text(
+        partTitle,
+        style: context.textTheme.bodyMedium?.copyWith(
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      subtitle: Text(
+        partSubtitle,
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+      ),
       // trailing: trailing,
     );
   }

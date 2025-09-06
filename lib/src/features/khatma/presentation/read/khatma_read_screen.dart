@@ -158,7 +158,7 @@ class KhatmaReadScreen extends ConsumerWidget {
   }
 }
 
-class ConfirmRead extends ConsumerWidget {
+class ConfirmRead extends ConsumerStatefulWidget {
   const ConfirmRead({
     super.key,
     required this.khatmaID,
@@ -167,7 +167,14 @@ class ConfirmRead extends ConsumerWidget {
   final KhatmaID khatmaID;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConfirmRead> createState() => _ConfirmReadState();
+}
+
+class _ConfirmReadState extends ConsumerState<ConfirmRead> {
+  bool _isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
     final selectedParts = ref.watch(khatmaPartsControllerProvider);
 
     return Container(
@@ -207,8 +214,9 @@ class ConfirmRead extends ConsumerWidget {
             width: double.infinity,
             height: 48,
             child: ElevatedButton(
-              onPressed: selectedParts.isNotEmpty
-                  ? () => _onSubmit(context, ref, khatmaID, selectedParts)
+              onPressed: (selectedParts.isNotEmpty && !_isLoading)
+                  ? () =>
+                      _onSubmit(context, ref, widget.khatmaID, selectedParts)
                   : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: context.colorScheme.primary,
@@ -219,13 +227,22 @@ class ConfirmRead extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: Text(
-                context.loc.confirmReading,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              child: _isLoading
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    )
+                  : Text(
+                      context.loc.confirmReading,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
             ),
           ),
         ],
@@ -233,8 +250,14 @@ class ConfirmRead extends ConsumerWidget {
     );
   }
 
-  void _onSubmit(BuildContext context, WidgetRef ref, KhatmaID khatmaId,
+  Future<void> _onSubmit(BuildContext context, WidgetRef ref, KhatmaID khatmaId,
       List<int> selectedParts) async {
+    // Set loading state to true
+    setState(() {
+      _isLoading = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 300));
+
     try {
       final result = await ref
           .read(khatmaNotifierProvider.notifier)
@@ -261,6 +284,13 @@ class ConfirmRead extends ConsumerWidget {
     } catch (e) {
       if (context.mounted) {
         AppErrorHandler.handleError(context, AppErrorCode.generalUnknown);
+      }
+    } finally {
+      // Always reset loading state
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
       }
     }
   }
