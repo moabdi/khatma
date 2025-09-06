@@ -1,0 +1,236 @@
+name: khatma
+description: khatma AMM78
+
+publish_to: 'none'
+
+version: 1.0.0+7
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Core packages
+  intl: any
+  go_router: 16.2.1
+  flutter_riverpod: 2.6.1
+  freezed: 3.0.6
+  riverpod_annotation: 2.6.1
+  freezed_annotation: 3.1.0
+  meta: 1.16.0
+
+  # Firebase packages
+  firebase_core: 4.1.0
+  firebase_auth: 6.0.2
+  firebase_ui_localizations: 2.0.0
+  firebase_analytics: 12.0.1
+  cloud_firestore: 6.0.1
+  firebase_crashlytics: 5.0.1
+
+  # Google Services
+  google_sign_in: 6.3.0
+  google_fonts: 6.3.1
+
+  # HTTP & Network
+  http: 1.5.0
+  dio: 5.9.0
+  cached_network_image: 3.4.1
+
+  # UI Components
+  font_awesome_flutter: 10.10.0
+  fl_chart: 1.1.0
+  modal_bottom_sheet: 3.0.0
+  hexcolor: 3.0.1
+  percent_indicator: 4.2.5
+  readmore: 3.0.0
+  shimmer: 3.0.0
+  flutter_svg: 2.2.1
+  lottie: 3.3.1
+  gap: 3.0.1
+  animated_text_kit: 4.2.3
+  dotted_line: 3.2.3
+  wave: 0.2.2
+  avatar_glow: 3.0.1
+  smooth_page_indicator: 1.2.1
+  flutter_markdown: 0.7.7+1
+
+  # Storage & Data
+  hive: 2.2.3
+  json_annotation: 4.9.0
+  shared_preferences: 2.5.3
+  flutter_secure_storage: 9.2.4
+  path_provider: 2.1.5
+  path: 1.9.1
+
+  # Utilities
+  uuid: 4.5.1
+  time_machine: 0.9.17
+  random_string: 2.3.1
+  rxdart: 0.28.0
+
+  # Platform Integration
+  webview_flutter: 4.13.0
+  url_launcher: 6.3.2
+  device_info_plus: 11.5.0
+  package_info_plus: 8.3.1
+  connectivity_plus: 6.1.5
+
+  # Build & Platform
+  flutter_launcher_icons: 0.14.4
+  web: 1.1.1
+
+  flutter_email_sender: 7.0.0
+  image_picker: 1.2.0
+
+  # Custom packages
+  khatma_ui:
+    path: ./khatma_ui
+
+dev_dependencies:
+  flutter_lints: 6.0.0
+  riverpod_lint: 2.6.5
+  copy_with_extension: 9.1.1
+  riverpod_generator: 2.6.5
+  json_serializable: 6.9.5 # compatible riverpod_generator 2.6.5 : 6.9.5
+  build_runner: 2.5.4 # compatible riverpod_generator 2.6.5 : 2.5.4
+  custom_lint: 0.7.5 # compatible riverpod_generator 2.6.5 : 0.7.5
+  analyzer: 7.3.0 # compatible custom_lint: 0.7.5 : 7.3.0
+
+flutter_icons:
+  ios: true
+  android: true
+  remove_alpha_ios: true
+  image_path_ios: "assets/app-icon.png"
+  image_path_android: "assets/app-icon.png"
+  adaptive_icon_background: "assets/app-icon-background.png"
+  adaptive_icon_foreground: "assets/app-icon-foreground.png"
+  web:
+    generate: true
+    image_path: 'assets/app-icon.png'
+  windows:
+    generate: true
+    icon_size: 48
+    image_path: 'assets/app-icon.png'
+  macos:
+    generate: true
+    image_path: 'assets/app-icon.png'
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/lottie/
+    - assets/images/khatma/
+    - assets/quran/hafs/
+    - assets/quran/warsh/
+    - assets/quran/translated/
+    - assets/fonts/google_fonts/
+    - assets/docs/
+    - assets/docs/about/
+    - assets/faq/
+
+  fonts:
+    - family: Airbnb
+      fonts:
+        - asset: assets/fonts/Airbnb/AirbnbCerealBlack.ttf
+        - asset: assets/fonts/Airbnb/AirbnbCerealLight.ttf
+        - asset: assets/fonts/Airbnb/AirbnbCerealMedium.ttf
+        - asset: assets/fonts/Airbnb/AirbnbCerealBold.ttf
+        - asset: assets/fonts/Airbnb/AirbnbCerealExtraBold.ttf
+
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato/Lato-Black.ttf
+        - asset: assets/fonts/Lato/Lato-BlackItalic.ttf
+        - asset: assets/fonts/Lato/Lato-Bold.ttf
+        - asset: assets/fonts/Lato/Lato-BoldItalic.ttf
+        - asset: assets/fonts/Lato/Lato-Italic.ttf
+        - asset: assets/fonts/Lato/Lato-Light.ttf
+        - asset: assets/fonts/Lato/Lato-LightItalic.ttf
+        - asset: assets/fonts/Lato/Lato-Regular.ttf
+        - asset: assets/fonts/Lato/Lato-Thin.ttf
+        - asset: assets/fonts/Lato/Lato-ThinItalic.ttf
+
+    - family: starbucks
+      fonts:
+        - asset: assets/fonts/starbucks/Santana-Black.ttf
+        - asset: assets/fonts/starbucks/Santana-BlackCondensed.ttf
+        - asset: assets/fonts/starbucks/Santana-Bold.ttf
+        - asset: assets/fonts/starbucks/Santana-RegularCondensed.ttf
+        - asset: assets/fonts/starbucks/Santana.ttf
+        - asset: assets/fonts/starbucks/SantanaXtraCondensed.ttf
+
+    - family: SoDo
+      fonts:
+        - asset: assets/fonts/SoDo/SoloSans-Light.otf
+          weight: 100
+        - asset: assets/fonts/SoDo/SoloSans-Bold.otf
+          weight: 800
+        - asset: assets/fonts/SoDo/SoloSans-Regular.otf
+          weight: 300
+        - asset: assets/fonts/SoDo/SoloSans-SemiBold.ttf
+          weight: 700
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins/Poppins-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Poppins/Poppins-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Poppins/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins/Poppins-Black.ttf
+          weight: 900
+
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Black.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-BlackItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Bold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-BoldItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Heavy.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-HeavyItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Light.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-LightItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Medium.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-MediumItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Regular.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-RegularItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Semibold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-SemiboldItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Thin.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-ThinItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-Ultralight.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Display-UltralightItalic.ttf
+
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Bold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-BoldItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Heavy.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-HeavyItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Light.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-LightItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Medium.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-MediumItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Regular.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-RegularItalic.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Semibold.ttf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-SemiboldItalic.ttf

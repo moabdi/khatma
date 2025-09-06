@@ -21,14 +21,14 @@ class AccountSettingsSection extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Email Verification
-          if (!user.isAnonymous && !user.emailVerified)
+          if (user.isSignedInWithEmailPassword && !user.emailVerified)
             Column(
               children: [
                 SettingsTile(
                   icon: Icons.mark_email_unread_outlined,
                   title: context.loc.verifyEmail,
                   subtitle: context.loc.confirmEmailAddress,
-                  leadingColor: context.colorScheme.warning,
+                  leadingColor: context.warningColor,
                   onTap: () =>
                       EmailVerificationHandler.sendVerification(context, ref),
                 ),
@@ -44,7 +44,7 @@ class AccountSettingsSection extends ConsumerWidget {
           ),
           dividerH0_5T0_5,
           // Change Password
-          if (!user.isAnonymous)
+          if (user.isSignedInWithEmailPassword)
             SettingsTile(
               icon: Icons.lock_outline,
               title: context.loc.changePassword,

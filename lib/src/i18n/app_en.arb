@@ -26,6 +26,8 @@
   "submit": "Submit",
   "yes": "Yes",
   "or": "Or",
+  "confirmReading": "Mark as Read",
+  "processing": "Processing...",
 
   "today": "Today",
   "yesterday": "Yesterday",
@@ -209,11 +211,37 @@
   "khatmaListSubtitle": "Your ongoing khatmas",
   "noKhatmaYet": "You have no khatmas yet ?",
   "createKhatmaToStart": "Create a khatma to start",
+  "account": "Account",
+  "helpAndSupport": "Help & Support", 
+  "accessYourKhatmas": "Access your Khatmas and progress",
+  "managePersonalInfo": "Manage your personal information",
+  "preferencesAndOptions": "Preferences and app options",
+  "commonQuestions": "Find answers to common questions",
+  "termsAndPrivacy": "Terms of service and privacy policy",
+  "learnMoreAboutKhatma": "Learn more about our mission",
+  "getHelpFromTeam": "Get help from our support team",
+  "madeWithLove": "Made with ❤️ for the Muslim community",
 
   "success": "Success",
   "congratulation": "Congratulations!",
   "accountCreatedSuccessfully": "Account created successfully!",
   "successCompleteParts": "{count} parts completed successfully",
+
+  "khatmaCompleted": "Khatma Completed",
+  "backToHome": "Back to Home", 
+  "journeyDetails": "Journey Details",
+  "started": "Started",
+  "completed": "Completed", 
+  "totalDuration": "Total Duration",
+  "daysCount": "{count, plural, =1{1 day} other{{count} days}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "Share Achievement",
   
   "signInFailed": "Sign in failed",
   "loginFailed": "Login failed",
@@ -367,6 +395,7 @@
   "readedParts": "{count} parts",
   "remainingPartsOfTotal": "{remaining} of {total} parts",
   "completeParts": "Complete ({count} parts)",
+  "selectedParts": "{count} {count, plural, one {part} other {parts}} selected",
   "maxPartToRead": "Max part to read",
   "maxPartToReserve": "Max part to reserve",
   
@@ -421,7 +450,7 @@
   "chooseTheme": "Choose theme",
   "themeMode": "{mode, select, light{Light} dark{Dark} system{System} other{System}}",
   
-  "faq": "FAQ",
+  "faq": "Common Questions",
   "frequentlyAskedQuestions": "Frequently Asked Questions",
   "contactSupport": "Contact Support",
   "questionsAndSuggestions": "Questions and suggestions",
@@ -489,5 +518,52 @@
   "actionPerformed": "Action performed",
   "displayNameTooLong": "Display name must be less than 50 characters",
   "displayNameInvalidCharacters": "Display name contains invalid characters",
-  "unexpectedError": "An unexpected error occurred"
+  "unexpectedError": "An unexpected error occurred",
+  "contactUs": "Contact Us",
+  "contactType": "Contact Type",
+  "bugReport": "Bug Report",
+  "bugReportDescription": "Report technical issues or problems with the app",
+  "suggestion": "Suggestion",
+  "suggestionDescription": "Share ideas to improve the app experience",
+  "feedback": "Feedback",
+  "feedbackDescription": "General feedback about your app experience",
+  "other": "Other",
+  "otherDescription": "Any other inquiries or questions",
+  "yourName": "Your Name",
+  "enterYourName": "Enter your name",
+  "enterYourEmail": "Enter your email address",
+  "message": "Message",
+  "writeYourMessage": "Write your message",
+  "sendMessage": "Send Message",
+  "contactViaEmail": "Contact via Email",
+  
+  "pleaseEnterYourName": "Please enter your name",
+  "nameMustBeAtLeast2Characters": "Name must be at least 2 characters",
+  "pleaseEnterYourEmail": "Please enter your email",
+  "pleaseEnterValidEmail": "Please enter a valid email address",
+  "pleaseEnterYourMessage": "Please enter your message",
+  "messageMustBeAtLeast10Characters": "Message must be at least 10 characters",
+  "pleaseFillAllFieldsValid": "Please fill in all fields with valid information.",
+  "messageSentSuccessfully": "Message sent successfully!",
+  "failedToSendMessage": "Failed to send message. Please try again.",
+  
+  "contactFormSubject": "[{contactType}]: ",
+  "@contactFormSubject": {
+    "placeholders": {
+      "contactType": {
+        "type": "String"
+      }
+    }
+  },
+  "sentViaKhatmaApp": "Sent via Khatma App",
+  
+  "chooseContactMethod": "Choose Contact Method",
+  "selectContactTypeDescription": "Select the type of inquiry to get better assistance",
+  "directEmailContact": "Direct Email Contact",
+  "openEmailApp": "Email support",
+  "unableToOpenEmail": "Unable to open email app",
+  "emailNotAvailable": "Email app not available on this device",
+  "refresh": "Refresh",
+  "failedToLoadFaq": "Failed to load FAQ",
+  "noFaqAvailable": "No FAQ available"
 }

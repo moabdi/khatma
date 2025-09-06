@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma_ui/components/avatar.dart';
-import 'package:khatma_ui/components/radio_icon.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class UnitSelector extends StatelessWidget {
@@ -39,12 +39,18 @@ class UnitSelector extends StatelessWidget {
                     bottom: selected
                         ? Avatar(
                             radius: 10,
-                            child: RadioIcon(selected: selected, size: 18))
+                            child: Icon(
+                              size: 18,
+                              color: context.colorScheme.primary,
+                              selected
+                                  ? Icons.check_circle_rounded
+                                  : Icons.circle_outlined,
+                            ))
                         : null,
                     child: Icon(
                       unitIcons[currentUnit],
-                      color: Theme.of(context).primaryColor,
-                      size: 25,
+                      color: context.colorScheme.primary,
+                      size: 32,
                     ),
                   ),
                   onTap: () {

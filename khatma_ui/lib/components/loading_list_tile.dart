@@ -15,7 +15,7 @@ class LoadingListTile extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Shimmer.fromColors(
           baseColor: Theme.of(context).cardColor,
-          highlightColor: Theme.of(context).disabledColor,
+          highlightColor: Colors.blueGrey.shade100,
           enabled: true,
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,

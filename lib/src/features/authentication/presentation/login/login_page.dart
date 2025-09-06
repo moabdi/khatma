@@ -147,8 +147,14 @@ class _LoginPageState extends ConsumerState<LoginPage>
                       isLoading: isLoading,
                       onPressed: isLoading ? null : _handleEmailPasswordLogin,
                     ),
-                    gapH24,
-                    // Register Link
+                    gapH20,
+                    SocialDivider(),
+                    gapH20,
+                    OutlinedButton(
+                      onPressed: () => context.goNamed(AppRoute.register.name),
+                      child: Text(context.loc.createAccount),
+                    ),
+                    gapH16,
                     SocialSignInSection(
                       isLoading: isLoading,
                       onGoogleSignIn: _handleGoogleSignIn,

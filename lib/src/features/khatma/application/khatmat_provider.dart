@@ -23,7 +23,7 @@ class KhatmaNotifier extends _$KhatmaNotifier {
     final syncManager = ref.read(syncManagerProvider.notifier);
     syncManager.scheduleStartupSync(onSyncComplete: refreshFromLocal);
     syncManager.setupSynchronization(onSyncComplete: refreshFromLocal);
-    // refreshFromLocal(); not need perhaps
+    refreshFromLocal();
     return const KhatmaState();
   }
 

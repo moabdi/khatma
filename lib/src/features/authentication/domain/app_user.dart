@@ -3,6 +3,12 @@ import 'package:khatma/src/error/app_error_code.dart';
 
 typedef UserID = String;
 
+enum AuthMethod {
+  emailPassword,
+  google,
+  anonymous,
+}
+
 class AppUser {
   const AppUser({
     required this.uid,
@@ -10,6 +16,7 @@ class AppUser {
     this.displayName,
     this.emailVerified = false,
     this.isAnonymous = true,
+    this.authMethod = AuthMethod.anonymous,
   });
 
   final UserID uid;
@@ -17,6 +24,12 @@ class AppUser {
   final String? displayName;
   final bool emailVerified;
   final bool isAnonymous;
+  final AuthMethod authMethod;
+
+  bool get isSignedInWithEmailPassword =>
+      authMethod == AuthMethod.emailPassword;
+  bool get isSignedInWithGoogle => authMethod == AuthMethod.google;
+  bool get isAnonymousUser => authMethod == AuthMethod.anonymous;
 
   Future<Result<void, AppErrorCode>> sendEmailVerification() async {
     return const Result.failure(AppErrorCode.generalInvalidOperation);

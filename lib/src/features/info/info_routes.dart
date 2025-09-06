@@ -1,7 +1,8 @@
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/faq/presentation/faq_page.dart';
+import 'package:khatma/src/features/settings/presentation/about_page.dart';
 import 'package:khatma/src/widgets/markdown_reader.dart';
-import 'package:khatma/src/features/info/presentation/contact.dart';
-import 'package:khatma/src/features/info/presentation/faq_page.dart';
+import 'package:khatma/src/features/info/presentation/contact_page.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 List<GoRoute> infoRoutes = [
@@ -24,10 +25,7 @@ List<GoRoute> infoRoutes = [
   GoRoute(
     path: 'about-us',
     name: AppRoute.aboutUs.name,
-    builder: (context, state) => const MarkdownReader(
-      title: 'À propos',
-      assetPath: 'assets/docs/about_us.md',
-    ),
+    builder: (context, state) => AboutPage(),
   ),
   GoRoute(
     path: 'mentions-legals',
@@ -40,7 +38,7 @@ List<GoRoute> infoRoutes = [
   GoRoute(
     path: 'faq',
     name: 'faq',
-    builder: (context, state) => const FAQPage(),
+    builder: (context, state) => const FaqPage(),
   ),
   GoRoute(
     path: 'contact',

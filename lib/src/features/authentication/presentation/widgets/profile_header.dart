@@ -25,7 +25,7 @@ class ProfileHeader extends StatelessWidget {
                     radius: 50,
                     child: Icon(
                       Icons.person_outline,
-                      color: context.colorScheme.inversePrimary,
+                      color: context.colorScheme.onPrimary,
                       size: 50,
                     ),
                   )
@@ -64,7 +64,7 @@ class ProfileHeader extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: user!.emailVerified
                         ? context.colorScheme.primary
-                        : context.colorScheme.warning,
+                        : context.warningColor,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.white,

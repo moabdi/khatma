@@ -155,7 +155,7 @@ class EditProfileDialog {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(context.loc.profileUpdatedSuccessfully),
-              backgroundColor: context.colorScheme.success,
+              backgroundColor: context.successColor,
               behavior: SnackBarBehavior.floating,
             ),
           );

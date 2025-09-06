@@ -81,56 +81,30 @@ class AppLocalizationsFr extends AppLocalizations {
   String get or => 'Ou';
 
   @override
-  String get today => 'Today';
+  String get confirmReading => 'Mark as Read';
 
   @override
-  String get yesterday => 'Yesterday';
+  String get processing => 'Process en cours...';
+
+  @override
+  String get today => 'Aujourd’hui';
+
+  @override
+  String get yesterday => 'Hier';
 
   @override
   String daysAgo(num count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count days ago',
-      one: 'Yesterday',
-      zero: 'Today',
-    );
-    return '$_temp0';
+    return 'Il y a $count jours';
   }
 
   @override
   String monthsAgo(num count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count months ago',
-      one: 'Last month',
-      zero: 'This month',
-    );
-    return '$_temp0';
+    return 'Il y a $count mois';
   }
 
   @override
   String monthName(String month) {
-    String _temp0 = intl.Intl.selectLogic(
-      month,
-      {
-        '1': 'January',
-        '2': 'February',
-        '3': 'March',
-        '4': 'April',
-        '5': 'May',
-        '6': 'June',
-        '7': 'July',
-        '8': 'August',
-        '9': 'September',
-        '10': 'October',
-        '11': 'November',
-        '12': 'December',
-        'other': '',
-      },
-    );
-    return '$_temp0';
+    return 'Mois : $month';
   }
 
   @override
@@ -663,16 +637,48 @@ class AppLocalizationsFr extends AppLocalizations {
   String get congratulations => 'Félicitations';
 
   @override
-  String get khatmaListTitle => 'Khatma List';
+  String get khatmaListTitle => 'Liste des khatma';
 
   @override
-  String get khatmaListSubtitle => 'Your ongoing khatmas';
+  String get khatmaListSubtitle => 'Khatmas en cours';
 
   @override
-  String get noKhatmaYet => 'You have no khatmas yet ?';
+  String get noKhatmaYet => 'Aucune khatma pour le moment';
 
   @override
-  String get createKhatmaToStart => 'Create a khatma to start';
+  String get createKhatmaToStart => 'Créez une khatma pour commencer';
+
+  @override
+  String get account => 'Compte';
+
+  @override
+  String get helpAndSupport => 'Aide et Support';
+
+  @override
+  String get accessYourKhatmas => 'Accédez à vos Khatmas et vos progrès';
+
+  @override
+  String get managePersonalInfo => 'Gérez vos informations personnelles';
+
+  @override
+  String get preferencesAndOptions =>
+      'Préférences et options de l\'application';
+
+  @override
+  String get commonQuestions => 'Trouvez des réponses aux questions courantes';
+
+  @override
+  String get termsAndPrivacy =>
+      'Conditions d\'utilisation et politique de confidentialité';
+
+  @override
+  String get learnMoreAboutKhatma => 'En savoir plus sur notre mission';
+
+  @override
+  String get getHelpFromTeam => 'Obtenez de l\'aide de notre équipe de support';
+
+  @override
+  String get madeWithLove => 'Fait avec ❤️ pour la communauté musulmane';
 
   @override
   String get success => 'Succès';
@@ -687,6 +693,38 @@ class AppLocalizationsFr extends AppLocalizations {
   String successCompleteParts(Object count) {
     return '$count parties terminées avec succès';
   }
+
+  @override
+  String get khatmaCompleted => 'Khatma Terminé';
+
+  @override
+  String get backToHome => 'Retour à l\'accueil';
+
+  @override
+  String get journeyDetails => 'Détails du parcours';
+
+  @override
+  String get started => 'Commencé';
+
+  @override
+  String get completed => 'Terminé';
+
+  @override
+  String get totalDuration => 'Durée totale';
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours',
+      one: '1 jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareAchievement => 'Partager la réussite';
 
   @override
   String get signInFailed => 'Échec de la connexion';
@@ -751,19 +789,19 @@ class AppLocalizationsFr extends AppLocalizations {
       'Échec du partage de la khatma. Veuillez réessayer.';
 
   @override
-  String get errorOccurred => 'An error occurred';
+  String get errorOccurred => 'Une erreur est survenue';
 
   @override
-  String get pageNotFound => 'Page Not Found';
+  String get pageNotFound => 'Page non trouvée';
 
   @override
-  String get pageNotFound404 => '404 - Page not found!';
+  String get pageNotFound404 => 'Erreur 404 - Page non trouvée';
 
   @override
-  String get notImplemented => 'Not implemented';
+  String get notImplemented => 'Fonctionnalité non implémentée';
 
   @override
-  String get goToHome => 'Go to Home';
+  String get goToHome => 'Aller à l’accueil';
 
   @override
   String get errorAuthUserNotLoggedIn => 'Utilisateur non connecté.';
@@ -1103,19 +1141,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String khatmaSplitUnitWithDef(String unit) {
-    String _temp0 = intl.Intl.selectLogic(
-      unit,
-      {
-        'sourat': 'the surah',
-        'juzz': 'the juzz',
-        'hizb': 'the hizb',
-        'half': 'half the hizb',
-        'rubue': 'quarter the hizb',
-        'thumun': 'one-eighth the hizb',
-        'other': '',
-      },
-    );
-    return '$_temp0';
+    return 'Unité de répartition : $unit';
   }
 
   @override
@@ -1140,66 +1166,66 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.selectLogic(
       num,
       {
-        '1': 'The first',
-        '2': 'The second',
-        '3': 'The third',
-        '4': 'The fourth',
-        '5': 'The fifth',
-        '6': 'The sixth',
-        '7': 'The seventh',
-        '8': 'The eighth',
-        '9': 'The ninth',
-        '10': 'The tenth',
-        '11': 'The eleventh',
-        '12': 'The twelfth',
-        '13': 'The thirteenth',
-        '14': 'The fourteenth',
-        '15': 'The fifteenth',
-        '16': 'The sixteenth',
-        '17': 'The seventeenth',
-        '18': 'The eighteenth',
-        '19': 'The nineteenth',
-        '20': 'The twentieth',
-        '21': 'The twenty-first',
-        '22': 'The twenty-second',
-        '23': 'The twenty-third',
-        '24': 'The twenty-fourth',
-        '25': 'The twenty-fifth',
-        '26': 'The twenty-sixth',
-        '27': 'The twenty-seventh',
-        '28': 'The twenty-eighth',
-        '29': 'The twenty-ninth',
-        '30': 'The thirtieth',
-        '31': 'The thirty-first',
-        '32': 'The thirty-second',
-        '33': 'The thirty-third',
-        '34': 'The thirty-fourth',
-        '35': 'The thirty-fifth',
-        '36': 'The thirty-sixth',
-        '37': 'The thirty-seventh',
-        '38': 'The thirty-eighth',
-        '39': 'The thirty-ninth',
-        '40': 'The fortieth',
-        '41': 'The forty-first',
-        '42': 'The forty-second',
-        '43': 'The forty-third',
-        '44': 'The forty-fourth',
-        '45': 'The forty-fifth',
-        '46': 'The forty-sixth',
-        '47': 'The forty-seventh',
-        '48': 'The forty-eighth',
-        '49': 'The forty-ninth',
-        '50': 'The fiftieth',
-        '51': 'The fifty-first',
-        '52': 'The fifty-second',
-        '53': 'The fifty-third',
-        '54': 'The fifty-fourth',
-        '55': 'The fifty-fifth',
-        '56': 'The fifty-sixth',
-        '57': 'The fifty-seventh',
-        '58': 'The fifty-eighth',
-        '59': 'The fifty-ninth',
-        '60': 'The sixtieth',
+        '1': 'Le premier',
+        '2': 'Le deuxième',
+        '3': 'Le troisième',
+        '4': 'Le quatrième',
+        '5': 'Le cinquième',
+        '6': 'Le sixième',
+        '7': 'Le septième',
+        '8': 'Le huitième',
+        '9': 'Le neuvième',
+        '10': 'Le dixième',
+        '11': 'Le onzième',
+        '12': 'Le douzième',
+        '13': 'Le treizième',
+        '14': 'Le quatorzième',
+        '15': 'Le quinzième',
+        '16': 'Le seizième',
+        '17': 'Le dix-septième',
+        '18': 'Le dix-huitième',
+        '19': 'Le dix-neuvième',
+        '20': 'Le vingtième',
+        '21': 'Le vingt et unième',
+        '22': 'Le vingt-deuxième',
+        '23': 'Le vingt-troisième',
+        '24': 'Le vingt-quatrième',
+        '25': 'Le vingt-cinquième',
+        '26': 'Le vingt-sixième',
+        '27': 'Le vingt-septième',
+        '28': 'Le vingt-huitième',
+        '29': 'Le vingt-neuvième',
+        '30': 'Le trentième',
+        '31': 'Le trente et unième',
+        '32': 'Le trente-deuxième',
+        '33': 'Le trente-troisième',
+        '34': 'Le trente-quatrième',
+        '35': 'Le trente-cinquième',
+        '36': 'Le trente-sixième',
+        '37': 'Le trente-septième',
+        '38': 'Le trente-huitième',
+        '39': 'Le trente-neuvième',
+        '40': 'Le quarantième',
+        '41': 'Le quarante et unième',
+        '42': 'Le quarante-deuxième',
+        '43': 'Le quarante-troisième',
+        '44': 'Le quarante-quatrième',
+        '45': 'Le quarante-cinquième',
+        '46': 'Le quarante-sixième',
+        '47': 'Le quarante-septième',
+        '48': 'Le quarante-huitième',
+        '49': 'Le quarante-neuvième',
+        '50': 'Le cinquantième',
+        '51': 'Le cinquante et unième',
+        '52': 'Le cinquante-deuxième',
+        '53': 'Le cinquante-troisième',
+        '54': 'Le cinquante-quatrième',
+        '55': 'Le cinquante-cinquième',
+        '56': 'Le cinquante-sixième',
+        '57': 'Le cinquante-septième',
+        '58': 'Le cinquante-huitième',
+        '59': 'Le cinquante-neuvième',
+        '60': 'Le soixantième',
         'other': '',
       },
     );
@@ -1214,9 +1240,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get loadingKhatmaList => 'Chargement de la liste des khatma';
-
-  @override
-  String get completed => 'Terminé';
 
   @override
   String get completedParts => 'Parties terminées';
@@ -1240,6 +1263,17 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String completeParts(Object count) {
     return 'Terminer ($count parties)';
+  }
+
+  @override
+  String selectedParts(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'parties sélectionnées',
+      one: 'partie sélectionnée',
+    );
+    return '$count $_temp0';
   }
 
   @override
@@ -1516,7 +1550,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get faq => 'FAQ';
+  String get faq => 'Questions fréquentes';
 
   @override
   String get frequentlyAskedQuestions => 'Questions fréquemment posées';
@@ -1718,4 +1752,127 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get unexpectedError => 'Une erreur inattendue s\'est produite';
+
+  @override
+  String get contactUs => 'Nous contacter';
+
+  @override
+  String get contactType => 'Type de contact';
+
+  @override
+  String get bugReport => 'Rapport de bug';
+
+  @override
+  String get bugReportDescription =>
+      'Signalez des problèmes techniques ou des dysfonctionnements dans l’application';
+
+  @override
+  String get suggestion => 'Suggestion';
+
+  @override
+  String get suggestionDescription =>
+      'Partagez vos idées pour améliorer l’expérience de l’application';
+
+  @override
+  String get feedback => 'Retour d’expérience';
+
+  @override
+  String get feedbackDescription =>
+      'Retour général sur votre expérience avec l’application';
+
+  @override
+  String get other => 'Autre';
+
+  @override
+  String get otherDescription => 'Toute autre demande ou question';
+
+  @override
+  String get yourName => 'Votre nom';
+
+  @override
+  String get enterYourName => 'Entrez votre nom';
+
+  @override
+  String get enterYourEmail => 'Entrez votre adresse email';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get writeYourMessage => 'Écrivez votre message';
+
+  @override
+  String get sendMessage => 'Envoyer le message';
+
+  @override
+  String get contactViaEmail => 'Contacter par email';
+
+  @override
+  String get pleaseEnterYourName => 'Veuillez entrer votre nom';
+
+  @override
+  String get nameMustBeAtLeast2Characters =>
+      'Le nom doit contenir au moins 2 caractères';
+
+  @override
+  String get pleaseEnterYourEmail => 'Veuillez entrer votre email';
+
+  @override
+  String get pleaseEnterValidEmail =>
+      'Veuillez entrer une adresse email valide';
+
+  @override
+  String get pleaseEnterYourMessage => 'Veuillez entrer votre message';
+
+  @override
+  String get messageMustBeAtLeast10Characters =>
+      'Le message doit contenir au moins 10 caractères';
+
+  @override
+  String get pleaseFillAllFieldsValid =>
+      'Veuillez remplir tous les champs avec des informations valides.';
+
+  @override
+  String get messageSentSuccessfully => 'Message envoyé avec succès !';
+
+  @override
+  String get failedToSendMessage =>
+      'Échec de l\'envoi du message. Veuillez réessayer.';
+
+  @override
+  String contactFormSubject(String contactType) {
+    return '[$contactType] : ';
+  }
+
+  @override
+  String get sentViaKhatmaApp => 'Envoyé via l\'application Khatma';
+
+  @override
+  String get chooseContactMethod => 'Choisir la méthode de contact';
+
+  @override
+  String get selectContactTypeDescription =>
+      'Sélectionnez le type de demande pour obtenir une meilleure assistance';
+
+  @override
+  String get directEmailContact => 'Contact email direct';
+
+  @override
+  String get openEmailApp => 'Email de contact';
+
+  @override
+  String get unableToOpenEmail => 'Impossible d\'ouvrir l\'application email';
+
+  @override
+  String get emailNotAvailable =>
+      'Application email non disponible sur cet appareil';
+
+  @override
+  String get refresh => 'Actualiser';
+
+  @override
+  String get failedToLoadFaq => 'Échec du chargement de la FAQ';
+
+  @override
+  String get noFaqAvailable => 'Aucune FAQ disponible';
 }

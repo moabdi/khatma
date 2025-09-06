@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/i18n/local_provider.dart';
-import 'package:khatma_ui/constants/app_dividers.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class LanguageSettings extends ConsumerWidget {
@@ -34,19 +33,19 @@ class LanguageSettings extends ConsumerWidget {
                     subTitle: 'Arabic',
                     code: 'ar',
                   ),
-                  dividerH0_5T1,
+                  Divider(height: 2),
                   LanguageOption(
                     title: 'English',
                     subTitle: 'Default',
                     code: 'en',
                   ),
-                  dividerH0_5T1,
+                  Divider(height: 2),
                   LanguageOption(
                     title: 'Français',
                     subTitle: 'Frensh',
                     code: 'fr',
                   ),
-                  dividerH0_5T1,
+                  Divider(height: 2),
                   LanguageOption(
                     title: 'Español',
                     subTitle: 'Espagnol',
@@ -87,7 +86,7 @@ class LanguageOption extends ConsumerWidget {
       onTap: () {
         ref.read(localeProvider.notifier).setLocale(code);
       },
-      tileColor: isSelected ? Colors.green.withAlpha(10) : null,
+      selected: isSelected,
     );
   }
 }

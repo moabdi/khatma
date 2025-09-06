@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/authentication/application/login_manager.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/app_logo.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/email_field.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/footer_links.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/password_field.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/text_input_field.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
@@ -104,7 +105,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.accountCreatedSuccessfully),
-            backgroundColor: Theme.of(context).colorScheme.success,
+            backgroundColor: context.successColor,
             behavior: SnackBarBehavior.floating,
           ),
         );
@@ -239,6 +240,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage>
                     ),
                     gapH20,
                     const BackToLogin(),
+                    gapH20,
+                    // Footer Links
+                    const FooterLinks(),
                     gapH64,
                   ],
                 ),
@@ -258,7 +262,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage>
     }
 
     final linkStyle = TextStyle(
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).colorScheme.primary,
       fontWeight: FontWeight.w500,
       decoration: TextDecoration.underline,
     );
