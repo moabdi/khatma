@@ -666,34 +666,81 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createKhatmaToStart => 'Create a khatma to start';
 
   @override
-  String get account => 'Account';
+  String get khatmaSearchTitle => 'Search for a Khatma';
 
   @override
-  String get helpAndSupport => 'Help & Support';
+  String get khatmaSearchHint => 'Name or description';
 
   @override
-  String get accessYourKhatmas => 'Access your Khatmas and progress';
+  String get khatmaJoinButton => 'Join';
 
   @override
-  String get managePersonalInfo => 'Manage your personal information';
+  String get khatmaSearchEmptyDefault => 'Discover available public Khatmas';
 
   @override
-  String get preferencesAndOptions => 'Preferences and app options';
+  String get khatmaSearchNoResults => 'No Khatma found for your search';
 
   @override
-  String get commonQuestions => 'Find answers to common questions';
+  String get khatmaConfirmJoin => 'Confirm Join';
 
   @override
-  String get termsAndPrivacy => 'Terms of service and privacy policy';
+  String get khatmaMembers => 'Members';
 
   @override
-  String get learnMoreAboutKhatma => 'Learn more about our mission';
+  String get khatmaAvailable => 'Available';
 
   @override
-  String get getHelpFromTeam => 'Get help from our support team';
+  String get khatmaProgress => 'Progress';
 
   @override
-  String get madeWithLove => 'Made with ❤️ for the Muslim community';
+  String get khatmaUnits => 'Units';
+
+  @override
+  String get khatmaType => 'Type';
+
+  @override
+  String get khatmaCreatedOn => 'Created on';
+
+  @override
+  String get khatmaCreatedBy => 'Created by';
+
+  @override
+  String get khatmaTotalUnits => 'Total units';
+
+  @override
+  String get khatmaStatus => 'Status';
+
+  @override
+  String get khatmaPublic => 'Public';
+
+  @override
+  String get khatmaPrivate => 'Private';
+
+  @override
+  String get khatmaClose => 'Close';
+
+  @override
+  String khatmaUnitReserved(Object number, Object unit) {
+    return '$unit $number reserved';
+  }
+
+  @override
+  String khatmaUnitReleased(Object number, Object unit) {
+    return '$unit $number released';
+  }
+
+  @override
+  String khatmaJoinSuccess(Object name) {
+    return 'You have successfully joined \"$name\"!';
+  }
+
+  @override
+  String get khatmaJoinError => 'Error joining the Khatma';
+
+  @override
+  String khatmaYouHaveReserved(Object count) {
+    return 'You have reserved $count unit(s)';
+  }
 
   @override
   String get success => 'Success';

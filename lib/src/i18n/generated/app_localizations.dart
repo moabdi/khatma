@@ -1300,65 +1300,143 @@ abstract class AppLocalizations {
   /// **'Create a khatma to start'**
   String get createKhatmaToStart;
 
-  /// No description provided for @account.
+  /// No description provided for @khatmaSearchTitle.
   ///
   /// In en, this message translates to:
-  /// **'Account'**
-  String get account;
+  /// **'Search for a Khatma'**
+  String get khatmaSearchTitle;
 
-  /// No description provided for @helpAndSupport.
+  /// No description provided for @khatmaSearchHint.
   ///
   /// In en, this message translates to:
-  /// **'Help & Support'**
-  String get helpAndSupport;
+  /// **'Name or description'**
+  String get khatmaSearchHint;
 
-  /// No description provided for @accessYourKhatmas.
+  /// No description provided for @khatmaJoinButton.
   ///
   /// In en, this message translates to:
-  /// **'Access your Khatmas and progress'**
-  String get accessYourKhatmas;
+  /// **'Join'**
+  String get khatmaJoinButton;
 
-  /// No description provided for @managePersonalInfo.
+  /// No description provided for @khatmaSearchEmptyDefault.
   ///
   /// In en, this message translates to:
-  /// **'Manage your personal information'**
-  String get managePersonalInfo;
+  /// **'Discover available public Khatmas'**
+  String get khatmaSearchEmptyDefault;
 
-  /// No description provided for @preferencesAndOptions.
+  /// No description provided for @khatmaSearchNoResults.
   ///
   /// In en, this message translates to:
-  /// **'Preferences and app options'**
-  String get preferencesAndOptions;
+  /// **'No Khatma found for your search'**
+  String get khatmaSearchNoResults;
 
-  /// No description provided for @commonQuestions.
+  /// No description provided for @khatmaConfirmJoin.
   ///
   /// In en, this message translates to:
-  /// **'Find answers to common questions'**
-  String get commonQuestions;
+  /// **'Confirm Join'**
+  String get khatmaConfirmJoin;
 
-  /// No description provided for @termsAndPrivacy.
+  /// No description provided for @khatmaMembers.
   ///
   /// In en, this message translates to:
-  /// **'Terms of service and privacy policy'**
-  String get termsAndPrivacy;
+  /// **'Members'**
+  String get khatmaMembers;
 
-  /// No description provided for @learnMoreAboutKhatma.
+  /// No description provided for @khatmaAvailable.
   ///
   /// In en, this message translates to:
-  /// **'Learn more about our mission'**
-  String get learnMoreAboutKhatma;
+  /// **'Available'**
+  String get khatmaAvailable;
 
-  /// No description provided for @getHelpFromTeam.
+  /// No description provided for @khatmaProgress.
   ///
   /// In en, this message translates to:
-  /// **'Get help from our support team'**
-  String get getHelpFromTeam;
+  /// **'Progress'**
+  String get khatmaProgress;
 
-  /// No description provided for @madeWithLove.
+  /// No description provided for @khatmaUnits.
   ///
   /// In en, this message translates to:
-  /// **'Made with ❤️ for the Muslim community'**
-  String get madeWithLove;
+  /// **'Units'**
+  String get khatmaUnits;
+
+  /// No description provided for @khatmaType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get khatmaType;
+
+  /// No description provided for @khatmaCreatedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Created on'**
+  String get khatmaCreatedOn;
+
+  /// No description provided for @khatmaCreatedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Created by'**
+  String get khatmaCreatedBy;
+
+  /// No description provided for @khatmaTotalUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Total units'**
+  String get khatmaTotalUnits;
+
+  /// No description provided for @khatmaStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get khatmaStatus;
+
+  /// No description provided for @khatmaPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get khatmaPublic;
+
+  /// No description provided for @khatmaPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get khatmaPrivate;
+
+  /// No description provided for @khatmaClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get khatmaClose;
+
+  /// No description provided for @khatmaUnitReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'{unit} {number} reserved'**
+  String khatmaUnitReserved(Object number, Object unit);
+
+  /// No description provided for @khatmaUnitReleased.
+  ///
+  /// In en, this message translates to:
+  /// **'{unit} {number} released'**
+  String khatmaUnitReleased(Object number, Object unit);
+
+  /// No description provided for @khatmaJoinSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully joined \"{name}\"!'**
+  String khatmaJoinSuccess(Object name);
+
+  /// No description provided for @khatmaJoinError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error joining the Khatma'**
+  String get khatmaJoinError;
+
+  /// No description provided for @khatmaYouHaveReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'You have reserved {count} unit(s)'**
+  String khatmaYouHaveReserved(Object count);
 
   /// No description provided for @success.
   ///

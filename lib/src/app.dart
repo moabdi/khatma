@@ -26,7 +26,7 @@ class MainApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       restorationScopeId: 'app',
       onGenerateTitle: (BuildContext context) => context.loc.khatma,
-      theme: AppTheme.light,
+      theme: AppTheme.dark,
       darkTheme: AppTheme.dark,
       locale: ref.watch(localeProvider),
       routerConfig: ref.watch(goRouterProvider),

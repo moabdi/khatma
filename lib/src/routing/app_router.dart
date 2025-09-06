@@ -5,6 +5,9 @@ import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/onboarding/onboarding_screen.dart';
 import 'package:khatma/src/features/profil/profile_routes.dart';
 import 'package:khatma/src/features/quran/quran_routes.dart';
+import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/shared_khatma/presentation/khatma_details_page.dart';
+import 'package:khatma/src/features/shared_khatma/presentation/khatma_search_screen.dart';
 import 'package:khatma/src/features/splash/splash.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';
@@ -38,8 +41,8 @@ enum AppRoute {
   splash,
   link,
   account,
-  sync,
-  personalKhatma,
+  khatmaSearchDetails,
+  khatmaSearch,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
@@ -71,12 +74,30 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             name: AppRoute.home.name,
             path: 'khatmat',
-            builder: (context, state) => const KhatmatListScreen(),
+            builder: (context, state) => const KhatmaSearchScreen(),
           ),
           ...khatmaRoutes(ref),
           ...profileRoutes,
           ...quranRoutes,
           ...infoRoutes,
+          GoRoute(
+            path: 'khatma-search',
+            name: AppRoute.khatmaSearch.name,
+            builder: (context, state) => const KhatmaSearchScreen(),
+          ),
+          GoRoute(
+            path: 'khatma-search-details/:id',
+            name: AppRoute.khatmaSearchDetails.name,
+            builder: (context, state) {
+              final khatmaId = state.pathParameters['id']!;
+              final SharedKhatma? khatma = state.extra as SharedKhatma?;
+
+              if (khatma != null) {
+                return KhatmaDetailsPage(khatma: khatma);
+              }
+              return NotFoundScreen();
+            },
+          ),
         ],
       ),
     ],

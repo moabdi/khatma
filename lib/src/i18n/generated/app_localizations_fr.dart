@@ -684,6 +684,85 @@ class AppLocalizationsFr extends AppLocalizations {
   String get madeWithLove => 'Fait avec ❤️ pour la communauté musulmane';
 
   @override
+  String get khatmaSearchTitle => 'Rechercher une Khatma';
+
+  @override
+  String get khatmaSearchHint => 'Nom ou description';
+
+  @override
+  String get khatmaJoinButton => 'Rejoindre';
+
+  @override
+  String get khatmaSearchEmptyDefault =>
+      'Découvrez les Khatmas publiques disponibles';
+
+  @override
+  String get khatmaSearchNoResults =>
+      'Aucune Khatma trouvée pour votre recherche';
+
+  @override
+  String get khatmaConfirmJoin => 'Confirmer rejoindre';
+
+  @override
+  String get khatmaMembers => 'Membres';
+
+  @override
+  String get khatmaAvailable => 'Disponibles';
+
+  @override
+  String get khatmaProgress => 'Progression';
+
+  @override
+  String get khatmaUnits => 'Unités';
+
+  @override
+  String get khatmaType => 'Type';
+
+  @override
+  String get khatmaCreatedOn => 'Créé le';
+
+  @override
+  String get khatmaCreatedBy => 'Créé par';
+
+  @override
+  String get khatmaTotalUnits => 'Total unités';
+
+  @override
+  String get khatmaStatus => 'Statut';
+
+  @override
+  String get khatmaPublic => 'Public';
+
+  @override
+  String get khatmaPrivate => 'Privé';
+
+  @override
+  String get khatmaClose => 'Fermer';
+
+  @override
+  String khatmaUnitReserved(Object number, Object unit) {
+    return '$unit $number réservé';
+  }
+
+  @override
+  String khatmaUnitReleased(Object number, Object unit) {
+    return '$unit $number libéré';
+  }
+
+  @override
+  String khatmaJoinSuccess(Object name) {
+    return 'Vous avez rejoint \"$name\" avec succès!';
+  }
+
+  @override
+  String get khatmaJoinError => 'Erreur lors de la participation à la Khatma';
+
+  @override
+  String khatmaYouHaveReserved(Object count) {
+    return 'Vous avez réservé $count unité(s)';
+  }
+
+  @override
   String get success => 'Succès';
 
   @override
