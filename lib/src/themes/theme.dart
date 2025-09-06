@@ -30,7 +30,6 @@ class AppTheme {
     required ColorScheme colorScheme,
     required Brightness brightness,
   }) {
-    final bool isDark = brightness == Brightness.dark;
     final TextTheme textTheme = AppTextTheme.textTheme(colorScheme);
 
     return ThemeData(
@@ -273,7 +272,7 @@ class AppTheme {
   }
 
   /// System UI Overlay Style
-  static SystemUiOverlayStyle _buildSystemUiOverlayStyle(bool isDark) {
+  static SystemUiOverlayStyle buildSystemUiOverlayStyle(bool isDark) {
     return SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
