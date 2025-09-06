@@ -110,7 +110,7 @@ class AppDialog {
   }
 
   // Alternative approach - No flex widgets at all
-  static Future<bool?> _showAlternative(
+  static Future<bool?> showAlternative(
     BuildContext context, {
     required String title,
     required String message,
