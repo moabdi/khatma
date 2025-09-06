@@ -216,6 +216,22 @@
   "congratulation": "Congratulations!",
   "accountCreatedSuccessfully": "Account created successfully!",
   "successCompleteParts": "{count} parts completed successfully",
+
+  "khatmaCompleted": "Khatma Completed",
+  "backToHome": "Back to Home", 
+  "journeyDetails": "Journey Details",
+  "started": "Started",
+  "completed": "Completed", 
+  "totalDuration": "Total Duration",
+  "daysCount": "{count, plural, =1{1 day} other{{count} days}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "Share Achievement",
   
   "signInFailed": "Sign in failed",
   "loginFailed": "Login failed",

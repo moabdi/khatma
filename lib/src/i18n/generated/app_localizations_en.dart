@@ -684,6 +684,38 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get khatmaCompleted => 'Khatma Completed';
+
+  @override
+  String get backToHome => 'Back to Home';
+
+  @override
+  String get journeyDetails => 'Journey Details';
+
+  @override
+  String get started => 'Started';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get totalDuration => 'Total Duration';
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareAchievement => 'Share Achievement';
+
+  @override
   String get signInFailed => 'Sign in failed';
 
   @override
@@ -1194,9 +1226,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loadingKhatmaList => 'Loading khatma list';
-
-  @override
-  String get completed => 'Completed';
 
   @override
   String get completedParts => 'Completed parts';

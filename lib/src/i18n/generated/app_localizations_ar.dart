@@ -680,6 +680,41 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get khatmaCompleted => 'ختمة مكتملة';
+
+  @override
+  String get backToHome => 'العودة إلى الرئيسية';
+
+  @override
+  String get journeyDetails => 'تفاصيل الرحلة';
+
+  @override
+  String get started => 'بدأت';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String get totalDuration => 'المدة الإجمالية';
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count يوم',
+      many: '$count يوماً',
+      few: '$count أيام',
+      two: 'يومان',
+      one: 'يوم واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareAchievement => 'مشاركة الإنجاز';
+
+  @override
   String get signInFailed => 'فشل تسجيل الدخول';
 
   @override
@@ -1187,9 +1222,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get loadingKhatmaList => 'جارٍ تحميل قائمة الختمات';
-
-  @override
-  String get completed => 'مكتمل';
 
   @override
   String get completedParts => 'الأجزاء المكتملة';

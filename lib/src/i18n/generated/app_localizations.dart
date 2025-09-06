@@ -1318,6 +1318,54 @@ abstract class AppLocalizations {
   /// **'{count} parts completed successfully'**
   String successCompleteParts(Object count);
 
+  /// No description provided for @khatmaCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Completed'**
+  String get khatmaCompleted;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
+
+  /// No description provided for @journeyDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey Details'**
+  String get journeyDetails;
+
+  /// No description provided for @started.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get started;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @totalDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Duration'**
+  String get totalDuration;
+
+  /// No description provided for @daysCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String daysCount(int count);
+
+  /// No description provided for @shareAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Achievement'**
+  String get shareAchievement;
+
   /// No description provided for @signInFailed.
   ///
   /// In en, this message translates to:
@@ -2097,12 +2145,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading khatma list'**
   String get loadingKhatmaList;
-
-  /// No description provided for @completed.
-  ///
-  /// In en, this message translates to:
-  /// **'Completed'**
-  String get completed;
 
   /// No description provided for @completedParts.
   ///

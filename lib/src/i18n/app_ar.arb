@@ -209,6 +209,21 @@
   "congratulations": "تهانينا",
   "khatmaListTitle": "قائمة الختمات",
   "khatmaListSubtitle": "ختماتك الجارية",
+  "khatmaCompleted": "ختمة مكتملة",
+  "backToHome": "العودة إلى الرئيسية",
+  "journeyDetails": "تفاصيل الرحلة", 
+  "started": "بدأت",
+  "completed": "اكتملت",
+  "totalDuration": "المدة الإجمالية",
+  "daysCount": "{count, plural, =1{يوم واحد} =2{يومان} few{{count} أيام} many{{count} يوماً} other{{count} يوم}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "مشاركة الإنجاز",
 
   "success": "نجح",
   "congratulation": "تهانينا!",

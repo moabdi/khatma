@@ -663,6 +663,38 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get khatmaCompleted => 'Khatma Terminé';
+
+  @override
+  String get backToHome => 'Retour à l\'accueil';
+
+  @override
+  String get journeyDetails => 'Détails du parcours';
+
+  @override
+  String get started => 'Commencé';
+
+  @override
+  String get completed => 'Terminé';
+
+  @override
+  String get totalDuration => 'Durée totale';
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jours',
+      one: '1 jour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareAchievement => 'Partager la réussite';
+
+  @override
   String get signInFailed => 'Échec de la connexion';
 
   @override
@@ -1176,9 +1208,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get loadingKhatmaList => 'Chargement de la liste des khatma';
-
-  @override
-  String get completed => 'Terminé';
 
   @override
   String get completedParts => 'Parties terminées';

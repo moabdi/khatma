@@ -207,6 +207,21 @@
   "congratulation": "Félicitations !",
   "accountCreatedSuccessfully": "Compte créé avec succès !",
   "successCompleteParts": "{count} parties terminées avec succès",
+  "khatmaCompleted": "Khatma Terminé",
+  "backToHome": "Retour à l'accueil",
+  "journeyDetails": "Détails du parcours",
+  "started": "Commencé", 
+  "completed": "Terminé",
+  "totalDuration": "Durée totale",
+  "daysCount": "{count, plural, =1{1 jour} other{{count} jours}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "Partager la réussite",
   
   "createKhatmaToStart": "Créez une khatma pour commencer",
   "daysAgo": "Il y a {count} jours",
