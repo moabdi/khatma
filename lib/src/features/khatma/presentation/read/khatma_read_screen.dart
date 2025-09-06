@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/error/app_error_code.dart';
@@ -8,7 +9,6 @@ import 'package:khatma/src/features/khatma/presentation/read/logic/khatma_parts_
 import 'package:khatma/src/features/khatma/presentation/read/ui/animate_khatma_chart.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_complete_screen.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
-import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/color_extensions.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
@@ -170,25 +170,49 @@ class ConfirmRead extends ConsumerStatefulWidget {
   ConsumerState<ConfirmRead> createState() => _ConfirmReadState();
 }
 
-class _ConfirmReadState extends ConsumerState<ConfirmRead> {
+class _ConfirmReadState extends ConsumerState<ConfirmRead>
+    with SingleTickerProviderStateMixin {
   bool _isLoading = false;
+  bool _showSuccess = false;
+  late AnimationController _successAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _successAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _successAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final selectedParts = ref.watch(khatmaPartsControllerProvider);
+    final hasSelection = selectedParts.isNotEmpty;
 
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainer,
+        color: _showSuccess
+            ? Colors.green.withOpacity(0.1)
+            : Theme.of(context).colorScheme.surfaceContainer,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: _showSuccess
+                ? Colors.green.withOpacity(0.2)
+                : Colors.black.withOpacity(0.1),
             offset: const Offset(0, -2),
             blurRadius: 8,
           ),
@@ -197,52 +221,104 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  if (selectedParts.isNotEmpty)
-                    Text(context.loc.selectedParts(selectedParts.length)),
-                ],
-              )
-            ],
+          // Enhanced selection counter
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: hasSelection ? null : 0,
+            child: AnimatedOpacity(
+              duration: const Duration(milliseconds: 200),
+              opacity: hasSelection ? 1.0 : 0.0,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.check_circle_outline,
+                      size: 16,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      context.loc.selectedParts(selectedParts.length),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
-          gapH12,
+
+          // Enhanced button with animations
           SizedBox(
             width: double.infinity,
             height: 48,
             child: ElevatedButton(
-              onPressed: (selectedParts.isNotEmpty && !_isLoading)
+              onPressed: (hasSelection && !_isLoading)
                   ? () =>
                       _onSubmit(context, ref, widget.khatmaID, selectedParts)
                   : null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: context.colorScheme.primary,
-                foregroundColor: Colors.white,
-                disabledBackgroundColor:
-                    Theme.of(context).colorScheme.surfaceContainerHighest,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                child: _showSuccess
+                    ? Row(
+                        key: const ValueKey('success'),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.check, size: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            context.loc.completed,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      )
+                    : _isLoading
+                        ? Row(
+                            key: const ValueKey('loading'),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white),
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Text(
+                                context.loc.processing,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            key: const ValueKey('default'),
+                            context.loc.confirmReading,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: hasSelection
+                                  ? Colors.white
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withOpacity(0.38),
+                            ),
+                          ),
               ),
-              child: _isLoading
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                    )
-                  : Text(
-                      context.loc.confirmReading,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
             ),
           ),
         ],
@@ -252,10 +328,21 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead> {
 
   Future<void> _onSubmit(BuildContext context, WidgetRef ref, KhatmaID khatmaId,
       List<int> selectedParts) async {
-    // Set loading state to true
-    setState(() {
-      _isLoading = true;
-    });
+    // Haptic feedback for better UX
+    try {
+      HapticFeedback.lightImpact();
+    } catch (_) {
+      // Ignore haptic feedback errors on platforms that don't support it
+    }
+
+    // Set loading state
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+
+    // Visual delay for better UX
     await Future.delayed(const Duration(milliseconds: 300));
 
     try {
@@ -267,27 +354,60 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead> {
 
       result.handleUI(
         context,
-        onSuccess: () {
-          ref.read(khatmaPartsControllerProvider).clear();
+        onSuccess: () async {
+          // Show success state briefly
+          if (mounted) {
+            setState(() {
+              _isLoading = false;
+              _showSuccess = true;
+            });
+            _successAnimationController.forward();
 
-          if (result.dataOrNull!.status == KhatmaStatus.completed) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    KhatmaSuccessComplete(khatma: result.dataOrNull!),
-              ),
-            );
+            // Success haptic feedback
+            try {
+              HapticFeedback.mediumImpact();
+            } catch (_) {
+              // Ignore haptic feedback errors
+            }
+          }
+
+          // Clear selection after brief delay
+          await Future.delayed(const Duration(milliseconds: 500));
+
+          if (mounted) {
+            ref.read(khatmaPartsControllerProvider).clear();
+
+            if (result.dataOrNull!.status == KhatmaStatus.completed) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      KhatmaSuccessComplete(khatma: result.dataOrNull!),
+                ),
+              );
+            } else {
+              // Reset success state if not completing
+              setState(() {
+                _showSuccess = false;
+              });
+              _successAnimationController.reset();
+            }
           }
         },
       );
     } catch (e) {
       if (context.mounted) {
         AppErrorHandler.handleError(context, AppErrorCode.generalUnknown);
+        // Error haptic feedback
+        try {
+          HapticFeedback.heavyImpact();
+        } catch (_) {
+          // Ignore haptic feedback errors
+        }
       }
     } finally {
       // Always reset loading state
-      if (mounted) {
+      if (mounted && !_showSuccess) {
         setState(() {
           _isLoading = false;
         });

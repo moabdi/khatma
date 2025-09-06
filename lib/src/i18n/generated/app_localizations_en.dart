@@ -84,6 +84,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirmReading => 'Mark as Read';
 
   @override
+  String get processing => 'Processing...';
+
+  @override
   String get today => 'Today';
 
   @override

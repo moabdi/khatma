@@ -250,6 +250,12 @@ abstract class AppLocalizations {
   /// **'Mark as Read'**
   String get confirmReading;
 
+  /// No description provided for @processing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing...'**
+  String get processing;
+
   /// No description provided for @today.
   ///
   /// In en, this message translates to:
