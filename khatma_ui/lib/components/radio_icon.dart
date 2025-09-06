@@ -15,9 +15,6 @@ class RadioIcon extends StatelessWidget {
     return Icon(
       size: size,
       selected ? Icons.check_circle_rounded : Icons.circle_outlined,
-      color: selected
-          ? Theme.of(context).primaryColor
-          : Theme.of(context).dividerColor,
     );
   }
 }

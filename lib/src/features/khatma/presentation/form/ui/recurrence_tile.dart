@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma_ui/components/avatar.dart';
 import 'package:khatma_ui/components/radio_icon.dart';
@@ -24,15 +25,15 @@ class RecurrenceTile extends StatelessWidget {
       leading: Avatar(
         radius: 30,
         backgroundColor: value
-            ? Theme.of(context).primaryColor.withAlpha(30)
-            : Theme.of(context).disabledColor,
+            ? context.colorScheme.primary.withAlpha(30)
+            : context.theme.disabledColor,
         padding: const EdgeInsets.symmetric(horizontal: 8),
         bottom: value
             ? Avatar(radius: 10, child: RadioIcon(selected: value, size: 18))
             : null,
         child: Icon(
           unitIcons[value],
-          color: Theme.of(context).primaryColor,
+          color: context.colorScheme.primary,
           size: 25,
         ),
       ),

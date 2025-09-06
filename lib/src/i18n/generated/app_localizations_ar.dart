@@ -81,6 +81,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get or => 'أو';
 
   @override
+  String get confirmReading => 'Mark as Read';
+
+  @override
+  String get processing => 'جاري المعالجة …';
+
+  @override
   String get today => 'اليوم';
 
   @override
@@ -654,10 +660,40 @@ class AppLocalizationsAr extends AppLocalizations {
   String get khatmaListSubtitle => 'ختماتك الجارية';
 
   @override
-  String get noKhatmaYet => 'You have no khatmas yet ?';
+  String get noKhatmaYet => 'لا توجد ختمة بعد';
 
   @override
-  String get createKhatmaToStart => 'Create a khatma to start';
+  String get createKhatmaToStart => 'أنشئ ختمة للبدء';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get helpAndSupport => 'المساعدة والدعم';
+
+  @override
+  String get accessYourKhatmas => 'الوصول إلى ختماتك وتقدمك';
+
+  @override
+  String get managePersonalInfo => 'إدارة معلوماتك الشخصية';
+
+  @override
+  String get preferencesAndOptions => 'التفضيلات وخيارات التطبيق';
+
+  @override
+  String get commonQuestions => 'العثور على إجابات للأسئلة الشائعة';
+
+  @override
+  String get termsAndPrivacy => 'شروط الخدمة وسياسة الخصوصية';
+
+  @override
+  String get learnMoreAboutKhatma => 'تعرف أكثر على مهمتنا';
+
+  @override
+  String get getHelpFromTeam => 'احصل على المساعدة من فريق الدعم';
+
+  @override
+  String get madeWithLove => 'صُنع بـ ❤️ للمجتمع المسلم';
 
   @override
   String get success => 'نجح';
@@ -672,6 +708,41 @@ class AppLocalizationsAr extends AppLocalizations {
   String successCompleteParts(Object count) {
     return 'تم إنجاز $count أجزاء بنجاح';
   }
+
+  @override
+  String get khatmaCompleted => 'ختمة مكتملة';
+
+  @override
+  String get backToHome => 'العودة إلى الرئيسية';
+
+  @override
+  String get journeyDetails => 'تفاصيل الرحلة';
+
+  @override
+  String get started => 'بدأت';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String get totalDuration => 'المدة الإجمالية';
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count يوم',
+      many: '$count يوماً',
+      few: '$count أيام',
+      two: 'يومان',
+      one: 'يوم واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareAchievement => 'مشاركة الإنجاز';
 
   @override
   String get signInFailed => 'فشل تسجيل الدخول';
@@ -733,19 +804,19 @@ class AppLocalizationsAr extends AppLocalizations {
       'فشل مشاركة الختمة. يرجى المحاولة مرة أخرى.';
 
   @override
-  String get errorOccurred => 'An error occurred';
+  String get errorOccurred => 'حدث خطأ';
 
   @override
-  String get pageNotFound => 'Page Not Found';
+  String get pageNotFound => 'الصفحة غير موجودة';
 
   @override
-  String get pageNotFound404 => '404 - Page not found!';
+  String get pageNotFound404 => 'خطأ 404 - الصفحة غير موجودة';
 
   @override
-  String get notImplemented => 'Not implemented';
+  String get notImplemented => 'الميزة غير متوفرة';
 
   @override
-  String get goToHome => 'Go to Home';
+  String get goToHome => 'الانتقال إلى الصفحة الرئيسية';
 
   @override
   String get errorAuthUserNotLoggedIn => 'المستخدم غير مسجل الدخول.';
@@ -1183,9 +1254,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get loadingKhatmaList => 'جارٍ تحميل قائمة الختمات';
 
   @override
-  String get completed => 'مكتمل';
-
-  @override
   String get completedParts => 'الأجزاء المكتملة';
 
   @override
@@ -1207,6 +1275,11 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String completeParts(Object count) {
     return 'إكمال ($count جزء)';
+  }
+
+  @override
+  String selectedParts(num count) {
+    return 'تم اختيار $count جزءًا';
   }
 
   @override
@@ -1681,4 +1754,122 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unexpectedError => 'حدث خطأ غير متوقع';
+
+  @override
+  String get contactUs => 'اتصل بنا';
+
+  @override
+  String get contactType => 'نوع التواصل';
+
+  @override
+  String get bugReport => 'تبليغ عن خطأ';
+
+  @override
+  String get bugReportDescription => 'بلّغ عن مشاكل تقنية أو أعطال في التطبيق';
+
+  @override
+  String get suggestion => 'اقتراح';
+
+  @override
+  String get suggestionDescription => 'شارك أفكارك لتحسين تجربة التطبيق';
+
+  @override
+  String get feedback => 'ملاحظات';
+
+  @override
+  String get feedbackDescription => 'أعطِ رأيك بشكل عام عن تجربتك مع التطبيق';
+
+  @override
+  String get other => 'غير ذلك';
+
+  @override
+  String get otherDescription => 'أي استفسار أو سؤال آخر';
+
+  @override
+  String get yourName => 'اسمك';
+
+  @override
+  String get enterYourName => 'أدخل اسمك';
+
+  @override
+  String get enterYourEmail => 'أدخل عنوان بريدك الإلكتروني';
+
+  @override
+  String get message => 'رسالة';
+
+  @override
+  String get writeYourMessage => 'اكتب رسالتك';
+
+  @override
+  String get sendMessage => 'إرسال الرسالة';
+
+  @override
+  String get contactViaEmail => 'التواصل عبر البريد الإلكتروني';
+
+  @override
+  String get pleaseEnterYourName => 'يرجى إدخال اسمك';
+
+  @override
+  String get nameMustBeAtLeast2Characters =>
+      'يجب أن يكون الاسم على الأقل حرفين';
+
+  @override
+  String get pleaseEnterYourEmail => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get pleaseEnterValidEmail => 'يرجى إدخال عنوان بريد إلكتروني صحيح';
+
+  @override
+  String get pleaseEnterYourMessage => 'يرجى إدخال رسالتك';
+
+  @override
+  String get messageMustBeAtLeast10Characters =>
+      'يجب أن تكون الرسالة على الأقل 10 أحرف';
+
+  @override
+  String get pleaseFillAllFieldsValid => 'يرجى ملء جميع الحقول بمعلومات صحيحة.';
+
+  @override
+  String get messageSentSuccessfully => 'تم إرسال الرسالة بنجاح!';
+
+  @override
+  String get failedToSendMessage =>
+      'فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String contactFormSubject(String contactType) {
+    return '[$contactType]: ';
+  }
+
+  @override
+  String get sentViaKhatmaApp => 'مُرسل عبر تطبيق ختمة';
+
+  @override
+  String get chooseContactMethod => 'اختر طريقة التواصل';
+
+  @override
+  String get selectContactTypeDescription =>
+      'حدد نوع الاستفسار للحصول على مساعدة أفضل';
+
+  @override
+  String get directEmailContact => 'تواصل مباشر عبر البريد الإلكتروني';
+
+  @override
+  String get openEmailApp => 'البريد الإلكتروني';
+
+  @override
+  String get unableToOpenEmail => 'تعذر فتح تطبيق البريد الإلكتروني';
+
+  @override
+  String get emailNotAvailable =>
+      'تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز';
+
+  @override
+  String get refresh => 'تحديث';
+
+  @override
+  String get failedToLoadFaq => 'فشل في تحميل الأسئلة الشائعة';
+
+  @override
+  String get noFaqAvailable => 'لا توجد أسئلة شائعة متاحة';
 }

@@ -26,6 +26,8 @@
   "submit": "إرسال",
   "yes": "نعم",
   "or": "أو",
+  "markAsRead": "تمييز كمقروء",
+  "processing": "جاري المعالجة …",
 
   "today": "اليوم",
   "yesterday": "أمس",
@@ -207,11 +209,34 @@
   "congratulations": "تهانينا",
   "khatmaListTitle": "قائمة الختمات",
   "khatmaListSubtitle": "ختماتك الجارية",
+  "khatmaCompleted": "ختمة مكتملة",
+  "backToHome": "العودة إلى الرئيسية",
+  "journeyDetails": "تفاصيل الرحلة", 
+  "started": "بدأت",
+  "completed": "اكتملت",
+  "totalDuration": "المدة الإجمالية",
+  "daysCount": "{count, plural, =1{يوم واحد} =2{يومان} few{{count} أيام} many{{count} يوماً} other{{count} يوم}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "مشاركة الإنجاز",
 
   "success": "نجح",
   "congratulation": "تهانينا!",
   "accountCreatedSuccessfully": "تم إنشاء الحساب بنجاح!",
   "successCompleteParts": "تم إنجاز {count} أجزاء بنجاح",
+  "createKhatmaToStart": "أنشئ ختمة للبدء",
+  "errorOccurred": "حدث خطأ",
+  "goToHome": "الانتقال إلى الصفحة الرئيسية",
+  "noKhatmaYet": "لا توجد ختمة بعد",
+  "notImplemented": "الميزة غير متوفرة",
+  "pageNotFound": "الصفحة غير موجودة",
+  "pageNotFound404": "خطأ 404 - الصفحة غير موجودة",
+
   
   "signInFailed": "فشل تسجيل الدخول",
   "loginFailed": "فشل تسجيل الدخول",
@@ -358,8 +383,19 @@
   "readedParts": "{count} جزء",
   "remainingPartsOfTotal": "{remaining} من {total} جزء",
   "completeParts": "إكمال ({count} جزء)",
+  "selectedParts": "تم اختيار {count} جزءًا",
   "maxPartToRead": "أقصى جزء للقراءة",
   "maxPartToReserve": "أقصى جزء للحجز",
+  "account": "الحساب",
+  "helpAndSupport": "المساعدة والدعم",
+  "accessYourKhatmas": "الوصول إلى ختماتك وتقدمك",
+  "managePersonalInfo": "إدارة معلوماتك الشخصية",
+  "preferencesAndOptions": "التفضيلات وخيارات التطبيق",
+  "commonQuestions": "العثور على إجابات للأسئلة الشائعة",
+  "termsAndPrivacy": "شروط الخدمة وسياسة الخصوصية",
+  "learnMoreAboutKhatma": "تعرف أكثر على مهمتنا",
+  "getHelpFromTeam": "احصل على المساعدة من فريق الدعم",
+  "madeWithLove": "صُنع بـ ❤️ للمجتمع المسلم",
   
   "recurrence": "التكرار",
   "schedule": "الجدول",
@@ -480,5 +516,51 @@
   "actionPerformed": "تم تنفيذ الإجراء",
   "displayNameTooLong": "الاسم المعروض يجب أن يكون أقل من 50 حرف",
   "displayNameInvalidCharacters": "الاسم المعروض يحتوي على أحرف غير صحيحة",
-  "unexpectedError": "حدث خطأ غير متوقع"
+  "unexpectedError": "حدث خطأ غير متوقع",
+  "contactUs": "اتصل بنا",
+  "contactType": "نوع التواصل",
+  "bugReport": "تبليغ عن خطأ",
+  "bugReportDescription": "بلّغ عن مشاكل تقنية أو أعطال في التطبيق",
+  "suggestion": "اقتراح",
+  "suggestionDescription": "شارك أفكارك لتحسين تجربة التطبيق",
+  "feedback": "ملاحظات",
+  "feedbackDescription": "أعطِ رأيك بشكل عام عن تجربتك مع التطبيق",
+  "other": "غير ذلك",
+  "otherDescription": "أي استفسار أو سؤال آخر",
+  "yourName": "اسمك",
+  "enterYourName": "أدخل اسمك",
+  "enterYourEmail": "أدخل عنوان بريدك الإلكتروني",
+  "message": "رسالة",
+  "writeYourMessage": "اكتب رسالتك",
+  "sendMessage": "إرسال الرسالة",
+  "contactViaEmail": "التواصل عبر البريد الإلكتروني",
+  
+  "pleaseEnterYourName": "يرجى إدخال اسمك",
+  "nameMustBeAtLeast2Characters": "يجب أن يكون الاسم على الأقل حرفين",
+  "pleaseEnterYourEmail": "يرجى إدخال بريدك الإلكتروني",
+  "pleaseEnterValidEmail": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+  "pleaseEnterYourMessage": "يرجى إدخال رسالتك",
+  "messageMustBeAtLeast10Characters": "يجب أن تكون الرسالة على الأقل 10 أحرف",
+  "pleaseFillAllFieldsValid": "يرجى ملء جميع الحقول بمعلومات صحيحة.",
+  "messageSentSuccessfully": "تم إرسال الرسالة بنجاح!",
+  "failedToSendMessage": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+  
+  "contactFormSubject": "[{contactType}]: ",
+  "@contactFormSubject": {
+    "placeholders": {
+      "contactType": {
+        "type": "String"
+      }
+    }
+  },
+  "sentViaKhatmaApp": "مُرسل عبر تطبيق ختمة",
+  "chooseContactMethod": "اختر طريقة التواصل",
+  "selectContactTypeDescription": "حدد نوع الاستفسار للحصول على مساعدة أفضل",
+  "directEmailContact": "تواصل مباشر عبر البريد الإلكتروني",
+  "openEmailApp": "البريد الإلكتروني",
+  "unableToOpenEmail": "تعذر فتح تطبيق البريد الإلكتروني",
+  "emailNotAvailable": "تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز",
+  "refresh": "تحديث",
+  "failedToLoadFaq": "فشل في تحميل الأسئلة الشائعة",
+  "noFaqAvailable": "لا توجد أسئلة شائعة متاحة"
 }

@@ -26,6 +26,9 @@
   "submit": "Soumettre",
   "yes": "Oui",
   "or": "Ou",
+  "markAsRead": "Marquer comme lu",
+  "processing": "Process en cours...",
+
 
   "signIn": "Se connecter",
   "signUp": "S'inscrire",
@@ -204,7 +207,38 @@
   "congratulation": "Félicitations !",
   "accountCreatedSuccessfully": "Compte créé avec succès !",
   "successCompleteParts": "{count} parties terminées avec succès",
+  "khatmaCompleted": "Khatma Terminé",
+  "backToHome": "Retour à l'accueil",
+  "journeyDetails": "Détails du parcours",
+  "started": "Commencé", 
+  "completed": "Terminé",
+  "totalDuration": "Durée totale",
+  "daysCount": "{count, plural, =1{1 jour} other{{count} jours}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "Partager la réussite",
   
+  "createKhatmaToStart": "Créez une khatma pour commencer",
+  "daysAgo": "Il y a {count} jours",
+  "errorOccurred": "Une erreur est survenue",
+  "goToHome": "Aller à l’accueil",
+  "khatmaListSubtitle": "Khatmas en cours",
+  "khatmaListTitle": "Liste des khatma",
+  "khatmaSplitUnitWithDef": "Unité de répartition : {unit}",
+  "monthName": "Mois : {month}",
+  "monthsAgo": "Il y a {count} mois",
+  "noKhatmaYet": "Aucune khatma pour le moment",
+  "notImplemented": "Fonctionnalité non implémentée",
+  "ordinalPartNumber": "{num, select, 1{Le premier} 2{Le deuxième} 3{Le troisième} 4{Le quatrième} 5{Le cinquième} 6{Le sixième} 7{Le septième} 8{Le huitième} 9{Le neuvième} 10{Le dixième} 11{Le onzième} 12{Le douzième} 13{Le treizième} 14{Le quatorzième} 15{Le quinzième} 16{Le seizième} 17{Le dix-septième} 18{Le dix-huitième} 19{Le dix-neuvième} 20{Le vingtième} 21{Le vingt et unième} 22{Le vingt-deuxième} 23{Le vingt-troisième} 24{Le vingt-quatrième} 25{Le vingt-cinquième} 26{Le vingt-sixième} 27{Le vingt-septième} 28{Le vingt-huitième} 29{Le vingt-neuvième} 30{Le trentième} 31{Le trente et unième} 32{Le trente-deuxième} 33{Le trente-troisième} 34{Le trente-quatrième} 35{Le trente-cinquième} 36{Le trente-sixième} 37{Le trente-septième} 38{Le trente-huitième} 39{Le trente-neuvième} 40{Le quarantième} 41{Le quarante et unième} 42{Le quarante-deuxième} 43{Le quarante-troisième} 44{Le quarante-quatrième} 45{Le quarante-cinquième} 46{Le quarante-sixième} 47{Le quarante-septième} 48{Le quarante-huitième} 49{Le quarante-neuvième} 50{Le cinquantième} 51{Le cinquante et unième} 52{Le cinquante-deuxième} 53{Le cinquante-troisième} 54{Le cinquante-quatrième} 55{Le cinquante-cinquième} 56{Le cinquante-sixième} 57{Le cinquante-septième} 58{Le cinquante-huitième} 59{Le cinquante-neuvième} 60{Le soixantième} other{}}",  "pageNotFound": "Page non trouvée",
+  "pageNotFound404": "Erreur 404 - Page non trouvée",
+  "today": "Aujourd’hui",
+  "yesterday": "Hier",
+
   "signInFailed": "Échec de la connexion",
   "loginFailed": "Échec de la connexion",
   "registrationFailed": "Échec de l'inscription. Veuillez réessayer plus tard.",
@@ -349,8 +383,19 @@
   "readedParts": "{count} parties",
   "remainingPartsOfTotal": "{remaining} sur {total} parties",
   "completeParts": "Terminer ({count} parties)",
+  "selectedParts": "{count} {count, plural, one {partie sélectionnée} other {parties sélectionnées}}",
   "maxPartToRead": "Partie max à lire",
   "maxPartToReserve": "Partie max à réserver",
+  "account": "Compte",
+  "helpAndSupport": "Aide et Support",
+  "accessYourKhatmas": "Accédez à vos Khatmas et vos progrès",
+  "managePersonalInfo": "Gérez vos informations personnelles",
+  "preferencesAndOptions": "Préférences et options de l'application",
+  "commonQuestions": "Trouvez des réponses aux questions courantes",
+  "termsAndPrivacy": "Conditions d'utilisation et politique de confidentialité",
+  "learnMoreAboutKhatma": "En savoir plus sur notre mission",
+  "getHelpFromTeam": "Obtenez de l'aide de notre équipe de support",
+  "madeWithLove": "Fait avec ❤️ pour la communauté musulmane",
   
   "recurrence": "Récurrence",
   "schedule": "Horaire",
@@ -403,7 +448,7 @@
   "chooseTheme": "Choisir le thème",
   "themeMode": "{mode, select, light{Clair} dark{Sombre} system{Système} other{Système}}",
   
-  "faq": "FAQ",
+  "faq": "Questions fréquentes",
   "frequentlyAskedQuestions": "Questions fréquemment posées",
   "contactSupport": "Contacter le support",
   "questionsAndSuggestions": "Questions et suggestions",
@@ -471,5 +516,51 @@
   "actionPerformed": "Action effectuée",
   "displayNameTooLong": "Le nom d'affichage doit contenir moins de 50 caractères",
   "displayNameInvalidCharacters": "Le nom d'affichage contient des caractères invalides",
-  "unexpectedError": "Une erreur inattendue s'est produite"
-}
+  "unexpectedError": "Une erreur inattendue s'est produite",
+  "contactUs": "Nous contacter",
+  "contactType": "Type de contact",
+  "bugReport": "Rapport de bug",
+  "bugReportDescription": "Signalez des problèmes techniques ou des dysfonctionnements dans l’application",
+  "suggestion": "Suggestion",
+  "suggestionDescription": "Partagez vos idées pour améliorer l’expérience de l’application",
+  "feedback": "Retour d’expérience",
+  "feedbackDescription": "Retour général sur votre expérience avec l’application",
+  "other": "Autre",
+  "otherDescription": "Toute autre demande ou question",
+  "yourName": "Votre nom",
+  "enterYourName": "Entrez votre nom",
+  "enterYourEmail": "Entrez votre adresse email",
+  "message": "Message",
+  "writeYourMessage": "Écrivez votre message",
+  "sendMessage": "Envoyer le message",
+  "contactViaEmail": "Contacter par email",
+  
+  "pleaseEnterYourName": "Veuillez entrer votre nom",
+  "nameMustBeAtLeast2Characters": "Le nom doit contenir au moins 2 caractères",
+  "pleaseEnterYourEmail": "Veuillez entrer votre email",
+  "pleaseEnterValidEmail": "Veuillez entrer une adresse email valide",
+  "pleaseEnterYourMessage": "Veuillez entrer votre message",
+  "messageMustBeAtLeast10Characters": "Le message doit contenir au moins 10 caractères",
+  "pleaseFillAllFieldsValid": "Veuillez remplir tous les champs avec des informations valides.",
+  "messageSentSuccessfully": "Message envoyé avec succès !",
+  "failedToSendMessage": "Échec de l'envoi du message. Veuillez réessayer.",
+  
+  "contactFormSubject": "[{contactType}] : ",
+  "@contactFormSubject": {
+    "placeholders": {
+      "contactType": {
+        "type": "String"
+      }
+    }
+  },
+  "sentViaKhatmaApp": "Envoyé via l'application Khatma",
+  "chooseContactMethod": "Choisir la méthode de contact",
+  "selectContactTypeDescription": "Sélectionnez le type de demande pour obtenir une meilleure assistance",
+  "directEmailContact": "Contact email direct",
+  "openEmailApp": "Email de contact",
+  "unableToOpenEmail": "Impossible d'ouvrir l'application email",
+  "emailNotAvailable": "Application email non disponible sur cet appareil",
+  "refresh": "Actualiser",
+  "failedToLoadFaq": "Échec du chargement de la FAQ",
+  "noFaqAvailable": "Aucune FAQ disponible"
+  }

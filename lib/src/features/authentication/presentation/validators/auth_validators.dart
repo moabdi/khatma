@@ -88,8 +88,8 @@ class PasswordComplexityValidator extends StringValidator {
 
 class AuthValidators {
   // Validator instances
-  static final EmailValidator _emailValidator = EmailValidator();
-  static final MinLengthStringValidator _nameValidator =
+  static final EmailValidator emailValidator = EmailValidator();
+  static final MinLengthStringValidator nameValidator =
       MinLengthStringValidator(2);
   static final PasswordComplexityValidator _passwordValidator =
       PasswordComplexityValidator();
@@ -99,7 +99,7 @@ class AuthValidators {
   // ===== EMAIL VALIDATION =====
 
   static bool isValidEmail(String email) {
-    return _emailValidator.isValid(email.trim());
+    return emailValidator.isValid(email.trim());
   }
 
   static String? validateEmail(
@@ -189,7 +189,7 @@ class AuthValidators {
   // ===== NAME VALIDATION =====
 
   static bool isValidName(String name) {
-    return _nameValidator.isValid(name.trim());
+    return nameValidator.isValid(name.trim());
   }
 
   static String? validateName(

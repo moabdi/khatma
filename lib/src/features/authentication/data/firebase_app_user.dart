@@ -6,12 +6,12 @@ import 'package:khatma/src/error/app_error_code.dart';
 class FirebaseAppUser extends AppUser {
   FirebaseAppUser(this._user)
       : super(
-          uid: _user.uid,
-          email: _user.email,
-          displayName: _user.displayName,
-          emailVerified: _user.emailVerified,
-          isAnonymous: _user.isAnonymous,
-        );
+            uid: _user.uid,
+            email: _user.email,
+            displayName: _user.displayName,
+            emailVerified: _user.emailVerified,
+            isAnonymous: _user.isAnonymous,
+            authMethod: _mapProvider(_user));
 
   final User _user;
 
@@ -22,7 +22,7 @@ class FirebaseAppUser extends AppUser {
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
       return Result.failure(_mapFirebaseAuthException(e));
-    } catch (e) {
+    } catch (_) {
       return const Result.failure(AppErrorCode.generalUnknown);
     }
   }
@@ -40,7 +40,7 @@ class FirebaseAppUser extends AppUser {
       return Result.success(isAdminUser);
     } on FirebaseAuthException catch (e) {
       return Result.failure(_mapFirebaseAuthException(e));
-    } catch (e) {
+    } catch (_) {
       return const Result.failure(AppErrorCode.generalUnknown);
     }
   }
@@ -53,7 +53,7 @@ class FirebaseAppUser extends AppUser {
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
       return Result.failure(_mapFirebaseAuthException(e));
-    } catch (e) {
+    } catch (_) {
       return const Result.failure(AppErrorCode.generalUnknown);
     }
   }
@@ -66,8 +66,23 @@ class FirebaseAppUser extends AppUser {
       return Result.success(token);
     } on FirebaseAuthException catch (e) {
       return Result.failure(_mapFirebaseAuthException(e));
-    } catch (e) {
+    } catch (_) {
       return const Result.failure(AppErrorCode.generalUnknown);
+    }
+  }
+
+  static AuthMethod _mapProvider(User user) {
+    if (user.isAnonymous || user.providerData.isEmpty)
+      return AuthMethod.anonymous;
+
+    final providerId = user.providerData.first.providerId;
+    switch (providerId) {
+      case 'password':
+        return AuthMethod.emailPassword;
+      case 'google.com':
+        return AuthMethod.google;
+      default:
+        return AuthMethod.anonymous;
     }
   }
 

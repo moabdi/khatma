@@ -6,6 +6,7 @@ import 'package:khatma/src/features/khatma/presentation/read/logic/khatma_parts_
 import 'package:khatma/src/features/khatma/presentation/read/ui/part_selector/part_tile_leading.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/i18n/local_provider.dart';
+import 'package:khatma/src/themes/theme.dart';
 
 class PartTile extends ConsumerWidget {
   const PartTile(
@@ -40,34 +41,35 @@ class PartTile extends ConsumerWidget {
           "${context.loc.khatmaSplitUnitWithDef(unit.name)} ${context.loc.ordinalPartNumber(part.id.toString())}";
     }
 
-    return ListTile(
-      enabled: enabled,
-      splashColor: color.withAlpha(51),
-      selected: isSelected,
-      selectedColor: color,
-      selectedTileColor: color.withAlpha(26),
-      onTap: () => toggleSelection(ref),
-      leading: PartTileLeading(
+    return Card(
+      child: ListTile(
+        dense: true,
         enabled: enabled,
+        splashColor: color.withAlpha(51),
         selected: isSelected,
-        part: part,
-        color: color,
+        selectedColor: color,
+        selectedTileColor: color.withAlpha(26),
+        onTap: () => toggleSelection(ref),
+        leading: PartTileLeading(
+          enabled: enabled,
+          selected: isSelected,
+          part: part,
+          color: color,
+        ),
+        title: Text(
+          partTitle,
+          style: context.textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: Text(
+          partSubtitle,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+        ),
+        // trailing: trailing,
       ),
-      title: enabled
-          ? Text(partTitle)
-          : Text(
-              partTitle,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-      subtitle: Text(
-        partSubtitle,
-        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              color: enabled
-                  ? Theme.of(context).listTileTheme.subtitleTextStyle!.color
-                  : Theme.of(context).hintColor,
-            ),
-      ),
-      // trailing: trailing,
     );
   }
 

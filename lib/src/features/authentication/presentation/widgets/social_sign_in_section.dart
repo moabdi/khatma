@@ -41,11 +41,7 @@ class SocialSignInSection extends StatelessWidget {
     if (buttons.isEmpty) return const SizedBox.shrink();
 
     return Column(
-      children: [
-        const SocialDivider(),
-        gapH24,
-        ...buttons,
-      ],
+      children: [...buttons],
     );
   }
 }
@@ -63,7 +59,7 @@ class SocialDivider extends StatelessWidget {
         const Expanded(child: Divider()),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(text ?? context.loc.orContinueWith),
+          child: Text(text ?? context.loc.or),
         ),
         const Expanded(child: Divider()),
       ],

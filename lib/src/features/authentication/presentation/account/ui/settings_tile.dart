@@ -32,13 +32,13 @@ class SettingsTile extends StatelessWidget {
       title: Text(
         title,
         style: context.theme.listTileTheme.titleTextStyle!
-            .copyWith(color: titleColor),
+            .copyWith(color: titleColor, fontSize: 17),
       ),
       subtitle: subtitle != null
           ? Text(
               subtitle!,
               style: context.theme.listTileTheme.subtitleTextStyle!
-                  .copyWith(color: subtitleColor),
+                  .copyWith(color: subtitleColor, fontSize: 15),
             )
           : null,
       onTap: onTap,

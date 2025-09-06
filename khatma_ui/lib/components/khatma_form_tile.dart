@@ -19,8 +19,6 @@ class KhatmaFormTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0.1,
-      color: Theme.of(context).dividerColor,
       child: ListTile(
         enabled: enabled,
         leading: icon,

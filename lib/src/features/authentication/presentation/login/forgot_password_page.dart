@@ -50,7 +50,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.passwordResetEmailSent),
-            backgroundColor: context.colorScheme.success,
+            backgroundColor: context.successColor,
             duration: const Duration(seconds: 4),
             behavior: SnackBarBehavior.floating,
           ),

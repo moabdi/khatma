@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
-import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
@@ -36,17 +34,11 @@ class WelcomeSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                subtitle ??
-                    "${context.loc.signInToContinue}, ${context.loc.or}"
-                        .capitalize,
+                subtitle ?? "${context.loc.signInToContinue}".capitalize,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: context.theme.disabledColor,
                     ),
                 textAlign: textAlign,
-              ),
-              TextButton(
-                onPressed: () => context.goNamed(AppRoute.register.name),
-                child: Text(context.loc.signUp),
               ),
             ],
           ),

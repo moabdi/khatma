@@ -66,7 +66,7 @@ class PasswordField extends StatelessWidget {
         children: [
           Icon(
             Icons.check_circle,
-            color: context.colorScheme.success,
+            color: context.successColor,
           ),
           gapH4,
           IconButton(

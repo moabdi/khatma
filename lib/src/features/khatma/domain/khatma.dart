@@ -340,11 +340,11 @@ extension ColorExtension on KhatmaTheme {
 LinkedHashMap<String, Color> khatmaColorMap =
     LinkedHashMap<String, Color>.from({
   HexColor("#00A862").toHex(): HexColor("#00A862"),
-  Colors.deepPurple.toHex(): Colors.deepPurple,
-  Colors.blue.toHex(): Colors.blue,
-  Colors.deepOrange.toHex(): Colors.deepOrange,
-  Colors.pink.toHex(): Colors.pink,
-  Colors.brown.toHex(): Colors.brown,
+  HexColor("#DD642E").toHex(): HexColor("#DD642E"),
+  HexColor("#0F65E6").toHex(): HexColor("#0F65E6"),
+  HexColor("#713CE7").toHex(): HexColor("#713CE7"),
+  HexColor("#E01497").toHex(): HexColor("#E01497"),
+  HexColor("#DD642E").toHex(): HexColor("#DD642E"),
 });
 
 List<String> khatmaColorHexList = khatmaColorMap.keys.toList();
