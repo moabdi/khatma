@@ -81,6 +81,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get or => 'أو';
 
   @override
+  String get confirmReading => 'Mark as Read';
+
+  @override
   String get today => 'اليوم';
 
   @override
@@ -1207,6 +1210,11 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String completeParts(Object count) {
     return 'إكمال ($count جزء)';
+  }
+
+  @override
+  String selectedParts(num count) {
+    return 'تم اختيار $count جزءًا';
   }
 
   @override

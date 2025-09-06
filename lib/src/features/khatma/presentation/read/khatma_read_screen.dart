@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/error/app_error_code.dart';
+import 'package:khatma/src/error/app_error_handler.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/read/logic/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/read/ui/animate_khatma_chart.dart';
 import 'package:khatma/src/features/khatma/presentation/read/khatma_complete_screen.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma_ui/extentions/color_extensions.dart';
 import 'package:khatma_ui/extentions/string_extensions.dart';
@@ -12,7 +17,6 @@ import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
-import 'package:khatma/src/features/khatma/presentation/read/ui/part_selector/part_floating_button.dart';
 import 'package:khatma/src/features/khatma/presentation/read/ui/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
@@ -34,27 +38,50 @@ class KhatmaReadScreen extends ConsumerWidget {
   Widget buildContent(Khatma khatma, BuildContext context) {
     return Scaffold(
       appBar: KhatmaAppBar(khatmaId: khatma.id!),
-      floatingActionButton: PartFloatingButton(
-        khatmaId: khatma.id,
-        color: khatma.style.hexColor,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: SingleChildScrollView(
-        child: Container(
-          color: khatma.style.hexColor.withAlpha(26),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              boxShadow: [
+                BoxShadow(
+                  color: HexColor(khatma.style.color),
+                  offset: const Offset(0, -2),
+                  blurRadius: 8,
+                ),
+              ],
+            ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildDescriptionCard(khatma, context),
                 gapH8,
-                buildParts(context, khatma),
-                gapH64,
+                buildReadPartCard(context, khatma),
               ],
             ),
           ),
-        ),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                color: khatma.style.hexColor.withAlpha(26),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ToReadPartTiles(
+                      key: UniqueKey(),
+                      unit: khatma.unit,
+                      color: khatma.style.hexColor,
+                      completedParts: khatma.completedPartIds,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          ConfirmRead(khatmaID: khatmaId),
+        ],
       ),
     );
   }
@@ -131,6 +158,114 @@ class KhatmaReadScreen extends ConsumerWidget {
   }
 }
 
+class ConfirmRead extends ConsumerWidget {
+  const ConfirmRead({
+    super.key,
+    required this.khatmaID,
+  });
+
+  final KhatmaID khatmaID;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedParts = ref.watch(khatmaPartsControllerProvider);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainer,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            offset: const Offset(0, -2),
+            blurRadius: 8,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  if (selectedParts.isNotEmpty)
+                    Text(context.loc.selectedParts(selectedParts.length)),
+                ],
+              )
+            ],
+          ),
+          gapH12,
+          SizedBox(
+            width: double.infinity,
+            height: 48,
+            child: ElevatedButton(
+              onPressed: selectedParts.isNotEmpty
+                  ? () => _onSubmit(context, ref, khatmaID, selectedParts)
+                  : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: context.colorScheme.primary,
+                foregroundColor: Colors.white,
+                disabledBackgroundColor:
+                    Theme.of(context).colorScheme.surfaceContainerHighest,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                context.loc.confirmReading,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _onSubmit(BuildContext context, WidgetRef ref, KhatmaID khatmaId,
+      List<int> selectedParts) async {
+    try {
+      final result = await ref
+          .read(khatmaNotifierProvider.notifier)
+          .completeParts(khatmaId, selectedParts);
+
+      if (!context.mounted) return;
+
+      result.handleUI(
+        context,
+        onSuccess: () {
+          ref.read(khatmaPartsControllerProvider).clear();
+
+          if (result.dataOrNull!.status == KhatmaStatus.completed) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    KhatmaSuccessComplete(khatma: result.dataOrNull!),
+              ),
+            );
+          }
+        },
+      );
+    } catch (e) {
+      if (context.mounted) {
+        AppErrorHandler.handleError(context, AppErrorCode.generalUnknown);
+      }
+    }
+  }
+}
+
 class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
   const KhatmaAppBar({
     super.key,
@@ -146,7 +281,7 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
         builder: (context, ref, _) {
           Khatma? khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
           return khatma == null
-              ? AppBar(title: Text("Khatma"))
+              ? AppBar(title: Text(context.loc.khatma))
               : AppBar(
                   title: Text(khatma.name),
                   centerTitle: true,

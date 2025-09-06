@@ -26,6 +26,7 @@
   "submit": "إرسال",
   "yes": "نعم",
   "or": "أو",
+  "markAsRead": "تمييز كمقروء",
 
   "today": "اليوم",
   "yesterday": "أمس",
@@ -366,6 +367,7 @@
   "readedParts": "{count} جزء",
   "remainingPartsOfTotal": "{remaining} من {total} جزء",
   "completeParts": "إكمال ({count} جزء)",
+  "selectedParts": "تم اختيار {count} جزءًا",
   "maxPartToRead": "أقصى جزء للقراءة",
   "maxPartToReserve": "أقصى جزء للحجز",
   

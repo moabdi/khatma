@@ -26,6 +26,7 @@
   "submit": "Submit",
   "yes": "Yes",
   "or": "Or",
+  "confirmReading": "Mark as Read",
 
   "today": "Today",
   "yesterday": "Yesterday",
@@ -367,6 +368,7 @@
   "readedParts": "{count} parts",
   "remainingPartsOfTotal": "{remaining} of {total} parts",
   "completeParts": "Complete ({count} parts)",
+  "selectedParts": "{count} {count, plural, one {part} other {parts}} selected",
   "maxPartToRead": "Max part to read",
   "maxPartToReserve": "Max part to reserve",
   

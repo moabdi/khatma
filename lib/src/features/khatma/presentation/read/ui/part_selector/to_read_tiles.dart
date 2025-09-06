@@ -32,6 +32,7 @@ class ToReadPartTiles extends ConsumerWidget {
             parts.where((part) => !completedParts.contains(part.id)).toList();
 
         return ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           primary: false,
           separatorBuilder: (context, index) => const Divider(height: 2.5),

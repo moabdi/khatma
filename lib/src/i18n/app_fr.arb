@@ -26,6 +26,7 @@
   "submit": "Soumettre",
   "yes": "Oui",
   "or": "Ou",
+  "markAsRead": "Marquer comme lu",
 
   "signIn": "Se connecter",
   "signUp": "S'inscrire",
@@ -365,6 +366,7 @@
   "readedParts": "{count} parties",
   "remainingPartsOfTotal": "{remaining} sur {total} parties",
   "completeParts": "Terminer ({count} parties)",
+  "selectedParts": "{count} {count, plural, one {partie sélectionnée} other {parties sélectionnées}}",
   "maxPartToRead": "Partie max à lire",
   "maxPartToReserve": "Partie max à réserver",
   

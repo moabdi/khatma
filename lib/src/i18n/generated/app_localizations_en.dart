@@ -81,6 +81,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get or => 'Or';
 
   @override
+  String get confirmReading => 'Mark as Read';
+
+  @override
   String get today => 'Today';
 
   @override
@@ -1214,6 +1217,17 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String completeParts(Object count) {
     return 'Complete ($count parts)';
+  }
+
+  @override
+  String selectedParts(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'parts',
+      one: 'part',
+    );
+    return '$count $_temp0 selected';
   }
 
   @override

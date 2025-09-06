@@ -244,6 +244,12 @@ abstract class AppLocalizations {
   /// **'Or'**
   String get or;
 
+  /// No description provided for @confirmReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Read'**
+  String get confirmReading;
+
   /// No description provided for @today.
   ///
   /// In en, this message translates to:
@@ -2127,6 +2133,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Complete ({count} parts)'**
   String completeParts(Object count);
+
+  /// No description provided for @selectedParts.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} {count, plural, one {part} other {parts}} selected'**
+  String selectedParts(num count);
 
   /// No description provided for @maxPartToRead.
   ///
