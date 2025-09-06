@@ -666,6 +666,36 @@ class AppLocalizationsAr extends AppLocalizations {
   String get createKhatmaToStart => 'أنشئ ختمة للبدء';
 
   @override
+  String get account => 'الحساب';
+
+  @override
+  String get helpAndSupport => 'المساعدة والدعم';
+
+  @override
+  String get accessYourKhatmas => 'الوصول إلى ختماتك وتقدمك';
+
+  @override
+  String get managePersonalInfo => 'إدارة معلوماتك الشخصية';
+
+  @override
+  String get preferencesAndOptions => 'التفضيلات وخيارات التطبيق';
+
+  @override
+  String get commonQuestions => 'العثور على إجابات للأسئلة الشائعة';
+
+  @override
+  String get termsAndPrivacy => 'شروط الخدمة وسياسة الخصوصية';
+
+  @override
+  String get learnMoreAboutKhatma => 'تعرف أكثر على مهمتنا';
+
+  @override
+  String get getHelpFromTeam => 'احصل على المساعدة من فريق الدعم';
+
+  @override
+  String get madeWithLove => 'صُنع بـ ❤️ للمجتمع المسلم';
+
+  @override
   String get success => 'نجح';
 
   @override

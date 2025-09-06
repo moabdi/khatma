@@ -212,7 +212,7 @@ class AppTheme {
       subtitleTextStyle: textTheme.titleSmall?.copyWith(
         color: colorScheme.onSurfaceVariant,
       ),
-      iconColor: colorScheme.primary,
+      //iconColor: colorScheme.primary,
     );
   }
 

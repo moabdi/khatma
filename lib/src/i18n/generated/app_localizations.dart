@@ -1294,6 +1294,66 @@ abstract class AppLocalizations {
   /// **'Create a khatma to start'**
   String get createKhatmaToStart;
 
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @helpAndSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpAndSupport;
+
+  /// No description provided for @accessYourKhatmas.
+  ///
+  /// In en, this message translates to:
+  /// **'Access your Khatmas and progress'**
+  String get accessYourKhatmas;
+
+  /// No description provided for @managePersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your personal information'**
+  String get managePersonalInfo;
+
+  /// No description provided for @preferencesAndOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences and app options'**
+  String get preferencesAndOptions;
+
+  /// No description provided for @commonQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Find answers to common questions'**
+  String get commonQuestions;
+
+  /// No description provided for @termsAndPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of service and privacy policy'**
+  String get termsAndPrivacy;
+
+  /// No description provided for @learnMoreAboutKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more about our mission'**
+  String get learnMoreAboutKhatma;
+
+  /// No description provided for @getHelpFromTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Get help from our support team'**
+  String get getHelpFromTeam;
+
+  /// No description provided for @madeWithLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with ❤️ for the Muslim community'**
+  String get madeWithLove;
+
   /// No description provided for @success.
   ///
   /// In en, this message translates to:

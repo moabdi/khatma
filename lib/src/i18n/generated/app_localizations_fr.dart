@@ -649,6 +649,38 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createKhatmaToStart => 'Créez une khatma pour commencer';
 
   @override
+  String get account => 'Compte';
+
+  @override
+  String get helpAndSupport => 'Aide et Support';
+
+  @override
+  String get accessYourKhatmas => 'Accédez à vos Khatmas et vos progrès';
+
+  @override
+  String get managePersonalInfo => 'Gérez vos informations personnelles';
+
+  @override
+  String get preferencesAndOptions =>
+      'Préférences et options de l\'application';
+
+  @override
+  String get commonQuestions => 'Trouvez des réponses aux questions courantes';
+
+  @override
+  String get termsAndPrivacy =>
+      'Conditions d\'utilisation et politique de confidentialité';
+
+  @override
+  String get learnMoreAboutKhatma => 'En savoir plus sur notre mission';
+
+  @override
+  String get getHelpFromTeam => 'Obtenez de l\'aide de notre équipe de support';
+
+  @override
+  String get madeWithLove => 'Fait avec ❤️ pour la communauté musulmane';
+
+  @override
   String get success => 'Succès';
 
   @override

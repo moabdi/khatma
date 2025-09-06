@@ -670,6 +670,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createKhatmaToStart => 'Create a khatma to start';
 
   @override
+  String get account => 'Account';
+
+  @override
+  String get helpAndSupport => 'Help & Support';
+
+  @override
+  String get accessYourKhatmas => 'Access your Khatmas and progress';
+
+  @override
+  String get managePersonalInfo => 'Manage your personal information';
+
+  @override
+  String get preferencesAndOptions => 'Preferences and app options';
+
+  @override
+  String get commonQuestions => 'Find answers to common questions';
+
+  @override
+  String get termsAndPrivacy => 'Terms of service and privacy policy';
+
+  @override
+  String get learnMoreAboutKhatma => 'Learn more about our mission';
+
+  @override
+  String get getHelpFromTeam => 'Get help from our support team';
+
+  @override
+  String get madeWithLove => 'Made with ❤️ for the Muslim community';
+
+  @override
   String get success => 'Success';
 
   @override
