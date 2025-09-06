@@ -10,6 +10,7 @@ import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/khatma_ui.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class ProfileMenuPage extends ConsumerWidget {
   const ProfileMenuPage({super.key});
@@ -41,8 +42,7 @@ class ProfileMenuPage extends ConsumerWidget {
             // Menu Items
             _buildMenuItems(context, user, ref),
 
-            gapH24,
-
+            gapH64,
             // Footer
             _buildFooter(context),
 
@@ -127,6 +127,50 @@ class ProfileMenuPage extends ConsumerWidget {
   Widget _buildFooter(BuildContext context) {
     return Column(
       children: [
+        Icon(
+          Icons.mosque,
+          size: 32,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        gapH8,
+        Text(
+          'Khatma AMM',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+        ),
+        gapH4,
+        FutureBuilder<PackageInfo>(
+          future: PackageInfo.fromPlatform(),
+          builder: (context, snapshot) {
+            final version = snapshot.data?.version ?? '1.0.0';
+            final buildNumber = snapshot.data?.buildNumber ?? '1';
+
+            return Text(
+              'v$version ($buildNumber)',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+            );
+          },
+        ),
+        gapH8,
+        Text(
+          context.loc.madeWithLove,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                fontStyle: FontStyle.italic,
+              ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFooters(BuildContext context) {
+    return Column(
+      children: [
         Text(
           'Khatma',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -134,12 +178,19 @@ class ProfileMenuPage extends ConsumerWidget {
               ),
         ),
         const SizedBox(height: 4),
-        Text(
-          'v1.0.0',
-          style: Theme.of(context)
-              .textTheme
-              .bodySmall
-              ?.copyWith(color: Colors.grey),
+        FutureBuilder<PackageInfo>(
+          future: PackageInfo.fromPlatform(),
+          builder: (context, snapshot) {
+            final version = snapshot.data?.version ?? '1.0.0';
+            final buildNumber = snapshot.data?.buildNumber ?? '1';
+
+            return Text(
+              'v$version ($buildNumber)',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+            );
+          },
         ),
       ],
     );
