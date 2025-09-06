@@ -3,7 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/utils/common.dart';
+import 'package:khatma_ui/khatma_ui.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,7 +21,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
   bool _isLastPage = false;
-  double _progressValue = 0.0;
 
   List<OnboardingItem> _onboardingItems(context) => [
         OnboardingItem(
@@ -58,8 +59,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     setState(() {
       _currentPage = _pageController.page?.round() ?? 0;
       _isLastPage = _currentPage == _onboardingItems(context).length - 1;
-      _progressValue =
-          (_pageController.page ?? 0) / (_onboardingItems(context).length - 1);
     });
   }
 
@@ -80,7 +79,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               Column(
                 children: [
-                  _buildAppBar(),
                   Expanded(
                     child: PageView.builder(
                       controller: _pageController,
@@ -102,28 +100,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildAppBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Progress Bar
-          Expanded(
-            child: LinearProgressIndicator(
-              value: _progressValue,
-              backgroundColor: Colors.white.withOpacity(0.3),
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-              minHeight: 6,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildOnboardingPage(OnboardingItem item) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -140,7 +116,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
 
-          SizedBox(height: 40),
+          gapH12,
 
           // Title with Fade Animation
           AnimatedSwitcher(
@@ -197,8 +173,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             controller: _pageController,
             count: _onboardingItems(context).length,
             effect: ExpandingDotsEffect(
-              activeDotColor: Theme.of(context).primaryColor,
-              dotColor: Colors.white.withOpacity(0.5),
+              activeDotColor: context.colorScheme.primary,
+              dotColor: context.theme.disabledColor,
               dotHeight: 8,
               dotWidth: 8,
               spacing: 8,

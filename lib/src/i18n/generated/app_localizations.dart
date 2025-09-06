@@ -244,6 +244,18 @@ abstract class AppLocalizations {
   /// **'Or'**
   String get or;
 
+  /// No description provided for @confirmReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Read'**
+  String get confirmReading;
+
+  /// No description provided for @processing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing...'**
+  String get processing;
+
   /// No description provided for @today.
   ///
   /// In en, this message translates to:
@@ -1282,6 +1294,66 @@ abstract class AppLocalizations {
   /// **'Create a khatma to start'**
   String get createKhatmaToStart;
 
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @helpAndSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpAndSupport;
+
+  /// No description provided for @accessYourKhatmas.
+  ///
+  /// In en, this message translates to:
+  /// **'Access your Khatmas and progress'**
+  String get accessYourKhatmas;
+
+  /// No description provided for @managePersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your personal information'**
+  String get managePersonalInfo;
+
+  /// No description provided for @preferencesAndOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences and app options'**
+  String get preferencesAndOptions;
+
+  /// No description provided for @commonQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Find answers to common questions'**
+  String get commonQuestions;
+
+  /// No description provided for @termsAndPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of service and privacy policy'**
+  String get termsAndPrivacy;
+
+  /// No description provided for @learnMoreAboutKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more about our mission'**
+  String get learnMoreAboutKhatma;
+
+  /// No description provided for @getHelpFromTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Get help from our support team'**
+  String get getHelpFromTeam;
+
+  /// No description provided for @madeWithLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with ❤️ for the Muslim community'**
+  String get madeWithLove;
+
   /// No description provided for @success.
   ///
   /// In en, this message translates to:
@@ -1305,6 +1377,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} parts completed successfully'**
   String successCompleteParts(Object count);
+
+  /// No description provided for @khatmaCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Completed'**
+  String get khatmaCompleted;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
+
+  /// No description provided for @journeyDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey Details'**
+  String get journeyDetails;
+
+  /// No description provided for @started.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get started;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @totalDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Duration'**
+  String get totalDuration;
+
+  /// No description provided for @daysCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String daysCount(int count);
+
+  /// No description provided for @shareAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Achievement'**
+  String get shareAchievement;
 
   /// No description provided for @signInFailed.
   ///
@@ -2086,12 +2206,6 @@ abstract class AppLocalizations {
   /// **'Loading khatma list'**
   String get loadingKhatmaList;
 
-  /// No description provided for @completed.
-  ///
-  /// In en, this message translates to:
-  /// **'Completed'**
-  String get completed;
-
   /// No description provided for @completedParts.
   ///
   /// In en, this message translates to:
@@ -2127,6 +2241,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Complete ({count} parts)'**
   String completeParts(Object count);
+
+  /// No description provided for @selectedParts.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} {count, plural, one {part} other {parts}} selected'**
+  String selectedParts(num count);
 
   /// No description provided for @maxPartToRead.
   ///
@@ -2419,7 +2539,7 @@ abstract class AppLocalizations {
   /// No description provided for @faq.
   ///
   /// In en, this message translates to:
-  /// **'FAQ'**
+  /// **'Common Questions'**
   String get faq;
 
   /// No description provided for @frequentlyAskedQuestions.
@@ -2811,6 +2931,228 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred'**
   String get unexpectedError;
+
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get contactUs;
+
+  /// No description provided for @contactType.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Type'**
+  String get contactType;
+
+  /// No description provided for @bugReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Bug Report'**
+  String get bugReport;
+
+  /// No description provided for @bugReportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Report technical issues or problems with the app'**
+  String get bugReportDescription;
+
+  /// No description provided for @suggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion'**
+  String get suggestion;
+
+  /// No description provided for @suggestionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Share ideas to improve the app experience'**
+  String get suggestionDescription;
+
+  /// No description provided for @feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get feedback;
+
+  /// No description provided for @feedbackDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'General feedback about your app experience'**
+  String get feedbackDescription;
+
+  /// No description provided for @other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// No description provided for @otherDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Any other inquiries or questions'**
+  String get otherDescription;
+
+  /// No description provided for @yourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Name'**
+  String get yourName;
+
+  /// No description provided for @enterYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enterYourName;
+
+  /// No description provided for @enterYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address'**
+  String get enterYourEmail;
+
+  /// No description provided for @message.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get message;
+
+  /// No description provided for @writeYourMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your message'**
+  String get writeYourMessage;
+
+  /// No description provided for @sendMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Message'**
+  String get sendMessage;
+
+  /// No description provided for @contactViaEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact via Email'**
+  String get contactViaEmail;
+
+  /// No description provided for @pleaseEnterYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your name'**
+  String get pleaseEnterYourName;
+
+  /// No description provided for @nameMustBeAtLeast2Characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least 2 characters'**
+  String get nameMustBeAtLeast2Characters;
+
+  /// No description provided for @pleaseEnterYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get pleaseEnterYourEmail;
+
+  /// No description provided for @pleaseEnterValidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get pleaseEnterValidEmail;
+
+  /// No description provided for @pleaseEnterYourMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your message'**
+  String get pleaseEnterYourMessage;
+
+  /// No description provided for @messageMustBeAtLeast10Characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Message must be at least 10 characters'**
+  String get messageMustBeAtLeast10Characters;
+
+  /// No description provided for @pleaseFillAllFieldsValid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in all fields with valid information.'**
+  String get pleaseFillAllFieldsValid;
+
+  /// No description provided for @messageSentSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Message sent successfully!'**
+  String get messageSentSuccessfully;
+
+  /// No description provided for @failedToSendMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send message. Please try again.'**
+  String get failedToSendMessage;
+
+  /// No description provided for @contactFormSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'[{contactType}]: '**
+  String contactFormSubject(String contactType);
+
+  /// No description provided for @sentViaKhatmaApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent via Khatma App'**
+  String get sentViaKhatmaApp;
+
+  /// No description provided for @chooseContactMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Contact Method'**
+  String get chooseContactMethod;
+
+  /// No description provided for @selectContactTypeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the type of inquiry to get better assistance'**
+  String get selectContactTypeDescription;
+
+  /// No description provided for @directEmailContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct Email Contact'**
+  String get directEmailContact;
+
+  /// No description provided for @openEmailApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Email support'**
+  String get openEmailApp;
+
+  /// No description provided for @unableToOpenEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open email app'**
+  String get unableToOpenEmail;
+
+  /// No description provided for @emailNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Email app not available on this device'**
+  String get emailNotAvailable;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// No description provided for @failedToLoadFaq.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load FAQ'**
+  String get failedToLoadFaq;
+
+  /// No description provided for @noFaqAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No FAQ available'**
+  String get noFaqAvailable;
 }
 
 class _AppLocalizationsDelegate

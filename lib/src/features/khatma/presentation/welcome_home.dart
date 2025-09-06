@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class WelcomeHome extends StatelessWidget {
@@ -15,23 +16,22 @@ class WelcomeHome extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor.withAlpha(51),
+        color: context.colorScheme.primary.withAlpha(51),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         children: [
-          Text(context.loc.noKhatmaYet,
-              style: Theme.of(context).textTheme.headlineSmall),
+          Text(context.loc.noKhatmaYet, style: context.textTheme.headlineSmall),
           gapH8,
           Text(context.loc.createKhatmaToStart,
-              style: Theme.of(context).textTheme.bodyMedium),
+              style: context.textTheme.bodyMedium),
           gapH24,
           SizedBox(
             width: 200,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor,
-                foregroundColor: Colors.white,
+                backgroundColor: context.colorScheme.primary,
+                foregroundColor: context.colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

@@ -29,6 +29,7 @@ class PartFloatingButton extends StatelessWidget {
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
             minimumSize: Size(MediaQuery.of(context).size.width * .9, 48),
+            backgroundColor: color,
           ),
           onPressed: () => _onSubmit(context, ref, selectedParts),
           child: Text(

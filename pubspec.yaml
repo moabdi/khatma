@@ -3,7 +3,7 @@ description: khatma AMM78
 
 publish_to: 'none'
 
-version: 0.0.1+1
+version: 1.0.0+6
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -16,86 +16,89 @@ dependencies:
 
   # Core packages
   intl: any
-  go_router: ^12.1.1
-  flutter_riverpod: ^2.6.1
-  freezed: ^3.0.6
-  riverpod_annotation: ^2.6.1
-  freezed_annotation: ^3.0.0
-  meta: ^1.12.0
-  analyzer: ^7.3.0
+  go_router: 16.2.1
+  flutter_riverpod: 2.6.1
+  freezed: 3.0.6
+  riverpod_annotation: 2.6.1
+  freezed_annotation: 3.1.0
+  meta: 1.16.0
 
   # Firebase packages
-  firebase_core: 3.13.0
-  firebase_auth: 5.5.3
-  firebase_ui_auth: ^1.16.1
-  firebase_ui_localizations: 1.13.1
-  firebase_analytics: 11.4.5
-  cloud_firestore: 5.6.7
-  firebase_crashlytics: ^4.3.5
+  firebase_core: 4.1.0
+  firebase_auth: 6.0.2
+  firebase_ui_localizations: 2.0.0
+  firebase_analytics: 12.0.1
+  cloud_firestore: 6.0.1
+  firebase_crashlytics: 5.0.1
 
   # Google Services
-  google_sign_in: ^6.3.0
-  google_fonts: ^6.1.0
+  google_sign_in: 6.3.0
+  google_fonts: 6.3.1
 
   # HTTP & Network
-  http: ^1.4.0
-  dio: ^5.8.0+1
-  cached_network_image: ^3.4.0
+  http: 1.5.0
+  dio: 5.9.0
+  cached_network_image: 3.4.1
 
   # UI Components
-  font_awesome_flutter: ^10.3.0
-  fl_chart: ^0.64.0
-  modal_bottom_sheet: ^2.1.2
-  hexcolor: ^3.0.1
-  percent_indicator: ^4.2.3
-  readmore: ^2.2.0
-  shimmer: ^3.0.0
-  flutter_svg: ^2.0.9
-  lottie: ^2.7.0
-  gap: ^3.0.1
-  animated_text_kit: ^4.2.2
-  dotted_line: ^3.2.3
-  wave: ^0.2.2
-  avatar_glow: ^3.0.1
-  smooth_page_indicator: ^1.1.0
-  flutter_markdown: ^0.7.7
+  font_awesome_flutter: 10.10.0
+  fl_chart: 1.1.0
+  modal_bottom_sheet: 3.0.0
+  hexcolor: 3.0.1
+  percent_indicator: 4.2.5
+  readmore: 3.0.0
+  shimmer: 3.0.0
+  flutter_svg: 2.2.1
+  lottie: 3.3.1
+  gap: 3.0.1
+  animated_text_kit: 4.2.3
+  dotted_line: 3.2.3
+  wave: 0.2.2
+  avatar_glow: 3.0.1
+  smooth_page_indicator: 1.2.1
+  flutter_markdown: 0.7.7+1
 
   # Storage & Data
-  hive: ^2.2.3
-  json_annotation: ^4.9.0
-  shared_preferences: ^2.2.2
-  flutter_secure_storage: ^9.2.4
-  path_provider: ^2.0.9
-  path: ^1.8.2
+  hive: 2.2.3
+  json_annotation: 4.9.0
+  shared_preferences: 2.5.3
+  flutter_secure_storage: 9.2.4
+  path_provider: 2.1.5
+  path: 1.9.1
 
   # Utilities
-  uuid: ^4.2.1
-  time_machine: ^0.9.17
-  random_string: ^2.3.1
-  rxdart: ^0.28.0
+  uuid: 4.5.1
+  time_machine: 0.9.17
+  random_string: 2.3.1
+  rxdart: 0.28.0
 
   # Platform Integration
-  webview_flutter: ^4.0.2
-  url_launcher: ^6.3.1
-  device_info_plus: ^10.1.2
+  webview_flutter: 4.13.0
+  url_launcher: 6.3.2
+  device_info_plus: 11.5.0
+  package_info_plus: 8.3.1
+  connectivity_plus: 6.1.5
 
   # Build & Platform
-  flutter_launcher_icons: ^0.13.1
-  web: ^1.1.1
-  js: ^0.6.7
+  flutter_launcher_icons: 0.14.4
+  web: 1.1.1
+
+  flutter_email_sender: 7.0.0
+  image_picker: 1.2.0
 
   # Custom packages
   khatma_ui:
     path: ./khatma_ui
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
-  build_runner: ^2.4.7
-  copy_with_extension: ^6.0.1
-  riverpod_generator: ^2.6.5
-  json_serializable: ^6.9.5
-  custom_lint: ^0.7.5
-  riverpod_lint: ^2.6.5
+  flutter_lints: 6.0.0
+  riverpod_lint: 2.6.5
+  copy_with_extension: 9.1.1
+  riverpod_generator: 2.6.5
+  json_serializable: 6.9.5 # compatible riverpod_generator 2.6.5 : 6.9.5
+  build_runner: 2.5.4 # compatible riverpod_generator 2.6.5 : 2.5.4
+  custom_lint: 0.7.5 # compatible riverpod_generator 2.6.5 : 0.7.5
+  analyzer: 7.3.0 # compatible custom_lint: 0.7.5 : 7.3.0
 
 flutter_icons:
   ios: true
@@ -125,16 +128,13 @@ flutter:
     - assets/images/
     - assets/lottie/
     - assets/images/khatma/
-    - assets/quran/ar/
-    - assets/quran/en/
-    - assets/quran/ar/hafs/
-    - assets/quran/ar/warsh/
-    - assets/quran/en/hafs/
-    - assets/quran/en/warsh/
-    - assets/quran/en/translated/
+    - assets/quran/hafs/
+    - assets/quran/warsh/
+    - assets/quran/translated/
     - assets/fonts/google_fonts/
     - assets/docs/
-    - assets/docs/mentions_legals.md
+    - assets/docs/about/
+    - assets/faq/
 
   fonts:
     - family: Airbnb

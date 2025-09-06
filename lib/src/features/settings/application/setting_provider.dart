@@ -11,18 +11,6 @@ class SettingsNotifier extends Notifier<Settings> {
     return Settings();
   }
 
-  void updateLanguage(String language) {
-    if (state.language != language) {
-      state = state.copyWith(language: language);
-    }
-  }
-
-  void toggleTheme(bool isDark) {
-    if (state.useDarkTheme != isDark) {
-      state = state.copyWith(useDarkTheme: isDark);
-    }
-  }
-
   void updateRiwaya(String riwaya) {
     if (state.riwaya != riwaya) {
       state = state.copyWith(riwaya: riwaya);

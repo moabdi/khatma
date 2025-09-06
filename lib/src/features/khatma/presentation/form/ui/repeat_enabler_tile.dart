@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/utils/common.dart';
 
 class RepeatKhatmaTile extends StatelessWidget {
@@ -27,17 +28,20 @@ class RepeatKhatmaTile extends StatelessWidget {
           color: theme.textTheme.bodySmall?.color,
         ),
       ),
-      secondary: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+      secondary: CircleAvatar(
+        backgroundColor: enabled
+            ? theme.primaryColor.withOpacity(0.1)
+            : theme.disabledColor.withOpacity(0.1),
         child: Icon(
           Icons.autorenew,
-          color: enabled ? theme.primaryColor : theme.disabledColor,
+          color: enabled ? context.colorScheme.primary : theme.disabledColor,
+          size: 24,
         ),
       ),
       onChanged: onChanged,
-      activeColor: theme.primaryColor,
+      activeThumbColor: context.colorScheme.primary,
       inactiveThumbColor: theme.disabledColor,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      contentPadding: EdgeInsets.symmetric(horizontal: 8),
     );
   }
 }

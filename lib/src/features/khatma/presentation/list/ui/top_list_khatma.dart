@@ -23,7 +23,7 @@ class TopListKhatmat extends StatelessWidget {
         OutlinedButton.icon(
           icon: Icon(
             Icons.add_circle,
-            color: AppTheme.primaryColors,
+            color: context.theme.primaryColor,
             size: 24,
           ),
           label: Text(AppLocalizations.of(context).add),

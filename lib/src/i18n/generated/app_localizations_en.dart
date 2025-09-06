@@ -81,6 +81,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get or => 'Or';
 
   @override
+  String get confirmReading => 'Mark as Read';
+
+  @override
+  String get processing => 'Processing...';
+
+  @override
   String get today => 'Today';
 
   @override
@@ -664,6 +670,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createKhatmaToStart => 'Create a khatma to start';
 
   @override
+  String get account => 'Account';
+
+  @override
+  String get helpAndSupport => 'Help & Support';
+
+  @override
+  String get accessYourKhatmas => 'Access your Khatmas and progress';
+
+  @override
+  String get managePersonalInfo => 'Manage your personal information';
+
+  @override
+  String get preferencesAndOptions => 'Preferences and app options';
+
+  @override
+  String get commonQuestions => 'Find answers to common questions';
+
+  @override
+  String get termsAndPrivacy => 'Terms of service and privacy policy';
+
+  @override
+  String get learnMoreAboutKhatma => 'Learn more about our mission';
+
+  @override
+  String get getHelpFromTeam => 'Get help from our support team';
+
+  @override
+  String get madeWithLove => 'Made with ❤️ for the Muslim community';
+
+  @override
   String get success => 'Success';
 
   @override
@@ -676,6 +712,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String successCompleteParts(Object count) {
     return '$count parts completed successfully';
   }
+
+  @override
+  String get khatmaCompleted => 'Khatma Completed';
+
+  @override
+  String get backToHome => 'Back to Home';
+
+  @override
+  String get journeyDetails => 'Journey Details';
+
+  @override
+  String get started => 'Started';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get totalDuration => 'Total Duration';
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareAchievement => 'Share Achievement';
 
   @override
   String get signInFailed => 'Sign in failed';
@@ -1190,9 +1258,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loadingKhatmaList => 'Loading khatma list';
 
   @override
-  String get completed => 'Completed';
-
-  @override
   String get completedParts => 'Completed parts';
 
   @override
@@ -1214,6 +1279,17 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String completeParts(Object count) {
     return 'Complete ($count parts)';
+  }
+
+  @override
+  String selectedParts(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'parts',
+      one: 'part',
+    );
+    return '$count $_temp0 selected';
   }
 
   @override
@@ -1488,7 +1564,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get faq => 'FAQ';
+  String get faq => 'Common Questions';
 
   @override
   String get frequentlyAskedQuestions => 'Frequently Asked Questions';
@@ -1690,4 +1766,124 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unexpectedError => 'An unexpected error occurred';
+
+  @override
+  String get contactUs => 'Contact Us';
+
+  @override
+  String get contactType => 'Contact Type';
+
+  @override
+  String get bugReport => 'Bug Report';
+
+  @override
+  String get bugReportDescription =>
+      'Report technical issues or problems with the app';
+
+  @override
+  String get suggestion => 'Suggestion';
+
+  @override
+  String get suggestionDescription =>
+      'Share ideas to improve the app experience';
+
+  @override
+  String get feedback => 'Feedback';
+
+  @override
+  String get feedbackDescription =>
+      'General feedback about your app experience';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get otherDescription => 'Any other inquiries or questions';
+
+  @override
+  String get yourName => 'Your Name';
+
+  @override
+  String get enterYourName => 'Enter your name';
+
+  @override
+  String get enterYourEmail => 'Enter your email address';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get writeYourMessage => 'Write your message';
+
+  @override
+  String get sendMessage => 'Send Message';
+
+  @override
+  String get contactViaEmail => 'Contact via Email';
+
+  @override
+  String get pleaseEnterYourName => 'Please enter your name';
+
+  @override
+  String get nameMustBeAtLeast2Characters =>
+      'Name must be at least 2 characters';
+
+  @override
+  String get pleaseEnterYourEmail => 'Please enter your email';
+
+  @override
+  String get pleaseEnterValidEmail => 'Please enter a valid email address';
+
+  @override
+  String get pleaseEnterYourMessage => 'Please enter your message';
+
+  @override
+  String get messageMustBeAtLeast10Characters =>
+      'Message must be at least 10 characters';
+
+  @override
+  String get pleaseFillAllFieldsValid =>
+      'Please fill in all fields with valid information.';
+
+  @override
+  String get messageSentSuccessfully => 'Message sent successfully!';
+
+  @override
+  String get failedToSendMessage => 'Failed to send message. Please try again.';
+
+  @override
+  String contactFormSubject(String contactType) {
+    return '[$contactType]: ';
+  }
+
+  @override
+  String get sentViaKhatmaApp => 'Sent via Khatma App';
+
+  @override
+  String get chooseContactMethod => 'Choose Contact Method';
+
+  @override
+  String get selectContactTypeDescription =>
+      'Select the type of inquiry to get better assistance';
+
+  @override
+  String get directEmailContact => 'Direct Email Contact';
+
+  @override
+  String get openEmailApp => 'Email support';
+
+  @override
+  String get unableToOpenEmail => 'Unable to open email app';
+
+  @override
+  String get emailNotAvailable => 'Email app not available on this device';
+
+  @override
+  String get refresh => 'Refresh';
+
+  @override
+  String get failedToLoadFaq => 'Failed to load FAQ';
+
+  @override
+  String get noFaqAvailable => 'No FAQ available';
 }

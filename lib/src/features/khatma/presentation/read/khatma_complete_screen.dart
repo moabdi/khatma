@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/presentation/read/khatma_read_screen.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
-import 'package:khatma_ui/components/buttons/primary_button.dart';
 import 'package:khatma/src/constants/lottie_asset.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -23,7 +21,6 @@ class KhatmaSuccessComplete extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: KhatmaAppBar(khatmaId: khatma.id!),
       body: Container(
         child: Stack(
           children: [
@@ -63,14 +60,14 @@ class KhatmaSuccessComplete extends ConsumerWidget {
               gapH20,
               dividerH1T1,
               Spacer(),
-              PrimaryButton(
-                color: Theme.of(context).primaryColor,
-                width: MediaQuery.of(context).size.width * .85,
-                shadowOffset: 5,
-                onPressed: () {
-                  context.goNamed(AppRoute.home.name);
-                },
-                text: context.loc.terminate,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.goNamed(AppRoute.home.name);
+                  },
+                  child: Text(context.loc.terminate),
+                ),
               ),
               gapH32,
             ],

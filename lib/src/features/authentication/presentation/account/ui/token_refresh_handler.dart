@@ -18,7 +18,7 @@ class TokenRefreshHandler {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.dataRefreshed),
-            backgroundColor: context.colorScheme.success,
+            backgroundColor: context.successColor,
             behavior: SnackBarBehavior.floating,
           ),
         );
