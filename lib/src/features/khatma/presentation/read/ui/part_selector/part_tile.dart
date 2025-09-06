@@ -41,33 +41,35 @@ class PartTile extends ConsumerWidget {
           "${context.loc.khatmaSplitUnitWithDef(unit.name)} ${context.loc.ordinalPartNumber(part.id.toString())}";
     }
 
-    return ListTile(
-      dense: true,
-      enabled: enabled,
-      splashColor: color.withAlpha(51),
-      selected: isSelected,
-      selectedColor: color,
-      selectedTileColor: color.withAlpha(26),
-      onTap: () => toggleSelection(ref),
-      leading: PartTileLeading(
+    return Card(
+      child: ListTile(
+        dense: true,
         enabled: enabled,
+        splashColor: color.withAlpha(51),
         selected: isSelected,
-        part: part,
-        color: color,
-      ),
-      title: Text(
-        partTitle,
-        style: context.textTheme.bodyMedium?.copyWith(
-          fontWeight: FontWeight.w600,
+        selectedColor: color,
+        selectedTileColor: color.withAlpha(26),
+        onTap: () => toggleSelection(ref),
+        leading: PartTileLeading(
+          enabled: enabled,
+          selected: isSelected,
+          part: part,
+          color: color,
         ),
+        title: Text(
+          partTitle,
+          style: context.textTheme.bodyMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: Text(
+          partSubtitle,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+        ),
+        // trailing: trailing,
       ),
-      subtitle: Text(
-        partSubtitle,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
-      ),
-      // trailing: trailing,
     );
   }
 

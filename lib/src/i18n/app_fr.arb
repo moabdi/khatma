@@ -227,7 +227,7 @@
   "daysAgo": "Il y a {count} jours",
   "errorOccurred": "Une erreur est survenue",
   "goToHome": "Aller à l’accueil",
-  "khatmaListSubtitle": "Suivez vos lectures et partagez-les",
+  "khatmaListSubtitle": "Khatmas en cours",
   "khatmaListTitle": "Liste des khatma",
   "khatmaSplitUnitWithDef": "Unité de répartition : {unit}",
   "monthName": "Mois : {month}",

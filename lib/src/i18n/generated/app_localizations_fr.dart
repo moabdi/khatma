@@ -640,7 +640,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get khatmaListTitle => 'Liste des khatma';
 
   @override
-  String get khatmaListSubtitle => 'Suivez vos lectures et partagez-les';
+  String get khatmaListSubtitle => 'Khatmas en cours';
 
   @override
   String get noKhatmaYet => 'Aucune khatma pour le moment';
