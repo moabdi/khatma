@@ -12,10 +12,25 @@ part 'khatma_sync_manager.g.dart';
 
 /// Configuration for sync manager
 class SyncConfig {
-  static const Duration autoSyncInterval = Duration(seconds: 1);
-  static const Duration startupSyncDelay = Duration(seconds: 1);
+  // More reasonable intervals to reduce costs and battery usage
+  static const Duration autoSyncInterval =
+      Duration(minutes: 15); // Increased from 1 minute
+  static const Duration startupSyncDelay = Duration(seconds: 2);
+  static const Duration backgroundSyncInterval =
+      Duration(hours: 1); // For background sync
+  static const Duration forcedPullInterval =
+      Duration(hours: 6); // Only pull from remote every 6 hours
+
   static const int maxRetryAttempts = 3;
   static const Duration retryDelay = Duration(seconds: 2);
+  static const Duration exponentialBackoffBase = Duration(seconds: 1);
+}
+
+enum SyncType {
+  pushOnly, // Only push local changes
+  pullOnly, // Only pull remote changes
+  fullSync, // Both push and pull
+  smartSync, // Intelligent sync based on conditions
 }
 
 @riverpod
@@ -23,56 +38,202 @@ class SyncManager extends _$SyncManager {
   late final LocalKhatmaRepository _localRepo;
   late final KhatmasRepository _remoteRepo;
   late final KhatmaHistoryRepository _remoteHistoryRepo;
+
   Timer? _autoSyncTimer;
+  Timer? _backgroundSyncTimer;
   bool _isSyncing = false;
+  DateTime? _lastPullFromRemote;
+  DateTime? _lastSuccessfulSync;
+  int _consecutiveFailures = 0;
+
+  // Track actual changes to avoid unnecessary UI refreshes
+  bool _hasDataChanged = false;
+  StreamController<bool>? _syncStatusController;
 
   @override
   bool build() {
     _localRepo = ref.read(localKhatmaRepositoryProvider);
     _remoteRepo = ref.read(khatmasRepositoryProvider);
     _remoteHistoryRepo = ref.read(khatmaHistoryRepositoryProvider);
+    _syncStatusController = StreamController<bool>.broadcast();
     return true;
   }
 
-  void setupSynchronization({Future<void> Function()? onSyncComplete}) {
-    _autoSyncTimer?.cancel(); // Cancel any existing timer
-    _autoSyncTimer = Timer.periodic(SyncConfig.autoSyncInterval, (timer) async {
-      performSync(onSyncComplete: onSyncComplete);
+  /// Stream to listen for sync status changes instead of callbacks
+  Stream<bool> get syncStatusStream =>
+      _syncStatusController?.stream ?? const Stream.empty();
+
+  void setupSynchronization({
+    bool enableBackgroundSync = true,
+    Duration? customInterval,
+  }) {
+    _autoSyncTimer?.cancel();
+    _backgroundSyncTimer?.cancel();
+
+    final interval = customInterval ?? SyncConfig.autoSyncInterval;
+
+    // Main sync timer - only pushes local changes most of the time
+    _autoSyncTimer = Timer.periodic(interval, (timer) async {
+      await performSmartSync();
     });
+
+    // Background sync timer - less frequent, full sync
+    if (enableBackgroundSync) {
+      _backgroundSyncTimer =
+          Timer.periodic(SyncConfig.backgroundSyncInterval, (timer) async {
+        await performSync(syncType: SyncType.fullSync, silent: true);
+      });
+    }
   }
 
-  void scheduleStartupSync({Future<void> Function()? onSyncComplete}) {
+  void scheduleStartupSync({bool forceFullSync = false}) {
     Future.delayed(SyncConfig.startupSyncDelay, () async {
       await performSync(
-        onSyncComplete: onSyncComplete,
-        pullDataFromRemote: true,
+        syncType: forceFullSync ? SyncType.fullSync : SyncType.smartSync,
       );
     });
   }
 
   void dispose() {
     _autoSyncTimer?.cancel();
+    _backgroundSyncTimer?.cancel();
+    _syncStatusController?.close();
   }
 
-  Future<void> performSync(
-      {Future<void> Function()? onSyncComplete,
-      bool pullDataFromRemote = false}) async {
-    if (_isSyncing) return; // Prevent concurrent syncs
+  /// Intelligent sync that adapts based on conditions
+  Future<void> performSmartSync() async {
+    if (_isSyncing || !_isUserAuthenticated()) return;
+
+    final needsPull = _shouldPullFromRemote();
+    final hasLocalChanges = await _hasLocalChangesToSync();
+
+    if (!needsPull && !hasLocalChanges) {
+      // No sync needed, don't refresh UI
+      return;
+    }
+
+    final syncType = needsPull
+        ? (hasLocalChanges ? SyncType.fullSync : SyncType.pullOnly)
+        : SyncType.pushOnly;
+
+    await performSync(syncType: syncType);
+  }
+
+  /// Main sync method with improved control
+  Future<void> performSync({
+    SyncType syncType = SyncType.smartSync,
+    bool silent = false, // Don't notify UI for background syncs
+    bool forceRefresh = false,
+  }) async {
+    if (_isSyncing) return;
     if (!_isUserAuthenticated()) return;
 
     _isSyncing = true;
+    _hasDataChanged = false;
+
+    if (!silent) {
+      _syncStatusController?.add(true); // Sync started
+    }
+
     try {
-      if (pullDataFromRemote) {
-        await _pullDataFromRemoteWithRetry();
+      switch (syncType) {
+        case SyncType.pushOnly:
+          await _performPushOnlySync();
+          break;
+        case SyncType.pullOnly:
+          await _pullDataFromRemoteWithRetry();
+          break;
+        case SyncType.fullSync:
+          await _performFullSync();
+          break;
+        case SyncType.smartSync:
+          await _performSmartSyncInternal();
+          break;
       }
-      await _localRepo.performSync(
-        onSyncKhatma: _pushKhatmaToRemote,
-        onSyncHistory: _pushHistoryToRemote,
-      );
-      onSyncComplete?.call();
+
+      _lastSuccessfulSync = DateTime.now();
+      _consecutiveFailures = 0;
+
+      // Only notify UI if data actually changed or force refresh is requested
+      if ((_hasDataChanged || forceRefresh) && !silent) {
+        _syncStatusController?.add(false); // Sync completed with changes
+      }
+    } catch (e) {
+      _consecutiveFailures++;
+      // Implement exponential backoff for failed syncs
+      _adjustSyncIntervalOnFailure();
+
+      if (!silent) {
+        _syncStatusController?.add(false); // Sync completed with error
+      }
+      rethrow;
     } finally {
       _isSyncing = false;
     }
+  }
+
+  Future<void> _performSmartSyncInternal() async {
+    final hasLocalChanges = await _hasLocalChangesToSync();
+    final needsPull = _shouldPullFromRemote();
+
+    if (hasLocalChanges) {
+      await _performPushOnlySync();
+    }
+
+    if (needsPull) {
+      await _pullDataFromRemoteWithRetry();
+    }
+  }
+
+  Future<void> _performPushOnlySync() async {
+    await _localRepo.performSync(
+      onSyncKhatma: _pushKhatmaToRemote,
+      onSyncHistory: _pushHistoryToRemote,
+    );
+  }
+
+  Future<void> _performFullSync() async {
+    await _pullDataFromRemoteWithRetry();
+    await _performPushOnlySync();
+  }
+
+  /// Check if we should pull from remote based on time and conditions
+  bool _shouldPullFromRemote() {
+    if (_lastPullFromRemote == null) return true;
+
+    final timeSinceLastPull = DateTime.now().difference(_lastPullFromRemote!);
+
+    // Pull more frequently if we had recent failures
+    final pullInterval = _consecutiveFailures > 0
+        ? SyncConfig.forcedPullInterval ~/ 2
+        : SyncConfig.forcedPullInterval;
+
+    return timeSinceLastPull > pullInterval;
+  }
+
+  /// Check if there are local changes that need syncing
+  Future<bool> _hasLocalChangesToSync() async {
+    final [khatmasToSync, historyToSync] = await Future.wait([
+      _localRepo.getKhatmasNeedingSync(),
+      _localRepo.getHistoryNeedingSync(),
+    ]);
+
+    return khatmasToSync.isNotEmpty || historyToSync.isNotEmpty;
+  }
+
+  /// Adjust sync interval based on consecutive failures (exponential backoff)
+  void _adjustSyncIntervalOnFailure() {
+    if (_consecutiveFailures <= 1) return;
+
+    _autoSyncTimer?.cancel();
+
+    // Exponential backoff: 15min, 30min, 1hr, 2hr, max 4hr
+    final backoffMultiplier = (1 << (_consecutiveFailures - 1)).clamp(1, 16);
+    final newInterval = SyncConfig.autoSyncInterval * backoffMultiplier;
+
+    _autoSyncTimer = Timer.periodic(newInterval, (timer) async {
+      await performSmartSync();
+    });
   }
 
   Future<void> _pushKhatmaToRemote(Khatma khatma) async {
@@ -81,13 +242,16 @@ class SyncManager extends _$SyncManager {
       if (khatma.status == KhatmaStatus.deleted) {
         await _remoteRepo.deleteById(userUid, khatma.id!);
         await _localRepo.deleteById(khatma.id!);
+        _hasDataChanged = true;
       } else {
         final updatedKhatma =
             khatma.copyWith(lastSync: DateTime.now(), needsSync: false);
         if (khatma.id == null) {
           await _remoteRepo.create(userUid, khatma);
+          _hasDataChanged = true;
         } else {
           await _remoteRepo.update(userUid, updatedKhatma);
+          _hasDataChanged = true;
         }
         await _localRepo.save(updatedKhatma);
       }
@@ -101,11 +265,13 @@ class SyncManager extends _$SyncManager {
       if (history.isDeleted) {
         await _remoteHistoryRepo.deleteById(userUid, history.id!);
         await _localRepo.deleteById(history.id!);
+        _hasDataChanged = true;
       } else {
         final updatedHistory =
             history.copyWith(lastSync: DateTime.now(), needsSync: false);
         await _remoteHistoryRepo.create(userUid, updatedHistory);
         await _localRepo.saveHistory(updatedHistory);
+        _hasDataChanged = true;
       }
     });
   }
@@ -119,7 +285,11 @@ class SyncManager extends _$SyncManager {
         if (attempt == SyncConfig.maxRetryAttempts - 1) {
           throw e; // Final attempt failed
         }
-        await Future.delayed(SyncConfig.retryDelay * (attempt + 1));
+
+        // Exponential backoff for retries
+        final backoffDelay =
+            SyncConfig.exponentialBackoffBase * (1 << attempt); // 1s, 2s, 4s...
+        await Future.delayed(backoffDelay);
       }
     }
   }
@@ -128,12 +298,17 @@ class SyncManager extends _$SyncManager {
     for (int attempt = 0; attempt < SyncConfig.maxRetryAttempts; attempt++) {
       try {
         final result = await pullDataFromRemote();
-        return result; // Success or null
+        if (result == null) {
+          _lastPullFromRemote = DateTime.now();
+        }
+        return result;
       } catch (e) {
         if (attempt == SyncConfig.maxRetryAttempts - 1) {
-          return AppErrorCode.syncGeneralFailure; // Final attempt failed
+          return AppErrorCode.syncGeneralFailure;
         }
-        await Future.delayed(SyncConfig.retryDelay * (attempt + 1));
+
+        final backoffDelay = SyncConfig.exponentialBackoffBase * (1 << attempt);
+        await Future.delayed(backoffDelay);
       }
     }
     return AppErrorCode.syncGeneralFailure;
@@ -145,8 +320,14 @@ class SyncManager extends _$SyncManager {
     try {
       final userUid = _getUserId();
       var lastSyncDate = DateTime.now();
-      await _refreshKhatmaFromRemote(userUid, lastSyncDate);
-      await _refreshHistoryFromRemote(userUid, lastSyncDate);
+
+      final hadChanges = await Future.wait([
+        _refreshKhatmaFromRemote(userUid, lastSyncDate),
+        _refreshHistoryFromRemote(userUid, lastSyncDate),
+      ]);
+
+      // Check if any refresh operation resulted in changes
+      _hasDataChanged = hadChanges.any((changed) => changed);
 
       return null; // No error
     } catch (e) {
@@ -154,10 +335,15 @@ class SyncManager extends _$SyncManager {
     }
   }
 
-  Future<void> _refreshKhatmaFromRemote(
+  Future<bool> _refreshKhatmaFromRemote(
       String userUid, DateTime lastSyncDate) async {
     // Fetch all data upfront
     final syncData = await _fetchSyncData(userUid);
+
+    // Early return if no changes detected
+    if (!_hasRemoteChanges(syncData)) {
+      return false;
+    }
 
     // Create lookup maps
     final maps = _createLookupMaps(syncData);
@@ -186,6 +372,17 @@ class SyncManager extends _$SyncManager {
 
     // Execute all operations concurrently
     await Future.wait(operations);
+    return true; // Changes were made
+  }
+
+  /// Check if there are actual remote changes worth syncing
+  bool _hasRemoteChanges(_SyncData data) {
+    // Simple heuristic: if remote count differs significantly from local count
+    final localCount = data.localKhatmas.length;
+    final remoteCount = data.remoteKhatmas.length;
+    final syncCount = data.khatmasToSync.length;
+
+    return (localCount != remoteCount) || syncCount > 0;
   }
 
   Future<_SyncData> _fetchSyncData(String userUid) async {
@@ -314,12 +511,26 @@ class SyncManager extends _$SyncManager {
     return partsById.values.toList();
   }
 
-  Future<void> _refreshHistoryFromRemote(
+  Future<bool> _refreshHistoryFromRemote(
       String userUid, DateTime lastSyncDate) async {
     final historyData = await _fetchHistoryData(userUid);
 
+    // Check if there are any changes to process
+    if (!_hasHistoryChanges(historyData)) {
+      return false;
+    }
+
     await _deleteOldHistory(historyData);
     await _saveNewHistory(historyData, lastSyncDate);
+    return true;
+  }
+
+  bool _hasHistoryChanges(_HistoryData data) {
+    final localCount = data.localHistory.length;
+    final remoteCount = data.remoteHistory.length;
+    final syncCount = data.syncedHistory.length;
+
+    return (localCount != remoteCount) || syncCount > 0;
   }
 
   Future<_HistoryData> _fetchHistoryData(String userUid) async {
@@ -384,6 +595,25 @@ class SyncManager extends _$SyncManager {
     var currentUser = ref.read(authRepositoryProvider).currentUser;
     return currentUser != null && !currentUser.isAnonymous;
   }
+
+  // Public methods for manual control
+  Future<void> forcePullFromRemote() async {
+    await performSync(syncType: SyncType.pullOnly, forceRefresh: true);
+  }
+
+  Future<void> forcePushToRemote() async {
+    await performSync(syncType: SyncType.pushOnly);
+  }
+
+  Future<void> forceFullSync() async {
+    await performSync(syncType: SyncType.fullSync, forceRefresh: true);
+  }
+
+  // Getters for monitoring
+  bool get isSyncing => _isSyncing;
+  DateTime? get lastSuccessfulSync => _lastSuccessfulSync;
+  DateTime? get lastPullFromRemote => _lastPullFromRemote;
+  int get consecutiveFailures => _consecutiveFailures;
 }
 
 // Helper classes for organizing sync data

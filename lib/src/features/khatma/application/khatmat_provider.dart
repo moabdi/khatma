@@ -20,9 +20,14 @@ class KhatmaNotifier extends _$KhatmaNotifier {
   @override
   KhatmaState build() {
     _localRepo = ref.read(localKhatmaRepositoryProvider);
-    final syncManager = ref.read(syncManagerProvider.notifier);
-    syncManager.scheduleStartupSync(onSyncComplete: refreshFromLocal);
-    syncManager.setupSynchronization(onSyncComplete: refreshFromLocal);
+    ref
+        .watch(syncManagerProvider.notifier)
+        .syncStatusStream
+        .listen((isSyncing) {
+      if (!isSyncing) {
+        refreshFromLocal();
+      }
+    });
     refreshFromLocal();
     return const KhatmaState();
   }
@@ -39,7 +44,7 @@ class KhatmaNotifier extends _$KhatmaNotifier {
 
     try {
       final syncManager = ref.read(syncManagerProvider.notifier);
-      await syncManager.performSync(onSyncComplete: refreshFromLocal);
+      await syncManager.performSync();
     } catch (e) {
       state = state.copyWith(
         status: AppStatus.error,

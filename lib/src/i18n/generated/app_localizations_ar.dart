@@ -81,7 +81,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get or => 'أو';
 
   @override
-  String get confirmReading => 'Mark as Read';
+  String get confirmReading => 'تمييز كمقروء';
 
   @override
   String get processing => 'جاري المعالجة …';

@@ -1,8 +1,8 @@
 sdk.dir=/Users/moabdi/Library/Android/sdk
 flutter.sdk=/Users/moabdi/development/flutter
-flutter.buildMode=debug
+flutter.buildMode=release
 flutter.versionName=1.0.0
-flutter.versionCode=7
+flutter.versionCode=8
 flutter.minSdkVersion=23
 flutter.targetSdkVersion=34
 flutter.compileSdkVersion=34

@@ -81,7 +81,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get or => 'Ou';
 
   @override
-  String get confirmReading => 'Mark as Read';
+  String get confirmReading => 'Marquer comme lu';
 
   @override
   String get processing => 'Process en cours...';

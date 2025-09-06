@@ -167,32 +167,4 @@ class ProfileMenuPage extends ConsumerWidget {
       ],
     );
   }
-
-  Widget _buildFooters(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Khatma',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        const SizedBox(height: 4),
-        FutureBuilder<PackageInfo>(
-          future: PackageInfo.fromPlatform(),
-          builder: (context, snapshot) {
-            final version = snapshot.data?.version ?? '1.0.0';
-            final buildNumber = snapshot.data?.buildNumber ?? '1';
-
-            return Text(
-              'v$version ($buildNumber)',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-            );
-          },
-        ),
-      ],
-    );
-  }
 }
