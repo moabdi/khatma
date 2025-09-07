@@ -563,5 +563,36 @@
   "emailNotAvailable": "Application email non disponible sur cet appareil",
   "refresh": "Actualiser",
   "failedToLoadFaq": "Échec du chargement de la FAQ",
-  "noFaqAvailable": "Aucune FAQ disponible"
+  "noFaqAvailable": "Aucune FAQ disponible", 
+  "dataSynchronization": "Synchronisation des Données",
+  "chooseSyncMethod": "Choisissez comment synchroniser vos données",
+  "syncStatus": "État de Synchronisation",
+  "syncing": "Synchronisation en cours...",
+  "lastSyncTime": "Dernière sync: {time}",
+  "neverSynced": "Jamais synchronisé",
+  "justNow": "À l'instant",
+  "minutesAgo": "Il y a {count} minutes",
+  "hoursAgo": "Il y a {count} heures",
+  "daysAgo": "Il y a {count} jours",
+  
+  "fullSync": "Synchronisation Complète",
+  "pullFromServer": "Télécharger du Serveur",
+  "pushToServer": "Envoyer au Serveur",
+  "downloadRemoteChanges": "Télécharger les derniers changements du serveur",
+  "uploadLocalChanges": "Envoyer vos modifications locales au serveur",
+  
+  "performingFullSync": "Synchronisation complète en cours...",
+  "downloadingChanges": "Téléchargement des changements du serveur...",
+  "uploadingChanges": "Envoi des changements au serveur...",
+  "syncCompleted": "Synchronisation terminée avec succès",
+  "syncFailed": "Échec de la synchronisation: {error}",
+  
+  "cancel": "Annuler",
+  "retry": "Réessayer",
+  "syncNow": "Synchroniser Maintenant",  
+  "syncError": "Erreur de Sync",
+  "syncWarning": "Avertissement Sync",
+  "syncUpToDate": "À jour",
+  "syncFailureCount": "{count} tentatives échouées",
+  "performBothUploadAndDownload": "Effectuer la synchronisation de téléchargement et d'envoi"
   }

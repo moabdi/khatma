@@ -565,5 +565,78 @@
   "emailNotAvailable": "Email app not available on this device",
   "refresh": "Refresh",
   "failedToLoadFaq": "Failed to load FAQ",
-  "noFaqAvailable": "No FAQ available"
+  "noFaqAvailable": "No FAQ available",
+  "dataSynchronization": "Data Synchronization",
+  "chooseSyncMethod": "Choose how you want to synchronize your data",
+  "syncStatus": "Sync Status",
+  "syncing": "Synchronizing...",
+  "lastSyncTime": "Last sync: {time}",
+  "@lastSyncTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neverSynced": "Never synchronized",
+  "justNow": "Just now",
+  "minutesAgo": "{count} minutes ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{count} hours ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgo": "{count} days ago",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "fullSync": "Full Synchronization",
+  "pullFromServer": "Download from Server",
+  "pushToServer": "Upload to Server",
+  "downloadRemoteChanges": "Download the latest changes from the server",
+  "uploadLocalChanges": "Upload your local changes to the server",
+  
+  "performingFullSync": "Performing full synchronization...",
+  "downloadingChanges": "Downloading changes from server...",
+  "uploadingChanges": "Uploading changes to server...",
+  "syncCompleted": "Synchronization completed successfully",
+  "syncFailed": "Sync failed: {error}",
+  "@syncFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "cancel": "Cancel",
+  "retry": "Retry",
+  "syncNow": "Sync Now",
+  "syncError": "Sync Error",
+  "syncWarning": "Sync Warning",
+  "syncUpToDate": "Up to date",
+  "syncFailureCount": "{count} failed attempts",
+  "@syncFailureCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+    "performBothUploadAndDownload": "Perform both upload and download synchronization"
 }

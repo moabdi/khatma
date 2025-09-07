@@ -81,11 +81,11 @@ class LoggingService {
       );
 
       if (kDebugMode) {
-        print('📊 Logged auth error: $method - $errorCode');
+        debugPrint('📊 Logged auth error: $method - $errorCode');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('⚠️ Failed to log auth error: $e');
+        debugPrint('⚠️ Failed to log auth error: $e');
       }
     }
   }
@@ -116,11 +116,11 @@ class LoggingService {
       await _crashlytics.log('Auth success: $method for user $userId');
 
       if (kDebugMode) {
-        print('✅ Logged auth success: $method');
+        debugPrint('✅ Logged auth success: $method');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('⚠️ Failed to log auth success: $e');
+        debugPrint('⚠️ Failed to log auth success: $e');
       }
     }
   }
@@ -138,11 +138,11 @@ class LoggingService {
           .log('Auth step: $method - $step (attempt: $attemptNumber)');
 
       if (kDebugMode) {
-        print('📝 Auth step: $method - $step');
+        debugPrint('📝 Auth step: $method - $step');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('⚠️ Failed to log auth step: $e');
+        debugPrint('⚠️ Failed to log auth step: $e');
       }
     }
   }
@@ -179,11 +179,11 @@ class LoggingService {
       );
 
       if (kDebugMode) {
-        print('🚨 Logged error [$category]: $error');
+        debugPrint('🚨 Logged error [$category]: $error');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('⚠️ Failed to log error: $e');
+        debugPrint('⚠️ Failed to log error: $e');
       }
     }
   }

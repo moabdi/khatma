@@ -271,8 +271,8 @@ abstract class AppLocalizations {
   /// No description provided for @daysAgo.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =0{Today} =1{Yesterday} other{{count} days ago}}'**
-  String daysAgo(num count);
+  /// **'{count} days ago'**
+  String daysAgo(int count);
 
   /// No description provided for @monthsAgo.
   ///
@@ -3153,6 +3153,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No FAQ available'**
   String get noFaqAvailable;
+
+  /// No description provided for @dataSynchronization.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Synchronization'**
+  String get dataSynchronization;
+
+  /// No description provided for @chooseSyncMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how you want to synchronize your data'**
+  String get chooseSyncMethod;
+
+  /// No description provided for @syncStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync Status'**
+  String get syncStatus;
+
+  /// No description provided for @syncing.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronizing...'**
+  String get syncing;
+
+  /// No description provided for @lastSyncTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Last sync: {time}'**
+  String lastSyncTime(String time);
+
+  /// No description provided for @neverSynced.
+  ///
+  /// In en, this message translates to:
+  /// **'Never synchronized'**
+  String get neverSynced;
+
+  /// No description provided for @justNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get justNow;
+
+  /// No description provided for @minutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} minutes ago'**
+  String minutesAgo(int count);
+
+  /// No description provided for @hoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hours ago'**
+  String hoursAgo(int count);
+
+  /// No description provided for @fullSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Synchronization'**
+  String get fullSync;
+
+  /// No description provided for @pullFromServer.
+  ///
+  /// In en, this message translates to:
+  /// **'Download from Server'**
+  String get pullFromServer;
+
+  /// No description provided for @pushToServer.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload to Server'**
+  String get pushToServer;
+
+  /// No description provided for @downloadRemoteChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Download the latest changes from the server'**
+  String get downloadRemoteChanges;
+
+  /// No description provided for @uploadLocalChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload your local changes to the server'**
+  String get uploadLocalChanges;
+
+  /// No description provided for @performingFullSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Performing full synchronization...'**
+  String get performingFullSync;
+
+  /// No description provided for @downloadingChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading changes from server...'**
+  String get downloadingChanges;
+
+  /// No description provided for @uploadingChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading changes to server...'**
+  String get uploadingChanges;
+
+  /// No description provided for @syncCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronization completed successfully'**
+  String get syncCompleted;
+
+  /// No description provided for @syncFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync failed: {error}'**
+  String syncFailed(String error);
+
+  /// No description provided for @syncNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync Now'**
+  String get syncNow;
+
+  /// No description provided for @syncWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync Warning'**
+  String get syncWarning;
+
+  /// No description provided for @syncUpToDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to date'**
+  String get syncUpToDate;
+
+  /// No description provided for @syncFailureCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} failed attempts'**
+  String syncFailureCount(int count);
+
+  /// No description provided for @performBothUploadAndDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Perform both upload and download synchronization'**
+  String get performBothUploadAndDownload;
 }
 
 class _AppLocalizationsDelegate

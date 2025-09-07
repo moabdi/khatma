@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/i18n/local_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -30,7 +31,9 @@ class FaqCache extends _$FaqCache {
         _cache[locale] = faqs;
       } catch (e) {
         // Silently ignore preload errors
-        print('Failed to preload FAQ for $locale: $e');
+        if (kDebugMode) {
+          debugPrint('Failed to preload FAQ for $locale: $e');
+        }
       }
     }
 

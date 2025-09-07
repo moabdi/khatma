@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatma_history_repository.dart';
@@ -340,7 +339,6 @@ class SyncManager extends _$SyncManager {
       String userUid, DateTime lastSyncDate) async {
     // Fetch all data upfront
     final syncData = await _fetchSyncData(userUid);
-    print(syncData.remoteKhatmas);
 
     // Early return if no changes detected
     if (!_hasRemoteChanges(syncData)) {

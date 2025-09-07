@@ -36,7 +36,6 @@ class KhatmaNotifier extends _$KhatmaNotifier {
         .read(syncManagerProvider.notifier)
         .syncStatusStream
         .listen((isSyncing) {
-      print("Synchronising ... $isSyncing");
       if (isSyncing) {
         refreshFromLocal();
       }
@@ -55,7 +54,8 @@ class KhatmaNotifier extends _$KhatmaNotifier {
 
     try {
       final syncManager = ref.read(syncManagerProvider.notifier);
-      await syncManager.performSync();
+      await syncManager.forceFullSync();
+      await refreshFromLocal();
     } catch (e) {
       state = state.copyWith(
         status: AppStatus.error,

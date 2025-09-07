@@ -1,3 +1,6 @@
+// lib/src/features/profil/profile_menu_page.dart
+// Updated to include sync functionality
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +9,10 @@ import 'package:khatma/src/features/authentication/presentation/account/ui/secur
 import 'package:khatma/src/features/authentication/presentation/account/ui/settings_tile.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/profile_header.dart';
 import 'package:khatma/src/features/info/presentation/widgets/contact_method_bottom_sheet.dart';
+import 'package:khatma/src/features/khatma/presentation/sync/data_sync_list_tile_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/sync/data_sync_screen.dart';
+import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
+import 'package:khatma/src/features/khatma/presentation/sync/data_sync_screen_enhanced.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -81,6 +88,8 @@ class ProfileMenuPage extends ConsumerWidget {
                   title: context.loc.settings,
                   onTap: () => context.goNamed(AppRoute.settings.name),
                 ),
+                // Updated sync tile with modern UI
+                _buildSyncTile(context, ref, user),
               ],
             ),
           ),
@@ -104,13 +113,13 @@ class ProfileMenuPage extends ConsumerWidget {
                 ),
                 gapH2,
                 SettingsTile(
-                  icon: Icons.help,
+                  icon: Icons.help_center,
                   title: context.loc.aboutUs,
                   onTap: () => context.pushNamed(AppRoute.aboutUs.name),
                 ),
                 gapH2,
                 SettingsTile(
-                  icon: Icons.feedback,
+                  icon: Icons.support_agent,
                   title: context.loc.contactSupport,
                   onTap: () => ContactMethodBottomSheet.show(context),
                 ),
@@ -122,6 +131,64 @@ class ProfileMenuPage extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildSyncTile(BuildContext context, WidgetRef ref, user) {
+    // Only show sync option for authenticated users
+    if (user == null || user.isAnonymous) {
+      return const SizedBox.shrink();
+    }
+
+    final syncManager = ref.watch(syncManagerProvider.notifier);
+    final isCurrentlySyncing = syncManager.isSyncing;
+    final lastSync = syncManager.lastSuccessfulSync;
+    final hasFailures = syncManager.consecutiveFailures > 0;
+
+    // Determine sync status and colors
+    IconData syncIcon;
+    Color? iconColor;
+    String subtitle;
+
+    print("lastSync: $lastSync");
+
+    if (isCurrentlySyncing) {
+      syncIcon = Icons.sync;
+      iconColor = context.theme.colorScheme.primary;
+      subtitle = context.loc.syncing;
+    } else if (hasFailures) {
+      syncIcon = Icons.sync_problem;
+      iconColor = context.theme.colorScheme.error;
+      subtitle = context.loc.syncError;
+    } else if (lastSync != null) {
+      syncIcon = Icons.cloud_done;
+      iconColor = Colors.green;
+      subtitle = context.loc.lastSyncTime(_formatSyncTime(context, lastSync));
+    } else {
+      syncIcon = Icons.cloud_off;
+      iconColor = context.theme.colorScheme.onSurfaceVariant;
+      subtitle = context.loc.neverSynced;
+    }
+
+    return SettingsTile(
+      icon: syncIcon,
+      title: context.loc.dataSynchronization,
+      onTap: () => DataSyncListTileScreen.show(context),
+    );
+  }
+
+  String _formatSyncTime(BuildContext context, DateTime dateTime) {
+    final now = DateTime.now();
+    final difference = now.difference(dateTime);
+
+    if (difference.inMinutes < 1) {
+      return context.loc.justNow;
+    } else if (difference.inHours < 1) {
+      return context.loc.minutesAgo(difference.inMinutes);
+    } else if (difference.inDays < 1) {
+      return context.loc.hoursAgo(difference.inHours);
+    } else {
+      return context.loc.daysAgo(difference.inDays);
+    }
   }
 
   Widget _buildFooter(BuildContext context) {

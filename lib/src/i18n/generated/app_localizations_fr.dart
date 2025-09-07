@@ -93,7 +93,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get yesterday => 'Hier';
 
   @override
-  String daysAgo(num count) {
+  String daysAgo(int count) {
     return 'Il y a $count jours';
   }
 
@@ -1641,7 +1641,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get authenticationError => 'Erreur d\'authentification';
 
   @override
-  String get syncError => 'Erreur de synchronisation';
+  String get syncError => 'Erreur de Sync';
 
   @override
   String get storageError => 'Erreur de stockage';
@@ -1875,4 +1875,90 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noFaqAvailable => 'Aucune FAQ disponible';
+
+  @override
+  String get dataSynchronization => 'Synchronisation des Données';
+
+  @override
+  String get chooseSyncMethod => 'Choisissez comment synchroniser vos données';
+
+  @override
+  String get syncStatus => 'État de Synchronisation';
+
+  @override
+  String get syncing => 'Synchronisation en cours...';
+
+  @override
+  String lastSyncTime(String time) {
+    return 'Dernière sync: $time';
+  }
+
+  @override
+  String get neverSynced => 'Jamais synchronisé';
+
+  @override
+  String get justNow => 'À l\'instant';
+
+  @override
+  String minutesAgo(int count) {
+    return 'Il y a $count minutes';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return 'Il y a $count heures';
+  }
+
+  @override
+  String get fullSync => 'Synchronisation Complète';
+
+  @override
+  String get pullFromServer => 'Télécharger du Serveur';
+
+  @override
+  String get pushToServer => 'Envoyer au Serveur';
+
+  @override
+  String get downloadRemoteChanges =>
+      'Télécharger les derniers changements du serveur';
+
+  @override
+  String get uploadLocalChanges =>
+      'Envoyer vos modifications locales au serveur';
+
+  @override
+  String get performingFullSync => 'Synchronisation complète en cours...';
+
+  @override
+  String get downloadingChanges =>
+      'Téléchargement des changements du serveur...';
+
+  @override
+  String get uploadingChanges => 'Envoi des changements au serveur...';
+
+  @override
+  String get syncCompleted => 'Synchronisation terminée avec succès';
+
+  @override
+  String syncFailed(String error) {
+    return 'Échec de la synchronisation: $error';
+  }
+
+  @override
+  String get syncNow => 'Synchroniser Maintenant';
+
+  @override
+  String get syncWarning => 'Avertissement Sync';
+
+  @override
+  String get syncUpToDate => 'À jour';
+
+  @override
+  String syncFailureCount(int count) {
+    return '$count tentatives échouées';
+  }
+
+  @override
+  String get performBothUploadAndDownload =>
+      'Effectuer la synchronisation de téléchargement et d\'envoi';
 }
