@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
-import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/khatma_ui.dart';
 

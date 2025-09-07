@@ -33,7 +33,7 @@ enum SyncType {
   smartSync, // Intelligent sync based on conditions
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class SyncManager extends _$SyncManager {
   late final LocalKhatmaRepository _localRepo;
   late final KhatmasRepository _remoteRepo;

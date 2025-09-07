@@ -10,9 +10,7 @@ import 'package:khatma/src/features/authentication/presentation/account/ui/setti
 import 'package:khatma/src/features/authentication/presentation/widgets/profile_header.dart';
 import 'package:khatma/src/features/info/presentation/widgets/contact_method_bottom_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/sync/data_sync_list_tile_screen.dart';
-import 'package:khatma/src/features/khatma/presentation/sync/data_sync_screen.dart';
 import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
-import 'package:khatma/src/features/khatma/presentation/sync/data_sync_screen_enhanced.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -170,6 +168,7 @@ class ProfileMenuPage extends ConsumerWidget {
     }
 
     return SettingsTile(
+      leadingColor: iconColor,
       icon: syncIcon,
       title: context.loc.dataSynchronization,
       onTap: () => DataSyncListTileScreen.show(context),
