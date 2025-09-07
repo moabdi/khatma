@@ -1961,6 +1961,42 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String khatmasCount(int count) {
+    return '$count khatmas';
+  }
+
+  @override
+  String historyCount(int count) {
+    return '$count history items';
+  }
+
+  @override
   String get performBothUploadAndDownload =>
       'Perform both upload and download synchronization';
+
+  @override
+  String get synchronizeYourData =>
+      'Synchronize your Khatma data with the server';
+
+  @override
+  String get syncCompletedSuccessfully =>
+      'Synchronization completed successfully';
+
+  @override
+  String get synchronizeData => 'Synchronize Data';
+
+  @override
+  String get synchronizeUploadAndDownload =>
+      'Upload local changes and download updates';
+
+  @override
+  String get checkForUpdatesAndSync =>
+      'Check for server updates and synchronize';
+
+  @override
+  String get toUpload => 'to upload';
+
+  @override
+  String get allDataSynchronized =>
+      'All your data has been synchronized successfully';
 }

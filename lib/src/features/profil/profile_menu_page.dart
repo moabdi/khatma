@@ -10,7 +10,8 @@ import 'package:khatma/src/features/authentication/presentation/account/ui/setti
 import 'package:khatma/src/features/authentication/presentation/widgets/profile_header.dart';
 import 'package:khatma/src/features/info/presentation/widgets/contact_method_bottom_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/sync/data_sync_list_tile_screen.dart';
-import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
+import 'package:khatma/src/features/khatma/presentation/sync/data_sync_screen.dart';
+import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart'; // New import
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -147,8 +148,6 @@ class ProfileMenuPage extends ConsumerWidget {
     Color? iconColor;
     String subtitle;
 
-    print("lastSync: $lastSync");
-
     if (isCurrentlySyncing) {
       syncIcon = Icons.sync;
       iconColor = context.theme.colorScheme.primary;
@@ -167,11 +166,43 @@ class ProfileMenuPage extends ConsumerWidget {
       subtitle = context.loc.neverSynced;
     }
 
-    return SettingsTile(
-      leadingColor: iconColor,
-      icon: syncIcon,
-      title: context.loc.dataSynchronization,
-      onTap: () => DataSyncListTileScreen.show(context),
+    return Column(
+      children: [
+        gapH2,
+        ListTile(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          leading: isCurrentlySyncing
+              ? SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: iconColor,
+                  ),
+                )
+              : Icon(syncIcon, color: iconColor),
+          title: Text(
+            context.loc.dataSynchronization,
+            style: TextStyle(
+              color: hasFailures
+                  ? context.theme.colorScheme.error
+                  : context.theme.colorScheme.onSurface,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          subtitle: Text(
+            subtitle,
+            style: TextStyle(
+              color: hasFailures
+                  ? context.theme.colorScheme.error.withOpacity(0.7)
+                  : context.theme.colorScheme.onSurfaceVariant,
+              fontSize: 12,
+            ),
+          ),
+          onTap: () => SimplifiedSyncScreen.show(context),
+        ),
+      ],
     );
   }
 
@@ -193,9 +224,10 @@ class ProfileMenuPage extends ConsumerWidget {
   Widget _buildFooter(BuildContext context) {
     return Column(
       children: [
+        gapH8,
         Text(
           'Khatma AMM',
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).disabledColor,
               ),

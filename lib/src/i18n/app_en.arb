@@ -638,5 +638,29 @@
       }
     }
   },
-    "performBothUploadAndDownload": "Perform both upload and download synchronization"
+   "khatmasCount": "{count} khatmas",
+  "@khatmasCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCount": "{count} history items",
+  "@historyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "performBothUploadAndDownload": "Perform both upload and download synchronization",
+  "synchronizeYourData": "Synchronize your Khatma data with the server",
+  "syncCompletedSuccessfully": "Synchronization completed successfully",
+  "synchronizeData": "Synchronize Data",
+  "synchronizeUploadAndDownload": "Upload local changes and download updates",
+  "checkForUpdatesAndSync": "Check for server updates and synchronize",
+  "toUpload": "to upload",
+  "allDataSynchronized": "All your data has been synchronized successfully",
+  "close": "Close"
 }

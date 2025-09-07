@@ -3292,11 +3292,65 @@ abstract class AppLocalizations {
   /// **'{count} failed attempts'**
   String syncFailureCount(int count);
 
+  /// No description provided for @khatmasCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} khatmas'**
+  String khatmasCount(int count);
+
+  /// No description provided for @historyCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} history items'**
+  String historyCount(int count);
+
   /// No description provided for @performBothUploadAndDownload.
   ///
   /// In en, this message translates to:
   /// **'Perform both upload and download synchronization'**
   String get performBothUploadAndDownload;
+
+  /// No description provided for @synchronizeYourData.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronize your Khatma data with the server'**
+  String get synchronizeYourData;
+
+  /// No description provided for @syncCompletedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronization completed successfully'**
+  String get syncCompletedSuccessfully;
+
+  /// No description provided for @synchronizeData.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronize Data'**
+  String get synchronizeData;
+
+  /// No description provided for @synchronizeUploadAndDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload local changes and download updates'**
+  String get synchronizeUploadAndDownload;
+
+  /// No description provided for @checkForUpdatesAndSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Check for server updates and synchronize'**
+  String get checkForUpdatesAndSync;
+
+  /// No description provided for @toUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'to upload'**
+  String get toUpload;
+
+  /// No description provided for @allDataSynchronized.
+  ///
+  /// In en, this message translates to:
+  /// **'All your data has been synchronized successfully'**
+  String get allDataSynchronized;
 }
 
 class _AppLocalizationsDelegate

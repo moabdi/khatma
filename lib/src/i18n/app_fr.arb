@@ -594,5 +594,15 @@
   "syncWarning": "Avertissement Sync",
   "syncUpToDate": "À jour",
   "syncFailureCount": "{count} tentatives échouées",
-  "performBothUploadAndDownload": "Effectuer la synchronisation de téléchargement et d'envoi"
+  "performBothUploadAndDownload": "Effectuer la synchronisation de téléchargement et d'envoi",
+  "synchronizeYourData": "Synchroniser vos données Khatma avec le serveur",
+  "syncCompletedSuccessfully": "Synchronisation terminée avec succès",
+  "synchronizeData": "Synchroniser les Données",
+  "synchronizeUploadAndDownload": "Envoyer les modifications locales et télécharger les mises à jour",
+  "checkForUpdatesAndSync": "Vérifier les mises à jour du serveur et synchroniser",
+  "toUpload": "à envoyer",
+  "allDataSynchronized": "Toutes vos données ont été synchronisées avec succès",
+  "close": "Fermer",
+    "khatmasCount": "{count} khatmas",
+  "historyCount": "{count} éléments d'historique"
   }

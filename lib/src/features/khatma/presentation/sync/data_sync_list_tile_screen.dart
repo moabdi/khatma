@@ -1,13 +1,14 @@
-// lib/src/features/sync/presentation/data_sync_list_tile_screen.dart
+// lib/src/features/sync/presentation/simplified_sync_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/khatma_ui.dart';
 
-/// Data Synchronization Screen with ListTile design
-class DataSyncListTileScreen {
+/// Simplified Data Synchronization Screen with single sync option
+class SimplifiedSyncScreen {
   static void show(BuildContext context) {
     showModalBottomSheet<void>(
       context: context,
@@ -19,29 +20,68 @@ class DataSyncListTileScreen {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (_) => const _DataSyncListTileContent(),
+      builder: (_) => const _SimplifiedSyncContent(),
     );
   }
 }
 
-class _DataSyncListTileContent extends ConsumerStatefulWidget {
-  const _DataSyncListTileContent();
+class _SimplifiedSyncContent extends ConsumerStatefulWidget {
+  const _SimplifiedSyncContent();
 
   @override
-  ConsumerState<_DataSyncListTileContent> createState() =>
-      _DataSyncListTileContentState();
+  ConsumerState<_SimplifiedSyncContent> createState() =>
+      _SimplifiedSyncContentState();
 }
 
-class _DataSyncListTileContentState
-    extends ConsumerState<_DataSyncListTileContent> {
-  SyncType? _currentSyncOperation;
-  String? _lastError;
+enum SyncState {
+  idle,
+  syncing,
+  success,
+  error,
+}
+
+class _SimplifiedSyncContentState
+    extends ConsumerState<_SimplifiedSyncContent> {
+  SyncState _syncState = SyncState.idle;
+  String? _errorMessage;
+  int _khatmasToSync = 0;
+  int _historyToSync = 0;
+  bool _isLoadingCounts = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSyncCounts();
+  }
+
+  Future<void> _loadSyncCounts() async {
+    try {
+      final localRepo = ref.read(localKhatmaRepositoryProvider);
+      final [khatmasToSync, historyToSync] = await Future.wait([
+        localRepo.getKhatmasNeedingSync(),
+        localRepo.getHistoryNeedingSync(),
+      ]);
+
+      if (mounted) {
+        setState(() {
+          _khatmasToSync = khatmasToSync.length;
+          _historyToSync = historyToSync.length;
+          _isLoadingCounts = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoadingCounts = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final syncManager = ref.watch(syncManagerProvider.notifier);
     final theme = Theme.of(context);
-    final isAnySyncing = _currentSyncOperation != null || syncManager.isSyncing;
 
     return Padding(
       padding: EdgeInsets.only(
@@ -60,15 +100,12 @@ class _DataSyncListTileContentState
             _buildHeader(context, theme, syncManager),
             gapH24,
 
-            // Sync Options as ListTiles
-            _buildSyncListTiles(context, theme, isAnySyncing),
+            // Single Sync ListTile
+            _buildSyncListTile(context, theme),
             gapH24,
 
-            // Error message if any
-            if (_lastError != null) _buildErrorMessage(theme),
-
-            // Cancel button
-            _buildCancelButton(context, theme),
+            // Cancel/Close button
+            _buildActionButton(context, theme),
           ],
         ),
       ),
@@ -92,7 +129,7 @@ class _DataSyncListTileContentState
         ),
         gapH8,
         Text(
-          context.loc.chooseSyncMethod,
+          context.loc.synchronizeYourData,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurface.withOpacity(0.7),
           ),
@@ -147,93 +184,269 @@ class _DataSyncListTileContentState
     );
   }
 
-  Widget _buildSyncListTiles(
-      BuildContext context, ThemeData theme, bool isAnySyncing) {
+  Widget _buildSyncListTile(BuildContext context, ThemeData theme) {
+    final totalItemsToSync = _khatmasToSync + _historyToSync;
+    final isDisabled = _syncState == SyncState.syncing;
+
     return Card(
-      elevation: 1,
+      elevation: _syncState == SyncState.success ? 2 : 1,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
+        side: _syncState == SyncState.success
+            ? BorderSide(color: Colors.green.withOpacity(0.3), width: 1)
+            : BorderSide.none,
       ),
-      child: Column(
-        children: [
-          // Pull from Server (Blue)
-          _SyncListTile(
-            icon: Icons.cloud_download,
-            iconColor: Colors.blue,
-            title: context.loc.pullFromServer,
-            subtitle: context.loc.downloadRemoteChanges,
-            syncType: SyncType.pullOnly,
-            isLoading: _currentSyncOperation == SyncType.pullOnly,
-            isDisabled: isAnySyncing,
-            onTap: () => _performSync(SyncType.pullOnly),
+      color: _syncState == SyncState.success
+          ? Colors.green.withOpacity(0.05)
+          : null,
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        leading: _buildLeadingIcon(theme, totalItemsToSync, isDisabled),
+        title: Text(
+          _getSyncTitle(context),
+          style: theme.textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w600,
+            color: _getTitleColor(theme, isDisabled),
           ),
-
-          Divider(height: 1, indent: 16, endIndent: 16),
-
-          // Push to Server (Orange)
-          _SyncListTile(
-            icon: Icons.cloud_upload,
-            iconColor: Colors.orange,
-            title: context.loc.pushToServer,
-            subtitle: context.loc.uploadLocalChanges,
-            syncType: SyncType.pushOnly,
-            isLoading: _currentSyncOperation == SyncType.pushOnly,
-            isDisabled: isAnySyncing,
-            onTap: () => _performSync(SyncType.pushOnly),
-          ),
-
-          Divider(height: 1, indent: 16, endIndent: 16),
-
-          // Full Sync (Green)
-          _SyncListTile(
-            icon: Icons.sync,
-            iconColor: Colors.green,
-            title: context.loc.fullSync,
-            subtitle: context.loc.performBothUploadAndDownload,
-            syncType: SyncType.fullSync,
-            isLoading: _currentSyncOperation == SyncType.fullSync,
-            isDisabled: isAnySyncing,
-            onTap: () => _performSync(SyncType.fullSync),
-          ),
-        ],
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: _buildSubtitle(context, theme, totalItemsToSync),
+        ),
+        trailing: _buildTrailingIcon(theme),
+        onTap:
+            isDisabled || _syncState == SyncState.success ? null : _performSync,
+        enabled: !isDisabled && _syncState != SyncState.success,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     );
   }
 
-  Widget _buildErrorMessage(ThemeData theme) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.errorContainer.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: theme.colorScheme.error.withOpacity(0.3),
-        ),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Icons.error_outline,
-            color: theme.colorScheme.error,
+  Widget _buildLeadingIcon(
+      ThemeData theme, int totalItemsToSync, bool isDisabled) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        CircleAvatar(
+          backgroundColor: _getLeadingBackgroundColor(theme, isDisabled),
+          child: Icon(
+            _getLeadingIconData(),
+            color: _getLeadingIconColor(theme, isDisabled),
             size: 20,
           ),
-          gapW12,
-          Expanded(
-            child: Text(
-              _lastError!,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.error,
+        ),
+        // Badge for count
+        if (_shouldShowBadge(totalItemsToSync))
+          Positioned(
+            right: -6,
+            top: -6,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: _getBadgeColor(),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: theme.colorScheme.surface,
+                  width: 1,
+                ),
+              ),
+              constraints: const BoxConstraints(
+                minWidth: 18,
+                minHeight: 18,
+              ),
+              child: Text(
+                _getBadgeText(totalItemsToSync),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
-        ],
+      ],
+    );
+  }
+
+  Color _getLeadingBackgroundColor(ThemeData theme, bool isDisabled) {
+    switch (_syncState) {
+      case SyncState.success:
+        return Colors.green.withOpacity(0.1);
+      case SyncState.error:
+        return theme.colorScheme.errorContainer.withOpacity(0.1);
+      case SyncState.syncing:
+      case SyncState.idle:
+        return isDisabled
+            ? theme.colorScheme.surfaceVariant
+            : Colors.green.withOpacity(0.1);
+    }
+  }
+
+  IconData _getLeadingIconData() {
+    switch (_syncState) {
+      case SyncState.success:
+        return Icons.check_circle;
+      case SyncState.error:
+        return Icons.error_outline;
+      case SyncState.syncing:
+      case SyncState.idle:
+        return Icons.sync;
+    }
+  }
+
+  Color _getLeadingIconColor(ThemeData theme, bool isDisabled) {
+    switch (_syncState) {
+      case SyncState.success:
+        return Colors.green;
+      case SyncState.error:
+        return theme.colorScheme.error;
+      case SyncState.syncing:
+      case SyncState.idle:
+        return isDisabled
+            ? theme.colorScheme.onSurfaceVariant.withOpacity(0.5)
+            : Colors.green;
+    }
+  }
+
+  bool _shouldShowBadge(int totalItemsToSync) {
+    return (_syncState == SyncState.idle &&
+            (!_isLoadingCounts && totalItemsToSync > 0)) ||
+        (_syncState == SyncState.idle && _isLoadingCounts);
+  }
+
+  Color _getBadgeColor() {
+    return Colors.green;
+  }
+
+  String _getBadgeText(int totalItemsToSync) {
+    if (_isLoadingCounts) return "...";
+    return totalItemsToSync.toString();
+  }
+
+  String _getSyncTitle(BuildContext context) {
+    switch (_syncState) {
+      case SyncState.success:
+        return context.loc.syncCompleted;
+      case SyncState.error:
+        return context.loc.syncFailed('');
+      case SyncState.syncing:
+        return context.loc.syncing ?? 'Synchronizing...';
+      case SyncState.idle:
+        return context.loc.synchronizeData;
+    }
+  }
+
+  Color _getTitleColor(ThemeData theme, bool isDisabled) {
+    switch (_syncState) {
+      case SyncState.success:
+        return Colors.green;
+      case SyncState.error:
+        return theme.colorScheme.error;
+      case SyncState.syncing:
+      case SyncState.idle:
+        return isDisabled
+            ? theme.colorScheme.onSurfaceVariant.withOpacity(0.5)
+            : theme.colorScheme.onSurface;
+    }
+  }
+
+  Widget _buildSubtitle(
+      BuildContext context, ThemeData theme, int totalItemsToSync) {
+    final subtitleText = _getSubtitleText(context, totalItemsToSync);
+    final subtitleColor = _getSubtitleColor(theme);
+
+    return Text(
+      subtitleText,
+      style: theme.textTheme.bodyMedium?.copyWith(
+        color: subtitleColor,
+        height: 1.3,
       ),
     );
   }
 
-  Widget _buildCancelButton(BuildContext context, ThemeData theme) {
+  String _getSubtitleText(BuildContext context, int totalItemsToSync) {
+    switch (_syncState) {
+      case SyncState.success:
+        return context.loc.allDataSynchronized;
+      case SyncState.error:
+        return _errorMessage ?? context.loc.syncFailed('');
+      case SyncState.syncing:
+        return 'Synchronizing your data, please wait...';
+      case SyncState.idle:
+        return _buildIdleSubtitle(context, totalItemsToSync);
+    }
+  }
+
+  String _buildIdleSubtitle(BuildContext context, int totalItemsToSync) {
+    if (_isLoadingCounts) {
+      return context.loc.synchronizeUploadAndDownload;
+    }
+
+    if (totalItemsToSync == 0) {
+      return context.loc.checkForUpdatesAndSync;
+    }
+
+    final parts = <String>[];
+    if (_khatmasToSync > 0) {
+      parts.add(context.loc.khatmasCount(_khatmasToSync));
+    }
+    if (_historyToSync > 0) {
+      parts.add(context.loc.historyCount(_historyToSync));
+    }
+
+    return "${parts.join(' • ')} ${context.loc.toUpload}";
+  }
+
+  Color _getSubtitleColor(ThemeData theme) {
+    switch (_syncState) {
+      case SyncState.success:
+        return Colors.green.withOpacity(0.8);
+      case SyncState.error:
+        return theme.colorScheme.error;
+      case SyncState.syncing:
+        return theme.colorScheme.onSurface.withOpacity(0.6);
+      case SyncState.idle:
+        return theme.colorScheme.onSurface.withOpacity(0.6);
+    }
+  }
+
+  Widget? _buildTrailingIcon(ThemeData theme) {
+    switch (_syncState) {
+      case SyncState.syncing:
+        return SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            color: Colors.green,
+          ),
+        );
+      case SyncState.success:
+        return Icon(
+          Icons.check,
+          color: Colors.green,
+          size: 20,
+        );
+      case SyncState.error:
+        return Icon(
+          Icons.refresh,
+          color: theme.colorScheme.error,
+          size: 20,
+        );
+      case SyncState.idle:
+        return Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.green,
+          size: 16,
+        );
+    }
+  }
+
+  Widget _buildActionButton(BuildContext context, ThemeData theme) {
     return SizedBox(
       width: double.infinity,
       child: TextButton(
@@ -245,7 +458,9 @@ class _DataSyncListTileContentState
           ),
         ),
         child: Text(
-          context.loc.cancel,
+          _syncState == SyncState.success
+              ? context.loc.close
+              : context.loc.cancel,
           style: TextStyle(
             color: theme.colorScheme.onSurface.withOpacity(0.7),
             fontSize: 16,
@@ -255,59 +470,32 @@ class _DataSyncListTileContentState
     );
   }
 
-  Future<void> _performSync(SyncType syncType) async {
-    if (_currentSyncOperation != null) return;
-    // Visual delay for better UX
+  Future<void> _performSync() async {
+    if (_syncState == SyncState.syncing) return;
 
     setState(() {
-      _currentSyncOperation = syncType;
-      _lastError = null;
+      _syncState = SyncState.syncing;
+      _errorMessage = null;
     });
-
-    await Future.delayed(const Duration(milliseconds: 1300));
 
     try {
       final syncManager = ref.read(syncManagerProvider.notifier);
-
-      switch (syncType) {
-        case SyncType.fullSync:
-          await syncManager.forceFullSync();
-          break;
-        case SyncType.pullOnly:
-          await syncManager.forcePullFromRemote();
-          break;
-        case SyncType.pushOnly:
-          await syncManager.forcePushToRemote();
-          break;
-        case SyncType.smartSync:
-          await syncManager.performSmartSync();
-          break;
-      }
-
+      await syncManager.forceFullSync();
       await ref.read(khatmaNotifierProvider.notifier).refreshFromLocal();
 
-      // Show success feedback
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.loc.syncCompleted),
-            behavior: SnackBarBehavior.floating,
-            duration: const Duration(seconds: 2),
-          ),
-        );
+        setState(() {
+          _syncState = SyncState.success;
+        });
 
-        Navigator.of(context).pop();
+        // Refresh counts after successful sync
+        await _loadSyncCounts();
       }
     } catch (error) {
       if (mounted) {
         setState(() {
-          _lastError = context.loc.syncFailed(error.toString());
-        });
-      }
-    } finally {
-      if (mounted) {
-        setState(() {
-          _currentSyncOperation = null;
+          _syncState = SyncState.error;
+          _errorMessage = error.toString();
         });
       }
     }
@@ -326,89 +514,5 @@ class _DataSyncListTileContentState
     } else {
       return context.loc.daysAgo(difference.inDays);
     }
-  }
-}
-
-class _SyncListTile extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final String subtitle;
-  final SyncType syncType;
-  final bool isLoading;
-  final bool isDisabled;
-  final VoidCallback onTap;
-
-  const _SyncListTile({
-    required this.icon,
-    required this.iconColor,
-    required this.title,
-    required this.subtitle,
-    required this.syncType,
-    required this.isLoading,
-    required this.isDisabled,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final effectiveIconColor = isDisabled && !isLoading
-        ? theme.colorScheme.onSurfaceVariant.withOpacity(0.5)
-        : iconColor;
-
-    return ListTile(
-      dense: true,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      leading: CircleAvatar(
-        backgroundColor: isDisabled && !isLoading
-            ? theme.colorScheme.surfaceVariant
-            : iconColor.withOpacity(0.1),
-        child: Icon(
-          icon,
-          color: effectiveIconColor,
-          size: 20,
-        ),
-      ),
-      title: Text(
-        title,
-        style: theme.textTheme.bodyLarge?.copyWith(
-          fontWeight: FontWeight.w600,
-          color: isDisabled && !isLoading
-              ? theme.colorScheme.onSurfaceVariant.withOpacity(0.5)
-              : theme.colorScheme.onSurface,
-        ),
-      ),
-      subtitle: Text(
-        subtitle,
-        style: theme.textTheme.bodyMedium?.copyWith(
-          color: isDisabled && !isLoading
-              ? theme.colorScheme.onSurfaceVariant.withOpacity(0.5)
-              : theme.colorScheme.onSurface.withOpacity(0.6),
-          height: 1.3,
-        ),
-      ),
-      trailing: isLoading
-          ? SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: iconColor,
-              ),
-            )
-          : isDisabled
-              ? null
-              : Icon(
-                  Icons.arrow_forward_ios,
-                  color: iconColor,
-                  size: 16,
-                ),
-      onTap: isDisabled ? null : onTap,
-      enabled: !isDisabled,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-    );
   }
 }

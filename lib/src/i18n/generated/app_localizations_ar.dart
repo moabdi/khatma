@@ -1946,5 +1946,37 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String khatmasCount(int count) {
+    return '$count ختمة';
+  }
+
+  @override
+  String historyCount(int count) {
+    return '$count عنصر تاريخ';
+  }
+
+  @override
   String get performBothUploadAndDownload => 'تنفيذ مزامنة الرفع والتحميل معاً';
+
+  @override
+  String get synchronizeYourData => 'مزامنة بيانات الختمة مع الخادم';
+
+  @override
+  String get syncCompletedSuccessfully => 'تمت المزامنة بنجاح';
+
+  @override
+  String get synchronizeData => 'مزامنة البيانات';
+
+  @override
+  String get synchronizeUploadAndDownload =>
+      'رفع التغييرات المحلية وتحميل التحديثات';
+
+  @override
+  String get checkForUpdatesAndSync => 'التحقق من تحديثات الخادم والمزامنة';
+
+  @override
+  String get toUpload => 'للرفع';
+
+  @override
+  String get allDataSynchronized => 'تمت مزامنة جميع بياناتك بنجاح';
 }

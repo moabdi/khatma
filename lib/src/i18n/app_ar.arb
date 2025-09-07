@@ -594,5 +594,15 @@
   "syncWarning": "تحذير المزامنة",
   "syncUpToDate": "محدث",
   "syncFailureCount": "{count} محاولات فاشلة",
-  "performBothUploadAndDownload": "تنفيذ مزامنة الرفع والتحميل معاً"
+  "performBothUploadAndDownload": "تنفيذ مزامنة الرفع والتحميل معاً",
+  "synchronizeYourData": "مزامنة بيانات الختمة مع الخادم",
+  "syncCompletedSuccessfully": "تمت المزامنة بنجاح",
+  "synchronizeData": "مزامنة البيانات",
+  "synchronizeUploadAndDownload": "رفع التغييرات المحلية وتحميل التحديثات",
+  "checkForUpdatesAndSync": "التحقق من تحديثات الخادم والمزامنة",
+  "toUpload": "للرفع",
+  "allDataSynchronized": "تمت مزامنة جميع بياناتك بنجاح",
+  "close": "إغلاق",
+  "khatmasCount": "{count} ختمة",
+  "historyCount": "{count} عنصر تاريخ"
 }
