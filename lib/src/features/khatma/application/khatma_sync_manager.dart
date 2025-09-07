@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/data/remote/khatma_history_repository.dart';
@@ -15,7 +16,7 @@ class SyncConfig {
   // More reasonable intervals to reduce costs and battery usage
   static const Duration autoSyncInterval =
       Duration(minutes: 15); // Increased from 1 minute
-  static const Duration startupSyncDelay = Duration(seconds: 2);
+  static const Duration startupSyncDelay = Duration(seconds: 1);
   static const Duration backgroundSyncInterval =
       Duration(hours: 1); // For background sync
   static const Duration forcedPullInterval =
@@ -339,6 +340,7 @@ class SyncManager extends _$SyncManager {
       String userUid, DateTime lastSyncDate) async {
     // Fetch all data upfront
     final syncData = await _fetchSyncData(userUid);
+    print(syncData.remoteKhatmas);
 
     // Early return if no changes detected
     if (!_hasRemoteChanges(syncData)) {
@@ -375,14 +377,34 @@ class SyncManager extends _$SyncManager {
     return true; // Changes were made
   }
 
-  /// Check if there are actual remote changes worth syncing
   bool _hasRemoteChanges(_SyncData data) {
-    // Simple heuristic: if remote count differs significantly from local count
-    final localCount = data.localKhatmas.length;
-    final remoteCount = data.remoteKhatmas.length;
-    final syncCount = data.khatmasToSync.length;
+    // Si il y a des éléments à synchroniser localement
+    if (data.khatmasToSync.isNotEmpty) return true;
 
-    return (localCount != remoteCount) || syncCount > 0;
+    // Si les nombres diffèrent
+    if (data.localKhatmas.length != data.remoteKhatmas.length) return true;
+
+    // Créer des maps pour comparaison efficace
+    final localById = {for (final k in data.localKhatmas) k.id!: k};
+
+    // Vérifier chaque khatma remote
+    for (final remote in data.remoteKhatmas) {
+      final local = localById[remote.id];
+
+      // Khatma existe seulement en remote
+      if (local == null) return true;
+
+      // Comparaison simple avec hashCode ou equals
+      if (local.hashCode != remote.hashCode) return true;
+      // Alternative: if (local != remote) return true;
+    }
+
+    // Vérifier s'il y a des khatmas qui existent seulement en local
+    for (final local in data.localKhatmas) {
+      if (!data.remoteKhatmas.any((r) => r.id == local.id)) return true;
+    }
+
+    return false;
   }
 
   Future<_SyncData> _fetchSyncData(String userUid) async {
@@ -473,7 +495,7 @@ class SyncManager extends _$SyncManager {
 
       final updatedKhatma = remote.copyWith(
         readParts: mergedParts,
-        lastSync: null, // Reset to trigger re-sync
+        lastSync: DateTime.now(),
       );
       return _localRepo.save(updatedKhatma);
     }

@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:khatma/src/core/app_status.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/application/khatma_state.dart';
-import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
 import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/core/result.dart';
+import 'package:khatma/src/features/khatma/application/khatma_sync_manager.dart';
 import 'package:riverpod/src/framework.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
@@ -16,20 +16,31 @@ part 'khatmat_provider.g.dart';
 @Riverpod(keepAlive: true)
 class KhatmaNotifier extends _$KhatmaNotifier {
   late final LocalKhatmaRepository _localRepo;
+  late final SyncManager _syncManager;
+  StreamSubscription? _syncSubscription;
 
   @override
   KhatmaState build() {
     _localRepo = ref.read(localKhatmaRepositoryProvider);
-    ref
-        .watch(syncManagerProvider.notifier)
+    _syncManager = ref.read(syncManagerProvider.notifier);
+    _syncManager.setupSynchronization();
+    _syncManager.scheduleStartupSync();
+    _setupSyncListener();
+    refreshFromLocal();
+    return const KhatmaState();
+  }
+
+  void _setupSyncListener() {
+    _syncSubscription?.cancel();
+    _syncSubscription = ref
+        .read(syncManagerProvider.notifier)
         .syncStatusStream
         .listen((isSyncing) {
-      if (!isSyncing) {
+      print("Synchronising ... $isSyncing");
+      if (isSyncing) {
         refreshFromLocal();
       }
     });
-    refreshFromLocal();
-    return const KhatmaState();
   }
 
   void dispose() {
