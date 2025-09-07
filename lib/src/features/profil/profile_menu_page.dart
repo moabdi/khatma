@@ -47,7 +47,7 @@ class ProfileMenuPage extends ConsumerWidget {
             // Menu Items
             _buildMenuItems(context, user, ref),
 
-            gapH64,
+            gapH48,
             // Footer
             _buildFooter(context),
 
@@ -193,17 +193,11 @@ class ProfileMenuPage extends ConsumerWidget {
   Widget _buildFooter(BuildContext context) {
     return Column(
       children: [
-        Icon(
-          Icons.mosque,
-          size: 32,
-          color: Theme.of(context).colorScheme.primary,
-        ),
-        gapH8,
         Text(
           'Khatma AMM',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+          style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).disabledColor,
               ),
         ),
         gapH4,

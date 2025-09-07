@@ -291,7 +291,6 @@ class _DataSyncListTileContentState
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.syncCompleted),
-            backgroundColor: Colors.green,
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 2),
           ),
@@ -359,6 +358,7 @@ class _SyncListTile extends StatelessWidget {
         : iconColor;
 
     return ListTile(
+      dense: true,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       leading: CircleAvatar(
         backgroundColor: isDisabled && !isLoading
