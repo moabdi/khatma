@@ -671,5 +671,13 @@
   "toUpload": "to upload",
   "allDataSynchronized": "All your data has been synchronized successfully",
   "close": "Close",
-  "synchronizingPleaseWait": "Synchronizing your data, please wait..."
+  "synchronizingPleaseWait": "Synchronizing your data, please wait...",
+  "itemsToSync": "{count} item to synchronize",
+  "@itemsToSync": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

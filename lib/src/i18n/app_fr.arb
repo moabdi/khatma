@@ -614,5 +614,7 @@
   "close": "Fermer",
     "khatmasCount": "{count} khatmas",
   "historyCount": "{count} éléments d'historique",
-  "synchronizingPleaseWait": "Synchronisation de vos données, veuillez patienter..."
+  "synchronizingPleaseWait": "Synchronisation de vos données, veuillez patienter...",
+  "itemsToSync": "{count} item to synchronize"
+
   }

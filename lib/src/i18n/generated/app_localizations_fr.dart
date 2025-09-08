@@ -2017,4 +2017,9 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get synchronizingPleaseWait =>
       'Synchronisation de vos données, veuillez patienter...';
+
+  @override
+  String itemsToSync(int count) {
+    return '$count item to synchronize';
+  }
 }

@@ -3369,6 +3369,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Synchronizing your data, please wait...'**
   String get synchronizingPleaseWait;
+
+  /// No description provided for @itemsToSync.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} item to synchronize'**
+  String itemsToSync(int count);
 }
 
 class _AppLocalizationsDelegate

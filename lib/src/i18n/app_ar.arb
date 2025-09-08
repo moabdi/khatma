@@ -614,5 +614,7 @@
   "close": "إغلاق",
   "khatmasCount": "{count} ختمة",
   "historyCount": "{count} عنصر تاريخ",
-  "synchronizingPleaseWait": "جارٍ مزامنة بياناتك، يرجى الانتظار..."
+  "synchronizingPleaseWait": "جارٍ مزامنة بياناتك، يرجى الانتظار...",  
+  "itemsToSync": "{count} item to synchronize"
+
 }
