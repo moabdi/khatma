@@ -1,5 +1,6 @@
 {
   "@@locale": "fr",
+  "languageName": "Français",
   
   "appTitle": "Khatma",
   "appName": "Khatma",
@@ -448,6 +449,14 @@
   "theme": "Thème",
   "chooseTheme": "Choisir le thème",
   "themeMode": "{mode, select, light{Clair} dark{Sombre} system{Système} other{Système}}",
+  "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
+  "@riwayaMode": {
+    "placeholders": {
+      "riwaya": {
+        "type": "String"
+      }
+    }
+  },
   
   "faq": "Questions fréquentes",
   "frequentlyAskedQuestions": "Questions fréquemment posées",
@@ -604,5 +613,6 @@
   "allDataSynchronized": "Toutes vos données ont été synchronisées avec succès",
   "close": "Fermer",
     "khatmasCount": "{count} khatmas",
-  "historyCount": "{count} éléments d'historique"
+  "historyCount": "{count} éléments d'historique",
+  "synchronizingPleaseWait": "Synchronisation de vos données, veuillez patienter..."
   }

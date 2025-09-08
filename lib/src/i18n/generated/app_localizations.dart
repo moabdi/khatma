@@ -100,6 +100,12 @@ abstract class AppLocalizations {
     Locale('fr')
   ];
 
+  /// No description provided for @languageName.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageName;
+
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
@@ -2536,6 +2542,12 @@ abstract class AppLocalizations {
   /// **'{mode, select, light{Light} dark{Dark} system{System} other{System}}'**
   String themeMode(String mode);
 
+  /// No description provided for @riwayaMode.
+  ///
+  /// In en, this message translates to:
+  /// **'{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}'**
+  String riwayaMode(String riwaya);
+
   /// No description provided for @faq.
   ///
   /// In en, this message translates to:
@@ -3351,6 +3363,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All your data has been synchronized successfully'**
   String get allDataSynchronized;
+
+  /// No description provided for @synchronizingPleaseWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Synchronizing your data, please wait...'**
+  String get synchronizingPleaseWait;
 }
 
 class _AppLocalizationsDelegate

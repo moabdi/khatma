@@ -343,7 +343,7 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead>
     }
 
     // Visual delay for better UX
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     try {
       final result = await ref

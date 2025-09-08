@@ -5,6 +5,7 @@ import 'package:khatma/src/features/authentication/presentation/login/login_page
 import 'package:khatma/src/features/authentication/presentation/login/create_password_page.dart';
 import 'package:khatma/src/features/authentication/presentation/login/forgot_password_page.dart';
 import 'package:khatma/src/features/authentication/presentation/login/register_page.dart';
+import 'package:khatma/src/features/khatma/presentation/sync/khatma_sync_screen.dart';
 import 'package:khatma/src/features/profil/profile_menu_page.dart';
 import 'package:khatma/src/features/settings/presentation/language_setting.dart';
 import 'package:khatma/src/features/settings/presentation/recitation_settings.dart';
@@ -41,6 +42,11 @@ final profileRoutes = [
             name: AppRoute.recitation.name,
             path: 'recitation',
             builder: (context, state) => const RecitationSettings(),
+          ),
+          GoRoute(
+            name: AppRoute.sync.name,
+            path: 'sync',
+            builder: (context, state) => SimplifiedSyncContent(),
           )
         ],
       ),

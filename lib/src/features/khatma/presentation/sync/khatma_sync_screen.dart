@@ -20,16 +20,16 @@ class SimplifiedSyncScreen {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (_) => const _SimplifiedSyncContent(),
+      builder: (_) => const SimplifiedSyncContent(),
     );
   }
 }
 
-class _SimplifiedSyncContent extends ConsumerStatefulWidget {
-  const _SimplifiedSyncContent();
+class SimplifiedSyncContent extends ConsumerStatefulWidget {
+  const SimplifiedSyncContent();
 
   @override
-  ConsumerState<_SimplifiedSyncContent> createState() =>
+  ConsumerState<SimplifiedSyncContent> createState() =>
       _SimplifiedSyncContentState();
 }
 
@@ -40,8 +40,7 @@ enum SyncState {
   error,
 }
 
-class _SimplifiedSyncContentState
-    extends ConsumerState<_SimplifiedSyncContent> {
+class _SimplifiedSyncContentState extends ConsumerState<SimplifiedSyncContent> {
   SyncState _syncState = SyncState.idle;
   String? _errorMessage;
   int _khatmasToSync = 0;
@@ -83,33 +82,7 @@ class _SimplifiedSyncContentState
     final syncManager = ref.watch(syncManagerProvider.notifier);
     final theme = Theme.of(context);
 
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom + 32,
-        left: 20,
-        right: 20,
-        top: 8,
-      ),
-      child: SafeArea(
-        top: false,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            _buildHeader(context, theme, syncManager),
-            gapH24,
-
-            // Single Sync ListTile
-            _buildSyncListTile(context, theme),
-            gapH24,
-
-            // Cancel/Close button
-            _buildActionButton(context, theme),
-          ],
-        ),
-      ),
-    );
+    return _buildSyncListTile(context, theme);
   }
 
   Widget _buildHeader(
@@ -200,8 +173,7 @@ class _SimplifiedSyncContentState
           ? Colors.green.withOpacity(0.05)
           : null,
       child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        dense: true,
         leading: _buildLeadingIcon(theme, totalItemsToSync, isDisabled),
         title: Text(
           _getSyncTitle(context),
@@ -334,7 +306,7 @@ class _SimplifiedSyncContentState
       case SyncState.error:
         return context.loc.syncFailed('');
       case SyncState.syncing:
-        return context.loc.syncing ?? 'Synchronizing...';
+        return context.loc.syncing;
       case SyncState.idle:
         return context.loc.synchronizeData;
     }
@@ -478,6 +450,8 @@ class _SimplifiedSyncContentState
       _errorMessage = null;
     });
 
+    await Future.delayed(const Duration(milliseconds: 1200));
+
     try {
       final syncManager = ref.read(syncManagerProvider.notifier);
       await syncManager.forceFullSync();
@@ -489,6 +463,7 @@ class _SimplifiedSyncContentState
         });
 
         // Refresh counts after successful sync
+
         await _loadSyncCounts();
       }
     } catch (error) {

@@ -38,6 +38,7 @@ enum AppRoute {
   splash,
   link,
   account,
+  sync,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {

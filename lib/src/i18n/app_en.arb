@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+  "languageName": "English",
   
   "appTitle": "Khatma",
   "appName": "Khatma",
@@ -449,6 +450,14 @@
   "theme": "Theme",
   "chooseTheme": "Choose theme",
   "themeMode": "{mode, select, light{Light} dark{Dark} system{System} other{System}}",
+  "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
+  "@riwayaMode": {
+    "placeholders": {
+      "riwaya": {
+        "type": "String"
+      }
+    }
+  },
   
   "faq": "Common Questions",
   "frequentlyAskedQuestions": "Frequently Asked Questions",
@@ -604,7 +613,6 @@
       }
     }
   },
-  
   "fullSync": "Full Synchronization",
   "pullFromServer": "Download from Server",
   "pushToServer": "Upload to Server",
@@ -662,5 +670,6 @@
   "checkForUpdatesAndSync": "Check for server updates and synchronize",
   "toUpload": "to upload",
   "allDataSynchronized": "All your data has been synchronized successfully",
-  "close": "Close"
+  "close": "Close",
+  "synchronizingPleaseWait": "Synchronizing your data, please wait..."
 }

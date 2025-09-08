@@ -1,5 +1,6 @@
 {
   "@@locale": "ar",
+  "languageName": "العربية",
   
   "appTitle": "ختمة",
   "appName": "ختمة",
@@ -448,7 +449,15 @@
   "theme": "المظهر",
   "chooseTheme": "اختر المظهر",
   "themeMode": "{mode, select, light{فاتح} dark{مظلم} system{النظام} other{النظام}}",
-  
+  "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
+  "@riwayaMode": {
+    "placeholders": {
+      "riwaya": {
+        "type": "String"
+      }
+    }
+  },
+
   "faq": "الأسئلة الشائعة",
   "frequentlyAskedQuestions": "الأسئلة المتكررة",
   "contactSupport": "الاتصال بالدعم",
@@ -604,5 +613,6 @@
   "allDataSynchronized": "تمت مزامنة جميع بياناتك بنجاح",
   "close": "إغلاق",
   "khatmasCount": "{count} ختمة",
-  "historyCount": "{count} عنصر تاريخ"
+  "historyCount": "{count} عنصر تاريخ",
+  "synchronizingPleaseWait": "جارٍ مزامنة بياناتك، يرجى الانتظار..."
 }

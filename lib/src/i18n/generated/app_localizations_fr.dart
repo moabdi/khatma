@@ -9,6 +9,9 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get languageName => 'Français';
+
+  @override
   String get appTitle => 'Khatma';
 
   @override
@@ -1550,6 +1553,19 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String riwayaMode(String riwaya) {
+    String _temp0 = intl.Intl.selectLogic(
+      riwaya,
+      {
+        'hafs': 'Hafs',
+        'warsh': 'Warsh',
+        'other': 'Hafs',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get faq => 'Questions fréquentes';
 
   @override
@@ -1997,4 +2013,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get allDataSynchronized =>
       'Toutes vos données ont été synchronisées avec succès';
+
+  @override
+  String get synchronizingPleaseWait =>
+      'Synchronisation de vos données, veuillez patienter...';
 }

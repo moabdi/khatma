@@ -9,6 +9,9 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get languageName => 'العربية';
+
+  @override
   String get appTitle => 'ختمة';
 
   @override
@@ -1546,6 +1549,19 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String riwayaMode(String riwaya) {
+    String _temp0 = intl.Intl.selectLogic(
+      riwaya,
+      {
+        'hafs': 'Hafs',
+        'warsh': 'Warsh',
+        'other': 'Hafs',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get faq => 'الأسئلة الشائعة';
 
   @override
@@ -1979,4 +1995,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get allDataSynchronized => 'تمت مزامنة جميع بياناتك بنجاح';
+
+  @override
+  String get synchronizingPleaseWait => 'جارٍ مزامنة بياناتك، يرجى الانتظار...';
 }
