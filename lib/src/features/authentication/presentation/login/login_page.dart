@@ -150,9 +150,10 @@ class _LoginPageState extends ConsumerState<LoginPage>
                     gapH20,
                     SocialDivider(),
                     gapH20,
-                    OutlinedButton(
+                    OutlinedButton.icon(
+                      icon: Icon(Icons.person_3),
                       onPressed: () => context.goNamed(AppRoute.register.name),
-                      child: Text(context.loc.createAccount),
+                      label: Text(context.loc.createAccount),
                     ),
                     gapH16,
                     SocialSignInSection(

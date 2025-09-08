@@ -60,23 +60,16 @@ class _SimplifiedSyncContentState extends ConsumerState<SimplifiedSyncContent> {
     _lastSync = syncManager.lastSuccessfulSync;
 
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
-        leading: _buildLeadingIcon(theme),
+        leading: _buildLeadingIcons(theme),
         title: Text(
           _getTitle(context),
-          style: theme.textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.w600,
+          style: theme.listTileTheme.titleTextStyle?.copyWith(
             color: _getTitleColor(theme),
           ),
         ),
-        subtitle: Text(
-          _getSubtitle(context),
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
-        ),
-        trailing: _buildTrailing(theme),
+        subtitle: Text(_getSubtitle(context)),
+        // trailing: _buildTrailing(theme),
         onTap: _syncState == SyncState.idle || _syncState == SyncState.error
             ? _performSync
             : null,
@@ -85,6 +78,37 @@ class _SimplifiedSyncContentState extends ConsumerState<SimplifiedSyncContent> {
   }
 
   Widget _buildLeadingIcon(ThemeData theme) {
+    IconData icon;
+    Color backgroundColor;
+    Color iconColor;
+
+    switch (_syncState) {
+      case SyncState.success:
+        icon = Icons.check_circle;
+        backgroundColor = Colors.green.withOpacity(0.1);
+        iconColor = Colors.green;
+        break;
+      case SyncState.error:
+        icon = Icons.error_outline;
+        backgroundColor = theme.colorScheme.errorContainer.withOpacity(0.1);
+        iconColor = theme.colorScheme.error;
+        break;
+      case SyncState.syncing:
+        icon = Icons.sync;
+        backgroundColor = theme.colorScheme.primaryContainer.withOpacity(0.1);
+        iconColor = theme.colorScheme.primary;
+        break;
+      default:
+        icon = Icons.cloud_sync_outlined;
+        backgroundColor = theme.colorScheme.surfaceVariant;
+        iconColor = theme.colorScheme.onSurfaceVariant;
+        break;
+    }
+
+    return Icon(icon, color: iconColor);
+  }
+
+  Widget _buildLeadingIcons(ThemeData theme) {
     if (_syncState == SyncState.syncing) {
       return const SizedBox(
         width: 28,
