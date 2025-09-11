@@ -9,13 +9,13 @@ import 'package:khatma/src/widgets/markdown_reader.dart';
 
 List<GoRoute> khatmaRoutes(Ref ref) => [
       GoRoute(
-        path: 'khatma',
-        name: AppRoute.khatma.name,
+        path: 'personal-khatma',
+        name: AppRoute.personalKhatma.name,
         builder: (context, state) => const KhatmatListScreen(),
         routes: [
           GoRoute(
-            path: 'personal',
-            name: AppRoute.personalKhatma.name,
+            path: 'create',
+            name: AppRoute.addKhatma.name,
             builder: (context, state) {
               ref.invalidate(khatmaFormProvider);
               return AddKhatmaScreen();

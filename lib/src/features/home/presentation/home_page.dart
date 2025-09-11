@@ -3,7 +3,7 @@ import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/navigation/navigation_bar.dart';
 import 'package:khatma/src/features/home/presentation/header/top_card.dart';
-import 'package:khatma/src/features/khatma/presentation/list/ui/katmat_list_view.dart';
+import 'package:khatma/src/features/khatma/personal/presentation/list/ui/katmat_list_view.dart';
 import 'package:flutter/material.dart';
 
 class KhatmatListScreen extends StatelessWidget {

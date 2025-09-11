@@ -5,7 +5,7 @@ import 'package:khatma/src/features/authentication/presentation/login/login_page
 import 'package:khatma/src/features/authentication/presentation/login/create_password_page.dart';
 import 'package:khatma/src/features/authentication/presentation/login/forgot_password_page.dart';
 import 'package:khatma/src/features/authentication/presentation/login/register_page.dart';
-import 'package:khatma/src/features/khatma/presentation/sync/khatma_sync_screen.dart';
+import 'package:khatma/src/features/khatma/personal/presentation/sync/khatma_sync_screen.dart';
 import 'package:khatma/src/features/profil/profile_menu_page.dart';
 import 'package:khatma/src/features/settings/presentation/language_setting.dart';
 import 'package:khatma/src/features/settings/presentation/recitation_settings.dart';

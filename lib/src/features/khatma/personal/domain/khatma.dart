@@ -84,6 +84,7 @@ abstract class Khatma with _$Khatma {
   bool get isStarted => completedPartIds.isNotEmpty;
   bool get isNotStarted => completedPartIds.isEmpty;
   bool get isActive => status == KhatmaStatus.active;
+  bool get isDeleted => status == KhatmaStatus.deleted;
 
   bool get isExpired {
     if (recurrence?.endDate == null) return false;
@@ -319,7 +320,8 @@ class KhatmaValidator {
       }
     }
 
-    return AppErrorCode.validationInvalidData;
+    return AppErrorCode.validationInvalidData; // Return appropriate error key
+    //return errors.isEmpty ? AppErrorKey.noError : AppErrorKey.validationInvalidData;
   }
 }
 

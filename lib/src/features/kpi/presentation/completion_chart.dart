@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
 import 'package:khatma/src/features/kpi/presentation/reading_chart.dart';
 
 class CompletionChart extends StatelessWidget {
