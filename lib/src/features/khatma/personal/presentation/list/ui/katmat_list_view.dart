@@ -6,7 +6,7 @@ import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/widgets/async_value_widget.dart';
 import 'package:khatma_ui/components/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/list/ui/khatma_tile.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';

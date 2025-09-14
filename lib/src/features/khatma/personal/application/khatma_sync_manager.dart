@@ -5,7 +5,7 @@ import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/personal/data/remote/khatma_history_repository.dart';
 import 'package:khatma/src/features/khatma/personal/data/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/personal/data/local/local_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 
 part 'khatma_sync_manager.g.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 
 class KhatmaCompletude extends ConsumerWidget {
   const KhatmaCompletude({

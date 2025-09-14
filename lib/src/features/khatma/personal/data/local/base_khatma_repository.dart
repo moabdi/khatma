@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:khatma/src/features/khatma/personal/data/local/local_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/personal/domain/completion_history.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/completion_history.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class BaseKhatmaRepository extends LocalKhatmaRepository {

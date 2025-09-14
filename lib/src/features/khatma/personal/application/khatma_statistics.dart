@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/personal/domain/completion_history.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/completion_history.dart';
 import 'dart:math' as math;
 part 'khatma_statistics.freezed.dart';
 

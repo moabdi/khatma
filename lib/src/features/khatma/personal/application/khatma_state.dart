@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/core/app_status.dart';
 import 'package:khatma/src/error/app_error_code.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 
 part 'khatma_state.freezed.dart';
 

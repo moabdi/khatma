@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/personal/domain/part.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/logic/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/ui/part_selector/part_tile_leading.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';

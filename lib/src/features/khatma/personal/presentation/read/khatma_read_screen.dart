@@ -16,7 +16,7 @@ import 'package:khatma_ui/extentions/string_extensions.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/ui/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';

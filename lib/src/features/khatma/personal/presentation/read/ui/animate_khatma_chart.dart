@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class AnimatedKhatmaChart extends StatefulWidget {

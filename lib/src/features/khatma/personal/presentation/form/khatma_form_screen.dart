@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/ui/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';

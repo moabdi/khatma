@@ -4,7 +4,7 @@ import 'package:khatma/src/core/result.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/error/app_error_handler.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/khatma_complete_screen.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/logic/khatma_parts_controller.dart';
