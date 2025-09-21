@@ -9,6 +9,9 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get languageName => 'Français';
+
+  @override
   String get appTitle => 'Khatma';
 
   @override
@@ -81,7 +84,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get or => 'Ou';
 
   @override
-  String get confirmReading => 'Mark as Read';
+  String get confirmReading => 'Marquer comme lu';
 
   @override
   String get processing => 'Process en cours...';
@@ -93,7 +96,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get yesterday => 'Hier';
 
   @override
-  String daysAgo(num count) {
+  String daysAgo(int count) {
     return 'Il y a $count jours';
   }
 
@@ -1550,6 +1553,19 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String riwayaMode(String riwaya) {
+    String _temp0 = intl.Intl.selectLogic(
+      riwaya,
+      {
+        'hafs': 'Hafs',
+        'warsh': 'Warsh',
+        'other': 'Hafs',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get faq => 'Questions fréquentes';
 
   @override
@@ -1641,7 +1657,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get authenticationError => 'Erreur d\'authentification';
 
   @override
-  String get syncError => 'Erreur de synchronisation';
+  String get syncError => 'Erreur de Sync';
 
   @override
   String get storageError => 'Erreur de stockage';
@@ -1875,4 +1891,135 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noFaqAvailable => 'Aucune FAQ disponible';
+
+  @override
+  String get dataSynchronization => 'Synchronisation des Données';
+
+  @override
+  String get chooseSyncMethod => 'Choisissez comment synchroniser vos données';
+
+  @override
+  String get syncStatus => 'État de Synchronisation';
+
+  @override
+  String get syncing => 'Synchronisation en cours...';
+
+  @override
+  String lastSyncTime(String time) {
+    return 'Dernière sync: $time';
+  }
+
+  @override
+  String get neverSynced => 'Jamais synchronisé';
+
+  @override
+  String get justNow => 'À l\'instant';
+
+  @override
+  String minutesAgo(int count) {
+    return 'Il y a $count minutes';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return 'Il y a $count heures';
+  }
+
+  @override
+  String get fullSync => 'Synchronisation Complète';
+
+  @override
+  String get pullFromServer => 'Télécharger du Serveur';
+
+  @override
+  String get pushToServer => 'Envoyer au Serveur';
+
+  @override
+  String get downloadRemoteChanges =>
+      'Télécharger les derniers changements du serveur';
+
+  @override
+  String get uploadLocalChanges =>
+      'Envoyer vos modifications locales au serveur';
+
+  @override
+  String get performingFullSync => 'Synchronisation complète en cours...';
+
+  @override
+  String get downloadingChanges =>
+      'Téléchargement des changements du serveur...';
+
+  @override
+  String get uploadingChanges => 'Envoi des changements au serveur...';
+
+  @override
+  String get syncCompleted => 'Synchronisation terminée avec succès';
+
+  @override
+  String syncFailed(String error) {
+    return 'Échec de la synchronisation: $error';
+  }
+
+  @override
+  String get syncNow => 'Synchroniser Maintenant';
+
+  @override
+  String get syncWarning => 'Avertissement Sync';
+
+  @override
+  String get syncUpToDate => 'À jour';
+
+  @override
+  String syncFailureCount(int count) {
+    return '$count tentatives échouées';
+  }
+
+  @override
+  String khatmasCount(int count) {
+    return '$count khatmas';
+  }
+
+  @override
+  String historyCount(int count) {
+    return '$count éléments d\'historique';
+  }
+
+  @override
+  String get performBothUploadAndDownload =>
+      'Effectuer la synchronisation de téléchargement et d\'envoi';
+
+  @override
+  String get synchronizeYourData =>
+      'Synchroniser vos données Khatma avec le serveur';
+
+  @override
+  String get syncCompletedSuccessfully =>
+      'Synchronisation terminée avec succès';
+
+  @override
+  String get synchronizeData => 'Synchroniser les Données';
+
+  @override
+  String get synchronizeUploadAndDownload =>
+      'Envoyer les modifications locales et télécharger les mises à jour';
+
+  @override
+  String get checkForUpdatesAndSync =>
+      'Vérifier les mises à jour du serveur et synchroniser';
+
+  @override
+  String get toUpload => 'à envoyer';
+
+  @override
+  String get allDataSynchronized =>
+      'Toutes vos données ont été synchronisées avec succès';
+
+  @override
+  String get synchronizingPleaseWait =>
+      'Synchronisation de vos données, veuillez patienter...';
+
+  @override
+  String itemsToSync(int count) {
+    return '$count item to synchronize';
+  }
 }

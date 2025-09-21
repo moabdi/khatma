@@ -1,5 +1,6 @@
 {
   "@@locale": "fr",
+  "languageName": "Français",
   
   "appTitle": "Khatma",
   "appName": "Khatma",
@@ -27,6 +28,7 @@
   "yes": "Oui",
   "or": "Ou",
   "markAsRead": "Marquer comme lu",
+  "confirmReading" : "Marquer comme lu",
   "processing": "Process en cours...",
 
 
@@ -447,6 +449,14 @@
   "theme": "Thème",
   "chooseTheme": "Choisir le thème",
   "themeMode": "{mode, select, light{Clair} dark{Sombre} system{Système} other{Système}}",
+  "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
+  "@riwayaMode": {
+    "placeholders": {
+      "riwaya": {
+        "type": "String"
+      }
+    }
+  },
   
   "faq": "Questions fréquentes",
   "frequentlyAskedQuestions": "Questions fréquemment posées",
@@ -562,5 +572,49 @@
   "emailNotAvailable": "Application email non disponible sur cet appareil",
   "refresh": "Actualiser",
   "failedToLoadFaq": "Échec du chargement de la FAQ",
-  "noFaqAvailable": "Aucune FAQ disponible"
+  "noFaqAvailable": "Aucune FAQ disponible", 
+  "dataSynchronization": "Synchronisation des Données",
+  "chooseSyncMethod": "Choisissez comment synchroniser vos données",
+  "syncStatus": "État de Synchronisation",
+  "syncing": "Synchronisation en cours...",
+  "lastSyncTime": "Dernière sync: {time}",
+  "neverSynced": "Jamais synchronisé",
+  "justNow": "À l'instant",
+  "minutesAgo": "Il y a {count} minutes",
+  "hoursAgo": "Il y a {count} heures",
+  "daysAgo": "Il y a {count} jours",
+  
+  "fullSync": "Synchronisation Complète",
+  "pullFromServer": "Télécharger du Serveur",
+  "pushToServer": "Envoyer au Serveur",
+  "downloadRemoteChanges": "Télécharger les derniers changements du serveur",
+  "uploadLocalChanges": "Envoyer vos modifications locales au serveur",
+  
+  "performingFullSync": "Synchronisation complète en cours...",
+  "downloadingChanges": "Téléchargement des changements du serveur...",
+  "uploadingChanges": "Envoi des changements au serveur...",
+  "syncCompleted": "Synchronisation terminée avec succès",
+  "syncFailed": "Échec de la synchronisation: {error}",
+  
+  "cancel": "Annuler",
+  "retry": "Réessayer",
+  "syncNow": "Synchroniser Maintenant",  
+  "syncError": "Erreur de Sync",
+  "syncWarning": "Avertissement Sync",
+  "syncUpToDate": "À jour",
+  "syncFailureCount": "{count} tentatives échouées",
+  "performBothUploadAndDownload": "Effectuer la synchronisation de téléchargement et d'envoi",
+  "synchronizeYourData": "Synchroniser vos données Khatma avec le serveur",
+  "syncCompletedSuccessfully": "Synchronisation terminée avec succès",
+  "synchronizeData": "Synchroniser les Données",
+  "synchronizeUploadAndDownload": "Envoyer les modifications locales et télécharger les mises à jour",
+  "checkForUpdatesAndSync": "Vérifier les mises à jour du serveur et synchroniser",
+  "toUpload": "à envoyer",
+  "allDataSynchronized": "Toutes vos données ont été synchronisées avec succès",
+  "close": "Fermer",
+    "khatmasCount": "{count} khatmas",
+  "historyCount": "{count} éléments d'historique",
+  "synchronizingPleaseWait": "Synchronisation de vos données, veuillez patienter...",
+  "itemsToSync": "{count} item to synchronize"
+
   }

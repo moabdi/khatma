@@ -33,19 +33,11 @@ class ProfileMenuPage extends ConsumerWidget {
         child: Column(
           children: [
             gapH24,
-
-            // Simplified Profile Header
             ProfileHeader(user: user),
-
             gapH32,
-
-            // Menu Items
             _buildMenuItems(context, user, ref),
-
-            gapH64,
-            // Footer
+            gapH48,
             _buildFooter(context),
-
             gapH24,
           ],
         ),
@@ -104,13 +96,13 @@ class ProfileMenuPage extends ConsumerWidget {
                 ),
                 gapH2,
                 SettingsTile(
-                  icon: Icons.help,
+                  icon: Icons.help_center,
                   title: context.loc.aboutUs,
                   onTap: () => context.pushNamed(AppRoute.aboutUs.name),
                 ),
                 gapH2,
                 SettingsTile(
-                  icon: Icons.feedback,
+                  icon: Icons.support_agent,
                   title: context.loc.contactSupport,
                   onTap: () => ContactMethodBottomSheet.show(context),
                 ),
@@ -127,17 +119,12 @@ class ProfileMenuPage extends ConsumerWidget {
   Widget _buildFooter(BuildContext context) {
     return Column(
       children: [
-        Icon(
-          Icons.mosque,
-          size: 32,
-          color: Theme.of(context).colorScheme.primary,
-        ),
         gapH8,
         Text(
           'Khatma AMM',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).disabledColor,
               ),
         ),
         gapH4,
@@ -163,34 +150,6 @@ class ProfileMenuPage extends ConsumerWidget {
                 fontStyle: FontStyle.italic,
               ),
           textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildFooters(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Khatma',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-        const SizedBox(height: 4),
-        FutureBuilder<PackageInfo>(
-          future: PackageInfo.fromPlatform(),
-          builder: (context, snapshot) {
-            final version = snapshot.data?.version ?? '1.0.0';
-            final buildNumber = snapshot.data?.buildNumber ?? '1';
-
-            return Text(
-              'v$version ($buildNumber)',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-            );
-          },
         ),
       ],
     );

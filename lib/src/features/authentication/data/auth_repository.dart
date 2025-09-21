@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode;
+import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode, debugPrint;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/core/result.dart';
 
@@ -21,7 +21,8 @@ class AuthRepository {
   Future<Result<void, AppErrorCode>> signInWithGoogle() async {
     try {
       if (kDebugMode) {
-        print('🔍 Starting Google Sign-In for ${kIsWeb ? 'Web' : 'Mobile'}...');
+        debugPrint(
+            '🔍 Starting Google Sign-In for ${kIsWeb ? 'Web' : 'Mobile'}...');
       }
 
       if (kIsWeb) {
@@ -33,12 +34,12 @@ class AuthRepository {
       }
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
-        print('❌ FirebaseAuthException: ${e.code} - ${e.message}');
+        debugPrint('❌ FirebaseAuthException: ${e.code} - ${e.message}');
       }
       return Result.failure(_mapFirebaseAuthException(e));
     } catch (e) {
       if (kDebugMode) {
-        print('❌ General Error: $e');
+        debugPrint('❌ General Error: $e');
       }
       return const Result.failure(AppErrorCode.generalUnknown);
     }
@@ -48,13 +49,13 @@ class AuthRepository {
   Future<Result<void, AppErrorCode>> _signInWithGoogleWeb() async {
     try {
       if (kDebugMode) {
-        print('🌐 Web Google Sign-In implementation');
+        debugPrint('🌐 Web Google Sign-In implementation');
       }
 
       // Method 1: Try Firebase Auth popup directly (recommended for web)
       try {
         if (kDebugMode) {
-          print('🔄 Method 1: Firebase Auth popup...');
+          debugPrint('🔄 Method 1: Firebase Auth popup...');
         }
 
         final GoogleAuthProvider googleProvider = GoogleAuthProvider();
@@ -75,23 +76,23 @@ class AuthRepository {
 
         if (result.user != null) {
           if (kDebugMode) {
-            print('✅ Firebase Auth popup succeeded');
-            print('  - UID: ${result.user!.uid}');
-            print('  - Email: ${result.user!.email}');
-            print('  - DisplayName: ${result.user!.displayName}');
+            debugPrint('✅ Firebase Auth popup succeeded');
+            debugPrint('  - UID: ${result.user!.uid}');
+            debugPrint('  - Email: ${result.user!.email}');
+            debugPrint('  - DisplayName: ${result.user!.displayName}');
           }
           return const Result.success(null);
         }
       } catch (e) {
         if (kDebugMode) {
-          print('❌ Method 1 failed: $e');
+          debugPrint('❌ Method 1 failed: $e');
         }
       }
 
       // Method 2: Fallback to GoogleSignIn package
       try {
         if (kDebugMode) {
-          print('🔄 Method 2: GoogleSignIn package fallback...');
+          debugPrint('🔄 Method 2: GoogleSignIn package fallback...');
         }
 
         // Clean any previous state
@@ -101,13 +102,13 @@ class AuthRepository {
 
         if (googleUser == null) {
           if (kDebugMode) {
-            print('❌ User cancelled Google Sign-In');
+            debugPrint('❌ User cancelled Google Sign-In');
           }
           return const Result.failure(AppErrorCode.authActionCancelled);
         }
 
         if (kDebugMode) {
-          print('✅ GoogleSignIn succeeded: ${googleUser.email}');
+          debugPrint('✅ GoogleSignIn succeeded: ${googleUser.email}');
         }
 
         // Get authentication details
@@ -116,7 +117,7 @@ class AuthRepository {
 
         if (googleAuth.accessToken == null || googleAuth.idToken == null) {
           if (kDebugMode) {
-            print('❌ Missing tokens from GoogleSignIn');
+            debugPrint('❌ Missing tokens from GoogleSignIn');
           }
           return const Result.failure(AppErrorCode.authInvalidAccount);
         }
@@ -132,22 +133,22 @@ class AuthRepository {
             await _auth.signInWithCredential(credential);
 
         if (kDebugMode) {
-          print('✅ Firebase credential sign-in succeeded');
-          print('  - UID: ${userCredential.user?.uid}');
-          print('  - Email: ${userCredential.user?.email}');
+          debugPrint('✅ Firebase credential sign-in succeeded');
+          debugPrint('  - UID: ${userCredential.user?.uid}');
+          debugPrint('  - Email: ${userCredential.user?.email}');
         }
 
         return const Result.success(null);
       } catch (e) {
         if (kDebugMode) {
-          print('❌ Method 2 failed: $e');
+          debugPrint('❌ Method 2 failed: $e');
         }
       }
 
       // Method 3: Redirect-based authentication (for some web environments)
       try {
         if (kDebugMode) {
-          print('🔄 Method 3: Redirect-based auth...');
+          debugPrint('🔄 Method 3: Redirect-based auth...');
         }
 
         final GoogleAuthProvider googleProvider = GoogleAuthProvider();
@@ -161,17 +162,17 @@ class AuthRepository {
         return const Result.success(null);
       } catch (e) {
         if (kDebugMode) {
-          print('❌ Method 3 failed: $e');
+          debugPrint('❌ Method 3 failed: $e');
         }
       }
 
       if (kDebugMode) {
-        print('❌ All web sign-in methods failed');
+        debugPrint('❌ All web sign-in methods failed');
       }
       return const Result.failure(AppErrorCode.authInvalidAccount);
     } catch (e) {
       if (kDebugMode) {
-        print('❌ Web Google Sign-In error: $e');
+        debugPrint('❌ Web Google Sign-In error: $e');
       }
       return const Result.failure(AppErrorCode.generalUnknown);
     }
@@ -181,24 +182,24 @@ class AuthRepository {
   Future<Result<void, AppErrorCode>> _signInWithGoogleMobile() async {
     try {
       if (kDebugMode) {
-        print('📱 Mobile Google Sign-In implementation');
+        debugPrint('📱 Mobile Google Sign-In implementation');
       }
 
       // Clean previous state
       try {
         await _googleSignIn.signOut();
         if (kDebugMode) {
-          print('🧹 Previous state cleaned');
+          debugPrint('🧹 Previous state cleaned');
         }
       } catch (e) {
         if (kDebugMode) {
-          print('⚠️ Cleanup ignored: $e');
+          debugPrint('⚠️ Cleanup ignored: $e');
         }
       }
 
       // Step 1: Google Sign-In
       if (kDebugMode) {
-        print('🚀 Starting Google Sign-In...');
+        debugPrint('🚀 Starting Google Sign-In...');
       }
 
       GoogleSignInAccount? googleUser;
@@ -207,7 +208,7 @@ class AuthRepository {
         googleUser = await _googleSignIn.signIn();
       } catch (e) {
         if (kDebugMode) {
-          print('❌ Google Sign-In error: $e');
+          debugPrint('❌ Google Sign-In error: $e');
         }
         return const Result.failure(AppErrorCode.netConnectionFailed);
       }
@@ -217,12 +218,12 @@ class AuthRepository {
       }
 
       if (kDebugMode) {
-        print('✅ GoogleUser obtained: ${googleUser.email}');
+        debugPrint('✅ GoogleUser obtained: ${googleUser.email}');
       }
 
       // Step 2: Get authentication tokens with multiple methods
       if (kDebugMode) {
-        print('🔐 Getting authentication tokens...');
+        debugPrint('🔐 Getting authentication tokens...');
       }
 
       GoogleSignInAuthentication? googleAuth;
@@ -231,7 +232,7 @@ class AuthRepository {
       for (int attempt = 1; attempt <= 5; attempt++) {
         try {
           if (kDebugMode) {
-            print('🔄 Token attempt $attempt...');
+            debugPrint('🔄 Token attempt $attempt...');
           }
 
           switch (attempt) {
@@ -270,13 +271,13 @@ class AuthRepository {
 
           if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
             if (kDebugMode) {
-              print('✅ Tokens obtained on attempt $attempt');
+              debugPrint('✅ Tokens obtained on attempt $attempt');
             }
             break;
           }
         } catch (e) {
           if (kDebugMode) {
-            print('❌ Attempt $attempt failed: $e');
+            debugPrint('❌ Attempt $attempt failed: $e');
           }
           if (attempt == 5) rethrow;
         }
@@ -286,18 +287,18 @@ class AuthRepository {
           googleAuth.accessToken == null ||
           googleAuth.idToken == null) {
         if (kDebugMode) {
-          print('❌ Failed to get valid tokens');
+          debugPrint('❌ Failed to get valid tokens');
         }
         return const Result.failure(AppErrorCode.authInvalidAccount);
       }
 
       if (kDebugMode) {
-        print('✅ Valid tokens retrieved');
+        debugPrint('✅ Valid tokens retrieved');
       }
 
       // Step 3: Firebase Sign-In
       if (kDebugMode) {
-        print('🔥 Signing in to Firebase...');
+        debugPrint('🔥 Signing in to Firebase...');
       }
 
       final credential = GoogleAuthProvider.credential(
@@ -309,16 +310,16 @@ class AuthRepository {
           await _auth.signInWithCredential(credential);
 
       if (kDebugMode) {
-        print('🎉 FIREBASE SIGN-IN SUCCESSFUL!');
-        print('  - UID: ${userCredential.user?.uid}');
-        print('  - Email: ${userCredential.user?.email}');
-        print('  - DisplayName: ${userCredential.user?.displayName}');
+        debugPrint('🎉 FIREBASE SIGN-IN SUCCESSFUL!');
+        debugPrint('  - UID: ${userCredential.user?.uid}');
+        debugPrint('  - Email: ${userCredential.user?.email}');
+        debugPrint('  - DisplayName: ${userCredential.user?.displayName}');
       }
 
       return const Result.success(null);
     } catch (e) {
       if (kDebugMode) {
-        print('❌ Mobile Google Sign-In error: $e');
+        debugPrint('❌ Mobile Google Sign-In error: $e');
       }
       return const Result.failure(AppErrorCode.generalUnknown);
     }
@@ -333,9 +334,9 @@ class AuthRepository {
 
       if (result?.user != null) {
         if (kDebugMode) {
-          print('✅ Redirect result processed successfully');
-          print('  - UID: ${result!.user!.uid}');
-          print('  - Email: ${result.user!.email}');
+          debugPrint('✅ Redirect result processed successfully');
+          debugPrint('  - UID: ${result!.user!.uid}');
+          debugPrint('  - Email: ${result.user!.email}');
         }
         return const Result.success(null);
       }
@@ -343,7 +344,7 @@ class AuthRepository {
       return const Result.success(null);
     } catch (e) {
       if (kDebugMode) {
-        print('❌ Redirect result error: $e');
+        debugPrint('❌ Redirect result error: $e');
       }
       return const Result.failure(AppErrorCode.generalUnknown);
     }
@@ -353,12 +354,12 @@ class AuthRepository {
   Future<Result<void, AppErrorCode>> signInAnonymously() async {
     try {
       if (kDebugMode) {
-        print('👤 Starting anonymous sign-in... ${_auth.currentUser}');
+        debugPrint('👤 Starting anonymous sign-in... ${_auth.currentUser}');
       }
       if (_auth.currentUser == null) {
         await _auth.signInAnonymously();
         if (kDebugMode) {
-          print('🎭 Anonymous sign-in successful');
+          debugPrint('🎭 Anonymous sign-in successful');
         }
       }
       return const Result.success(null);
@@ -378,7 +379,7 @@ class AuthRepository {
         password: password,
       );
       if (kDebugMode) {
-        print('📧 Email/password sign-in successful: $email');
+        debugPrint('📧 Email/password sign-in successful: $email');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -397,7 +398,7 @@ class AuthRepository {
         password: password,
       );
       if (kDebugMode) {
-        print('👤 Account created successfully: $email');
+        debugPrint('👤 Account created successfully: $email');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -413,7 +414,7 @@ class AuthRepository {
     try {
       await _auth.sendPasswordResetEmail(email: email);
       if (kDebugMode) {
-        print('📧 Password reset email sent to: $email');
+        debugPrint('📧 Password reset email sent to: $email');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -432,7 +433,7 @@ class AuthRepository {
         newPassword: newPassword,
       );
       if (kDebugMode) {
-        print('🔑 Password reset successful');
+        debugPrint('🔑 Password reset successful');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -452,7 +453,7 @@ class AuthRepository {
     try {
       await user.updatePassword(newPassword);
       if (kDebugMode) {
-        print('🔑 Password updated');
+        debugPrint('🔑 Password updated');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -474,7 +475,7 @@ class AuthRepository {
       await user.updateDisplayName(displayName);
       await user.reload();
       if (kDebugMode) {
-        print('👤 Profile updated: $displayName');
+        debugPrint('👤 Profile updated: $displayName');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -500,7 +501,7 @@ class AuthRepository {
     try {
       await user.reauthenticateWithCredential(credential);
       if (kDebugMode) {
-        print('🔐 Reauthentication successful');
+        debugPrint('🔐 Reauthentication successful');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -536,7 +537,7 @@ class AuthRepository {
       await user.reauthenticateWithCredential(credential);
 
       if (kDebugMode) {
-        print('🔐 Reauthentication with Google successful');
+        debugPrint('🔐 Reauthentication with Google successful');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -556,7 +557,7 @@ class AuthRepository {
     try {
       await user.delete();
       if (kDebugMode) {
-        print('🗑️ Account deleted');
+        debugPrint('🗑️ Account deleted');
       }
       return const Result.success(null);
     } on FirebaseAuthException catch (e) {
@@ -574,12 +575,12 @@ class AuthRepository {
         _googleSignIn.signOut(),
       ]);
       if (kDebugMode) {
-        print('🚪 Sign out successful');
+        debugPrint('🚪 Sign out successful');
       }
       return const Result.success(null);
     } catch (e) {
       if (kDebugMode) {
-        print('⚠️ Sign out error: $e');
+        debugPrint('⚠️ Sign out error: $e');
       }
       return const Result.failure(AppErrorCode.generalUnknown);
     }
@@ -655,7 +656,7 @@ AuthRepository authRepository(Ref ref) {
     );
 
     if (kDebugMode) {
-      print('🌐 GoogleSignIn Web configured with enhanced settings');
+      debugPrint('🌐 GoogleSignIn Web configured with enhanced settings');
     }
   } else {
     googleSignIn = GoogleSignIn(
@@ -667,7 +668,7 @@ AuthRepository authRepository(Ref ref) {
     );
 
     if (kDebugMode) {
-      print('📱 GoogleSignIn Mobile configured');
+      debugPrint('📱 GoogleSignIn Mobile configured');
     }
   }
 
