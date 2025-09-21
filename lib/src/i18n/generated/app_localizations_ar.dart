@@ -9,6 +9,9 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get languageName => 'العربية';
+
+  @override
   String get appTitle => 'ختمة';
 
   @override
@@ -81,7 +84,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get or => 'أو';
 
   @override
-  String get confirmReading => 'Mark as Read';
+  String get confirmReading => 'تمييز كمقروء';
 
   @override
   String get processing => 'جاري المعالجة …';
@@ -93,15 +96,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get yesterday => 'أمس';
 
   @override
-  String daysAgo(num count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count يوم مضى',
-      one: 'أمس',
-      zero: 'اليوم',
-    );
-    return '$_temp0';
+  String daysAgo(int count) {
+    return 'منذ $count يوم';
   }
 
   @override
@@ -1553,6 +1549,19 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String riwayaMode(String riwaya) {
+    String _temp0 = intl.Intl.selectLogic(
+      riwaya,
+      {
+        'hafs': 'Hafs',
+        'warsh': 'Warsh',
+        'other': 'Hafs',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get faq => 'الأسئلة الشائعة';
 
   @override
@@ -1644,7 +1653,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authenticationError => 'خطأ في المصادقة';
 
   @override
-  String get syncError => 'خطأ في التزامن';
+  String get syncError => 'خطأ في المزامنة';
 
   @override
   String get storageError => 'خطأ في التخزين';
@@ -1872,4 +1881,126 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noFaqAvailable => 'لا توجد أسئلة شائعة متاحة';
+
+  @override
+  String get dataSynchronization => 'مزامنة البيانات';
+
+  @override
+  String get chooseSyncMethod => 'اختر كيفية مزامنة بياناتك';
+
+  @override
+  String get syncStatus => 'حالة المزامنة';
+
+  @override
+  String get syncing => 'جاري المزامنة...';
+
+  @override
+  String lastSyncTime(String time) {
+    return 'آخر مزامنة: $time';
+  }
+
+  @override
+  String get neverSynced => 'لم تتم المزامنة مطلقاً';
+
+  @override
+  String get justNow => 'الآن';
+
+  @override
+  String minutesAgo(int count) {
+    return 'منذ $count دقيقة';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return 'منذ $count ساعة';
+  }
+
+  @override
+  String get fullSync => 'مزامنة كاملة';
+
+  @override
+  String get pullFromServer => 'تحميل من الخادم';
+
+  @override
+  String get pushToServer => 'رفع إلى الخادم';
+
+  @override
+  String get downloadRemoteChanges => 'تحميل أحدث التغييرات من الخادم';
+
+  @override
+  String get uploadLocalChanges => 'رفع تغييراتك المحلية إلى الخادم';
+
+  @override
+  String get performingFullSync => 'جاري تنفيذ المزامنة الكاملة...';
+
+  @override
+  String get downloadingChanges => 'جاري تحميل التغييرات من الخادم...';
+
+  @override
+  String get uploadingChanges => 'جاري رفع التغييرات إلى الخادم...';
+
+  @override
+  String get syncCompleted => 'تمت المزامنة بنجاح';
+
+  @override
+  String syncFailed(String error) {
+    return 'فشلت المزامنة: $error';
+  }
+
+  @override
+  String get syncNow => 'مزامنة الآن';
+
+  @override
+  String get syncWarning => 'تحذير المزامنة';
+
+  @override
+  String get syncUpToDate => 'محدث';
+
+  @override
+  String syncFailureCount(int count) {
+    return '$count محاولات فاشلة';
+  }
+
+  @override
+  String khatmasCount(int count) {
+    return '$count ختمة';
+  }
+
+  @override
+  String historyCount(int count) {
+    return '$count عنصر تاريخ';
+  }
+
+  @override
+  String get performBothUploadAndDownload => 'تنفيذ مزامنة الرفع والتحميل معاً';
+
+  @override
+  String get synchronizeYourData => 'مزامنة بيانات الختمة مع الخادم';
+
+  @override
+  String get syncCompletedSuccessfully => 'تمت المزامنة بنجاح';
+
+  @override
+  String get synchronizeData => 'مزامنة البيانات';
+
+  @override
+  String get synchronizeUploadAndDownload =>
+      'رفع التغييرات المحلية وتحميل التحديثات';
+
+  @override
+  String get checkForUpdatesAndSync => 'التحقق من تحديثات الخادم والمزامنة';
+
+  @override
+  String get toUpload => 'للرفع';
+
+  @override
+  String get allDataSynchronized => 'تمت مزامنة جميع بياناتك بنجاح';
+
+  @override
+  String get synchronizingPleaseWait => 'جارٍ مزامنة بياناتك، يرجى الانتظار...';
+
+  @override
+  String itemsToSync(int count) {
+    return '$count item to synchronize';
+  }
 }
