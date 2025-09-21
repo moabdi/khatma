@@ -9,6 +9,9 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get languageName => 'English';
+
+  @override
   String get appTitle => 'Khatma';
 
   @override
@@ -93,15 +96,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yesterday => 'Yesterday';
 
   @override
-  String daysAgo(num count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count days ago',
-      one: 'Yesterday',
-      zero: 'Today',
-    );
-    return '$_temp0';
+  String daysAgo(int count) {
+    return '$count days ago';
   }
 
   @override
@@ -1564,6 +1560,19 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String riwayaMode(String riwaya) {
+    String _temp0 = intl.Intl.selectLogic(
+      riwaya,
+      {
+        'hafs': 'Hafs',
+        'warsh': 'Warsh',
+        'other': 'Hafs',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get faq => 'Common Questions';
 
   @override
@@ -1886,4 +1895,133 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noFaqAvailable => 'No FAQ available';
+
+  @override
+  String get dataSynchronization => 'Data Synchronization';
+
+  @override
+  String get chooseSyncMethod => 'Choose how you want to synchronize your data';
+
+  @override
+  String get syncStatus => 'Sync Status';
+
+  @override
+  String get syncing => 'Synchronizing...';
+
+  @override
+  String lastSyncTime(String time) {
+    return 'Last sync: $time';
+  }
+
+  @override
+  String get neverSynced => 'Never synchronized';
+
+  @override
+  String get justNow => 'Just now';
+
+  @override
+  String minutesAgo(int count) {
+    return '$count minutes ago';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return '$count hours ago';
+  }
+
+  @override
+  String get fullSync => 'Full Synchronization';
+
+  @override
+  String get pullFromServer => 'Download from Server';
+
+  @override
+  String get pushToServer => 'Upload to Server';
+
+  @override
+  String get downloadRemoteChanges =>
+      'Download the latest changes from the server';
+
+  @override
+  String get uploadLocalChanges => 'Upload your local changes to the server';
+
+  @override
+  String get performingFullSync => 'Performing full synchronization...';
+
+  @override
+  String get downloadingChanges => 'Downloading changes from server...';
+
+  @override
+  String get uploadingChanges => 'Uploading changes to server...';
+
+  @override
+  String get syncCompleted => 'Synchronization completed successfully';
+
+  @override
+  String syncFailed(String error) {
+    return 'Sync failed: $error';
+  }
+
+  @override
+  String get syncNow => 'Sync Now';
+
+  @override
+  String get syncWarning => 'Sync Warning';
+
+  @override
+  String get syncUpToDate => 'Up to date';
+
+  @override
+  String syncFailureCount(int count) {
+    return '$count failed attempts';
+  }
+
+  @override
+  String khatmasCount(int count) {
+    return '$count khatmas';
+  }
+
+  @override
+  String historyCount(int count) {
+    return '$count history items';
+  }
+
+  @override
+  String get performBothUploadAndDownload =>
+      'Perform both upload and download synchronization';
+
+  @override
+  String get synchronizeYourData =>
+      'Synchronize your Khatma data with the server';
+
+  @override
+  String get syncCompletedSuccessfully =>
+      'Synchronization completed successfully';
+
+  @override
+  String get synchronizeData => 'Synchronize Data';
+
+  @override
+  String get synchronizeUploadAndDownload =>
+      'Upload local changes and download updates';
+
+  @override
+  String get checkForUpdatesAndSync =>
+      'Check for server updates and synchronize';
+
+  @override
+  String get toUpload => 'to upload';
+
+  @override
+  String get allDataSynchronized =>
+      'All your data has been synchronized successfully';
+
+  @override
+  String get synchronizingPleaseWait =>
+      'Synchronizing your data, please wait...';
+
+  @override
+  String itemsToSync(int count) {
+    return '$count item to synchronize';
+  }
 }

@@ -6,6 +6,7 @@ import 'package:khatma/src/core/preferences_service.dart';
 import 'package:khatma/src/core/result.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/error/app_error_code.dart';
+import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_manager.g.dart';
@@ -91,6 +92,8 @@ class LoginManager extends _$LoginManager {
       await PreferencesService.setBool(_PreferenceKeys.isLoggedIn, true);
     }
 
+    await ref.read(khatmaNotifierProvider.notifier).performSync();
+
     state = state.copyWith(isLoading: false, error: result.errorOrNull);
     return result;
   }
@@ -117,6 +120,7 @@ class LoginManager extends _$LoginManager {
               _PreferenceKeys.authToken, tokenResult.dataOrNull!);
         }
       }
+      await ref.read(khatmaNotifierProvider.notifier).performSync();
     }
 
     state = state.copyWith(isLoading: false, error: result.errorOrNull);
@@ -133,6 +137,8 @@ class LoginManager extends _$LoginManager {
       await PreferencesService.setBool(_PreferenceKeys.isAnonymous, true);
     }
 
+    await ref.read(khatmaNotifierProvider.notifier).performSync();
+
     state = state.copyWith(isLoading: false, error: result.errorOrNull);
     return result;
   }
@@ -140,7 +146,10 @@ class LoginManager extends _$LoginManager {
   Future<Result<void, AppErrorCode>> _authenticateEmailPassword(
       String email, String password) {
     final authRepository = ref.read(authRepositoryProvider);
-    return authRepository.signInWithEmailAndPassword(email, password);
+    var signInWithEmailAndPassword =
+        authRepository.signInWithEmailAndPassword(email, password);
+
+    return signInWithEmailAndPassword;
   }
 
   Future<Result<void, AppErrorCode>> sendPasswordResetEmail(

@@ -1,5 +1,6 @@
 {
   "@@locale": "ar",
+  "languageName": "العربية",
   
   "appTitle": "ختمة",
   "appName": "ختمة",
@@ -27,6 +28,7 @@
   "yes": "نعم",
   "or": "أو",
   "markAsRead": "تمييز كمقروء",
+  "confirmReading": "تمييز كمقروء",
   "processing": "جاري المعالجة …",
 
   "today": "اليوم",
@@ -447,7 +449,15 @@
   "theme": "المظهر",
   "chooseTheme": "اختر المظهر",
   "themeMode": "{mode, select, light{فاتح} dark{مظلم} system{النظام} other{النظام}}",
-  
+  "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
+  "@riwayaMode": {
+    "placeholders": {
+      "riwaya": {
+        "type": "String"
+      }
+    }
+  },
+
   "faq": "الأسئلة الشائعة",
   "frequentlyAskedQuestions": "الأسئلة المتكررة",
   "contactSupport": "الاتصال بالدعم",
@@ -562,5 +572,49 @@
   "emailNotAvailable": "تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز",
   "refresh": "تحديث",
   "failedToLoadFaq": "فشل في تحميل الأسئلة الشائعة",
-  "noFaqAvailable": "لا توجد أسئلة شائعة متاحة"
+  "noFaqAvailable": "لا توجد أسئلة شائعة متاحة",
+  "dataSynchronization": "مزامنة البيانات",
+  "chooseSyncMethod": "اختر كيفية مزامنة بياناتك",
+  "syncStatus": "حالة المزامنة",
+  "syncing": "جاري المزامنة...",
+  "lastSyncTime": "آخر مزامنة: {time}",
+  "neverSynced": "لم تتم المزامنة مطلقاً",
+  "justNow": "الآن",
+  "minutesAgo": "منذ {count} دقيقة",
+  "hoursAgo": "منذ {count} ساعة",
+  "daysAgo": "منذ {count} يوم",
+  
+  "fullSync": "مزامنة كاملة",
+  "pullFromServer": "تحميل من الخادم",
+  "pushToServer": "رفع إلى الخادم",
+  "downloadRemoteChanges": "تحميل أحدث التغييرات من الخادم",
+  "uploadLocalChanges": "رفع تغييراتك المحلية إلى الخادم",
+  
+  "performingFullSync": "جاري تنفيذ المزامنة الكاملة...",
+  "downloadingChanges": "جاري تحميل التغييرات من الخادم...",
+  "uploadingChanges": "جاري رفع التغييرات إلى الخادم...",
+  "syncCompleted": "تمت المزامنة بنجاح",
+  "syncFailed": "فشلت المزامنة: {error}",
+  
+  "cancel": "إلغاء",
+  "retry": "إعادة المحاولة",
+  "syncNow": "مزامنة الآن",
+  "syncError": "خطأ في المزامنة",
+  "syncWarning": "تحذير المزامنة",
+  "syncUpToDate": "محدث",
+  "syncFailureCount": "{count} محاولات فاشلة",
+  "performBothUploadAndDownload": "تنفيذ مزامنة الرفع والتحميل معاً",
+  "synchronizeYourData": "مزامنة بيانات الختمة مع الخادم",
+  "syncCompletedSuccessfully": "تمت المزامنة بنجاح",
+  "synchronizeData": "مزامنة البيانات",
+  "synchronizeUploadAndDownload": "رفع التغييرات المحلية وتحميل التحديثات",
+  "checkForUpdatesAndSync": "التحقق من تحديثات الخادم والمزامنة",
+  "toUpload": "للرفع",
+  "allDataSynchronized": "تمت مزامنة جميع بياناتك بنجاح",
+  "close": "إغلاق",
+  "khatmasCount": "{count} ختمة",
+  "historyCount": "{count} عنصر تاريخ",
+  "synchronizingPleaseWait": "جارٍ مزامنة بياناتك، يرجى الانتظار...",  
+  "itemsToSync": "{count} item to synchronize"
+
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/app_logo.dart';
@@ -62,7 +63,9 @@ class _ContactUsPageState extends State<ContactUsPage>
       _clearForm();
     } catch (e) {
       _showSnackBar(context.loc.failedToSendMessage, isError: true);
-      print('Error sending contact form: $e');
+      if (kDebugMode) {
+        debugPrint('Error sending contact form: $e');
+      }
     } finally {
       setState(() => _isLoading = false);
     }
@@ -79,8 +82,9 @@ class _ContactUsPageState extends State<ContactUsPage>
     try {
       await FlutterEmailSender.send(email);
     } catch (error) {
-      print('Email sending error: $error');
-      // Re-throw to be caught by the calling method
+      if (kDebugMode) {
+        debugPrint('Email sending error: $error');
+      } // Re-throw to be caught by the calling method
       throw Exception('Failed to send email: $error');
     }
   }

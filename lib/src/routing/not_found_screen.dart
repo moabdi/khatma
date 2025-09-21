@@ -10,7 +10,6 @@ class NotFoundScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('NotFoundScreen: $errorMessage');
     return Scaffold(
       appBar: AppBar(
         title: Text(context.loc.pageNotFound),
