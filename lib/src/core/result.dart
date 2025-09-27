@@ -23,6 +23,11 @@ sealed class Result<T, E> {
         Failure<T, E>() => null,
       };
 
+  T? get valueOrNull => switch (this) {
+        Success<T, E>(data: final data) => data,
+        Failure<T, E>() => null,
+      };
+
   /// Gets the error if failure, null otherwise
   E? get errorOrNull => switch (this) {
         Success<T, E>() => null,

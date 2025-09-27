@@ -30,6 +30,7 @@ class AppUser {
       authMethod == AuthMethod.emailPassword;
   bool get isSignedInWithGoogle => authMethod == AuthMethod.google;
   bool get isAnonymousUser => authMethod == AuthMethod.anonymous;
+  UserID get id => uid;
 
   Future<Result<void, AppErrorCode>> sendEmailVerification() async {
     return const Result.failure(AppErrorCode.generalInvalidOperation);

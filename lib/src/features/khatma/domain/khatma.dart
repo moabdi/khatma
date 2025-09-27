@@ -37,7 +37,7 @@ abstract class Khatma with _$Khatma {
     @Default(false) bool repeat,
     int? repeats,
     Recurrence? recurrence,
-    KhatmaShare? share,
+    @Default(false) bool share,
     KhatmaTheme? theme,
     DateTime? endDate,
     DateTime? lastRead,
@@ -103,31 +103,6 @@ abstract class Khatma with _$Khatma {
           color: "#00A862",
           icon: "kaaba.ico",
         );
-  }
-
-  // Validation method
-  AppErrorCode validate() {
-    if (name.trim().isEmpty) {
-      return AppErrorCode.validationMissingFields;
-    }
-
-    if (name.length > 100) {
-      return AppErrorCode.validationInvalidData;
-    }
-
-    if (description != null && description!.length > 500) {
-      return AppErrorCode.validationInvalidData;
-    }
-
-    if (endDate != null && endDate!.isBefore(startDate)) {
-      return AppErrorCode.validationInvalidData;
-    }
-
-    if (share?.maxPartToRead != null && share!.maxPartToRead! > unit.count) {
-      return AppErrorCode.validationInvalidData;
-    }
-
-    return AppErrorCode.noError;
   }
 
   // Helper method for updating reading progress
@@ -298,30 +273,6 @@ enum SplitUnit {
       case SplitUnit.hizb:
         return 'Hizb';
     }
-  }
-}
-
-// Validator class
-class KhatmaValidator {
-  static AppErrorCode validateKhatma(Khatma khatma) {
-    return khatma.validate();
-  }
-
-  static AppErrorCode validateKhatmaPart(KhatmaPart part) {
-    final errors = <String>[];
-
-    if (part.id <= 0) {
-      errors.add('Part ID must be positive');
-    }
-
-    if (part.startDate != null && part.endDate != null) {
-      if (part.endDate!.isBefore(part.startDate!)) {
-        errors.add('End date must be after start date');
-      }
-    }
-
-    return AppErrorCode.validationInvalidData; // Return appropriate error key
-    //return errors.isEmpty ? AppErrorKey.noError : AppErrorKey.validationInvalidData;
   }
 }
 

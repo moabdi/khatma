@@ -316,6 +316,12 @@ class AccountManager extends _$AccountManager {
 }
 
 // ==================== PROVIDERS AUXILIAIRES ====================
+/// Provider pour l'état de chargement account
+@riverpod
+AppUser? user(Ref ref) {
+  final accountState = ref.watch(accountManagerProvider);
+  return accountState.user;
+}
 
 /// Provider pour l'état de chargement account
 @riverpod
