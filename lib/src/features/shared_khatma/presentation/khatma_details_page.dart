@@ -135,16 +135,21 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                 children: [
                   // Description in ExpansionTile
                   if (_currentKhatma.description.isNotEmpty)
-                    ExpansionTile(
-                      childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                      tilePadding: EdgeInsets.all(0),
-                      title: Text('Description'),
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(_currentKhatma.description),
-                        ),
-                      ],
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        dividerColor: Colors.transparent,
+                      ),
+                      child: ExpansionTile(
+                        childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                        tilePadding: const EdgeInsets.all(0),
+                        title: const Text('Description'),
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(_currentKhatma.description),
+                          ),
+                        ],
+                      ),
                     ),
                     gapH12,
                     // Title
@@ -157,24 +162,28 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         children: [
                           KhatmaFilterChip(
                             label: 'Tout',
+                            icon: Icons.apps_rounded,
                             isSelected: _activeFilters.contains(UnitFilter.all),
                             onTap: () => _toggleFilter(UnitFilter.all),
                           ),
                           gapW8,
                           KhatmaFilterChip(
                             label: 'Mes unités',
+                            icon: Icons.person_rounded,
                             isSelected: _activeFilters.contains(UnitFilter.mine),
                             onTap: () => _toggleFilter(UnitFilter.mine),
                           ),
                           gapW8,
                           KhatmaFilterChip(
                             label: 'Disponibles',
+                            icon: Icons.check_circle_outline_rounded,
                             isSelected: _activeFilters.contains(UnitFilter.free),
                             onTap: () => _toggleFilter(UnitFilter.free),
                           ),
                           gapW8,
                           KhatmaFilterChip(
                             label: 'Complétées',
+                            icon: Icons.done_all_rounded,
                             isSelected: _activeFilters.contains(UnitFilter.completed),
                             onTap: () => _toggleFilter(UnitFilter.completed),
                           ),

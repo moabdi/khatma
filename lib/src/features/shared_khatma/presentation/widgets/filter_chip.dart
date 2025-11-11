@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class KhatmaFilterChip extends StatelessWidget {
   final String label;
+  final IconData icon;
   final bool isSelected;
   final VoidCallback onTap;
 
   const KhatmaFilterChip({
     super.key,
     required this.label,
+    required this.icon,
     required this.isSelected,
     required this.onTap,
   });
@@ -32,15 +34,28 @@ class KhatmaFilterChip extends StatelessWidget {
             width: 1.5,
           ),
         ),
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: isSelected
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.onSurfaceVariant,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                fontSize: 12,
-              ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 14,
+              color: isSelected
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+            const SizedBox(width: 4),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: isSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                    fontSize: 12,
+                  ),
+            ),
+          ],
         ),
       ),
     );
