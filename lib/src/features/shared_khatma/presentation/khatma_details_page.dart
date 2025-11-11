@@ -45,6 +45,35 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // Statistics Cards
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Total Units Card
+                _StatCard(
+                  icon: Icons.grid_view_rounded,
+                  label: context.loc.totalUnits,
+                  value: state.khatma.totalUnits.toString(),
+                  color: context.colorScheme.primary,
+                ),
+                // Free Units Card
+                _StatCard(
+                  icon: Icons.check_circle_outline_rounded,
+                  label: context.loc.freeUnits,
+                  value: state.khatma.unitsAvailable.toString(),
+                  color: context.colorScheme.tertiary,
+                ),
+                // Completion Progress Card
+                _StatCard(
+                  icon: Icons.trending_up_rounded,
+                  label: context.loc.completionProgress,
+                  value: '${(state.khatma.completionPercent * 100).toStringAsFixed(0)}%',
+                  color: context.colorScheme.secondary,
+                ),
+              ],
+            ),
+            gapH16,
+
             // Khatma Overview
             Container(
               width: double.infinity,
@@ -373,5 +402,72 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         );
       }
     }
+  }
+}
+
+/// Stat card widget to display statistics as circular badges
+class _StatCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
+
+  const _StatCard({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Circular badge
+        Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: color.withValues(alpha: 0.15),
+            border: Border.all(
+              color: color.withValues(alpha: 0.4),
+              width: 1.5,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: color,
+                size: 16,
+              ),
+              const SizedBox(height: 1),
+              Text(
+                value,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: color,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                    ),
+              ),
+            ],
+          ),
+        ),
+        gapH4,
+        // Label
+        Text(
+          label,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.w500,
+                fontSize: 11,
+              ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
   }
 }

@@ -980,5 +980,9 @@
       }
     }
   },
-  "errorJoiningKhatma": "خطأ في الانضمام إلى الختمة"
+  "errorJoiningKhatma": "خطأ في الانضمام إلى الختمة",
+
+  "totalUnits": "المجموع",
+  "freeUnits": "المتاحة",
+  "completionProgress": "التقدم"
 }

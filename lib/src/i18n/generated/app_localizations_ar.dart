@@ -2155,4 +2155,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorJoiningKhatma => 'خطأ في الانضمام إلى الختمة';
+
+  @override
+  String get totalUnits => 'المجموع';
+
+  @override
+  String get freeUnits => 'المتاحة';
+
+  @override
+  String get completionProgress => 'التقدم';
 }

@@ -3615,6 +3615,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error joining the Khatma'**
   String get errorJoiningKhatma;
+
+  /// No description provided for @totalUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get totalUnits;
+
+  /// No description provided for @freeUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get freeUnits;
+
+  /// No description provided for @completionProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get completionProgress;
 }
 
 class _AppLocalizationsDelegate

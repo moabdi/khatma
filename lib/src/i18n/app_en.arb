@@ -980,5 +980,9 @@
       }
     }
   },
-  "errorJoiningKhatma": "Error joining the Khatma"
+  "errorJoiningKhatma": "Error joining the Khatma",
+
+  "totalUnits": "Total",
+  "freeUnits": "Available",
+  "completionProgress": "Progress"
 }

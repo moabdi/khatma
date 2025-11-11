@@ -980,5 +980,12 @@
       }
     }
   },
-  "errorJoiningKhatma": "Erreur lors de la participation à la Khatma"
+  "errorJoiningKhatma": "Erreur lors de la participation à la Khatma",
+
+  "totalUnits": "Total",
+  "freeUnits": "Libres",
+  "completionProgress": "Progression",
+  "members": "Membres",
+  "completed": "Complété",
+  "reserved": "Réservé"
 }

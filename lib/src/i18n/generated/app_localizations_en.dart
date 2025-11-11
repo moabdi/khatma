@@ -2173,4 +2173,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorJoiningKhatma => 'Error joining the Khatma';
+
+  @override
+  String get totalUnits => 'Total';
+
+  @override
+  String get freeUnits => 'Available';
+
+  @override
+  String get completionProgress => 'Progress';
 }
