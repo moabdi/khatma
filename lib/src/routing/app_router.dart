@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:khatma/src/features/info/info_routes.dart';
 import 'package:khatma/src/features/khatma/personal/personal_khatma_routes.dart';
-import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/onboarding/onboarding_screen.dart';
 import 'package:khatma/src/features/profil/profile_routes.dart';
 import 'package:khatma/src/features/quran/quran_routes.dart';
@@ -43,6 +42,8 @@ enum AppRoute {
   account,
   khatmaSearchDetails,
   khatmaSearch,
+  personalKhatma,
+  sync,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {

@@ -924,7 +924,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorAuthUserDisabled => 'حساب المستخدم معطل.';
 
   @override
-  String get errorAuthUserNotFound => 'المستخدم غير موجود.';
+  String get errorAuthUserNotFound =>
+      'لم يتم العثور على المستخدم. يرجى تسجيل الدخول مرة أخرى.';
 
   @override
   String get errorAuthEmailAlreadyInUse =>
@@ -1030,7 +1031,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorValidationInvalidOperation => 'تم محاولة عملية غير صحيحة.';
 
   @override
-  String get errorKhatmaNotFound => 'الختمة غير موجودة.';
+  String get errorKhatmaNotFound =>
+      'لم يتم العثور على الختمة. ربما تم حذفها أو غير موجودة.';
 
   @override
   String get errorKhatmaAlreadyCompleted => 'هذه الختمة مكتملة بالفعل.';
@@ -1055,6 +1057,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorNoKhatmaSelected => 'لا توجد ختمة محددة.';
+
+  @override
+  String get errorKhatmaAlreadyJoined => 'لقد انضممت بالفعل إلى هذه الختمة.';
+
+  @override
+  String get errorKhatmaNotJoined => 'لست مشاركاً في هذه الختمة.';
+
+  @override
+  String get errorKhatmaOwnerCannotLeave =>
+      'بصفتك المالك، لا يمكنك مغادرة هذه الختمة. يرجى نقل الملكية أو حذف الختمة.';
+
+  @override
+  String get errorKhatmaPartAlreadyCompleted => 'هذا الجزء مكتمل بالفعل.';
+
+  @override
+  String get errorKhatmaPartAlreadyReserved =>
+      'هذا الجزء محجوز بالفعل من قبل مستخدم آخر.';
+
+  @override
+  String get errorKhatmaPartNotReserved => 'يجب عليك حجز هذا الجزء قبل إكماله.';
+
+  @override
+  String get errorKhatmaPermissionDenied => 'ليس لديك إذن لتنفيذ هذا الإجراء.';
+
+  @override
+  String get errorKhatmaAlreadyExists => 'ختمة بهذه المعلومات موجودة بالفعل.';
+
+  @override
+  String get errorNetworkConnectionFailed =>
+      'فشل الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
+
+  @override
+  String get errorNetworkTimeout => 'انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get errorFirestoreOperationFailed =>
+      'فشل في عملية قاعدة البيانات. يرجى المحاولة مرة أخرى لاحقاً.';
+
+  @override
+  String get errorGeneralUnknown => 'حدث خطأ غير معروف.';
 
   @override
   String get errorLimitKhatmaMaxReached =>
@@ -1098,9 +1140,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorStatsExportFailed => 'فشل تصدير الإحصائيات.';
-
-  @override
-  String get errorGeneralUnknown => 'حدث خطأ غير معروف.';
 
   @override
   String get errorGeneralCancelled => 'تم إلغاء العملية.';

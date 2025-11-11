@@ -1,10 +1,10 @@
 {
   "@@locale": "fr",
   "languageName": "Français",
-  
+
   "appTitle": "Khatma",
   "appName": "Khatma",
-  
+
   "add": "Ajouter",
   "apply": "Appliquer",
   "back": "Retour",
@@ -28,9 +28,57 @@
   "yes": "Oui",
   "or": "Ou",
   "markAsRead": "Marquer comme lu",
-  "confirmReading" : "Marquer comme lu",
+  "confirmReading": "Marquer comme lu",
   "processing": "Process en cours...",
+  "show": "Afficher",
+  "hide": "Masquer",
+  "refresh": "Actualiser",
+  "tryAgain": "Réessayer",
+  "openSettings": "Ouvrir les paramètres",
 
+  "today": "Aujourd'hui",
+  "yesterday": "Hier",
+  "justNow": "À l'instant",
+  "daysAgo": "{count, plural, =0{Aujourd'hui} =1{Hier} other{Il y a {count} jours}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "monthsAgo": "{count, plural, =0{Ce mois-ci} one{Le mois dernier} other{Il y a {count} mois}}",
+  "@monthsAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "monthName": "{month, select, 1{Janvier} 2{Février} 3{Mars} 4{Avril} 5{Mai} 6{Juin} 7{Juillet} 8{Août} 9{Septembre} 10{Octobre} 11{Novembre} 12{Décembre} other{}}",
+  "@monthName": {
+    "placeholders": {
+      "month": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesAgo": "Il y a {count} minutes",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "Il y a {count} heures",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
 
   "signIn": "Se connecter",
   "signUp": "S'inscrire",
@@ -50,7 +98,8 @@
   "continueWithGoogle": "Continuer avec Google",
   "continueAsGuest": "Continuer en tant qu'invité",
   "backToLogin": "Retour à la page de connexion",
-  
+  "rememberMe": "Se souvenir de moi",
+
   "name": "Nom",
   "displayName": "Nom d'affichage",
   "fullNameOrNickname": "Nom complet ou surnom",
@@ -69,30 +118,6 @@
   "newPassword": "Nouveau mot de passe",
   "confirmNewPassword": "Confirmer le nouveau mot de passe",
 
-  "khatmaSearchTitle": "Rechercher une Khatma",
-  "khatmaSearchHint": "Nom ou description",
-  "khatmaJoinButton": "Rejoindre",
-  "khatmaSearchEmptyDefault": "Découvrez les Khatmas publiques disponibles",
-  "khatmaSearchNoResults": "Aucune Khatma trouvée pour votre recherche",
-  "khatmaConfirmJoin": "Confirmer rejoindre",
-  "khatmaMembers": "Membres",
-  "khatmaAvailable": "Disponibles",
-  "khatmaProgress": "Progression",
-  "khatmaUnits": "Unités",
-  "khatmaType": "Type",
-  "khatmaCreatedOn": "Créé le",
-  "khatmaCreatedBy": "Créé par",
-  "khatmaTotalUnits": "Total unités",
-  "khatmaStatus": "Statut",
-  "khatmaPublic": "Public",
-  "khatmaPrivate": "Privé",
-  "khatmaClose": "Fermer",
-  "khatmaUnitReserved": "{unit} {number} réservé",
-  "khatmaUnitReleased": "{unit} {number} libéré",
-  "khatmaJoinSuccess": "Vous avez rejoint \"{name}\" avec succès!",
-  "khatmaJoinError": "Erreur lors de la participation à la Khatma",
-  "khatmaYouHaveReserved": "Vous avez réservé {count} unité(s)",
-  
   "forgotPassword": "Mot de passe oublié ?",
   "forgotPasswordTitle": "Mot de passe oublié",
   "forgotPasswordDescription": "Entrez votre adresse email pour recevoir un lien de réinitialisation du mot de passe.",
@@ -115,9 +140,7 @@
   "rememberPasswordBackToLogin": "Vous vous souvenez de votre mot de passe ? Retour à la connexion",
   "redirectingToLogin": "Redirection vers la connexion...",
   "goToLoginPage": "Aller à la page de connexion",
-  "show": "Afficher",
-  "hide": "Masquer",
-  
+
   "passwordRequirements": "Exigences du mot de passe",
   "passwordCriteria": "Critères du mot de passe :",
   "atLeast8CharsCriterion": "Au moins 8 caractères",
@@ -129,7 +152,7 @@
   "passwordStrengthMedium": "Moyen",
   "passwordStrengthGood": "Bon",
   "passwordStrengthStrong": "Fort",
-  
+
   "acceptTerms": "J'accepte les ",
   "termsOfService": "Conditions de service",
   "andThe": " et la ",
@@ -137,7 +160,7 @@
   "termsAndConditions": "Conditions générales",
   "legalNotices": "Mentions légales",
   "mustAcceptTerms": "Vous devez accepter les conditions de service",
-  
+
   "myAccount": "Mon compte",
   "profile": "Profil",
   "editProfile": "Modifier le profil",
@@ -179,11 +202,14 @@
   "signInOrSignUp": "Se connecter ou s'inscrire",
   "manageYourAccount": "Gérer votre compte",
   "accessYourData": "Accéder à vos données",
-  
+
   "nameCannotBeEmpty": "Le nom ne peut pas être vide",
   "nameMinLength": "Le nom doit contenir au moins 2 caractères",
   "displayNameRequired": "Le nom d'affichage est requis",
   "displayNameTooShort": "Le nom d'affichage doit contenir au moins 2 caractères",
+  "displayNameTooLong": "Le nom d'affichage doit contenir moins de 50 caractères",
+  "displayNameInvalidCharacters": "Le nom d'affichage contient des caractères invalides",
+  "invalidDisplayName": "Nom d'affichage invalide",
   "emailCannotBeEmpty": "L'email ne peut pas être vide",
   "invalidEmailFormat": "Format d'email invalide",
   "loginEmailCannotBeEmpty": "L'email ne peut pas être vide",
@@ -208,8 +234,7 @@
   "loginPasswordCannotBeEmpty": "Le mot de passe ne peut pas être vide",
   "loginPasswordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
   "fixErrorsBeforeSubmitting": "Veuillez corriger les erreurs avant de soumettre.",
-  "invalidDisplayName": "Nom d'affichage invalide",
-  
+
   "areYouSure": "Êtes-vous sûr ?",
   "confirmAction": "Veuillez confirmer votre action",
   "confirmDeleteTitle": "Suppression",
@@ -217,6 +242,13 @@
   "confirmExitTitle": "Quitter",
   "confirmDelete": "Êtes-vous sûr de vouloir supprimer cet élément ?",
   "confirmDeleteItem": "Êtes-vous sûr de vouloir supprimer {itemName} ?",
+  "@confirmDeleteItem": {
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
   "confirmDeleteKhatma": "Après suppression, cette khatma sera définitivement supprimée",
   "confirmLogout": "Êtes-vous sûr de vouloir vous déconnecter ?",
   "confirmExitApp": "Êtes-vous sûr de vouloir quitter l'application ?",
@@ -224,46 +256,28 @@
   "exitApp": "Quitter l'application",
   "exit": "Quitter",
   "terminate": "Terminer",
-  "khatmaFinishedMessage": "Vous venez de terminer votre khatma il y a {timeAgo}.",
-  "completion": "Achèvement",
-  "khatmaHistory": "Historique des Khatma",
-  "congratulations": "Félicitations",
-  
+
   "success": "Succès",
   "congratulation": "Félicitations !",
+  "congratulations": "Félicitations",
   "accountCreatedSuccessfully": "Compte créé avec succès !",
   "successCompleteParts": "{count} parties terminées avec succès",
-  "khatmaCompleted": "Khatma Terminé",
-  "backToHome": "Retour à l'accueil",
-  "journeyDetails": "Détails du parcours",
-  "started": "Commencé", 
-  "completed": "Terminé",
-  "totalDuration": "Durée totale",
-  "daysCount": "{count, plural, =1{1 jour} other{{count} jours}}",
-  "@daysCount": {
+  "@successCompleteParts": {
     "placeholders": {
       "count": {
         "type": "int"
       }
     }
   },
-  "shareAchievement": "Partager la réussite",
-  
-  "createKhatmaToStart": "Créez une khatma pour commencer",
-  "daysAgo": "Il y a {count} jours",
+
+  "error": "Erreur",
+  "errorCode": "Code d'erreur",
   "errorOccurred": "Une erreur est survenue",
-  "goToHome": "Aller à l’accueil",
-  "khatmaListSubtitle": "Khatmas en cours",
-  "khatmaListTitle": "Liste des khatma",
-  "khatmaSplitUnitWithDef": "Unité de répartition : {unit}",
-  "monthName": "Mois : {month}",
-  "monthsAgo": "Il y a {count} mois",
-  "noKhatmaYet": "Aucune khatma pour le moment",
-  "notImplemented": "Fonctionnalité non implémentée",
-  "ordinalPartNumber": "{num, select, 1{Le premier} 2{Le deuxième} 3{Le troisième} 4{Le quatrième} 5{Le cinquième} 6{Le sixième} 7{Le septième} 8{Le huitième} 9{Le neuvième} 10{Le dixième} 11{Le onzième} 12{Le douzième} 13{Le treizième} 14{Le quatorzième} 15{Le quinzième} 16{Le seizième} 17{Le dix-septième} 18{Le dix-huitième} 19{Le dix-neuvième} 20{Le vingtième} 21{Le vingt et unième} 22{Le vingt-deuxième} 23{Le vingt-troisième} 24{Le vingt-quatrième} 25{Le vingt-cinquième} 26{Le vingt-sixième} 27{Le vingt-septième} 28{Le vingt-huitième} 29{Le vingt-neuvième} 30{Le trentième} 31{Le trente et unième} 32{Le trente-deuxième} 33{Le trente-troisième} 34{Le trente-quatrième} 35{Le trente-cinquième} 36{Le trente-sixième} 37{Le trente-septième} 38{Le trente-huitième} 39{Le trente-neuvième} 40{Le quarantième} 41{Le quarante et unième} 42{Le quarante-deuxième} 43{Le quarante-troisième} 44{Le quarante-quatrième} 45{Le quarante-cinquième} 46{Le quarante-sixième} 47{Le quarante-septième} 48{Le quarante-huitième} 49{Le quarante-neuvième} 50{Le cinquantième} 51{Le cinquante et unième} 52{Le cinquante-deuxième} 53{Le cinquante-troisième} 54{Le cinquante-quatrième} 55{Le cinquante-cinquième} 56{Le cinquante-sixième} 57{Le cinquante-septième} 58{Le cinquante-huitième} 59{Le cinquante-neuvième} 60{Le soixantième} other{}}",  "pageNotFound": "Page non trouvée",
-  "pageNotFound404": "Erreur 404 - Page non trouvée",
-  "today": "Aujourd’hui",
-  "yesterday": "Hier",
+  "criticalError": "Erreur critique",
+  "unexpectedError": "Une erreur inattendue s'est produite",
+  "pleaseTryAgain": "Veuillez réessayer.",
+  "networkError": "Erreur réseau. Veuillez vérifier votre connexion",
+  "permissionDenied": "Permission refusée",
 
   "signInFailed": "Échec de la connexion",
   "loginFailed": "Échec de la connexion",
@@ -272,18 +286,7 @@
   "googleSignInFailed": "Échec de la connexion Google",
   "updateProfileError": "Échec de la mise à jour du profil. Veuillez réessayer",
   "errorLoadingProfile": "Erreur lors du chargement du profil. Veuillez réessayer plus tard.",
-  "networkError": "Erreur réseau. Veuillez vérifier votre connexion",
-  "permissionDenied": "Permission refusée",
-  "pleaseTryAgain": "Veuillez réessayer.",
-  "criticalError": "Erreur critique",
-  "error": "Erreur",
-  "errorCode": "Code d'erreur",
-  "cannotUpdateKhatmaWhileStarted": "Impossible de mettre à jour la khatma pendant qu'elle est démarrée",
-  "failedToSaveKhatma": "Échec de la sauvegarde de la khatma. Veuillez réessayer.",
-  "failedToLoadKhatma": "Échec du chargement de la khatma. Veuillez réessayer.",
-  "failedToDeleteKhatma": "Échec de la suppression de la khatma. Veuillez réessayer.",
-  "failedToShareKhatma": "Échec du partage de la khatma. Veuillez réessayer.",
-  
+
   "errorAuthUserNotLoggedIn": "Utilisateur non connecté.",
   "errorAuthAnonymousNotAllowed": "La connexion anonyme n'est pas autorisée.",
   "errorAuthSessionExpired": "La session a expiré.",
@@ -294,7 +297,7 @@
   "errorAuthInvalidEmail": "Adresse email invalide.",
   "errorAuthOperationNotAllowed": "Opération non autorisée.",
   "errorAuthUserDisabled": "Le compte utilisateur est désactivé.",
-  "errorAuthUserNotFound": "Utilisateur non trouvé.",
+  "errorAuthUserNotFound": "Utilisateur non trouvé. Veuillez vous reconnecter.",
   "errorAuthEmailAlreadyInUse": "L'adresse email est déjà utilisée.",
   "errorAuthWeakPassword": "Mot de passe faible fourni.",
   "errorAuthRequiresRecentLogin": "Connexion récente requise.",
@@ -302,6 +305,12 @@
   "errorAuthNetworkRequestFailed": "Échec de la demande réseau.",
   "errorAuthPopupBlocked": "Popup bloqué par le navigateur.",
   "errorAuthPopClosedByUser": "Popup fermé par l'utilisateur.",
+  "errorAuthActionCancelled": "L'action d'authentification a été annulée.",
+  "authenticationError": "Erreur d'authentification",
+  "authenticationErrors": "Erreurs d'authentification",
+  "userNotLoggedIn": "Utilisateur non connecté",
+  "sessionExpired": "Session expirée",
+
   "errorNetConnectionFailed": "Échec de la connexion à Internet.",
   "errorNetTimeout": "Délai d'attente de la demande réseau dépassé.",
   "errorNetServerError": "Le serveur a rencontré une erreur.",
@@ -310,7 +319,12 @@
   "errorNetRateLimit": "Limite de taux dépassée.",
   "errorNetBadRequest": "Mauvaise demande envoyée au serveur.",
   "errorNetUnavailable": "Le service réseau n'est pas disponible.",
-  "errorAuthActionCancelled": "L'action d'authentification a été annulée.",
+  "errorNetworkConnectionFailed": "Échec de la connexion réseau. Veuillez vérifier votre connexion Internet et réessayer.",
+  "errorNetworkTimeout": "Délai d'expiration de la requête. Veuillez réessayer.",
+  "networkErrors": "Erreurs réseau",
+  "connectionFailed": "Échec de connexion",
+  "timeout": "Délai dépassé",
+  "serverError": "Erreur serveur",
 
   "errorSyncGeneralFailure": "Échec de la synchronisation.",
   "errorSyncConflict": "Conflit de données survenu pendant la synchronisation.",
@@ -318,22 +332,33 @@
   "errorSyncInProgress": "Une synchronisation est déjà en cours.",
   "errorSyncPartialFailure": "Échec partiel de la synchronisation.",
   "errorSyncStatusFailed": "Échec de la récupération du statut de synchronisation.",
-  
+  "syncError": "Erreur de synchronisation",
+
   "errorStorageSaveFailed": "Échec de la sauvegarde des données.",
   "errorStorageDeleteFailed": "Échec de la suppression des données.",
   "errorStorageLoadFailed": "Échec du chargement des données.",
   "errorStorageFull": "Le stockage est plein.",
   "errorStorageCorrupted": "Le stockage est corrompu.",
   "errorStoragePermissionDenied": "Permission refusée pour l'accès au stockage.",
-  
+  "storageError": "Erreur de stockage",
+  "storageErrors": "Erreurs de stockage",
+  "storageFull": "Stockage plein",
+  "storageCorrupted": "Stockage corrompu",
+  "saveFailed": "Échec de sauvegarde",
+
   "errorValidationInvalidData": "Données fournies invalides.",
   "errorValidationMissingFields": "Champs requis manquants.",
   "errorValidationInvalidFormat": "Format de données invalide.",
   "errorValidationOutOfRange": "Valeur hors de la plage autorisée.",
   "errorValidationInvalidDate": "Date fournie invalide.",
   "errorValidationInvalidOperation": "Opération invalide tentée.",
-  
-  "errorKhatmaNotFound": "Khatma non trouvée.",
+  "validationError": "Erreur de validation",
+  "validationErrors": "Erreurs de validation",
+  "invalidData": "Données invalides",
+  "missingFields": "Champs manquants",
+  "invalidDate": "Date invalide",
+
+  "errorKhatmaNotFound": "Khatma non trouvée. Elle peut avoir été supprimée ou ne pas exister.",
   "errorKhatmaAlreadyCompleted": "Cette Khatma est déjà terminée.",
   "errorKhatmaDeletionNotAllowed": "Impossible de supprimer cette Khatma.",
   "errorKhatmaArchiveFailed": "Échec de l'archivage de la Khatma.",
@@ -350,29 +375,41 @@
   "errorKhatmaPartNotReserved": "Vous devez réserver cette partie avant de la compléter.",
   "errorKhatmaPermissionDenied": "Vous n'avez pas la permission d'effectuer cette action.",
   "errorKhatmaAlreadyExists": "Une Khatma avec ces informations existe déjà.",
-  "errorNetworkConnectionFailed": "Échec de la connexion réseau. Veuillez vérifier votre connexion Internet et réessayer.",
-  "errorNetworkTimeout": "Délai d'expiration de la requête. Veuillez réessayer.",
   "errorFirestoreOperationFailed": "Échec de l'opération de base de données. Veuillez réessayer plus tard.",
+  "cannotUpdateKhatmaWhileStarted": "Impossible de mettre à jour la khatma pendant qu'elle est démarrée",
+  "failedToSaveKhatma": "Échec de la sauvegarde de la khatma. Veuillez réessayer.",
+  "failedToLoadKhatma": "Échec du chargement de la khatma. Veuillez réessayer.",
+  "failedToDeleteKhatma": "Échec de la suppression de la khatma. Veuillez réessayer.",
+  "failedToShareKhatma": "Échec du partage de la khatma. Veuillez réessayer.",
+  "khatmaError": "Erreur de Khatma",
+  "khatmaErrors": "Erreurs de Khatma",
+  "khatmaNotFound": "Khatma non trouvée",
+  "alreadyCompleted": "Déjà terminé",
+  "invalidParts": "Parties invalides",
 
   "errorLimitKhatmaMaxReached": "Nombre maximum de Khatma atteint.",
   "errorLimitStorageQuotaExceeded": "Quota de stockage dépassé.",
   "errorLimitCreationNotAllowed": "Création non autorisée en raison des limites.",
-  
+  "limitError": "Limite atteinte",
+
   "errorHistoryCreateFailed": "Échec de la création de l'historique.",
   "errorHistoryLoadFailed": "Échec du chargement de l'historique.",
   "errorHistoryDeleteFailed": "Échec de la suppression de l'historique.",
   "errorHistoryNotFound": "Historique non trouvé.",
-  
+  "historyError": "Erreur d'historique",
+
   "errorSearchFailed": "Échec de la recherche.",
   "errorSearchNoResults": "Aucun résultat trouvé.",
   "errorSearchInvalidQuery": "Requête de recherche invalide.",
   "errorSearchTimeout": "Délai de recherche dépassé.",
-  
+  "searchError": "Erreur de recherche",
+
   "errorStatsCalculationFailed": "Échec du calcul des statistiques.",
   "errorStatsNoData": "Aucune donnée disponible pour les statistiques.",
   "errorStatsExportFailed": "Échec de l'exportation des statistiques.",
-  
-  "errorGeneralUnknown": "Une erreur inconnue s'est produite.",
+  "statsError": "Erreur de statistiques",
+
+  "errorGeneralUnknown": "Une erreur inconnue s'est produite. Veuillez réessayer.",
   "errorGeneralCancelled": "L'opération a été annulée.",
   "errorGeneralInvalidOperation": "Opération invalide.",
   "errorGeneralUnavailableResource": "La ressource n'est pas disponible.",
@@ -380,19 +417,29 @@
   "errorGeneralOutOfMemory": "Le système est à court de mémoire.",
   "errorGeneralConfigError": "Erreur de configuration survenue.",
   "errorGeneralInitializationFailed": "Échec de l'initialisation.",
-  
+
   "errorDateRangeInvalid": "La plage de dates est invalide.",
   "errorDateFormatInvalid": "Le format de date est invalide.",
   "errorDateParsingFailed": "Échec de l'analyse de la date.",
-  
+  "dateError": "Erreur de date",
+
   "errorPermissionDenied": "Permission refusée.",
   "errorPermissionFeatureDisabled": "Fonctionnalité désactivée en raison des permissions.",
   "errorPermissionInsufficient": "Permissions insuffisantes pour continuer.",
-  
+  "permissionError": "Erreur de permission",
+
+  "errorDialogExamples": "Exemples de dialogues d'erreur",
+  "retrying": "Nouvelle tentative...",
+  "openingSignIn": "Ouverture de la connexion...",
+  "openingSettings": "Ouverture des paramètres...",
+  "actionPerformed": "Action effectuée",
+
   "newKhatma": "Nouvelle khatma",
   "editKhatma": "Modifier la khatma",
   "khatma": "Khatma",
   "khatmaList": "Liste des khatma",
+  "khatmaListTitle": "Liste des khatma",
+  "khatmaListSubtitle": "Khatmas en cours",
   "shareKhatma": "Partager la khatma",
   "chooseKhatmaStyle": "Choisissez le style de votre khatma",
   "khatmaStyle": "Style de khatma",
@@ -408,8 +455,37 @@
   "share": "Partager",
   "splitUnit": "Unité de division",
   "khatmaSplitUnit": "{unit, select, sourat{Sourate} juzz{Juzz} hizb{Hizb} half{Demi-Hizb} rubue{Quart-hizb} thumun{Huitième-hizb} other{}}",
+  "@khatmaSplitUnit": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "khatmaSplitUnitWithDef": "{unit, select, sourat{La Sourate} juzz{Le Juzz} hizb{Le Hizb} half{Le Demi-Hizb} rubue{Le Quart-hizb} thumun{Le Huitième-hizb} other{}}",
+  "@khatmaSplitUnitWithDef": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "khatmaSplitUnitDesc": "{unit, select, sourat{Sourate (114 parties)} juzz{Juzz (30 parties)} hizb{Hizb (60 parties)} half{Demi-Hizb (120 parties)} rubue{Quart-hizb (240 parties)} thumun{Huitième-hizb (480 parties)} other{}}",
-  
+  "@khatmaSplitUnitDesc": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "ordinalPartNumber": "{num, select, 1{Le premier} 2{Le deuxième} 3{Le troisième} 4{Le quatrième} 5{Le cinquième} 6{Le sixième} 7{Le septième} 8{Le huitième} 9{Le neuvième} 10{Le dixième} 11{Le onzième} 12{Le douzième} 13{Le treizième} 14{Le quatorzième} 15{Le quinzième} 16{Le seizième} 17{Le dix-septième} 18{Le dix-huitième} 19{Le dix-neuvième} 20{Le vingtième} 21{Le vingt et unième} 22{Le vingt-deuxième} 23{Le vingt-troisième} 24{Le vingt-quatrième} 25{Le vingt-cinquième} 26{Le vingt-sixième} 27{Le vingt-septième} 28{Le vingt-huitième} 29{Le vingt-neuvième} 30{Le trentième} 31{Le trente et unième} 32{Le trente-deuxième} 33{Le trente-troisième} 34{Le trente-quatrième} 35{Le trente-cinquième} 36{Le trente-sixième} 37{Le trente-septième} 38{Le trente-huitième} 39{Le trente-neuvième} 40{Le quarantième} 41{Le quarante et unième} 42{Le quarante-deuxième} 43{Le quarante-troisième} 44{Le quarante-quatrième} 45{Le quarante-cinquième} 46{Le quarante-sixième} 47{Le quarante-septième} 48{Le quarante-huitième} 49{Le quarante-neuvième} 50{Le cinquantième} 51{Le cinquante et unième} 52{Le cinquante-deuxième} 53{Le cinquante-troisième} 54{Le cinquante-quatrième} 55{Le cinquante-cinquième} 56{Le cinquante-sixième} 57{Le cinquante-septième} 58{Le cinquante-huitième} 59{Le cinquante-neuvième} 60{Le soixantième} other{}}",
+  "@ordinalPartNumber": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
   "loading": "Chargement",
   "loadingKhatma": "Chargement de la khatma",
   "loadingKhatmaList": "Chargement de la liste des khatma",
@@ -418,22 +494,127 @@
   "remainingParts": "Parties restantes",
   "parts": "Parties",
   "readedParts": "{count} parties",
+  "@readedParts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "remainingPartsOfTotal": "{remaining} sur {total} parties",
+  "@remainingPartsOfTotal": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "completeParts": "Terminer ({count} parties)",
-  "selectedParts": "{count} {count, plural, one {partie sélectionnée} other {parties sélectionnées}}",
+  "@completeParts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectedParts": "{count} {count, plural, one{partie sélectionnée} other{parties sélectionnées}}",
+  "@selectedParts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "maxPartToRead": "Partie max à lire",
   "maxPartToReserve": "Partie max à réserver",
-  "account": "Compte",
-  "helpAndSupport": "Aide et Support",
-  "accessYourKhatmas": "Accédez à vos Khatmas et vos progrès",
-  "managePersonalInfo": "Gérez vos informations personnelles",
-  "preferencesAndOptions": "Préférences et options de l'application",
-  "commonQuestions": "Trouvez des réponses aux questions courantes",
-  "termsAndPrivacy": "Conditions d'utilisation et politique de confidentialité",
-  "learnMoreAboutKhatma": "En savoir plus sur notre mission",
-  "getHelpFromTeam": "Obtenez de l'aide de notre équipe de support",
-  "madeWithLove": "Fait avec ❤️ pour la communauté musulmane",
-  
+  "noKhatmaYet": "Aucune khatma pour le moment",
+  "createKhatmaToStart": "Créez une khatma pour commencer",
+  "khatmaCompleted": "Khatma Terminé",
+  "backToHome": "Retour à l'accueil",
+  "journeyDetails": "Détails du parcours",
+  "started": "Commencé",
+  "totalDuration": "Durée totale",
+  "daysCount": "{count, plural, =1{1 jour} other{{count} jours}}",
+  "@daysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "Partager la réussite",
+  "khatmaFinishedMessage": "Vous venez de terminer votre khatma il y a {timeAgo}.",
+  "@khatmaFinishedMessage": {
+    "placeholders": {
+      "timeAgo": {
+        "type": "String"
+      }
+    }
+  },
+  "completion": "Achèvement",
+  "khatmaHistory": "Historique des Khatma",
+
+  "khatmaSearchTitle": "Rechercher une Khatma",
+  "khatmaSearchHint": "Nom ou description",
+  "khatmaJoinButton": "Rejoindre",
+  "khatmaSearchEmptyDefault": "Découvrez les Khatmas publiques disponibles",
+  "khatmaSearchNoResults": "Aucune Khatma trouvée pour votre recherche",
+  "khatmaConfirmJoin": "Confirmer rejoindre",
+  "khatmaMembers": "Membres",
+  "khatmaAvailable": "Disponibles",
+  "khatmaProgress": "Progression",
+  "khatmaUnits": "Unités",
+  "khatmaType": "Type",
+  "khatmaCreatedOn": "Créé le",
+  "khatmaCreatedBy": "Créé par",
+  "khatmaTotalUnits": "Total unités",
+  "khatmaStatus": "Statut",
+  "khatmaPublic": "Public",
+  "khatmaPrivate": "Privé",
+  "khatmaClose": "Fermer",
+  "khatmaUnitReserved": "{unit} {number} réservé",
+  "@khatmaUnitReserved": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      },
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "khatmaUnitReleased": "{unit} {number} libéré",
+  "@khatmaUnitReleased": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      },
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "khatmaJoinSuccess": "Vous avez rejoint \"{name}\" avec succès!",
+  "@khatmaJoinSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "khatmaJoinError": "Erreur lors de la participation à la Khatma",
+  "khatmaYouHaveReserved": "Vous avez réservé {count} unité(s)",
+  "@khatmaYouHaveReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
   "recurrence": "Récurrence",
   "schedule": "Horaire",
   "startDate": "Date de début",
@@ -444,34 +625,145 @@
   "repeatEvery": "Répéter tous les",
   "autoRepeatDescription": "Redémarrer automatiquement une fois terminé",
   "repeatEverySelectedDaysDescription": "La khatma sera répétée tous les {days} pour chaque {count} semaines",
+  "@repeatEverySelectedDaysDescription": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "repeatEverySelectedDayDescription": "La khatma sera répétée tous les {days} pour chaque semaine",
+  "@repeatEverySelectedDayDescription": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
   "repeatEveryTimePeriodsDescription": "La khatma sera répétée tous les {count} {unit}s",
+  "@repeatEveryTimePeriodsDescription": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "repeatEveryTimePeriodDescription": "La khatma sera répétée tous les {unit}",
+  "@repeatEveryTimePeriodDescription": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "noRepeatDescription": "Redémarrer automatiquement une fois terminé",
   "repeatDescription": "Redémarrer automatiquement une fois terminé",
   "repeatInterval": "{recurrence, select, auto{Auto} daily{Jour} weekly{Semaine} monthly{Mois} yearly{Année} other{Autre}}",
+  "@repeatInterval": {
+    "placeholders": {
+      "recurrence": {
+        "type": "String"
+      }
+    }
+  },
   "timePeriods": "{period, select, daily{Jour} weekly{Semaine} monthly{Mois} yearly{Année} other{}}",
+  "@timePeriods": {
+    "placeholders": {
+      "period": {
+        "type": "String"
+      }
+    }
+  },
   "weekDay": "{day, select, 1{Lundi} 2{Mardi} 3{Mercredi} 4{Jeudi} 5{Vendredi} 6{Samedi} 7{Dimanche} other{Autre}}",
+  "@weekDay": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
   "shortWeekDay": "{day, select, 1{L} 2{M} 3{M} 4{J} 5{V} 6{S} 7{D} other{A}}",
+  "@shortWeekDay": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
   "repeatOption": "{scheduler, select, true{La répétition automatique est activée} false{La répétition automatique est désactivée} other{Autre}}",
-  
+  "@repeatOption": {
+    "placeholders": {
+      "scheduler": {
+        "type": "String"
+      }
+    }
+  },
+
   "shareVisibility": "{share, select, other{Privé} public{Public} group{Groupe}}",
+  "@shareVisibility": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
   "shareVisibilityDesc": "{share, select, other{Cette khatma est privée} public{Tout le monde peut accéder et participer} group{Partagé uniquement par code ou QR code}}",
+  "@shareVisibilityDesc": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
   "shareVisibilityDescription": "{share, select, other{La khatma restera privée et exclusive à l'organisateur} public{Tout le monde est bienvenu pour accéder et rejoindre la khatma} group{La khatma sera partagée uniquement avec ceux qui reçoivent un numéro spécifique ou un QR code}}",
+  "@shareVisibilityDescription": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
   "maxParticipants": "{count, plural, =0{Aucun participant} =1{1 participant} other{# participants}}",
-  
+  "@maxParticipants": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
   "home": "Accueil",
   "settings": "Paramètres",
   "about": "À propos",
   "appPreferences": "Préférences de l'application",
   "aboutUs": "À propos de nous",
   "learnMoreAboutApp": "En savoir plus sur l'application",
-  
+  "account": "Compte",
+  "helpAndSupport": "Aide et Support",
+  "accessYourKhatmas": "Accédez à vos Khatmas et vos progrès",
+  "managePersonalInfo": "Gérez vos informations personnelles",
+  "preferencesAndOptions": "Préférences et options de l'application",
+  "commonQuestions": "Trouvez des réponses aux questions courantes",
+  "termsAndPrivacy": "Conditions d'utilisation et politique de confidentialité",
+  "learnMoreAboutKhatma": "En savoir plus sur notre mission",
+  "getHelpFromTeam": "Obtenez de l'aide de notre équipe de support",
+  "madeWithLove": "Fait avec ❤️ pour la communauté musulmane",
+  "goToHome": "Aller à l'accueil",
+  "notImplemented": "Fonctionnalité non implémentée",
+  "pageNotFound": "Page non trouvée",
+  "pageNotFound404": "Erreur 404 - Page non trouvée",
+
   "readMode": "Mode lecture",
   "readLess": "Lire moins",
   "showMore": " afficher plus",
   "showLess": " afficher moins",
-  
+
   "language": "Langue",
   "chooseLanguage": "Choisir la langue",
   "riwaya": "Riwaya",
@@ -484,6 +776,13 @@
   "theme": "Thème",
   "chooseTheme": "Choisir le thème",
   "themeMode": "{mode, select, light{Clair} dark{Sombre} system{Système} other{Système}}",
+  "@themeMode": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      }
+    }
+  },
   "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
   "@riwayaMode": {
     "placeholders": {
@@ -492,12 +791,14 @@
       }
     }
   },
-  
+
   "faq": "Questions fréquentes",
   "frequentlyAskedQuestions": "Questions fréquemment posées",
   "contactSupport": "Contacter le support",
   "questionsAndSuggestions": "Questions et suggestions",
-  
+  "failedToLoadFaq": "Échec du chargement de la FAQ",
+  "noFaqAvailable": "Aucune FAQ disponible",
+
   "onboarding1Title": "Terminez votre Khatma",
   "onboarding1Description": "Suivez votre lecture quotidienne du Coran et visualisez votre progression vers l'achèvement du Saint Coran.",
   "onboarding2Title": "Belles récitations",
@@ -509,67 +810,15 @@
   "skipButton": "Ignorer",
   "continueButton": "Continuer",
   "startButton": "Commencer le voyage coranique",
-  
-  "registration_validation": "Messages de validation d'inscription",
-  "login_validation": "Messages de validation de connexion",
-  "registration_ui": "Interface d'inscription",
-  "login_ui": "Interface de connexion",
-  "form_types": "Types de formulaires",
-  "shared_fields": "Champs partagés",
-  "validation_messages": "Messages de validation",
-  "password_criteria": "Critères de mot de passe",
-  "terms_and_actions": "Conditions et actions",
-  "rememberMe": "Se souvenir de moi",
-  "ui_labels": "Étiquettes d'interface",
 
-  "openSettings": "Ouvrir les paramètres",
-  "tryAgain": "Réessayer",
-  "authenticationError": "Erreur d'authentification",
-  "syncError": "Erreur de synchronisation",
-  "storageError": "Erreur de stockage",
-  "validationError": "Erreur de validation",
-  "khatmaError": "Erreur de Khatma",
-  "limitError": "Limite atteinte",
-  "historyError": "Erreur d'historique",
-  "searchError": "Erreur de recherche",
-  "statsError": "Erreur de statistiques",
-  "dateError": "Erreur de date",
-  "permissionError": "Erreur de permission",
-  "errorDialogExamples": "Exemples de dialogues d'erreur",
-  "networkErrors": "Erreurs réseau",
-  "authenticationErrors": "Erreurs d'authentification",
-  "storageErrors": "Erreurs de stockage",
-  "validationErrors": "Erreurs de validation",
-  "khatmaErrors": "Erreurs de Khatma",
-  "connectionFailed": "Échec de connexion",
-  "timeout": "Délai dépassé",
-  "serverError": "Erreur serveur",
-  "userNotLoggedIn": "Utilisateur non connecté",
-  "sessionExpired": "Session expirée",
-  "storageFull": "Stockage plein",
-  "storageCorrupted": "Stockage corrompu",
-  "saveFailed": "Échec de sauvegarde",
-  "invalidData": "Données invalides",
-  "missingFields": "Champs manquants",
-  "invalidDate": "Date invalide",
-  "khatmaNotFound": "Khatma non trouvée",
-  "alreadyCompleted": "Déjà terminé",
-  "invalidParts": "Parties invalides",
-  "retrying": "Nouvelle tentative...",
-  "openingSignIn": "Ouverture de la connexion...",
-  "openingSettings": "Ouverture des paramètres...",
-  "actionPerformed": "Action effectuée",
-  "displayNameTooLong": "Le nom d'affichage doit contenir moins de 50 caractères",
-  "displayNameInvalidCharacters": "Le nom d'affichage contient des caractères invalides",
-  "unexpectedError": "Une erreur inattendue s'est produite",
   "contactUs": "Nous contacter",
   "contactType": "Type de contact",
   "bugReport": "Rapport de bug",
-  "bugReportDescription": "Signalez des problèmes techniques ou des dysfonctionnements dans l’application",
+  "bugReportDescription": "Signalez des problèmes techniques ou des dysfonctionnements dans l'application",
   "suggestion": "Suggestion",
-  "suggestionDescription": "Partagez vos idées pour améliorer l’expérience de l’application",
-  "feedback": "Retour d’expérience",
-  "feedbackDescription": "Retour général sur votre expérience avec l’application",
+  "suggestionDescription": "Partagez vos idées pour améliorer l'expérience de l'application",
+  "feedback": "Retour d'expérience",
+  "feedbackDescription": "Retour général sur votre expérience avec l'application",
   "other": "Autre",
   "otherDescription": "Toute autre demande ou question",
   "yourName": "Votre nom",
@@ -579,7 +828,6 @@
   "writeYourMessage": "Écrivez votre message",
   "sendMessage": "Envoyer le message",
   "contactViaEmail": "Contacter par email",
-  
   "pleaseEnterYourName": "Veuillez entrer votre nom",
   "nameMustBeAtLeast2Characters": "Le nom doit contenir au moins 2 caractères",
   "pleaseEnterYourEmail": "Veuillez entrer votre email",
@@ -589,7 +837,6 @@
   "pleaseFillAllFieldsValid": "Veuillez remplir tous les champs avec des informations valides.",
   "messageSentSuccessfully": "Message envoyé avec succès !",
   "failedToSendMessage": "Échec de l'envoi du message. Veuillez réessayer.",
-  
   "contactFormSubject": "[{contactType}] : ",
   "@contactFormSubject": {
     "placeholders": {
@@ -605,39 +852,48 @@
   "openEmailApp": "Email de contact",
   "unableToOpenEmail": "Impossible d'ouvrir l'application email",
   "emailNotAvailable": "Application email non disponible sur cet appareil",
-  "refresh": "Actualiser",
-  "failedToLoadFaq": "Échec du chargement de la FAQ",
-  "noFaqAvailable": "Aucune FAQ disponible", 
+
   "dataSynchronization": "Synchronisation des Données",
   "chooseSyncMethod": "Choisissez comment synchroniser vos données",
   "syncStatus": "État de Synchronisation",
   "syncing": "Synchronisation en cours...",
   "lastSyncTime": "Dernière sync: {time}",
+  "@lastSyncTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "neverSynced": "Jamais synchronisé",
-  "justNow": "À l'instant",
-  "minutesAgo": "Il y a {count} minutes",
-  "hoursAgo": "Il y a {count} heures",
-  "daysAgo": "Il y a {count} jours",
-  
   "fullSync": "Synchronisation Complète",
   "pullFromServer": "Télécharger du Serveur",
   "pushToServer": "Envoyer au Serveur",
   "downloadRemoteChanges": "Télécharger les derniers changements du serveur",
   "uploadLocalChanges": "Envoyer vos modifications locales au serveur",
-  
   "performingFullSync": "Synchronisation complète en cours...",
   "downloadingChanges": "Téléchargement des changements du serveur...",
   "uploadingChanges": "Envoi des changements au serveur...",
   "syncCompleted": "Synchronisation terminée avec succès",
   "syncFailed": "Échec de la synchronisation: {error}",
-  
-  "cancel": "Annuler",
-  "retry": "Réessayer",
-  "syncNow": "Synchroniser Maintenant",  
-  "syncError": "Erreur de Sync",
+  "@syncFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "syncNow": "Synchroniser Maintenant",
   "syncWarning": "Avertissement Sync",
   "syncUpToDate": "À jour",
   "syncFailureCount": "{count} tentatives échouées",
+  "@syncFailureCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "performBothUploadAndDownload": "Effectuer la synchronisation de téléchargement et d'envoi",
   "synchronizeYourData": "Synchroniser vos données Khatma avec le serveur",
   "syncCompletedSuccessfully": "Synchronisation terminée avec succès",
@@ -646,10 +902,29 @@
   "checkForUpdatesAndSync": "Vérifier les mises à jour du serveur et synchroniser",
   "toUpload": "à envoyer",
   "allDataSynchronized": "Toutes vos données ont été synchronisées avec succès",
-  "close": "Fermer",
-    "khatmasCount": "{count} khatmas",
+  "khatmasCount": "{count} khatmas",
+  "@khatmasCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "historyCount": "{count} éléments d'historique",
+  "@historyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "synchronizingPleaseWait": "Synchronisation de vos données, veuillez patienter...",
-  "itemsToSync": "{count} item to synchronize"
-
+  "itemsToSync": "{count} élément à synchroniser",
+  "@itemsToSync": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
+}

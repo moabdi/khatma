@@ -1059,6 +1059,52 @@ class AppLocalizationsFr extends AppLocalizations {
   String get errorNoKhatmaSelected => 'Aucune Khatma sélectionnée.';
 
   @override
+  String get errorKhatmaAlreadyJoined => 'Vous avez déjà rejoint cette Khatma.';
+
+  @override
+  String get errorKhatmaNotJoined =>
+      'Vous n\'êtes pas participant à cette Khatma.';
+
+  @override
+  String get errorKhatmaOwnerCannotLeave =>
+      'En tant que propriétaire, vous ne pouvez pas quitter cette Khatma. Veuillez transférer la propriété ou supprimer la Khatma.';
+
+  @override
+  String get errorKhatmaPartAlreadyCompleted =>
+      'Cette partie a déjà été complétée.';
+
+  @override
+  String get errorKhatmaPartAlreadyReserved =>
+      'Cette partie est déjà réservée par un autre utilisateur.';
+
+  @override
+  String get errorKhatmaPartNotReserved =>
+      'Vous devez réserver cette partie avant de la compléter.';
+
+  @override
+  String get errorKhatmaPermissionDenied =>
+      'Vous n\'avez pas la permission d\'effectuer cette action.';
+
+  @override
+  String get errorKhatmaAlreadyExists =>
+      'Une Khatma avec ces informations existe déjà.';
+
+  @override
+  String get errorNetworkConnectionFailed =>
+      'Échec de la connexion réseau. Veuillez vérifier votre connexion Internet et réessayer.';
+
+  @override
+  String get errorNetworkTimeout =>
+      'Délai d\'expiration de la requête. Veuillez réessayer.';
+
+  @override
+  String get errorFirestoreOperationFailed =>
+      'Échec de l\'opération de base de données. Veuillez réessayer plus tard.';
+
+  @override
+  String get errorGeneralUnknown => 'Une erreur inconnue s\'est produite.';
+
+  @override
   String get errorLimitKhatmaMaxReached => 'Nombre maximum de Khatma atteint.';
 
   @override
@@ -1104,9 +1150,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get errorStatsExportFailed =>
       'Échec de l\'exportation des statistiques.';
-
-  @override
-  String get errorGeneralUnknown => 'Une erreur inconnue s\'est produite.';
 
   @override
   String get errorGeneralCancelled => 'L\'opération a été annulée.';

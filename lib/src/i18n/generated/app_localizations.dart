@@ -1300,6 +1300,66 @@ abstract class AppLocalizations {
   /// **'Create a khatma to start'**
   String get createKhatmaToStart;
 
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @helpAndSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpAndSupport;
+
+  /// No description provided for @accessYourKhatmas.
+  ///
+  /// In en, this message translates to:
+  /// **'Access your Khatmas and progress'**
+  String get accessYourKhatmas;
+
+  /// No description provided for @managePersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your personal information'**
+  String get managePersonalInfo;
+
+  /// No description provided for @preferencesAndOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences and app options'**
+  String get preferencesAndOptions;
+
+  /// No description provided for @commonQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Find answers to common questions'**
+  String get commonQuestions;
+
+  /// No description provided for @termsAndPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of service and privacy policy'**
+  String get termsAndPrivacy;
+
+  /// No description provided for @learnMoreAboutKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more about our mission'**
+  String get learnMoreAboutKhatma;
+
+  /// No description provided for @getHelpFromTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Get help from our support team'**
+  String get getHelpFromTeam;
+
+  /// No description provided for @madeWithLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with ❤️ for the Muslim community'**
+  String get madeWithLove;
+
   /// No description provided for @khatmaSearchTitle.
   ///
   /// In en, this message translates to:
@@ -1711,7 +1771,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorAuthUserNotFound.
   ///
   /// In en, this message translates to:
-  /// **'User not found.'**
+  /// **'User not found. Please log in again.'**
   String get errorAuthUserNotFound;
 
   /// No description provided for @errorAuthEmailAlreadyInUse.
@@ -1921,7 +1981,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorKhatmaNotFound.
   ///
   /// In en, this message translates to:
-  /// **'Khatma not found.'**
+  /// **'Khatma not found. It may have been deleted or does not exist.'**
   String get errorKhatmaNotFound;
 
   /// No description provided for @errorKhatmaAlreadyCompleted.
@@ -1971,6 +2031,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No Khatma selected.'**
   String get errorNoKhatmaSelected;
+
+  /// No description provided for @errorKhatmaAlreadyJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'You have already joined this Khatma.'**
+  String get errorKhatmaAlreadyJoined;
+
+  /// No description provided for @errorKhatmaNotJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not a participant in this Khatma.'**
+  String get errorKhatmaNotJoined;
+
+  /// No description provided for @errorKhatmaOwnerCannotLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'As the owner, you cannot leave this Khatma. Please transfer ownership or delete the Khatma.'**
+  String get errorKhatmaOwnerCannotLeave;
+
+  /// No description provided for @errorKhatmaPartAlreadyCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'This part has already been completed.'**
+  String get errorKhatmaPartAlreadyCompleted;
+
+  /// No description provided for @errorKhatmaPartAlreadyReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'This part is already reserved by another user.'**
+  String get errorKhatmaPartAlreadyReserved;
+
+  /// No description provided for @errorKhatmaPartNotReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'You must reserve this part before completing it.'**
+  String get errorKhatmaPartNotReserved;
+
+  /// No description provided for @errorKhatmaPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have permission to perform this action.'**
+  String get errorKhatmaPermissionDenied;
+
+  /// No description provided for @errorKhatmaAlreadyExists.
+  ///
+  /// In en, this message translates to:
+  /// **'A Khatma with this information already exists.'**
+  String get errorKhatmaAlreadyExists;
+
+  /// No description provided for @errorNetworkConnectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Network connection failed. Please check your internet connection and try again.'**
+  String get errorNetworkConnectionFailed;
+
+  /// No description provided for @errorNetworkTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Request timed out. Please try again.'**
+  String get errorNetworkTimeout;
+
+  /// No description provided for @errorFirestoreOperationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Database operation failed. Please try again later.'**
+  String get errorFirestoreOperationFailed;
+
+  /// No description provided for @errorGeneralUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred.'**
+  String get errorGeneralUnknown;
 
   /// No description provided for @errorLimitKhatmaMaxReached.
   ///
@@ -2055,12 +2187,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to export statistics.'**
   String get errorStatsExportFailed;
-
-  /// No description provided for @errorGeneralUnknown.
-  ///
-  /// In en, this message translates to:
-  /// **'An unknown error occurred.'**
-  String get errorGeneralUnknown;
 
   /// No description provided for @errorGeneralCancelled.
   ///

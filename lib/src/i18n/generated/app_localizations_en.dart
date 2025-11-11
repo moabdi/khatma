@@ -666,6 +666,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createKhatmaToStart => 'Create a khatma to start';
 
   @override
+  String get account => 'Account';
+
+  @override
+  String get helpAndSupport => 'Help & Support';
+
+  @override
+  String get accessYourKhatmas => 'Access your Khatmas and progress';
+
+  @override
+  String get managePersonalInfo => 'Manage your personal information';
+
+  @override
+  String get preferencesAndOptions => 'Preferences and app options';
+
+  @override
+  String get commonQuestions => 'Find answers to common questions';
+
+  @override
+  String get termsAndPrivacy => 'Terms of service and privacy policy';
+
+  @override
+  String get learnMoreAboutKhatma => 'Learn more about our mission';
+
+  @override
+  String get getHelpFromTeam => 'Get help from our support team';
+
+  @override
+  String get madeWithLove => 'Made with ❤️ for the Muslim community';
+
+  @override
   String get khatmaSearchTitle => 'Search for a Khatma';
 
   @override
@@ -894,7 +924,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorAuthUserDisabled => 'User account is disabled.';
 
   @override
-  String get errorAuthUserNotFound => 'User not found.';
+  String get errorAuthUserNotFound => 'User not found. Please log in again.';
 
   @override
   String get errorAuthEmailAlreadyInUse => 'Email address is already in use.';
@@ -1001,7 +1031,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorValidationInvalidOperation => 'Invalid operation attempted.';
 
   @override
-  String get errorKhatmaNotFound => 'Khatma not found.';
+  String get errorKhatmaNotFound =>
+      'Khatma not found. It may have been deleted or does not exist.';
 
   @override
   String get errorKhatmaAlreadyCompleted => 'This Khatma is already completed.';
@@ -1027,6 +1058,51 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorNoKhatmaSelected => 'No Khatma selected.';
+
+  @override
+  String get errorKhatmaAlreadyJoined => 'You have already joined this Khatma.';
+
+  @override
+  String get errorKhatmaNotJoined =>
+      'You are not a participant in this Khatma.';
+
+  @override
+  String get errorKhatmaOwnerCannotLeave =>
+      'As the owner, you cannot leave this Khatma. Please transfer ownership or delete the Khatma.';
+
+  @override
+  String get errorKhatmaPartAlreadyCompleted =>
+      'This part has already been completed.';
+
+  @override
+  String get errorKhatmaPartAlreadyReserved =>
+      'This part is already reserved by another user.';
+
+  @override
+  String get errorKhatmaPartNotReserved =>
+      'You must reserve this part before completing it.';
+
+  @override
+  String get errorKhatmaPermissionDenied =>
+      'You don\'t have permission to perform this action.';
+
+  @override
+  String get errorKhatmaAlreadyExists =>
+      'A Khatma with this information already exists.';
+
+  @override
+  String get errorNetworkConnectionFailed =>
+      'Network connection failed. Please check your internet connection and try again.';
+
+  @override
+  String get errorNetworkTimeout => 'Request timed out. Please try again.';
+
+  @override
+  String get errorFirestoreOperationFailed =>
+      'Database operation failed. Please try again later.';
+
+  @override
+  String get errorGeneralUnknown => 'An unknown error occurred.';
 
   @override
   String get errorLimitKhatmaMaxReached => 'Maximum number of Khatma reached.';
@@ -1070,9 +1146,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorStatsExportFailed => 'Failed to export statistics.';
-
-  @override
-  String get errorGeneralUnknown => 'An unknown error occurred.';
 
   @override
   String get errorGeneralCancelled => 'The operation was cancelled.';

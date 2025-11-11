@@ -1,10 +1,10 @@
 {
   "@@locale": "ar",
   "languageName": "العربية",
-  
+
   "appTitle": "ختمة",
   "appName": "ختمة",
-  
+
   "add": "إضافة",
   "apply": "تطبيق",
   "back": "رجوع",
@@ -30,12 +30,55 @@
   "markAsRead": "تمييز كمقروء",
   "confirmReading": "تمييز كمقروء",
   "processing": "جاري المعالجة …",
+  "show": "إظهار",
+  "hide": "إخفاء",
+  "refresh": "تحديث",
+  "tryAgain": "حاول مرة أخرى",
+  "openSettings": "فتح الإعدادات",
 
   "today": "اليوم",
   "yesterday": "أمس",
+  "justNow": "الآن",
   "daysAgo": "{count, plural, =0{اليوم} =1{أمس} other{{count} يوم مضى}}",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "monthsAgo": "{count, plural, =0{هذا الشهر} one{الشهر الماضي} other{{count} شهور مضت}}",
+  "@monthsAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "monthName": "{month, select, 1{يناير} 2{فبراير} 3{مارس} 4{أبريل} 5{مايو} 6{يونيو} 7{يوليو} 8{أغسطس} 9{سبتمبر} 10{أكتوبر} 11{نوفمبر} 12{ديسمبر} other{}}",
+  "@monthName": {
+    "placeholders": {
+      "month": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesAgo": "منذ {count} دقيقة",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "منذ {count} ساعة",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
 
   "signIn": "تسجيل الدخول",
   "signUp": "التسجيل",
@@ -55,7 +98,8 @@
   "continueWithGoogle": "المتابعة مع جوجل",
   "continueAsGuest": "المتابعة كضيف",
   "backToLogin": "العودة إلى صفحة تسجيل الدخول",
-  
+  "rememberMe": "تذكرني",
+
   "name": "الاسم",
   "displayName": "الاسم المعروض",
   "fullNameOrNickname": "الاسم الكامل أو الكنية",
@@ -73,7 +117,7 @@
   "currentPassword": "كلمة المرور الحالية",
   "newPassword": "كلمة المرور الجديدة",
   "confirmNewPassword": "تأكيد كلمة المرور الجديدة",
-  
+
   "forgotPassword": "نسيت كلمة المرور؟",
   "forgotPasswordTitle": "نسيت كلمة المرور",
   "forgotPasswordDescription": "أدخل عنوان بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور.",
@@ -96,9 +140,7 @@
   "rememberPasswordBackToLogin": "تذكرت كلمة المرور؟ العودة لتسجيل الدخول",
   "redirectingToLogin": "جاري التوجيه لتسجيل الدخول...",
   "goToLoginPage": "الذهاب إلى صفحة تسجيل الدخول",
-  "show": "إظهار",
-  "hide": "إخفاء",
-  
+
   "passwordRequirements": "متطلبات كلمة المرور",
   "passwordCriteria": "معايير كلمة المرور:",
   "atLeast8CharsCriterion": "8 أحرف على الأقل",
@@ -110,7 +152,7 @@
   "passwordStrengthMedium": "متوسطة",
   "passwordStrengthGood": "جيدة",
   "passwordStrengthStrong": "قوية",
-  
+
   "acceptTerms": "أوافق على ",
   "termsOfService": "شروط الخدمة",
   "andThe": " و",
@@ -118,7 +160,7 @@
   "termsAndConditions": "الشروط والأحكام",
   "legalNotices": "الإشعارات القانونية",
   "mustAcceptTerms": "يجب أن توافق على شروط الخدمة",
-  
+
   "myAccount": "حسابي",
   "profile": "الملف الشخصي",
   "editProfile": "تعديل الملف الشخصي",
@@ -160,11 +202,14 @@
   "signInOrSignUp": "سجل الدخول أو التسجيل",
   "manageYourAccount": "إدارة حسابك",
   "accessYourData": "الوصول إلى بياناتك",
-  
+
   "nameCannotBeEmpty": "الاسم لا يمكن أن يكون فارغاً",
   "nameMinLength": "الاسم يجب أن يكون 2 أحرف على الأقل",
   "displayNameRequired": "الاسم المعروض مطلوب",
   "displayNameTooShort": "الاسم المعروض يجب أن يكون حرفين على الأقل",
+  "displayNameTooLong": "الاسم المعروض يجب أن يكون أقل من 50 حرف",
+  "displayNameInvalidCharacters": "الاسم المعروض يحتوي على أحرف غير صحيحة",
+  "invalidDisplayName": "الاسم المعروض غير صحيح",
   "emailCannotBeEmpty": "البريد الإلكتروني لا يمكن أن يكون فارغاً",
   "invalidEmailFormat": "تنسيق البريد الإلكتروني غير صحيح",
   "loginEmailCannotBeEmpty": "البريد الإلكتروني لا يمكن أن يكون فارغاً",
@@ -189,8 +234,7 @@
   "loginPasswordCannotBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة",
   "loginPasswordTooShort": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
   "fixErrorsBeforeSubmitting": "يرجى إصلاح الأخطاء قبل الإرسال.",
-  "invalidDisplayName": "الاسم المعروض غير صحيح",
-  
+
   "areYouSure": "هل أنت متأكد؟",
   "confirmAction": "يرجى تأكيد إجراءك",
   "confirmDeleteTitle": "حذف",
@@ -198,6 +242,13 @@
   "confirmExitTitle": "خروج",
   "confirmDelete": "هل أنت متأكد من رغبتك في حذف هذا العنصر؟",
   "confirmDeleteItem": "هل أنت متأكد من رغبتك في حذف {itemName}؟",
+  "@confirmDeleteItem": {
+    "placeholders": {
+      "itemName": {
+        "type": "String"
+      }
+    }
+  },
   "confirmDeleteKhatma": "بعد الحذف، ستحذف هذه الختمة نهائياً",
   "confirmLogout": "هل أنت متأكد من رغبتك في تسجيل الخروج؟",
   "confirmExitApp": "هل أنت متأكد من رغبتك في الخروج من التطبيق؟",
@@ -205,41 +256,29 @@
   "exitApp": "الخروج من التطبيق",
   "exit": "خروج",
   "terminate": "إنهاء",
-  "khatmaFinishedMessage": "لقد أنهيت ختمتك منذ {timeAgo}.",
-  "completion": "الإنجاز",
-  "khatmaHistory": "تاريخ الختمات",
+
+  "success": "نجح",
+  "congratulation": "تهانينا!",
   "congratulations": "تهانينا",
-  "khatmaListTitle": "قائمة الختمات",
-  "khatmaListSubtitle": "ختماتك الجارية",
-  "khatmaCompleted": "ختمة مكتملة",
-  "backToHome": "العودة إلى الرئيسية",
-  "journeyDetails": "تفاصيل الرحلة", 
-  "started": "بدأت",
-  "completed": "اكتملت",
-  "totalDuration": "المدة الإجمالية",
-  "daysCount": "{count, plural, =1{يوم واحد} =2{يومان} few{{count} أيام} many{{count} يوماً} other{{count} يوم}}",
-  "@daysCount": {
+  "accountCreatedSuccessfully": "تم إنشاء الحساب بنجاح!",
+  "successCompleteParts": "تم إنجاز {count} أجزاء بنجاح",
+  "@successCompleteParts": {
     "placeholders": {
       "count": {
         "type": "int"
       }
     }
   },
-  "shareAchievement": "مشاركة الإنجاز",
 
-  "success": "نجح",
-  "congratulation": "تهانينا!",
-  "accountCreatedSuccessfully": "تم إنشاء الحساب بنجاح!",
-  "successCompleteParts": "تم إنجاز {count} أجزاء بنجاح",
-  "createKhatmaToStart": "أنشئ ختمة للبدء",
+  "error": "خطأ",
+  "errorCode": "رمز الخطأ",
   "errorOccurred": "حدث خطأ",
-  "goToHome": "الانتقال إلى الصفحة الرئيسية",
-  "noKhatmaYet": "لا توجد ختمة بعد",
-  "notImplemented": "الميزة غير متوفرة",
-  "pageNotFound": "الصفحة غير موجودة",
-  "pageNotFound404": "خطأ 404 - الصفحة غير موجودة",
+  "criticalError": "خطأ حرج",
+  "unexpectedError": "حدث خطأ غير متوقع",
+  "pleaseTryAgain": "يرجى المحاولة مرة أخرى.",
+  "networkError": "خطأ في الشبكة. يرجى التحقق من الاتصال",
+  "permissionDenied": "تم رفض الإذن",
 
-  
   "signInFailed": "فشل تسجيل الدخول",
   "loginFailed": "فشل تسجيل الدخول",
   "registrationFailed": "فشل التسجيل. يرجى المحاولة مرة أخرى لاحقاً.",
@@ -247,18 +286,7 @@
   "googleSignInFailed": "فشل تسجيل الدخول بجوجل",
   "updateProfileError": "فشل تحديث الملف الشخصي. يرجى المحاولة مرة أخرى",
   "errorLoadingProfile": "خطأ في تحميل الملف الشخصي. يرجى المحاولة مرة أخرى لاحقاً.",
-  "networkError": "خطأ في الشبكة. يرجى التحقق من الاتصال",
-  "permissionDenied": "تم رفض الإذن",
-  "pleaseTryAgain": "يرجى المحاولة مرة أخرى.",
-  "criticalError": "خطأ حرج",
-  "error": "خطأ",
-  "errorCode": "رمز الخطأ",
-  "cannotUpdateKhatmaWhileStarted": "لا يمكن تحديث الختمة بينما هي مبدوءة",
-  "failedToSaveKhatma": "فشل حفظ الختمة. يرجى المحاولة مرة أخرى.",
-  "failedToLoadKhatma": "فشل تحميل الختمة. يرجى المحاولة مرة أخرى.",
-  "failedToDeleteKhatma": "فشل حذف الختمة. يرجى المحاولة مرة أخرى.",
-  "failedToShareKhatma": "فشل مشاركة الختمة. يرجى المحاولة مرة أخرى.",
-  
+
   "errorAuthUserNotLoggedIn": "المستخدم غير مسجل الدخول.",
   "errorAuthAnonymousNotAllowed": "تسجيل الدخول المجهول غير مسموح.",
   "errorAuthSessionExpired": "انتهت صلاحية الجلسة.",
@@ -269,7 +297,7 @@
   "errorAuthInvalidEmail": "عنوان البريد الإلكتروني غير صحيح.",
   "errorAuthOperationNotAllowed": "العملية غير مسموحة.",
   "errorAuthUserDisabled": "حساب المستخدم معطل.",
-  "errorAuthUserNotFound": "المستخدم غير موجود.",
+  "errorAuthUserNotFound": "لم يتم العثور على المستخدم. يرجى تسجيل الدخول مرة أخرى.",
   "errorAuthEmailAlreadyInUse": "عنوان البريد الإلكتروني مستخدم بالفعل.",
   "errorAuthWeakPassword": "كلمة المرور المقدمة ضعيفة.",
   "errorAuthRequiresRecentLogin": "يتطلب تسجيل دخول حديث.",
@@ -277,6 +305,12 @@
   "errorAuthNetworkRequestFailed": "فشل طلب الشبكة.",
   "errorAuthPopupBlocked": "تم حظر النافذة المنبثقة من قبل المتصفح.",
   "errorAuthPopClosedByUser": "أغلق المستخدم النافذة المنبثقة.",
+  "errorAuthActionCancelled": "تم إلغاء إجراء المصادقة.",
+  "authenticationError": "خطأ في المصادقة",
+  "authenticationErrors": "أخطاء المصادقة",
+  "userNotLoggedIn": "المستخدم غير مسجل الدخول",
+  "sessionExpired": "انتهت صلاحية الجلسة",
+
   "errorNetConnectionFailed": "فشل الاتصال بالإنترنت.",
   "errorNetTimeout": "انتهت مهلة طلب الشبكة.",
   "errorNetServerError": "واجه الخادم خطأ.",
@@ -285,7 +319,12 @@
   "errorNetRateLimit": "تم تجاوز حد المعدل.",
   "errorNetBadRequest": "طلب سيء أرسل إلى الخادم.",
   "errorNetUnavailable": "خدمة الشبكة غير متاحة.",
-  "errorAuthActionCancelled": "تم إلغاء إجراء المصادقة.",
+  "errorNetworkConnectionFailed": "فشل الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
+  "errorNetworkTimeout": "انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.",
+  "networkErrors": "أخطاء الشبكة",
+  "connectionFailed": "فشل الاتصال",
+  "timeout": "انتهت المهلة",
+  "serverError": "خطأ الخادم",
 
   "errorSyncGeneralFailure": "فشل التزامن.",
   "errorSyncConflict": "حدث تعارض في البيانات أثناء التزامن.",
@@ -293,22 +332,33 @@
   "errorSyncInProgress": "التزامن جاري بالفعل.",
   "errorSyncPartialFailure": "حدث فشل جزئي في التزامن.",
   "errorSyncStatusFailed": "فشل في استرداد حالة التزامن.",
-  
+  "syncError": "خطأ في التزامن",
+
   "errorStorageSaveFailed": "فشل حفظ البيانات.",
   "errorStorageDeleteFailed": "فشل حذف البيانات.",
   "errorStorageLoadFailed": "فشل تحميل البيانات.",
   "errorStorageFull": "التخزين ممتلئ.",
   "errorStorageCorrupted": "التخزين تالف.",
   "errorStoragePermissionDenied": "تم رفض الإذن للوصول إلى التخزين.",
-  
+  "storageError": "خطأ في التخزين",
+  "storageErrors": "أخطاء التخزين",
+  "storageFull": "التخزين ممتلئ",
+  "storageCorrupted": "التخزين تالف",
+  "saveFailed": "فشل الحفظ",
+
   "errorValidationInvalidData": "البيانات المقدمة غير صحيحة.",
   "errorValidationMissingFields": "الحقول المطلوبة مفقودة.",
   "errorValidationInvalidFormat": "تنسيق البيانات غير صحيح.",
   "errorValidationOutOfRange": "القيمة خارج النطاق المسموح.",
   "errorValidationInvalidDate": "التاريخ المقدم غير صحيح.",
   "errorValidationInvalidOperation": "تم محاولة عملية غير صحيحة.",
-  
-  "errorKhatmaNotFound": "الختمة غير موجودة.",
+  "validationError": "خطأ في التحقق",
+  "validationErrors": "أخطاء التحقق",
+  "invalidData": "بيانات غير صحيحة",
+  "missingFields": "حقول مفقودة",
+  "invalidDate": "تاريخ غير صحيح",
+
+  "errorKhatmaNotFound": "لم يتم العثور على الختمة. ربما تم حذفها أو غير موجودة.",
   "errorKhatmaAlreadyCompleted": "هذه الختمة مكتملة بالفعل.",
   "errorKhatmaDeletionNotAllowed": "لا يمكن حذف هذه الختمة.",
   "errorKhatmaArchiveFailed": "فشل أرشفة الختمة.",
@@ -317,8 +367,6 @@
   "errorKhatmaRepeatFailed": "فشل إعادة الختمة.",
   "errorNoPartsSelected": "لا توجد أجزاء محددة.",
   "errorNoKhatmaSelected": "لا توجد ختمة محددة.",
-  "errorAuthUserNotFound": "لم يتم العثور على المستخدم. يرجى تسجيل الدخول مرة أخرى.",
-  "errorKhatmaNotFound": "لم يتم العثور على الختمة. ربما تم حذفها أو غير موجودة.",
   "errorKhatmaAlreadyJoined": "لقد انضممت بالفعل إلى هذه الختمة.",
   "errorKhatmaNotJoined": "لست مشاركاً في هذه الختمة.",
   "errorKhatmaOwnerCannotLeave": "بصفتك المالك، لا يمكنك مغادرة هذه الختمة. يرجى نقل الملكية أو حذف الختمة.",
@@ -327,30 +375,41 @@
   "errorKhatmaPartNotReserved": "يجب عليك حجز هذا الجزء قبل إكماله.",
   "errorKhatmaPermissionDenied": "ليس لديك إذن لتنفيذ هذا الإجراء.",
   "errorKhatmaAlreadyExists": "ختمة بهذه المعلومات موجودة بالفعل.",
-  "errorNetworkConnectionFailed": "فشل الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
-  "errorNetworkTimeout": "انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.",
   "errorFirestoreOperationFailed": "فشل في عملية قاعدة البيانات. يرجى المحاولة مرة أخرى لاحقاً.",
-  "errorGeneralUnknown": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
+  "cannotUpdateKhatmaWhileStarted": "لا يمكن تحديث الختمة بينما هي مبدوءة",
+  "failedToSaveKhatma": "فشل حفظ الختمة. يرجى المحاولة مرة أخرى.",
+  "failedToLoadKhatma": "فشل تحميل الختمة. يرجى المحاولة مرة أخرى.",
+  "failedToDeleteKhatma": "فشل حذف الختمة. يرجى المحاولة مرة أخرى.",
+  "failedToShareKhatma": "فشل مشاركة الختمة. يرجى المحاولة مرة أخرى.",
+  "khatmaError": "خطأ في الختمة",
+  "khatmaErrors": "أخطاء الختمة",
+  "khatmaNotFound": "الختمة غير موجودة",
+  "alreadyCompleted": "مكتملة بالفعل",
+  "invalidParts": "أجزاء غير صحيحة",
 
   "errorLimitKhatmaMaxReached": "تم الوصول إلى العدد الأقصى للختمات.",
   "errorLimitStorageQuotaExceeded": "تم تجاوز حصة التخزين.",
   "errorLimitCreationNotAllowed": "الإنشاء غير مسموح بسبب الحدود.",
-  
+  "limitError": "تم الوصول إلى الحد الأقصى",
+
   "errorHistoryCreateFailed": "فشل إنشاء التاريخ.",
   "errorHistoryLoadFailed": "فشل تحميل التاريخ.",
   "errorHistoryDeleteFailed": "فشل حذف التاريخ.",
   "errorHistoryNotFound": "التاريخ غير موجود.",
-  
+  "historyError": "خطأ في التاريخ",
+
   "errorSearchFailed": "فشل البحث.",
   "errorSearchNoResults": "لم يتم العثور على نتائج.",
   "errorSearchInvalidQuery": "استعلام البحث غير صحيح.",
   "errorSearchTimeout": "انتهت مهلة البحث.",
-  
+  "searchError": "خطأ في البحث",
+
   "errorStatsCalculationFailed": "فشل حساب الإحصائيات.",
   "errorStatsNoData": "لا توجد بيانات متاحة للإحصائيات.",
   "errorStatsExportFailed": "فشل تصدير الإحصائيات.",
-  
-  "errorGeneralUnknown": "حدث خطأ غير معروف.",
+  "statsError": "خطأ في الإحصائيات",
+
+  "errorGeneralUnknown": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
   "errorGeneralCancelled": "تم إلغاء العملية.",
   "errorGeneralInvalidOperation": "عملية غير صحيحة.",
   "errorGeneralUnavailableResource": "المورد غير متاح.",
@@ -358,19 +417,29 @@
   "errorGeneralOutOfMemory": "النظام خارج الذاكرة.",
   "errorGeneralConfigError": "حدث خطأ في التكوين.",
   "errorGeneralInitializationFailed": "فشل التهيئة.",
-  
+
   "errorDateRangeInvalid": "نطاق التاريخ غير صحيح.",
   "errorDateFormatInvalid": "تنسيق التاريخ غير صحيح.",
   "errorDateParsingFailed": "فشل تحليل التاريخ.",
-  
+  "dateError": "خطأ في التاريخ",
+
   "errorPermissionDenied": "تم رفض الإذن.",
   "errorPermissionFeatureDisabled": "الميزة معطلة بسبب الأذونات.",
   "errorPermissionInsufficient": "أذونات غير كافية للمتابعة.",
-  
+  "permissionError": "خطأ في الإذن",
+
+  "errorDialogExamples": "أمثلة على حوارات الخطأ",
+  "retrying": "جاري إعادة المحاولة...",
+  "openingSignIn": "جاري فتح تسجيل الدخول...",
+  "openingSettings": "جاري فتح الإعدادات...",
+  "actionPerformed": "تم تنفيذ الإجراء",
+
   "newKhatma": "ختمة جديدة",
   "editKhatma": "تعديل الختمة",
   "khatma": "ختمة",
   "khatmaList": "قائمة الختمات",
+  "khatmaListTitle": "قائمة الختمات",
+  "khatmaListSubtitle": "ختماتك الجارية",
   "shareKhatma": "مشاركة الختمة",
   "chooseKhatmaStyle": "اختر نمط ختمتك",
   "khatmaStyle": "نمط الختمة",
@@ -386,9 +455,37 @@
   "share": "مشاركة",
   "splitUnit": "وحدة التقسيم",
   "khatmaSplitUnit": "{unit, select, sourat{سورة} juzz{جزء} hizb{حزب} half{نصف حزب} rubue{ربع حزب} thumun{ثمن حزب} other{}}",
+  "@khatmaSplitUnit": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "khatmaSplitUnitWithDef": "{unit, select, sourat{السورة} juzz{الجزء} hizb{الحزب} half{نصف الحزب} rubue{ربع الحزب} thumun{ثمن الحزب} other{}}",
+  "@khatmaSplitUnitWithDef": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "khatmaSplitUnitDesc": "{unit, select, sourat{سورة (114 جزء)} juzz{جزء (30 جزء)} hizb{حزب (60 جزء)} half{نصف حزب (120 جزء)} rubue{ربع حزب (240 جزء)} thumun{ثمن حزب (480 جزء)} other{}}",
+  "@khatmaSplitUnitDesc": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "ordinalPartNumber": "{num, select, 1{الأول} 2{الثاني} 3{الثالث} 4{الرابع} 5{الخامس} 6{السادس} 7{السابع} 8{الثامن} 9{التاسع} 10{العاشر} 11{الحادي عشر} 12{الثاني عشر} 13{الثالث عشر} 14{الرابع عشر} 15{الخامس عشر} 16{السادس عشر} 17{السابع عشر} 18{الثامن عشر} 19{التاسع عشر} 20{العشرون} 21{الحادي والعشرون} 22{الثاني والعشرون} 23{الثالث والعشرون} 24{الرابع والعشرون} 25{الخامس والعشرون} 26{السادس والعشرون} 27{السابع والعشرون} 28{الثامن والعشرون} 29{التاسع والعشرون} 30{الثلاثون} 31{الحادي والثلاثون} 32{الثاني والثلاثون} 33{الثالث والثلاثون} 34{الرابع والثلاثون} 35{الخامس والثلاثون} 36{السادس والثلاثون} 37{السابع والثلاثون} 38{الثامن والثلاثون} 39{التاسع والثلاثون} 40{الأربعون} 41{الحادي والأربعون} 42{الثاني والأربعون} 43{الثالث والأربعون} 44{الرابع والأربعون} 45{الخامس والأربعون} 46{السادس والأربعون} 47{السابع والأربعون} 48{الثامن والأربعون} 49{التاسع والأربعون} 50{الخمسون} 51{الحادي والخمسون} 52{الثاني والخمسون} 53{الثالث والخمسون} 54{الرابع والخمسون} 55{الخامس والخمسون} 56{السادس والخمسون} 57{السابع والخمسون} 58{الثامن والخمسون} 59{التاسع والخمسون} 60{الستون} other{}}",
+  "@ordinalPartNumber": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
   "loading": "جارٍ التحميل",
   "loadingKhatma": "جارٍ تحميل الختمة",
   "loadingKhatmaList": "جارٍ تحميل قائمة الختمات",
@@ -397,97 +494,68 @@
   "remainingParts": "الأجزاء المتبقية",
   "parts": "أجزاء",
   "readedParts": "{count} جزء",
+  "@readedParts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "remainingPartsOfTotal": "{remaining} من {total} جزء",
+  "@remainingPartsOfTotal": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "completeParts": "إكمال ({count} جزء)",
+  "@completeParts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "selectedParts": "تم اختيار {count} جزءًا",
+  "@selectedParts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "maxPartToRead": "أقصى جزء للقراءة",
   "maxPartToReserve": "أقصى جزء للحجز",
-  "account": "الحساب",
-  "helpAndSupport": "المساعدة والدعم",
-  "accessYourKhatmas": "الوصول إلى ختماتك وتقدمك",
-  "managePersonalInfo": "إدارة معلوماتك الشخصية",
-  "preferencesAndOptions": "التفضيلات وخيارات التطبيق",
-  "commonQuestions": "العثور على إجابات للأسئلة الشائعة",
-  "termsAndPrivacy": "شروط الخدمة وسياسة الخصوصية",
-  "learnMoreAboutKhatma": "تعرف أكثر على مهمتنا",
-  "getHelpFromTeam": "احصل على المساعدة من فريق الدعم",
-  "madeWithLove": "صُنع بـ ❤️ للمجتمع المسلم",
-  
-  "recurrence": "التكرار",
-  "schedule": "الجدول",
-  "startDate": "تاريخ البداية",
-  "endDate": "تاريخ النهاية",
-  "every": "كل",
-  "repeat": "ختمة متكررة",
-  "noRepeat": "بدون تكرار",
-  "repeatEvery": "كرر كل",
-  "autoRepeatDescription": "إعادة البدء تلقائياً عند الانتهاء",
-  "repeatEverySelectedDaysDescription": "ستكرر الختمة كل {days} لكل {count} أسابيع",
-  "repeatEverySelectedDayDescription": "ستكرر الختمة كل {days} لكل أسبوع",
-  "repeatEveryTimePeriodsDescription": "ستكرر الختمة كل {count} {unit}",
-  "repeatEveryTimePeriodDescription": "ستكرر الختمة كل {unit}",
-  "noRepeatDescription": "إعادة البدء تلقائياً عند الانتهاء",
-  "repeatDescription": "إعادة البدء تلقائياً عند الانتهاء",
-  "repeatInterval": "{recurrence, select, auto{تلقائي} daily{يوم} weekly{أسبوع} monthly{شهر} yearly{سنة} other{أخرى}}",
-  "timePeriods": "{period, select, daily{يوم} weekly{أسبوع} monthly{شهر} yearly{سنة} other{}}",
-  "weekDay": "{day, select, 1{الإثنين} 2{الثلاثاء} 3{الأربعاء} 4{الخميس} 5{الجمعة} 6{السبت} 7{الأحد} other{أخرى}}",
-  "shortWeekDay": "{day, select, 1{ن} 2{ث} 3{ر} 4{خ} 5{ج} 6{س} 7{ح} other{أ}}",
-  "repeatOption": "{scheduler, select, true{التكرار التلقائي مفعل} false{التكرار التلقائي معطل} other{أخرى}}",
-  
-  "shareVisibility": "{share, select, other{خاص} public{عام} group{مجموعة}}",
-  "shareVisibilityDesc": "{share, select, other{هذه الختمة خاصة} public{يمكن للجميع الوصول والمشاركة} group{مشاركة فقط برمز أو رمز الاستجابة السريعة}}",
-  "shareVisibilityDescription": "{share, select, other{ستبقى الختمة خاصة وحصرية للمنظم} public{الجميع مرحب بهم للوصول والانضمام للختمة} group{ستتم مشاركة الختمة فقط مع من يتلقون رقماً محدداً أو رمز الاستجابة السريعة}}",
-  "maxParticipants": "{count, plural, =0{لا يوجد مشاركون} =1{مشارك واحد} other{# مشاركين}}",
-  
-  "home": "الرئيسية",
-  "settings": "الإعدادات",
-  "about": "حول",
-  "appPreferences": "تفضيلات التطبيق",
-  "aboutUs": "حولنا",
-  "learnMoreAboutApp": "تعلم المزيد عن التطبيق",
-  
-  "readMode": "وضع القراءة",
-  "readLess": "قراءة أقل",
-  "showMore": " عرض المزيد",
-  "showLess": " عرض أقل",
-  
-  "language": "اللغة",
-  "chooseLanguage": "اختر اللغة",
-  "riwaya": "الرواية",
-  "chooseRiwaya": "اختر الرواية",
-  "recitation": "القراءة",
-  "hafs": "حفص",
-  "hafsDescription": "القراءة الأكثر انتشاراً في العالم الإسلامي، خاصة في الشرق الأوسط.",
-  "warsh": "ورش",
-  "warshDescription": "شائعة في شمال أفريقيا. اختلافات طفيفة في النطق والإملاء.",
-  "theme": "المظهر",
-  "chooseTheme": "اختر المظهر",
-  "themeMode": "{mode, select, light{فاتح} dark{مظلم} system{النظام} other{النظام}}",
-  "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
-  "@riwayaMode": {
+  "noKhatmaYet": "لا توجد ختمة بعد",
+  "createKhatmaToStart": "أنشئ ختمة للبدء",
+  "khatmaCompleted": "ختمة مكتملة",
+  "backToHome": "العودة إلى الرئيسية",
+  "journeyDetails": "تفاصيل الرحلة",
+  "started": "بدأت",
+  "totalDuration": "المدة الإجمالية",
+  "daysCount": "{count, plural, =1{يوم واحد} =2{يومان} few{{count} أيام} many{{count} يوماً} other{{count} يوم}}",
+  "@daysCount": {
     "placeholders": {
-      "riwaya": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareAchievement": "مشاركة الإنجاز",
+  "khatmaFinishedMessage": "لقد أنهيت ختمتك منذ {timeAgo}.",
+  "@khatmaFinishedMessage": {
+    "placeholders": {
+      "timeAgo": {
         "type": "String"
       }
     }
   },
-
-  "faq": "الأسئلة الشائعة",
-  "frequentlyAskedQuestions": "الأسئلة المتكررة",
-  "contactSupport": "الاتصال بالدعم",
-  "questionsAndSuggestions": "الأسئلة والاقتراحات",
-  
-  "onboarding1Title": "أكمل ختمتك",
-  "onboarding1Description": "تابع قراءتك اليومية للقرآن وتصور تقدمك نحو إتمام القرآن الكريم.",
-  "onboarding2Title": "تلاوات جميلة",
-  "onboarding2Description": "اغمر نفسك بصوت واضح كالكريستال من القراء المشهورين مع تمييز كلمة بكلمة.",
-  "onboarding3Title": "تذكيرات يومية",
-  "onboarding3Description": "اضبط تذكيرات روحية للحفاظ على اتصالك بالقرآن طوال يومك.",
-  "onboarding4Title": "فهم عميق",
-  "onboarding4Description": "احصل على تفسيرات متعددة وترجمات لإثراء معرفتك القرآنية.",
-  "skipButton": "تخطي",
-  "continueButton": "متابعة",
-  "startButton": "ابدأ رحلة القرآن",
+  "completion": "الإنجاز",
+  "khatmaHistory": "تاريخ الختمات",
 
   "khatmaSearchTitle": "البحث عن ختمة",
   "khatmaSearchHint": "الاسم أو الوصف",
@@ -508,64 +576,241 @@
   "khatmaPrivate": "خاص",
   "khatmaClose": "إغلاق",
   "khatmaUnitReserved": "{unit} {number} محجوز",
+  "@khatmaUnitReserved": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      },
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "khatmaUnitReleased": "{unit} {number} محرر",
+  "@khatmaUnitReleased": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      },
+      "number": {
+        "type": "int"
+      }
+    }
+  },
   "khatmaJoinSuccess": "لقد انضممت بنجاح إلى \"{name}\"!",
+  "@khatmaJoinSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "khatmaJoinError": "خطأ في الانضمام إلى الختمة",
   "khatmaYouHaveReserved": "لقد حجزت {count} وحدة",
+  "@khatmaYouHaveReserved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
 
-  
-  "registration_validation": "رسائل التحقق من التسجيل",
-  "login_validation": "رسائل التحقق من تسجيل الدخول",
-  "registration_ui": "واجهة التسجيل",
-  "login_ui": "واجهة تسجيل الدخول",
-  "form_types": "أنواع النماذج",
-  "shared_fields": "الحقول المشتركة",
-  "validation_messages": "رسائل التحقق",
-  "password_criteria": "معايير كلمة المرور",
-  "terms_and_actions": "الشروط والإجراءات",
-  "rememberMe": "تذكرني",
-  "ui_labels": "تسميات الواجهة",
+  "recurrence": "التكرار",
+  "schedule": "الجدول",
+  "startDate": "تاريخ البداية",
+  "endDate": "تاريخ النهاية",
+  "every": "كل",
+  "repeat": "ختمة متكررة",
+  "noRepeat": "بدون تكرار",
+  "repeatEvery": "كرر كل",
+  "autoRepeatDescription": "إعادة البدء تلقائياً عند الانتهاء",
+  "repeatEverySelectedDaysDescription": "ستكرر الختمة كل {days} لكل {count} أسابيع",
+  "@repeatEverySelectedDaysDescription": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatEverySelectedDayDescription": "ستكرر الختمة كل {days} لكل أسبوع",
+  "@repeatEverySelectedDayDescription": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "repeatEveryTimePeriodsDescription": "ستكرر الختمة كل {count} {unit}",
+  "@repeatEveryTimePeriodsDescription": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "repeatEveryTimePeriodDescription": "ستكرر الختمة كل {unit}",
+  "@repeatEveryTimePeriodDescription": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "noRepeatDescription": "إعادة البدء تلقائياً عند الانتهاء",
+  "repeatDescription": "إعادة البدء تلقائياً عند الانتهاء",
+  "repeatInterval": "{recurrence, select, auto{تلقائي} daily{يوم} weekly{أسبوع} monthly{شهر} yearly{سنة} other{أخرى}}",
+  "@repeatInterval": {
+    "placeholders": {
+      "recurrence": {
+        "type": "String"
+      }
+    }
+  },
+  "timePeriods": "{period, select, daily{يوم} weekly{أسبوع} monthly{شهر} yearly{سنة} other{}}",
+  "@timePeriods": {
+    "placeholders": {
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "weekDay": "{day, select, 1{الإثنين} 2{الثلاثاء} 3{الأربعاء} 4{الخميس} 5{الجمعة} 6{السبت} 7{الأحد} other{أخرى}}",
+  "@weekDay": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "shortWeekDay": "{day, select, 1{ن} 2{ث} 3{ر} 4{خ} 5{ج} 6{س} 7{ح} other{أ}}",
+  "@shortWeekDay": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "repeatOption": "{scheduler, select, true{التكرار التلقائي مفعل} false{التكرار التلقائي معطل} other{أخرى}}",
+  "@repeatOption": {
+    "placeholders": {
+      "scheduler": {
+        "type": "String"
+      }
+    }
+  },
 
-  "openSettings": "فتح الإعدادات",
-  "tryAgain": "حاول مرة أخرى",
-  "authenticationError": "خطأ في المصادقة",
-  "syncError": "خطأ في التزامن",
-  "storageError": "خطأ في التخزين",
-  "validationError": "خطأ في التحقق",
-  "khatmaError": "خطأ في الختمة",
-  "limitError": "تم الوصول إلى الحد الأقصى",
-  "historyError": "خطأ في التاريخ",
-  "searchError": "خطأ في البحث",
-  "statsError": "خطأ في الإحصائيات",
-  "dateError": "خطأ في التاريخ",
-  "permissionError": "خطأ في الإذن",
-  "errorDialogExamples": "أمثلة على حوارات الخطأ",
-  "networkErrors": "أخطاء الشبكة",
-  "authenticationErrors": "أخطاء المصادقة",
-  "storageErrors": "أخطاء التخزين",
-  "validationErrors": "أخطاء التحقق",
-  "khatmaErrors": "أخطاء الختمة",
-  "connectionFailed": "فشل الاتصال",
-  "timeout": "انتهت المهلة",
-  "serverError": "خطأ الخادم",
-  "userNotLoggedIn": "المستخدم غير مسجل الدخول",
-  "sessionExpired": "انتهت صلاحية الجلسة",
-  "storageFull": "التخزين ممتلئ",
-  "storageCorrupted": "التخزين تالف",
-  "saveFailed": "فشل الحفظ",
-  "invalidData": "بيانات غير صحيحة",
-  "missingFields": "حقول مفقودة",
-  "invalidDate": "تاريخ غير صحيح",
-  "khatmaNotFound": "الختمة غير موجودة",
-  "alreadyCompleted": "مكتملة بالفعل",
-  "invalidParts": "أجزاء غير صحيحة",
-  "retrying": "جاري إعادة المحاولة...",
-  "openingSignIn": "جاري فتح تسجيل الدخول...",
-  "openingSettings": "جاري فتح الإعدادات...",
-  "actionPerformed": "تم تنفيذ الإجراء",
-  "displayNameTooLong": "الاسم المعروض يجب أن يكون أقل من 50 حرف",
-  "displayNameInvalidCharacters": "الاسم المعروض يحتوي على أحرف غير صحيحة",
-  "unexpectedError": "حدث خطأ غير متوقع",
+  "shareVisibility": "{share, select, other{خاص} public{عام} group{مجموعة}}",
+  "@shareVisibility": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
+  "shareVisibilityDesc": "{share, select, other{هذه الختمة خاصة} public{يمكن للجميع الوصول والمشاركة} group{مشاركة فقط برمز أو رمز الاستجابة السريعة}}",
+  "@shareVisibilityDesc": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
+  "shareVisibilityDescription": "{share, select, other{ستبقى الختمة خاصة وحصرية للمنظم} public{الجميع مرحب بهم للوصول والانضمام للختمة} group{ستتم مشاركة الختمة فقط مع من يتلقون رقماً محدداً أو رمز الاستجابة السريعة}}",
+  "@shareVisibilityDescription": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
+  "maxParticipants": "{count, plural, =0{لا يوجد مشاركون} =1{مشارك واحد} other{# مشاركين}}",
+  "@maxParticipants": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "home": "الرئيسية",
+  "settings": "الإعدادات",
+  "about": "حول",
+  "appPreferences": "تفضيلات التطبيق",
+  "aboutUs": "حولنا",
+  "learnMoreAboutApp": "تعلم المزيد عن التطبيق",
+  "account": "الحساب",
+  "helpAndSupport": "المساعدة والدعم",
+  "accessYourKhatmas": "الوصول إلى ختماتك وتقدمك",
+  "managePersonalInfo": "إدارة معلوماتك الشخصية",
+  "preferencesAndOptions": "التفضيلات وخيارات التطبيق",
+  "commonQuestions": "العثور على إجابات للأسئلة الشائعة",
+  "termsAndPrivacy": "شروط الخدمة وسياسة الخصوصية",
+  "learnMoreAboutKhatma": "تعرف أكثر على مهمتنا",
+  "getHelpFromTeam": "احصل على المساعدة من فريق الدعم",
+  "madeWithLove": "صُنع بـ ❤️ للمجتمع المسلم",
+  "goToHome": "الانتقال إلى الصفحة الرئيسية",
+  "notImplemented": "الميزة غير متوفرة",
+  "pageNotFound": "الصفحة غير موجودة",
+  "pageNotFound404": "خطأ 404 - الصفحة غير موجودة",
+
+  "readMode": "وضع القراءة",
+  "readLess": "قراءة أقل",
+  "showMore": " عرض المزيد",
+  "showLess": " عرض أقل",
+
+  "language": "اللغة",
+  "chooseLanguage": "اختر اللغة",
+  "riwaya": "الرواية",
+  "chooseRiwaya": "اختر الرواية",
+  "recitation": "القراءة",
+  "hafs": "حفص",
+  "hafsDescription": "القراءة الأكثر انتشاراً في العالم الإسلامي، خاصة في الشرق الأوسط.",
+  "warsh": "ورش",
+  "warshDescription": "شائعة في شمال أفريقيا. اختلافات طفيفة في النطق والإملاء.",
+  "theme": "المظهر",
+  "chooseTheme": "اختر المظهر",
+  "themeMode": "{mode, select, light{فاتح} dark{مظلم} system{النظام} other{النظام}}",
+  "@themeMode": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      }
+    }
+  },
+  "riwayaMode": "{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}",
+  "@riwayaMode": {
+    "placeholders": {
+      "riwaya": {
+        "type": "String"
+      }
+    }
+  },
+
+  "faq": "الأسئلة الشائعة",
+  "frequentlyAskedQuestions": "الأسئلة المتكررة",
+  "contactSupport": "الاتصال بالدعم",
+  "questionsAndSuggestions": "الأسئلة والاقتراحات",
+  "failedToLoadFaq": "فشل في تحميل الأسئلة الشائعة",
+  "noFaqAvailable": "لا توجد أسئلة شائعة متاحة",
+
+  "onboarding1Title": "أكمل ختمتك",
+  "onboarding1Description": "تابع قراءتك اليومية للقرآن وتصور تقدمك نحو إتمام القرآن الكريم.",
+  "onboarding2Title": "تلاوات جميلة",
+  "onboarding2Description": "اغمر نفسك بصوت واضح كالكريستال من القراء المشهورين مع تمييز كلمة بكلمة.",
+  "onboarding3Title": "تذكيرات يومية",
+  "onboarding3Description": "اضبط تذكيرات روحية للحفاظ على اتصالك بالقرآن طوال يومك.",
+  "onboarding4Title": "فهم عميق",
+  "onboarding4Description": "احصل على تفسيرات متعددة وترجمات لإثراء معرفتك القرآنية.",
+  "skipButton": "تخطي",
+  "continueButton": "متابعة",
+  "startButton": "ابدأ رحلة القرآن",
+
   "contactUs": "اتصل بنا",
   "contactType": "نوع التواصل",
   "bugReport": "تبليغ عن خطأ",
@@ -583,7 +828,6 @@
   "writeYourMessage": "اكتب رسالتك",
   "sendMessage": "إرسال الرسالة",
   "contactViaEmail": "التواصل عبر البريد الإلكتروني",
-  
   "pleaseEnterYourName": "يرجى إدخال اسمك",
   "nameMustBeAtLeast2Characters": "يجب أن يكون الاسم على الأقل حرفين",
   "pleaseEnterYourEmail": "يرجى إدخال بريدك الإلكتروني",
@@ -593,7 +837,6 @@
   "pleaseFillAllFieldsValid": "يرجى ملء جميع الحقول بمعلومات صحيحة.",
   "messageSentSuccessfully": "تم إرسال الرسالة بنجاح!",
   "failedToSendMessage": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
-  
   "contactFormSubject": "[{contactType}]: ",
   "@contactFormSubject": {
     "placeholders": {
@@ -609,39 +852,48 @@
   "openEmailApp": "البريد الإلكتروني",
   "unableToOpenEmail": "تعذر فتح تطبيق البريد الإلكتروني",
   "emailNotAvailable": "تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز",
-  "refresh": "تحديث",
-  "failedToLoadFaq": "فشل في تحميل الأسئلة الشائعة",
-  "noFaqAvailable": "لا توجد أسئلة شائعة متاحة",
+
   "dataSynchronization": "مزامنة البيانات",
   "chooseSyncMethod": "اختر كيفية مزامنة بياناتك",
   "syncStatus": "حالة المزامنة",
   "syncing": "جاري المزامنة...",
   "lastSyncTime": "آخر مزامنة: {time}",
+  "@lastSyncTime": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "neverSynced": "لم تتم المزامنة مطلقاً",
-  "justNow": "الآن",
-  "minutesAgo": "منذ {count} دقيقة",
-  "hoursAgo": "منذ {count} ساعة",
-  "daysAgo": "منذ {count} يوم",
-  
   "fullSync": "مزامنة كاملة",
   "pullFromServer": "تحميل من الخادم",
   "pushToServer": "رفع إلى الخادم",
   "downloadRemoteChanges": "تحميل أحدث التغييرات من الخادم",
   "uploadLocalChanges": "رفع تغييراتك المحلية إلى الخادم",
-  
   "performingFullSync": "جاري تنفيذ المزامنة الكاملة...",
   "downloadingChanges": "جاري تحميل التغييرات من الخادم...",
   "uploadingChanges": "جاري رفع التغييرات إلى الخادم...",
   "syncCompleted": "تمت المزامنة بنجاح",
   "syncFailed": "فشلت المزامنة: {error}",
-  
-  "cancel": "إلغاء",
-  "retry": "إعادة المحاولة",
+  "@syncFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "syncNow": "مزامنة الآن",
-  "syncError": "خطأ في المزامنة",
   "syncWarning": "تحذير المزامنة",
   "syncUpToDate": "محدث",
   "syncFailureCount": "{count} محاولات فاشلة",
+  "@syncFailureCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "performBothUploadAndDownload": "تنفيذ مزامنة الرفع والتحميل معاً",
   "synchronizeYourData": "مزامنة بيانات الختمة مع الخادم",
   "syncCompletedSuccessfully": "تمت المزامنة بنجاح",
@@ -650,10 +902,29 @@
   "checkForUpdatesAndSync": "التحقق من تحديثات الخادم والمزامنة",
   "toUpload": "للرفع",
   "allDataSynchronized": "تمت مزامنة جميع بياناتك بنجاح",
-  "close": "إغلاق",
   "khatmasCount": "{count} ختمة",
+  "@khatmasCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "historyCount": "{count} عنصر تاريخ",
-  "synchronizingPleaseWait": "جارٍ مزامنة بياناتك، يرجى الانتظار...",  
-  "itemsToSync": "{count} item to synchronize"
-
+  "@historyCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "synchronizingPleaseWait": "جارٍ مزامنة بياناتك، يرجى الانتظار...",
+  "itemsToSync": "{count} عنصر للمزامنة",
+  "@itemsToSync": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
