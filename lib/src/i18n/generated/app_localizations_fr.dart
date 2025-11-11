@@ -2164,4 +2164,60 @@ class AppLocalizationsFr extends AppLocalizations {
   String itemsToSync(int count) {
     return '$count élément à synchroniser';
   }
+
+  @override
+  String get khatmaDescription => 'Description';
+
+  @override
+  String khatmaUnitsWithType(String unitType) {
+    return 'Unités ($unitType)';
+  }
+
+  @override
+  String get filterAll => 'Tout';
+
+  @override
+  String get filterMyUnits => 'Mes unités';
+
+  @override
+  String get filterAvailable => 'Disponibles';
+
+  @override
+  String get filterCompleted => 'Complétées';
+
+  @override
+  String get noUnitsFound => 'Aucune unité trouvée';
+
+  @override
+  String get tryChangingFilter => 'Essayez de changer le filtre';
+
+  @override
+  String reservedUnitsCount(int current, int max) {
+    return 'Réservé: $current/$max';
+  }
+
+  @override
+  String unitsRemaining(int count) {
+    return '$count restantes';
+  }
+
+  @override
+  String get limitReached => 'Limite atteinte';
+
+  @override
+  String get confirmJoinKhatma => 'Confirmer rejoindre';
+
+  @override
+  String reservationLimitReached(int max) {
+    return 'Limite atteinte: $max unités maximum par utilisateur';
+  }
+
+  @override
+  String joinedKhatmaSuccess(String khatmaName) {
+    return 'Vous avez rejoint \"$khatmaName\" avec succès!';
+  }
+
+  @override
+  String get errorJoiningKhatma =>
+      'Erreur lors de la participation à la Khatma';
 }

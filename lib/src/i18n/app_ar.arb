@@ -926,5 +926,59 @@
         "type": "int"
       }
     }
-  }
+  },
+
+  "khatmaDescription": "الوصف",
+  "khatmaUnitsWithType": "الوحدات ({unitType})",
+  "@khatmaUnitsWithType": {
+    "placeholders": {
+      "unitType": {
+        "type": "String"
+      }
+    }
+  },
+  "filterAll": "الكل",
+  "filterMyUnits": "وحداتي",
+  "filterAvailable": "المتاحة",
+  "filterCompleted": "المكتملة",
+  "noUnitsFound": "لم يتم العثور على وحدات",
+  "tryChangingFilter": "جرب تغيير الفلتر",
+  "reservedUnitsCount": "محجوزة: {current}/{max}",
+  "@reservedUnitsCount": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsRemaining": "{count} متبقية",
+  "@unitsRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitReached": "تم الوصول للحد الأقصى",
+  "confirmJoinKhatma": "تأكيد الانضمام",
+  "reservationLimitReached": "تم الوصول للحد الأقصى: {max} وحدة كحد أقصى لكل مستخدم",
+  "@reservationLimitReached": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "joinedKhatmaSuccess": "لقد انضممت بنجاح إلى \"{khatmaName}\"!",
+  "@joinedKhatmaSuccess": {
+    "placeholders": {
+      "khatmaName": {
+        "type": "String"
+      }
+    }
+  },
+  "errorJoiningKhatma": "خطأ في الانضمام إلى الختمة"
 }

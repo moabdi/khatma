@@ -5,6 +5,7 @@ import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
 import 'package:khatma/src/features/shared_khatma/presentation/logic/khatma_details_controller.dart';
 import 'package:khatma/src/features/shared_khatma/presentation/widgets/filter_chip.dart';
 import 'package:khatma/src/features/shared_khatma/presentation/widgets/unit_tile.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -74,7 +75,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         childrenPadding:
                             const EdgeInsets.fromLTRB(16, 0, 16, 16),
                         tilePadding: const EdgeInsets.all(0),
-                        title: const Text('Description'),
+                        title: Text(context.loc.khatmaDescription),
                         children: [
                           Align(
                             alignment: Alignment.centerLeft,
@@ -85,7 +86,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                     ),
                   gapH12,
                   // Title
-                  Text('Unités (${state.khatma.unit.displayName})'),
+                  Text(context.loc.khatmaUnitsWithType(
+                      state.khatma.unit.displayName)),
                   gapH8,
                   // Filter Chips
                   SingleChildScrollView(
@@ -93,7 +95,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                     child: Row(
                       children: [
                         KhatmaFilterChip(
-                          label: 'Tout',
+                          label: context.loc.filterAll,
                           icon: Icons.apps_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.all),
@@ -101,7 +103,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         ),
                         gapW8,
                         KhatmaFilterChip(
-                          label: 'Mes unités',
+                          label: context.loc.filterMyUnits,
                           icon: Icons.person_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.mine),
@@ -109,7 +111,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         ),
                         gapW8,
                         KhatmaFilterChip(
-                          label: 'Disponibles',
+                          label: context.loc.filterAvailable,
                           icon: Icons.check_circle_outline_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.free),
@@ -117,7 +119,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         ),
                         gapW8,
                         KhatmaFilterChip(
-                          label: 'Complétées',
+                          label: context.loc.filterCompleted,
                           icon: Icons.done_all_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.completed),
@@ -152,7 +154,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                             ),
                             gapH16,
                             Text(
-                              'Aucune unité trouvée',
+                              context.loc.noUnitsFound,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium
@@ -165,7 +167,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                             ),
                             gapH8,
                             Text(
-                              'Essayez de changer le filtre',
+                              context.loc.tryChangingFilter,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -241,7 +243,10 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Réservé: ${state.khatma.userReservedUnits.length}/${state.khatma.maxReservationsPerUser}',
+                          context.loc.reservedUnitsCount(
+                            state.khatma.userReservedUnits.length,
+                            state.khatma.maxReservationsPerUser,
+                          ),
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Theme.of(context)
@@ -252,7 +257,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         ),
                         if (state.khatma.remainingReservations > 0)
                           Text(
-                            '${state.khatma.remainingReservations} restantes',
+                            context.loc.unitsRemaining(
+                                state.khatma.remainingReservations),
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: Colors.green.shade600,
@@ -260,7 +266,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                           )
                         else
                           Text(
-                            'Limite atteinte',
+                            context.loc.limitReached,
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: Colors.orange.shade600,
@@ -296,9 +302,9 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                                       Colors.white),
                                 ),
                               )
-                            : const Text(
-                                'Confirmer rejoindre',
-                                style: TextStyle(
+                            : Text(
+                                context.loc.confirmJoinKhatma,
+                                style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -325,7 +331,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-                'Limite atteinte: ${state.khatma.maxReservationsPerUser} unités maximum par utilisateur'),
+                context.loc.reservationLimitReached(
+                    state.khatma.maxReservationsPerUser)),
             backgroundColor: Colors.orange,
             duration: const Duration(seconds: 3),
           ),
@@ -346,7 +353,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-                'Vous avez rejoint "${widget.khatma.name}" avec succès!'),
+                context.loc
+                    .joinedKhatmaSuccess(widget.khatma.name)),
             backgroundColor: Colors.green,
             duration: const Duration(seconds: 3),
           ),
@@ -358,8 +366,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Erreur lors de la participation à la Khatma'),
+          SnackBar(
+            content: Text(context.loc.errorJoiningKhatma),
             backgroundColor: Colors.red,
           ),
         );

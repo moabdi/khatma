@@ -3525,6 +3525,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} item(s) to synchronize'**
   String itemsToSync(int count);
+
+  /// No description provided for @khatmaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get khatmaDescription;
+
+  /// No description provided for @khatmaUnitsWithType.
+  ///
+  /// In en, this message translates to:
+  /// **'Units ({unitType})'**
+  String khatmaUnitsWithType(String unitType);
+
+  /// No description provided for @filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAll;
+
+  /// No description provided for @filterMyUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'My units'**
+  String get filterMyUnits;
+
+  /// No description provided for @filterAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get filterAvailable;
+
+  /// No description provided for @filterCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get filterCompleted;
+
+  /// No description provided for @noUnitsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No units found'**
+  String get noUnitsFound;
+
+  /// No description provided for @tryChangingFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Try changing the filter'**
+  String get tryChangingFilter;
+
+  /// No description provided for @reservedUnitsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved: {current}/{max}'**
+  String reservedUnitsCount(int current, int max);
+
+  /// No description provided for @unitsRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} remaining'**
+  String unitsRemaining(int count);
+
+  /// No description provided for @limitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit reached'**
+  String get limitReached;
+
+  /// No description provided for @confirmJoinKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm join'**
+  String get confirmJoinKhatma;
+
+  /// No description provided for @reservationLimitReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit reached: {max} units maximum per user'**
+  String reservationLimitReached(int max);
+
+  /// No description provided for @joinedKhatmaSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully joined \"{khatmaName}\"!'**
+  String joinedKhatmaSuccess(String khatmaName);
+
+  /// No description provided for @errorJoiningKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Error joining the Khatma'**
+  String get errorJoiningKhatma;
 }
 
 class _AppLocalizationsDelegate

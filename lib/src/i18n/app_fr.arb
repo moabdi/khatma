@@ -926,5 +926,59 @@
         "type": "int"
       }
     }
-  }
+  },
+
+  "khatmaDescription": "Description",
+  "khatmaUnitsWithType": "Unités ({unitType})",
+  "@khatmaUnitsWithType": {
+    "placeholders": {
+      "unitType": {
+        "type": "String"
+      }
+    }
+  },
+  "filterAll": "Tout",
+  "filterMyUnits": "Mes unités",
+  "filterAvailable": "Disponibles",
+  "filterCompleted": "Complétées",
+  "noUnitsFound": "Aucune unité trouvée",
+  "tryChangingFilter": "Essayez de changer le filtre",
+  "reservedUnitsCount": "Réservé: {current}/{max}",
+  "@reservedUnitsCount": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsRemaining": "{count} restantes",
+  "@unitsRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitReached": "Limite atteinte",
+  "confirmJoinKhatma": "Confirmer rejoindre",
+  "reservationLimitReached": "Limite atteinte: {max} unités maximum par utilisateur",
+  "@reservationLimitReached": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "joinedKhatmaSuccess": "Vous avez rejoint \"{khatmaName}\" avec succès!",
+  "@joinedKhatmaSuccess": {
+    "placeholders": {
+      "khatmaName": {
+        "type": "String"
+      }
+    }
+  },
+  "errorJoiningKhatma": "Erreur lors de la participation à la Khatma"
 }

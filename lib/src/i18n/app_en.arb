@@ -926,5 +926,59 @@
         "type": "int"
       }
     }
-  }
+  },
+
+  "khatmaDescription": "Description",
+  "khatmaUnitsWithType": "Units ({unitType})",
+  "@khatmaUnitsWithType": {
+    "placeholders": {
+      "unitType": {
+        "type": "String"
+      }
+    }
+  },
+  "filterAll": "All",
+  "filterMyUnits": "My units",
+  "filterAvailable": "Available",
+  "filterCompleted": "Completed",
+  "noUnitsFound": "No units found",
+  "tryChangingFilter": "Try changing the filter",
+  "reservedUnitsCount": "Reserved: {current}/{max}",
+  "@reservedUnitsCount": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsRemaining": "{count} remaining",
+  "@unitsRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitReached": "Limit reached",
+  "confirmJoinKhatma": "Confirm join",
+  "reservationLimitReached": "Limit reached: {max} units maximum per user",
+  "@reservationLimitReached": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "joinedKhatmaSuccess": "You have successfully joined \"{khatmaName}\"!",
+  "@joinedKhatmaSuccess": {
+    "placeholders": {
+      "khatmaName": {
+        "type": "String"
+      }
+    }
+  },
+  "errorJoiningKhatma": "Error joining the Khatma"
 }
