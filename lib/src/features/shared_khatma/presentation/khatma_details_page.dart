@@ -6,6 +6,13 @@ import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
+enum UnitFilter {
+  all,
+  mine,
+  free,
+  completed,
+}
+
 class KhatmaDetailsPage extends ConsumerStatefulWidget {
   final SharedKhatma khatma;
 
@@ -21,11 +28,56 @@ class KhatmaDetailsPage extends ConsumerStatefulWidget {
 class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
   late SharedKhatma _currentKhatma;
   bool _isJoining = false;
+  final Set<UnitFilter> _activeFilters = {UnitFilter.all};
 
   @override
   void initState() {
     super.initState();
     _currentKhatma = widget.khatma;
+  }
+
+  void _toggleFilter(UnitFilter filter) {
+    setState(() {
+        _activeFilters.clear();
+      if (filter == UnitFilter.all) {
+        _activeFilters.clear();
+        _activeFilters.add(UnitFilter.all);
+      } else {
+        if (_activeFilters.contains(UnitFilter.all)) {
+          _activeFilters.clear();
+        }
+
+        if (_activeFilters.contains(filter)) {
+          _activeFilters.remove(filter);
+          if (_activeFilters.isEmpty) {
+            _activeFilters.add(UnitFilter.all);
+          }
+        } else {
+          _activeFilters.add(filter);
+        }
+      }
+    });
+  }
+
+  bool _shouldShowUnit(SharedKhatmaUnit unit) {
+    if (_activeFilters.contains(UnitFilter.all)) {
+      return true;
+    }
+
+    for (final filter in _activeFilters) {
+      switch (filter) {
+        case UnitFilter.all:
+          return true;
+        case UnitFilter.mine:
+          if (unit.isReservedByCurrentUser) return true;
+        case UnitFilter.free:
+          if (unit.isFree || unit.isSelected) return true;
+        case UnitFilter.completed:
+          if (unit.status == UnitStatus.completed) return true;
+      }
+    }
+
+    return false;
   }
 
   @override
@@ -140,6 +192,39 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                           fontWeight: FontWeight.w600,
                         ),
                   ),
+                  gapH12,
+                  // Filter Chips
+                  Row(
+                    children: [
+                      _FilterChip(
+                        icon: Icons.apps_rounded,
+                        isSelected: _activeFilters.contains(UnitFilter.all),
+                        onTap: () => _toggleFilter(UnitFilter.all),
+                        tooltip: 'Tout',
+                      ),
+                      gapW8,
+                      _FilterChip(
+                        icon: Icons.person_rounded,
+                        isSelected: _activeFilters.contains(UnitFilter.mine),
+                        onTap: () => _toggleFilter(UnitFilter.mine),
+                        tooltip: 'Mes unités',
+                      ),
+                      gapW8,
+                      _FilterChip(
+                        icon: Icons.check_circle_outline_rounded,
+                        isSelected: _activeFilters.contains(UnitFilter.free),
+                        onTap: () => _toggleFilter(UnitFilter.free),
+                        tooltip: 'Disponibles',
+                      ),
+                      gapW8,
+                      _FilterChip(
+                        icon: Icons.done_all_rounded,
+                        isSelected: _activeFilters.contains(UnitFilter.completed),
+                        onTap: () => _toggleFilter(UnitFilter.completed),
+                        tooltip: 'Complétées',
+                      ),
+                    ],
+                  ),
                   gapH16,
                   ListView.builder(
                     shrinkWrap: true,
@@ -151,6 +236,11 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         (u) => u.unitNumber == unitNumber,
                         orElse: () => SharedKhatmaUnit(unitNumber: unitNumber),
                       );
+
+                      // Apply filter
+                      if (!_shouldShowUnit(unit)) {
+                        return const SizedBox.shrink();
+                      }
 
                       return _UnitTile(
                         unit: unit,
@@ -217,7 +307,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: _currentKhatma.userReservedUnits.isNotEmpty &&
+                    onPressed: _currentKhatma.userReservedUnits.isNotEmpty ||
                             !_isJoining
                         ? _confirmJoin
                         : null,
@@ -272,7 +362,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         return;
       }
       _reserveUnit(unit);
-    } else if (unit.isReservedByCurrentUser) {
+    } else if (unit.isReservedByCurrentUser || unit.isSelected) {
       _unreserveUnit(unit);
     }
     // Do nothing if reserved by another user or completed
@@ -283,10 +373,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
       final updatedUnits = _currentKhatma.units.map((u) {
         if (u.unitNumber == unit.unitNumber) {
           return u.copyWith(
-            status: UnitStatus.reservedByCurrentUser,
-            reservedByUserId: 'currentUser',
-            reservedByUserName: 'You',
-            reservedDate: DateTime.now(),
+            status: UnitStatus.selected,
           );
         }
         return u;
@@ -296,7 +383,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
       if (!updatedUnits.any((u) => u.unitNumber == unit.unitNumber)) {
         updatedUnits.add(SharedKhatmaUnit(
           unitNumber: unit.unitNumber,
-          status: UnitStatus.reservedByCurrentUser,
+          status: UnitStatus.selected,
           reservedByUserId: 'currentUser',
           reservedByUserName: 'You',
           reservedDate: DateTime.now(),
@@ -309,17 +396,9 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
 
   void _unreserveUnit(SharedKhatmaUnit unit) {
     setState(() {
-      final updatedUnits = _currentKhatma.units.map((u) {
-        if (u.unitNumber == unit.unitNumber && u.isReservedByCurrentUser) {
-          return u.copyWith(
-            status: UnitStatus.free,
-            reservedByUserId: null,
-            reservedByUserName: null,
-            reservedDate: null,
-          );
-        }
-        return u;
-      }).toList();
+      final updatedUnits = _currentKhatma.units
+          .where((u) => u.unitNumber != unit.unitNumber)
+          .toList();
 
       _currentKhatma = _currentKhatma.copyWith(units: updatedUnits);
     });
@@ -544,7 +623,7 @@ switch (unit.status) {
     );
     break;
 
-case UnitStatus.reservedByCurrentUser:
+case UnitStatus.selected:
   tileColor = context.colorScheme.primaryContainer.withOpacity(0.3);
   avatarColor = context.colorScheme.primary.withOpacity(0.5);
   numberColor = context.colorScheme.onPrimaryContainer;
@@ -670,6 +749,51 @@ class _InfoRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _FilterChip extends StatelessWidget {
+  final IconData icon;
+  final bool isSelected;
+  final VoidCallback onTap;
+  final String tooltip;
+
+  const _FilterChip({
+    required this.icon,
+    required this.isSelected,
+    required this.onTap,
+    required this.tooltip,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? Theme.of(context).colorScheme.primaryContainer
+              : Theme.of(context).colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isSelected
+                ? Theme.of(context).colorScheme.primary
+                : Colors.transparent,
+            width: 2,
+          ),
+        ),
+        child: Icon(
+          icon,
+          size: 20,
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.onSurfaceVariant,
+        ),
       ),
     );
   }

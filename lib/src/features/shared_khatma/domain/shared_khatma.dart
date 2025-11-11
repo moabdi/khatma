@@ -93,6 +93,7 @@ abstract class SharedKhatmaUnit with _$SharedKhatmaUnit {
       _$SharedKhatmaUnitFromJson(json);
 
   bool get isFree => status == UnitStatus.free;
+  bool get isSelected => status == UnitStatus.selected;
   bool get isReserved => status == UnitStatus.reserved;
   bool get isReservedByCurrentUser =>
       status == UnitStatus.reservedByCurrentUser;
@@ -103,7 +104,7 @@ enum SharedKhatmaStatus { active, completed, archived, deleted }
 
 enum ParticipantRole { member, moderator, admin }
 
-enum UnitStatus { free, reserved, reservedByCurrentUser, completed }
+enum UnitStatus { free, reserved, selected, reservedByCurrentUser, completed }
 
 // Mock data for testing
 class SharedKhatmaMockData {
