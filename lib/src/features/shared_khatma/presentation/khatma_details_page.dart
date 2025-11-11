@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
-import 'package:khatma/src/features/shared_khatma/application/shared_khatma_provider.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -49,94 +48,24 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Theme.of(context).colorScheme.primaryContainer,
-                  Theme.of(context)
-                      .colorScheme
-                      .primaryContainer
-                      .withOpacity(0.8),
-                ],
-              ),
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(24),
-                bottomRight: Radius.circular(24),
-              ),
+              color: Theme.of(context).colorScheme.surface,
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                  offset: const Offset(0, 4),
-                  blurRadius: 12,
+                  color: Theme.of(context).colorScheme.shadow.withOpacity(0.05),
+                  offset: const Offset(0, 2),
+                  blurRadius: 8,
                   spreadRadius: 0,
                 ),
               ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Title and description section
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        //padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.15),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Icon(
-                          Icons.menu_book_rounded,
-                          color: Theme.of(context).colorScheme.primary,
-                          size: 24,
-                        ),
-                      ),
-                      gapW16,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _currentKhatma.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            gapH4,
-                            Text(
-                              _currentKhatma.description,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer
-                                        .withOpacity(0.8),
-                                    height: 1.4,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  gapH24,
-
-                  // Statistics cards
-                  Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Statistics cards
+                /*
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
                     children: [
                       _StatCard(
                         icon: Icons.group_rounded,
@@ -144,14 +73,14 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         value: '${_currentKhatma.membersCount}',
                         context: context,
                       ),
-                      gapW16,
+                      gapW12,
                       _StatCard(
                         icon: Icons.library_books_rounded,
                         label: 'Disponibles',
                         value: '${_currentKhatma.unitsAvailable}',
                         context: context,
                       ),
-                      gapW16,
+                      gapW12,
                       _StatCard(
                         icon: Icons.trending_up_rounded,
                         label: 'Progression',
@@ -161,8 +90,40 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                */
+                // Description in ExpansionTile
+                if (_currentKhatma.description.isNotEmpty)
+                  Theme(
+                    data: Theme.of(context).copyWith(
+                      dividerColor: Colors.transparent,
+                    ),
+                    child: ExpansionTile(
+                      tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+                      childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      title: Text(
+                        'Description',
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            _currentKhatma.description,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                  height: 1.5,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
             ),
           ),
 
@@ -469,19 +430,32 @@ class _StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
-          borderRadius: BorderRadius.circular(16),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Theme.of(context).colorScheme.surface,
+              Theme.of(context).colorScheme.surfaceContainerHighest.withOpacity(0.3),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(100),
           border: Border.all(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
-            width: 1,
+            color: Theme.of(context).colorScheme.outlineVariant.withOpacity(0.2),
+            width: 0.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).colorScheme.shadow.withOpacity(0.08),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.08),
+              offset: const Offset(0, 4),
+              blurRadius: 12,
+              spreadRadius: 0,
+            ),
+            BoxShadow(
+              color: Theme.of(context).colorScheme.shadow.withOpacity(0.04),
               offset: const Offset(0, 2),
-              blurRadius: 8,
+              blurRadius: 6,
               spreadRadius: 0,
             ),
           ],
@@ -490,33 +464,40 @@ class _StatCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(50),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Theme.of(context).colorScheme.primary.withOpacity(0.15),
+                    Theme.of(context).colorScheme.primary.withOpacity(0.08),
+                  ],
+                ),
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.15),
+                    offset: const Offset(0, 2),
+                    blurRadius: 8,
+                    spreadRadius: 0,
+                  ),
+                ],
               ),
               child: Icon(
                 icon,
                 color: Theme.of(context).colorScheme.primary,
-                size: 22,
               ),
             ),
-            gapH8,
+            const SizedBox(height: 8),
             Text(
               value,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: Theme.of(context).colorScheme.onSurface,
+                    letterSpacing: -0.5,
                   ),
-            ),
-            gapH4,
-            Text(
-              label,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeight.w500,
-                  ),
-              textAlign: TextAlign.center,
             ),
           ],
         ),
@@ -541,51 +522,62 @@ class _UnitTile extends StatelessWidget {
     bool isClickable = true;
     Color avatarColor;
     Color numberColor;
+switch (unit.status) {
 
-    // Determine colors and states based on unit status
-    switch (unit.status) {
-      case UnitStatus.free:
-        tileColor = Theme.of(context).colorScheme.surface;
-        avatarColor = Theme.of(context).colorScheme.primary.withOpacity(0.1);
-        numberColor = Theme.of(context).colorScheme.primary;
-        trailingIcon = null;
-        break;
+  case UnitStatus.free:
+    tileColor = Theme.of(context).colorScheme.surfaceContainerLow; 
+    avatarColor = Theme.of(context).colorScheme.surface;
+    numberColor = Theme.of(context).colorScheme.onSurfaceVariant; 
+    trailingIcon = null;
+    isClickable = true; 
+    break;
 
-      case UnitStatus.reserved:
-        tileColor = Colors.grey.shade100;
-        avatarColor = Colors.grey.shade300;
-        numberColor = Colors.grey.shade600;
-        isClickable = false;
-        trailingIcon = Icon(
-          Icons.lock,
-          color: Colors.grey.shade600,
-          size: 20,
-        );
-        break;
+  case UnitStatus.reserved:
+    tileColor = Theme.of(context).colorScheme.surfaceContainer; 
+    avatarColor = Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3);
+    numberColor = Theme.of(context).colorScheme.onSurfaceVariant;
+    isClickable = false;
+    trailingIcon = Icon(
+      Icons.lock,
+      color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.7),
+      size: 20,
+    );
+    break;
 
-      case UnitStatus.reservedByCurrentUser:
-        tileColor = context.colorScheme.primary.withOpacity(0.1);
-        avatarColor = context.colorScheme.primary.withOpacity(0.2);
-        numberColor = context.colorScheme.primary;
-        trailingIcon = Icon(
-          Icons.check_circle,
-          color: context.colorScheme.primary,
-          size: 20,
-        );
-        break;
+case UnitStatus.reservedByCurrentUser:
+  tileColor = context.colorScheme.primaryContainer.withOpacity(0.3);
+  avatarColor = context.colorScheme.primary.withOpacity(0.5);
+  numberColor = context.colorScheme.onPrimaryContainer;
+  isClickable = true; 
+  trailingIcon = Icon(
+    Icons.check_circle,
+    color: context.colorScheme.primary,
+    size: 20,
+  );
+  break;
 
-      case UnitStatus.completed:
-        tileColor = Colors.green.shade50;
-        avatarColor = Colors.green.shade100;
-        numberColor = Colors.green.shade700;
-        isClickable = false;
-        trailingIcon = Icon(
-          Icons.check,
-          color: Colors.green.shade700,
-          size: 20,
-        );
-        break;
-    }
+  // 4. COMPLETED (SUCCESS) - Solid Primary Green
+  case UnitStatus.completed:
+tileColor = context.colorScheme.surfaceContainerHigh;
+    avatarColor = context.colorScheme.primary.withAlpha(25); // Muted green avatar
+    numberColor = context.colorScheme.primary; // Darker green number
+    isClickable = false;
+    trailingIcon = Icon(
+      Icons.done_all_sharp,
+      color: context.colorScheme.onPrimary, // White/Light color for icon
+      size: 20,
+    );
+    break;
+    
+  default:
+    // Use a safe, readable default for undefined statuses
+    tileColor = Theme.of(context).colorScheme.surfaceContainer; 
+    avatarColor = Theme.of(context).colorScheme.error.withOpacity(0.3);
+    numberColor = Theme.of(context).colorScheme.onErrorContainer;
+    trailingIcon = null;
+    isClickable = true;
+    break;
+}
 
     // Calculate start ayah for the hizb (example calculation)
     final startAyah = _getStartAyahForHizb(unit.unitNumber);

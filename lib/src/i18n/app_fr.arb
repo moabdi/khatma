@@ -59,7 +59,7 @@
   "@monthName": {
     "placeholders": {
       "month": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -482,7 +482,7 @@
   "@ordinalPartNumber": {
     "placeholders": {
       "num": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -684,7 +684,7 @@
   "@weekDay": {
     "placeholders": {
       "day": {
-        "type": "int"
+        "type": "String"
       }
     }
   },
@@ -692,7 +692,7 @@
   "@shortWeekDay": {
     "placeholders": {
       "day": {
-        "type": "int"
+        "type": "String"
       }
     }
   },

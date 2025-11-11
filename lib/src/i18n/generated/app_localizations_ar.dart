@@ -84,10 +84,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get or => 'أو';
 
   @override
+  String get markAsRead => 'تمييز كمقروء';
+
+  @override
   String get confirmReading => 'تمييز كمقروء';
 
   @override
   String get processing => 'جاري المعالجة …';
+
+  @override
+  String get show => 'إظهار';
+
+  @override
+  String get hide => 'إخفاء';
+
+  @override
+  String get refresh => 'تحديث';
+
+  @override
+  String get tryAgain => 'حاول مرة أخرى';
+
+  @override
+  String get openSettings => 'فتح الإعدادات';
 
   @override
   String get today => 'اليوم';
@@ -96,12 +114,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get yesterday => 'أمس';
 
   @override
+  String get justNow => 'الآن';
+
+  @override
   String daysAgo(int count) {
-    return 'منذ $count يوم';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count يوم مضى',
+      one: 'أمس',
+      zero: 'اليوم',
+    );
+    return '$_temp0';
   }
 
   @override
-  String monthsAgo(num count) {
+  String monthsAgo(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -133,6 +161,16 @@ class AppLocalizationsAr extends AppLocalizations {
       },
     );
     return '$_temp0';
+  }
+
+  @override
+  String minutesAgo(int count) {
+    return 'منذ $count دقيقة';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return 'منذ $count ساعة';
   }
 
   @override
@@ -188,6 +226,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get backToLogin => 'العودة إلى صفحة تسجيل الدخول';
+
+  @override
+  String get rememberMe => 'تذكرني';
 
   @override
   String get name => 'الاسم';
@@ -312,12 +353,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get goToLoginPage => 'الذهاب إلى صفحة تسجيل الدخول';
-
-  @override
-  String get show => 'إظهار';
-
-  @override
-  String get hide => 'إخفاء';
 
   @override
   String get passwordRequirements => 'متطلبات كلمة المرور';
@@ -508,6 +543,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get displayNameTooShort => 'الاسم المعروض يجب أن يكون حرفين على الأقل';
 
   @override
+  String get displayNameTooLong => 'الاسم المعروض يجب أن يكون أقل من 50 حرف';
+
+  @override
+  String get displayNameInvalidCharacters =>
+      'الاسم المعروض يحتوي على أحرف غير صحيحة';
+
+  @override
+  String get invalidDisplayName => 'الاسم المعروض غير صحيح';
+
+  @override
   String get emailCannotBeEmpty => 'البريد الإلكتروني لا يمكن أن يكون فارغاً';
 
   @override
@@ -589,9 +634,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get fixErrorsBeforeSubmitting => 'يرجى إصلاح الأخطاء قبل الإرسال.';
 
   @override
-  String get invalidDisplayName => 'الاسم المعروض غير صحيح';
-
-  @override
   String get areYouSure => 'هل أنت متأكد؟';
 
   @override
@@ -610,7 +652,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get confirmDelete => 'هل أنت متأكد من رغبتك في حذف هذا العنصر؟';
 
   @override
-  String confirmDeleteItem(Object itemName) {
+  String confirmDeleteItem(String itemName) {
     return 'هل أنت متأكد من رغبتك في حذف $itemName؟';
   }
 
@@ -636,186 +678,45 @@ class AppLocalizationsAr extends AppLocalizations {
   String get terminate => 'إنهاء';
 
   @override
-  String khatmaFinishedMessage(Object timeAgo) {
-    return 'لقد أنهيت ختمتك منذ $timeAgo.';
-  }
-
-  @override
-  String get completion => 'الإنجاز';
-
-  @override
-  String get khatmaHistory => 'تاريخ الختمات';
-
-  @override
-  String get congratulations => 'تهانينا';
-
-  @override
-  String get khatmaListTitle => 'قائمة الختمات';
-
-  @override
-  String get khatmaListSubtitle => 'ختماتك الجارية';
-
-  @override
-  String get noKhatmaYet => 'لا توجد ختمة بعد';
-
-  @override
-  String get createKhatmaToStart => 'أنشئ ختمة للبدء';
-
-  @override
-  String get account => 'الحساب';
-
-  @override
-  String get helpAndSupport => 'المساعدة والدعم';
-
-  @override
-  String get accessYourKhatmas => 'الوصول إلى ختماتك وتقدمك';
-
-  @override
-  String get managePersonalInfo => 'إدارة معلوماتك الشخصية';
-
-  @override
-  String get preferencesAndOptions => 'التفضيلات وخيارات التطبيق';
-
-  @override
-  String get commonQuestions => 'العثور على إجابات للأسئلة الشائعة';
-
-  @override
-  String get termsAndPrivacy => 'شروط الخدمة وسياسة الخصوصية';
-
-  @override
-  String get learnMoreAboutKhatma => 'تعرف أكثر على مهمتنا';
-
-  @override
-  String get getHelpFromTeam => 'احصل على المساعدة من فريق الدعم';
-
-  @override
-  String get madeWithLove => 'صُنع بـ ❤️ للمجتمع المسلم';
-
-  @override
-  String get khatmaSearchTitle => 'البحث عن ختمة';
-
-  @override
-  String get khatmaSearchHint => 'الاسم أو الوصف';
-
-  @override
-  String get khatmaJoinButton => 'انضمام';
-
-  @override
-  String get khatmaSearchEmptyDefault => 'اكتشف الختمات العامة المتاحة';
-
-  @override
-  String get khatmaSearchNoResults => 'لم يتم العثور على ختمة لبحثك';
-
-  @override
-  String get khatmaConfirmJoin => 'تأكيد الانضمام';
-
-  @override
-  String get khatmaMembers => 'الأعضاء';
-
-  @override
-  String get khatmaAvailable => 'متاح';
-
-  @override
-  String get khatmaProgress => 'التقدم';
-
-  @override
-  String get khatmaUnits => 'الوحدات';
-
-  @override
-  String get khatmaType => 'النوع';
-
-  @override
-  String get khatmaCreatedOn => 'تم إنشاؤها في';
-
-  @override
-  String get khatmaCreatedBy => 'تم إنشاؤها بواسطة';
-
-  @override
-  String get khatmaTotalUnits => 'إجمالي الوحدات';
-
-  @override
-  String get khatmaStatus => 'الحالة';
-
-  @override
-  String get khatmaPublic => 'عام';
-
-  @override
-  String get khatmaPrivate => 'خاص';
-
-  @override
-  String get khatmaClose => 'إغلاق';
-
-  @override
-  String khatmaUnitReserved(Object number, Object unit) {
-    return '$unit $number محجوز';
-  }
-
-  @override
-  String khatmaUnitReleased(Object number, Object unit) {
-    return '$unit $number محرر';
-  }
-
-  @override
-  String khatmaJoinSuccess(Object name) {
-    return 'لقد انضممت بنجاح إلى \"$name\"!';
-  }
-
-  @override
-  String get khatmaJoinError => 'خطأ في الانضمام إلى الختمة';
-
-  @override
-  String khatmaYouHaveReserved(Object count) {
-    return 'لقد حجزت $count وحدة';
-  }
-
-  @override
   String get success => 'نجح';
 
   @override
   String get congratulation => 'تهانينا!';
 
   @override
+  String get congratulations => 'تهانينا';
+
+  @override
   String get accountCreatedSuccessfully => 'تم إنشاء الحساب بنجاح!';
 
   @override
-  String successCompleteParts(Object count) {
+  String successCompleteParts(int count) {
     return 'تم إنجاز $count أجزاء بنجاح';
   }
 
   @override
-  String get khatmaCompleted => 'ختمة مكتملة';
+  String get error => 'خطأ';
 
   @override
-  String get backToHome => 'العودة إلى الرئيسية';
+  String get errorCode => 'رمز الخطأ';
 
   @override
-  String get journeyDetails => 'تفاصيل الرحلة';
+  String get errorOccurred => 'حدث خطأ';
 
   @override
-  String get started => 'بدأت';
+  String get criticalError => 'خطأ حرج';
 
   @override
-  String get completed => 'مكتمل';
+  String get unexpectedError => 'حدث خطأ غير متوقع';
 
   @override
-  String get totalDuration => 'المدة الإجمالية';
+  String get pleaseTryAgain => 'يرجى المحاولة مرة أخرى.';
 
   @override
-  String daysCount(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count يوم',
-      many: '$count يوماً',
-      few: '$count أيام',
-      two: 'يومان',
-      one: 'يوم واحد',
-    );
-    return '$_temp0';
-  }
+  String get networkError => 'خطأ في الشبكة. يرجى التحقق من الاتصال';
 
   @override
-  String get shareAchievement => 'مشاركة الإنجاز';
+  String get permissionDenied => 'تم رفض الإذن';
 
   @override
   String get signInFailed => 'فشل تسجيل الدخول';
@@ -840,56 +741,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get errorLoadingProfile =>
       'خطأ في تحميل الملف الشخصي. يرجى المحاولة مرة أخرى لاحقاً.';
-
-  @override
-  String get networkError => 'خطأ في الشبكة. يرجى التحقق من الاتصال';
-
-  @override
-  String get permissionDenied => 'تم رفض الإذن';
-
-  @override
-  String get pleaseTryAgain => 'يرجى المحاولة مرة أخرى.';
-
-  @override
-  String get criticalError => 'خطأ حرج';
-
-  @override
-  String get error => 'خطأ';
-
-  @override
-  String get errorCode => 'رمز الخطأ';
-
-  @override
-  String get cannotUpdateKhatmaWhileStarted =>
-      'لا يمكن تحديث الختمة بينما هي مبدوءة';
-
-  @override
-  String get failedToSaveKhatma => 'فشل حفظ الختمة. يرجى المحاولة مرة أخرى.';
-
-  @override
-  String get failedToLoadKhatma => 'فشل تحميل الختمة. يرجى المحاولة مرة أخرى.';
-
-  @override
-  String get failedToDeleteKhatma => 'فشل حذف الختمة. يرجى المحاولة مرة أخرى.';
-
-  @override
-  String get failedToShareKhatma =>
-      'فشل مشاركة الختمة. يرجى المحاولة مرة أخرى.';
-
-  @override
-  String get errorOccurred => 'حدث خطأ';
-
-  @override
-  String get pageNotFound => 'الصفحة غير موجودة';
-
-  @override
-  String get pageNotFound404 => 'خطأ 404 - الصفحة غير موجودة';
-
-  @override
-  String get notImplemented => 'الميزة غير متوفرة';
-
-  @override
-  String get goToHome => 'الانتقال إلى الصفحة الرئيسية';
 
   @override
   String get errorAuthUserNotLoggedIn => 'المستخدم غير مسجل الدخول.';
@@ -950,6 +801,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorAuthPopClosedByUser => 'أغلق المستخدم النافذة المنبثقة.';
 
   @override
+  String get errorAuthActionCancelled => 'تم إلغاء إجراء المصادقة.';
+
+  @override
+  String get authenticationError => 'خطأ في المصادقة';
+
+  @override
+  String get authenticationErrors => 'أخطاء المصادقة';
+
+  @override
+  String get userNotLoggedIn => 'المستخدم غير مسجل الدخول';
+
+  @override
+  String get sessionExpired => 'انتهت صلاحية الجلسة';
+
+  @override
   String get errorNetConnectionFailed => 'فشل الاتصال بالإنترنت.';
 
   @override
@@ -974,7 +840,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorNetUnavailable => 'خدمة الشبكة غير متاحة.';
 
   @override
-  String get errorAuthActionCancelled => 'تم إلغاء إجراء المصادقة.';
+  String get errorNetworkConnectionFailed =>
+      'فشل الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
+
+  @override
+  String get errorNetworkTimeout => 'انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get networkErrors => 'أخطاء الشبكة';
+
+  @override
+  String get connectionFailed => 'فشل الاتصال';
+
+  @override
+  String get timeout => 'انتهت المهلة';
+
+  @override
+  String get serverError => 'خطأ الخادم';
 
   @override
   String get errorSyncGeneralFailure => 'فشل التزامن.';
@@ -995,6 +877,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorSyncStatusFailed => 'فشل في استرداد حالة التزامن.';
 
   @override
+  String get syncError => 'خطأ في التزامن';
+
+  @override
   String get errorStorageSaveFailed => 'فشل حفظ البيانات.';
 
   @override
@@ -1013,6 +898,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorStoragePermissionDenied => 'تم رفض الإذن للوصول إلى التخزين.';
 
   @override
+  String get storageError => 'خطأ في التخزين';
+
+  @override
+  String get storageErrors => 'أخطاء التخزين';
+
+  @override
+  String get storageFull => 'التخزين ممتلئ';
+
+  @override
+  String get storageCorrupted => 'التخزين تالف';
+
+  @override
+  String get saveFailed => 'فشل الحفظ';
+
+  @override
   String get errorValidationInvalidData => 'البيانات المقدمة غير صحيحة.';
 
   @override
@@ -1029,6 +929,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorValidationInvalidOperation => 'تم محاولة عملية غير صحيحة.';
+
+  @override
+  String get validationError => 'خطأ في التحقق';
+
+  @override
+  String get validationErrors => 'أخطاء التحقق';
+
+  @override
+  String get invalidData => 'بيانات غير صحيحة';
+
+  @override
+  String get missingFields => 'حقول مفقودة';
+
+  @override
+  String get invalidDate => 'تاريخ غير صحيح';
 
   @override
   String get errorKhatmaNotFound =>
@@ -1085,18 +1000,40 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorKhatmaAlreadyExists => 'ختمة بهذه المعلومات موجودة بالفعل.';
 
   @override
-  String get errorNetworkConnectionFailed =>
-      'فشل الاتصال بالشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
-
-  @override
-  String get errorNetworkTimeout => 'انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.';
-
-  @override
   String get errorFirestoreOperationFailed =>
       'فشل في عملية قاعدة البيانات. يرجى المحاولة مرة أخرى لاحقاً.';
 
   @override
-  String get errorGeneralUnknown => 'حدث خطأ غير معروف.';
+  String get cannotUpdateKhatmaWhileStarted =>
+      'لا يمكن تحديث الختمة بينما هي مبدوءة';
+
+  @override
+  String get failedToSaveKhatma => 'فشل حفظ الختمة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get failedToLoadKhatma => 'فشل تحميل الختمة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get failedToDeleteKhatma => 'فشل حذف الختمة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get failedToShareKhatma =>
+      'فشل مشاركة الختمة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get khatmaError => 'خطأ في الختمة';
+
+  @override
+  String get khatmaErrors => 'أخطاء الختمة';
+
+  @override
+  String get khatmaNotFound => 'الختمة غير موجودة';
+
+  @override
+  String get alreadyCompleted => 'مكتملة بالفعل';
+
+  @override
+  String get invalidParts => 'أجزاء غير صحيحة';
 
   @override
   String get errorLimitKhatmaMaxReached =>
@@ -1107,6 +1044,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorLimitCreationNotAllowed => 'الإنشاء غير مسموح بسبب الحدود.';
+
+  @override
+  String get limitError => 'تم الوصول إلى الحد الأقصى';
 
   @override
   String get errorHistoryCreateFailed => 'فشل إنشاء التاريخ.';
@@ -1121,6 +1061,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorHistoryNotFound => 'التاريخ غير موجود.';
 
   @override
+  String get historyError => 'خطأ في التاريخ';
+
+  @override
   String get errorSearchFailed => 'فشل البحث.';
 
   @override
@@ -1133,6 +1076,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorSearchTimeout => 'انتهت مهلة البحث.';
 
   @override
+  String get searchError => 'خطأ في البحث';
+
+  @override
   String get errorStatsCalculationFailed => 'فشل حساب الإحصائيات.';
 
   @override
@@ -1140,6 +1086,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorStatsExportFailed => 'فشل تصدير الإحصائيات.';
+
+  @override
+  String get statsError => 'خطأ في الإحصائيات';
+
+  @override
+  String get errorGeneralUnknown =>
+      'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.';
 
   @override
   String get errorGeneralCancelled => 'تم إلغاء العملية.';
@@ -1172,6 +1125,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get errorDateParsingFailed => 'فشل تحليل التاريخ.';
 
   @override
+  String get dateError => 'خطأ في التاريخ';
+
+  @override
   String get errorPermissionDenied => 'تم رفض الإذن.';
 
   @override
@@ -1179,6 +1135,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorPermissionInsufficient => 'أذونات غير كافية للمتابعة.';
+
+  @override
+  String get permissionError => 'خطأ في الإذن';
+
+  @override
+  String get errorDialogExamples => 'أمثلة على حوارات الخطأ';
+
+  @override
+  String get retrying => 'جاري إعادة المحاولة...';
+
+  @override
+  String get openingSignIn => 'جاري فتح تسجيل الدخول...';
+
+  @override
+  String get openingSettings => 'جاري فتح الإعدادات...';
+
+  @override
+  String get actionPerformed => 'تم تنفيذ الإجراء';
 
   @override
   String get newKhatma => 'ختمة جديدة';
@@ -1191,6 +1165,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get khatmaList => 'قائمة الختمات';
+
+  @override
+  String get khatmaListTitle => 'قائمة الختمات';
+
+  @override
+  String get khatmaListSubtitle => 'ختماتك الجارية';
 
   @override
   String get shareKhatma => 'مشاركة الختمة';
@@ -1366,6 +1346,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get loadingKhatmaList => 'جارٍ تحميل قائمة الختمات';
 
   @override
+  String get completed => 'مكتمل';
+
+  @override
   String get completedParts => 'الأجزاء المكتملة';
 
   @override
@@ -1375,22 +1358,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get parts => 'أجزاء';
 
   @override
-  String readedParts(Object count) {
+  String readedParts(int count) {
     return '$count جزء';
   }
 
   @override
-  String remainingPartsOfTotal(Object remaining, Object total) {
+  String remainingPartsOfTotal(int remaining, int total) {
     return '$remaining من $total جزء';
   }
 
   @override
-  String completeParts(Object count) {
+  String completeParts(int count) {
     return 'إكمال ($count جزء)';
   }
 
   @override
-  String selectedParts(num count) {
+  String selectedParts(int count) {
     return 'تم اختيار $count جزءًا';
   }
 
@@ -1399,6 +1382,132 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get maxPartToReserve => 'أقصى جزء للحجز';
+
+  @override
+  String get noKhatmaYet => 'لا توجد ختمة بعد';
+
+  @override
+  String get createKhatmaToStart => 'أنشئ ختمة للبدء';
+
+  @override
+  String get khatmaCompleted => 'ختمة مكتملة';
+
+  @override
+  String get backToHome => 'العودة إلى الرئيسية';
+
+  @override
+  String get journeyDetails => 'تفاصيل الرحلة';
+
+  @override
+  String get started => 'بدأت';
+
+  @override
+  String get totalDuration => 'المدة الإجمالية';
+
+  @override
+  String daysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count يوم',
+      many: '$count يوماً',
+      few: '$count أيام',
+      two: 'يومان',
+      one: 'يوم واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareAchievement => 'مشاركة الإنجاز';
+
+  @override
+  String khatmaFinishedMessage(String timeAgo) {
+    return 'لقد أنهيت ختمتك منذ $timeAgo.';
+  }
+
+  @override
+  String get completion => 'الإنجاز';
+
+  @override
+  String get khatmaHistory => 'تاريخ الختمات';
+
+  @override
+  String get khatmaSearchTitle => 'البحث عن ختمة';
+
+  @override
+  String get khatmaSearchHint => 'الاسم أو الوصف';
+
+  @override
+  String get khatmaJoinButton => 'انضمام';
+
+  @override
+  String get khatmaSearchEmptyDefault => 'اكتشف الختمات العامة المتاحة';
+
+  @override
+  String get khatmaSearchNoResults => 'لم يتم العثور على ختمة لبحثك';
+
+  @override
+  String get khatmaConfirmJoin => 'تأكيد الانضمام';
+
+  @override
+  String get khatmaMembers => 'الأعضاء';
+
+  @override
+  String get khatmaAvailable => 'متاح';
+
+  @override
+  String get khatmaProgress => 'التقدم';
+
+  @override
+  String get khatmaUnits => 'الوحدات';
+
+  @override
+  String get khatmaType => 'النوع';
+
+  @override
+  String get khatmaCreatedOn => 'تم إنشاؤها في';
+
+  @override
+  String get khatmaCreatedBy => 'تم إنشاؤها بواسطة';
+
+  @override
+  String get khatmaTotalUnits => 'إجمالي الوحدات';
+
+  @override
+  String get khatmaStatus => 'الحالة';
+
+  @override
+  String get khatmaPublic => 'عام';
+
+  @override
+  String get khatmaPrivate => 'خاص';
+
+  @override
+  String get khatmaClose => 'إغلاق';
+
+  @override
+  String khatmaUnitReserved(String unit, int number) {
+    return '$unit $number محجوز';
+  }
+
+  @override
+  String khatmaUnitReleased(String unit, int number) {
+    return '$unit $number محرر';
+  }
+
+  @override
+  String khatmaJoinSuccess(String name) {
+    return 'لقد انضممت بنجاح إلى \"$name\"!';
+  }
+
+  @override
+  String get khatmaJoinError => 'خطأ في الانضمام إلى الختمة';
+
+  @override
+  String khatmaYouHaveReserved(int count) {
+    return 'لقد حجزت $count وحدة';
+  }
 
   @override
   String get recurrence => 'التكرار';
@@ -1428,22 +1537,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get autoRepeatDescription => 'إعادة البدء تلقائياً عند الانتهاء';
 
   @override
-  String repeatEverySelectedDaysDescription(Object count, Object days) {
+  String repeatEverySelectedDaysDescription(String days, int count) {
     return 'ستكرر الختمة كل $days لكل $count أسابيع';
   }
 
   @override
-  String repeatEverySelectedDayDescription(Object days) {
+  String repeatEverySelectedDayDescription(String days) {
     return 'ستكرر الختمة كل $days لكل أسبوع';
   }
 
   @override
-  String repeatEveryTimePeriodsDescription(Object count, Object unit) {
+  String repeatEveryTimePeriodsDescription(int count, String unit) {
     return 'ستكرر الختمة كل $count $unit';
   }
 
   @override
-  String repeatEveryTimePeriodDescription(Object unit) {
+  String repeatEveryTimePeriodDescription(String unit) {
     return 'ستكرر الختمة كل $unit';
   }
 
@@ -1574,7 +1683,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String maxParticipants(num count) {
+  String maxParticipants(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
@@ -1602,6 +1711,48 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get learnMoreAboutApp => 'تعلم المزيد عن التطبيق';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get helpAndSupport => 'المساعدة والدعم';
+
+  @override
+  String get accessYourKhatmas => 'الوصول إلى ختماتك وتقدمك';
+
+  @override
+  String get managePersonalInfo => 'إدارة معلوماتك الشخصية';
+
+  @override
+  String get preferencesAndOptions => 'التفضيلات وخيارات التطبيق';
+
+  @override
+  String get commonQuestions => 'العثور على إجابات للأسئلة الشائعة';
+
+  @override
+  String get termsAndPrivacy => 'شروط الخدمة وسياسة الخصوصية';
+
+  @override
+  String get learnMoreAboutKhatma => 'تعرف أكثر على مهمتنا';
+
+  @override
+  String get getHelpFromTeam => 'احصل على المساعدة من فريق الدعم';
+
+  @override
+  String get madeWithLove => 'صُنع بـ ❤️ للمجتمع المسلم';
+
+  @override
+  String get goToHome => 'الانتقال إلى الصفحة الرئيسية';
+
+  @override
+  String get notImplemented => 'الميزة غير متوفرة';
+
+  @override
+  String get pageNotFound => 'الصفحة غير موجودة';
+
+  @override
+  String get pageNotFound404 => 'خطأ 404 - الصفحة غير موجودة';
 
   @override
   String get readMode => 'وضع القراءة';
@@ -1690,6 +1841,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get questionsAndSuggestions => 'الأسئلة والاقتراحات';
 
   @override
+  String get failedToLoadFaq => 'فشل في تحميل الأسئلة الشائعة';
+
+  @override
+  String get noFaqAvailable => 'لا توجد أسئلة شائعة متاحة';
+
+  @override
   String get onboarding1Title => 'أكمل ختمتك';
 
   @override
@@ -1725,160 +1882,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get startButton => 'ابدأ رحلة القرآن';
-
-  @override
-  String get registration_validation => 'رسائل التحقق من التسجيل';
-
-  @override
-  String get login_validation => 'رسائل التحقق من تسجيل الدخول';
-
-  @override
-  String get registration_ui => 'واجهة التسجيل';
-
-  @override
-  String get login_ui => 'واجهة تسجيل الدخول';
-
-  @override
-  String get form_types => 'أنواع النماذج';
-
-  @override
-  String get shared_fields => 'الحقول المشتركة';
-
-  @override
-  String get validation_messages => 'رسائل التحقق';
-
-  @override
-  String get password_criteria => 'معايير كلمة المرور';
-
-  @override
-  String get terms_and_actions => 'الشروط والإجراءات';
-
-  @override
-  String get rememberMe => 'تذكرني';
-
-  @override
-  String get ui_labels => 'تسميات الواجهة';
-
-  @override
-  String get openSettings => 'فتح الإعدادات';
-
-  @override
-  String get tryAgain => 'حاول مرة أخرى';
-
-  @override
-  String get authenticationError => 'خطأ في المصادقة';
-
-  @override
-  String get syncError => 'خطأ في المزامنة';
-
-  @override
-  String get storageError => 'خطأ في التخزين';
-
-  @override
-  String get validationError => 'خطأ في التحقق';
-
-  @override
-  String get khatmaError => 'خطأ في الختمة';
-
-  @override
-  String get limitError => 'تم الوصول إلى الحد الأقصى';
-
-  @override
-  String get historyError => 'خطأ في التاريخ';
-
-  @override
-  String get searchError => 'خطأ في البحث';
-
-  @override
-  String get statsError => 'خطأ في الإحصائيات';
-
-  @override
-  String get dateError => 'خطأ في التاريخ';
-
-  @override
-  String get permissionError => 'خطأ في الإذن';
-
-  @override
-  String get errorDialogExamples => 'أمثلة على حوارات الخطأ';
-
-  @override
-  String get networkErrors => 'أخطاء الشبكة';
-
-  @override
-  String get authenticationErrors => 'أخطاء المصادقة';
-
-  @override
-  String get storageErrors => 'أخطاء التخزين';
-
-  @override
-  String get validationErrors => 'أخطاء التحقق';
-
-  @override
-  String get khatmaErrors => 'أخطاء الختمة';
-
-  @override
-  String get connectionFailed => 'فشل الاتصال';
-
-  @override
-  String get timeout => 'انتهت المهلة';
-
-  @override
-  String get serverError => 'خطأ الخادم';
-
-  @override
-  String get userNotLoggedIn => 'المستخدم غير مسجل الدخول';
-
-  @override
-  String get sessionExpired => 'انتهت صلاحية الجلسة';
-
-  @override
-  String get storageFull => 'التخزين ممتلئ';
-
-  @override
-  String get storageCorrupted => 'التخزين تالف';
-
-  @override
-  String get saveFailed => 'فشل الحفظ';
-
-  @override
-  String get invalidData => 'بيانات غير صحيحة';
-
-  @override
-  String get missingFields => 'حقول مفقودة';
-
-  @override
-  String get invalidDate => 'تاريخ غير صحيح';
-
-  @override
-  String get khatmaNotFound => 'الختمة غير موجودة';
-
-  @override
-  String get alreadyCompleted => 'مكتملة بالفعل';
-
-  @override
-  String get invalidParts => 'أجزاء غير صحيحة';
-
-  @override
-  String get retrying => 'جاري إعادة المحاولة...';
-
-  @override
-  String get openingSignIn => 'جاري فتح تسجيل الدخول...';
-
-  @override
-  String get openingSettings => 'جاري فتح الإعدادات...';
-
-  @override
-  String get actionPerformed => 'تم تنفيذ الإجراء';
-
-  @override
-  String get displayNameTooLong => 'الاسم المعروض يجب أن يكون أقل من 50 حرف';
-
-  @override
-  String get displayNameInvalidCharacters =>
-      'الاسم المعروض يحتوي على أحرف غير صحيحة';
-
-  @override
-  String get unexpectedError => 'حدث خطأ غير متوقع';
 
   @override
   String get contactUs => 'اتصل بنا';
@@ -1990,15 +1993,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'تطبيق البريد الإلكتروني غير متوفر على هذا الجهاز';
 
   @override
-  String get refresh => 'تحديث';
-
-  @override
-  String get failedToLoadFaq => 'فشل في تحميل الأسئلة الشائعة';
-
-  @override
-  String get noFaqAvailable => 'لا توجد أسئلة شائعة متاحة';
-
-  @override
   String get dataSynchronization => 'مزامنة البيانات';
 
   @override
@@ -2017,19 +2011,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get neverSynced => 'لم تتم المزامنة مطلقاً';
-
-  @override
-  String get justNow => 'الآن';
-
-  @override
-  String minutesAgo(int count) {
-    return 'منذ $count دقيقة';
-  }
-
-  @override
-  String hoursAgo(int count) {
-    return 'منذ $count ساعة';
-  }
 
   @override
   String get fullSync => 'مزامنة كاملة';
@@ -2078,16 +2059,6 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String khatmasCount(int count) {
-    return '$count ختمة';
-  }
-
-  @override
-  String historyCount(int count) {
-    return '$count عنصر تاريخ';
-  }
-
-  @override
   String get performBothUploadAndDownload => 'تنفيذ مزامنة الرفع والتحميل معاً';
 
   @override
@@ -2113,10 +2084,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get allDataSynchronized => 'تمت مزامنة جميع بياناتك بنجاح';
 
   @override
+  String khatmasCount(int count) {
+    return '$count ختمة';
+  }
+
+  @override
+  String historyCount(int count) {
+    return '$count عنصر تاريخ';
+  }
+
+  @override
   String get synchronizingPleaseWait => 'جارٍ مزامنة بياناتك، يرجى الانتظار...';
 
   @override
   String itemsToSync(int count) {
-    return '$count item to synchronize';
+    return '$count عنصر للمزامنة';
   }
 }

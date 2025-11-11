@@ -250,6 +250,12 @@ abstract class AppLocalizations {
   /// **'Or'**
   String get or;
 
+  /// No description provided for @markAsRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Read'**
+  String get markAsRead;
+
   /// No description provided for @confirmReading.
   ///
   /// In en, this message translates to:
@@ -261,6 +267,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Processing...'**
   String get processing;
+
+  /// No description provided for @show.
+  ///
+  /// In en, this message translates to:
+  /// **'Show'**
+  String get show;
+
+  /// No description provided for @hide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide'**
+  String get hide;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
+
+  /// No description provided for @openSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get openSettings;
 
   /// No description provided for @today.
   ///
@@ -274,23 +310,41 @@ abstract class AppLocalizations {
   /// **'Yesterday'**
   String get yesterday;
 
+  /// No description provided for @justNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get justNow;
+
   /// No description provided for @daysAgo.
   ///
   /// In en, this message translates to:
-  /// **'{count} days ago'**
+  /// **'{count, plural, =0{Today} =1{Yesterday} other{{count} days ago}}'**
   String daysAgo(int count);
 
   /// No description provided for @monthsAgo.
   ///
   /// In en, this message translates to:
   /// **'{count, plural, =0{This month} one{Last month} other{{count} months ago}}'**
-  String monthsAgo(num count);
+  String monthsAgo(int count);
 
   /// No description provided for @monthName.
   ///
   /// In en, this message translates to:
   /// **'{month, select, 1{January} 2{February} 3{March} 4{April} 5{May} 6{June} 7{July} 8{August} 9{September} 10{October} 11{November} 12{December} other{}}'**
   String monthName(String month);
+
+  /// No description provided for @minutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} minutes ago'**
+  String minutesAgo(int count);
+
+  /// No description provided for @hoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hours ago'**
+  String hoursAgo(int count);
 
   /// No description provided for @signIn.
   ///
@@ -301,7 +355,7 @@ abstract class AppLocalizations {
   /// No description provided for @signUp.
   ///
   /// In en, this message translates to:
-  /// **'Sign up'**
+  /// **'Sign Up'**
   String get signUp;
 
   /// No description provided for @signOut.
@@ -397,8 +451,14 @@ abstract class AppLocalizations {
   /// No description provided for @backToLogin.
   ///
   /// In en, this message translates to:
-  /// **'Retour à la page de connexion'**
+  /// **'Back to login'**
   String get backToLogin;
+
+  /// No description provided for @rememberMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get rememberMe;
 
   /// No description provided for @name.
   ///
@@ -439,7 +499,7 @@ abstract class AppLocalizations {
   /// No description provided for @emailInputLabel.
   ///
   /// In en, this message translates to:
-  /// **'Enter your gemail'**
+  /// **'Enter your email'**
   String get emailInputLabel;
 
   /// No description provided for @password.
@@ -634,18 +694,6 @@ abstract class AppLocalizations {
   /// **'Go to Login Page'**
   String get goToLoginPage;
 
-  /// No description provided for @show.
-  ///
-  /// In en, this message translates to:
-  /// **'Afficher'**
-  String get show;
-
-  /// No description provided for @hide.
-  ///
-  /// In en, this message translates to:
-  /// **'Masquer'**
-  String get hide;
-
   /// No description provided for @passwordRequirements.
   ///
   /// In en, this message translates to:
@@ -691,7 +739,7 @@ abstract class AppLocalizations {
   /// No description provided for @passwordStrengthWeak.
   ///
   /// In en, this message translates to:
-  /// **'Strength'**
+  /// **'Weak'**
   String get passwordStrengthWeak;
 
   /// No description provided for @passwordStrengthMedium.
@@ -1018,6 +1066,24 @@ abstract class AppLocalizations {
   /// **'Display name must be at least 2 characters'**
   String get displayNameTooShort;
 
+  /// No description provided for @displayNameTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name must be less than 50 characters'**
+  String get displayNameTooLong;
+
+  /// No description provided for @displayNameInvalidCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'Display name contains invalid characters'**
+  String get displayNameInvalidCharacters;
+
+  /// No description provided for @invalidDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid display name'**
+  String get invalidDisplayName;
+
   /// No description provided for @emailCannotBeEmpty.
   ///
   /// In en, this message translates to:
@@ -1162,12 +1228,6 @@ abstract class AppLocalizations {
   /// **'Please fix the errors before submitting.'**
   String get fixErrorsBeforeSubmitting;
 
-  /// No description provided for @invalidDisplayName.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid display name'**
-  String get invalidDisplayName;
-
   /// No description provided for @areYouSure.
   ///
   /// In en, this message translates to:
@@ -1208,7 +1268,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Are you sure you want to delete {itemName}?'**
-  String confirmDeleteItem(Object itemName);
+  String confirmDeleteItem(String itemName);
 
   /// No description provided for @confirmDeleteKhatma.
   ///
@@ -1252,252 +1312,6 @@ abstract class AppLocalizations {
   /// **'Terminate'**
   String get terminate;
 
-  /// No description provided for @khatmaFinishedMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'You have just finished your khatma in {timeAgo}.'**
-  String khatmaFinishedMessage(Object timeAgo);
-
-  /// No description provided for @completion.
-  ///
-  /// In en, this message translates to:
-  /// **'Completion'**
-  String get completion;
-
-  /// No description provided for @khatmaHistory.
-  ///
-  /// In en, this message translates to:
-  /// **'Khatma History'**
-  String get khatmaHistory;
-
-  /// No description provided for @congratulations.
-  ///
-  /// In en, this message translates to:
-  /// **'Congratulations'**
-  String get congratulations;
-
-  /// No description provided for @khatmaListTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Khatma List'**
-  String get khatmaListTitle;
-
-  /// No description provided for @khatmaListSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Your ongoing khatmas'**
-  String get khatmaListSubtitle;
-
-  /// No description provided for @noKhatmaYet.
-  ///
-  /// In en, this message translates to:
-  /// **'You have no khatmas yet ?'**
-  String get noKhatmaYet;
-
-  /// No description provided for @createKhatmaToStart.
-  ///
-  /// In en, this message translates to:
-  /// **'Create a khatma to start'**
-  String get createKhatmaToStart;
-
-  /// No description provided for @account.
-  ///
-  /// In en, this message translates to:
-  /// **'Account'**
-  String get account;
-
-  /// No description provided for @helpAndSupport.
-  ///
-  /// In en, this message translates to:
-  /// **'Help & Support'**
-  String get helpAndSupport;
-
-  /// No description provided for @accessYourKhatmas.
-  ///
-  /// In en, this message translates to:
-  /// **'Access your Khatmas and progress'**
-  String get accessYourKhatmas;
-
-  /// No description provided for @managePersonalInfo.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage your personal information'**
-  String get managePersonalInfo;
-
-  /// No description provided for @preferencesAndOptions.
-  ///
-  /// In en, this message translates to:
-  /// **'Preferences and app options'**
-  String get preferencesAndOptions;
-
-  /// No description provided for @commonQuestions.
-  ///
-  /// In en, this message translates to:
-  /// **'Find answers to common questions'**
-  String get commonQuestions;
-
-  /// No description provided for @termsAndPrivacy.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms of service and privacy policy'**
-  String get termsAndPrivacy;
-
-  /// No description provided for @learnMoreAboutKhatma.
-  ///
-  /// In en, this message translates to:
-  /// **'Learn more about our mission'**
-  String get learnMoreAboutKhatma;
-
-  /// No description provided for @getHelpFromTeam.
-  ///
-  /// In en, this message translates to:
-  /// **'Get help from our support team'**
-  String get getHelpFromTeam;
-
-  /// No description provided for @madeWithLove.
-  ///
-  /// In en, this message translates to:
-  /// **'Made with ❤️ for the Muslim community'**
-  String get madeWithLove;
-
-  /// No description provided for @khatmaSearchTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Search for a Khatma'**
-  String get khatmaSearchTitle;
-
-  /// No description provided for @khatmaSearchHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Name or description'**
-  String get khatmaSearchHint;
-
-  /// No description provided for @khatmaJoinButton.
-  ///
-  /// In en, this message translates to:
-  /// **'Join'**
-  String get khatmaJoinButton;
-
-  /// No description provided for @khatmaSearchEmptyDefault.
-  ///
-  /// In en, this message translates to:
-  /// **'Discover available public Khatmas'**
-  String get khatmaSearchEmptyDefault;
-
-  /// No description provided for @khatmaSearchNoResults.
-  ///
-  /// In en, this message translates to:
-  /// **'No Khatma found for your search'**
-  String get khatmaSearchNoResults;
-
-  /// No description provided for @khatmaConfirmJoin.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm Join'**
-  String get khatmaConfirmJoin;
-
-  /// No description provided for @khatmaMembers.
-  ///
-  /// In en, this message translates to:
-  /// **'Members'**
-  String get khatmaMembers;
-
-  /// No description provided for @khatmaAvailable.
-  ///
-  /// In en, this message translates to:
-  /// **'Available'**
-  String get khatmaAvailable;
-
-  /// No description provided for @khatmaProgress.
-  ///
-  /// In en, this message translates to:
-  /// **'Progress'**
-  String get khatmaProgress;
-
-  /// No description provided for @khatmaUnits.
-  ///
-  /// In en, this message translates to:
-  /// **'Units'**
-  String get khatmaUnits;
-
-  /// No description provided for @khatmaType.
-  ///
-  /// In en, this message translates to:
-  /// **'Type'**
-  String get khatmaType;
-
-  /// No description provided for @khatmaCreatedOn.
-  ///
-  /// In en, this message translates to:
-  /// **'Created on'**
-  String get khatmaCreatedOn;
-
-  /// No description provided for @khatmaCreatedBy.
-  ///
-  /// In en, this message translates to:
-  /// **'Created by'**
-  String get khatmaCreatedBy;
-
-  /// No description provided for @khatmaTotalUnits.
-  ///
-  /// In en, this message translates to:
-  /// **'Total units'**
-  String get khatmaTotalUnits;
-
-  /// No description provided for @khatmaStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Status'**
-  String get khatmaStatus;
-
-  /// No description provided for @khatmaPublic.
-  ///
-  /// In en, this message translates to:
-  /// **'Public'**
-  String get khatmaPublic;
-
-  /// No description provided for @khatmaPrivate.
-  ///
-  /// In en, this message translates to:
-  /// **'Private'**
-  String get khatmaPrivate;
-
-  /// No description provided for @khatmaClose.
-  ///
-  /// In en, this message translates to:
-  /// **'Close'**
-  String get khatmaClose;
-
-  /// No description provided for @khatmaUnitReserved.
-  ///
-  /// In en, this message translates to:
-  /// **'{unit} {number} reserved'**
-  String khatmaUnitReserved(Object number, Object unit);
-
-  /// No description provided for @khatmaUnitReleased.
-  ///
-  /// In en, this message translates to:
-  /// **'{unit} {number} released'**
-  String khatmaUnitReleased(Object number, Object unit);
-
-  /// No description provided for @khatmaJoinSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'You have successfully joined \"{name}\"!'**
-  String khatmaJoinSuccess(Object name);
-
-  /// No description provided for @khatmaJoinError.
-  ///
-  /// In en, this message translates to:
-  /// **'Error joining the Khatma'**
-  String get khatmaJoinError;
-
-  /// No description provided for @khatmaYouHaveReserved.
-  ///
-  /// In en, this message translates to:
-  /// **'You have reserved {count} unit(s)'**
-  String khatmaYouHaveReserved(Object count);
-
   /// No description provided for @success.
   ///
   /// In en, this message translates to:
@@ -1510,6 +1324,12 @@ abstract class AppLocalizations {
   /// **'Congratulations!'**
   String get congratulation;
 
+  /// No description provided for @congratulations.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations'**
+  String get congratulations;
+
   /// No description provided for @accountCreatedSuccessfully.
   ///
   /// In en, this message translates to:
@@ -1520,55 +1340,55 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{count} parts completed successfully'**
-  String successCompleteParts(Object count);
+  String successCompleteParts(int count);
 
-  /// No description provided for @khatmaCompleted.
+  /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'Khatma Completed'**
-  String get khatmaCompleted;
+  /// **'Error'**
+  String get error;
 
-  /// No description provided for @backToHome.
+  /// No description provided for @errorCode.
   ///
   /// In en, this message translates to:
-  /// **'Back to Home'**
-  String get backToHome;
+  /// **'Error Code'**
+  String get errorCode;
 
-  /// No description provided for @journeyDetails.
+  /// No description provided for @errorOccurred.
   ///
   /// In en, this message translates to:
-  /// **'Journey Details'**
-  String get journeyDetails;
+  /// **'An error occurred'**
+  String get errorOccurred;
 
-  /// No description provided for @started.
+  /// No description provided for @criticalError.
   ///
   /// In en, this message translates to:
-  /// **'Started'**
-  String get started;
+  /// **'Critical Error'**
+  String get criticalError;
 
-  /// No description provided for @completed.
+  /// No description provided for @unexpectedError.
   ///
   /// In en, this message translates to:
-  /// **'Completed'**
-  String get completed;
+  /// **'An unexpected error occurred'**
+  String get unexpectedError;
 
-  /// No description provided for @totalDuration.
+  /// No description provided for @pleaseTryAgain.
   ///
   /// In en, this message translates to:
-  /// **'Total Duration'**
-  String get totalDuration;
+  /// **'Please try again.'**
+  String get pleaseTryAgain;
 
-  /// No description provided for @daysCount.
+  /// No description provided for @networkError.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =1{1 day} other{{count} days}}'**
-  String daysCount(int count);
+  /// **'Network error. Please check your connection'**
+  String get networkError;
 
-  /// No description provided for @shareAchievement.
+  /// No description provided for @permissionDenied.
   ///
   /// In en, this message translates to:
-  /// **'Share Achievement'**
-  String get shareAchievement;
+  /// **'Permission denied'**
+  String get permissionDenied;
 
   /// No description provided for @signInFailed.
   ///
@@ -1611,102 +1431,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error loading profile. Please try again later.'**
   String get errorLoadingProfile;
-
-  /// No description provided for @networkError.
-  ///
-  /// In en, this message translates to:
-  /// **'Network error. Please check your connection'**
-  String get networkError;
-
-  /// No description provided for @permissionDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Permission denied'**
-  String get permissionDenied;
-
-  /// No description provided for @pleaseTryAgain.
-  ///
-  /// In en, this message translates to:
-  /// **'Please try again.'**
-  String get pleaseTryAgain;
-
-  /// No description provided for @criticalError.
-  ///
-  /// In en, this message translates to:
-  /// **'Critical Error'**
-  String get criticalError;
-
-  /// No description provided for @error.
-  ///
-  /// In en, this message translates to:
-  /// **'Error'**
-  String get error;
-
-  /// No description provided for @errorCode.
-  ///
-  /// In en, this message translates to:
-  /// **'Error Code'**
-  String get errorCode;
-
-  /// No description provided for @cannotUpdateKhatmaWhileStarted.
-  ///
-  /// In en, this message translates to:
-  /// **'Cannot update khatma while it is started'**
-  String get cannotUpdateKhatmaWhileStarted;
-
-  /// No description provided for @failedToSaveKhatma.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to save khatma. Please try again.'**
-  String get failedToSaveKhatma;
-
-  /// No description provided for @failedToLoadKhatma.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to load khatma. Please try again.'**
-  String get failedToLoadKhatma;
-
-  /// No description provided for @failedToDeleteKhatma.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to delete khatma. Please try again.'**
-  String get failedToDeleteKhatma;
-
-  /// No description provided for @failedToShareKhatma.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete this item?'**
-  String get failedToShareKhatma;
-
-  /// No description provided for @errorOccurred.
-  ///
-  /// In en, this message translates to:
-  /// **'An error occurred'**
-  String get errorOccurred;
-
-  /// No description provided for @pageNotFound.
-  ///
-  /// In en, this message translates to:
-  /// **'Page Not Found'**
-  String get pageNotFound;
-
-  /// No description provided for @pageNotFound404.
-  ///
-  /// In en, this message translates to:
-  /// **'404 - Page not found!'**
-  String get pageNotFound404;
-
-  /// No description provided for @notImplemented.
-  ///
-  /// In en, this message translates to:
-  /// **'Not implemented'**
-  String get notImplemented;
-
-  /// No description provided for @goToHome.
-  ///
-  /// In en, this message translates to:
-  /// **'Go to Home'**
-  String get goToHome;
 
   /// No description provided for @errorAuthUserNotLoggedIn.
   ///
@@ -1816,6 +1540,36 @@ abstract class AppLocalizations {
   /// **'Popup closed by user.'**
   String get errorAuthPopClosedByUser;
 
+  /// No description provided for @errorAuthActionCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'The authentication action was cancelled.'**
+  String get errorAuthActionCancelled;
+
+  /// No description provided for @authenticationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication Error'**
+  String get authenticationError;
+
+  /// No description provided for @authenticationErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication Errors'**
+  String get authenticationErrors;
+
+  /// No description provided for @userNotLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'User Not Logged In'**
+  String get userNotLoggedIn;
+
+  /// No description provided for @sessionExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Session Expired'**
+  String get sessionExpired;
+
   /// No description provided for @errorNetConnectionFailed.
   ///
   /// In en, this message translates to:
@@ -1864,11 +1618,41 @@ abstract class AppLocalizations {
   /// **'Network service is unavailable.'**
   String get errorNetUnavailable;
 
-  /// No description provided for @errorAuthActionCancelled.
+  /// No description provided for @errorNetworkConnectionFailed.
   ///
   /// In en, this message translates to:
-  /// **'The authentication action was cancelled.'**
-  String get errorAuthActionCancelled;
+  /// **'Network connection failed. Please check your internet connection and try again.'**
+  String get errorNetworkConnectionFailed;
+
+  /// No description provided for @errorNetworkTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Request timed out. Please try again.'**
+  String get errorNetworkTimeout;
+
+  /// No description provided for @networkErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Network Errors'**
+  String get networkErrors;
+
+  /// No description provided for @connectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Failed'**
+  String get connectionFailed;
+
+  /// No description provided for @timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeout'**
+  String get timeout;
+
+  /// No description provided for @serverError.
+  ///
+  /// In en, this message translates to:
+  /// **'Server Error'**
+  String get serverError;
 
   /// No description provided for @errorSyncGeneralFailure.
   ///
@@ -1906,6 +1690,12 @@ abstract class AppLocalizations {
   /// **'Failed to retrieve sync status.'**
   String get errorSyncStatusFailed;
 
+  /// No description provided for @syncError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync Error'**
+  String get syncError;
+
   /// No description provided for @errorStorageSaveFailed.
   ///
   /// In en, this message translates to:
@@ -1942,6 +1732,36 @@ abstract class AppLocalizations {
   /// **'Permission denied for storage access.'**
   String get errorStoragePermissionDenied;
 
+  /// No description provided for @storageError.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage Error'**
+  String get storageError;
+
+  /// No description provided for @storageErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage Errors'**
+  String get storageErrors;
+
+  /// No description provided for @storageFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage Full'**
+  String get storageFull;
+
+  /// No description provided for @storageCorrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage Corrupted'**
+  String get storageCorrupted;
+
+  /// No description provided for @saveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Failed'**
+  String get saveFailed;
+
   /// No description provided for @errorValidationInvalidData.
   ///
   /// In en, this message translates to:
@@ -1977,6 +1797,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid operation attempted.'**
   String get errorValidationInvalidOperation;
+
+  /// No description provided for @validationError.
+  ///
+  /// In en, this message translates to:
+  /// **'Validation Error'**
+  String get validationError;
+
+  /// No description provided for @validationErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Validation Errors'**
+  String get validationErrors;
+
+  /// No description provided for @invalidData.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid Data'**
+  String get invalidData;
+
+  /// No description provided for @missingFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing Fields'**
+  String get missingFields;
+
+  /// No description provided for @invalidDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid Date'**
+  String get invalidDate;
 
   /// No description provided for @errorKhatmaNotFound.
   ///
@@ -2080,29 +1930,71 @@ abstract class AppLocalizations {
   /// **'A Khatma with this information already exists.'**
   String get errorKhatmaAlreadyExists;
 
-  /// No description provided for @errorNetworkConnectionFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Network connection failed. Please check your internet connection and try again.'**
-  String get errorNetworkConnectionFailed;
-
-  /// No description provided for @errorNetworkTimeout.
-  ///
-  /// In en, this message translates to:
-  /// **'Request timed out. Please try again.'**
-  String get errorNetworkTimeout;
-
   /// No description provided for @errorFirestoreOperationFailed.
   ///
   /// In en, this message translates to:
   /// **'Database operation failed. Please try again later.'**
   String get errorFirestoreOperationFailed;
 
-  /// No description provided for @errorGeneralUnknown.
+  /// No description provided for @cannotUpdateKhatmaWhileStarted.
   ///
   /// In en, this message translates to:
-  /// **'An unknown error occurred.'**
-  String get errorGeneralUnknown;
+  /// **'Cannot update khatma while it is started'**
+  String get cannotUpdateKhatmaWhileStarted;
+
+  /// No description provided for @failedToSaveKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save khatma. Please try again.'**
+  String get failedToSaveKhatma;
+
+  /// No description provided for @failedToLoadKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load khatma. Please try again.'**
+  String get failedToLoadKhatma;
+
+  /// No description provided for @failedToDeleteKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete khatma. Please try again.'**
+  String get failedToDeleteKhatma;
+
+  /// No description provided for @failedToShareKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to share khatma. Please try again.'**
+  String get failedToShareKhatma;
+
+  /// No description provided for @khatmaError.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Error'**
+  String get khatmaError;
+
+  /// No description provided for @khatmaErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Errors'**
+  String get khatmaErrors;
+
+  /// No description provided for @khatmaNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Not Found'**
+  String get khatmaNotFound;
+
+  /// No description provided for @alreadyCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Already Completed'**
+  String get alreadyCompleted;
+
+  /// No description provided for @invalidParts.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid Parts'**
+  String get invalidParts;
 
   /// No description provided for @errorLimitKhatmaMaxReached.
   ///
@@ -2121,6 +2013,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Creation not allowed due to limits.'**
   String get errorLimitCreationNotAllowed;
+
+  /// No description provided for @limitError.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit Reached'**
+  String get limitError;
 
   /// No description provided for @errorHistoryCreateFailed.
   ///
@@ -2146,6 +2044,12 @@ abstract class AppLocalizations {
   /// **'History not found.'**
   String get errorHistoryNotFound;
 
+  /// No description provided for @historyError.
+  ///
+  /// In en, this message translates to:
+  /// **'History Error'**
+  String get historyError;
+
   /// No description provided for @errorSearchFailed.
   ///
   /// In en, this message translates to:
@@ -2170,6 +2074,12 @@ abstract class AppLocalizations {
   /// **'Search timed out.'**
   String get errorSearchTimeout;
 
+  /// No description provided for @searchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Error'**
+  String get searchError;
+
   /// No description provided for @errorStatsCalculationFailed.
   ///
   /// In en, this message translates to:
@@ -2187,6 +2097,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to export statistics.'**
   String get errorStatsExportFailed;
+
+  /// No description provided for @statsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics Error'**
+  String get statsError;
+
+  /// No description provided for @errorGeneralUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Please try again.'**
+  String get errorGeneralUnknown;
 
   /// No description provided for @errorGeneralCancelled.
   ///
@@ -2248,6 +2170,12 @@ abstract class AppLocalizations {
   /// **'Failed to parse the date.'**
   String get errorDateParsingFailed;
 
+  /// No description provided for @dateError.
+  ///
+  /// In en, this message translates to:
+  /// **'Date Error'**
+  String get dateError;
+
   /// No description provided for @errorPermissionDenied.
   ///
   /// In en, this message translates to:
@@ -2266,16 +2194,52 @@ abstract class AppLocalizations {
   /// **'Insufficient permissions to proceed.'**
   String get errorPermissionInsufficient;
 
+  /// No description provided for @permissionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission Error'**
+  String get permissionError;
+
+  /// No description provided for @errorDialogExamples.
+  ///
+  /// In en, this message translates to:
+  /// **'Error Dialog Examples'**
+  String get errorDialogExamples;
+
+  /// No description provided for @retrying.
+  ///
+  /// In en, this message translates to:
+  /// **'Retrying...'**
+  String get retrying;
+
+  /// No description provided for @openingSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening sign in...'**
+  String get openingSignIn;
+
+  /// No description provided for @openingSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening settings...'**
+  String get openingSettings;
+
+  /// No description provided for @actionPerformed.
+  ///
+  /// In en, this message translates to:
+  /// **'Action performed'**
+  String get actionPerformed;
+
   /// No description provided for @newKhatma.
   ///
   /// In en, this message translates to:
-  /// **'New khatma'**
+  /// **'New Khatma'**
   String get newKhatma;
 
   /// No description provided for @editKhatma.
   ///
   /// In en, this message translates to:
-  /// **'Edit khatma'**
+  /// **'Edit Khatma'**
   String get editKhatma;
 
   /// No description provided for @khatma.
@@ -2287,13 +2251,25 @@ abstract class AppLocalizations {
   /// No description provided for @khatmaList.
   ///
   /// In en, this message translates to:
-  /// **'Khatma list'**
+  /// **'Khatma List'**
   String get khatmaList;
+
+  /// No description provided for @khatmaListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma List'**
+  String get khatmaListTitle;
+
+  /// No description provided for @khatmaListSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your ongoing khatmas'**
+  String get khatmaListSubtitle;
 
   /// No description provided for @shareKhatma.
   ///
   /// In en, this message translates to:
-  /// **'Share khatma'**
+  /// **'Share Khatma'**
   String get shareKhatma;
 
   /// No description provided for @chooseKhatmaStyle.
@@ -2416,6 +2392,12 @@ abstract class AppLocalizations {
   /// **'Loading khatma list'**
   String get loadingKhatmaList;
 
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
   /// No description provided for @completedParts.
   ///
   /// In en, this message translates to:
@@ -2438,25 +2420,25 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{count} parts'**
-  String readedParts(Object count);
+  String readedParts(int count);
 
   /// No description provided for @remainingPartsOfTotal.
   ///
   /// In en, this message translates to:
   /// **'{remaining} of {total} parts'**
-  String remainingPartsOfTotal(Object remaining, Object total);
+  String remainingPartsOfTotal(int remaining, int total);
 
   /// No description provided for @completeParts.
   ///
   /// In en, this message translates to:
   /// **'Complete ({count} parts)'**
-  String completeParts(Object count);
+  String completeParts(int count);
 
   /// No description provided for @selectedParts.
   ///
   /// In en, this message translates to:
-  /// **'{count} {count, plural, one {part} other {parts}} selected'**
-  String selectedParts(num count);
+  /// **'{count} part(s) selected'**
+  String selectedParts(int count);
 
   /// No description provided for @maxPartToRead.
   ///
@@ -2469,6 +2451,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Max part to reserve'**
   String get maxPartToReserve;
+
+  /// No description provided for @noKhatmaYet.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no khatmas yet'**
+  String get noKhatmaYet;
+
+  /// No description provided for @createKhatmaToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a khatma to start'**
+  String get createKhatmaToStart;
+
+  /// No description provided for @khatmaCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Completed'**
+  String get khatmaCompleted;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
+
+  /// No description provided for @journeyDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey Details'**
+  String get journeyDetails;
+
+  /// No description provided for @started.
+  ///
+  /// In en, this message translates to:
+  /// **'Started'**
+  String get started;
+
+  /// No description provided for @totalDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Duration'**
+  String get totalDuration;
+
+  /// No description provided for @daysCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String daysCount(int count);
+
+  /// No description provided for @shareAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Achievement'**
+  String get shareAchievement;
+
+  /// No description provided for @khatmaFinishedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have just finished your khatma in {timeAgo}.'**
+  String khatmaFinishedMessage(String timeAgo);
+
+  /// No description provided for @completion.
+  ///
+  /// In en, this message translates to:
+  /// **'Completion'**
+  String get completion;
+
+  /// No description provided for @khatmaHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma History'**
+  String get khatmaHistory;
+
+  /// No description provided for @khatmaSearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for a Khatma'**
+  String get khatmaSearchTitle;
+
+  /// No description provided for @khatmaSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Name or description'**
+  String get khatmaSearchHint;
+
+  /// No description provided for @khatmaJoinButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get khatmaJoinButton;
+
+  /// No description provided for @khatmaSearchEmptyDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover available public Khatmas'**
+  String get khatmaSearchEmptyDefault;
+
+  /// No description provided for @khatmaSearchNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No Khatma found for your search'**
+  String get khatmaSearchNoResults;
+
+  /// No description provided for @khatmaConfirmJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Join'**
+  String get khatmaConfirmJoin;
+
+  /// No description provided for @khatmaMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get khatmaMembers;
+
+  /// No description provided for @khatmaAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get khatmaAvailable;
+
+  /// No description provided for @khatmaProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get khatmaProgress;
+
+  /// No description provided for @khatmaUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Units'**
+  String get khatmaUnits;
+
+  /// No description provided for @khatmaType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get khatmaType;
+
+  /// No description provided for @khatmaCreatedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Created on'**
+  String get khatmaCreatedOn;
+
+  /// No description provided for @khatmaCreatedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Created by'**
+  String get khatmaCreatedBy;
+
+  /// No description provided for @khatmaTotalUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Total units'**
+  String get khatmaTotalUnits;
+
+  /// No description provided for @khatmaStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get khatmaStatus;
+
+  /// No description provided for @khatmaPublic.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get khatmaPublic;
+
+  /// No description provided for @khatmaPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Private'**
+  String get khatmaPrivate;
+
+  /// No description provided for @khatmaClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get khatmaClose;
+
+  /// No description provided for @khatmaUnitReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'{unit} {number} reserved'**
+  String khatmaUnitReserved(String unit, int number);
+
+  /// No description provided for @khatmaUnitReleased.
+  ///
+  /// In en, this message translates to:
+  /// **'{unit} {number} released'**
+  String khatmaUnitReleased(String unit, int number);
+
+  /// No description provided for @khatmaJoinSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have successfully joined \"{name}\"!'**
+  String khatmaJoinSuccess(String name);
+
+  /// No description provided for @khatmaJoinError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error joining the Khatma'**
+  String get khatmaJoinError;
+
+  /// No description provided for @khatmaYouHaveReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'You have reserved {count} unit(s)'**
+  String khatmaYouHaveReserved(int count);
 
   /// No description provided for @recurrence.
   ///
@@ -2515,7 +2707,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeatEvery.
   ///
   /// In en, this message translates to:
-  /// **'Repeat very'**
+  /// **'Repeat every'**
   String get repeatEvery;
 
   /// No description provided for @autoRepeatDescription.
@@ -2527,26 +2719,26 @@ abstract class AppLocalizations {
   /// No description provided for @repeatEverySelectedDaysDescription.
   ///
   /// In en, this message translates to:
-  /// **'Khatma will be repeated every {days} for evry {count} weeks'**
-  String repeatEverySelectedDaysDescription(Object count, Object days);
+  /// **'Khatma will be repeated every {days} for every {count} weeks'**
+  String repeatEverySelectedDaysDescription(String days, int count);
 
   /// No description provided for @repeatEverySelectedDayDescription.
   ///
   /// In en, this message translates to:
-  /// **'Khatma will be repeated every {days} for evry week'**
-  String repeatEverySelectedDayDescription(Object days);
+  /// **'Khatma will be repeated every {days} for every week'**
+  String repeatEverySelectedDayDescription(String days);
 
   /// No description provided for @repeatEveryTimePeriodsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Khatma will be repeated evry {count} {unit}s'**
-  String repeatEveryTimePeriodsDescription(Object count, Object unit);
+  /// **'Khatma will be repeated every {count} {unit}s'**
+  String repeatEveryTimePeriodsDescription(int count, String unit);
 
   /// No description provided for @repeatEveryTimePeriodDescription.
   ///
   /// In en, this message translates to:
-  /// **'Khatma will be repeated evry {unit}'**
-  String repeatEveryTimePeriodDescription(Object unit);
+  /// **'Khatma will be repeated every {unit}'**
+  String repeatEveryTimePeriodDescription(String unit);
 
   /// No description provided for @noRepeatDescription.
   ///
@@ -2575,13 +2767,13 @@ abstract class AppLocalizations {
   /// No description provided for @weekDay.
   ///
   /// In en, this message translates to:
-  /// **'{day, select,  1{Monday} 2{Tuesday} 3{Wednesday} 4{Thursday} 5{Friday} 6{Saturday} 7{Sunday} other{Other}}'**
+  /// **'{day, select, 1{Monday} 2{Tuesday} 3{Wednesday} 4{Thursday} 5{Friday} 6{Saturday} 7{Sunday} other{Other}}'**
   String weekDay(String day);
 
   /// No description provided for @shortWeekDay.
   ///
   /// In en, this message translates to:
-  /// **'{day, select,  1{M} 2{T} 3{W} 4{T} 5{F} 6{S} 7{S} other{O}}'**
+  /// **'{day, select, 1{M} 2{T} 3{W} 4{T} 5{F} 6{S} 7{S} other{O}}'**
   String shortWeekDay(String day);
 
   /// No description provided for @repeatOption.
@@ -2612,7 +2804,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'{count, plural, =0{No participants} =1{1 participant} other{# participants}}'**
-  String maxParticipants(num count);
+  String maxParticipants(int count);
 
   /// No description provided for @home.
   ///
@@ -2649,6 +2841,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Learn more about the app'**
   String get learnMoreAboutApp;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @helpAndSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpAndSupport;
+
+  /// No description provided for @accessYourKhatmas.
+  ///
+  /// In en, this message translates to:
+  /// **'Access your Khatmas and progress'**
+  String get accessYourKhatmas;
+
+  /// No description provided for @managePersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your personal information'**
+  String get managePersonalInfo;
+
+  /// No description provided for @preferencesAndOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences and app options'**
+  String get preferencesAndOptions;
+
+  /// No description provided for @commonQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Find answers to common questions'**
+  String get commonQuestions;
+
+  /// No description provided for @termsAndPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of service and privacy policy'**
+  String get termsAndPrivacy;
+
+  /// No description provided for @learnMoreAboutKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more about our mission'**
+  String get learnMoreAboutKhatma;
+
+  /// No description provided for @getHelpFromTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Get help from our support team'**
+  String get getHelpFromTeam;
+
+  /// No description provided for @madeWithLove.
+  ///
+  /// In en, this message translates to:
+  /// **'Made with ❤️ for the Muslim community'**
+  String get madeWithLove;
+
+  /// No description provided for @goToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Home'**
+  String get goToHome;
+
+  /// No description provided for @notImplemented.
+  ///
+  /// In en, this message translates to:
+  /// **'Not implemented'**
+  String get notImplemented;
+
+  /// No description provided for @pageNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Page Not Found'**
+  String get pageNotFound;
+
+  /// No description provided for @pageNotFound404.
+  ///
+  /// In en, this message translates to:
+  /// **'404 - Page not found!'**
+  String get pageNotFound404;
 
   /// No description provided for @readMode.
   ///
@@ -2701,7 +2977,7 @@ abstract class AppLocalizations {
   /// No description provided for @recitation.
   ///
   /// In en, this message translates to:
-  /// **'Récitation'**
+  /// **'Recitation'**
   String get recitation;
 
   /// No description provided for @hafs.
@@ -2713,7 +2989,7 @@ abstract class AppLocalizations {
   /// No description provided for @hafsDescription.
   ///
   /// In en, this message translates to:
-  /// **'La récitation la plus répandue dans le monde musulman, notamment au Moyen-Orient.'**
+  /// **'The most widespread recitation in the Islamic world, especially in the Middle East.'**
   String get hafsDescription;
 
   /// No description provided for @warsh.
@@ -2725,7 +3001,7 @@ abstract class AppLocalizations {
   /// No description provided for @warshDescription.
   ///
   /// In en, this message translates to:
-  /// **'Courante en Afrique du Nord. Légères différences de prononciation et d\'orthographe.'**
+  /// **'Common in North Africa. Slight differences in pronunciation and spelling.'**
   String get warshDescription;
 
   /// No description provided for @theme.
@@ -2749,7 +3025,7 @@ abstract class AppLocalizations {
   /// No description provided for @riwayaMode.
   ///
   /// In en, this message translates to:
-  /// **'{riwaya, select, hafs{Hafs} warsh{Warsh} other {Hafs}}'**
+  /// **'{riwaya, select, hafs{Hafs} warsh{Warsh} other{Hafs}}'**
   String riwayaMode(String riwaya);
 
   /// No description provided for @faq.
@@ -2775,6 +3051,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Questions and suggestions'**
   String get questionsAndSuggestions;
+
+  /// No description provided for @failedToLoadFaq.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load FAQ'**
+  String get failedToLoadFaq;
+
+  /// No description provided for @noFaqAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No FAQ available'**
+  String get noFaqAvailable;
 
   /// No description provided for @onboarding1Title.
   ///
@@ -2841,312 +3129,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Begin Quran Journey'**
   String get startButton;
-
-  /// No description provided for @registration_validation.
-  ///
-  /// In en, this message translates to:
-  /// **'Registration validation messages'**
-  String get registration_validation;
-
-  /// No description provided for @login_validation.
-  ///
-  /// In en, this message translates to:
-  /// **'Login validation messages'**
-  String get login_validation;
-
-  /// No description provided for @registration_ui.
-  ///
-  /// In en, this message translates to:
-  /// **'Registration interface'**
-  String get registration_ui;
-
-  /// No description provided for @login_ui.
-  ///
-  /// In en, this message translates to:
-  /// **'Login interface'**
-  String get login_ui;
-
-  /// No description provided for @form_types.
-  ///
-  /// In en, this message translates to:
-  /// **'Form types'**
-  String get form_types;
-
-  /// No description provided for @shared_fields.
-  ///
-  /// In en, this message translates to:
-  /// **'Shared fields'**
-  String get shared_fields;
-
-  /// No description provided for @validation_messages.
-  ///
-  /// In en, this message translates to:
-  /// **'Validation messages'**
-  String get validation_messages;
-
-  /// No description provided for @password_criteria.
-  ///
-  /// In en, this message translates to:
-  /// **'Password criteria'**
-  String get password_criteria;
-
-  /// No description provided for @terms_and_actions.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms and actions'**
-  String get terms_and_actions;
-
-  /// No description provided for @rememberMe.
-  ///
-  /// In en, this message translates to:
-  /// **'Remember me'**
-  String get rememberMe;
-
-  /// No description provided for @ui_labels.
-  ///
-  /// In en, this message translates to:
-  /// **'UI labels'**
-  String get ui_labels;
-
-  /// No description provided for @openSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Open Settings'**
-  String get openSettings;
-
-  /// No description provided for @tryAgain.
-  ///
-  /// In en, this message translates to:
-  /// **'Try Again'**
-  String get tryAgain;
-
-  /// No description provided for @authenticationError.
-  ///
-  /// In en, this message translates to:
-  /// **'Authentication Error'**
-  String get authenticationError;
-
-  /// No description provided for @syncError.
-  ///
-  /// In en, this message translates to:
-  /// **'Sync Error'**
-  String get syncError;
-
-  /// No description provided for @storageError.
-  ///
-  /// In en, this message translates to:
-  /// **'Storage Error'**
-  String get storageError;
-
-  /// No description provided for @validationError.
-  ///
-  /// In en, this message translates to:
-  /// **'Validation Error'**
-  String get validationError;
-
-  /// No description provided for @khatmaError.
-  ///
-  /// In en, this message translates to:
-  /// **'Khatma Error'**
-  String get khatmaError;
-
-  /// No description provided for @limitError.
-  ///
-  /// In en, this message translates to:
-  /// **'Limit Reached'**
-  String get limitError;
-
-  /// No description provided for @historyError.
-  ///
-  /// In en, this message translates to:
-  /// **'History Error'**
-  String get historyError;
-
-  /// No description provided for @searchError.
-  ///
-  /// In en, this message translates to:
-  /// **'Search Error'**
-  String get searchError;
-
-  /// No description provided for @statsError.
-  ///
-  /// In en, this message translates to:
-  /// **'Statistics Error'**
-  String get statsError;
-
-  /// No description provided for @dateError.
-  ///
-  /// In en, this message translates to:
-  /// **'Date Error'**
-  String get dateError;
-
-  /// No description provided for @permissionError.
-  ///
-  /// In en, this message translates to:
-  /// **'Permission Error'**
-  String get permissionError;
-
-  /// No description provided for @errorDialogExamples.
-  ///
-  /// In en, this message translates to:
-  /// **'Error Dialog Examples'**
-  String get errorDialogExamples;
-
-  /// No description provided for @networkErrors.
-  ///
-  /// In en, this message translates to:
-  /// **'Network Errors'**
-  String get networkErrors;
-
-  /// No description provided for @authenticationErrors.
-  ///
-  /// In en, this message translates to:
-  /// **'Authentication Errors'**
-  String get authenticationErrors;
-
-  /// No description provided for @storageErrors.
-  ///
-  /// In en, this message translates to:
-  /// **'Storage Errors'**
-  String get storageErrors;
-
-  /// No description provided for @validationErrors.
-  ///
-  /// In en, this message translates to:
-  /// **'Validation Errors'**
-  String get validationErrors;
-
-  /// No description provided for @khatmaErrors.
-  ///
-  /// In en, this message translates to:
-  /// **'Khatma Errors'**
-  String get khatmaErrors;
-
-  /// No description provided for @connectionFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Connection Failed'**
-  String get connectionFailed;
-
-  /// No description provided for @timeout.
-  ///
-  /// In en, this message translates to:
-  /// **'Timeout'**
-  String get timeout;
-
-  /// No description provided for @serverError.
-  ///
-  /// In en, this message translates to:
-  /// **'Server Error'**
-  String get serverError;
-
-  /// No description provided for @userNotLoggedIn.
-  ///
-  /// In en, this message translates to:
-  /// **'User Not Logged In'**
-  String get userNotLoggedIn;
-
-  /// No description provided for @sessionExpired.
-  ///
-  /// In en, this message translates to:
-  /// **'Session Expired'**
-  String get sessionExpired;
-
-  /// No description provided for @storageFull.
-  ///
-  /// In en, this message translates to:
-  /// **'Storage Full'**
-  String get storageFull;
-
-  /// No description provided for @storageCorrupted.
-  ///
-  /// In en, this message translates to:
-  /// **'Storage Corrupted'**
-  String get storageCorrupted;
-
-  /// No description provided for @saveFailed.
-  ///
-  /// In en, this message translates to:
-  /// **'Save Failed'**
-  String get saveFailed;
-
-  /// No description provided for @invalidData.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid Data'**
-  String get invalidData;
-
-  /// No description provided for @missingFields.
-  ///
-  /// In en, this message translates to:
-  /// **'Missing Fields'**
-  String get missingFields;
-
-  /// No description provided for @invalidDate.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid Date'**
-  String get invalidDate;
-
-  /// No description provided for @khatmaNotFound.
-  ///
-  /// In en, this message translates to:
-  /// **'Khatma Not Found'**
-  String get khatmaNotFound;
-
-  /// No description provided for @alreadyCompleted.
-  ///
-  /// In en, this message translates to:
-  /// **'Already Completed'**
-  String get alreadyCompleted;
-
-  /// No description provided for @invalidParts.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid Parts'**
-  String get invalidParts;
-
-  /// No description provided for @retrying.
-  ///
-  /// In en, this message translates to:
-  /// **'Retrying...'**
-  String get retrying;
-
-  /// No description provided for @openingSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Opening sign in...'**
-  String get openingSignIn;
-
-  /// No description provided for @openingSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Opening settings...'**
-  String get openingSettings;
-
-  /// No description provided for @actionPerformed.
-  ///
-  /// In en, this message translates to:
-  /// **'Action performed'**
-  String get actionPerformed;
-
-  /// No description provided for @displayNameTooLong.
-  ///
-  /// In en, this message translates to:
-  /// **'Display name must be less than 50 characters'**
-  String get displayNameTooLong;
-
-  /// No description provided for @displayNameInvalidCharacters.
-  ///
-  /// In en, this message translates to:
-  /// **'Display name contains invalid characters'**
-  String get displayNameInvalidCharacters;
-
-  /// No description provided for @unexpectedError.
-  ///
-  /// In en, this message translates to:
-  /// **'An unexpected error occurred'**
-  String get unexpectedError;
 
   /// No description provided for @contactUs.
   ///
@@ -3352,24 +3334,6 @@ abstract class AppLocalizations {
   /// **'Email app not available on this device'**
   String get emailNotAvailable;
 
-  /// No description provided for @refresh.
-  ///
-  /// In en, this message translates to:
-  /// **'Refresh'**
-  String get refresh;
-
-  /// No description provided for @failedToLoadFaq.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to load FAQ'**
-  String get failedToLoadFaq;
-
-  /// No description provided for @noFaqAvailable.
-  ///
-  /// In en, this message translates to:
-  /// **'No FAQ available'**
-  String get noFaqAvailable;
-
   /// No description provided for @dataSynchronization.
   ///
   /// In en, this message translates to:
@@ -3405,24 +3369,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Never synchronized'**
   String get neverSynced;
-
-  /// No description provided for @justNow.
-  ///
-  /// In en, this message translates to:
-  /// **'Just now'**
-  String get justNow;
-
-  /// No description provided for @minutesAgo.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} minutes ago'**
-  String minutesAgo(int count);
-
-  /// No description provided for @hoursAgo.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} hours ago'**
-  String hoursAgo(int count);
 
   /// No description provided for @fullSync.
   ///
@@ -3508,18 +3454,6 @@ abstract class AppLocalizations {
   /// **'{count} failed attempts'**
   String syncFailureCount(int count);
 
-  /// No description provided for @khatmasCount.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} khatmas'**
-  String khatmasCount(int count);
-
-  /// No description provided for @historyCount.
-  ///
-  /// In en, this message translates to:
-  /// **'{count} history items'**
-  String historyCount(int count);
-
   /// No description provided for @performBothUploadAndDownload.
   ///
   /// In en, this message translates to:
@@ -3568,6 +3502,18 @@ abstract class AppLocalizations {
   /// **'All your data has been synchronized successfully'**
   String get allDataSynchronized;
 
+  /// No description provided for @khatmasCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} khatmas'**
+  String khatmasCount(int count);
+
+  /// No description provided for @historyCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} history items'**
+  String historyCount(int count);
+
   /// No description provided for @synchronizingPleaseWait.
   ///
   /// In en, this message translates to:
@@ -3577,7 +3523,7 @@ abstract class AppLocalizations {
   /// No description provided for @itemsToSync.
   ///
   /// In en, this message translates to:
-  /// **'{count} item to synchronize'**
+  /// **'{count} item(s) to synchronize'**
   String itemsToSync(int count);
 }
 
