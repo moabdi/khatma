@@ -40,6 +40,26 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
     _currentKhatma = widget.khatma;
   }
 
+  // Check if there are any selected units (not completed/reserved by others)
+  bool get _hasSelectedUnits {
+    return _currentKhatma.units.any((unit) => unit.status == UnitStatus.selected);
+  }
+
+  // Check if there are any visible units matching the current filter
+  bool get _hasVisibleUnits {
+    for (int i = 0; i < _currentKhatma.totalUnits; i++) {
+      final unitNumber = i + 1;
+      final unit = _currentKhatma.units.firstWhere(
+        (u) => u.unitNumber == unitNumber,
+        orElse: () => SharedKhatmaUnit(unitNumber: unitNumber),
+      );
+      if (_shouldShowUnit(unit)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   void _toggleFilter(UnitFilter filter) {
     setState(() {
         _activeFilters.clear();
@@ -92,40 +112,33 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         backgroundColor: Theme.of(context).colorScheme.surface,
         foregroundColor: Theme.of(context).colorScheme.onSurface,
       ),
-      body: Column(
-        children: [
-          // Khatma Overview
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              boxShadow: [
-                BoxShadow(
-                  color: Theme.of(context).colorScheme.shadow.withOpacity(0.05),
-                  offset: const Offset(0, 2),
-                  blurRadius: 8,
-                  spreadRadius: 0,
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Description in ExpansionTile
-                if (_currentKhatma.description.isNotEmpty)
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      dividerColor: Colors.transparent,
-                    ),
-                    child: ExpansionTile(
-                      tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            // Khatma Overview
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).colorScheme.shadow.withOpacity(0.05),
+                    offset: const Offset(0, 2),
+                    blurRadius: 8,
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Description in ExpansionTile
+                  if (_currentKhatma.description.isNotEmpty)
+                    ExpansionTile(
                       childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                      title: Text(
-                        'Description',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
+                      tilePadding: EdgeInsets.all(0),
+                      title: Text('Description'),
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
@@ -133,173 +146,216 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         ),
                       ],
                     ),
-                  ),
-                  Text('Unités (${_currentKhatma.unit.displayName})'),
-                  gapH12,
-                  // Filter Chips
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        KhatmaFilterChip(
-                          icon: Icons.apps_rounded,
-                          isSelected: _activeFilters.contains(UnitFilter.all),
-                          onTap: () => _toggleFilter(UnitFilter.all),
-                          tooltip: 'Tout',
-                        ),
-                        gapW8,
-                        KhatmaFilterChip(
-                          icon: Icons.person_rounded,
-                          isSelected: _activeFilters.contains(UnitFilter.mine),
-                          onTap: () => _toggleFilter(UnitFilter.mine),
-                          tooltip: 'Mes unités',
-                        ),
-                        gapW8,
-                        KhatmaFilterChip(
-                          icon: Icons.check_circle_outline_rounded,
-                          isSelected: _activeFilters.contains(UnitFilter.free),
-                          onTap: () => _toggleFilter(UnitFilter.free),
-                          tooltip: 'Disponibles',
-                        ),
-                        gapW8,
-                        KhatmaFilterChip(
-                          icon: Icons.done_all_rounded,
-                          isSelected: _activeFilters.contains(UnitFilter.completed),
-                          onTap: () => _toggleFilter(UnitFilter.completed),
-                          tooltip: 'Complétées',
-                        ),
-                      ],
+                    gapH12,
+                    // Title
+                    Text('Unités (${_currentKhatma.unit.displayName})'),
+                    gapH8,
+                    // Filter Chips
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          KhatmaFilterChip(
+                            label: 'Tout',
+                            isSelected: _activeFilters.contains(UnitFilter.all),
+                            onTap: () => _toggleFilter(UnitFilter.all),
+                          ),
+                          gapW8,
+                          KhatmaFilterChip(
+                            label: 'Mes unités',
+                            isSelected: _activeFilters.contains(UnitFilter.mine),
+                            onTap: () => _toggleFilter(UnitFilter.mine),
+                          ),
+                          gapW8,
+                          KhatmaFilterChip(
+                            label: 'Disponibles',
+                            isSelected: _activeFilters.contains(UnitFilter.free),
+                            onTap: () => _toggleFilter(UnitFilter.free),
+                          ),
+                          gapW8,
+                          KhatmaFilterChip(
+                            label: 'Complétées',
+                            isSelected: _activeFilters.contains(UnitFilter.completed),
+                            onTap: () => _toggleFilter(UnitFilter.completed),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  gapH16,
-              ],
-            ),
-          ),
-
-          // Units Grid
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: _currentKhatma.totalUnits,
-                    itemBuilder: (context, index) {
-                      final unitNumber = index + 1;
-                      final unit = _currentKhatma.units.firstWhere(
-                        (u) => u.unitNumber == unitNumber,
-                        orElse: () => SharedKhatmaUnit(unitNumber: unitNumber),
-                      );
-
-                      // Apply filter
-                      if (!_shouldShowUnit(unit)) {
-                        return const SizedBox.shrink();
-                      }
-
-                      return UnitTile(
-                        unit: unit,
-                        onTap: () => _toggleUnitReservation(unit),
-                      );
-                    },
-                  ),
+                    gapH16,
                 ],
               ),
             ),
-          ),
+        
+            // Units Grid
+            Expanded(
+              child: !_hasVisibleUnits
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search_off,
+                              size: 64,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant
+                                  .withValues(alpha: 0.5),
+                            ),
+                            gapH16,
+                            Text(
+                              'Aucune unité trouvée',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                            gapH8,
+                            Text(
+                              'Essayez de changer le filtre',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant
+                                        .withValues(alpha: 0.7),
+                                  ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: _currentKhatma.totalUnits,
+                            itemBuilder: (context, index) {
+                              final unitNumber = index + 1;
+                              final unit = _currentKhatma.units.firstWhere(
+                                (u) => u.unitNumber == unitNumber,
+                                orElse: () =>
+                                    SharedKhatmaUnit(unitNumber: unitNumber),
+                              );
 
-          // Join/Confirm Button
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(0, -2),
-                  blurRadius: 8,
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Reservation info
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Réservé: ${_currentKhatma.userReservedUnits.length}/${_currentKhatma.maxReservationsPerUser}',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                            fontWeight: FontWeight.w600,
+                              // Apply filter
+                              if (!_shouldShowUnit(unit)) {
+                                return const SizedBox.shrink();
+                              }
+
+                              return UnitTile(
+                                unit: unit,
+                                onTap: () => _toggleUnitReservation(unit),
+                              );
+                            },
                           ),
-                    ),
-                    if (_currentKhatma.remainingReservations > 0)
-                      Text(
-                        '${_currentKhatma.remainingReservations} restantes',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Colors.green.shade600,
-                            ),
-                      )
-                    else
-                      Text(
-                        'Limite atteinte',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Colors.orange.shade600,
-                            ),
+                        ],
                       ),
-                  ],
+                    ),
+            ),
+        
+            // Join/Confirm Button
+            if (_hasSelectedUnits)
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-                if (_currentKhatma.userReservedUnits.isNotEmpty) gapH12,
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: ElevatedButton(
-                    onPressed: _currentKhatma.userReservedUnits.isNotEmpty ||
-                            !_isJoining
-                        ? _confirmJoin
-                        : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: context.colorScheme.primary,
-                      foregroundColor: Colors.white,
-                      disabledBackgroundColor:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: _isJoining
-                        ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white),
-                            ),
-                          )
-                        : const Text(
-                            'Confirmer rejoindre',
-                            style: TextStyle(
-                              fontSize: 16,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    offset: const Offset(0, -2),
+                    blurRadius: 8,
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Reservation info
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Réservé: ${_currentKhatma.userReservedUnits.length}/${_currentKhatma.maxReservationsPerUser}',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color:
+                                  Theme.of(context).colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w600,
                             ),
-                          ),
+                      ),
+                      if (_currentKhatma.remainingReservations > 0)
+                        Text(
+                          '${_currentKhatma.remainingReservations} restantes',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: Colors.green.shade600,
+                              ),
+                        )
+                      else
+                        Text(
+                          'Limite atteinte',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: Colors.orange.shade600,
+                              ),
+                        ),
+                    ],
                   ),
-                ),
-              ],
+                    gapH12,
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: !_isJoining ? _confirmJoin : null,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: context.colorScheme.primary,
+                          foregroundColor: Colors.white,
+                          disabledBackgroundColor:
+                              Theme.of(context).colorScheme.surfaceContainerHighest,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: _isJoining
+                            ? const SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor:
+                                      AlwaysStoppedAnimation<Color>(Colors.white),
+                                ),
+                              )
+                            : const Text(
+                                'Confirmer rejoindre',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                      ),
+                    ),
+                  ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

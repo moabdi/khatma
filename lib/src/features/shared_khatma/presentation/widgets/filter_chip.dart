@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
 
 class KhatmaFilterChip extends StatelessWidget {
-  final IconData icon;
+  final String label;
   final bool isSelected;
   final VoidCallback onTap;
-  final String tooltip;
 
   const KhatmaFilterChip({
     super.key,
-    required this.icon,
+    required this.label,
     required this.isSelected,
     required this.onTap,
-    required this.tooltip,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(8),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         decoration: BoxDecoration(
           color: isSelected
               ? Theme.of(context).colorScheme.primaryContainer
               : Theme.of(context).colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: isSelected
                 ? Theme.of(context).colorScheme.primary
                 : Colors.transparent,
-            width: 2,
+            width: 1.5,
           ),
         ),
-        child: Icon(
-          icon,
-          size: 20,
-          color: isSelected
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.onSurfaceVariant,
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurfaceVariant,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                fontSize: 12,
+              ),
         ),
       ),
     );
