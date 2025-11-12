@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
 import 'package:khatma/src/features/shared_khatma/presentation/logic/khatma_details_controller.dart';
-import 'package:khatma/src/features/shared_khatma/presentation/widgets/filter_chip.dart';
 import 'package:khatma/src/features/shared_khatma/presentation/widgets/unit_tile.dart';
+import 'package:khatma/src/features/shared_khatma/presentation/widgets/filter_chip.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -30,6 +30,8 @@ class KhatmaDetailsPage extends ConsumerStatefulWidget {
 }
 
 class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
+  final GlobalKey _filterButtonKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(khatmaDetailsControllerProvider(widget.khatma));
@@ -120,8 +122,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                   // Title
                   Text(context.loc.khatmaUnitsWithType(
                       state.khatma.unit.displayName)),
-                  gapH8,
-                  // Filter Chips
+                  gapH12,
+                  // Filter chips
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -129,8 +131,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         KhatmaFilterChip(
                           label: context.loc.filterAll,
                           icon: Icons.apps_rounded,
-                          isSelected:
-                              state.activeFilters.contains(UnitFilter.all),
+                          isSelected: state.activeFilters.contains(UnitFilter.all),
                           count: state.getFilterCount(UnitFilter.all),
                           onTap: () => controller.toggleFilter(UnitFilter.all),
                         ),
@@ -138,8 +139,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         KhatmaFilterChip(
                           label: context.loc.filterMyUnits,
                           icon: Icons.person_rounded,
-                          isSelected:
-                              state.activeFilters.contains(UnitFilter.mine),
+                          isSelected: state.activeFilters.contains(UnitFilter.mine),
                           count: state.getFilterCount(UnitFilter.mine),
                           isEnabled: state.getFilterCount(UnitFilter.mine) > 0,
                           onTap: () => controller.toggleFilter(UnitFilter.mine),
@@ -148,32 +148,40 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         KhatmaFilterChip(
                           label: context.loc.filterAvailable,
                           icon: Icons.check_circle_outline_rounded,
-                          isSelected:
-                              state.activeFilters.contains(UnitFilter.free),
+                          isSelected: state.activeFilters.contains(UnitFilter.free),
                           count: state.getFilterCount(UnitFilter.free),
                           isEnabled: state.getFilterCount(UnitFilter.free) > 0,
                           onTap: () => controller.toggleFilter(UnitFilter.free),
                         ),
                         gapW8,
-                        KhatmaFilterChip(
-                          label: context.loc.filterReserved,
-                          icon: Icons.lock_clock_rounded,
-                          isSelected:
-                              state.activeFilters.contains(UnitFilter.reserved),
-                          count: state.getFilterCount(UnitFilter.reserved),
-                          isEnabled: state.getFilterCount(UnitFilter.reserved) > 0,
-                          onTap: () => controller.toggleFilter(UnitFilter.reserved),
-                        ),
-                        gapW8,
-                        KhatmaFilterChip(
-                          label: context.loc.filterCompleted,
-                          icon: Icons.done_all_rounded,
-                          isSelected:
-                              state.activeFilters.contains(UnitFilter.completed),
-                          count: state.getFilterCount(UnitFilter.completed),
-                          isEnabled: state.getFilterCount(UnitFilter.completed) > 0,
-                          onTap: () =>
-                              controller.toggleFilter(UnitFilter.completed),
+                        // Filter menu button
+                        IconButton.filledTonal(
+                          key: _filterButtonKey,
+                          onPressed: () => _showFilterMenu(context, state, controller),
+                          icon: Stack(
+                            children: [
+                              const Icon(Icons.tune_rounded, size: 20),
+                              if (state.activeFilters.contains(UnitFilter.reserved) ||
+                                  state.activeFilters.contains(UnitFilter.completed))
+                                Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: Container(
+                                    width: 8,
+                                    height: 8,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).colorScheme.primary,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                          tooltip: context.loc.filterUnits,
+                          style: IconButton.styleFrom(
+                            visualDensity: VisualDensity.compact,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
                         ),
                       ],
                     ),
@@ -496,6 +504,110 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         );
       }
     }
+  }
+
+  // Show filter menu popup under the button
+  void _showFilterMenu(
+    BuildContext context,
+    KhatmaDetailsState state,
+    KhatmaDetailsController controller,
+  ) {
+    // Get the button position
+    final RenderBox? renderBox =
+        _filterButtonKey.currentContext?.findRenderObject() as RenderBox?;
+
+    if (renderBox == null) return;
+
+    final buttonPosition = renderBox.localToGlobal(Offset.zero);
+    final buttonSize = renderBox.size;
+
+    showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        buttonPosition.dx,
+        buttonPosition.dy + buttonSize.height,
+        buttonPosition.dx + buttonSize.width,
+        0,
+      ),
+      items: [
+        // Reserved filter
+        PopupMenuItem<void>(
+          enabled: state.getFilterCount(UnitFilter.reserved) > 0,
+          onTap: () => controller.toggleFilter(UnitFilter.reserved),
+          child: StatefulBuilder(
+            builder: (context, setState) => Row(
+              children: [
+                Checkbox(
+                  value: state.activeFilters.contains(UnitFilter.reserved),
+                  onChanged: state.getFilterCount(UnitFilter.reserved) > 0
+                      ? (value) {
+                          controller.toggleFilter(UnitFilter.reserved);
+                        }
+                      : null,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        context.loc.filterReserved,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      Text(
+                        '${state.getFilterCount(UnitFilter.reserved)} ${context.loc.unitsLowercase}',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        // Completed filter
+        PopupMenuItem<void>(
+          enabled: state.getFilterCount(UnitFilter.completed) > 0,
+          onTap: () => controller.toggleFilter(UnitFilter.completed),
+          child: StatefulBuilder(
+            builder: (context, setState) => Row(
+              children: [
+                Checkbox(
+                  value: state.activeFilters.contains(UnitFilter.completed),
+                  onChanged: state.getFilterCount(UnitFilter.completed) > 0
+                      ? (value) {
+                          controller.toggleFilter(UnitFilter.completed);
+                        }
+                      : null,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        context.loc.filterCompleted,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      Text(
+                        '${state.getFilterCount(UnitFilter.completed)} ${context.loc.unitsLowercase}',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 

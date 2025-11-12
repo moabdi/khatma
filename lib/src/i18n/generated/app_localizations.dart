@@ -3568,6 +3568,24 @@ abstract class AppLocalizations {
   /// **'Completed'**
   String get filterCompleted;
 
+  /// No description provided for @filterUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter units'**
+  String get filterUnits;
+
+  /// No description provided for @resetFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get resetFilters;
+
+  /// No description provided for @unitsLowercase.
+  ///
+  /// In en, this message translates to:
+  /// **'units'**
+  String get unitsLowercase;
+
   /// No description provided for @noUnitsFound.
   ///
   /// In en, this message translates to:

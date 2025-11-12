@@ -2189,6 +2189,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get filterCompleted => 'Complétées';
 
   @override
+  String get filterUnits => 'Filtrer les unités';
+
+  @override
+  String get resetFilters => 'Réinitialiser';
+
+  @override
+  String get unitsLowercase => 'unités';
+
+  @override
   String get noUnitsFound => 'Aucune unité trouvée';
 
   @override

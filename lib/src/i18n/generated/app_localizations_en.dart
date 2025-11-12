@@ -2143,6 +2143,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get filterCompleted => 'Completed';
 
   @override
+  String get filterUnits => 'Filter units';
+
+  @override
+  String get resetFilters => 'Reset';
+
+  @override
+  String get unitsLowercase => 'units';
+
+  @override
   String get noUnitsFound => 'No units found';
 
   @override

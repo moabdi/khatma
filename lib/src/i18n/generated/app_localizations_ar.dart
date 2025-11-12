@@ -2125,6 +2125,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get filterCompleted => 'المكتملة';
 
   @override
+  String get filterUnits => 'تصفية الوحدات';
+
+  @override
+  String get resetFilters => 'إعادة تعيين';
+
+  @override
+  String get unitsLowercase => 'وحدات';
+
+  @override
   String get noUnitsFound => 'لم يتم العثور على وحدات';
 
   @override
