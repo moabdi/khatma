@@ -183,33 +183,16 @@ class UnitTile extends StatelessWidget {
         onLongPress: isOverdue && isUserAdminOrCreator
             ? () => _showAdminActions(context)
             : null,
-        leading: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            CircleAvatar(
-              backgroundColor: avatarColor,
-              radius: 20,
-              child: Text(
-                '${unit.unitNumber}',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: numberColor,
-                    ),
-              ),
-            ),
-            if (isOverdue && unit.status == UnitStatus.reservedByCurrentUser)
-              Positioned(
-                right: -2,
-                top: -2,
-                child: Text(
-                  '⚠️',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.orange.shade700,
-                  ),
+        leading: CircleAvatar(
+          backgroundColor: avatarColor,
+          radius: 20,
+          child: Text(
+            '${unit.unitNumber}',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: numberColor,
                 ),
-              ),
-          ],
+          ),
         ),
         title: Text(
           'Hizb ${unit.unitNumber}',
