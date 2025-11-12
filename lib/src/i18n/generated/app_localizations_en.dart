@@ -2181,6 +2181,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get freeUnits => 'Available';
 
   @override
+  String get reservedBy => 'Reserved by';
+
+  @override
+  String get completedBy => 'Completed by';
+
+  @override
+  String get reservedOn => 'Reserved on';
+
+  @override
+  String get completedOn => 'Completed on';
+
+  @override
   String get completionProgress => 'Progress';
 
   @override

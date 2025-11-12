@@ -984,6 +984,10 @@
 
   "totalUnits": "المجموع",
   "freeUnits": "المتاحة",
+  "reservedBy": "محجوز بواسطة",
+  "completedBy": "أكمله",
+  "reservedOn": "تاريخ الحجز",
+  "completedOn": "تاريخ الإكمال",
   "completionProgress": "التقدم",
   "members": "الأعضاء",
   "completed": "مكتمل",

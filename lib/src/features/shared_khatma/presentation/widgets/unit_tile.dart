@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
+import 'package:intl/intl.dart';
 
 class UnitTile extends StatelessWidget {
   final SharedKhatmaUnit unit;
@@ -31,20 +33,20 @@ class UnitTile extends StatelessWidget {
       case UnitStatus.reserved:
         tileColor = Theme.of(context).colorScheme.surfaceContainer;
         avatarColor =
-            Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.3);
+            Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3);
         numberColor = Theme.of(context).colorScheme.onSurfaceVariant;
         isClickable = false;
         trailingIcon = Icon(
           Icons.lock,
           color:
-              Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.7),
+              Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
           size: 20,
         );
         break;
 
       case UnitStatus.selected:
-        tileColor = context.colorScheme.primaryContainer.withOpacity(0.3);
-        avatarColor = context.colorScheme.primary.withOpacity(0.5);
+        tileColor = context.colorScheme.primaryContainer.withValues(alpha: 0.3);
+        avatarColor = context.colorScheme.primary.withValues(alpha: 0.5);
         numberColor = context.colorScheme.onPrimaryContainer;
         isClickable = true;
         trailingIcon = Icon(
@@ -71,7 +73,7 @@ class UnitTile extends StatelessWidget {
       default:
         // Use a safe, readable default for undefined statuses
         tileColor = Theme.of(context).colorScheme.surfaceContainer;
-        avatarColor = Theme.of(context).colorScheme.error.withOpacity(0.3);
+        avatarColor = Theme.of(context).colorScheme.error.withValues(alpha: 0.3);
         numberColor = Theme.of(context).colorScheme.onErrorContainer;
         trailingIcon = null;
         isClickable = true;
@@ -80,6 +82,49 @@ class UnitTile extends StatelessWidget {
 
     // Calculate start ayah for the hizb (example calculation)
     final startAyah = _getStartAyahForHizb(unit.unitNumber);
+
+    // Format dates
+    String? formattedDate;
+    String? dateLabel;
+    if (unit.status == UnitStatus.reserved || unit.status == UnitStatus.reservedByCurrentUser) {
+      if (unit.reservedDate != null) {
+        formattedDate = DateFormat('yyyy-MM-dd').format(unit.reservedDate!);
+        dateLabel = context.loc.reservedOn;
+      }
+    } else if (unit.status == UnitStatus.completed) {
+      if (unit.completedDate != null) {
+        formattedDate = DateFormat('yyyy-MM-dd').format(unit.completedDate!);
+        dateLabel = context.loc.completedOn;
+      }
+    }
+
+    // Build subtitle text
+    String subtitleText = 'Commence à: $startAyah';
+    if (formattedDate != null && dateLabel != null) {
+      subtitleText = '$dateLabel: $formattedDate';
+    }
+
+    // Build trailing widget with icon and member name
+    Widget? trailing = trailingIcon;
+    if (unit.reservedByUserName != null && (unit.status == UnitStatus.reserved ||
+        unit.status == UnitStatus.reservedByCurrentUser ||
+        unit.status == UnitStatus.completed)) {
+      trailing = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          if (trailingIcon != null) trailingIcon,
+          if (trailingIcon != null) const SizedBox(height: 2),
+          Text(
+            unit.reservedByUserName!,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
+              fontSize: 10,
+            ),
+          ),
+        ],
+      );
+    }
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 2),
@@ -105,12 +150,12 @@ class UnitTile extends StatelessWidget {
               ),
         ),
         subtitle: Text(
-          'Commence à: $startAyah',
+          subtitleText,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
         ),
-        trailing: trailingIcon,
+        trailing: trailing,
         dense: true,
       ),
     );

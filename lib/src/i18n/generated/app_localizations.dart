@@ -3628,6 +3628,30 @@ abstract class AppLocalizations {
   /// **'Available'**
   String get freeUnits;
 
+  /// No description provided for @reservedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved by'**
+  String get reservedBy;
+
+  /// No description provided for @completedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed by'**
+  String get completedBy;
+
+  /// No description provided for @reservedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved on'**
+  String get reservedOn;
+
+  /// No description provided for @completedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed on'**
+  String get completedOn;
+
   /// No description provided for @completionProgress.
   ///
   /// In en, this message translates to:

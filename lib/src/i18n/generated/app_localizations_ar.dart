@@ -2163,6 +2163,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get freeUnits => 'المتاحة';
 
   @override
+  String get reservedBy => 'محجوز بواسطة';
+
+  @override
+  String get completedBy => 'أكمله';
+
+  @override
+  String get reservedOn => 'تاريخ الحجز';
+
+  @override
+  String get completedOn => 'تاريخ الإكمال';
+
+  @override
   String get completionProgress => 'التقدم';
 
   @override

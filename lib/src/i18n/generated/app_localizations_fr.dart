@@ -2228,6 +2228,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get freeUnits => 'Libres';
 
   @override
+  String get reservedBy => 'Réservé par';
+
+  @override
+  String get completedBy => 'Complété par';
+
+  @override
+  String get reservedOn => 'Réservé le';
+
+  @override
+  String get completedOn => 'Complété le';
+
+  @override
   String get completionProgress => 'Progression';
 
   @override
