@@ -1,6 +1,6 @@
 // lib/src/features/shared_khatma/domain/shared_khatma.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
 
 part 'shared_khatma.freezed.dart';
 part 'shared_khatma.g.dart';

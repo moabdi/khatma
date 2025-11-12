@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/shared/domain/shared_khatma.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:intl/intl.dart';

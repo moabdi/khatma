@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
-import 'package:khatma/src/features/shared_khatma/presentation/khatma_details_page.dart';
+import 'package:khatma/src/features/khatma/shared/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/shared/presentation/khatma_details_page.dart';
 
 class KhatmaDetailsState {
   final SharedKhatma khatma;

@@ -1,4 +1,4 @@
-import 'package:khatma/src/features/shared_khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/shared/domain/shared_khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'shared_khatma_provider.g.dart';
