@@ -984,5 +984,9 @@
 
   "totalUnits": "Total",
   "freeUnits": "Available",
-  "completionProgress": "Progress"
+  "completionProgress": "Progress",
+  "members": "Members",
+  "completed": "Completed",
+  "reserved": "Reserved",
+  "reservedAndCompleted": "Reserved + Completed"
 }

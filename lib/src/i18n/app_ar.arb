@@ -984,5 +984,9 @@
 
   "totalUnits": "المجموع",
   "freeUnits": "المتاحة",
-  "completionProgress": "التقدم"
+  "completionProgress": "التقدم",
+  "members": "الأعضاء",
+  "completed": "مكتمل",
+  "reserved": "محجوز",
+  "reservedAndCompleted": "المحجوز + المكتمل"
 }

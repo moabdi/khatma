@@ -2164,4 +2164,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get completionProgress => 'التقدم';
+
+  @override
+  String get members => 'الأعضاء';
+
+  @override
+  String get reserved => 'محجوز';
+
+  @override
+  String get reservedAndCompleted => 'المحجوز + المكتمل';
 }

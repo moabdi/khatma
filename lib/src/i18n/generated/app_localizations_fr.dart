@@ -1386,7 +1386,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get loadingKhatmaList => 'Chargement de la liste des khatma';
 
   @override
-  String get completed => 'Terminé';
+  String get completed => 'Complété';
 
   @override
   String get completedParts => 'Parties terminées';
@@ -2229,4 +2229,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get completionProgress => 'Progression';
+
+  @override
+  String get members => 'Membres';
+
+  @override
+  String get reserved => 'Réservé';
+
+  @override
+  String get reservedAndCompleted => 'Réservé + Complété';
 }

@@ -3633,6 +3633,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Progress'**
   String get completionProgress;
+
+  /// No description provided for @members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get members;
+
+  /// No description provided for @reserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved'**
+  String get reserved;
+
+  /// No description provided for @reservedAndCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved + Completed'**
+  String get reservedAndCompleted;
 }
 
 class _AppLocalizationsDelegate

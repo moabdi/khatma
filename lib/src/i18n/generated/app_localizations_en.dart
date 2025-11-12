@@ -2182,4 +2182,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get completionProgress => 'Progress';
+
+  @override
+  String get members => 'Members';
+
+  @override
+  String get reserved => 'Reserved';
+
+  @override
+  String get reservedAndCompleted => 'Reserved + Completed';
 }

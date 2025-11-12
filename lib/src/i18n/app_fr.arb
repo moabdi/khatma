@@ -987,5 +987,6 @@
   "completionProgress": "Progression",
   "members": "Membres",
   "completed": "Complété",
-  "reserved": "Réservé"
+  "reserved": "Réservé",
+  "reservedAndCompleted": "Réservé + Complété"
 }

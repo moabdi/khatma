@@ -45,30 +45,52 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+
+                  // Description in ExpansionTile
+                  if (state.khatma.description.isNotEmpty)
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        dividerColor: Colors.transparent,
+                      ),
+                      child: ExpansionTile(
+                        childrenPadding:
+                            const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                        tilePadding: const EdgeInsets.all(0),
+                        title: Text(context.loc.khatmaDescription),
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(state.khatma.description),
+                          ),
+                        ],
+                      ),
+                    ),
+                  gapH12,
             // Statistics Cards
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // Total Units Card
-                _StatCard(
-                  icon: Icons.grid_view_rounded,
-                  label: context.loc.totalUnits,
-                  value: state.khatma.totalUnits.toString(),
+                // Members Progress Card with taken units percentage
+                _ProgressStatCardWithCount(
+                  icon: Icons.people_rounded,
+                  label: context.loc.members,
+                  count: state.khatma.membersCount.toString(),
+                  percent: (state.khatma.reservedUnits.length +
+                           state.khatma.units.where((u) => u.isCompleted).length) /
+                           state.khatma.totalUnits,
                   color: context.colorScheme.primary,
                 ),
-                // Free Units Card
-                _StatCard(
-                  icon: Icons.check_circle_outline_rounded,
+                // Free Units Progress Card with circular progress
+                _ProgressStatCard(
                   label: context.loc.freeUnits,
-                  value: state.khatma.unitsAvailable.toString(),
-                  color: context.colorScheme.tertiary,
-                ),
-                // Completion Progress Card
-                _StatCard(
-                  icon: Icons.trending_up_rounded,
-                  label: context.loc.completionProgress,
-                  value: '${(state.khatma.completionPercent * 100).toStringAsFixed(0)}%',
+                  percent: state.khatma.unitsAvailable / state.khatma.totalUnits,
                   color: context.colorScheme.secondary,
+                ),
+                // Completion Progress Card with circular progress
+                _ProgressStatCard(
+                  label: context.loc.completed,
+                  percent: state.khatma.completionPercent,
+                  color: context.colorScheme.tertiary,
                 ),
               ],
             ),
@@ -94,26 +116,6 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Description in ExpansionTile
-                  if (state.khatma.description.isNotEmpty)
-                    Theme(
-                      data: Theme.of(context).copyWith(
-                        dividerColor: Colors.transparent,
-                      ),
-                      child: ExpansionTile(
-                        childrenPadding:
-                            const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                        tilePadding: const EdgeInsets.all(0),
-                        title: Text(context.loc.khatmaDescription),
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(state.khatma.description),
-                          ),
-                        ],
-                      ),
-                    ),
-                  gapH12,
                   // Title
                   Text(context.loc.khatmaUnitsWithType(
                       state.khatma.unit.displayName)),
@@ -405,17 +407,19 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
   }
 }
 
-/// Stat card widget to display statistics as circular badges
-class _StatCard extends StatelessWidget {
+/// Progress stat card with count, icon and circular progress indicator
+class _ProgressStatCardWithCount extends StatelessWidget {
   final IconData icon;
   final String label;
-  final String value;
+  final String count;
+  final double percent;
   final Color color;
 
-  const _StatCard({
+  const _ProgressStatCardWithCount({
     required this.icon,
     required this.label,
-    required this.value,
+    required this.count,
+    required this.percent,
     required this.color,
   });
 
@@ -424,29 +428,120 @@ class _StatCard extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Circular badge
-        Container(
+        // Circular progress indicator with icon and count
+        SizedBox(
           width: 48,
           height: 48,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: color.withValues(alpha: 0.15),
-            border: Border.all(
-              color: color.withValues(alpha: 0.4),
-              width: 1.5,
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              Icon(
-                icon,
-                color: color,
-                size: 16,
+              // Background circle
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: color.withValues(alpha: 0.15),
+                ),
               ),
-              const SizedBox(height: 1),
+              // Progress circle
+              SizedBox(
+                width: 48,
+                height: 48,
+                child: CircularProgressIndicator(
+                  value: percent.clamp(0.0, 1.0),
+                  strokeWidth: 3,
+                  backgroundColor: Colors.transparent,
+                  valueColor: AlwaysStoppedAnimation<Color>(color),
+                  strokeCap: StrokeCap.round,
+                ),
+              ),
+              // Icon and count
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    icon,
+                    color: color,
+                    size: 14,
+                  ),
+                  Text(
+                    count,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: color,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        gapH4,
+        // Label
+        Text(
+          label,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                fontWeight: FontWeight.w500,
+                fontSize: 11,
+              ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+}
+
+/// Progress stat card widget with circular progress indicator
+class _ProgressStatCard extends StatelessWidget {
+  final String label;
+  final double percent;
+  final Color color;
+
+  const _ProgressStatCard({
+    required this.label,
+    required this.percent,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Circular progress indicator
+        SizedBox(
+          width: 48,
+          height: 48,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // Background circle
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: color.withValues(alpha: 0.15),
+                ),
+              ),
+              // Progress circle
+              SizedBox(
+                width: 48,
+                height: 48,
+                child: CircularProgressIndicator(
+                  value: percent.clamp(0.0, 1.0),
+                  strokeWidth: 3,
+                  backgroundColor: Colors.transparent,
+                  valueColor: AlwaysStoppedAnimation<Color>(color),
+                  strokeCap: StrokeCap.round,
+                ),
+              ),
+              // Percentage text
               Text(
-                value,
+                '${(percent * 100).toStringAsFixed(0)}%',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: color,
                       fontWeight: FontWeight.bold,
