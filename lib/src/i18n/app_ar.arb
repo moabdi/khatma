@@ -988,6 +988,20 @@
   "completedBy": "أكمله",
   "reservedOn": "تاريخ الحجز",
   "completedOn": "تاريخ الإكمال",
+  "reservationOverdue": "الحجز متأخر",
+  "daysOverdue": "متأخر {days} أيام",
+  "@daysOverdue": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "sendReminder": "إرسال تذكير",
+  "freeUnit": "تحرير الوحدة",
+  "confirmFreeUnit": "هل أنت متأكد من أنك تريد تحرير هذه الوحدة؟",
+  "unitFreedSuccess": "تم تحرير الوحدة بنجاح",
+  "reminderSentSuccess": "تم إرسال التذكير بنجاح",
   "completionProgress": "التقدم",
   "members": "الأعضاء",
   "completed": "مكتمل",

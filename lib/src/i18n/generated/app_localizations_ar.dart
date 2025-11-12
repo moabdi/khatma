@@ -2175,6 +2175,29 @@ class AppLocalizationsAr extends AppLocalizations {
   String get completedOn => 'تاريخ الإكمال';
 
   @override
+  String get reservationOverdue => 'الحجز متأخر';
+
+  @override
+  String daysOverdue(int days) {
+    return 'متأخر $days أيام';
+  }
+
+  @override
+  String get sendReminder => 'إرسال تذكير';
+
+  @override
+  String get freeUnit => 'تحرير الوحدة';
+
+  @override
+  String get confirmFreeUnit => 'هل أنت متأكد من أنك تريد تحرير هذه الوحدة؟';
+
+  @override
+  String get unitFreedSuccess => 'تم تحرير الوحدة بنجاح';
+
+  @override
+  String get reminderSentSuccess => 'تم إرسال التذكير بنجاح';
+
+  @override
   String get completionProgress => 'التقدم';
 
   @override

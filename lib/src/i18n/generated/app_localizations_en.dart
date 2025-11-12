@@ -2193,6 +2193,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get completedOn => 'Completed on';
 
   @override
+  String get reservationOverdue => 'Reservation overdue';
+
+  @override
+  String daysOverdue(int days) {
+    return '$days days overdue';
+  }
+
+  @override
+  String get sendReminder => 'Send reminder';
+
+  @override
+  String get freeUnit => 'Free unit';
+
+  @override
+  String get confirmFreeUnit => 'Are you sure you want to free this unit?';
+
+  @override
+  String get unitFreedSuccess => 'Unit freed successfully';
+
+  @override
+  String get reminderSentSuccess => 'Reminder sent successfully';
+
+  @override
   String get completionProgress => 'Progress';
 
   @override

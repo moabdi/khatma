@@ -2240,6 +2240,29 @@ class AppLocalizationsFr extends AppLocalizations {
   String get completedOn => 'Complété le';
 
   @override
+  String get reservationOverdue => 'Réservation en retard';
+
+  @override
+  String daysOverdue(int days) {
+    return '$days jours de retard';
+  }
+
+  @override
+  String get sendReminder => 'Envoyer un rappel';
+
+  @override
+  String get freeUnit => 'Libérer l\'unité';
+
+  @override
+  String get confirmFreeUnit => 'Êtes-vous sûr de vouloir libérer cette unité?';
+
+  @override
+  String get unitFreedSuccess => 'L\'unité a été libérée avec succès';
+
+  @override
+  String get reminderSentSuccess => 'Rappel envoyé avec succès';
+
+  @override
   String get completionProgress => 'Progression';
 
   @override

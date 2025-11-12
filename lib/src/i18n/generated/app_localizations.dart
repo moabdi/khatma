@@ -3652,6 +3652,48 @@ abstract class AppLocalizations {
   /// **'Completed on'**
   String get completedOn;
 
+  /// No description provided for @reservationOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Reservation overdue'**
+  String get reservationOverdue;
+
+  /// No description provided for @daysOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days overdue'**
+  String daysOverdue(int days);
+
+  /// No description provided for @sendReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reminder'**
+  String get sendReminder;
+
+  /// No description provided for @freeUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Free unit'**
+  String get freeUnit;
+
+  /// No description provided for @confirmFreeUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to free this unit?'**
+  String get confirmFreeUnit;
+
+  /// No description provided for @unitFreedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit freed successfully'**
+  String get unitFreedSuccess;
+
+  /// No description provided for @reminderSentSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder sent successfully'**
+  String get reminderSentSuccess;
+
   /// No description provided for @completionProgress.
   ///
   /// In en, this message translates to:

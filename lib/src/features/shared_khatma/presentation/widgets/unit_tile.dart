@@ -7,11 +7,19 @@ import 'package:intl/intl.dart';
 class UnitTile extends StatelessWidget {
   final SharedKhatmaUnit unit;
   final VoidCallback onTap;
+  final int reservationWarningDays;
+  final bool isUserAdminOrCreator;
+  final VoidCallback? onSendReminder;
+  final VoidCallback? onFreeUnit;
 
   const UnitTile({
     super.key,
     required this.unit,
     required this.onTap,
+    this.reservationWarningDays = 7,
+    this.isUserAdminOrCreator = false,
+    this.onSendReminder,
+    this.onFreeUnit,
   });
 
   @override
@@ -83,17 +91,25 @@ class UnitTile extends StatelessWidget {
     // Calculate start ayah for the hizb (example calculation)
     final startAyah = _getStartAyahForHizb(unit.unitNumber);
 
+    // Check if unit is overdue (warning needed)
+    final daysSinceReserved = unit.reservedDate != null
+        ? DateTime.now().difference(unit.reservedDate!).inDays
+        : 0;
+    final isOverdue = (unit.status == UnitStatus.reserved ||
+            unit.status == UnitStatus.reservedByCurrentUser) &&
+        daysSinceReserved >= reservationWarningDays;
+
     // Format dates
     String? formattedDate;
     String? dateLabel;
     if (unit.status == UnitStatus.reserved || unit.status == UnitStatus.reservedByCurrentUser) {
       if (unit.reservedDate != null) {
-        formattedDate = DateFormat('yyyy-MM-dd').format(unit.reservedDate!);
+        formattedDate = DateFormat('dd/MM/yyyy').format(unit.reservedDate!);
         dateLabel = context.loc.reservedOn;
       }
     } else if (unit.status == UnitStatus.completed) {
       if (unit.completedDate != null) {
-        formattedDate = DateFormat('yyyy-MM-dd').format(unit.completedDate!);
+        formattedDate = DateFormat('dd/MM/yyyy').format(unit.completedDate!);
         dateLabel = context.loc.completedOn;
       }
     }
@@ -102,7 +118,39 @@ class UnitTile extends StatelessWidget {
     String subtitleText = 'Commence à: $startAyah';
     if (formattedDate != null && dateLabel != null) {
       subtitleText = '$dateLabel: $formattedDate';
+      // Add overdue warning to subtitle
+      if (isOverdue) {
+        subtitleText += ' • ${context.loc.daysOverdue(daysSinceReserved)}';
+      }
     }
+
+    // Build subtitle widget with optional warning icon
+    Widget subtitleWidget = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (isOverdue) ...[
+          Text(
+            '⚠️',
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.orange.shade700,
+            ),
+          ),
+          const SizedBox(width: 6),
+        ],
+        Flexible(
+          child: Text(
+            subtitleText,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: isOverdue
+                  ? Colors.orange.shade700
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
+              fontWeight: isOverdue ? FontWeight.w600 : null,
+            ),
+          ),
+        ),
+      ],
+    );
 
     // Build trailing widget with icon and member name
     Widget? trailing = trailingIcon;
@@ -132,16 +180,36 @@ class UnitTile extends StatelessWidget {
       elevation: unit.status == UnitStatus.reservedByCurrentUser ? 2 : 1,
       child: ListTile(
         onTap: isClickable ? onTap : null,
-        leading: CircleAvatar(
-          backgroundColor: avatarColor,
-          radius: 20,
-          child: Text(
-            '${unit.unitNumber}',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: numberColor,
+        onLongPress: isOverdue && isUserAdminOrCreator
+            ? () => _showAdminActions(context)
+            : null,
+        leading: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            CircleAvatar(
+              backgroundColor: avatarColor,
+              radius: 20,
+              child: Text(
+                '${unit.unitNumber}',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: numberColor,
+                    ),
+              ),
+            ),
+            if (isOverdue && unit.status == UnitStatus.reservedByCurrentUser)
+              Positioned(
+                right: -2,
+                top: -2,
+                child: Text(
+                  '⚠️',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.orange.shade700,
+                  ),
                 ),
-          ),
+              ),
+          ],
         ),
         title: Text(
           'Hizb ${unit.unitNumber}',
@@ -149,15 +217,87 @@ class UnitTile extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
         ),
-        subtitle: Text(
-          subtitleText,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-        ),
+        subtitle: subtitleWidget,
         trailing: trailing,
         dense: true,
       ),
+    );
+  }
+
+  // Show admin actions for overdue units
+  void _showAdminActions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.notifications_outlined),
+                title: Text(context.loc.sendReminder),
+                subtitle: Text(
+                  '${context.loc.reservedBy}: ${unit.reservedByUserName ?? "Unknown"}',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  if (onSendReminder != null) {
+                    onSendReminder!();
+                  }
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.lock_open, color: Colors.orange.shade700),
+                title: Text(
+                  context.loc.freeUnit,
+                  style: TextStyle(color: Colors.orange.shade700),
+                ),
+                subtitle: Text(
+                  context.loc.confirmFreeUnit,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  _confirmFreeUnit(context);
+                },
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // Confirm before freeing the unit
+  void _confirmFreeUnit(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(context.loc.freeUnit),
+          content: Text(context.loc.confirmFreeUnit),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(context.loc.cancel),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                if (onFreeUnit != null) {
+                  onFreeUnit!();
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange.shade700,
+              ),
+              child: Text(context.loc.freeUnit),
+            ),
+          ],
+        );
+      },
     );
   }
 

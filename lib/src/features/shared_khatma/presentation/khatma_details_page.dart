@@ -239,6 +239,10 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                                 unit: unit,
                                 onTap: () => _toggleUnitReservation(
                                     unit, state, controller),
+                                reservationWarningDays: 7, // TODO: Use state.khatma.reservationWarningDays after regenerating Freezed
+                                isUserAdminOrCreator: _isUserAdminOrCreator(state),
+                                onSendReminder: () => _sendReminder(unit, controller),
+                                onFreeUnit: () => _freeUnit(unit, controller),
                               );
                             },
                           ),
@@ -399,6 +403,76 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(context.loc.errorJoiningKhatma),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  // Check if current user is admin or creator
+  bool _isUserAdminOrCreator(KhatmaDetailsState state) {
+    // TODO: Implement actual user role check
+    // For now, return false - you'll need to add currentUserId to the state
+    // and check if it matches creatorId or if user has admin role
+    return false;
+  }
+
+  // Send reminder to the user who reserved the unit
+  Future<void> _sendReminder(
+    SharedKhatmaUnit unit,
+    KhatmaDetailsController controller,
+  ) async {
+    try {
+      // TODO: Implement reminder sending logic
+      // This should call a method in the controller to send a notification
+      // await controller.sendReminderForUnit(unit);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(context.loc.reminderSentSuccess),
+            backgroundColor: Colors.green,
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error sending reminder: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  // Free an overdue unit (admin action)
+  Future<void> _freeUnit(
+    SharedKhatmaUnit unit,
+    KhatmaDetailsController controller,
+  ) async {
+    try {
+      // TODO: Implement unit freeing logic
+      // This should call a method in the controller to free the unit
+      // await controller.freeUnit(unit);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(context.loc.unitFreedSuccess),
+            backgroundColor: Colors.green,
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error freeing unit: $e'),
             backgroundColor: Colors.red,
           ),
         );

@@ -988,6 +988,20 @@
   "completedBy": "Complété par",
   "reservedOn": "Réservé le",
   "completedOn": "Complété le",
+  "reservationOverdue": "Réservation en retard",
+  "daysOverdue": "{days} jours de retard",
+  "@daysOverdue": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "sendReminder": "Envoyer un rappel",
+  "freeUnit": "Libérer l'unité",
+  "confirmFreeUnit": "Êtes-vous sûr de vouloir libérer cette unité?",
+  "unitFreedSuccess": "L'unité a été libérée avec succès",
+  "reminderSentSuccess": "Rappel envoyé avec succès",
   "completionProgress": "Progression",
   "members": "Membres",
   "completed": "Complété",
