@@ -3550,6 +3550,12 @@ abstract class AppLocalizations {
   /// **'My units'**
   String get filterMyUnits;
 
+  /// No description provided for @filterReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved'**
+  String get filterReserved;
+
   /// No description provided for @filterAvailable.
   ///
   /// In en, this message translates to:

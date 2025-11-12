@@ -56,6 +56,8 @@ class KhatmaDetailsState {
           return true;
         case UnitFilter.mine:
           if (unit.isReservedByCurrentUser) return true;
+        case UnitFilter.reserved:
+          if (unit.isReserved) return true;
         case UnitFilter.free:
           if (unit.isFree || unit.isSelected) return true;
         case UnitFilter.completed:
@@ -64,6 +66,22 @@ class KhatmaDetailsState {
     }
 
     return false;
+  }
+
+  // Get count of units for each filter
+  int getFilterCount(UnitFilter filter) {
+    switch (filter) {
+      case UnitFilter.all:
+        return khatma.totalUnits;
+      case UnitFilter.mine:
+        return khatma.units.where((u) => u.isReservedByCurrentUser).length;
+      case UnitFilter.reserved:
+        return khatma.units.where((u) => u.isReserved).length;
+      case UnitFilter.free:
+        return khatma.units.where((u) => u.isFree || u.isSelected).length;
+      case UnitFilter.completed:
+        return khatma.units.where((u) => u.isCompleted).length;
+    }
   }
 }
 

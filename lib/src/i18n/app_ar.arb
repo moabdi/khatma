@@ -939,6 +939,7 @@
   },
   "filterAll": "الكل",
   "filterMyUnits": "وحداتي",
+  "filterReserved": "المحجوزة",
   "filterAvailable": "المتاحة",
   "filterCompleted": "المكتملة",
   "noUnitsFound": "لم يتم العثور على وحدات",

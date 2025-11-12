@@ -939,6 +939,7 @@
   },
   "filterAll": "Tout",
   "filterMyUnits": "Mes unités",
+  "filterReserved": "Réservées",
   "filterAvailable": "Disponibles",
   "filterCompleted": "Complétées",
   "noUnitsFound": "Aucune unité trouvée",

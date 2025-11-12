@@ -2116,6 +2116,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get filterMyUnits => 'وحداتي';
 
   @override
+  String get filterReserved => 'المحجوزة';
+
+  @override
   String get filterAvailable => 'المتاحة';
 
   @override

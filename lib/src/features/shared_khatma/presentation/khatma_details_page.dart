@@ -12,6 +12,7 @@ import 'package:khatma_ui/constants/app_sizes.dart';
 enum UnitFilter {
   all,
   mine,
+  reserved,
   free,
   completed,
 }
@@ -130,6 +131,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                           icon: Icons.apps_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.all),
+                          count: state.getFilterCount(UnitFilter.all),
                           onTap: () => controller.toggleFilter(UnitFilter.all),
                         ),
                         gapW8,
@@ -138,6 +140,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                           icon: Icons.person_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.mine),
+                          count: state.getFilterCount(UnitFilter.mine),
+                          isEnabled: state.getFilterCount(UnitFilter.mine) > 0,
                           onTap: () => controller.toggleFilter(UnitFilter.mine),
                         ),
                         gapW8,
@@ -146,7 +150,19 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                           icon: Icons.check_circle_outline_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.free),
+                          count: state.getFilterCount(UnitFilter.free),
+                          isEnabled: state.getFilterCount(UnitFilter.free) > 0,
                           onTap: () => controller.toggleFilter(UnitFilter.free),
+                        ),
+                        gapW8,
+                        KhatmaFilterChip(
+                          label: context.loc.filterReserved,
+                          icon: Icons.lock_clock_rounded,
+                          isSelected:
+                              state.activeFilters.contains(UnitFilter.reserved),
+                          count: state.getFilterCount(UnitFilter.reserved),
+                          isEnabled: state.getFilterCount(UnitFilter.reserved) > 0,
+                          onTap: () => controller.toggleFilter(UnitFilter.reserved),
                         ),
                         gapW8,
                         KhatmaFilterChip(
@@ -154,6 +170,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                           icon: Icons.done_all_rounded,
                           isSelected:
                               state.activeFilters.contains(UnitFilter.completed),
+                          count: state.getFilterCount(UnitFilter.completed),
+                          isEnabled: state.getFilterCount(UnitFilter.completed) > 0,
                           onTap: () =>
                               controller.toggleFilter(UnitFilter.completed),
                         ),

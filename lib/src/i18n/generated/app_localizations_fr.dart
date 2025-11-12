@@ -2180,6 +2180,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get filterMyUnits => 'Mes unités';
 
   @override
+  String get filterReserved => 'Réservées';
+
+  @override
   String get filterAvailable => 'Disponibles';
 
   @override

@@ -2134,6 +2134,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get filterMyUnits => 'My units';
 
   @override
+  String get filterReserved => 'Reserved';
+
+  @override
   String get filterAvailable => 'Available';
 
   @override

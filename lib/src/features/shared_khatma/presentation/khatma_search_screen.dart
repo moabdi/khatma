@@ -154,99 +154,159 @@ class _KhatmaSearchItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final completionPercent = khatma.completionPercent;
+
     return Card(
       margin: const EdgeInsets.only(bottom: 12.0),
-      elevation: 2,
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(16.0),
-        leading: Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            color: context.colorScheme.primary.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: Icon(
-            Icons.menu_book,
-            color: context.colorScheme.primary,
-            size: 28,
-          ),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outlineVariant.withValues(alpha: 0.5),
+          width: 1,
         ),
-        title: Text(
-          khatma.name,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            gapH4,
-            Text(
-              khatma.description,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header Row - Icon with circular progress and Name/Creator
+              Row(
+                children: [
+                  // Icon with circular progress (ready for custom color/icon)
+                  SizedBox(
+                    width: 48,
+                    height: 48,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Circular progress indicator
+                        SizedBox(
+                          width: 48,
+                          height: 48,
+                          child: CircularProgressIndicator(
+                            value: completionPercent.clamp(0.0, 1.0),
+                            strokeWidth: 3,
+                            // TODO: Use khatma.color when available
+                            backgroundColor: context.colorScheme.primary.withValues(alpha: 0.15),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              context.colorScheme.primary,
+                            ),
+                            strokeCap: StrokeCap.round,
+                          ),
+                        ),
+                        // Icon (ready for custom icon per khatma)
+                        Icon(
+                          // TODO: Use khatma.icon when available
+                          Icons.menu_book_rounded,
+                          color: context.colorScheme.primary,
+                          size: 22,
+                        ),
+                      ],
+                    ),
                   ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            gapH8,
-            Wrap(
-              spacing: 8,
-              children: [
-                _InfoChip(
-                  icon: Icons.group,
-                  label: '${khatma.membersCount}',
-                  context: context,
-                ),
-                _InfoChip(
-                  icon: Icons.book,
-                  label: '${khatma.unitsAvailable}/${khatma.totalUnits}',
-                  context: context,
+                  gapW12,
+                  // Name and Creator
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          khatma.name,
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        if (khatma.creatorName != null) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            khatma.creatorName!,
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                  fontSize: 11,
+                                ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              // Description
+              if (khatma.description.isNotEmpty) ...[
+                gapH8,
+                Text(
+                  khatma.description,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        height: 1.3,
+                      ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
-            ),
-          ],
-        ),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: onTap,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: context.colorScheme.primary,
-                foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                minimumSize: const Size(0, 36),
+
+              gapH12,
+
+              // Bottom Row - Stats chips and Join button
+              Row(
+                children: [
+                  _CompactChip(
+                    icon: Icons.people_rounded,
+                    label: '${khatma.membersCount}',
+                  ),
+                  gapW8,
+                  _CompactChip(
+                    icon: Icons.check_circle_outline_rounded,
+                    label: '${khatma.unitsAvailable} libres',
+                  ),
+                  const Spacer(),
+                  // Join Button
+                  FilledButton.tonal(
+                    onPressed: onTap,
+                    style: FilledButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      minimumSize: const Size(0, 32),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      context.loc.khatma_join_button,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              child: Text(
-                context.loc.khatma_join_button,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
-        onTap: onTap,
       ),
     );
   }
 }
 
-class _InfoChip extends StatelessWidget {
+class _CompactChip extends StatelessWidget {
   final IconData icon;
   final String label;
-  final BuildContext context;
 
-  const _InfoChip({
+  const _CompactChip({
     required this.icon,
     required this.label,
-    required this.context,
   });
 
   @override
@@ -254,8 +314,8 @@ class _InfoChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
-        borderRadius: BorderRadius.circular(12),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -263,14 +323,15 @@ class _InfoChip extends StatelessWidget {
           Icon(
             icon,
             size: 14,
-            color: Theme.of(context).colorScheme.onSecondaryContainer,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
           const SizedBox(width: 4),
           Text(
             label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w500,
+                  fontSize: 11,
                 ),
           ),
         ],
