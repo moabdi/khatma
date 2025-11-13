@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:web/web.dart' as html;
 
-import 'package:khatma/src/features/khatma/personal/data/local/base_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/local/base_khatma_repository.dart';
 
 class LocalStorageBox implements StorageBox {
   final String boxName;

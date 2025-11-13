@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatma_sync_manager.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/personal/data/local/local_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/khatma_ui.dart';
 

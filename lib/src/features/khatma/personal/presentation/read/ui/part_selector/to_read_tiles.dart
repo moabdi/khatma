@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/widgets/async_value_widget.dart';
 import 'package:khatma_ui/components/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/personal/application/part_provider.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/personal/domain/part.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/part.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/ui/part_selector/part_tile.dart';
 import 'package:khatma/src/routing/app_router.dart';
 

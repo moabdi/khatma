@@ -1,4 +1,4 @@
-import 'package:khatma/src/features/khatma/personal/data/local/base_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/local/base_khatma_repository.dart';
 
 const message = 'LocalStorage not supported on this platform';
 

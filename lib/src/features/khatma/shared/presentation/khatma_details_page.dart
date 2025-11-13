@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/shared/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/logic/khatma_details_controller.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/widgets/unit_tile.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/widgets/filter_chip.dart';

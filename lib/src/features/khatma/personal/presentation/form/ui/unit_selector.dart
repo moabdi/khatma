@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma_ui/components/avatar.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
 class UnitSelector extends StatelessWidget {
   const UnitSelector({super.key, required this.unit, required this.onSelect});

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/shared/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
 import 'package:khatma/src/features/khatma/shared/application/shared_khatma_provider.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/i18n/generated/app_localizations.dart';

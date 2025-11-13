@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/settings/application/setting_provider.dart';
 import 'package:khatma/src/utils/delay.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:khatma/src/features/khatma/personal/domain/part.dart';
+import 'package:khatma/src/features/khatma/domain/part.dart';
 part 'part_provider.g.dart';
 
 final Map unitPathMap = {

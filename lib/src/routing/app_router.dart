@@ -4,7 +4,7 @@ import 'package:khatma/src/features/khatma/personal/personal_khatma_routes.dart'
 import 'package:khatma/src/features/onboarding/onboarding_screen.dart';
 import 'package:khatma/src/features/profil/profile_routes.dart';
 import 'package:khatma/src/features/quran/quran_routes.dart';
-import 'package:khatma/src/features/khatma/shared/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/khatma_details_page.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/khatma_search_screen.dart';
 import 'package:khatma/src/features/splash/splash.dart';

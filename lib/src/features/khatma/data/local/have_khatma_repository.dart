@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:hive/hive.dart';
-import 'package:khatma/src/features/khatma/personal/data/local/base_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/local/base_khatma_repository.dart';
 
 class HiveBoxWrapper implements StorageBox {
   final Box<String> _box;

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/shared/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/khatma_details_page.dart';
 
 class KhatmaDetailsState {

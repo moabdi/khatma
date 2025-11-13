@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/ui/khatma_images.dart';
 
 class KhatmaAvatar extends StatelessWidget {

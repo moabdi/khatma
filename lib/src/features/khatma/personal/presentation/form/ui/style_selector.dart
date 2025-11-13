@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-import 'package:khatma/src/features/khatma/personal/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/ui/khatma_color_picker.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/ui/khatma_icon_picker.dart';
 import 'package:khatma/src/utils/common.dart';
