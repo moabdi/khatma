@@ -77,7 +77,7 @@ class KhatmaNotifier extends _$KhatmaNotifier {
     state = state.copyWith(status: AppStatus.saving);
 
     try {
-      if (khatma.id == null && khatma.share && !canCreateNew()) {
+      if (khatma.id == null && !canCreateNew()) {
         state = state.copyWith(
           status: AppStatus.error,
           error: AppErrorCode.limitKhatmaMaxReached,
@@ -87,11 +87,11 @@ class KhatmaNotifier extends _$KhatmaNotifier {
 
       final khatmaToSave = khatma.copyWith(
         lastUpdated: DateTime.now(),
-        needsSync: true, // Reset needsSync on save
+        needsSync: true,
       );
 
       final localKhatma = await _localRepo.save(khatmaToSave);
-      final _remoteKhatma = await _syncManager.forcePushToRemote();
+      await _syncManager.forcePushToRemote();
 
       await refreshFromLocal();
       state = state.copyWith(

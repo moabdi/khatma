@@ -8,7 +8,6 @@ import 'package:khatma/src/features/khatma/personal/application/khatmat_provider
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/ui/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/form/ui/repeat_enabler_tile.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/ui/share_enabler_tile.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -134,8 +133,6 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             _buildSplitUnitSelector(context, khatma),
             gapH16,
             _buildRepeatToggle(khatma),
-            gapH16,
-            _buildShareToggle(khatma),
             gapH48,
             ElevatedButton(
               child: Text(AppLocalizations.of(context).save),
@@ -239,17 +236,6 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
         enabled: khatma.repeat,
         onChanged: (enabled) => ref.read(khatmaFormProvider.notifier).update(
               khatma.copyWith(repeat: enabled),
-            ),
-      ),
-    );
-  }
-
-  Widget _buildShareToggle(Khatma khatma) {
-    return Card(
-      child: ShareKhatmaTile(
-        enabled: khatma.share,
-        onChanged: (enabled) => ref.read(khatmaFormProvider.notifier).update(
-              khatma.copyWith(share: enabled),
             ),
       ),
     );

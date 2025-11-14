@@ -63,22 +63,11 @@ class KhatmaBarChart extends StatelessWidget {
   }
 
   List<KhatmaPartHistory> _getAllParts() {
-    if (khatma.share == null) {
       return khatma.readParts
               ?.where((p) => p.endDate != null)
               .map((p) => KhatmaPartHistory(p.id, p.endDate!))
               .toList() ??
           [];
-    }
-    final shared = <String, List<KhatmaPartHistory>>{};
-    for (final part in khatma.readParts ?? []) {
-      if (part.userId != null && part.finishedDate != null) {
-        shared.putIfAbsent(part.userId!, () => []);
-        shared[part.userId!]!
-            .add(KhatmaPartHistory(part.id, part.finishedDate!));
-      }
-    }
-    return shared.values.expand((list) => list).toList();
   }
 
   BarChartGroupData _buildBarChartGroupData(

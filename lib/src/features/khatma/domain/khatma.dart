@@ -35,9 +35,7 @@ abstract class Khatma with _$Khatma {
     required DateTime startDate,
     String? description,
     @Default(false) bool repeat,
-    int? repeats,
-    Recurrence? recurrence,
-    @Default(false) bool share,
+    @Default(0) int repeats,
     KhatmaTheme? theme,
     DateTime? endDate,
     DateTime? lastRead,
@@ -86,16 +84,6 @@ abstract class Khatma with _$Khatma {
   bool get isActive => status == KhatmaStatus.active;
   bool get isDeleted => status == KhatmaStatus.deleted;
 
-  bool get isExpired {
-    if (recurrence?.endDate == null) return false;
-    return recurrence!.endDate!.isBefore(DateTime.now());
-  }
-
-  String get remainingDays {
-    if (isExpired) return '0';
-    if (recurrence?.endDate == null) return '∞';
-    return recurrence!.endDate!.difference(DateTime.now()).inDays.toString();
-  }
 
   KhatmaTheme get effectiveTheme {
     return theme ??

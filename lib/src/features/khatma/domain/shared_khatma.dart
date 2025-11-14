@@ -25,9 +25,8 @@ abstract class SharedKhatma with _$SharedKhatma {
     DateTime? lastUpdated,
     @Default(SharedKhatmaStatus.active) SharedKhatmaStatus status,
     @Default(3) int maxReservationsPerUser,
-    // Reservation timeout settings (in days)
-    @Default(7) int reservationWarningDays, // Show warning after X days
-    int? reservationExpirationDays, // Auto-free after X days (null = never expire)
+    @Default(7) int reservationWarningDays,
+    int? reservationExpirationDays,
   }) = _SharedKhatma;
 
   factory SharedKhatma.fromJson(Map<String, Object?> json) =>
