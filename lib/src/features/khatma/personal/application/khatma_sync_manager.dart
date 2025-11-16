@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:khatma/src/error/app_error_code.dart';
-import 'package:khatma/src/features/khatma/data/remote/khatma_history_repository.dart';
-import 'package:khatma/src/features/khatma/data/remote/khatmas_repository.dart';
-import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/repository/remote/khatma_history_repository.dart';
+import 'package:khatma/src/features/khatma/data/repository/remote/khatmas_repository.dart';
+import 'package:khatma/src/features/khatma/data/repository/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 

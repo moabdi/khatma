@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:khatma/src/core/app_status.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatma_state.dart';
-import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/repository/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/core/result.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatma_sync_manager.dart';

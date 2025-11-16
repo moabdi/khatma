@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:khatma/src/features/khatma/data/local/local_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/repository/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/completion_history.dart';
 import 'package:uuid/uuid.dart';
