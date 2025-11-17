@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:intl/intl.dart';
 
 class UnitTile extends StatelessWidget {
-  final SharedKhatmaUnit unit;
+  final Unit unit;
   final VoidCallback onTap;
   final int reservationWarningDays;
   final bool isUserAdminOrCreator;
@@ -77,32 +77,23 @@ class UnitTile extends StatelessWidget {
           size: 20,
         );
         break;
-
-      default:
-        // Use a safe, readable default for undefined statuses
-        tileColor = Theme.of(context).colorScheme.surfaceContainer;
-        avatarColor = Theme.of(context).colorScheme.error.withValues(alpha: 0.3);
-        numberColor = Theme.of(context).colorScheme.onErrorContainer;
-        trailingIcon = null;
-        isClickable = true;
-        break;
     }
 
     // Calculate start ayah for the hizb (example calculation)
-    final startAyah = _getStartAyahForHizb(unit.unitNumber);
+    final startAyah = _getStartAyahForHizb(unit.number);
 
     // Check if unit is overdue (warning needed)
     final daysSinceReserved = unit.reservedDate != null
         ? DateTime.now().difference(unit.reservedDate!).inDays
         : 0;
     final isOverdue = (unit.status == UnitStatus.reserved ||
-            unit.status == UnitStatus.reservedByCurrentUser) &&
+            unit.status == UnitStatus.reserved) &&
         daysSinceReserved >= reservationWarningDays;
 
     // Format dates
     String? formattedDate;
     String? dateLabel;
-    if (unit.status == UnitStatus.reserved || unit.status == UnitStatus.reservedByCurrentUser) {
+    if (unit.status == UnitStatus.reserved) {
       if (unit.reservedDate != null) {
         formattedDate = DateFormat('dd/MM/yyyy').format(unit.reservedDate!);
         dateLabel = context.loc.reservedOn;
@@ -154,8 +145,7 @@ class UnitTile extends StatelessWidget {
 
     // Build trailing widget with icon and member name
     Widget? trailing = trailingIcon;
-    if (unit.reservedByUserName != null && (unit.status == UnitStatus.reserved ||
-        unit.status == UnitStatus.reservedByCurrentUser ||
+    if (unit.reservedByName != null && (unit.status == UnitStatus.reserved ||
         unit.status == UnitStatus.completed)) {
       trailing = Column(
         mainAxisSize: MainAxisSize.min,
@@ -164,7 +154,7 @@ class UnitTile extends StatelessWidget {
           if (trailingIcon != null) trailingIcon,
           if (trailingIcon != null) const SizedBox(height: 2),
           Text(
-            unit.reservedByUserName!,
+            unit.reservedBy!,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
               fontSize: 10,
@@ -177,7 +167,7 @@ class UnitTile extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 2),
       color: tileColor,
-      elevation: unit.status == UnitStatus.reservedByCurrentUser ? 2 : 1,
+      elevation: unit.status == UnitStatus.reserved ? 2 : 1,
       child: ListTile(
         onTap: isClickable ? onTap : null,
         onLongPress: isOverdue && isUserAdminOrCreator
@@ -187,7 +177,7 @@ class UnitTile extends StatelessWidget {
           backgroundColor: avatarColor,
           radius: 20,
           child: Text(
-            '${unit.unitNumber}',
+            '${unit.number}',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: numberColor,
@@ -195,7 +185,7 @@ class UnitTile extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Hizb ${unit.unitNumber}',
+          'Hizb ${unit.number}',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -220,7 +210,7 @@ class UnitTile extends StatelessWidget {
                 leading: const Icon(Icons.notifications_outlined),
                 title: Text(context.loc.sendReminder),
                 subtitle: Text(
-                  '${context.loc.reservedBy}: ${unit.reservedByUserName ?? "Unknown"}',
+                  '${context.loc.reservedBy}: ${unit.reservedBy ?? "Unknown"}',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 onTap: () {

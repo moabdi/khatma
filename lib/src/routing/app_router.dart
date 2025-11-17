@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/info/info_routes.dart';
 import 'package:khatma/src/features/khatma/personal/personal_khatma_routes.dart';
 import 'package:khatma/src/features/onboarding/onboarding_screen.dart';
 import 'package:khatma/src/features/profil/profile_routes.dart';
 import 'package:khatma/src/features/quran/quran_routes.dart';
-import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/khatma_details_page.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/khatma_search_screen.dart';
 import 'package:khatma/src/features/splash/splash.dart';
@@ -43,7 +44,7 @@ enum AppRoute {
   khatmaSearchDetails,
   khatmaSearch,
   personalKhatma,
-  sync,
+  sync, newKhatma,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {
@@ -75,7 +76,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             name: AppRoute.home.name,
             path: 'khatmat',
-            builder: (context, state) => const KhatmaSearchScreen(),
+            builder: (context, state) => const KhatmatListScreen(),
           ),
           ...khatmaRoutes(ref),
           ...profileRoutes,
@@ -90,8 +91,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             path: 'khatma-search-details/:id',
             name: AppRoute.khatmaSearchDetails.name,
             builder: (context, state) {
-              final khatmaId = state.pathParameters['id']!;
-              final SharedKhatma? khatma = state.extra as SharedKhatma?;
+              //final khatmaId = state.pathParameters['id']!;
+              final KhatmaShared? khatma = state.extra as KhatmaShared?;
 
               if (khatma != null) {
                 return KhatmaDetailsPage(khatma: khatma);

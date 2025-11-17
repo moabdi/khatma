@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/domain/part.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_part.dart';
 
 class PartTileLeading extends StatelessWidget {
   const PartTileLeading({

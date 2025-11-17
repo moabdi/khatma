@@ -4,20 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/core/app_dialog.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/ui/khatma_avatar.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/ui/repeat_enabler_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_avatar.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/unit_selector.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/constants/snack_bars.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/ui/style_selector.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma_ui/components/modal_bottom_sheet.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/ui/unit_selector.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 class AddKhatmaScreen extends ConsumerStatefulWidget {
@@ -93,7 +92,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildBody(BuildContext context, Khatma khatma) {
+  Widget _buildBody(BuildContext context, KhatmaBase khatma) {
     // Check if we're editing a khatma that doesn't match the current ID
     if (widget.khatmaId != null && khatma.id != widget.khatmaId) {
       return const EmptyPlaceholderWidget(message: 'Khatma not found');
@@ -112,7 +111,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildForm(BuildContext context, Khatma khatma) {
+  Widget _buildForm(BuildContext context, KhatmaBase khatma) {
     return Form(
       key: _formKey,
       child: Padding(
@@ -129,6 +128,8 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             _buildNameField(context, khatma),
             gapH16,
             _buildDescriptionField(context, khatma),
+            gapH16,
+            _buildTypeSelector(context, khatma),
             gapH16,
             _buildSplitUnitSelector(context, khatma),
             gapH16,
@@ -191,7 +192,29 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildSplitUnitSelector(BuildContext context, Khatma khatma) {
+
+  Widget _buildTypeSelector(BuildContext context, KhatmaBase khatma) {
+    return Card(
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 8),
+        leading: CircleAvatar(
+          backgroundColor: context.theme.primaryColor.withAlpha(25),
+          child: Icon(
+            Icons.apps,
+            color: context.colorScheme.primary,
+            size: 32,
+          ),
+        ),
+        title: Text(AppLocalizations.of(context).khatmaType),
+        subtitle: Text(
+          khatma.type.name,
+        ),
+        onTap: () => _handleSplitUnitTap(context, khatma),
+      ),
+    );
+  }
+
+  Widget _buildSplitUnitSelector(BuildContext context, KhatmaBase khatma) {
     return Card(
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 8),
@@ -212,7 +235,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  void _handleSplitUnitTap(BuildContext context, Khatma khatma) {
+  void _handleSplitUnitTap(BuildContext context, KhatmaBase khatma) {
     if (khatma.isStarted) {
       _showSnackBar(context, context.loc.cannotUpdateKhatmaWhileStarted);
       return;
@@ -230,7 +253,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildRepeatToggle(Khatma khatma) {
+  Widget _buildRepeatToggle(KhatmaBase khatma) {
     return Card(
       child: RepeatKhatmaTile(
         enabled: khatma.repeat,
@@ -267,14 +290,14 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     return null;
   }
 
-  Future<void> _handleSave(BuildContext context, Khatma khatma) async {
+  Future<void> _handleSave(BuildContext context, KhatmaBase khatma) async {
     // Validate the form
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
     try {
-      await ref.read(khatmaNotifierProvider.notifier).saveKhatma(khatma);
+      await ref.read(khatmaFormProvider.notifier).save(khatma);
       if (mounted) {
         Navigator.of(context).pop();
       }
@@ -296,9 +319,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
 
       if (!shouldDelete!) return;
 
-      await ref
-          .read(khatmaNotifierProvider.notifier)
-          .deleteKhatma(widget.khatmaId!);
+      await ref.read(khatmaFormProvider.notifier).delete(khatma);
 
       if (mounted) {
         final snackBar = buildSnackBar(
@@ -321,11 +342,11 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     }
   }
 
-  void _showStyleSelector(BuildContext context, Khatma khatma) {
+  void _showStyleSelector(BuildContext context, KhatmaBase khatma) {
     _showModal(
       context,
       KhatmaStyleSelector(
-        style: khatma.style,
+        style: khatma.theme,
         onChanged: (value) => ref.read(khatmaFormProvider.notifier).update(
               khatma.copyWith(theme: value),
             ),
@@ -356,7 +377,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
 
 // Extension moved to separate file would be better
 extension KhatmaFormProviderExtension on WidgetRef {
-  void updateKhatma(Khatma khatma) {
+  void updateKhatma(KhatmaBase khatma) {
     read(khatmaFormProvider.notifier).update(khatma);
   }
 }

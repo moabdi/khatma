@@ -8,6 +8,7 @@ import 'package:khatma/src/features/khatma/personal/application/khatmat_provider
 import 'package:khatma/src/features/khatma/personal/presentation/read/logic/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/ui/animate_khatma_chart.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/khatma_complete_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -17,7 +18,6 @@ import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/ui/part_selector/to_read_tiles.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
@@ -33,10 +33,10 @@ class KhatmaReadScreen extends ConsumerWidget {
         ? EmptyPlaceholderWidget(message: 'Khatma not found')
         : khatma.isCompleted
             ? KhatmaSuccessComplete(khatma: khatma)
-            : buildContent(khatma, context);
+            : SizedBox(); // buildContent(khatma, context);
   }
 
-  Widget buildContent(Khatma khatma, BuildContext context) {
+  Widget buildContent(KhatmaPersonal khatma, BuildContext context) {
     return Scaffold(
       appBar: KhatmaAppBar(khatmaId: khatma.id!),
       body: Column(
@@ -87,7 +87,7 @@ class KhatmaReadScreen extends ConsumerWidget {
     );
   }
 
-  Widget buildParts(BuildContext context, Khatma khatma) {
+  Widget buildParts(BuildContext context, KhatmaPersonal khatma) {
     return Column(
       children: [
         buildReadPartCard(context, khatma),
@@ -123,7 +123,7 @@ class KhatmaReadScreen extends ConsumerWidget {
     );
   }
 
-  Widget buildToReadPartCard(BuildContext context, Khatma khatma) {
+  Widget buildToReadPartCard(BuildContext context, KhatmaPersonal khatma) {
     return Card(
       elevation: 0.4,
       clipBehavior: Clip.antiAlias,
@@ -139,9 +139,9 @@ class KhatmaReadScreen extends ConsumerWidget {
     );
   }
 
-  Widget buildReadPartCard(BuildContext context, Khatma khatma) {
+  Widget buildReadPartCard(BuildContext context, KhatmaPersonal khatma) {
     return ConditionalContent(
-      condition: khatma.readParts?.isNotEmpty ?? false,
+      condition: khatma.completedPartIds.isNotEmpty,
       secondary: const SizedBox.shrink(),
       primary: Card(
         elevation: 0.4,
@@ -443,7 +443,7 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
                         color: khatma.style.color.toColor(),
                       ),
                       onPressed: () => {
-                        ref.read(khatmaFormProvider.notifier).update(khatma),
+                        ref.read(khatmaFormProvider.notifier).update(khatma as KhatmaBase),
                         context.goNamed(AppRoute.editKhatma.name,
                             pathParameters: {'id': khatma.id!}),
                       },

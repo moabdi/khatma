@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/shared/application/shared_khatma_provider.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/i18n/generated/app_localizations.dart';
@@ -103,13 +103,13 @@ class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
     );
   }
 
-  List<SharedKhatma> _filterKhatmas(List<SharedKhatma> khatmas, String query) {
+  List<KhatmaShared> _filterKhatmas(List<KhatmaShared> khatmas, String query) {
     if (query.isEmpty) return khatmas;
 
     final lowercaseQuery = query.toLowerCase();
     return khatmas.where((khatma) {
       return khatma.name.toLowerCase().contains(lowercaseQuery) ||
-          khatma.description.toLowerCase().contains(lowercaseQuery);
+          (khatma.description?.toLowerCase().contains(lowercaseQuery) ?? false);
     }).toList();
   }
 
@@ -138,13 +138,13 @@ class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
     );
   }
 
-  void _navigateToDetails(BuildContext context, SharedKhatma khatma) {
+  void _navigateToDetails(BuildContext context, KhatmaShared khatma) {
     context.push('/khatma-search-details/${khatma.id}', extra: khatma);
   }
 }
 
 class _KhatmaSearchItem extends StatelessWidget {
-  final SharedKhatma khatma;
+  final KhatmaShared khatma;
   final VoidCallback onTap;
 
   const _KhatmaSearchItem({
@@ -244,10 +244,10 @@ class _KhatmaSearchItem extends StatelessWidget {
               ),
 
               // Description
-              if (khatma.description.isNotEmpty) ...[
+              if (khatma.description?.isNotEmpty ?? false) ...[
                 gapH8,
                 Text(
-                  khatma.description,
+                  khatma.description ?? '',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                         height: 1.3,

@@ -1,9 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:khatma/src/features/khatma/data/mappers/khatma_history_mappers.dart';
+import 'package:khatma/src/features/khatma/data/mappers/khatma_mappers.dart';
+import 'package:khatma/src/features/khatma/data/model/khatma_dto.dart';
+import 'package:khatma/src/features/khatma/data/model/khatma_history_dto.dart';
 import 'package:khatma/src/features/khatma/data/repository/local/local_khatma_repository.dart';
+import 'package:khatma/src/features/khatma/data/sync/sync_models.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/domain/completion_history.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
@@ -19,7 +24,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
       khatma = khatma.copyWith(id: const Uuid().v4());
     }
 
-    String jsonString = jsonEncode(khatma.toJson());
+    String jsonString = jsonEncode(khatma.toDto().toJson());
     await box.put(khatma.id!, jsonString);
     return khatma;
   }
@@ -30,7 +35,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
 
     if (jsonString != null) {
       final khatmaData = jsonDecode(jsonString);
-      final khatma = Khatma.fromJson(khatmaData);
+      final khatma = KhatmaDto.fromJson(khatmaData).toDomain();
       return !khatma.isDeleted ? khatma : null;
     }
     return null;
@@ -48,7 +53,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
     var list = getBoxValues(box)
         .map((jsonString) {
           final khatmaData = jsonDecode(jsonString);
-          final khatma = Khatma.fromJson(khatmaData);
+          final khatma = KhatmaDto.fromJson(khatmaData).toDomain();
           return !khatma.isDeleted ? khatma : null;
         })
         .where((khatma) => khatma != null)
@@ -59,24 +64,21 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
     return list;
   }
 
-  Future<void> saveHistory(CompletionHistory history) async {
+  Future<void> saveHistory(KhatmaHistory history) async {
     var box = await openHistoryBox();
 
     final id = history.id ?? const Uuid().v4();
-    final historyWithId = history.copyWith(
-      id: id,
-      lastSync: null,
-    );
+    final historyWithId = history.copyWith(id: id);
 
-    String jsonString = jsonEncode(historyWithId.toJson());
+    String jsonString = jsonEncode(historyWithId.toDto().toJson());
     await box.put(id, jsonString);
   }
 
-  Future<List<CompletionHistory>> getHistory() async {
+  Future<List<KhatmaHistory>> getHistory() async {
     var box = await openHistoryBox();
 
     return getBoxValues(box)
-        .map((jsonString) => CompletionHistory.fromJson(jsonDecode(jsonString)))
+        .map((jsonString) => KhatmaHistoryDto.fromJson(jsonDecode(jsonString)).toDomain())
         .toList();
   }
 
@@ -92,7 +94,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
     return getBoxValues(box)
         .map((jsonString) {
           final khatmaData = jsonDecode(jsonString);
-          final khatma = Khatma.fromJson(khatmaData);
+          final khatma = KhatmaDto.fromJson(khatmaData).toDomain();
 
           if (khatma.needsSync) return khatma;
 
@@ -103,20 +105,20 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
         .toList();
   }
 
-  Future<List<CompletionHistory>> getHistoryNeedingSync() async {
+  Future<List<KhatmaHistory>> getHistoryNeedingSync() async {
     var box = await openHistoryBox();
 
     return getBoxValues(box)
         .map((jsonString) {
           final historyData = jsonDecode(jsonString);
-          final completion = CompletionHistory.fromJson(historyData);
+         // final completion = KhatmaHistoryDto.fromJson(historyData).toDomain();
 
-          if (completion.needsSync) return completion;
+      //    if (completion.needsSync) return completion;
 
           return null;
         })
         .where((history) => history != null)
-        .cast<CompletionHistory>()
+        .cast<KhatmaHistory>()
         .toList();
   }
 
@@ -136,59 +138,24 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
     final now = DateTime.now();
 
     return allKhatmas.where((khatma) {
-      final lastReadDate = khatma.lastRead ?? khatma.startDate;
-      final daysSinceLastRead = now.difference(lastReadDate).inDays;
+      // Get lastRead only for personal and hifz khatmas
+      DateTime? lastReadDate;
+      if (khatma is KhatmaPersonal) {
+        lastReadDate = khatma.lastRead;
+      } else if (khatma is KhatmaHifz) {
+        lastReadDate = khatma.lastRead;
+      }
+
+      final referenceDate = lastReadDate ?? khatma.startDate;
+      final daysSinceLastRead = now.difference(referenceDate).inDays;
       return daysSinceLastRead >= days;
     }).toList();
   }
 
-  Future<KhatmaStats> getStats() async {
-    final khatmas = await fetchAll();
-    final history = await getHistory();
-    final now = DateTime.now();
+  // Stats methods removed - should be implemented at the application layer
+  // using the data from fetchAll() and getHistory()
 
-    return KhatmaStats(
-      active: khatmas.length,
-      available: 10 - khatmas.length,
-      totalCompletions: history.length,
-      thisMonth: history
-          .where(
-              (h) => h.endDate.year == now.year && h.endDate.month == now.month)
-          .length,
-      thisYear: history.where((h) => h.endDate.year == now.year).length,
-    );
-  }
-
-  Future<DetailedStats> getDetailedStats() async {
-    final khatmas = await fetchAll();
-    final history = await getHistory();
-
-    final monthlyCompletions = <String, int>{};
-    for (var h in history) {
-      final monthKey =
-          '${h.endDate.year}-${h.endDate.month.toString().padLeft(2, '0')}';
-      monthlyCompletions[monthKey] = (monthlyCompletions[monthKey] ?? 0) + 1;
-    }
-
-    double avgDays = 0;
-    if (history.isNotEmpty) {
-      final totalDays = history.fold<int>(0, (sum, h) {
-        return sum + h.endDate.difference(h.startDate).inDays;
-      });
-      avgDays = totalDays / history.length;
-    }
-
-    return DetailedStats(
-      active: khatmas.length,
-      available: 10 - khatmas.length,
-      totalCompletions: history.length,
-      averageDays: avgDays.toStringAsFixed(1),
-      monthlyCompletions: monthlyCompletions,
-      needsSync: await _countNeedingSync(),
-    );
-  }
-
-  Future<List<CompletionHistory>> getHistoryByKhatma(String khatmaId) async {
+  Future<List<KhatmaHistory>> getHistoryByKhatma(String khatmaId) async {
     final allHistory = await getHistory();
     return allHistory.where((h) => h.khatmaId == khatmaId).toList();
   }
@@ -225,10 +192,14 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
       }
     }
 
+    // Convert domain models to DTOs for SyncStatus
+    final khatmaDtos = khatmasNeedingSync.map((k) => k.toDto()).toList();
+    final historyDtos = historyNeedingSync.map((h) => h.toDto()).toList();
+
     return SyncStatus(
       needsSync: totalNeedingSync > 0,
-      khatmas: khatmasNeedingSync,
-      history: historyNeedingSync,
+      khatmas: khatmaDtos,
+      history: historyDtos,
       totalCount: totalNeedingSync,
       lastSyncTime: lastSyncTime?.toIso8601String(),
       minutesSinceLastSync: lastSyncTime != null
@@ -239,7 +210,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
 
   Future<SyncResult> performSync({
     required Future<void> Function(Khatma khatma) onSyncKhatma,
-    required Future<void> Function(CompletionHistory history) onSyncHistory,
+    required Future<void> Function(KhatmaHistory history) onSyncHistory,
   }) async {
     int syncedKhatmas = 0;
     int syncedHistory = 0;
@@ -285,7 +256,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
 
   Future<SyncResult> syncIfNeeded({
     required Future<void> Function(Khatma khatma) onSyncKhatma,
-    required Future<void> Function(CompletionHistory history) onSyncHistory,
+    required Future<void> Function(KhatmaHistory history) onSyncHistory,
     required bool Function() shouldSync,
     Duration? timeSinceLastSync,
   }) async {
@@ -328,12 +299,6 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
 
     await clearBox(khatmaBox);
     await clearBox(historyBox);
-  }
-
-  Future<int> _countNeedingSync() async {
-    final kSync = await getKhatmasNeedingSync();
-    final hSync = await getHistoryNeedingSync();
-    return kSync.length + hSync.length;
   }
 
   // Méthodes utilitaires abstraites pour gérer les différences entre Hive et LocalStorage

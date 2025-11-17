@@ -53,7 +53,7 @@ class KhatmaSuccessComplete extends ConsumerWidget {
               gapH12,
               Divider(),
               KhatmaBarChart(
-                khatma: khatma,
+                khatma: khatma as KhatmaPersonal,
                 title: context.loc.completion,
                 subTitle: context.loc.khatmaHistory,
               ),

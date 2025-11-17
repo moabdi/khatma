@@ -13,23 +13,24 @@ abstract class LocalKhatmaRepository {
   Future<void> deleteById(String id);
   Future<List<Khatma>> fetchAll();
 
-  Future<void> saveHistory(CompletionHistory history);
-  Future<List<CompletionHistory>> getHistory();
-  Future<List<CompletionHistory>> getHistoryByKhatma(String khatmaId);
+  Future<void> saveHistory(KhatmaHistory history);
+  Future<List<KhatmaHistory>> getHistory();
+  Future<List<KhatmaHistory>> getHistoryByKhatma(String khatmaId);
   Future<void> deleteHistoryById(String id);
 
   Future<List<Khatma>> getNeedingAttention({int days = 3});
 
-  Future<KhatmaStats> getStats();
-  Future<DetailedStats> getDetailedStats();
+  //Future<KhatmaStats> getStats();
+  //Future<DetailedStats> getDetailedStats();
 
   Future<List<Khatma>> getKhatmasNeedingSync();
-  Future<List<CompletionHistory>> getHistoryNeedingSync();
-  Future<SyncStatus> getSyncStatus();
-  Future<SyncResult> performSync({
+  Future<List<KhatmaHistory>> getHistoryNeedingSync();
+  //Future<SyncStatus> getSyncStatus();
+  /*Future<SyncResult> performSync({
     required Future<void> Function(Khatma khatma) onSyncKhatma,
     required Future<void> Function(CompletionHistory history) onSyncHistory,
   });
+  */
 
   Future<void> clearAll();
 }

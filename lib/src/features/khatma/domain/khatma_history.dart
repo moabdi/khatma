@@ -1,8 +1,6 @@
-import 'package:khatma/src/features/khatma/domain/models/khatma.dart';
-import 'package:khatma/src/features/khatma/domain/models/khatma_enums.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 
-/// Completion history domain model (clean, without Freezed)
-class CompletionHistory {
+class KhatmaHistory {
   final String? id;
   final KhatmaID? khatmaId;
   final DateTime startDate;
@@ -10,7 +8,7 @@ class CompletionHistory {
   final CompletionMode mode;
   final String? completion;
 
-  const CompletionHistory({
+  const KhatmaHistory({
     this.id,
     this.khatmaId,
     required this.startDate,
@@ -34,7 +32,7 @@ class CompletionHistory {
     return double.tryParse(completion!) ?? 1.0;
   }
 
-  CompletionHistory copyWith({
+  KhatmaHistory copyWith({
     String? id,
     KhatmaID? khatmaId,
     DateTime? startDate,
@@ -42,7 +40,7 @@ class CompletionHistory {
     CompletionMode? mode,
     String? completion,
   }) {
-    return CompletionHistory(
+    return KhatmaHistory(
       id: id ?? this.id,
       khatmaId: khatmaId ?? this.khatmaId,
       startDate: startDate ?? this.startDate,
@@ -55,7 +53,7 @@ class CompletionHistory {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CompletionHistory &&
+      other is KhatmaHistory &&
           runtimeType == other.runtimeType &&
           id == other.id;
 

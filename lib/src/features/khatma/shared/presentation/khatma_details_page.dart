@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/logic/khatma_details_controller.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/widgets/unit_tile.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/widgets/filter_chip.dart';
@@ -18,7 +18,7 @@ enum UnitFilter {
 }
 
 class KhatmaDetailsPage extends ConsumerStatefulWidget {
-  final SharedKhatma khatma;
+  final KhatmaShared khatma;
 
   const KhatmaDetailsPage({
     super.key,
@@ -50,7 +50,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
           children: [
 
                   // Description in ExpansionTile
-                  if (state.khatma.description.isNotEmpty)
+                  if (state.khatma.description?.isNotEmpty ?? false)
                     Theme(
                       data: Theme.of(context).copyWith(
                         dividerColor: Colors.transparent,
@@ -63,7 +63,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                         children: [
                           Align(
                             alignment: Alignment.centerLeft,
-                            child: Text(state.khatma.description),
+                            child: Text(state.khatma.description??''),
                           ),
                         ],
                       ),
@@ -121,7 +121,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                 children: [
                   // Title
                   Text(context.loc.khatmaUnitsWithType(
-                      state.khatma.unit.displayName)),
+                      state.khatma.unit.name)),
                   gapH12,
                   // Filter chips
                   SingleChildScrollView(
@@ -249,11 +249,11 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: state.khatma.totalUnits,
                             itemBuilder: (context, index) {
-                              final unitNumber = index + 1;
+                              final number = index + 1;
                               final unit = state.khatma.units.firstWhere(
-                                (u) => u.unitNumber == unitNumber,
+                                (u) => u.number == number,
                                 orElse: () =>
-                                    SharedKhatmaUnit(unitNumber: unitNumber),
+                                    Unit(number: number),
                               );
 
                               // Apply filter
@@ -305,7 +305,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                       children: [
                         Text(
                           context.loc.reservedUnitsCount(
-                            state.khatma.userReservedUnits.length,
+                            state.khatma.userReservedUnits("").length,
                             state.khatma.maxReservationsPerUser,
                           ),
                           style:
@@ -316,10 +316,10 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
-                        if (state.khatma.remainingReservations > 0)
+                        if (state.khatma.remainingReservations("") > 0)
                           Text(
                             context.loc.unitsRemaining(
-                                state.khatma.remainingReservations),
+                                state.khatma.remainingReservations("ss")),
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: Colors.green.shade600,
@@ -382,13 +382,13 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
   }
 
   void _toggleUnitReservation(
-    SharedKhatmaUnit unit,
+    Unit unit,
     KhatmaDetailsState state,
     KhatmaDetailsController controller,
   ) {
     if (unit.isFree) {
       // Check if limit reached before attempting reservation
-      if (!state.khatma.canUserReserveMore) {
+      if (!state.khatma.canUserReserveMore("")) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -401,7 +401,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         return;
       }
       controller.reserveUnit(unit);
-    } else if (unit.isReservedByCurrentUser || unit.isSelected) {
+    } else if (unit.isReserved || unit.isSelected) {
       controller.unreserveUnit(unit);
     }
   }
@@ -446,7 +446,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
 
   // Send reminder to the user who reserved the unit
   Future<void> _sendReminder(
-    SharedKhatmaUnit unit,
+    Unit unit,
     KhatmaDetailsController controller,
   ) async {
     try {
@@ -477,7 +477,7 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
 
   // Free an overdue unit (admin action)
   Future<void> _freeUnit(
-    SharedKhatmaUnit unit,
+    Unit unit,
     KhatmaDetailsController controller,
   ) async {
     try {

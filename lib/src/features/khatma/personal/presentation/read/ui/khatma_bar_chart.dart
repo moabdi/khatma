@@ -7,7 +7,7 @@ import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 
 class KhatmaBarChart extends StatelessWidget {
-  final Khatma khatma;
+  final KhatmaPersonal khatma;
   final String? title;
   final String? subTitle;
 
@@ -63,9 +63,8 @@ class KhatmaBarChart extends StatelessWidget {
   }
 
   List<KhatmaPartHistory> _getAllParts() {
-      return khatma.readParts
-              ?.where((p) => p.endDate != null)
-              .map((p) => KhatmaPartHistory(p.id, p.endDate!))
+      return khatma.completedPartIds
+              .map((p) => KhatmaPartHistory(p, DateTime.now()))
               .toList() ??
           [];
   }
@@ -98,7 +97,7 @@ class KhatmaBarChart extends StatelessWidget {
         List<KhatmaPartHistory> parts, DateTime Function(DateTime) fn) {
       final map = <DateTime, int>{};
       for (var part in parts) {
-        final key = fn(part.endDate);
+        final key = fn(DateTime.now());
         map.update(key, (v) => v + 1, ifAbsent: () => 1);
       }
       return map;
@@ -211,7 +210,7 @@ class BarChartBuilder extends StatelessWidget {
 
 class KhatmaPartHistory {
   final int id;
-  final DateTime endDate;
+  final DateTime? endDate;
 
   KhatmaPartHistory(this.id, this.endDate);
 }

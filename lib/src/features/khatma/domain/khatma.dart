@@ -1,392 +1,236 @@
-import 'dart:collection';
+import 'dart:ui';
 
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:khatma/src/error/app_error_code.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma_ui/extentions/color_extensions.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_enums.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_theme.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_exceptions.dart';
+export 'package:khatma/src/features/khatma/domain/khatma_enums.dart';
 
-part 'khatma.freezed.dart';
-part 'khatma.g.dart';
+part 'khatma_base.dart';
+part 'khatma_personal.dart';
+part 'khatma_shared.dart';
+part 'khatma_hifz.dart';
 
 typedef KhatmaID = String;
 
-// Validation result
-@freezed
-abstract class ValidationResult with _$ValidationResult {
-  const factory ValidationResult({
-    required bool isValid,
-    @Default([]) List<AppErrorCode> errors,
-  }) = _ValidationResult;
-}
+// ============================================================================
+// BASE KHATMA (SEALED CLASS)
+// ============================================================================
 
-// Enhanced Khatma model with better validation and computed properties
-@freezed
-abstract class Khatma with _$Khatma {
-  const Khatma._(); // Private constructor for custom methods
+sealed class Khatma {
+  final KhatmaID? id;
+  final KhatmaType type;
+  final String code;
+  final String name;
+  final String? description;
+  final SplitUnit unit;
+  final DateTime createDate;
+  final DateTime startDate;
+  final DateTime? endDate;
+  final KhatmaTheme theme;
+  final KhatmaStatus status;
+  final DateTime? lastUpdated;
+  final DateTime? lastSync;
+  final bool needsSync;
+  final String? createdBy;
+  final String? updatedBy;
+  final bool repeat;
+  final int repeats;
+  final int version;
+  final double progress;
 
-  const factory Khatma({
-    @JsonKey(includeFromJson: true, includeToJson: true) KhatmaID? id,
-    required String code,
-    required String name,
-    required SplitUnit unit,
-    required DateTime createDate,
-    required DateTime startDate,
-    String? description,
-    @Default(false) bool repeat,
-    @Default(0) int repeats,
-    KhatmaTheme? theme,
-    DateTime? endDate,
-    DateTime? lastRead,
-    List<KhatmaPart>? readParts,
-    DateTime? lastUpdated,
-    DateTime? lastSync,
-    @Default(false) bool needsSync,
-    @Default(KhatmaStatus.active) KhatmaStatus status,
-  }) = _Khatma;
+  const Khatma({
+    this.id,
+    required this.type,
+    required this.code,
+    required this.name,
+    this.description,
+    required this.unit,
+    required this.createDate,
+    required this.startDate,
+    this.endDate,
+    required this.theme,
+    required this.status,
+    this.lastUpdated,
+    this.lastSync,
+    this.needsSync = false,
+    this.createdBy,
+    this.updatedBy,
+    this.repeat = false,
+    this.repeats = 0,
+    this.version = 1,
+    this.progress = 0.0,
+  });
 
-  factory Khatma.fromJson(Map<String, Object?> json) => _$KhatmaFromJson(json);
-
-  // Computed properties with better logic
-  double get completionPercent {
-    if (readParts?.isEmpty ?? true) return 0.0;
-    final completedCount = completedPartIds.length;
-    return (completedCount / unit.count).clamp(0.0, 1.0);
-  }
-
-  Duration get duration {
-    final baseDate = lastRead ?? createDate;
-    return DateTime.now().difference(baseDate);
-  }
-
-  List<int> get readPartIds {
-    return readParts?.map((part) => part.id).toSet().toList() ?? [];
-  }
-
-  List<int> get completedPartIds {
-    return readParts
-            ?.where((part) => part.isCompleted)
-            .map((part) => part.id)
-            .toSet()
-            .toList() ??
-        [];
-  }
-
-  List<int> get remainingPartIds {
-    final allParts = List.generate(unit.count, (index) => index + 1);
-    return allParts.where((part) => !completedPartIds.contains(part)).toList();
-  }
-
-  bool get isCompleted => completedPartIds.length >= unit.count;
-  bool get isStarted => completedPartIds.isNotEmpty;
-  bool get isNotStarted => completedPartIds.isEmpty;
+  bool get isRepeat => repeat;
+  bool get isStarted => startDate.isBefore(DateTime.now()) || startDate.isAtSameMomentAs(DateTime.now());
+  bool get isCompleted => status == KhatmaStatus.completed;
   bool get isActive => status == KhatmaStatus.active;
   bool get isDeleted => status == KhatmaStatus.deleted;
 
+  bool get isPersonal => type == KhatmaType.personal;
+  bool get isShared => type == KhatmaType.shared;
+  bool get isHifz => type == KhatmaType.hifz;
 
-  KhatmaTheme get effectiveTheme {
-    return theme ??
-        const KhatmaTheme(
-          color: "#00A862",
-          icon: "kaaba.ico",
-        );
+  KhatmaTheme get effectiveTheme => theme;
+
+  // Domain invariant checks
+  void assertNotCompleted() {
+    if (isCompleted) {
+      throw const KhatmaCompletedException('Cannot modify a completed khatma');
+    }
   }
 
-  // Helper method for updating reading progress
-  Khatma addCompletedParts(List<int> partIds) {
-    final updatedParts = List<KhatmaPart>.from(readParts ?? []);
-    final now = DateTime.now();
-
-    for (final partId in partIds) {
-      final existingIndex = updatedParts.indexWhere((p) => p.id == partId);
-
-      if (existingIndex != -1) {
-        // Update existing part
-        updatedParts[existingIndex] = updatedParts[existingIndex].copyWith(
-          endDate: now,
-          finishedDate: now,
-        );
-      } else {
-        // Add new completed part
-        updatedParts.add(KhatmaPart(
-          id: partId,
-          endDate: now,
-          finishedDate: now,
-        ));
-      }
+  void assertNotDeleted() {
+    if (isDeleted) {
+      throw const KhatmaDeletedException('Cannot perform operations on a deleted khatma');
     }
-
-    final updated = copyWith(
-      readParts: updatedParts,
-      lastRead: now,
-    );
-
-    // Auto-complete if all parts are done
-    if (updated.isCompleted && status == KhatmaStatus.active) {
-      return updated.copyWith(
-        endDate: now,
-        status: KhatmaStatus.completed,
-      );
-    }
-
-    return updated;
   }
-}
 
-// Enhanced KhatmaPart with validation
-@freezed
-abstract class KhatmaPart with _$KhatmaPart, EquatableMixin {
-  const KhatmaPart._();
+  void assertActive() {
+    assertNotCompleted();
+    assertNotDeleted();
+  }
 
-  const factory KhatmaPart({
-    required int id,
-    String? userId,
-    String? userName,
+  // Parent copyWith method for all common Khatma fields
+  Khatma copyWith({
+    KhatmaID? id,
+    String? code,
+    String? name,
+    String? description,
+    SplitUnit? unit,
+    DateTime? createDate,
     DateTime? startDate,
     DateTime? endDate,
-    DateTime? finishedDate,
-    int? remindTimes,
-    @Default(KhatmaPartStatus.notStarted) KhatmaPartStatus status,
-  }) = _KhatmaPart;
+    KhatmaTheme? theme,
+    KhatmaStatus? status,
+    DateTime? lastUpdated,
+    DateTime? lastSync,
+    bool? needsSync,
+    String? createdBy,
+    String? updatedBy,
+    bool? repeat,
+    int? repeats,
+    int? version,
+  }) {
+    return switch (this) {
+      KhatmaPersonal k => k.copyWith(
+          id: id,
+          code: code,
+          name: name,
+          description: description,
+          unit: unit,
+          createDate: createDate,
+          startDate: startDate,
+          endDate: endDate,
+          theme: theme,
+          status: status,
+          lastUpdated: lastUpdated,
+          lastSync: lastSync,
+          needsSync: needsSync,
+          createdBy: createdBy,
+          updatedBy: updatedBy,
+          repeat: repeat,
+          repeats: repeats,
+          version: version,
+        ),
+      KhatmaShared k => k.copyWith(
+          id: id,
+          code: code,
+          name: name,
+          description: description,
+          unit: unit,
+          createDate: createDate,
+          startDate: startDate,
+          endDate: endDate,
+          theme: theme,
+          status: status,
+          lastUpdated: lastUpdated,
+          lastSync: lastSync,
+          needsSync: needsSync,
+          createdBy: createdBy,
+          updatedBy: updatedBy,
+          repeat: repeat,
+          repeats: repeats,
+          version: version,
+        ),
+      KhatmaHifz k => k.copyWith(
+          id: id,
+          code: code,
+          name: name,
+          description: description,
+          unit: unit,
+          createDate: createDate,
+          startDate: startDate,
+          endDate: endDate,
+          theme: theme,
+          status: status,
+          lastUpdated: lastUpdated,
+          lastSync: lastSync,
+          needsSync: needsSync,
+          createdBy: createdBy,
+          updatedBy: updatedBy,
+          version: version,
+        ),
+      KhatmaBase k => k.copyWith(
+          id: id,
+          code: code,
+          name: name,
+          description: description,
+          unit: unit,
+          createDate: createDate,
+          startDate: startDate,
+          endDate: endDate,
+          theme: theme,
+          status: status,
+          lastUpdated: lastUpdated,
+          lastSync: lastSync,
+          needsSync: needsSync,
+          createdBy: createdBy,
+          updatedBy: updatedBy,
+          repeat: repeat,
+          repeats: repeats,
+          version: version,
+        ),
+    };
+  }
+
+  // Domain method to increment version
+  Khatma bumpVersion(String userId) {
+    return copyWith(
+      version: version + 1,
+      updatedBy: userId,
+      lastUpdated: DateTime.now(),
+    );
+  }
 
   @override
-  List<Object?> get props => [id];
-
-  factory KhatmaPart.fromJson(Map<String, Object?> json) =>
-      _$KhatmaPartFromJson(json);
-
-  bool get isCompleted => endDate != null || finishedDate != null;
-  bool get isReserved => userId != null && !isCompleted;
-  bool get isAvailable => userId == null && !isCompleted;
-
-  Duration? get readingDuration {
-    if (startDate == null || endDate == null) return null;
-    return endDate!.difference(startDate!);
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Khatma &&
+        other.id == id &&
+        other.type == type &&
+        other.code == code;
   }
 
-  int get daysSinceFinished {
-    final finishDate = finishedDate ?? endDate;
-    if (finishDate == null) return 0;
-    return DateTime.now().difference(finishDate).inDays;
+  @override
+  int get hashCode => Object.hash(id, type, code);
+
+  double get completionPercent {
+    return switch (this) {
+      KhatmaPersonal k => k.completionPercent,
+      KhatmaShared k => k.completionPercent,
+      KhatmaHifz k => k.completionPercent,
+      KhatmaBase _ => 0.0,
+    };
   }
 
-  Color get statusColor {
-    switch (status) {
-      case KhatmaPartStatus.completed:
-        return Colors.green;
-      case KhatmaPartStatus.inProgress:
-        return Colors.blue;
-      case KhatmaPartStatus.reserved:
-        return Colors.orange;
-      case KhatmaPartStatus.overdue:
-        return Colors.red;
-      case KhatmaPartStatus.notStarted:
-        return Colors.grey;
-    }
-  }
+
 }
 
-// Enhanced enums
-enum KhatmaStatus { active, completed, deleted }
 
-enum KhatmaPartStatus { notStarted, reserved, inProgress, completed, overdue }
-
-// Enhanced theme model
-@freezed
-abstract class KhatmaTheme with _$KhatmaTheme {
-  const factory KhatmaTheme({
-    required String color,
-    required String icon,
-    @Default('light') String variant,
-  }) = _KhatmaTheme;
-
-  factory KhatmaTheme.fromJson(Map<String, Object?> json) =>
-      _$KhatmaThemeFromJson(json);
-}
-
-// Enhanced recurrence model
-@freezed
-abstract class Recurrence with _$Recurrence {
-  const factory Recurrence({
-    @Default(RepeatInterval.auto) RepeatInterval unit,
-    @Default(true) bool repeat,
-    DateTime? startDate,
-    DateTime? endDate,
-    List<int>? days,
-    int? frequency,
-    @Default(false) bool skipWeekends,
-    @Default(false) bool pauseOnCompletion,
-  }) = _Recurrence;
-
-  factory Recurrence.fromJson(Map<String, Object?> json) =>
-      _$RecurrenceFromJson(json);
-}
-
-// Enhanced share model
-@freezed
-abstract class KhatmaShare with _$KhatmaShare {
-  const factory KhatmaShare({
-    required ShareVisibility visibility,
-    int? maxPartToRead,
-    int? maxPartToReserve,
-    @Default(false) bool allowGuestParticipation,
-    @Default(true) bool showParticipantNames,
-    String? inviteCode,
-    DateTime? inviteExpiry,
-  }) = _KhatmaShare;
-
-  factory KhatmaShare.fromJson(Map<String, Object?> json) =>
-      _$KhatmaShareFromJson(json);
-}
-
-// Existing enums (kept for compatibility)
-enum ShareVisibility { private, group, public }
-
-enum RepeatInterval { auto, daily, weekly, monthly }
-
-enum TimePeriods { day, week, month, year }
-
-enum SplitUnit {
-  juzz(30),
-  hizb(60);
-
-  const SplitUnit(this.count);
-  final int count;
-
-  String get displayName {
-    switch (this) {
-      case SplitUnit.juzz:
-        return 'Juzz';
-      case SplitUnit.hizb:
-        return 'Hizb';
-    }
-  }
-}
-
-// Extension for better integration with existing code
-extension KhatmaExtension on Khatma {
-  String get remainingParts => remainingPartIds.length.toString();
-
-  List<int> get remainingPartsList => remainingPartIds;
-
-  KhatmaTheme get style => effectiveTheme; // Backward compatibility
-}
-
-extension ColorExtension on KhatmaTheme {
-  Color get hexColor => HexColor(color);
-}
-
-LinkedHashMap<String, Color> khatmaColorMap =
-    LinkedHashMap<String, Color>.from({
-  HexColor("#00A862").toHex(): HexColor("#00A862"),
-  HexColor("#DD642E").toHex(): HexColor("#DD642E"),
-  HexColor("#0F65E6").toHex(): HexColor("#0F65E6"),
-  HexColor("#713CE7").toHex(): HexColor("#713CE7"),
-  HexColor("#E01497").toHex(): HexColor("#E01497"),
-  HexColor("#DD642E").toHex(): HexColor("#DD642E"),
-});
-
-List<String> khatmaColorHexList = khatmaColorMap.keys.toList();
-
-@freezed
-abstract class LimitInfo with _$LimitInfo {
-  const factory LimitInfo({
-    required int current,
-    required int max,
-    required int available,
-    @Default(true) bool canCreate,
-  }) = _LimitInfo;
-}
-
-@freezed
-abstract class KhatmaStats with _$KhatmaStats {
-  const factory KhatmaStats({
-    required int active,
-    required int available,
-    required int totalCompletions,
-    required int thisMonth,
-    required int thisYear,
-  }) = _KhatmaStats;
-}
-
-@freezed
-abstract class DetailedStats with _$DetailedStats {
-  const factory DetailedStats({
-    required int active,
-    required int available,
-    required int totalCompletions,
-    required String averageDays,
-    required Map<String, int> monthlyCompletions,
-    required int needsSync,
-  }) = _DetailedStats;
-}
-
-@freezed
-abstract class SyncStatus with _$SyncStatus {
-  const factory SyncStatus({
-    required bool needsSync,
-    required List<Khatma> khatmas,
-    required List<CompletionHistory> history,
-    required int totalCount,
-    String? lastSyncTime,
-    int? minutesSinceLastSync,
-  }) = _SyncStatus;
-}
-
-@freezed
-abstract class SyncResult with _$SyncResult {
-  const factory SyncResult({
-    @Default(true) bool success,
-    int? syncedKhatmas,
-    int? syncedHistory,
-    List<String>? errors,
-    String? syncTime,
-    String? error,
-    String? reason,
-    String? lastSyncTime,
-    @Default(0) int totalSynced,
-  }) = _SyncResult;
-
-  factory SyncResult.success({
-    required int syncedKhatmas,
-    required int syncedHistory,
-    required List<String> errors,
-    required String syncTime,
-  }) {
-    return SyncResult(
-      success: true,
-      syncedKhatmas: syncedKhatmas,
-      syncedHistory: syncedHistory,
-      errors: errors,
-      syncTime: syncTime,
-      totalSynced: syncedKhatmas + syncedHistory,
-    );
-  }
-
-  factory SyncResult.failure({
-    required String error,
-    int syncedKhatmas = 0,
-    int syncedHistory = 0,
-    List<String> errors = const [],
-  }) {
-    return SyncResult(
-      success: false,
-      error: error,
-      syncedKhatmas: syncedKhatmas,
-      syncedHistory: syncedHistory,
-      errors: errors,
-    );
-  }
-
-  factory SyncResult.notNeeded({
-    required String reason,
-    String? lastSyncTime,
-  }) {
-    return SyncResult(
-      success: true,
-      reason: reason,
-      lastSyncTime: lastSyncTime,
-    );
-  }
+extension KhatmaThemeExtensions on Khatma {
+  Color get color => theme.hexColor;
+  String get icon => theme.icon;
+  String get variant => theme.variant;
+  KhatmaTheme get style => theme;
 }

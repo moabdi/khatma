@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/khatma_details_page.dart';
 
 class KhatmaDetailsState {
-  final SharedKhatma khatma;
+  final KhatmaShared khatma;
   final Set<UnitFilter> activeFilters;
   final bool isJoining;
 
@@ -14,7 +14,7 @@ class KhatmaDetailsState {
   });
 
   KhatmaDetailsState copyWith({
-    SharedKhatma? khatma,
+    KhatmaShared? khatma,
     Set<UnitFilter>? activeFilters,
     bool? isJoining,
   }) {
@@ -33,10 +33,10 @@ class KhatmaDetailsState {
   // Check if there are any visible units matching the current filter
   bool get hasVisibleUnits {
     for (int i = 0; i < khatma.totalUnits; i++) {
-      final unitNumber = i + 1;
+      final number = i + 1;
       final unit = khatma.units.firstWhere(
-        (u) => u.unitNumber == unitNumber,
-        orElse: () => SharedKhatmaUnit(unitNumber: unitNumber),
+        (u) => u.number == number,
+        orElse: () => Unit(number: number),
       );
       if (shouldShowUnit(unit)) {
         return true;
@@ -45,7 +45,7 @@ class KhatmaDetailsState {
     return false;
   }
 
-  bool shouldShowUnit(SharedKhatmaUnit unit) {
+  bool shouldShowUnit(Unit unit) {
     if (activeFilters.contains(UnitFilter.all)) {
       return true;
     }
@@ -55,7 +55,7 @@ class KhatmaDetailsState {
         case UnitFilter.all:
           return true;
         case UnitFilter.mine:
-          if (unit.isReservedByCurrentUser) return true;
+          if (unit.isReserved) return true;
         case UnitFilter.reserved:
           if (unit.isReserved) return true;
         case UnitFilter.free:
@@ -74,7 +74,7 @@ class KhatmaDetailsState {
       case UnitFilter.all:
         return khatma.totalUnits;
       case UnitFilter.mine:
-        return khatma.units.where((u) => u.isReservedByCurrentUser).length;
+        return khatma.units.where((u) => u.isReserved).length;
       case UnitFilter.reserved:
         return khatma.units.where((u) => u.isReserved).length;
       case UnitFilter.free:
@@ -86,7 +86,7 @@ class KhatmaDetailsState {
 }
 
 class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
-  KhatmaDetailsController(SharedKhatma khatma)
+  KhatmaDetailsController(KhatmaShared khatma)
       : super(KhatmaDetailsState(
           khatma: khatma,
           activeFilters: {UnitFilter.all},
@@ -117,9 +117,9 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
     state = state.copyWith(activeFilters: newFilters);
   }
 
-  void reserveUnit(SharedKhatmaUnit unit) {
+  void reserveUnit(Unit unit) {
     final updatedUnits = state.khatma.units.map((u) {
-      if (u.unitNumber == unit.unitNumber) {
+      if (u.number == unit.number) {
         return u.copyWith(
           status: UnitStatus.selected,
         );
@@ -128,12 +128,12 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
     }).toList();
 
     // Add the unit if it doesn't exist
-    if (!updatedUnits.any((u) => u.unitNumber == unit.unitNumber)) {
-      updatedUnits.add(SharedKhatmaUnit(
-        unitNumber: unit.unitNumber,
+    if (!updatedUnits.any((u) => u.number == unit.number)) {
+      updatedUnits.add(Unit(
+        number: unit.number,
         status: UnitStatus.selected,
-        reservedByUserId: 'currentUser',
-        reservedByUserName: 'You',
+        reservedBy: 'currentUser',
+        reservedByName: 'You',
         reservedDate: DateTime.now(),
       ));
     }
@@ -143,9 +143,9 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
     );
   }
 
-  void unreserveUnit(SharedKhatmaUnit unit) {
+  void unreserveUnit(Unit unit) {
     final updatedUnits = state.khatma.units
-        .where((u) => u.unitNumber != unit.unitNumber)
+        .where((u) => u.number != unit.number)
         .toList();
 
     state = state.copyWith(
@@ -172,6 +172,6 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
 
 // Provider for the controller
 final khatmaDetailsControllerProvider = StateNotifierProvider.family<
-    KhatmaDetailsController, KhatmaDetailsState, SharedKhatma>(
+    KhatmaDetailsController, KhatmaDetailsState, KhatmaShared>(
   (ref, khatma) => KhatmaDetailsController(khatma),
 );

@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatma_sync_manager.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/sync/khatma_sync_screen.dart';
 import 'package:khatma/src/features/settings/application/setting_provider.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
-import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma/src/themes/theme_provider.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -73,11 +70,11 @@ class SettingsPage extends ConsumerWidget {
     if (user == null || user.isAnonymous) {
       return const SizedBox.shrink();
     }
-
-    final syncManager = ref.watch(syncManagerProvider.notifier);
-    final isCurrentlySyncing = syncManager.isSyncing;
-    final lastSync = ref.watch(syncManagerProvider.notifier).lastSuccessfulSync;
-    final hasFailures = syncManager.consecutiveFailures > 0;
+/*
+    //final syncManager = ref.watch(syncManagerProvider.notifier);
+    //final isCurrentlySyncing = syncManager.isSyncing;
+    //final lastSync = ref.watch(syncManagerProvider.notifier).lastSuccessfulSync;
+    //final hasFailures = syncManager.consecutiveFailures > 0;
 
     // Determine sync status and colors
     IconData syncIcon;
@@ -138,8 +135,8 @@ class SettingsPage extends ConsumerWidget {
         ),
       ],
     );
-
-    return SimplifiedSyncContent();
+*/
+    return SizedBox();//SimplifiedSyncContent();
   }
 
   String _formatSyncTime(BuildContext context, DateTime dateTime) {

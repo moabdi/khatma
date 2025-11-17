@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/features/khatma/data/model/khatma_dto.dart';
-import 'package:khatma/src/features/khatma/data/model/completion_history_dto.dart';
+import 'package:khatma/src/features/khatma/data/model/khatma_history_dto.dart';
 
 part 'sync_models.freezed.dart';
 part 'sync_models.g.dart';
@@ -52,7 +52,7 @@ abstract class SyncStatus with _$SyncStatus {
   const factory SyncStatus({
     required bool needsSync,
     required List<KhatmaDto> khatmas,
-    required List<CompletionHistoryDto> history,
+    required List<KhatmaHistoryDto> history,
     required int totalCount,
     String? lastSyncTime,
     int? minutesSinceLastSync,

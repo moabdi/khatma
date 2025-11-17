@@ -1,167 +1,40 @@
-// lib/src/features/shared_khatma/domain/shared_khatma.dart
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_theme.dart';
 
-part 'shared_khatma.freezed.dart';
-part 'shared_khatma.g.dart';
-
-typedef SharedKhatmaID = String;
-
-@freezed
-abstract class SharedKhatma with _$SharedKhatma {
-  const SharedKhatma._();
-
-  const factory SharedKhatma({
-    SharedKhatmaID? id,
-    required String name,
-    required String description,
-    required SplitUnit unit,
-    required DateTime createDate,
-    required String creatorId,
-    String? creatorName,
-    @Default(true) bool isPublic,
-    @Default([]) List<SharedKhatmaParticipant> participants,
-    @Default([]) List<SharedKhatmaUnit> units,
-    DateTime? lastUpdated,
-    @Default(SharedKhatmaStatus.active) SharedKhatmaStatus status,
-    @Default(3) int maxReservationsPerUser,
-    @Default(7) int reservationWarningDays,
-    int? reservationExpirationDays,
-  }) = _SharedKhatma;
-
-  factory SharedKhatma.fromJson(Map<String, Object?> json) =>
-      _$SharedKhatmaFromJson(json);
-
-  // Computed properties
-  int get membersCount => participants.length;
-
-  int get unitsAvailable =>
-      units.where((unit) => unit.status == UnitStatus.free).length;
-
-  int get totalUnits => unit.count;
-
-  List<SharedKhatmaUnit> get reservedUnits =>
-      units.where((unit) => unit.status == UnitStatus.reserved).toList();
-
-  List<SharedKhatmaUnit> get userReservedUnits => units
-      .where((unit) => unit.status == UnitStatus.reservedByCurrentUser)
-      .toList();
-
-  // NEW: Check if user can reserve more units
-  bool get canUserReserveMore =>
-      userReservedUnits.length < maxReservationsPerUser;
-
-  int get remainingReservations =>
-      (maxReservationsPerUser - userReservedUnits.length)
-          .clamp(0, maxReservationsPerUser);
-
-  double get completionPercent {
-    if (units.isEmpty) return 0.0;
-    final completedCount =
-        units.where((unit) => unit.status == UnitStatus.completed).length;
-    return (completedCount / totalUnits).clamp(0.0, 1.0);
-  }
-}
-
-@freezed
-abstract class SharedKhatmaParticipant with _$SharedKhatmaParticipant {
-  const factory SharedKhatmaParticipant({
-    required String userId,
-    required String userName,
-    String? userPhotoUrl,
-    required DateTime joinedDate,
-    @Default(0) int completedUnits,
-    @Default(ParticipantRole.member) ParticipantRole role,
-  }) = _SharedKhatmaParticipant;
-
-  factory SharedKhatmaParticipant.fromJson(Map<String, Object?> json) =>
-      _$SharedKhatmaParticipantFromJson(json);
-}
-
-@freezed
-abstract class SharedKhatmaUnit with _$SharedKhatmaUnit {
-  const SharedKhatmaUnit._();
-
-  const factory SharedKhatmaUnit({
-    required int unitNumber,
-    @Default(UnitStatus.free) UnitStatus status,
-    String? reservedByUserId,
-    String? reservedByUserName,
-    DateTime? reservedDate,
-    DateTime? completedDate,
-    DateTime? lastReminderSent, // Track when last reminder was sent
-  }) = _SharedKhatmaUnit;
-
-  factory SharedKhatmaUnit.fromJson(Map<String, Object?> json) =>
-      _$SharedKhatmaUnitFromJson(json);
-
-  bool get isFree => status == UnitStatus.free;
-  bool get isSelected => status == UnitStatus.selected;
-  bool get isReserved => status == UnitStatus.reserved;
-  bool get isReservedByCurrentUser =>
-      status == UnitStatus.reservedByCurrentUser;
-  bool get isCompleted => status == UnitStatus.completed;
-
-  /// Returns the number of days since this unit was reserved
-  int? get daysSinceReserved {
-    if (reservedDate == null) return null;
-    return DateTime.now().difference(reservedDate!).inDays;
-  }
-
-  /// Check if this unit should show a warning (reserved too long)
-  bool shouldShowWarning(int warningThresholdDays) {
-    if (!isReserved && !isReservedByCurrentUser) return false;
-    final days = daysSinceReserved;
-    return days != null && days >= warningThresholdDays;
-  }
-
-  /// Check if this unit has expired and should be auto-freed
-  bool hasExpired(int? expirationDays) {
-    if (expirationDays == null) return false;
-    if (!isReserved && !isReservedByCurrentUser) return false;
-    final days = daysSinceReserved;
-    return days != null && days >= expirationDays;
-  }
-}
-
-enum SharedKhatmaStatus { active, completed, archived, deleted }
-
-enum ParticipantRole { member, moderator, admin }
-
-enum UnitStatus { free, reserved, selected, reservedByCurrentUser, completed }
-
-// Mock data for testing
-class SharedKhatmaMockData {
-  static List<SharedKhatma> getMockKhatmas() {
+class KhatmaSharedMockData {
+  static List<KhatmaShared> getMockKhatmas() {
     return [
       // Khatma with WARNING CASES - for testing overdue reservations
-      SharedKhatma(
+      KhatmaShared(
         id: '0',
+        code: 'MOCK-0',
         name: 'Test Khatma - Cas d\'Avertissements',
         description:
             'Khatma de test avec différents cas d\'avertissement de réservation en retard.',
         unit: SplitUnit.juzz,
         createDate: DateTime.now().subtract(const Duration(days: 30)),
+        startDate: DateTime.now().subtract(const Duration(days: 30)),
+        theme: kDefaultKhatmaTheme,
         creatorId: 'creator1',
         creatorName: 'Ahmed Mohamed',
         isPublic: true,
         reservationWarningDays: 7, // Warning after 7 days
         reservationExpirationDays: 14, // Auto-expire after 14 days
         participants: [
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'creator1',
             userName: 'Ahmed Mohamed',
             joinedDate: DateTime.now().subtract(const Duration(days: 30)),
             completedUnits: 3,
             role: ParticipantRole.admin,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user2',
             userName: 'Fatima Ali',
             joinedDate: DateTime.now().subtract(const Duration(days: 25)),
             completedUnits: 1,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user3',
             userName: 'Omar Hassan',
             joinedDate: DateTime.now().subtract(const Duration(days: 20)),
@@ -171,101 +44,106 @@ class SharedKhatmaMockData {
         maxReservationsPerUser: 5,
         units: [
           // Unit 1: Reserved 20 days ago - EXPIRED (should be auto-freed)
-          SharedKhatmaUnit(
-            unitNumber: 1,
+          Unit(
+            number: 1,
             status: UnitStatus.reserved,
-            reservedByUserId: 'user2',
-            reservedByUserName: 'Fatima Ali',
+            reservedBy: 'user2',
+            reservedByName: 'Fatima Ali',
             reservedDate: DateTime.now().subtract(const Duration(days: 20)),
             lastReminderSent: DateTime.now().subtract(const Duration(days: 15)),
           ),
           // Unit 2: Reserved 15 days ago - VERY OVERDUE + EXPIRED
-          SharedKhatmaUnit(
-            unitNumber: 2,
+          Unit(
+            number: 2,
             status: UnitStatus.reserved,
-            reservedByUserId: 'user3',
-            reservedByUserName: 'Omar Hassan',
+            reservedBy: 'user3',
+            reservedByName: 'Omar Hassan',
             reservedDate: DateTime.now().subtract(const Duration(days: 15)),
           ),
           // Unit 3: Reserved 10 days ago - OVERDUE (warning shown)
-          SharedKhatmaUnit(
-            unitNumber: 3,
+          Unit(
+            number: 3,
             status: UnitStatus.reserved,
-            reservedByUserId: 'user2',
-            reservedByUserName: 'Fatima Ali',
+            reservedBy: 'user2',
+            reservedByName: 'Fatima Ali',
             reservedDate: DateTime.now().subtract(const Duration(days: 10)),
             lastReminderSent: DateTime.now().subtract(const Duration(days: 3)),
           ),
           // Unit 4: Reserved 8 days ago - JUST OVERDUE (warning appears)
-          SharedKhatmaUnit(
-            unitNumber: 4,
-            status: UnitStatus.reservedByCurrentUser,
-            reservedByUserId: 'currentUser',
-            reservedByUserName: 'Vous',
+          Unit(
+            number: 4,
+            status: UnitStatus.reserved,
+            reservedBy: 'currentUser',
+            reservedByName: 'Vous',
             reservedDate: DateTime.now().subtract(const Duration(days: 8)),
           ),
           // Unit 5: Reserved 6 days ago - OK (no warning yet)
-          SharedKhatmaUnit(
-            unitNumber: 5,
+          Unit(
+            number: 5,
             status: UnitStatus.reserved,
-            reservedByUserId: 'user3',
-            reservedByUserName: 'Omar Hassan',
+            reservedBy: 'user3',
+            reservedByName: 'Omar Hassan',
             reservedDate: DateTime.now().subtract(const Duration(days: 6)),
           ),
           // Unit 6: Reserved 3 days ago - OK (no warning)
-          SharedKhatmaUnit(
-            unitNumber: 6,
-            status: UnitStatus.reservedByCurrentUser,
-            reservedByUserId: 'currentUser',
-            reservedByUserName: 'Vous',
+          Unit(
+            number: 6,
+            status: UnitStatus.reserved,
+            reservedBy: 'currentUser',
+            reservedByName: 'Vous',
             reservedDate: DateTime.now().subtract(const Duration(days: 3)),
           ),
           // Unit 7: Reserved 1 day ago - FRESH (no warning)
-          SharedKhatmaUnit(
-            unitNumber: 7,
+          Unit(
+            number: 7,
             status: UnitStatus.reserved,
-            reservedByUserId: 'user2',
-            reservedByUserName: 'Fatima Ali',
+            reservedBy: 'user2',
+            reservedByName: 'Fatima Ali',
             reservedDate: DateTime.now().subtract(const Duration(days: 1)),
           ),
           // Unit 8: Completed (no warning)
-          SharedKhatmaUnit(
-            unitNumber: 8,
+          Unit(
+            number: 8,
             status: UnitStatus.completed,
-            reservedByUserId: 'creator1',
-            reservedByUserName: 'Ahmed Mohamed',
+            reservedBy: 'creator1',
+            reservedByName: 'Ahmed Mohamed',
             reservedDate: DateTime.now().subtract(const Duration(days: 12)),
             completedDate: DateTime.now().subtract(const Duration(days: 5)),
+            completedBy: 'creator1',
+            completedByName: 'Ahmed Mohamed',
           ),
           // Units 9-30: Free
-          ...List.generate(22, (i) => SharedKhatmaUnit(unitNumber: i + 9)),
+          ...List.generate(22, (i) => Unit(number: i + 9)),
         ],
       ),
-      SharedKhatma(
+      KhatmaShared(
         id: '1',
+        code: 'MOCK-1',
         name: 'Khatma Ramadan 2024',
         description:
             'Khatma collective pour le mois de Ramadan. Rejoignez-nous pour une lecture partagée du Coran.',
         unit: SplitUnit.juzz,
         createDate: DateTime.now().subtract(const Duration(days: 7)),
+        startDate: DateTime.now().subtract(const Duration(days: 7)),
+        theme: kDefaultKhatmaTheme,
         creatorId: 'creator1',
         creatorName: 'Ahmed Mohamed',
         isPublic: true,
         participants: [
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user1',
             userName: 'Ahmed Mohamed',
             joinedDate: DateTime.now().subtract(const Duration(days: 7)),
             completedUnits: 5,
             role: ParticipantRole.admin,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user2',
             userName: 'Fatima Ali',
             joinedDate: DateTime.now().subtract(const Duration(days: 5)),
             completedUnits: 3,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user3',
             userName: 'Omar Hassan',
             joinedDate: DateTime.now().subtract(const Duration(days: 3)),
@@ -276,30 +154,32 @@ class SharedKhatmaMockData {
         units: List.generate(30, (index) {
           final unitNumber = index + 1;
           if (unitNumber <= 8) {
-            return SharedKhatmaUnit(
-              unitNumber: unitNumber,
+            final userId = 'user${(unitNumber % 3) + 1}';
+            final userName = [
+              'Ahmed Mohamed',
+              'Fatima Ali',
+              'Omar Hassan'
+            ][unitNumber % 3];
+            return Unit(
+              number: unitNumber,
               status: UnitStatus.completed,
-              reservedByUserId: 'user${(unitNumber % 3) + 1}',
-              reservedByUserName: [
-                'Ahmed Mohamed',
-                'Fatima Ali',
-                'Omar Hassan'
-              ][unitNumber % 3],
+              reservedBy: userId,
+              reservedByName: userName,
               reservedDate:
                   DateTime.now().subtract(Duration(days: 8 - unitNumber)),
               completedDate:
                   DateTime.now().subtract(Duration(days: 7 - unitNumber)),
+              completedBy: userId,
+              completedByName: userName,
             );
           } else if (unitNumber <= 12) {
-            return SharedKhatmaUnit(
-              unitNumber: unitNumber,
-              status: unitNumber == 9
-                  ? UnitStatus.reservedByCurrentUser
-                  : UnitStatus.reserved,
-              reservedByUserId: unitNumber == 9
+            return Unit(
+              number: unitNumber,
+              status: UnitStatus.reserved,
+              reservedBy: unitNumber == 9
                   ? 'currentUser'
                   : 'user${(unitNumber % 3) + 1}',
-              reservedByUserName: unitNumber == 9
+              reservedByName: unitNumber == 9
                   ? 'You'
                   : [
                       'Ahmed Mohamed',
@@ -310,29 +190,32 @@ class SharedKhatmaMockData {
                   DateTime.now().subtract(Duration(days: unitNumber - 8)),
             );
           } else {
-            return SharedKhatmaUnit(unitNumber: unitNumber);
+            return Unit(number: unitNumber);
           }
         }),
       ),
-      SharedKhatma(
+      KhatmaShared(
         id: '2',
+        code: 'MOCK-2',
         name: 'Khatma Hebdomadaire',
         description:
             'Une khatma en mode Hizb pour une lecture hebdomadaire. Parfait pour maintenir une routine.',
         unit: SplitUnit.hizb,
         createDate: DateTime.now().subtract(const Duration(days: 14)),
+        startDate: DateTime.now().subtract(const Duration(days: 14)),
+        theme: kDefaultKhatmaTheme,
         creatorId: 'creator2',
         creatorName: 'Khadija Benali',
         isPublic: true,
         participants: [
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'creator2',
             userName: 'Khadija Benali',
             joinedDate: DateTime.now().subtract(const Duration(days: 14)),
             completedUnits: 12,
             role: ParticipantRole.admin,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user4',
             userName: 'Youssef Amrani',
             joinedDate: DateTime.now().subtract(const Duration(days: 10)),
@@ -342,41 +225,45 @@ class SharedKhatmaMockData {
         units: List.generate(60, (index) {
           final unitNumber = index + 1;
           if (unitNumber <= 20) {
-            return SharedKhatmaUnit(
-              unitNumber: unitNumber,
+            final userId = unitNumber % 2 == 0 ? 'creator2' : 'user4';
+            final userName = unitNumber % 2 == 0 ? 'Khadija Benali' : 'Youssef Amrani';
+            return Unit(
+              number: unitNumber,
               status: UnitStatus.completed,
-              reservedByUserId: unitNumber % 2 == 0 ? 'creator2' : 'user4',
-              reservedByUserName:
-                  unitNumber % 2 == 0 ? 'Khadija Benali' : 'Youssef Amrani',
+              reservedBy: userId,
+              reservedByName: userName,
               reservedDate:
                   DateTime.now().subtract(Duration(days: 25 - unitNumber)),
               completedDate:
                   DateTime.now().subtract(Duration(days: 24 - unitNumber)),
+              completedBy: userId,
+              completedByName: userName,
             );
           } else if (unitNumber <= 25) {
-            return SharedKhatmaUnit(
-              unitNumber: unitNumber,
-              status: unitNumber == 21
-                  ? UnitStatus.reservedByCurrentUser
-                  : UnitStatus.reserved,
-              reservedByUserId: unitNumber == 21 ? 'currentUser' : 'creator2',
-              reservedByUserName: unitNumber == 21 ? 'You' : 'Khadija Benali',
+            return Unit(
+              number: unitNumber,
+              status: UnitStatus.reserved,
+              reservedBy: unitNumber == 21 ? 'currentUser' : 'creator2',
+              reservedByName: unitNumber == 21 ? 'You' : 'Khadija Benali',
               reservedDate:
                   DateTime.now().subtract(Duration(days: unitNumber - 20)),
             );
           } else {
-            return SharedKhatmaUnit(unitNumber: unitNumber);
+            return Unit(number: unitNumber);
           }
         }),
       ),
       // Khatma with SHORT WARNING - for testing quick alerts
-      SharedKhatma(
+      KhatmaShared(
         id: '3',
+        code: 'MOCK-3',
         name: 'Test Khatma - Avertissements Rapides',
         description:
             'Khatma avec des durées courtes pour tester les avertissements rapides (2 jours warning, 4 jours expiration).',
         unit: SplitUnit.hizb,
         createDate: DateTime.now().subtract(const Duration(days: 10)),
+        startDate: DateTime.now().subtract(const Duration(days: 10)),
+        theme: kDefaultKhatmaTheme,
         creatorId: 'creator3',
         creatorName: 'Khadija Test',
         isPublic: true,
@@ -384,14 +271,14 @@ class SharedKhatmaMockData {
         reservationExpirationDays: 4, // Auto-expire after 4 days
         maxReservationsPerUser: 3,
         participants: [
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'creator3',
             userName: 'Khadija Test',
             joinedDate: DateTime.now().subtract(const Duration(days: 10)),
             completedUnits: 2,
             role: ParticipantRole.admin,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user7',
             userName: 'Test User',
             joinedDate: DateTime.now().subtract(const Duration(days: 5)),
@@ -400,58 +287,61 @@ class SharedKhatmaMockData {
         ],
         units: [
           // Unit 1: Reserved 5 days ago - EXPIRED
-          SharedKhatmaUnit(
-            unitNumber: 1,
+          Unit(
+            number: 1,
             status: UnitStatus.reserved,
-            reservedByUserId: 'user7',
-            reservedByUserName: 'Test User',
+            reservedBy: 'user7',
+            reservedByName: 'Test User',
             reservedDate: DateTime.now().subtract(const Duration(days: 5)),
           ),
           // Unit 2: Reserved 3 days ago - OVERDUE
-          SharedKhatmaUnit(
-            unitNumber: 2,
-            status: UnitStatus.reservedByCurrentUser,
-            reservedByUserId: 'currentUser',
-            reservedByUserName: 'Vous',
+          Unit(
+            number: 2,
+            status: UnitStatus.reserved,
+            reservedBy: 'currentUser',
+            reservedByName: 'Vous',
             reservedDate: DateTime.now().subtract(const Duration(days: 3)),
           ),
           // Unit 3: Reserved 1 day ago - OK
-          SharedKhatmaUnit(
-            unitNumber: 3,
+          Unit(
+            number: 3,
             status: UnitStatus.reserved,
-            reservedByUserId: 'user7',
-            reservedByUserName: 'Test User',
+            reservedBy: 'user7',
+            reservedByName: 'Test User',
             reservedDate: DateTime.now().subtract(const Duration(days: 1)),
           ),
           // Units 4-20: Free
-          ...List.generate(17, (i) => SharedKhatmaUnit(unitNumber: i + 4)),
+          ...List.generate(17, (i) => Unit(number: i + 4)),
         ],
       ),
-      SharedKhatma(
+      KhatmaShared(
         id: '4',
+        code: 'MOCK-4',
         name: 'Khatma Étudiants',
         description:
             'Khatma dédiée aux étudiants. Lecture flexible selon votre emploi du temps.',
         unit: SplitUnit.juzz,
         createDate: DateTime.now().subtract(const Duration(days: 3)),
+        startDate: DateTime.now().subtract(const Duration(days: 3)),
+        theme: kDefaultKhatmaTheme,
         creatorId: 'creator4',
         creatorName: 'Amina Fassi',
         isPublic: true,
         participants: [
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'creator4',
             userName: 'Amina Fassi',
             joinedDate: DateTime.now().subtract(const Duration(days: 3)),
             completedUnits: 2,
             role: ParticipantRole.admin,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user5',
             userName: 'Said Rachid',
             joinedDate: DateTime.now().subtract(const Duration(days: 2)),
             completedUnits: 1,
           ),
-          SharedKhatmaParticipant(
+          Participant(
             userId: 'user6',
             userName: 'Nadia Benjelloun',
             joinedDate: DateTime.now().subtract(const Duration(days: 1)),
@@ -461,27 +351,29 @@ class SharedKhatmaMockData {
         units: List.generate(30, (index) {
           final unitNumber = index + 1;
           if (unitNumber <= 3) {
-            return SharedKhatmaUnit(
-              unitNumber: unitNumber,
+            return Unit(
+              number: unitNumber,
               status: UnitStatus.completed,
-              reservedByUserId: 'creator3',
-              reservedByUserName: 'Amina Fassi',
+              reservedBy: 'creator4',
+              reservedByName: 'Amina Fassi',
               reservedDate:
                   DateTime.now().subtract(Duration(days: 4 - unitNumber)),
               completedDate:
                   DateTime.now().subtract(Duration(days: 3 - unitNumber)),
+              completedBy: 'creator4',
+              completedByName: 'Amina Fassi',
             );
           } else if (unitNumber <= 5) {
-            return SharedKhatmaUnit(
-              unitNumber: unitNumber,
+            return Unit(
+              number: unitNumber,
               status: UnitStatus.reserved,
-              reservedByUserId: 'user5',
-              reservedByUserName: 'Said Rachid',
+              reservedBy: 'user5',
+              reservedByName: 'Said Rachid',
               reservedDate:
                   DateTime.now().subtract(Duration(days: unitNumber - 3)),
             );
           } else {
-            return SharedKhatmaUnit(unitNumber: unitNumber);
+            return Unit(number: unitNumber);
           }
         }),
       ),

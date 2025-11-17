@@ -1,4 +1,7 @@
-import 'package:khatma/src/features/khatma/domain/shared_khatma.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/shared/application/khatma_shared_mocks.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'shared_khatma_provider.g.dart';
@@ -6,13 +9,13 @@ part 'shared_khatma_provider.g.dart';
 @riverpod
 class SharedKhatmas extends _$SharedKhatmas {
   @override
-  List<SharedKhatma> build() {
+  List<KhatmaShared> build() {
     // Initialize with mock data
-    return SharedKhatmaMockData.getMockKhatmas();
+    return KhatmaSharedMockData.getMockKhatmas();
   }
 
   void searchKhatmas(String query) {
-    final allKhatmas = SharedKhatmaMockData.getMockKhatmas();
+    final allKhatmas = KhatmaSharedMockData.getMockKhatmas();
 
     if (query.isEmpty) {
       state = allKhatmas;
@@ -22,17 +25,17 @@ class SharedKhatmas extends _$SharedKhatmas {
     final filteredKhatmas = allKhatmas.where((khatma) {
       final lowercaseQuery = query.toLowerCase();
       return khatma.name.toLowerCase().contains(lowercaseQuery) ||
-          khatma.description.toLowerCase().contains(lowercaseQuery);
+          khatma.description?.toLowerCase().contains(lowercaseQuery) == true;
     }).toList();
 
     state = filteredKhatmas;
   }
 
   void resetSearch() {
-    state = SharedKhatmaMockData.getMockKhatmas();
+    state = KhatmaSharedMockData.getMockKhatmas();
   }
 
-  SharedKhatma? getKhatmaById(String id) {
+  KhatmaShared? getKhatmaById(String id) {
     try {
       return state.firstWhere((khatma) => khatma.id == id);
     } catch (e) {
@@ -51,11 +54,11 @@ class SharedKhatmas extends _$SharedKhatmas {
     state = state.map((khatma) {
       if (khatma.id == khatmaId) {
         final updatedUnits = khatma.units.map((unit) {
-          if (reservedUnits.contains(unit.unitNumber)) {
+          if (reservedUnits.contains(unit.number)) {
             return unit.copyWith(
-              status: UnitStatus.reservedByCurrentUser,
-              reservedByUserId: 'currentUser',
-              reservedByUserName: 'You',
+              status: UnitStatus.reserved,
+              reservedBy: 'currentUser',
+              reservedByName: 'You',
               reservedDate: DateTime.now(),
             );
           }
@@ -63,7 +66,7 @@ class SharedKhatmas extends _$SharedKhatmas {
         }).toList();
 
         // Add current user to participants if not already present
-        final currentUserParticipant = SharedKhatmaParticipant(
+        final currentUserParticipant = Participant(
           userId: 'currentUser',
           userName: 'You',
           joinedDate: DateTime.now(),
@@ -87,11 +90,11 @@ class SharedKhatmas extends _$SharedKhatmas {
     state = state.map((khatma) {
       if (khatma.id == khatmaId) {
         final updatedUnits = khatma.units.map((unit) {
-          if (unit.unitNumber == unitNumber && unit.isFree) {
+          if (unit.number == unitNumber && unit.isFree) {
             return unit.copyWith(
-              status: UnitStatus.reservedByCurrentUser,
-              reservedByUserId: 'currentUser',
-              reservedByUserName: 'You',
+              status: UnitStatus.reserved,
+              reservedBy: 'currentUser',
+              reservedByName: 'You',
               reservedDate: DateTime.now(),
             );
           }
@@ -99,12 +102,12 @@ class SharedKhatmas extends _$SharedKhatmas {
         }).toList();
 
         // Add unit if it doesn't exist
-        if (!updatedUnits.any((u) => u.unitNumber == unitNumber)) {
-          updatedUnits.add(SharedKhatmaUnit(
-            unitNumber: unitNumber,
-            status: UnitStatus.reservedByCurrentUser,
-            reservedByUserId: 'currentUser',
-            reservedByUserName: 'You',
+        if (!updatedUnits.any((u) => u.number == unitNumber)) {
+          updatedUnits.add(Unit(
+            number: unitNumber,
+            status: UnitStatus.reserved,
+            reservedBy: 'currentUser',
+            reservedByName: 'You',
             reservedDate: DateTime.now(),
           ));
         }
@@ -119,11 +122,11 @@ class SharedKhatmas extends _$SharedKhatmas {
     state = state.map((khatma) {
       if (khatma.id == khatmaId) {
         final updatedUnits = khatma.units.map((unit) {
-          if (unit.unitNumber == unitNumber && unit.isReservedByCurrentUser) {
+          if (unit.number == unitNumber && unit.isReserved) {
             return unit.copyWith(
               status: UnitStatus.free,
-              reservedByUserId: null,
-              reservedByUserName: null,
+              reservedBy: null,
+              reservedByName: null,
               reservedDate: null,
             );
           }
@@ -158,7 +161,7 @@ class KhatmaSearch extends _$KhatmaSearch {
 
 // Provider for getting a specific khatma by ID
 @riverpod
-SharedKhatma? khatmaById(KhatmaByIdRef ref, String id) {
+KhatmaShared? khatmaById(Ref ref, String id) {
   final khatmas = ref.watch(sharedKhatmasProvider);
   try {
     return khatmas.firstWhere((khatma) => khatma.id == id);
@@ -189,10 +192,10 @@ class KhatmaJoining extends _$KhatmaJoining {
 
 // Provider for tracking reserved units for current user
 @riverpod
-List<SharedKhatmaUnit> userReservedUnits(
-    UserReservedUnitsRef ref, String khatmaId) {
+List<Unit> userReservedUnits(
+    Ref ref, String khatmaId) {
   final khatma = ref.watch(khatmaByIdProvider(khatmaId));
   if (khatma == null) return [];
 
-  return khatma.units.where((unit) => unit.isReservedByCurrentUser).toList();
+  return khatma.units.where((unit) => unit.isReserved).toList();
 }

@@ -1,11 +1,11 @@
-import 'package:khatma/src/features/khatma/data/model/completion_history_dto.dart';
-import 'package:khatma/src/features/khatma/domain/models/completion_history.dart';
-import 'package:khatma/src/features/khatma/domain/models/khatma_enums.dart';
+import 'package:khatma/src/features/khatma/data/model/khatma_history_dto.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_enums.dart';
 
 /// Extension to map CompletionHistoryDto to Domain model
-extension CompletionHistoryDtoMapper on CompletionHistoryDto {
-  CompletionHistory toDomain() {
-    return CompletionHistory(
+extension KhatmaHistoryDtoMapper on KhatmaHistoryDto {
+  KhatmaHistory toDomain() {
+    return KhatmaHistory(
       id: id,
       khatmaId: khatmaId,
       startDate: startDate,
@@ -17,9 +17,9 @@ extension CompletionHistoryDtoMapper on CompletionHistoryDto {
 }
 
 /// Extension to map Domain model to DTO
-extension CompletionHistoryDomainMapper on CompletionHistory {
-  CompletionHistoryDto toDto({DateTime? lastSync, bool needsSync = false, bool isDeleted = false}) {
-    return CompletionHistoryDto(
+extension CompletionHistoryDomainMapper on KhatmaHistory {
+  KhatmaHistoryDto toDto({DateTime? lastSync, bool needsSync = false, bool isDeleted = false}) {
+    return KhatmaHistoryDto(
       id: id,
       khatmaId: khatmaId,
       startDate: startDate,

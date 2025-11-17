@@ -1,14 +1,13 @@
 import 'package:khatma/src/features/khatma/data/model/khatma_dto.dart';
-import 'package:khatma/src/features/khatma/domain/models/khatma.dart';
-import 'package:khatma/src/features/khatma/domain/models/khatma_enums.dart';
-import 'package:khatma/src/features/khatma/domain/models/khatma_theme.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_theme.dart';
 
 /// Extension to map DTOs to Domain models
 extension KhatmaDtoMapper on KhatmaDto {
   /// Convert DTO to Domain model
   Khatma toDomain() {
     return switch (this) {
-      PersonalKhatmaDto dto => PersonalKhatma(
+      PersonalKhatmaDto dto => KhatmaPersonal(
           id: dto.id,
           code: dto.code,
           name: dto.name,
@@ -27,7 +26,7 @@ extension KhatmaDtoMapper on KhatmaDto {
           repeats: dto.repeats,
           lastRead: dto.lastRead,
         ),
-      SharedKhatmaDto dto => SharedKhatma(
+      SharedKhatmaDto dto => KhatmaShared(
           id: dto.id,
           code: '', // SharedKhatma doesn't have code in DTO
           name: dto.name,
@@ -49,7 +48,7 @@ extension KhatmaDtoMapper on KhatmaDto {
           participants: dto.participants.map((p) => p.toDomain()).toList(),
           units: dto.units.map((u) => u.toDomain()).toList(),
         ),
-      HifzKhatmaDto dto => HifzKhatma(
+      HifzKhatmaDto dto => KhatmaHifz(
           id: dto.id,
           code: dto.code,
           name: dto.name,
@@ -76,7 +75,7 @@ extension KhatmaDomainMapper on Khatma {
   /// Convert Domain model to DTO
   KhatmaDto toDto() {
     return switch (this) {
-      PersonalKhatma khatma => PersonalKhatmaDto(
+      KhatmaPersonal khatma => PersonalKhatmaDto(
           id: khatma.id,
           code: khatma.code,
           name: khatma.name,
@@ -97,7 +96,7 @@ extension KhatmaDomainMapper on Khatma {
           needsSync: khatma.needsSync,
           status: khatma.status.name,
         ),
-      SharedKhatma khatma => SharedKhatmaDto(
+      KhatmaShared khatma => SharedKhatmaDto(
           id: khatma.id,
           name: khatma.name,
           description: khatma.description ?? '',
@@ -114,7 +113,7 @@ extension KhatmaDomainMapper on Khatma {
           reservationWarningDays: khatma.reservationWarningDays,
           reservationExpirationDays: khatma.reservationExpirationDays,
         ),
-      HifzKhatma khatma => HifzKhatmaDto(
+      KhatmaHifz khatma => HifzKhatmaDto(
           id: khatma.id,
           code: khatma.code,
           name: khatma.name,
@@ -134,6 +133,7 @@ extension KhatmaDomainMapper on Khatma {
           needsSync: khatma.needsSync,
           status: khatma.status.name,
         ),
+      KhatmaBase() => throw Exception('StartedKhatma is a just for creation and cannot be converted to DTO'),
     };
   }
 }

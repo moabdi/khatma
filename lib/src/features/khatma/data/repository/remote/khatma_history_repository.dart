@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/khatma/data/mappers/khatma_history_mappers.dart';
+import 'package:khatma/src/features/khatma/data/model/khatma_history_dto.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/domain/completion_history.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_history.dart';
 import 'package:khatma/src/utils/delay.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -18,59 +20,59 @@ class KhatmaHistoryRepository {
   static String historyPath(String userUid, KhatmaID id) =>
       'users/$userUid/history/$id';
 
-  Future<List<CompletionHistory>> fetchKhatmasList(String userId) async {
+  Future<List<KhatmaHistory>> fetchKhatmasList(String userId) async {
     final ref = _khatmasRef(userId);
     final snapshot = await ref.get();
     return snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList();
   }
 
-  Stream<List<CompletionHistory>> watchKhatmasList(String userId) {
+  Stream<List<KhatmaHistory>> watchKhatmasList(String userId) {
     final ref = _khatmasRef(userId);
     return ref.snapshots().map((snapshot) =>
         snapshot.docs.map((docSnapshot) => docSnapshot.data()).toList());
   }
 
-  Future<CompletionHistory?> fetchKhatma(String userId, KhatmaID id) async {
+  Future<KhatmaHistory?> fetchKhatma(String userId, KhatmaID id) async {
     final ref = _khatmaRef(userId, id);
     final snapshot = await ref.get();
     return snapshot.data();
   }
 
-  Stream<CompletionHistory?> watchKhatma(String userId, KhatmaID id) {
+  Stream<KhatmaHistory?> watchKhatma(String userId, KhatmaID id) {
     final ref = _khatmaRef(userId, id);
     return ref.snapshots().map((snapshot) => snapshot.data());
   }
 
-  Future create(String userId, CompletionHistory completion) async {
+  Future create(String userId, KhatmaHistory completion) async {
     return _firestore
         .collection(historiesPath(userId))
         .doc(completion.id)
-        .set(completion.toJson());
+        .set(completion.toDto().toJson());
   }
 
   Future<void> deleteById(String userId, KhatmaID id) {
     return _firestore.doc(historyPath(userId, id)).delete();
   }
 
-  DocumentReference<CompletionHistory> _khatmaRef(String userId, KhatmaID id) =>
+  DocumentReference<KhatmaHistory> _khatmaRef(String userId, KhatmaID id) =>
       _firestore.doc(historyPath(userId, id)).withConverter(
             fromFirestore: (doc, _) {
               final data = doc.data()!;
               data['id'] = doc.id;
-              return CompletionHistory.fromJson(data);
+              return KhatmaHistoryDto.fromJson(data).toDomain();
             },
-            toFirestore: (CompletionHistory khatma, options) => khatma.toJson(),
+            toFirestore: (KhatmaHistory khatma, options) => khatma.toDto().toJson(),
           );
 
-  Query<CompletionHistory> _khatmasRef(String userId) =>
+  Query<KhatmaHistory> _khatmasRef(String userId) =>
       _firestore.collection(historiesPath(userId)).withConverter(
             fromFirestore: (doc, _) {
               final data = doc.data()!;
               data['id'] = doc.id;
-              return CompletionHistory.fromJson(data);
+              return KhatmaHistoryDto.fromJson(data).toDomain();
             },
-            toFirestore: (CompletionHistory khatmaHistory, options) =>
-                khatmaHistory.toJson(),
+            toFirestore: (KhatmaHistory khatmaHistory, options) =>
+                khatmaHistory.toDto().toJson(),
           );
 }
 
@@ -80,21 +82,21 @@ KhatmaHistoryRepository khatmaHistoryRepository(Ref ref) {
 }
 
 @riverpod
-Stream<List<CompletionHistory>> khatmaHistoryRepositoryStream(Ref ref) {
+Stream<List<KhatmaHistory>> khatmaHistoryRepositoryStream(Ref ref) {
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
   return khatmasRepository.watchKhatmasList(userUid);
 }
 
 @riverpod
-Future<List<CompletionHistory>> khatmaHistoryRepositoryFuture(Ref ref) {
+Future<List<KhatmaHistory>> khatmaHistoryRepositoryFuture(Ref ref) {
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
   return khatmasRepository.fetchKhatmasList(userUid);
 }
 
 @riverpod
-Stream<CompletionHistory?> khatmaHistoryStream(Ref ref, KhatmaID id) {
+Stream<KhatmaHistory?> khatmaHistoryStream(Ref ref, KhatmaID id) {
   delay(true);
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;
@@ -102,7 +104,7 @@ Stream<CompletionHistory?> khatmaHistoryStream(Ref ref, KhatmaID id) {
 }
 
 @riverpod
-Future<CompletionHistory?> khatmaHistoryFuture(Ref ref, KhatmaID id) async {
+Future<KhatmaHistory?> khatmaHistoryFuture(Ref ref, KhatmaID id) async {
   await delay(true, milliseconds: 100);
   final khatmasRepository = ref.watch(khatmaHistoryRepositoryProvider);
   String userUid = ref.read(authRepositoryProvider).currentUser!.uid;

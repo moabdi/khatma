@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/domain/khatma_theme.dart';
 
 class KhatmaColorPicker extends StatelessWidget {
   const KhatmaColorPicker({

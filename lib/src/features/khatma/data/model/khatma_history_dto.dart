@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/features/khatma/data/model/khatma_dto.dart';
 
-part 'completion_history_dto.freezed.dart';
-part 'completion_history_dto.g.dart';
+part 'khatma_history_dto.freezed.dart';
+part 'khatma_history_dto.g.dart';
 
 @freezed
-abstract class CompletionHistoryDto with _$CompletionHistoryDto {
-  const factory CompletionHistoryDto({
+abstract class KhatmaHistoryDto with _$KhatmaHistoryDto {
+  const factory KhatmaHistoryDto({
     String? id,
     KhatmaID? khatmaId,
     required DateTime startDate,
@@ -16,8 +16,8 @@ abstract class CompletionHistoryDto with _$CompletionHistoryDto {
     DateTime? lastSync,
     @Default(false) bool needsSync,
     @Default(false) bool isDeleted,
-  }) = _CompletionHistoryDto;
+  }) = _KhatmaHistoryDto;
 
-  factory CompletionHistoryDto.fromJson(Map<String, Object?> json) =>
-      _$CompletionHistoryDtoFromJson(json);
+  factory KhatmaHistoryDto.fromJson(Map<String, Object?> json) =>
+      _$KhatmaHistoryDtoFromJson(json);
 }

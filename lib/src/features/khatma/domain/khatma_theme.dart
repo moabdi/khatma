@@ -2,7 +2,6 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:khatma_ui/extentions/color_extensions.dart';
 
-/// Theme for Khatma (clean domain model without Freezed)
 class KhatmaTheme {
   final String color;
   final String icon;
@@ -25,22 +24,6 @@ class KhatmaTheme {
       color: color ?? this.color,
       icon: icon ?? this.icon,
       variant: variant ?? this.variant,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'color': color,
-      'icon': icon,
-      'variant': variant,
-    };
-  }
-
-  factory KhatmaTheme.fromJson(Map<String, dynamic> json) {
-    return KhatmaTheme(
-      color: json['color'] as String,
-      icon: json['icon'] as String,
-      variant: json['variant'] as String? ?? 'light',
     );
   }
 
@@ -76,3 +59,4 @@ LinkedHashMap<String, Color> khatmaColorMap =
 });
 
 List<String> khatmaColorHexList = khatmaColorMap.keys.toList();
+

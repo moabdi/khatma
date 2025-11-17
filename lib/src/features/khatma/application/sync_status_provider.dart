@@ -1,4 +1,4 @@
-// lib/src/features/sync/application/sync_status_provider.dart
+/* lib/src/features/sync/application/sync_status_provider.dart
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatma_sync_manager.dart';
 
@@ -85,3 +85,4 @@ class SyncStatusNotifier extends _$SyncStatusNotifier {
     state = state.copyWith(currentOperation: null);
   }
 }
+*/

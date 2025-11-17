@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/form/ui/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
 
 class KhatmaAvatar extends StatelessWidget {
   const KhatmaAvatar({
@@ -18,7 +18,7 @@ class KhatmaAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeColor = khatma.style.hexColor;
+    final themeColor = khatma.color;
     final iconSize = size * 0.5; // Icon is 50% of container size
     final editIndicatorSize =
         size * 0.3; // Edit indicator is 30% of container size
@@ -87,7 +87,6 @@ class KhatmaAvatar extends StatelessWidget {
   }
 }
 
-// Alternative Material Design version
 class KhatmaAvatarMaterial extends StatelessWidget {
   const KhatmaAvatarMaterial({
     super.key,
@@ -119,9 +118,9 @@ class KhatmaAvatarMaterial extends StatelessWidget {
             height: size,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: themeColor.withOpacity(0.15),
+              color: themeColor.withAlpha(255),
               border: Border.all(
-                color: themeColor.withOpacity(0.4),
+                color: themeColor.withAlpha(200),
                 width: 2,
               ),
             ),

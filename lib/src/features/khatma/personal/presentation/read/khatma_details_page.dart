@@ -187,8 +187,8 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
                     itemBuilder: (context, index) {
                       final unitNumber = index + 1;
                       final unit = _currentKhatma.units.firstWhere(
-                        (u) => u.unitNumber == unitNumber,
-                        orElse: () => SharedKhatmaUnit(unitNumber: unitNumber),
+                        (u) => u.number == unitNumber,
+                        orElse: () => Unit(number: unitNumber),
                       );
 
                       return _UnitTile(
@@ -296,10 +296,10 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
     );
   }
 
-  void _toggleUnitReservation(SharedKhatmaUnit unit) {
+  void _toggleUnitReservation(Unit unit) {
     if (unit.isFree) {
       // Check if limit reached before attempting reservation
-      if (!_currentKhatma.canUserReserveMore) {
+      if (!_currentKhatma.canUserReserveMore('currentUser')) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -311,20 +311,20 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
         return;
       }
       _reserveUnit(unit);
-    } else if (unit.isReservedByCurrentUser) {
+    } else if (unit.isReservedBy('currentUser')) {
       _unreserveUnit(unit);
     }
     // Do nothing if reserved by another user or completed
   }
 
-  void _reserveUnit(SharedKhatmaUnit unit) {
+  void _reserveUnit(Unit unit) {
     setState(() {
       final updatedUnits = _currentKhatma.units.map((u) {
-        if (u.unitNumber == unit.unitNumber) {
+        if (u.number == unit.number) {
           return u.copyWith(
-            status: UnitStatus.reservedByCurrentUser,
-            reservedByUserId: 'currentUser',
-            reservedByUserName: 'You',
+            status: UnitStatus.reserved,
+            reservedBy: 'currentUser',
+            reservedByName: 'You',
             reservedDate: DateTime.now(),
           );
         }
@@ -332,12 +332,12 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
       }).toList();
 
       // Add the unit if it doesn't exist
-      if (!updatedUnits.any((u) => u.unitNumber == unit.unitNumber)) {
-        updatedUnits.add(SharedKhatmaUnit(
-          unitNumber: unit.unitNumber,
-          status: UnitStatus.reservedByCurrentUser,
-          reservedByUserId: 'currentUser',
-          reservedByUserName: 'You',
+      if (!updatedUnits.any((u) => u.number == unit.number)) {
+        updatedUnits.add(Unit(
+          number: unit.number,
+          status: UnitStatus.reserved,
+          reservedBy: 'currentUser',
+          reservedByName: 'You',
           reservedDate: DateTime.now(),
         ));
       }
@@ -346,14 +346,14 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
     });
   }
 
-  void _unreserveUnit(SharedKhatmaUnit unit) {
+  void _unreserveUnit(Unit unit) {
     setState(() {
       final updatedUnits = _currentKhatma.units.map((u) {
-        if (u.unitNumber == unit.unitNumber && u.isReservedByCurrentUser) {
+        if (u.number == unit.number && u.isReservedBy('currentUser')) {
           return u.copyWith(
             status: UnitStatus.free,
-            reservedByUserId: null,
-            reservedByUserName: null,
+            reservedBy: null,
+            reservedByName: null,
             reservedDate: null,
           );
         }
@@ -526,7 +526,7 @@ class _StatCard extends StatelessWidget {
 }
 
 class _UnitTile extends StatelessWidget {
-  final SharedKhatmaUnit unit;
+  final Unit unit;
   final VoidCallback onTap;
 
   const _UnitTile({
@@ -588,7 +588,7 @@ class _UnitTile extends StatelessWidget {
     }
 
     // Calculate start ayah for the hizb (example calculation)
-    final startAyah = _getStartAyahForHizb(unit.unitNumber);
+    final startAyah = _getStartAyahForHizb(unit.number);
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 2),
@@ -600,7 +600,7 @@ class _UnitTile extends StatelessWidget {
           backgroundColor: avatarColor,
           radius: 20,
           child: Text(
-            '${unit.unitNumber}',
+            '${unit.number}',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: numberColor,
@@ -608,7 +608,7 @@ class _UnitTile extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Hizb ${unit.unitNumber}',
+          'Hizb ${unit.number}',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),

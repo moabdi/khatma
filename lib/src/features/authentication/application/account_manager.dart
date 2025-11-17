@@ -34,7 +34,6 @@ class AccountManager extends _$AccountManager {
 
   // ==================== PROFILE MANAGEMENT ====================
 
-  /// Mettre à jour le nom d'affichage
   Future<Result<void, AppErrorCode>> updateDisplayName(
       String displayName) async {
     if (state.isLoading) {
@@ -79,7 +78,6 @@ class AccountManager extends _$AccountManager {
     }
   }
 
-  /// Mettre à jour le profil complet
   Future<Result<void, AppErrorCode>> updateProfile({
     String? displayName,
     String? photoURL,
@@ -115,7 +113,6 @@ class AccountManager extends _$AccountManager {
   }
 
   // ==================== PASSWORD MANAGEMENT ====================
-
   /// Changer le mot de passe
   Future<Result<void, AppErrorCode>> changePassword({
     required String currentPassword,

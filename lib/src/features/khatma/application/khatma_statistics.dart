@@ -1,3 +1,4 @@
+/*
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/completion_history.dart';
@@ -124,3 +125,5 @@ abstract class KhatmaStatistics with _$KhatmaStatistics {
     return Duration(seconds: totalSeconds.toInt());
   }
 }
+
+*/
