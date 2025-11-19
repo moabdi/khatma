@@ -74,7 +74,7 @@ class KhatmaNotifier extends _$KhatmaNotifier {
 
   */
 
-  Future<Result<Khatma, AppErrorCode>> saveKhatma(KhatmaBase khatma) async {
+  Future<Result<Khatma, AppErrorCode>> saveKhatma(Khatma khatma) async {
     state = state.copyWith(status: AppStatus.saving);
 
     try {

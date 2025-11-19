@@ -41,10 +41,7 @@ extension KhatmaDtoMapper on KhatmaDto {
           needsSync: false,
           creatorId: dto.creatorId,
           creatorName: dto.creatorName,
-          isPublic: dto.isPublic,
-          maxReservationsPerUser: dto.maxReservationsPerUser,
-          reservationWarningDays: dto.reservationWarningDays,
-          reservationExpirationDays: dto.reservationExpirationDays,
+          config: const SharedConfig.defaults(), // Use default config
           participants: dto.participants.map((p) => p.toDomain()).toList(),
           units: dto.units.map((u) => u.toDomain()).toList(),
         ),
@@ -62,8 +59,13 @@ extension KhatmaDtoMapper on KhatmaDto {
           lastUpdated: dto.lastUpdated,
           lastSync: dto.lastSync,
           needsSync: dto.needsSync,
+          config: HifzConfig(
+            mode: _mapHifzMode(dto.mode),
+            dailyGoal: 1, // Default value (DTO doesn't store this yet)
+            reviewInterval: RepeatInterval.weekly, // Default value
+            reviewIntervalDays: 7, // Default value
+          ),
           sections: dto.sections?.map((s) => s.toDomain()).toList() ?? [],
-          mode: _mapHifzMode(dto.mode),
           lastRead: dto.lastRead,
         ),
     };
@@ -102,16 +104,13 @@ extension KhatmaDomainMapper on Khatma {
           description: khatma.description ?? '',
           unit: khatma.unit.name,
           createDate: khatma.createDate,
-          creatorId: khatma.creatorId,
+          creatorId: khatma.creatorId!,
           creatorName: khatma.creatorName,
-          isPublic: khatma.isPublic,
           participants: khatma.participants.map((p) => p.toDto()).toList(),
           units: khatma.units.map((u) => u.toDto()).toList(),
           lastUpdated: khatma.lastUpdated,
           status: khatma.status.name,
-          maxReservationsPerUser: khatma.maxReservationsPerUser,
-          reservationWarningDays: khatma.reservationWarningDays,
-          reservationExpirationDays: khatma.reservationExpirationDays,
+          // Config fields are not persisted in DTO - they use defaults
         ),
       KhatmaHifz khatma => HifzKhatmaDto(
           id: khatma.id,
@@ -133,7 +132,6 @@ extension KhatmaDomainMapper on Khatma {
           needsSync: khatma.needsSync,
           status: khatma.status.name,
         ),
-      KhatmaBase() => throw Exception('StartedKhatma is a just for creation and cannot be converted to DTO'),
     };
   }
 }

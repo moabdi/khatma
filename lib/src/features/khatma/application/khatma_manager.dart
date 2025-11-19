@@ -1,4 +1,6 @@
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
+import 'package:khatma/src/features/authentication/domain/app_user.dart';
+import 'package:khatma/src/features/khatma/data/repository/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/data/repository/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,19 +14,25 @@ class KhatmaManager extends _$KhatmaManager {
     return null;
   }
 
-  String get _userId => ref.read(userProvider)!.id;
+  AppUser? get _user => ref.read(userProvider);
   KhatmasRepository get _khatmasRepository =>
       ref.read(khatmasRepositoryProvider);
+  LocalKhatmaRepository get _localKhatmasRepository =>
+      ref.read(localKhatmaRepositoryProvider);
 
-  void update(KhatmaBase updatedKhatma) {
+  void update(Khatma updatedKhatma) {
     state = updatedKhatma;
   }
 
   Future<void> save(Khatma khatma) async {
-    _khatmasRepository.create(_userId, khatma);
+    if (_user == null) {
+      await _localKhatmasRepository.save(khatma);
+    } else {
+      await _khatmasRepository.create(_user!.id, khatma);
+    }
   }
 
   Future<void> delete(Khatma khatma) async {
-    _khatmasRepository.delete(_userId, khatma);
+    _khatmasRepository.delete(_user!.id, khatma);
   }
 }

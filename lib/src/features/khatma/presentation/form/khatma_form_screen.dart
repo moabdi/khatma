@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/core/app_dialog.dart';
-import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/type_selector.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/unit_selector.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -39,6 +40,18 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     super.initState();
     _focusNode = FocusScopeNode();
 
+    // If editing, ensure the form is initialized
+    if (widget.khatmaId != null) {
+      final formData = ref.read(khatmaFormProvider);
+      // If the form doesn't match the khatma we're editing, it means
+      // the route didn't initialize it properly, so do it here
+      if (formData.id != widget.khatmaId) {
+        // This is a fallback - try to load from the provider
+        // In practice, the route should have already done this
+        print('Warning: Form not initialized in route, initializing in initState');
+      }
+    }
+
     // Initialize controllers with current khatma data
     final khatma = ref.read(khatmaFormProvider);
     _nameController = TextEditingController(text: khatma.name);
@@ -58,9 +71,9 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   }
 
   void _onTextFieldChanged() {
-    final khatma = ref.read(khatmaFormProvider);
+    final formData = ref.read(khatmaFormProvider);
     ref.read(khatmaFormProvider.notifier).update(
-          khatma.copyWith(
+          formData.copyWith(
             name: _nameController.text,
             description: _descController.text,
           ),
@@ -69,12 +82,12 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final khatma = ref.watch(khatmaFormProvider);
+    final formData = ref.watch(khatmaFormProvider);
     final isEditing = widget.khatmaId != null;
 
     return Scaffold(
       appBar: _buildAppBar(context, isEditing),
-      body: _buildBody(context, khatma),
+      body: _buildBody(context, formData),
     );
   }
 
@@ -92,9 +105,9 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildBody(BuildContext context, KhatmaBase khatma) {
+  Widget _buildBody(BuildContext context, KhatmaFormData formData) {
     // Check if we're editing a khatma that doesn't match the current ID
-    if (widget.khatmaId != null && khatma.id != widget.khatmaId) {
+    if (widget.khatmaId != null && formData.id != widget.khatmaId) {
       return const EmptyPlaceholderWidget(message: 'Khatma not found');
     }
 
@@ -104,14 +117,14 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           node: _focusNode,
           child: Container(
             height: MediaQuery.of(context).size.height,
-            child: _buildForm(context, khatma),
+            child: _buildForm(context, formData),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildForm(BuildContext context, KhatmaBase khatma) {
+  Widget _buildForm(BuildContext context, KhatmaFormData formData) {
     return Form(
       key: _formKey,
       child: Padding(
@@ -121,23 +134,23 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           children: [
             gapH24,
             KhatmaAvatarMaterial(
-              khatma: khatma,
-              onTap: () => _showStyleSelector(context, khatma),
+              khatma: formData,
+              onTap: () => _showStyleSelector(context, formData),
             ),
             gapH16,
-            _buildNameField(context, khatma),
+            _buildNameField(context),
             gapH16,
-            _buildDescriptionField(context, khatma),
+            _buildDescriptionField(context),
             gapH16,
-            _buildTypeSelector(context, khatma),
+            _buildTypeSelector(context, formData),
             gapH16,
-            _buildSplitUnitSelector(context, khatma),
+            _buildSplitUnitSelector(context, formData),
             gapH16,
-            _buildRepeatToggle(khatma),
+            _buildRepeatToggle(formData),
             gapH48,
             ElevatedButton(
               child: Text(AppLocalizations.of(context).save),
-              onPressed: () => _handleSave(context, khatma),
+              onPressed: () => _handleSave(context),
             ),
             gapH16,
             _buildDeleteButton(context),
@@ -148,7 +161,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildNameField(BuildContext context, Khatma khatma) {
+  Widget _buildNameField(BuildContext context) {
     return ListenableBuilder(
       listenable: _nameController,
       builder: (context, _) {
@@ -178,7 +191,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildDescriptionField(BuildContext context, Khatma khatma) {
+  Widget _buildDescriptionField(BuildContext context) {
     return TextField(
       controller: _descController,
       keyboardType: TextInputType.multiline,
@@ -193,7 +206,10 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   }
 
 
-  Widget _buildTypeSelector(BuildContext context, KhatmaBase khatma) {
+  Widget _buildTypeSelector(BuildContext context, KhatmaFormData formData) {
+    // Type cannot be changed when editing
+    final canChangeType = !formData.isEditing;
+
     return Card(
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 8),
@@ -207,14 +223,15 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
         ),
         title: Text(AppLocalizations.of(context).khatmaType),
         subtitle: Text(
-          khatma.type.name,
+          formData.type.name,
         ),
-        onTap: () => _handleSplitUnitTap(context, khatma),
+        enabled: canChangeType,
+        onTap: canChangeType ? () => _handleTypeTap(context, formData) : null,
       ),
     );
   }
 
-  Widget _buildSplitUnitSelector(BuildContext context, KhatmaBase khatma) {
+  Widget _buildSplitUnitSelector(BuildContext context, KhatmaFormData formData) {
     return Card(
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 8),
@@ -228,15 +245,29 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
         ),
         title: Text(AppLocalizations.of(context).splitUnit),
         subtitle: Text(
-          AppLocalizations.of(context).khatmaSplitUnitDesc(khatma.unit.name),
+          AppLocalizations.of(context).khatmaSplitUnitDesc(formData.unit.name),
         ),
-        onTap: () => _handleSplitUnitTap(context, khatma),
+        onTap: () => _handleSplitUnitTap(context, formData),
       ),
     );
   }
 
-  void _handleSplitUnitTap(BuildContext context, KhatmaBase khatma) {
-    if (khatma.isStarted) {
+  void _handleTypeTap(BuildContext context, KhatmaFormData formData) {
+    _showModal(
+      context,
+      TypeSelector(
+        type: formData.type,
+        onSelect: (value) => ref
+            .read(khatmaFormProvider.notifier)
+            .update(formData.copyWith(type: value)),
+      ),
+      AppLocalizations.of(context).khatmaType,
+    );
+  }
+
+  void _handleSplitUnitTap(BuildContext context, KhatmaFormData formData) {
+    // Only prevent changing unit if editing an existing khatma that has started
+    if (formData.isEditing && formData.isStarted) {
       _showSnackBar(context, context.loc.cannotUpdateKhatmaWhileStarted);
       return;
     }
@@ -244,32 +275,32 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     _showModal(
       context,
       UnitSelector(
-        unit: khatma.unit,
+        unit: formData.unit,
         onSelect: (value) => ref
             .read(khatmaFormProvider.notifier)
-            .update(khatma.copyWith(unit: value)),
+            .update(formData.copyWith(unit: value)),
       ),
       AppLocalizations.of(context).splitUnit,
     );
   }
 
-  Widget _buildRepeatToggle(KhatmaBase khatma) {
+  Widget _buildRepeatToggle(KhatmaFormData formData) {
     return Card(
       child: RepeatKhatmaTile(
-        enabled: khatma.repeat,
+        enabled: formData.repeat,
         onChanged: (enabled) => ref.read(khatmaFormProvider.notifier).update(
-              khatma.copyWith(repeat: enabled),
+              formData.copyWith(repeat: enabled),
             ),
       ),
     );
   }
 
   Widget _buildDeleteButton(BuildContext context) {
-    final khatma = ref.watch(khatmaFormProvider);
-    if (khatma.id == null) return const SizedBox.shrink();
+    final formData = ref.watch(khatmaFormProvider);
+    if (formData.id == null) return const SizedBox.shrink();
 
     return OutlinedButton.icon(
-      onPressed: () => _handleDelete(context, khatma),
+      onPressed: () => _handleDelete(context),
       icon: Icon(Icons.delete),
       label: Text(AppLocalizations.of(context).delete),
       style: OutlinedButton.styleFrom(
@@ -290,36 +321,46 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     return null;
   }
 
-  Future<void> _handleSave(BuildContext context, KhatmaBase khatma) async {
+  Future<void> _handleSave(BuildContext context) async {
     // Validate the form
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
     try {
-      await ref.read(khatmaFormProvider.notifier).save(khatma);
+      final isEditing = widget.khatmaId != null;
+      await ref.read(khatmaFormProvider.notifier).save();
+
       if (mounted) {
-        Navigator.of(context).pop();
+        if (isEditing) {
+          // If editing, go back to the read screen
+          Navigator.of(context).pop();
+        } else {
+          // If creating new, navigate to home
+          context.go('/khatma');
+        }
       }
     } catch (error) {
+      print(error);
       if (mounted) {
         _showSnackBar(context, context.loc.failedToSaveKhatma);
       }
     }
   }
 
-  Future<void> _handleDelete(BuildContext context, Khatma khatma) async {
-    if (khatma.id == null) return;
+  Future<void> _handleDelete(BuildContext context) async {
+    final formData = ref.read(khatmaFormProvider);
+    if (formData.id == null) return;
 
     try {
       final shouldDelete = await AppDialog.showDelete(
         context,
-        itemName: khatma.name,
+        itemName: formData.name,
       );
 
       if (!shouldDelete!) return;
 
-      await ref.read(khatmaFormProvider.notifier).delete(khatma);
+      await ref.read(khatmaFormProvider.notifier).delete();
 
       if (mounted) {
         final snackBar = buildSnackBar(
@@ -342,13 +383,13 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     }
   }
 
-  void _showStyleSelector(BuildContext context, KhatmaBase khatma) {
+  void _showStyleSelector(BuildContext context, KhatmaFormData formData) {
     _showModal(
       context,
       KhatmaStyleSelector(
-        style: khatma.theme,
+        style: formData.theme,
         onChanged: (value) => ref.read(khatmaFormProvider.notifier).update(
-              khatma.copyWith(theme: value),
+              formData.copyWith(theme: value),
             ),
       ),
       AppLocalizations.of(context).khatmaStyle,
@@ -377,7 +418,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
 
 // Extension moved to separate file would be better
 extension KhatmaFormProviderExtension on WidgetRef {
-  void updateKhatma(KhatmaBase khatma) {
-    read(khatmaFormProvider.notifier).update(khatma);
+  void updateKhatma(KhatmaFormData formData) {
+    read(khatmaFormProvider.notifier).update(formData);
   }
 }

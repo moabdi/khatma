@@ -17,9 +17,12 @@ class KhatmaSharedMockData {
         theme: kDefaultKhatmaTheme,
         creatorId: 'creator1',
         creatorName: 'Ahmed Mohamed',
-        isPublic: true,
-        reservationWarningDays: 7, // Warning after 7 days
-        reservationExpirationDays: 14, // Auto-expire after 14 days
+        config: SharedConfig(
+          maxReservationsPerUser: 5,
+          reservationWarningDays: 7, // Warning after 7 days
+          reservationExpirationDays: 14, // Auto-expire after 14 days
+          autoReleaseExpiredReservations: true,
+        ),
         participants: [
           Participant(
             userId: 'creator1',
@@ -41,7 +44,6 @@ class KhatmaSharedMockData {
             completedUnits: 0,
           ),
         ],
-        maxReservationsPerUser: 5,
         units: [
           // Unit 1: Reserved 20 days ago - EXPIRED (should be auto-freed)
           Unit(
@@ -128,7 +130,7 @@ class KhatmaSharedMockData {
         theme: kDefaultKhatmaTheme,
         creatorId: 'creator1',
         creatorName: 'Ahmed Mohamed',
-        isPublic: true,
+        config: const SharedConfig.defaults(),
         participants: [
           Participant(
             userId: 'user1',
@@ -150,7 +152,6 @@ class KhatmaSharedMockData {
             completedUnits: 2,
           ),
         ],
-        maxReservationsPerUser: 5, // Limite de 5 unités par utilisateur
         units: List.generate(30, (index) {
           final unitNumber = index + 1;
           if (unitNumber <= 8) {
@@ -206,7 +207,7 @@ class KhatmaSharedMockData {
         theme: kDefaultKhatmaTheme,
         creatorId: 'creator2',
         creatorName: 'Khadija Benali',
-        isPublic: true,
+        config: const SharedConfig.defaults(),
         participants: [
           Participant(
             userId: 'creator2',
@@ -266,10 +267,12 @@ class KhatmaSharedMockData {
         theme: kDefaultKhatmaTheme,
         creatorId: 'creator3',
         creatorName: 'Khadija Test',
-        isPublic: true,
-        reservationWarningDays: 2, // Warning after 2 days
-        reservationExpirationDays: 4, // Auto-expire after 4 days
-        maxReservationsPerUser: 3,
+        config: SharedConfig(
+          maxReservationsPerUser: 3,
+          reservationWarningDays: 2, // Warning after 2 days
+          reservationExpirationDays: 4, // Auto-expire after 4 days
+          autoReleaseExpiredReservations: true,
+        ),
         participants: [
           Participant(
             userId: 'creator3',
@@ -326,7 +329,7 @@ class KhatmaSharedMockData {
         theme: kDefaultKhatmaTheme,
         creatorId: 'creator4',
         creatorName: 'Amina Fassi',
-        isPublic: true,
+        config: const SharedConfig.defaults(),
         participants: [
           Participant(
             userId: 'creator4',

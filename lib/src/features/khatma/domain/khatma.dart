@@ -5,7 +5,6 @@ import 'package:khatma/src/features/khatma/domain/khatma_theme.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_exceptions.dart';
 export 'package:khatma/src/features/khatma/domain/khatma_enums.dart';
 
-part 'khatma_base.dart';
 part 'khatma_personal.dart';
 part 'khatma_shared.dart';
 part 'khatma_hifz.dart';
@@ -31,7 +30,8 @@ sealed class Khatma {
   final DateTime? lastUpdated;
   final DateTime? lastSync;
   final bool needsSync;
-  final String? createdBy;
+  final String? creatorId;
+  final String? creatorName;
   final String? updatedBy;
   final bool repeat;
   final int repeats;
@@ -53,7 +53,8 @@ sealed class Khatma {
     this.lastUpdated,
     this.lastSync,
     this.needsSync = false,
-    this.createdBy,
+    this.creatorId,
+    this.creatorName,
     this.updatedBy,
     this.repeat = false,
     this.repeats = 0,
@@ -106,7 +107,8 @@ sealed class Khatma {
     DateTime? lastUpdated,
     DateTime? lastSync,
     bool? needsSync,
-    String? createdBy,
+    String? creatorId,
+    String? creatorName,
     String? updatedBy,
     bool? repeat,
     int? repeats,
@@ -127,7 +129,8 @@ sealed class Khatma {
           lastUpdated: lastUpdated,
           lastSync: lastSync,
           needsSync: needsSync,
-          createdBy: createdBy,
+          creatorId: creatorId,
+          creatorName: creatorName,
           updatedBy: updatedBy,
           repeat: repeat,
           repeats: repeats,
@@ -147,7 +150,8 @@ sealed class Khatma {
           lastUpdated: lastUpdated,
           lastSync: lastSync,
           needsSync: needsSync,
-          createdBy: createdBy,
+          creatorId: creatorId,
+          creatorName: creatorName,
           updatedBy: updatedBy,
           repeat: repeat,
           repeats: repeats,
@@ -167,28 +171,9 @@ sealed class Khatma {
           lastUpdated: lastUpdated,
           lastSync: lastSync,
           needsSync: needsSync,
-          createdBy: createdBy,
+          creatorId: creatorId,
+          creatorName: creatorName,
           updatedBy: updatedBy,
-          version: version,
-        ),
-      KhatmaBase k => k.copyWith(
-          id: id,
-          code: code,
-          name: name,
-          description: description,
-          unit: unit,
-          createDate: createDate,
-          startDate: startDate,
-          endDate: endDate,
-          theme: theme,
-          status: status,
-          lastUpdated: lastUpdated,
-          lastSync: lastSync,
-          needsSync: needsSync,
-          createdBy: createdBy,
-          updatedBy: updatedBy,
-          repeat: repeat,
-          repeats: repeats,
           version: version,
         ),
     };
@@ -220,7 +205,6 @@ sealed class Khatma {
       KhatmaPersonal k => k.completionPercent,
       KhatmaShared k => k.completionPercent,
       KhatmaHifz k => k.completionPercent,
-      KhatmaBase _ => 0.0,
     };
   }
 

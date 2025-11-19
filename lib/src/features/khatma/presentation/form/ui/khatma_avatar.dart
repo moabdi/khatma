@@ -96,7 +96,8 @@ class KhatmaAvatarMaterial extends StatelessWidget {
     this.showEditIndicator = true,
   });
 
-  final Khatma khatma;
+  // Accept dynamic type that has 'style' property
+  final dynamic khatma;
   final VoidCallback onTap;
   final double size;
   final bool showEditIndicator;

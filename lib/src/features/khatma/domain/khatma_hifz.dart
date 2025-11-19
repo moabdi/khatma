@@ -1,14 +1,58 @@
 part of 'khatma.dart';
 
-/// Hifz Khatma - Quran memorization tracking
-class KhatmaHifz extends Khatma {
-  final List<Section> sections;
+// ============================================================================
+// HIFZ KHATMA - CONFIGURATION
+// ============================================================================
+
+/// Configuration for Hifz-specific settings
+class HifzConfig {
   final HifzMode mode;
-  final DateTime? lastRead;
   final int dailyGoal;
   final DateTime? targetCompletionDate;
   final RepeatInterval reviewInterval;
   final int reviewIntervalDays;
+
+  const HifzConfig({
+    required this.mode,
+    required this.dailyGoal,
+    this.targetCompletionDate,
+    required this.reviewInterval,
+    required this.reviewIntervalDays,
+  });
+
+  const HifzConfig.defaults()
+      : mode = HifzMode.memorization,
+        dailyGoal = 1,
+        targetCompletionDate = null,
+        reviewInterval = RepeatInterval.weekly,
+        reviewIntervalDays = 7;
+
+  HifzConfig copyWith({
+    HifzMode? mode,
+    int? dailyGoal,
+    DateTime? targetCompletionDate,
+    RepeatInterval? reviewInterval,
+    int? reviewIntervalDays,
+  }) {
+    return HifzConfig(
+      mode: mode ?? this.mode,
+      dailyGoal: dailyGoal ?? this.dailyGoal,
+      targetCompletionDate: targetCompletionDate ?? this.targetCompletionDate,
+      reviewInterval: reviewInterval ?? this.reviewInterval,
+      reviewIntervalDays: reviewIntervalDays ?? this.reviewIntervalDays,
+    );
+  }
+}
+
+// ============================================================================
+// HIFZ KHATMA - DOMAIN MODEL
+// ============================================================================
+
+/// Hifz Khatma - Quran memorization tracking
+class KhatmaHifz extends Khatma {
+  final HifzConfig config;
+  final List<Section> sections;
+  final DateTime? lastRead;
 
   const KhatmaHifz({
     super.id,
@@ -24,20 +68,24 @@ class KhatmaHifz extends Khatma {
     super.lastUpdated,
     super.lastSync,
     super.needsSync = false,
-    super.createdBy,
+    super.creatorId,
+    super.creatorName,
     super.updatedBy,
     super.repeat = false,
     super.repeats = 0,
     super.progress = 0.0,
     super.version = 1,
+    this.config = const HifzConfig.defaults(),
     this.sections = const [],
-    this.mode = HifzMode.memorization,
     this.lastRead,
-    this.dailyGoal = 1,
-    this.targetCompletionDate,
-    this.reviewInterval = RepeatInterval.weekly,
-    this.reviewIntervalDays = 7,
   }) : super(type: KhatmaType.hifz);
+
+  // Convenience getters for config fields
+  HifzMode get mode => config.mode;
+  int get dailyGoal => config.dailyGoal;
+  DateTime? get targetCompletionDate => config.targetCompletionDate;
+  RepeatInterval get reviewInterval => config.reviewInterval;
+  int get reviewIntervalDays => config.reviewIntervalDays;
 
   // Computed properties
   double get completionPercent {
@@ -111,19 +159,16 @@ class KhatmaHifz extends Khatma {
     DateTime? lastUpdated,
     DateTime? lastSync,
     bool? needsSync,
-    String? createdBy,
+    String? creatorId,
+    String? creatorName,
     String? updatedBy,
     bool? repeat,
     int? repeats,
     double? progress,
     int? version,
+    HifzConfig? config,
     List<Section>? sections,
-    HifzMode? mode,
     DateTime? lastRead,
-    int? dailyGoal,
-    DateTime? targetCompletionDate,
-    RepeatInterval? reviewInterval,
-    int? reviewIntervalDays,
   }) {
     return KhatmaHifz(
       id: id ?? this.id,
@@ -139,19 +184,16 @@ class KhatmaHifz extends Khatma {
       lastUpdated: lastUpdated ?? this.lastUpdated,
       lastSync: lastSync ?? this.lastSync,
       needsSync: needsSync ?? this.needsSync,
-      createdBy: createdBy ?? this.createdBy,
+      creatorId: creatorId ?? this.creatorId,
+      creatorName: creatorName ?? this.creatorName,
       updatedBy: updatedBy ?? this.updatedBy,
       repeat: repeat ?? this.repeat,
       repeats: repeats ?? this.repeats,
       progress: progress ?? this.progress,
       version: version ?? this.version,
+      config: config ?? this.config,
       sections: sections ?? this.sections,
-      mode: mode ?? this.mode,
       lastRead: lastRead ?? this.lastRead,
-      dailyGoal: dailyGoal ?? this.dailyGoal,
-      targetCompletionDate: targetCompletionDate ?? this.targetCompletionDate,
-      reviewInterval: reviewInterval ?? this.reviewInterval,
-      reviewIntervalDays: reviewIntervalDays ?? this.reviewIntervalDays,
     );
   }
 }

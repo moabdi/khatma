@@ -8,7 +8,6 @@ import 'package:khatma_ui/components/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/list/ui/khatma_tile.dart';
-import 'package:khatma/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -68,8 +67,8 @@ class KhatmatListView extends ConsumerWidget {
       khatma: khatma,
       onPressed: () {
         ref.read(khatmaNotifierProvider.notifier).selectKhatma(khatma);
-        context.goNamed(AppRoute.khatmaDetails.name,
-            pathParameters: {'id': khatma.id!});
+        // Use context.go to maintain proper navigation stack
+        context.go('/khatma/personal/${khatma.id!}');
       },
     );
     return Padding(

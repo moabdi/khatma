@@ -1,15 +1,60 @@
 part of 'khatma.dart';
 
-/// Shared Khatma - Collaborative group reading
-class KhatmaShared extends Khatma {
-  final String creatorId;
-  final String? creatorName;
-  final bool isPublic;
+// ============================================================================
+// SHARED KHATMA - CONFIGURATION
+// ============================================================================
+
+/// Configuration for Shared-specific settings
+class SharedConfig {
   final String? inviteCode;
   final int maxReservationsPerUser;
   final int reservationWarningDays;
   final int? reservationExpirationDays;
   final bool autoReleaseExpiredReservations;
+
+  const SharedConfig({
+    this.inviteCode,
+    required this.maxReservationsPerUser,
+    required this.reservationWarningDays,
+    this.reservationExpirationDays,
+    required this.autoReleaseExpiredReservations,
+  });
+
+  const SharedConfig.defaults()
+      : inviteCode = null,
+        maxReservationsPerUser = 3,
+        reservationWarningDays = 7,
+        reservationExpirationDays = null,
+        autoReleaseExpiredReservations = true;
+
+  SharedConfig copyWith({
+    String? inviteCode,
+    int? maxReservationsPerUser,
+    int? reservationWarningDays,
+    int? reservationExpirationDays,
+    bool? autoReleaseExpiredReservations,
+  }) {
+    return SharedConfig(
+      inviteCode: inviteCode ?? this.inviteCode,
+      maxReservationsPerUser:
+          maxReservationsPerUser ?? this.maxReservationsPerUser,
+      reservationWarningDays:
+          reservationWarningDays ?? this.reservationWarningDays,
+      reservationExpirationDays:
+          reservationExpirationDays ?? this.reservationExpirationDays,
+      autoReleaseExpiredReservations:
+          autoReleaseExpiredReservations ?? this.autoReleaseExpiredReservations,
+    );
+  }
+}
+
+// ============================================================================
+// SHARED KHATMA - DOMAIN MODEL
+// ============================================================================
+
+/// Shared Khatma - Collaborative group reading
+class KhatmaShared extends Khatma {
+  final SharedConfig config;
   final List<Participant> participants;
   final List<Unit> units;
   final DateTime? lastActivityDate;
@@ -29,28 +74,29 @@ class KhatmaShared extends Khatma {
     super.lastUpdated,
     super.lastSync,
     super.needsSync = false,
-    super.createdBy,
+    required super.creatorId,
+    super.creatorName,
     super.updatedBy,
     super.repeat = false,
     super.repeats = 0,
     super.progress = 0.0,
     super.version = 1,
-    required this.creatorId,
-    this.creatorName,
-    this.isPublic = true,
-    this.inviteCode,
-    this.maxReservationsPerUser = 3,
-    this.reservationWarningDays = 7,
-    this.reservationExpirationDays,
-    this.autoReleaseExpiredReservations = true,
+    this.config = const SharedConfig.defaults(),
     this.participants = const [],
     this.units = const [],
     this.lastActivityDate,
     this.lastActivityUserId,
   }) : super(type: KhatmaType.shared);
 
+  // Convenience getters for config fields
+  String? get inviteCode => config.inviteCode;
+  int get maxReservationsPerUser => config.maxReservationsPerUser;
+  int get reservationWarningDays => config.reservationWarningDays;
+  int? get reservationExpirationDays => config.reservationExpirationDays;
+  bool get autoReleaseExpiredReservations => config.autoReleaseExpiredReservations;
+
   // Privilege checking helpers
-  bool isCreator(String userId) => creatorId == userId;
+  bool isCreator(String userId) => creatorId! == userId;
 
   bool isAdmin(String userId) {
     final participant = participants.where((p) => p.userId == userId).firstOrNull;
@@ -272,19 +318,13 @@ class KhatmaShared extends Khatma {
     DateTime? lastUpdated,
     DateTime? lastSync,
     bool? needsSync,
-    String? createdBy,
+    String? creatorId,
+    String? creatorName,
     String? updatedBy,
     bool? repeat,
     int? repeats,
     int? version,
-    String? creatorId,
-    String? creatorName,
-    bool? isPublic,
-    String? inviteCode,
-    int? maxReservationsPerUser,
-    int? reservationWarningDays,
-    int? reservationExpirationDays,
-    bool? autoReleaseExpiredReservations,
+    SharedConfig? config,
     List<Participant>? participants,
     List<Unit>? units,
     DateTime? lastActivityDate,
@@ -305,23 +345,13 @@ class KhatmaShared extends Khatma {
       lastUpdated: lastUpdated ?? this.lastUpdated,
       lastSync: lastSync ?? this.lastSync,
       needsSync: needsSync ?? this.needsSync,
-      createdBy: createdBy ?? this.createdBy,
+      creatorId: creatorId ?? this.creatorId,
+      creatorName: creatorName ?? this.creatorName,
       updatedBy: updatedBy ?? this.updatedBy,
       repeat: repeat ?? this.repeat,
       repeats: repeats ?? this.repeats,
       version: version ?? this.version,
-      creatorId: creatorId ?? this.creatorId,
-      creatorName: creatorName ?? this.creatorName,
-      isPublic: isPublic ?? this.isPublic,
-      inviteCode: inviteCode ?? this.inviteCode,
-      maxReservationsPerUser:
-          maxReservationsPerUser ?? this.maxReservationsPerUser,
-      reservationWarningDays:
-          reservationWarningDays ?? this.reservationWarningDays,
-      reservationExpirationDays:
-          reservationExpirationDays ?? this.reservationExpirationDays,
-      autoReleaseExpiredReservations:
-          autoReleaseExpiredReservations ?? this.autoReleaseExpiredReservations,
+      config: config ?? this.config,
       participants: participants ?? this.participants,
       units: units ?? this.units,
       lastActivityDate: lastActivityDate ?? this.lastActivityDate,

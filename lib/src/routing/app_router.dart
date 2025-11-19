@@ -75,7 +75,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             name: AppRoute.home.name,
-            path: 'khatmat',
+            path: 'khatma',
             builder: (context, state) => const KhatmatListScreen(),
           ),
           ...khatmaRoutes(ref),

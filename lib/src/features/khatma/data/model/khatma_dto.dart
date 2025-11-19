@@ -40,14 +40,10 @@ sealed class KhatmaDto with _$KhatmaDto {
     required DateTime createDate,
     required String creatorId,
     String? creatorName,
-    @Default(true) bool isPublic,
     @Default([]) List<ParticipantDto> participants,
     @Default([]) List<UnitDto> units,
     DateTime? lastUpdated,
     @Default('active') String status, // 'active', 'completed', 'archived', 'deleted'
-    @Default(3) int maxReservationsPerUser,
-    @Default(7) int reservationWarningDays,
-    int? reservationExpirationDays,
   }) = SharedKhatmaDto;
 
   const factory KhatmaDto.hifz({

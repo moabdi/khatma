@@ -8,7 +8,6 @@ import 'package:khatma/src/features/khatma/personal/application/khatmat_provider
 import 'package:khatma/src/features/khatma/personal/presentation/read/logic/khatma_parts_controller.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/ui/animate_khatma_chart.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/khatma_complete_screen.dart';
-import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -19,7 +18,6 @@ import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/personal/presentation/read/ui/part_selector/to_read_tiles.dart';
-import 'package:khatma/src/routing/app_router.dart';
 import 'package:readmore/readmore.dart';
 
 class KhatmaReadScreen extends ConsumerWidget {
@@ -28,12 +26,41 @@ class KhatmaReadScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
-    return khatma == null
-        ? EmptyPlaceholderWidget(message: 'Khatma not found')
-        : khatma.isCompleted
-            ? KhatmaSuccessComplete(khatma: khatma)
-            : SizedBox(); // buildContent(khatma, context);
+    // Try to get the selected khatma first, if null, find by ID
+    Khatma? khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
+
+    // If no selected khatma, try to find it by ID
+    if (khatma == null || khatma.id != khatmaId) {
+      khatma = ref.watch(khatmaNotifierProvider.notifier).getKhatmaById(khatmaId);
+      // Update the selected khatma if found
+      if (khatma != null) {
+        ref.read(khatmaNotifierProvider.notifier).selectKhatma(khatma);
+      }
+    }
+
+    // Handle different khatma states
+    if (khatma == null) {
+      return Scaffold(
+        appBar: AppBar(title: Text(context.loc.khatma)),
+        body: EmptyPlaceholderWidget(message: 'Khatma not found'),
+      );
+    }
+
+    if (khatma.isCompleted) {
+      return KhatmaSuccessComplete(khatma: khatma);
+    }
+
+    // Only show content for personal khatmas
+    if (khatma is! KhatmaPersonal) {
+      return Scaffold(
+        appBar: AppBar(title: Text(khatma.name)),
+        body: EmptyPlaceholderWidget(
+          message: 'This khatma type is not supported yet',
+        ),
+      );
+    }
+
+    return buildContent(khatma, context);
   }
 
   Widget buildContent(KhatmaPersonal khatma, BuildContext context) {
@@ -41,28 +68,7 @@ class KhatmaReadScreen extends ConsumerWidget {
       appBar: KhatmaAppBar(khatmaId: khatma.id!),
       body: Column(
         children: [
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              boxShadow: [
-                BoxShadow(
-                  color: HexColor(khatma.style.color),
-                  offset: const Offset(0, -2),
-                  blurRadius: 8,
-                ),
-              ],
-            ),
-            child: Column(
-              children: [
-                buildDescriptionCard(khatma, context),
-                gapH8,
-                buildReadPartCard(context, khatma),
-              ],
-            ),
-          ),
-          Expanded(
+         Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -427,35 +433,41 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Consumer(
-        builder: (context, ref, _) {
-          Khatma? khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
-          return khatma == null
-              ? AppBar(title: Text(context.loc.khatma))
-              : AppBar(
-                  title: Text(khatma.name),
-                  centerTitle: true,
-                  actions: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.edit,
-                        color: khatma.style.color.toColor(),
-                      ),
-                      onPressed: () => {
-                        ref.read(khatmaFormProvider.notifier).update(khatma as KhatmaBase),
-                        context.goNamed(AppRoute.editKhatma.name,
-                            pathParameters: {'id': khatma.id!}),
-                      },
+    return Consumer(
+      builder: (context, ref, _) {
+        Khatma? khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
+        return khatma == null
+            ? AppBar(
+                title: Text(context.loc.khatma),
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => context.go('/khatma'),
+                ),
+              )
+            : AppBar(
+                title: Text(khatma.name),
+                centerTitle: true,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => context.go('/khatma'),
+                ),
+                actions: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.edit,
+                      color: khatma.style.color.toColor(),
                     ),
-                    gapW16,
-                  ],
-                );
-        },
-      ),
+                    onPressed: () {
+                      context.go('/khatma/personal/${khatma.id!}/edit');
+                    },
+                  ),
+                  gapW16,
+                ],
+              );
+      },
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(66.0);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

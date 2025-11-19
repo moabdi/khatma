@@ -112,8 +112,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
         .map((jsonString) {
           final historyData = jsonDecode(jsonString);
          // final completion = KhatmaHistoryDto.fromJson(historyData).toDomain();
-
-      //    if (completion.needsSync) return completion;
+        //  if (completion.needsSync) return completion;
 
           return null;
         })

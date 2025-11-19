@@ -1,5 +1,6 @@
-import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
+import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
 import 'package:random_string/random_string.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,27 +9,41 @@ part 'khatma_form_provider.g.dart';
 @Riverpod(keepAlive: true)
 class KhatmaForm extends _$KhatmaForm {
   @override
-  KhatmaBase build() {
+  KhatmaFormData build() {
     final code = randomAlphaNumeric(6).toUpperCase();
-    final now = DateTime.now();
-
-    return KhatmaBase(
-      code: code,
-      name: '',
-      createDate: now,
-      startDate: now,
-    );
+    return KhatmaFormData.blank(code: code);
   }
 
-  void update(KhatmaBase updatedKhatma) {
-    state = updatedKhatma;
+  /// Initialize form for creating a new Khatma
+  void initializeForCreate({KhatmaType type = KhatmaType.personal}) {
+    final code = randomAlphaNumeric(6).toUpperCase();
+    state = KhatmaFormData.blank(code: code, type: type);
   }
 
-  Future<void> save(Khatma khatma) async {
-    ref.read(khatmaManagerProvider.notifier).save(khatma);
+  /// Initialize form for editing an existing Khatma
+  void initializeForEdit(Khatma khatma) {
+    state = KhatmaFormData.fromKhatma(khatma);
   }
 
-  Future<void> delete(Khatma khatma) async {
-    ref.read(khatmaManagerProvider.notifier).delete(khatma);
+  /// Update the form state
+  void update(KhatmaFormData updatedFormData) {
+    state = updatedFormData;
   }
+
+  /// Save the Khatma (handles both create and update automatically)
+  Future<void> save() async {
+    final khatmaToSave = state.toKhatma();
+    await ref.read(khatmaNotifierProvider.notifier).saveKhatma(khatmaToSave);
+  }
+
+  /// Delete the Khatma (only works if editing existing)
+  Future<void> delete() async {
+    final khatma = state.toKhatma();
+    if (khatma.id != null) {
+      await ref.read(khatmaNotifierProvider.notifier).deleteKhatma(khatma.id!);
+    }
+  }
+
+  /// Check if we're editing an existing Khatma
+  bool get isEditing => state.isEditing;
 }
