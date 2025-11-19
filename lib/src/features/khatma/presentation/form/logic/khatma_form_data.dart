@@ -58,6 +58,13 @@ class KhatmaFormData {
     required String code,
     KhatmaType type = KhatmaType.personal,
   }) {
+    // Provide default creator for shared/hifz khatmas
+    // In production, this should come from the authenticated user
+    final defaultCreator = KhatmaCreator(
+      creatorId: 'local-user', // Placeholder - should be replaced with actual user ID
+      creatorName: 'Local User', // Placeholder - should be replaced with actual user name
+    );
+
     return KhatmaFormData._(
       original: null,
       type: type,
@@ -68,6 +75,7 @@ class KhatmaFormData {
       theme: kDefaultKhatmaTheme,
       repeat: false,
       startDate: DateTime.now(),
+      creator: defaultCreator,
     );
   }
 
@@ -116,6 +124,18 @@ class KhatmaFormData {
             creatorId: creator!.creatorId,
             creatorName: creator!.creatorName,
             config: sharedConfig ?? const SharedConfig.defaults(),
+            // Initialize with creator as first participant
+            participants: [
+              Participant(
+                userId: creator!.creatorId,
+                userName: creator!.creatorName ?? 'Creator',
+                joinedDate: now,
+                completedUnits: 0,
+                role: ParticipantRole.admin,
+              ),
+            ],
+            // Initialize empty units list (will be populated when users reserve)
+            units: const [],
           ),
         KhatmaType.hifz => KhatmaHifz(
             code: code,

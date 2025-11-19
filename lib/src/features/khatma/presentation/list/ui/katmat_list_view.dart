@@ -67,8 +67,13 @@ class KhatmatListView extends ConsumerWidget {
       khatma: khatma,
       onPressed: () {
         ref.read(khatmaNotifierProvider.notifier).selectKhatma(khatma);
-        // Use context.go to maintain proper navigation stack
-        context.go('/khatma/personal/${khatma.id!}');
+        // Navigate to the appropriate route based on khatma type
+        final route = switch (khatma.type) {
+          KhatmaType.shared => '/khatma/shared/${khatma.id!}',
+          KhatmaType.hifz => '/khatma', // Fallback to home until hifz is implemented
+          KhatmaType.personal => '/khatma/personal/${khatma.id!}',
+        };
+        context.go(route);
       },
     );
     return Padding(

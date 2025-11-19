@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/core/app_dialog.dart';
+import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_avatar.dart';
@@ -329,6 +331,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
 
     try {
       final isEditing = widget.khatmaId != null;
+      final formData = ref.read(khatmaFormProvider);
       await ref.read(khatmaFormProvider.notifier).save();
 
       if (mounted) {
@@ -336,8 +339,22 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           // If editing, go back to the read screen
           Navigator.of(context).pop();
         } else {
-          // If creating new, navigate to home
-          context.go('/khatma');
+          // If creating new, navigate to appropriate read screen based on type
+          final savedKhatma = ref.read(khatmaNotifierProvider).selectedKhatma;
+          if (savedKhatma != null && savedKhatma.id != null) {
+            switch (formData.type) {
+              case KhatmaType.shared:
+                context.go('/khatma/shared/${savedKhatma.id}');
+              case KhatmaType.hifz:
+                // For now, navigate to home until hifz screen is implemented
+                context.go('/khatma');
+              case KhatmaType.personal:
+                context.go('/khatma/personal/${savedKhatma.id}');
+            }
+          } else {
+            // Fallback to home if something went wrong
+            context.go('/khatma');
+          }
         }
       }
     } catch (error) {
