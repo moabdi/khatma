@@ -1010,5 +1010,47 @@
   "members": "Membres",
   "completed": "Complété",
   "reserved": "Réservé",
-  "reservedAndCompleted": "Réservé + Complété"
+  "reservedAndCompleted": "Réservé + Complété",
+
+  "sharedKhatmaSettings": "Paramètres de Khatma Partagée",
+  "limits": "Limites",
+  "timeSettings": "Paramètres de Temps",
+  "joinSettings": "Paramètres de Participation",
+  "inviteCode": "Code d'Invitation",
+  "groupSettings": "Paramètres de Groupe",
+  "tags": "Étiquettes",
+  "maxPartsToReserve": "Parties max à réserver",
+  "atSameTime": "En même temps",
+  "maxPartsToRead": "Parties max à lire",
+  "totalLimitPerUser": "Limite totale par utilisateur",
+  "warningDelay": "Délai d'avertissement",
+  "daysBeforeReminder": "Jours avant rappel",
+  "expirationDelay": "Délai d'expiration",
+  "daysBeforeAutoRelease": "Jours avant libération auto (optionnel)",
+  "autoReleaseExpired": "Libération auto des expirés",
+  "freeUpExpiredReservedUnits": "Libérer les unités réservées expirées",
+  "joinByCode": "Rejoindre par code",
+  "joinByCodeDesc": "Toute personne avec le code peut rejoindre instantanément",
+  "joinByInvitation": "Rejoindre par invitation",
+  "joinByInvitationDesc": "Les utilisateurs doivent demander et être approuvés pour rejoindre",
+  "inviteCodeLabel": "Code d'Invitation",
+  "inviteCodeHelper": "Code pour les utilisateurs pour rejoindre cette khatma",
+  "generateNewCode": "Générer un nouveau code",
+  "allowMultipleGroups": "Autoriser plusieurs groupes",
+  "allowMultipleGroupsDesc": "Les utilisateurs peuvent participer à plusieurs groupes simultanément",
+  "addTag": "Ajouter une Étiquette",
+  "addTagHint": "p.ex., Ramadan, Famille, Communauté",
+  "maximumTagsReached": "Maximum de 5 étiquettes atteint",
+  "tagInstructions": "Appuyez sur Entrée pour ajouter des étiquettes. Cliquez sur une étiquette pour la supprimer.",
+  "completeSetup": "Terminer la Configuration",
+  "maximumTagsAllowed": "Maximum de 5 étiquettes autorisé",
+  "tagAlreadyExists": "L'étiquette existe déjà",
+  "failedToSaveKhatmaError": "Échec de la sauvegarde de la khatma : {error}",
+  "@failedToSaveKhatmaError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  }
 }

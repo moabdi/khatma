@@ -2220,4 +2220,110 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reservedAndCompleted => 'المحجوز + المكتمل';
+
+  @override
+  String get sharedKhatmaSettings => 'إعدادات الختمة المشتركة';
+
+  @override
+  String get limits => 'الحدود';
+
+  @override
+  String get timeSettings => 'إعدادات الوقت';
+
+  @override
+  String get joinSettings => 'إعدادات الانضمام';
+
+  @override
+  String get inviteCode => 'كود الدعوة';
+
+  @override
+  String get groupSettings => 'إعدادات المجموعة';
+
+  @override
+  String get tags => 'الوسوم';
+
+  @override
+  String get maxPartsToReserve => 'الأجزاء الأقصى للحجز';
+
+  @override
+  String get atSameTime => 'في نفس الوقت';
+
+  @override
+  String get maxPartsToRead => 'الأجزاء الأقصى للقراءة';
+
+  @override
+  String get totalLimitPerUser => 'الحد الأقصى لكل مستخدم';
+
+  @override
+  String get warningDelay => 'تأخير التحذير';
+
+  @override
+  String get daysBeforeReminder => 'أيام قبل التذكير';
+
+  @override
+  String get expirationDelay => 'تأخير الانتهاء';
+
+  @override
+  String get daysBeforeAutoRelease => 'أيام قبل التحرير التلقائي (اختياري)';
+
+  @override
+  String get autoReleaseExpired => 'تحرير المنتهية تلقائياً';
+
+  @override
+  String get freeUpExpiredReservedUnits => 'تحرير الوحدات المحجوزة المنتهية';
+
+  @override
+  String get joinByCode => 'الانضمام بالكود';
+
+  @override
+  String get joinByCodeDesc => 'أي شخص لديه الكود يمكنه الانضمام فوراً';
+
+  @override
+  String get joinByInvitation => 'الانضمام بالدعوة';
+
+  @override
+  String get joinByInvitationDesc => 'يجب على المستخدمين طلب الموافقة للانضمام';
+
+  @override
+  String get inviteCodeLabel => 'كود الدعوة';
+
+  @override
+  String get inviteCodeHelper => 'كود للمستخدمين للانضمام لهذه الختمة';
+
+  @override
+  String get generateNewCode => 'توليد كود جديد';
+
+  @override
+  String get allowMultipleGroups => 'السماح بعدة مجموعات';
+
+  @override
+  String get allowMultipleGroupsDesc =>
+      'يمكن للمستخدمين المشاركة في عدة مجموعات في نفس الوقت';
+
+  @override
+  String get addTag => 'إضافة وسم';
+
+  @override
+  String get addTagHint => 'مثال: رمضان، العائلة، المجتمع';
+
+  @override
+  String get maximumTagsReached => 'تم الوصول للحد الأقصى 5 وسوم';
+
+  @override
+  String get tagInstructions =>
+      'اضغط Enter لإضافة الوسوم. انقر على وسم لإزالته.';
+
+  @override
+  String get completeSetup => 'إكمال الإعداد';
+
+  @override
+  String get maximumTagsAllowed => 'الحد الأقصى 5 وسوم مسموح';
+
+  @override
+  String get tagAlreadyExists => 'الوسم موجود بالفعل';
+
+  @override
+  String failedToSaveKhatmaError(String error) {
+    return 'فشل حفظ الختمة: $error';
+  }
 }

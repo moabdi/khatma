@@ -14,8 +14,6 @@ import 'package:khatma/src/features/khatma/presentation/form/ui/date_field.dart'
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/type_selector.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/unit_selector.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -163,15 +161,19 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             gapH16,
             _buildDescriptionField(context),
             gapH16,
+            _buildSectionTitle('Khatma Type'),
+            gapH8,
             _buildTypeSelector(context, formData),
             gapH16,
+            _buildSectionTitle('Reading Unit'),
+            gapH8,
             _buildSplitUnitSelector(context, formData),
             gapH16,
             _buildRepeatToggle(formData),
-            gapH24,
-            _buildStartDateField(context),
             gapH16,
-            _buildEndDateField(context),
+            _buildSectionTitle('Schedule'),
+            gapH8,
+            _buildDateSection(context),
             gapH24,
           ],
         ),
@@ -263,36 +265,54 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
-  Widget _buildStartDateField(BuildContext context) {
-    return DateField(
-      controller: _startDateController,
-      labelText: 'Start Date',
-      isRequired: true,
-      onDateSelected: (date) {
-        if (date != null) {
-          final formData = ref.read(khatmaFormProvider);
-          ref.read(khatmaFormProvider.notifier).update(
-                formData.copyWith(startDate: date),
-              );
-        }
-      },
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: context.textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.bold,
+        color: context.colorScheme.primary,
+      ),
     );
   }
 
-  Widget _buildEndDateField(BuildContext context) {
+  Widget _buildDateSection(BuildContext context) {
     final startDate = _parseDate(_startDateController.text) ?? DateTime.now();
 
-    return DateField(
-      controller: _endDateController,
-      labelText: 'End Date (Optional)',
-      isRequired: false,
-      firstDate: startDate,
-      onDateSelected: (date) {
-        final formData = ref.read(khatmaFormProvider);
-        ref.read(khatmaFormProvider.notifier).update(
-              formData.copyWith(endDate: date),
-            );
-      },
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DateField(
+              controller: _startDateController,
+              labelText: 'Start Date',
+              isRequired: true,
+              onDateSelected: (date) {
+                if (date != null) {
+                  final formData = ref.read(khatmaFormProvider);
+                  ref.read(khatmaFormProvider.notifier).update(
+                        formData.copyWith(startDate: date),
+                      );
+                }
+              },
+            ),
+            gapH16,
+            DateField(
+              controller: _endDateController,
+              labelText: 'End Date (Optional)',
+              isRequired: false,
+              firstDate: startDate,
+              onDateSelected: (date) {
+                final formData = ref.read(khatmaFormProvider);
+                ref.read(khatmaFormProvider.notifier).update(
+                      formData.copyWith(endDate: date),
+                    );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -309,77 +329,106 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     // Type cannot be changed when editing
     final canChangeType = !formData.isEditing;
 
+    Map<KhatmaType, IconData> typeIcons = {
+      KhatmaType.personal: Icons.person,
+      KhatmaType.shared: Icons.group,
+      KhatmaType.hifz: Icons.school,
+    };
+
+    Map<KhatmaType, String> typeDescriptions = {
+      KhatmaType.personal: 'Track your personal Quran reading',
+      KhatmaType.shared: 'Share with family and friends',
+      KhatmaType.hifz: 'Memorization tracking',
+    };
+
     return Card(
-      child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 8),
-        leading: CircleAvatar(
-          backgroundColor: context.theme.primaryColor.withAlpha(25),
-          child: Icon(
-            Icons.apps,
-            color: context.colorScheme.primary,
-            size: 32,
-          ),
-        ),
-        title: Text(AppLocalizations.of(context).khatmaType),
-        subtitle: Text(
-          formData.type.name,
-        ),
-        enabled: canChangeType,
-        onTap: canChangeType ? () => _handleTypeTap(context, formData) : null,
+      child: Column(
+        children: KhatmaType.values.map((type) {
+          final isSelected = formData.type == type;
+          return Container(
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? context.colorScheme.primaryContainer.withValues(alpha: 0.3)
+                  : null,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: RadioListTile<KhatmaType>(
+              value: type,
+              groupValue: formData.type,
+              onChanged: canChangeType
+                  ? (value) {
+                      if (value != null) {
+                        ref.read(khatmaFormProvider.notifier).update(
+                              formData.copyWith(type: value),
+                            );
+                      }
+                    }
+                  : null,
+              title: Text(
+                type.name[0].toUpperCase() + type.name.substring(1),
+                style: TextStyle(
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                ),
+              ),
+              subtitle: Text(typeDescriptions[type] ?? ''),
+              secondary: Icon(
+                typeIcons[type],
+                color: isSelected ? context.colorScheme.primary : null,
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
 
   Widget _buildSplitUnitSelector(BuildContext context, KhatmaFormData formData) {
-    return Card(
-      child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 8),
-        leading: CircleAvatar(
-          backgroundColor: context.theme.primaryColor.withAlpha(25),
-          child: Icon(
-            Icons.apps,
-            color: context.colorScheme.primary,
-            size: 32,
-          ),
-        ),
-        title: Text(AppLocalizations.of(context).splitUnit),
-        subtitle: Text(
-          AppLocalizations.of(context).khatmaSplitUnitDesc(formData.unit.name),
-        ),
-        onTap: () => _handleSplitUnitTap(context, formData),
-      ),
-    );
-  }
-
-  void _handleTypeTap(BuildContext context, KhatmaFormData formData) {
-    _showModal(
-      context,
-      TypeSelector(
-        type: formData.type,
-        onSelect: (value) => ref
-            .read(khatmaFormProvider.notifier)
-            .update(formData.copyWith(type: value)),
-      ),
-      AppLocalizations.of(context).khatmaType,
-    );
-  }
-
-  void _handleSplitUnitTap(BuildContext context, KhatmaFormData formData) {
     // Only prevent changing unit if editing an existing khatma that has started
-    if (formData.isEditing && formData.isStarted) {
-      _showSnackBar(context, context.loc.cannotUpdateKhatmaWhileStarted);
-      return;
-    }
+    final canChangeUnit = !(formData.isEditing && formData.isStarted);
 
-    _showModal(
-      context,
-      UnitSelector(
-        unit: formData.unit,
-        onSelect: (value) => ref
-            .read(khatmaFormProvider.notifier)
-            .update(formData.copyWith(unit: value)),
+    Map<SplitUnit, IconData> unitIcons = {
+      SplitUnit.juzz: Icons.bookmarks,
+      SplitUnit.hizb: Icons.bookmark,
+    };
+
+    return Card(
+      child: Column(
+        children: SplitUnit.values.map((unit) {
+          final isSelected = formData.unit == unit;
+          return Container(
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? context.colorScheme.primaryContainer.withValues(alpha: 0.3)
+                  : null,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: RadioListTile<SplitUnit>(
+              value: unit,
+              groupValue: formData.unit,
+              onChanged: canChangeUnit
+                  ? (value) {
+                      if (value != null) {
+                        ref.read(khatmaFormProvider.notifier).update(
+                              formData.copyWith(unit: value),
+                            );
+                      }
+                    }
+                  : null,
+              title: Text(
+                AppLocalizations.of(context).khatmaSplitUnit(unit.name),
+                style: TextStyle(
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                ),
+              ),
+              subtitle: Text(AppLocalizations.of(context).khatmaSplitUnitDesc(unit.name)),
+              secondary: Icon(
+                unitIcons[unit],
+                color: isSelected ? context.colorScheme.primary : null,
+              ),
+            ),
+          );
+        }).toList(),
       ),
-      AppLocalizations.of(context).splitUnit,
     );
   }
 

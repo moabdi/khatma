@@ -38,7 +38,7 @@ class SharedConfig {
   const SharedConfig.defaults()
       : inviteCode = null,
         maxReservationsPerUser = 3,
-        maxUnitsToRead = 30,
+        maxUnitsToRead = 10,
         reservationWarningDays = 7,
         reservationExpirationDays = null,
         autoReleaseExpiredReservations = true,

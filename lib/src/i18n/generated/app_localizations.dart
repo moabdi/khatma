@@ -3741,6 +3741,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reserved + Completed'**
   String get reservedAndCompleted;
+
+  /// No description provided for @sharedKhatmaSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared Khatma Settings'**
+  String get sharedKhatmaSettings;
+
+  /// No description provided for @limits.
+  ///
+  /// In en, this message translates to:
+  /// **'Limits'**
+  String get limits;
+
+  /// No description provided for @timeSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Settings'**
+  String get timeSettings;
+
+  /// No description provided for @joinSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Settings'**
+  String get joinSettings;
+
+  /// No description provided for @inviteCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite Code'**
+  String get inviteCode;
+
+  /// No description provided for @groupSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Group Settings'**
+  String get groupSettings;
+
+  /// No description provided for @tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get tags;
+
+  /// No description provided for @maxPartsToReserve.
+  ///
+  /// In en, this message translates to:
+  /// **'Max parts to reserve'**
+  String get maxPartsToReserve;
+
+  /// No description provided for @atSameTime.
+  ///
+  /// In en, this message translates to:
+  /// **'At same time'**
+  String get atSameTime;
+
+  /// No description provided for @maxPartsToRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Max parts to read'**
+  String get maxPartsToRead;
+
+  /// No description provided for @totalLimitPerUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Total limit per user'**
+  String get totalLimitPerUser;
+
+  /// No description provided for @warningDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning delay'**
+  String get warningDelay;
+
+  /// No description provided for @daysBeforeReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Days before reminder'**
+  String get daysBeforeReminder;
+
+  /// No description provided for @expirationDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiration delay'**
+  String get expirationDelay;
+
+  /// No description provided for @daysBeforeAutoRelease.
+  ///
+  /// In en, this message translates to:
+  /// **'Days before auto-release (optional)'**
+  String get daysBeforeAutoRelease;
+
+  /// No description provided for @autoReleaseExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-release expired'**
+  String get autoReleaseExpired;
+
+  /// No description provided for @freeUpExpiredReservedUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Free up expired reserved units'**
+  String get freeUpExpiredReservedUnits;
+
+  /// No description provided for @joinByCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Join by code'**
+  String get joinByCode;
+
+  /// No description provided for @joinByCodeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone with the code can join instantly'**
+  String get joinByCodeDesc;
+
+  /// No description provided for @joinByInvitation.
+  ///
+  /// In en, this message translates to:
+  /// **'Join by invitation'**
+  String get joinByInvitation;
+
+  /// No description provided for @joinByInvitationDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Users must request and be approved to join'**
+  String get joinByInvitationDesc;
+
+  /// No description provided for @inviteCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite Code'**
+  String get inviteCodeLabel;
+
+  /// No description provided for @inviteCodeHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Code for users to join this khatma'**
+  String get inviteCodeHelper;
+
+  /// No description provided for @generateNewCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate new code'**
+  String get generateNewCode;
+
+  /// No description provided for @allowMultipleGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow multiple groups'**
+  String get allowMultipleGroups;
+
+  /// No description provided for @allowMultipleGroupsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Users can participate in multiple groups simultaneously'**
+  String get allowMultipleGroupsDesc;
+
+  /// No description provided for @addTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Tag'**
+  String get addTag;
+
+  /// No description provided for @addTagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Ramadan, Family, Community'**
+  String get addTagHint;
+
+  /// No description provided for @maximumTagsReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum 5 tags reached'**
+  String get maximumTagsReached;
+
+  /// No description provided for @tagInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Press Enter to add tags. Click on a tag to remove it.'**
+  String get tagInstructions;
+
+  /// No description provided for @completeSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Setup'**
+  String get completeSetup;
+
+  /// No description provided for @maximumTagsAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum 5 tags allowed'**
+  String get maximumTagsAllowed;
+
+  /// No description provided for @tagAlreadyExists.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag already exists'**
+  String get tagAlreadyExists;
+
+  /// No description provided for @failedToSaveKhatmaError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to save khatma: {error}'**
+  String failedToSaveKhatmaError(String error);
 }
 
 class _AppLocalizationsDelegate

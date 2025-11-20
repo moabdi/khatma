@@ -1010,5 +1010,47 @@
   "members": "Members",
   "completed": "Completed",
   "reserved": "Reserved",
-  "reservedAndCompleted": "Reserved + Completed"
+  "reservedAndCompleted": "Reserved + Completed",
+
+  "sharedKhatmaSettings": "Shared Khatma Settings",
+  "limits": "Limits",
+  "timeSettings": "Time Settings",
+  "joinSettings": "Join Settings",
+  "inviteCode": "Invite Code",
+  "groupSettings": "Group Settings",
+  "tags": "Tags",
+  "maxPartsToReserve": "Max parts to reserve",
+  "atSameTime": "At same time",
+  "maxPartsToRead": "Max parts to read",
+  "totalLimitPerUser": "Total limit per user",
+  "warningDelay": "Warning delay",
+  "daysBeforeReminder": "Days before reminder",
+  "expirationDelay": "Expiration delay",
+  "daysBeforeAutoRelease": "Days before auto-release (optional)",
+  "autoReleaseExpired": "Auto-release expired",
+  "freeUpExpiredReservedUnits": "Free up expired reserved units",
+  "joinByCode": "Join by code",
+  "joinByCodeDesc": "Anyone with the code can join instantly",
+  "joinByInvitation": "Join by invitation",
+  "joinByInvitationDesc": "Users must request and be approved to join",
+  "inviteCodeLabel": "Invite Code",
+  "inviteCodeHelper": "Code for users to join this khatma",
+  "generateNewCode": "Generate new code",
+  "allowMultipleGroups": "Allow multiple groups",
+  "allowMultipleGroupsDesc": "Users can participate in multiple groups simultaneously",
+  "addTag": "Add Tag",
+  "addTagHint": "e.g., Ramadan, Family, Community",
+  "maximumTagsReached": "Maximum 5 tags reached",
+  "tagInstructions": "Press Enter to add tags. Click on a tag to remove it.",
+  "completeSetup": "Complete Setup",
+  "maximumTagsAllowed": "Maximum 5 tags allowed",
+  "tagAlreadyExists": "Tag already exists",
+  "failedToSaveKhatmaError": "Failed to save khatma: {error}",
+  "@failedToSaveKhatmaError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  }
 }

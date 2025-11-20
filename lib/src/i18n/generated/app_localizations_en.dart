@@ -2238,4 +2238,111 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reservedAndCompleted => 'Reserved + Completed';
+
+  @override
+  String get sharedKhatmaSettings => 'Shared Khatma Settings';
+
+  @override
+  String get limits => 'Limits';
+
+  @override
+  String get timeSettings => 'Time Settings';
+
+  @override
+  String get joinSettings => 'Join Settings';
+
+  @override
+  String get inviteCode => 'Invite Code';
+
+  @override
+  String get groupSettings => 'Group Settings';
+
+  @override
+  String get tags => 'Tags';
+
+  @override
+  String get maxPartsToReserve => 'Max parts to reserve';
+
+  @override
+  String get atSameTime => 'At same time';
+
+  @override
+  String get maxPartsToRead => 'Max parts to read';
+
+  @override
+  String get totalLimitPerUser => 'Total limit per user';
+
+  @override
+  String get warningDelay => 'Warning delay';
+
+  @override
+  String get daysBeforeReminder => 'Days before reminder';
+
+  @override
+  String get expirationDelay => 'Expiration delay';
+
+  @override
+  String get daysBeforeAutoRelease => 'Days before auto-release (optional)';
+
+  @override
+  String get autoReleaseExpired => 'Auto-release expired';
+
+  @override
+  String get freeUpExpiredReservedUnits => 'Free up expired reserved units';
+
+  @override
+  String get joinByCode => 'Join by code';
+
+  @override
+  String get joinByCodeDesc => 'Anyone with the code can join instantly';
+
+  @override
+  String get joinByInvitation => 'Join by invitation';
+
+  @override
+  String get joinByInvitationDesc =>
+      'Users must request and be approved to join';
+
+  @override
+  String get inviteCodeLabel => 'Invite Code';
+
+  @override
+  String get inviteCodeHelper => 'Code for users to join this khatma';
+
+  @override
+  String get generateNewCode => 'Generate new code';
+
+  @override
+  String get allowMultipleGroups => 'Allow multiple groups';
+
+  @override
+  String get allowMultipleGroupsDesc =>
+      'Users can participate in multiple groups simultaneously';
+
+  @override
+  String get addTag => 'Add Tag';
+
+  @override
+  String get addTagHint => 'e.g., Ramadan, Family, Community';
+
+  @override
+  String get maximumTagsReached => 'Maximum 5 tags reached';
+
+  @override
+  String get tagInstructions =>
+      'Press Enter to add tags. Click on a tag to remove it.';
+
+  @override
+  String get completeSetup => 'Complete Setup';
+
+  @override
+  String get maximumTagsAllowed => 'Maximum 5 tags allowed';
+
+  @override
+  String get tagAlreadyExists => 'Tag already exists';
+
+  @override
+  String failedToSaveKhatmaError(String error) {
+    return 'Failed to save khatma: $error';
+  }
 }

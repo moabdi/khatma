@@ -2285,4 +2285,114 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get reservedAndCompleted => 'Réservé + Complété';
+
+  @override
+  String get sharedKhatmaSettings => 'Paramètres de Khatma Partagée';
+
+  @override
+  String get limits => 'Limites';
+
+  @override
+  String get timeSettings => 'Paramètres de Temps';
+
+  @override
+  String get joinSettings => 'Paramètres de Participation';
+
+  @override
+  String get inviteCode => 'Code d\'Invitation';
+
+  @override
+  String get groupSettings => 'Paramètres de Groupe';
+
+  @override
+  String get tags => 'Étiquettes';
+
+  @override
+  String get maxPartsToReserve => 'Parties max à réserver';
+
+  @override
+  String get atSameTime => 'En même temps';
+
+  @override
+  String get maxPartsToRead => 'Parties max à lire';
+
+  @override
+  String get totalLimitPerUser => 'Limite totale par utilisateur';
+
+  @override
+  String get warningDelay => 'Délai d\'avertissement';
+
+  @override
+  String get daysBeforeReminder => 'Jours avant rappel';
+
+  @override
+  String get expirationDelay => 'Délai d\'expiration';
+
+  @override
+  String get daysBeforeAutoRelease => 'Jours avant libération auto (optionnel)';
+
+  @override
+  String get autoReleaseExpired => 'Libération auto des expirés';
+
+  @override
+  String get freeUpExpiredReservedUnits =>
+      'Libérer les unités réservées expirées';
+
+  @override
+  String get joinByCode => 'Rejoindre par code';
+
+  @override
+  String get joinByCodeDesc =>
+      'Toute personne avec le code peut rejoindre instantanément';
+
+  @override
+  String get joinByInvitation => 'Rejoindre par invitation';
+
+  @override
+  String get joinByInvitationDesc =>
+      'Les utilisateurs doivent demander et être approuvés pour rejoindre';
+
+  @override
+  String get inviteCodeLabel => 'Code d\'Invitation';
+
+  @override
+  String get inviteCodeHelper =>
+      'Code pour les utilisateurs pour rejoindre cette khatma';
+
+  @override
+  String get generateNewCode => 'Générer un nouveau code';
+
+  @override
+  String get allowMultipleGroups => 'Autoriser plusieurs groupes';
+
+  @override
+  String get allowMultipleGroupsDesc =>
+      'Les utilisateurs peuvent participer à plusieurs groupes simultanément';
+
+  @override
+  String get addTag => 'Ajouter une Étiquette';
+
+  @override
+  String get addTagHint => 'p.ex., Ramadan, Famille, Communauté';
+
+  @override
+  String get maximumTagsReached => 'Maximum de 5 étiquettes atteint';
+
+  @override
+  String get tagInstructions =>
+      'Appuyez sur Entrée pour ajouter des étiquettes. Cliquez sur une étiquette pour la supprimer.';
+
+  @override
+  String get completeSetup => 'Terminer la Configuration';
+
+  @override
+  String get maximumTagsAllowed => 'Maximum de 5 étiquettes autorisé';
+
+  @override
+  String get tagAlreadyExists => 'L\'étiquette existe déjà';
+
+  @override
+  String failedToSaveKhatmaError(String error) {
+    return 'Échec de la sauvegarde de la khatma : $error';
+  }
 }

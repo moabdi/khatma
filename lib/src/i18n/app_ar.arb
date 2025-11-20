@@ -1010,5 +1010,47 @@
   "members": "الأعضاء",
   "completed": "مكتمل",
   "reserved": "محجوز",
-  "reservedAndCompleted": "المحجوز + المكتمل"
+  "reservedAndCompleted": "المحجوز + المكتمل",
+
+  "sharedKhatmaSettings": "إعدادات الختمة المشتركة",
+  "limits": "الحدود",
+  "timeSettings": "إعدادات الوقت",
+  "joinSettings": "إعدادات الانضمام",
+  "inviteCode": "كود الدعوة",
+  "groupSettings": "إعدادات المجموعة",
+  "tags": "الوسوم",
+  "maxPartsToReserve": "الأجزاء الأقصى للحجز",
+  "atSameTime": "في نفس الوقت",
+  "maxPartsToRead": "الأجزاء الأقصى للقراءة",
+  "totalLimitPerUser": "الحد الأقصى لكل مستخدم",
+  "warningDelay": "تأخير التحذير",
+  "daysBeforeReminder": "أيام قبل التذكير",
+  "expirationDelay": "تأخير الانتهاء",
+  "daysBeforeAutoRelease": "أيام قبل التحرير التلقائي (اختياري)",
+  "autoReleaseExpired": "تحرير المنتهية تلقائياً",
+  "freeUpExpiredReservedUnits": "تحرير الوحدات المحجوزة المنتهية",
+  "joinByCode": "الانضمام بالكود",
+  "joinByCodeDesc": "أي شخص لديه الكود يمكنه الانضمام فوراً",
+  "joinByInvitation": "الانضمام بالدعوة",
+  "joinByInvitationDesc": "يجب على المستخدمين طلب الموافقة للانضمام",
+  "inviteCodeLabel": "كود الدعوة",
+  "inviteCodeHelper": "كود للمستخدمين للانضمام لهذه الختمة",
+  "generateNewCode": "توليد كود جديد",
+  "allowMultipleGroups": "السماح بعدة مجموعات",
+  "allowMultipleGroupsDesc": "يمكن للمستخدمين المشاركة في عدة مجموعات في نفس الوقت",
+  "addTag": "إضافة وسم",
+  "addTagHint": "مثال: رمضان، العائلة، المجتمع",
+  "maximumTagsReached": "تم الوصول للحد الأقصى 5 وسوم",
+  "tagInstructions": "اضغط Enter لإضافة الوسوم. انقر على وسم لإزالته.",
+  "completeSetup": "إكمال الإعداد",
+  "maximumTagsAllowed": "الحد الأقصى 5 وسوم مسموح",
+  "tagAlreadyExists": "الوسم موجود بالفعل",
+  "failedToSaveKhatmaError": "فشل حفظ الختمة: {error}",
+  "@failedToSaveKhatmaError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  }
 }
