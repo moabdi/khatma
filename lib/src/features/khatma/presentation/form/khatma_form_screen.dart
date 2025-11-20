@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/ui/date_field.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/style_selector.dart';
@@ -34,6 +36,8 @@ class AddKhatmaScreen extends ConsumerStatefulWidget {
 class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   late final TextEditingController _nameController;
   late final TextEditingController _descController;
+  late final TextEditingController _startDateController;
+  late final TextEditingController _endDateController;
   late final FocusScopeNode _focusNode;
   final _formKey = GlobalKey<FormState>();
 
@@ -58,6 +62,14 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     final khatma = ref.read(khatmaFormProvider);
     _nameController = TextEditingController(text: khatma.name);
     _descController = TextEditingController(text: khatma.description);
+    _startDateController = TextEditingController(
+      text: DateFormat('dd/MM/yyyy').format(khatma.startDate),
+    );
+    _endDateController = TextEditingController(
+      text: khatma.endDate != null
+          ? DateFormat('dd/MM/yyyy').format(khatma.endDate!)
+          : '',
+    );
 
     // Listen to controller changes and update the provider
     _nameController.addListener(_onTextFieldChanged);
@@ -68,6 +80,8 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   void dispose() {
     _nameController.dispose();
     _descController.dispose();
+    _startDateController.dispose();
+    _endDateController.dispose();
     _focusNode.dispose();
     super.dispose();
   }
@@ -114,19 +128,23 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     }
 
     return SafeArea(
-      child: SingleChildScrollView(
-        child: FocusScope(
-          node: _focusNode,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: _buildForm(context, formData),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: FocusScope(
+                node: _focusNode,
+                child: _buildFormContent(context, formData),
+              ),
+            ),
           ),
-        ),
+          _buildBottomButtons(context, formData),
+        ],
       ),
     );
   }
 
-  Widget _buildForm(BuildContext context, KhatmaFormData formData) {
+  Widget _buildFormContent(BuildContext context, KhatmaFormData formData) {
     return Form(
       key: _formKey,
       child: Padding(
@@ -149,16 +167,53 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             _buildSplitUnitSelector(context, formData),
             gapH16,
             _buildRepeatToggle(formData),
-            gapH48,
-            ElevatedButton(
-              child: Text(AppLocalizations.of(context).save),
-              onPressed: () => _handleSave(context),
-            ),
+            gapH24,
+            _buildStartDateField(context),
             gapH16,
-            _buildDeleteButton(context),
+            _buildEndDateField(context),
             gapH24,
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildBottomButtons(BuildContext context, KhatmaFormData formData) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: isDark
+            ? Theme.of(context).colorScheme.surface
+            : Theme.of(context).colorScheme.surfaceContainerLow,
+        border: Border(
+          top: BorderSide(
+            color: Theme.of(context).dividerColor.withValues(alpha: 0.1),
+            width: 1,
+          ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.08),
+            blurRadius: 12,
+            offset: const Offset(0, -3),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              child: Text(AppLocalizations.of(context).save),
+              onPressed: () => _handleSave(context),
+            ),
+          ),
+          gapH16,
+          _buildDeleteButton(context),
+        ],
       ),
     );
   }
@@ -207,6 +262,47 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     );
   }
 
+  Widget _buildStartDateField(BuildContext context) {
+    return DateField(
+      controller: _startDateController,
+      labelText: 'Start Date',
+      isRequired: true,
+      onDateSelected: (date) {
+        if (date != null) {
+          final formData = ref.read(khatmaFormProvider);
+          ref.read(khatmaFormProvider.notifier).update(
+                formData.copyWith(startDate: date),
+              );
+        }
+      },
+    );
+  }
+
+  Widget _buildEndDateField(BuildContext context) {
+    final startDate = _parseDate(_startDateController.text) ?? DateTime.now();
+
+    return DateField(
+      controller: _endDateController,
+      labelText: 'End Date (Optional)',
+      isRequired: false,
+      firstDate: startDate,
+      onDateSelected: (date) {
+        final formData = ref.read(khatmaFormProvider);
+        ref.read(khatmaFormProvider.notifier).update(
+              formData.copyWith(endDate: date),
+            );
+      },
+    );
+  }
+
+  DateTime? _parseDate(String dateString) {
+    if (dateString.isEmpty) return null;
+    try {
+      return DateFormat('dd/MM/yyyy').parse(dateString);
+    } catch (e) {
+      return null;
+    }
+  }
 
   Widget _buildTypeSelector(BuildContext context, KhatmaFormData formData) {
     // Type cannot be changed when editing
@@ -301,14 +397,17 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     final formData = ref.watch(khatmaFormProvider);
     if (formData.id == null) return const SizedBox.shrink();
 
-    return OutlinedButton.icon(
-      onPressed: () => _handleDelete(context),
-      icon: Icon(Icons.delete),
-      label: Text(AppLocalizations.of(context).delete),
-      style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.red.shade50,
-        foregroundColor: Colors.red,
-        side: BorderSide(color: Colors.red),
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton.icon(
+        onPressed: () => _handleDelete(context),
+        icon: Icon(Icons.delete),
+        label: Text(AppLocalizations.of(context).delete),
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.red.shade50,
+          foregroundColor: Colors.red,
+          side: BorderSide(color: Colors.red),
+        ),
       ),
     );
   }

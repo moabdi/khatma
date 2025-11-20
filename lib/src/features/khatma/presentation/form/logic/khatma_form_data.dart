@@ -31,6 +31,7 @@ class KhatmaFormData {
   final KhatmaTheme theme;
   final bool repeat;
   final DateTime startDate;
+  final DateTime? endDate;
 
   // Optional configurations for creating new khatmas
   final KhatmaCreator? creator;
@@ -47,6 +48,7 @@ class KhatmaFormData {
     required this.theme,
     required this.repeat,
     required this.startDate,
+    this.endDate,
     this.creator,
     this.sharedConfig,
     this.hifzConfig,
@@ -75,6 +77,7 @@ class KhatmaFormData {
       theme: kDefaultKhatmaTheme,
       repeat: false,
       startDate: DateTime.now(),
+      endDate: null,
       creator: defaultCreator,
     );
   }
@@ -91,6 +94,7 @@ class KhatmaFormData {
       theme: khatma.theme,
       repeat: khatma.repeat,
       startDate: khatma.startDate,
+      endDate: khatma.endDate,
     );
   }
 
@@ -106,6 +110,7 @@ class KhatmaFormData {
         theme: theme,
         repeat: repeat,
         startDate: startDate,
+        endDate: endDate,
       );
     } else {
       // Creating new: use the type to determine which Khatma to create
@@ -119,6 +124,7 @@ class KhatmaFormData {
             unit: unit,
             createDate: now,
             startDate: startDate,
+            endDate: endDate,
             theme: theme,
             repeat: repeat,
             creatorId: creator!.creatorId,
@@ -144,6 +150,7 @@ class KhatmaFormData {
             unit: unit,
             createDate: now,
             startDate: startDate,
+            endDate: endDate,
             theme: theme,
             creatorId: creator?.creatorId,
             creatorName: creator?.creatorName,
@@ -156,6 +163,7 @@ class KhatmaFormData {
             unit: unit,
             createDate: now,
             startDate: startDate,
+            endDate: endDate,
             theme: theme,
             repeat: repeat,
             creatorId: creator?.creatorId,
@@ -174,6 +182,7 @@ class KhatmaFormData {
     KhatmaTheme? theme,
     bool? repeat,
     DateTime? startDate,
+    DateTime? endDate,
     KhatmaCreator? creator,
     SharedConfig? sharedConfig,
     HifzConfig? hifzConfig,
@@ -189,6 +198,7 @@ class KhatmaFormData {
       theme: theme ?? this.theme,
       repeat: repeat ?? this.repeat,
       startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
       creator: creator ?? this.creator,
       sharedConfig: sharedConfig ?? this.sharedConfig,
       hifzConfig: hifzConfig ?? this.hifzConfig,

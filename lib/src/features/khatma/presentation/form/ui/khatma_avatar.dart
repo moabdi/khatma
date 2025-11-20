@@ -119,9 +119,9 @@ class KhatmaAvatarMaterial extends StatelessWidget {
             height: size,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: themeColor.withAlpha(255),
+              color: themeColor.withValues(alpha: 0.15),
               border: Border.all(
-                color: themeColor.withAlpha(200),
+                color: themeColor.withValues(alpha: 0.3),
                 width: 2,
               ),
             ),
