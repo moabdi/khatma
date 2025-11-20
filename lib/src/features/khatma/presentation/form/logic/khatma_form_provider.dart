@@ -31,9 +31,19 @@ class KhatmaForm extends _$KhatmaForm {
   }
 
   /// Save the Khatma (handles both create and update automatically)
-  Future<void> save() async {
+  /// Returns the saved khatma with updated ID
+  Future<Khatma?> save() async {
     final khatmaToSave = state.toKhatma();
-    await ref.read(khatmaNotifierProvider.notifier).saveKhatma(khatmaToSave);
+    final result = await ref.read(khatmaNotifierProvider.notifier).saveKhatma(khatmaToSave);
+
+    // If save was successful, update the state with the saved khatma
+    if (result.isSuccess) {
+      final savedKhatma = result.dataOrNull!;
+      state = KhatmaFormData.fromKhatma(savedKhatma);
+      return savedKhatma;
+    }
+
+    return null;
   }
 
   /// Delete the Khatma (only works if editing existing)

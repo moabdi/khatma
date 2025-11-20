@@ -49,6 +49,7 @@ enum AppRoute {
   editSharedKhatma,
   sync,
   newKhatma,
+  khatmaSuccess,
 }
 
 final firebaseAuthProvier = Provider<FirebaseAuth>((ref) {

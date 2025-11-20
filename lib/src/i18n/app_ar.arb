@@ -1052,5 +1052,20 @@
         "type": "String"
       }
     }
-  }
+  },
+
+  "khatmaCreatedSuccessfully": "تم إنشاء الختمة بنجاح!",
+  "shareThisKhatma": "شارك هذه الختمة",
+  "inviteYourFriends": "ادعُ أصدقاءك للانضمام",
+  "joinCode": "كود الانضمام",
+  "scanQRCode": "مسح رمز QR",
+  "shareViaQR": "مشاركة عبر رمز QR",
+  "copyCode": "نسخ الكود",
+  "codeCopied": "تم نسخ الكود",
+  "shareCode": "مشاركة الكود",
+  "goToKhatma": "الذهاب للختمة",
+  "viewKhatma": "عرض الختمة",
+  "shareInvite": "مشاركة الدعوة",
+  "howToJoin": "كيفية الانضمام",
+  "joinInstructions": "يمكن للآخرين الانضمام عن طريق مسح رمز QR أو إدخال الكود أدناه"
 }

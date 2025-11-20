@@ -5,6 +5,7 @@ import 'package:khatma/src/features/khatma/personal/application/khatmat_provider
 import 'package:khatma/src/features/khatma/shared/presentation/shared_khatma_read_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/success/khatma_success_screen.dart';
 import 'package:khatma/src/routing/app_router.dart';
 
 List<GoRoute> sharedKhatmaRoutes(Ref ref) => [
@@ -22,6 +23,22 @@ List<GoRoute> sharedKhatmaRoutes(Ref ref) => [
             builder: (context, state) {
               final khatmaId = state.pathParameters['id']!;
               return _EditSharedKhatmaWrapper(khatmaId: khatmaId);
+            },
+          ),
+          GoRoute(
+            path: 'success',
+            name: AppRoute.khatmaSuccess.name,
+            builder: (context, state) {
+              final khatmaId = state.pathParameters['id']!;
+              final extra = state.extra as Map<String, dynamic>?;
+              final joinCode = extra?['joinCode'] as String? ?? '';
+              final khatmaName = extra?['khatmaName'] as String?;
+
+              return KhatmaSuccessScreen(
+                khatmaId: khatmaId,
+                joinCode: joinCode,
+                khatmaName: khatmaName,
+              );
             },
           ),
         ],

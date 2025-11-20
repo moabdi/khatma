@@ -2345,4 +2345,47 @@ class AppLocalizationsEn extends AppLocalizations {
   String failedToSaveKhatmaError(String error) {
     return 'Failed to save khatma: $error';
   }
+
+  @override
+  String get khatmaCreatedSuccessfully => 'Khatma Created Successfully!';
+
+  @override
+  String get shareThisKhatma => 'Share This Khatma';
+
+  @override
+  String get inviteYourFriends => 'Invite your friends to join';
+
+  @override
+  String get joinCode => 'Join Code';
+
+  @override
+  String get scanQRCode => 'Scan QR Code';
+
+  @override
+  String get shareViaQR => 'Share via QR Code';
+
+  @override
+  String get copyCode => 'Copy Code';
+
+  @override
+  String get codeCopied => 'Code copied to clipboard';
+
+  @override
+  String get shareCode => 'Share Code';
+
+  @override
+  String get goToKhatma => 'Go to Khatma';
+
+  @override
+  String get viewKhatma => 'View Khatma';
+
+  @override
+  String get shareInvite => 'Share Invite';
+
+  @override
+  String get howToJoin => 'How to Join';
+
+  @override
+  String get joinInstructions =>
+      'Others can join by scanning the QR code or entering the code below';
 }

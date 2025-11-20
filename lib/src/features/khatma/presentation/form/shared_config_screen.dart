@@ -23,6 +23,7 @@ class _SharedKhatmaConfigScreenState
     extends ConsumerState<SharedKhatmaConfigScreen> {
   late SharedConfig _config;
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -182,8 +183,16 @@ class _SharedKhatmaConfigScreenState
       child: SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () => _handleSave(context),
-          child: Text(context.loc.completeSetup),
+          onPressed: _isLoading ? null : () => _handleSave(context),
+          child: _isLoading
+              ? const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  ),
+                )
+              : Text(context.loc.completeSetup),
         ),
       ),
     );
@@ -194,6 +203,11 @@ class _SharedKhatmaConfigScreenState
       return;
     }
 
+    // Set loading state
+    setState(() {
+      _isLoading = true;
+    });
+
     try {
       // Update the form provider with the new config
       final formData = ref.read(khatmaFormProvider);
@@ -201,20 +215,28 @@ class _SharedKhatmaConfigScreenState
             formData.copyWith(sharedConfig: _config),
           );
 
-      // Save the khatma
-      await ref.read(khatmaFormProvider.notifier).save();
+      // Save the khatma and get the saved khatma with ID
+      final savedKhatma = await ref.read(khatmaFormProvider.notifier).save();
 
       if (mounted) {
-        // Navigate to the shared khatma read screen
-        final savedKhatma = ref.read(khatmaFormProvider);
-        if (savedKhatma.id != null) {
-          context.go('/khatma/shared/${savedKhatma.id}');
+        // Navigate to success screen
+        if (savedKhatma != null && savedKhatma.id != null && _config.inviteCode != null) {
+          context.go(
+            '/khatma/shared/${savedKhatma.id}/success',
+            extra: {
+              'joinCode': _config.inviteCode,
+              'khatmaName': savedKhatma.name,
+            },
+          );
         } else {
           context.go('/khatma');
         }
       }
     } catch (error) {
       if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(

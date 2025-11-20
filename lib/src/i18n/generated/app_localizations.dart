@@ -3945,6 +3945,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to save khatma: {error}'**
   String failedToSaveKhatmaError(String error);
+
+  /// No description provided for @khatmaCreatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Created Successfully!'**
+  String get khatmaCreatedSuccessfully;
+
+  /// No description provided for @shareThisKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Share This Khatma'**
+  String get shareThisKhatma;
+
+  /// No description provided for @inviteYourFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite your friends to join'**
+  String get inviteYourFriends;
+
+  /// No description provided for @joinCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Code'**
+  String get joinCode;
+
+  /// No description provided for @scanQRCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan QR Code'**
+  String get scanQRCode;
+
+  /// No description provided for @shareViaQR.
+  ///
+  /// In en, this message translates to:
+  /// **'Share via QR Code'**
+  String get shareViaQR;
+
+  /// No description provided for @copyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Code'**
+  String get copyCode;
+
+  /// No description provided for @codeCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Code copied to clipboard'**
+  String get codeCopied;
+
+  /// No description provided for @shareCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Code'**
+  String get shareCode;
+
+  /// No description provided for @goToKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Khatma'**
+  String get goToKhatma;
+
+  /// No description provided for @viewKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'View Khatma'**
+  String get viewKhatma;
+
+  /// No description provided for @shareInvite.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Invite'**
+  String get shareInvite;
+
+  /// No description provided for @howToJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'How to Join'**
+  String get howToJoin;
+
+  /// No description provided for @joinInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Others can join by scanning the QR code or entering the code below'**
+  String get joinInstructions;
 }
 
 class _AppLocalizationsDelegate

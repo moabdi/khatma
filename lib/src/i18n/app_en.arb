@@ -1052,5 +1052,20 @@
         "type": "String"
       }
     }
-  }
+  },
+
+  "khatmaCreatedSuccessfully": "Khatma Created Successfully!",
+  "shareThisKhatma": "Share This Khatma",
+  "inviteYourFriends": "Invite your friends to join",
+  "joinCode": "Join Code",
+  "scanQRCode": "Scan QR Code",
+  "shareViaQR": "Share via QR Code",
+  "copyCode": "Copy Code",
+  "codeCopied": "Code copied to clipboard",
+  "shareCode": "Share Code",
+  "goToKhatma": "Go to Khatma",
+  "viewKhatma": "View Khatma",
+  "shareInvite": "Share Invite",
+  "howToJoin": "How to Join",
+  "joinInstructions": "Others can join by scanning the QR code or entering the code below"
 }

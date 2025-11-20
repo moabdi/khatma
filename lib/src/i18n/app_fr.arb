@@ -1052,5 +1052,20 @@
         "type": "String"
       }
     }
-  }
+  },
+
+  "khatmaCreatedSuccessfully": "Khatma Créée avec Succès !",
+  "shareThisKhatma": "Partager cette Khatma",
+  "inviteYourFriends": "Invitez vos amis à rejoindre",
+  "joinCode": "Code d'Accès",
+  "scanQRCode": "Scanner le QR Code",
+  "shareViaQR": "Partager via QR Code",
+  "copyCode": "Copier le Code",
+  "codeCopied": "Code copié dans le presse-papiers",
+  "shareCode": "Partager le Code",
+  "goToKhatma": "Aller à la Khatma",
+  "viewKhatma": "Voir la Khatma",
+  "shareInvite": "Partager l'Invitation",
+  "howToJoin": "Comment Rejoindre",
+  "joinInstructions": "Les autres peuvent rejoindre en scannant le QR code ou en entrant le code ci-dessous"
 }

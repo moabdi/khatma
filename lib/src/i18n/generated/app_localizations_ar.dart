@@ -2326,4 +2326,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String failedToSaveKhatmaError(String error) {
     return 'فشل حفظ الختمة: $error';
   }
+
+  @override
+  String get khatmaCreatedSuccessfully => 'تم إنشاء الختمة بنجاح!';
+
+  @override
+  String get shareThisKhatma => 'شارك هذه الختمة';
+
+  @override
+  String get inviteYourFriends => 'ادعُ أصدقاءك للانضمام';
+
+  @override
+  String get joinCode => 'كود الانضمام';
+
+  @override
+  String get scanQRCode => 'مسح رمز QR';
+
+  @override
+  String get shareViaQR => 'مشاركة عبر رمز QR';
+
+  @override
+  String get copyCode => 'نسخ الكود';
+
+  @override
+  String get codeCopied => 'تم نسخ الكود';
+
+  @override
+  String get shareCode => 'مشاركة الكود';
+
+  @override
+  String get goToKhatma => 'الذهاب للختمة';
+
+  @override
+  String get viewKhatma => 'عرض الختمة';
+
+  @override
+  String get shareInvite => 'مشاركة الدعوة';
+
+  @override
+  String get howToJoin => 'كيفية الانضمام';
+
+  @override
+  String get joinInstructions =>
+      'يمكن للآخرين الانضمام عن طريق مسح رمز QR أو إدخال الكود أدناه';
 }
