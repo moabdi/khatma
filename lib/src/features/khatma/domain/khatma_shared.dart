@@ -4,46 +4,73 @@ part of 'khatma.dart';
 // SHARED KHATMA - CONFIGURATION
 // ============================================================================
 
+/// Join method for shared khatma
+enum JoinMethod {
+  code, // Join by code only
+  invitation, // Join by invitation with validation
+  both; // Both code and invitation
+}
+
 /// Configuration for Shared-specific settings
 class SharedConfig {
   final String? inviteCode;
   final int maxReservationsPerUser;
+  final int maxUnitsToRead; // Limit parts authorized to read
   final int reservationWarningDays;
   final int? reservationExpirationDays;
   final bool autoReleaseExpiredReservations;
+  final JoinMethod joinMethod;
+  final bool allowMultipleGroups; // Open for multiple groups or one only
+  final List<String> tags; // Tags for categorization
 
   const SharedConfig({
     this.inviteCode,
     required this.maxReservationsPerUser,
+    required this.maxUnitsToRead,
     required this.reservationWarningDays,
     this.reservationExpirationDays,
     required this.autoReleaseExpiredReservations,
+    this.joinMethod = JoinMethod.code,
+    this.allowMultipleGroups = false,
+    this.tags = const [],
   });
 
   const SharedConfig.defaults()
       : inviteCode = null,
         maxReservationsPerUser = 3,
+        maxUnitsToRead = 30,
         reservationWarningDays = 7,
         reservationExpirationDays = null,
-        autoReleaseExpiredReservations = true;
+        autoReleaseExpiredReservations = true,
+        joinMethod = JoinMethod.code,
+        allowMultipleGroups = false,
+        tags = const [];
 
   SharedConfig copyWith({
     String? inviteCode,
     int? maxReservationsPerUser,
+    int? maxUnitsToRead,
     int? reservationWarningDays,
     int? reservationExpirationDays,
     bool? autoReleaseExpiredReservations,
+    JoinMethod? joinMethod,
+    bool? allowMultipleGroups,
+    List<String>? tags,
   }) {
     return SharedConfig(
       inviteCode: inviteCode ?? this.inviteCode,
       maxReservationsPerUser:
           maxReservationsPerUser ?? this.maxReservationsPerUser,
+      maxUnitsToRead: maxUnitsToRead ?? this.maxUnitsToRead,
       reservationWarningDays:
           reservationWarningDays ?? this.reservationWarningDays,
       reservationExpirationDays:
           reservationExpirationDays ?? this.reservationExpirationDays,
       autoReleaseExpiredReservations:
           autoReleaseExpiredReservations ?? this.autoReleaseExpiredReservations,
+      joinMethod: joinMethod ?? this.joinMethod,
+      allowMultipleGroups: allowMultipleGroups ?? this.allowMultipleGroups,
+      tags: tags ?? this.tags,
     );
   }
 }

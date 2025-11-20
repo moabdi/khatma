@@ -9,6 +9,7 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/shared_config_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/date_field.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_avatar.dart';
 import 'package:khatma/src/features/khatma/presentation/form/ui/repeat_enabler_tile.dart';
@@ -431,28 +432,34 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     try {
       final isEditing = widget.khatmaId != null;
       final formData = ref.read(khatmaFormProvider);
-      await ref.read(khatmaFormProvider.notifier).save();
 
       if (mounted) {
         if (isEditing) {
-          // If editing, go back to the read screen
+          // If editing, save and go back to the read screen
+          await ref.read(khatmaFormProvider.notifier).save();
           Navigator.of(context).pop();
         } else {
-          // If creating new, navigate to appropriate read screen based on type
-          final savedKhatma = ref.read(khatmaNotifierProvider).selectedKhatma;
-          if (savedKhatma != null && savedKhatma.id != null) {
-            switch (formData.type) {
-              case KhatmaType.shared:
-                context.go('/khatma/shared/${savedKhatma.id}');
-              case KhatmaType.hifz:
-                // For now, navigate to home until hifz screen is implemented
-                context.go('/khatma');
-              case KhatmaType.personal:
-                context.go('/khatma/personal/${savedKhatma.id}');
-            }
-          } else {
-            // Fallback to home if something went wrong
+          // If creating new, check if it's a shared or hifz khatma
+          if (formData.type == KhatmaType.shared) {
+            // Navigate to shared config screen without saving yet
+            await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SharedKhatmaConfigScreen(),
+              ),
+            );
+          } else if (formData.type == KhatmaType.hifz) {
+            // TODO: Navigate to hifz config screen when implemented
+            await ref.read(khatmaFormProvider.notifier).save();
             context.go('/khatma');
+          } else {
+            // For personal khatma, save and navigate directly
+            await ref.read(khatmaFormProvider.notifier).save();
+            final savedKhatma = ref.read(khatmaNotifierProvider).selectedKhatma;
+            if (savedKhatma != null && savedKhatma.id != null) {
+              context.go('/khatma/personal/${savedKhatma.id}');
+            } else {
+              context.go('/khatma');
+            }
           }
         }
       }

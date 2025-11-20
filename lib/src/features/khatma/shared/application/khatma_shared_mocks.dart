@@ -17,12 +17,6 @@ class KhatmaSharedMockData {
         theme: kDefaultKhatmaTheme,
         creatorId: 'creator1',
         creatorName: 'Ahmed Mohamed',
-        config: SharedConfig(
-          maxReservationsPerUser: 5,
-          reservationWarningDays: 7, // Warning after 7 days
-          reservationExpirationDays: 14, // Auto-expire after 14 days
-          autoReleaseExpiredReservations: true,
-        ),
         participants: [
           Participant(
             userId: 'creator1',
@@ -267,12 +261,7 @@ class KhatmaSharedMockData {
         theme: kDefaultKhatmaTheme,
         creatorId: 'creator3',
         creatorName: 'Khadija Test',
-        config: SharedConfig(
-          maxReservationsPerUser: 3,
-          reservationWarningDays: 2, // Warning after 2 days
-          reservationExpirationDays: 4, // Auto-expire after 4 days
-          autoReleaseExpiredReservations: true,
-        ),
+
         participants: [
           Participant(
             userId: 'creator3',
