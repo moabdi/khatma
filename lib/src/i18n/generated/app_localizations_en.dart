@@ -2388,4 +2388,25 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get joinInstructions =>
       'Others can join by scanning the QR code or entering the code below';
+
+  @override
+  String get personal => 'Personal';
+
+  @override
+  String get shared => 'Shared';
+
+  @override
+  String get hifz => 'Hifz';
+
+  @override
+  String get participants => 'Participants';
+
+  @override
+  String get inProgress => 'In Progress';
+
+  @override
+  String get juzz => 'Juzz';
+
+  @override
+  String get hizb => 'Hizb';
 }

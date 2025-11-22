@@ -2369,4 +2369,25 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get joinInstructions =>
       'يمكن للآخرين الانضمام عن طريق مسح رمز QR أو إدخال الكود أدناه';
+
+  @override
+  String get personal => 'شخصي';
+
+  @override
+  String get shared => 'مشترك';
+
+  @override
+  String get hifz => 'حفظ';
+
+  @override
+  String get participants => 'المشاركون';
+
+  @override
+  String get inProgress => 'قيد التقدم';
+
+  @override
+  String get juzz => 'جزء';
+
+  @override
+  String get hizb => 'حزب';
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/shared_khatma_read_screen.dart';
+import 'package:khatma/src/features/khatma/shared/presentation/ui/shared_khatma_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/success/khatma_success_screen.dart';
@@ -14,7 +14,7 @@ List<GoRoute> sharedKhatmaRoutes(Ref ref) => [
         name: AppRoute.sharedKhatmaDetails.name,
         builder: (context, state) {
           final khatmaId = state.pathParameters['id']!;
-          return SharedKhatmaReadScreen(khatmaId: khatmaId);
+          return SharedKhatmaScreen(khatmaId: khatmaId);
         },
         routes: [
           GoRoute(

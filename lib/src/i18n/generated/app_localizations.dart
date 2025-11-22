@@ -4029,6 +4029,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Others can join by scanning the QR code or entering the code below'**
   String get joinInstructions;
+
+  /// No description provided for @personal.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal'**
+  String get personal;
+
+  /// No description provided for @shared.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared'**
+  String get shared;
+
+  /// No description provided for @hifz.
+  ///
+  /// In en, this message translates to:
+  /// **'Hifz'**
+  String get hifz;
+
+  /// No description provided for @participants.
+  ///
+  /// In en, this message translates to:
+  /// **'Participants'**
+  String get participants;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get inProgress;
+
+  /// No description provided for @juzz.
+  ///
+  /// In en, this message translates to:
+  /// **'Juzz'**
+  String get juzz;
+
+  /// No description provided for @hizb.
+  ///
+  /// In en, this message translates to:
+  /// **'Hizb'**
+  String get hizb;
 }
 
 class _AppLocalizationsDelegate

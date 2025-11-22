@@ -1067,5 +1067,14 @@
   "viewKhatma": "عرض الختمة",
   "shareInvite": "مشاركة الدعوة",
   "howToJoin": "كيفية الانضمام",
-  "joinInstructions": "يمكن للآخرين الانضمام عن طريق مسح رمز QR أو إدخال الكود أدناه"
+  "joinInstructions": "يمكن للآخرين الانضمام عن طريق مسح رمز QR أو إدخال الكود أدناه",
+
+  "personal": "شخصي",
+  "shared": "مشترك",
+  "hifz": "حفظ",
+  "participants": "المشاركون",
+  "completed": "مكتمل",
+  "inProgress": "قيد التقدم",
+  "juzz": "جزء",
+  "hizb": "حزب"
 }

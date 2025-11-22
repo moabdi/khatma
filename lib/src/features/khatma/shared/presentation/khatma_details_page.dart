@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/logic/khatma_details_controller.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/widgets/unit_tile.dart';
+import 'package:khatma/src/features/khatma/shared/presentation/ui/widgets/unit_tile.dart';
+import 'package:khatma/src/features/khatma/shared/presentation/ui/widgets/progress_stats.dart';
 import 'package:khatma/src/features/khatma/shared/presentation/widgets/filter_chip.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -50,54 +51,60 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
           children: [
 
                   // Description in ExpansionTile
-                  if (state.khatma.description?.isNotEmpty ?? false)
-                    Theme(
-                      data: Theme.of(context).copyWith(
-                        dividerColor: Colors.transparent,
+                  if (state.khatma.description?.isNotEmpty ?? false) ...[
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: context.colorScheme.surfaceContainerLow,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: context.colorScheme.outlineVariant,
+                          width: 1,
+                        ),
                       ),
-                      child: ExpansionTile(
-                        childrenPadding:
-                            const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                        tilePadding: const EdgeInsets.all(0),
-                        title: Text(context.loc.khatmaDescription),
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(state.khatma.description??''),
+                      child: Theme(
+                        data: Theme.of(context).copyWith(
+                          dividerColor: Colors.transparent,
+                        ),
+                        child: ExpansionTile(
+                          tilePadding: EdgeInsets.zero,
+                          childrenPadding: const EdgeInsets.only(top: 12),
+                          title: Row(
+                            children: [
+                              Icon(
+                                Icons.info_outline,
+                                size: 16,
+                                color: context.colorScheme.primary,
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                context.loc.khatmaDescription,
+                                style: context.textTheme.labelLarge?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: context.colorScheme.primary,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                state.khatma.description ?? '',
+                                style: context.textTheme.bodyMedium?.copyWith(
+                                  color: context.colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  gapH12,
+                    gapH16,
+                  ],
             // Statistics Cards
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                // Members Progress Card with taken units percentage
-                _ProgressStatCardWithCount(
-                  icon: Icons.people_rounded,
-                  label: context.loc.members,
-                  count: state.khatma.membersCount.toString(),
-                  percent: (state.khatma.reservedUnits.length +
-                           state.khatma.units.where((u) => u.isCompleted).length) /
-                           state.khatma.totalUnits,
-                  color: context.colorScheme.primary,
-                ),
-                // Free Units Progress Card with circular progress
-                _ProgressStatCard(
-                  label: context.loc.freeUnits,
-                  percent: state.khatma.unitsAvailable / state.khatma.totalUnits,
-                  color: context.colorScheme.secondary,
-                ),
-                // Completion Progress Card with circular progress
-                _ProgressStatCard(
-                  label: context.loc.completed,
-                  percent: state.khatma.completionPercent,
-                  color: context.colorScheme.tertiary,
-                ),
-              ],
-            ),
-            gapH16,
+            KhatmaProgressStats(khatma: state.khatma),
+            gapH20,
 
             // Khatma Overview
             Container(
@@ -605,166 +612,6 @@ class _KhatmaDetailsPageState extends ConsumerState<KhatmaDetailsPage> {
               ],
             ),
           ),
-        ),
-      ],
-    );
-  }
-}
-
-/// Progress stat card with count, icon and circular progress indicator
-class _ProgressStatCardWithCount extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String count;
-  final double percent;
-  final Color color;
-
-  const _ProgressStatCardWithCount({
-    required this.icon,
-    required this.label,
-    required this.count,
-    required this.percent,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Circular progress indicator with icon and count
-        SizedBox(
-          width: 48,
-          height: 48,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Background circle
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: color.withValues(alpha: 0.15),
-                ),
-              ),
-              // Progress circle
-              SizedBox(
-                width: 48,
-                height: 48,
-                child: CircularProgressIndicator(
-                  value: percent.clamp(0.0, 1.0),
-                  strokeWidth: 3,
-                  backgroundColor: Colors.transparent,
-                  valueColor: AlwaysStoppedAnimation<Color>(color),
-                  strokeCap: StrokeCap.round,
-                ),
-              ),
-              // Icon and count
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    icon,
-                    color: color,
-                    size: 14,
-                  ),
-                  Text(
-                    count,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        gapH4,
-        // Label
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-                fontWeight: FontWeight.w500,
-                fontSize: 11,
-              ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
-}
-
-/// Progress stat card widget with circular progress indicator
-class _ProgressStatCard extends StatelessWidget {
-  final String label;
-  final double percent;
-  final Color color;
-
-  const _ProgressStatCard({
-    required this.label,
-    required this.percent,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Circular progress indicator
-        SizedBox(
-          width: 48,
-          height: 48,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Background circle
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: color.withValues(alpha: 0.15),
-                ),
-              ),
-              // Progress circle
-              SizedBox(
-                width: 48,
-                height: 48,
-                child: CircularProgressIndicator(
-                  value: percent.clamp(0.0, 1.0),
-                  strokeWidth: 3,
-                  backgroundColor: Colors.transparent,
-                  valueColor: AlwaysStoppedAnimation<Color>(color),
-                  strokeCap: StrokeCap.round,
-                ),
-              ),
-              // Percentage text
-              Text(
-                '${(percent * 100).toStringAsFixed(0)}%',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 11,
-                    ),
-              ),
-            ],
-          ),
-        ),
-        gapH4,
-        // Label
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-                fontWeight: FontWeight.w500,
-                fontSize: 11,
-              ),
-          textAlign: TextAlign.center,
         ),
       ],
     );

@@ -1386,7 +1386,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get loadingKhatmaList => 'Chargement de la liste des khatma';
 
   @override
-  String get completed => 'Complété';
+  String get completed => 'Terminé';
 
   @override
   String get completedParts => 'Parties terminées';
@@ -2438,4 +2438,25 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get joinInstructions =>
       'Les autres peuvent rejoindre en scannant le QR code ou en entrant le code ci-dessous';
+
+  @override
+  String get personal => 'Personnel';
+
+  @override
+  String get shared => 'Partagé';
+
+  @override
+  String get hifz => 'Hifz';
+
+  @override
+  String get participants => 'Participants';
+
+  @override
+  String get inProgress => 'En Cours';
+
+  @override
+  String get juzz => 'Juzz';
+
+  @override
+  String get hizb => 'Hizb';
 }

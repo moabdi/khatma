@@ -1067,5 +1067,14 @@
   "viewKhatma": "Voir la Khatma",
   "shareInvite": "Partager l'Invitation",
   "howToJoin": "Comment Rejoindre",
-  "joinInstructions": "Les autres peuvent rejoindre en scannant le QR code ou en entrant le code ci-dessous"
+  "joinInstructions": "Les autres peuvent rejoindre en scannant le QR code ou en entrant le code ci-dessous",
+
+  "personal": "Personnel",
+  "shared": "Partagé",
+  "hifz": "Hifz",
+  "participants": "Participants",
+  "completed": "Terminé",
+  "inProgress": "En Cours",
+  "juzz": "Juzz",
+  "hizb": "Hizb"
 }
