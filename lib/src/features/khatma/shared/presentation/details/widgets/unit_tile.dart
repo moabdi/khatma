@@ -3,15 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/khatma_ui.dart';
 
-/// Improved unit tile with modern design
-///
-/// Features:
-/// - Clean visual hierarchy
-/// - Status indicators with icons
-/// - Member information
-/// - Date information
-/// - Overdue warnings
 class UnitTile extends StatelessWidget {
   const UnitTile({
     super.key,
@@ -21,6 +14,7 @@ class UnitTile extends StatelessWidget {
     this.isUserAdminOrCreator = false,
     this.onSendReminder,
     this.onFreeUnit,
+    this.color,
   });
 
   final Unit unit;
@@ -29,6 +23,7 @@ class UnitTile extends StatelessWidget {
   final bool isUserAdminOrCreator;
   final VoidCallback? onSendReminder;
   final VoidCallback? onFreeUnit;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -148,12 +143,11 @@ class UnitTile extends StatelessWidget {
     String? dateText;
 
     if (unit.status == UnitStatus.reserved && unit.reservedDate != null) {
-      final formattedDate = DateFormat('dd/MM/yyyy').format(unit.reservedDate!);
+      final formattedDate = unit.reservedDate!.format();
       dateText = '${context.loc.reservedOn}: $formattedDate';
     } else if (unit.status == UnitStatus.completed &&
         unit.completedDate != null) {
-      final formattedDate =
-          DateFormat('dd/MM/yyyy').format(unit.completedDate!);
+      final formattedDate = unit.completedDate!.format();
       dateText = '${context.loc.completedOn}: $formattedDate';
     }
 
@@ -256,13 +250,13 @@ class UnitTile extends StatelessWidget {
         );
 
       case UnitStatus.selected:
+        final selectionColor = color ?? context.colorScheme.primary;
         return _StatusInfo(
-          backgroundColor:
-              context.colorScheme.primaryContainer.withValues(alpha: 0.3),
-          avatarColor: context.colorScheme.primary.withValues(alpha: 0.2),
-          numberColor: context.colorScheme.primary,
-          iconColor: context.colorScheme.primary,
-          borderColor: context.colorScheme.primary,
+          backgroundColor: selectionColor.withValues(alpha: 0.15),
+          avatarColor: selectionColor.withValues(alpha: 0.2),
+          numberColor: selectionColor,
+          iconColor: selectionColor,
+          borderColor: selectionColor,
           trailingIcon: Icons.check_circle,
           isClickable: true,
         );

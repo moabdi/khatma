@@ -27,10 +27,13 @@ class _SplashScreenState extends State<SplashScreen>
       Color(0xFFE0F2FE),
     ],
   );
+
   @override
   void initState() {
     super.initState();
-    _startRedirect();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startRedirect();
+    });
   }
 
   Future<void> _startRedirect() async {
@@ -42,9 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     if (!mounted) return;
 
-    if (kIsWeb) {
-      context.goNamed(AppRoute.home.name);
-    } else if (onboardingCompleted) {
+    if (kIsWeb || onboardingCompleted) {
       context.goNamed(AppRoute.home.name);
     } else {
       context.goNamed(AppRoute.onboarding.name);

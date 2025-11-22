@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/khatma_details_page.dart';
+import 'package:khatma/src/features/khatma/shared/presentation/details/shared_khatma_screen.dart';
 
 class KhatmaDetailsState {
   final KhatmaShared khatma;
@@ -59,7 +59,8 @@ class KhatmaDetailsState {
         case UnitFilter.reserved:
           if (unit.isReserved) return true;
         case UnitFilter.free:
-          if (unit.isFree || unit.isSelected) return true;
+          // Show units that are available (free OR selected - not confirmed yet)
+          if (unit.isFree || unit.status == UnitStatus.selected) return true;
         case UnitFilter.completed:
           if (unit.status == UnitStatus.completed) return true;
       }
@@ -78,7 +79,11 @@ class KhatmaDetailsState {
       case UnitFilter.reserved:
         return khatma.units.where((u) => u.isReserved).length;
       case UnitFilter.free:
-        return khatma.units.where((u) => u.isFree || u.isSelected).length;
+        // Count available units = totalUnits - (reserved + completed)
+        // Includes both free AND selected (since selected is not confirmed)
+        final reservedCount = khatma.units.where((u) => u.status == UnitStatus.reserved).length;
+        final completedCount = khatma.units.where((u) => u.status == UnitStatus.completed).length;
+        return khatma.totalUnits - reservedCount - completedCount;
       case UnitFilter.completed:
         return khatma.units.where((u) => u.isCompleted).length;
     }
@@ -94,18 +99,21 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
 
   void toggleFilter(UnitFilter filter) {
     final newFilters = Set<UnitFilter>.from(state.activeFilters);
-    newFilters.clear();
 
     if (filter == UnitFilter.all) {
+      // Select "All" - clear everything and add only "All"
       newFilters.clear();
       newFilters.add(UnitFilter.all);
     } else {
+      // Remove "All" if it's selected (when selecting any other filter)
       if (newFilters.contains(UnitFilter.all)) {
         newFilters.clear();
       }
 
+      // Toggle the selected filter
       if (newFilters.contains(filter)) {
         newFilters.remove(filter);
+        // If no filters remain, default back to "All"
         if (newFilters.isEmpty) {
           newFilters.add(UnitFilter.all);
         }

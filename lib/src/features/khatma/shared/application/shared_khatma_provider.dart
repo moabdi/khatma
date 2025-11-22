@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/khatma/data/repository/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/shared/application/khatma_shared_mocks.dart';
@@ -44,45 +46,75 @@ class SharedKhatmas extends _$SharedKhatmas {
   }
 
   Future<void> joinKhatma(String khatmaId, List<int> reservedUnits) async {
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 1));
+    // Get current user info
+    final authRepository = ref.read(authRepositoryProvider);
+    final currentUser = authRepository.currentUser;
 
-    // In a real implementation, this would make an API call to join the khatma
-    // and update the local state accordingly
+    if (currentUser == null) {
+      throw Exception('User must be authenticated to join a khatma');
+    }
 
-    // For now, just update the mock data
-    state = state.map((khatma) {
-      if (khatma.id == khatmaId) {
-        final updatedUnits = khatma.units.map((unit) {
-          if (reservedUnits.contains(unit.number)) {
-            return unit.copyWith(
-              status: UnitStatus.reserved,
-              reservedBy: 'currentUser',
-              reservedByName: 'You',
-              reservedDate: DateTime.now(),
-            );
-          }
-          return unit;
-        }).toList();
+    // Find the khatma to update
+    final khatma = state.firstWhere((k) => k.id == khatmaId);
 
-        // Add current user to participants if not already present
-        final currentUserParticipant = Participant(
-          userId: 'currentUser',
-          userName: 'You',
-          joinedDate: DateTime.now(),
+    // Get current user's display name
+    final userName = currentUser.displayName ?? currentUser.email ?? 'User';
+    final userId = currentUser.uid;
+
+    // Update units with reservations
+    final updatedUnits = [...khatma.units];
+
+    // Reserve selected units
+    for (final unitNumber in reservedUnits) {
+      final existingUnitIndex = updatedUnits.indexWhere((u) => u.number == unitNumber);
+
+      if (existingUnitIndex != -1) {
+        // Update existing unit
+        updatedUnits[existingUnitIndex] = updatedUnits[existingUnitIndex].copyWith(
+          status: UnitStatus.reserved,
+          reservedBy: userId,
+          reservedByName: userName,
+          reservedDate: DateTime.now(),
         );
-
-        final updatedParticipants = [...khatma.participants];
-        if (!updatedParticipants.any((p) => p.userId == 'currentUser')) {
-          updatedParticipants.add(currentUserParticipant);
-        }
-
-        return khatma.copyWith(
-          units: updatedUnits,
-          participants: updatedParticipants,
-        );
+      } else {
+        // Add new unit
+        updatedUnits.add(Unit(
+          number: unitNumber,
+          status: UnitStatus.reserved,
+          reservedBy: userId,
+          reservedByName: userName,
+          reservedDate: DateTime.now(),
+        ));
       }
-      return khatma;
+    }
+
+    // Add current user to participants if not already present
+    final updatedParticipants = [...khatma.participants];
+    if (!updatedParticipants.any((p) => p.userId == userId)) {
+      updatedParticipants.add(Participant(
+        userId: userId,
+        userName: userName,
+        joinedDate: DateTime.now(),
+      ));
+    }
+
+    // Create updated khatma
+    final updatedKhatma = khatma.copyWith(
+      units: updatedUnits,
+      participants: updatedParticipants,
+      lastUpdated: DateTime.now(),
+    );
+
+    // Save to Firebase
+    final khatmasRepository = ref.read(khatmasRepositoryProvider);
+    await khatmasRepository.update(userId, updatedKhatma);
+
+    // Update local state
+    state = state.map((k) {
+      if (k.id == khatmaId) {
+        return updatedKhatma;
+      }
+      return k;
     }).toList();
   }
 
