@@ -18,12 +18,11 @@ typedef KhatmaID = String;
 sealed class Khatma {
   final KhatmaID? id;
   final KhatmaType type;
-  final String code;
   final String name;
   final String? description;
   final SplitUnit unit;
   final DateTime createDate;
-  final DateTime startDate;
+  final DateTime? startDate;
   final DateTime? endDate;
   final KhatmaTheme theme;
   final KhatmaStatus status;
@@ -41,12 +40,11 @@ sealed class Khatma {
   const Khatma({
     this.id,
     required this.type,
-    required this.code,
     required this.name,
     this.description,
     required this.unit,
     required this.createDate,
-    required this.startDate,
+    this.startDate,
     this.endDate,
     required this.theme,
     required this.status,
@@ -63,7 +61,7 @@ sealed class Khatma {
   });
 
   bool get isRepeat => repeat;
-  bool get isStarted => startDate.isBefore(DateTime.now()) || startDate.isAtSameMomentAs(DateTime.now());
+  bool get isStarted => startDate != null && (startDate!.isBefore(DateTime.now()) || startDate!.isAtSameMomentAs(DateTime.now()));
   bool get isCompleted => status == KhatmaStatus.completed;
   bool get isActive => status == KhatmaStatus.active;
   bool get isDeleted => status == KhatmaStatus.deleted;
@@ -95,7 +93,6 @@ sealed class Khatma {
   // Parent copyWith method for all common Khatma fields
   Khatma copyWith({
     KhatmaID? id,
-    String? code,
     String? name,
     String? description,
     SplitUnit? unit,
@@ -117,7 +114,6 @@ sealed class Khatma {
     return switch (this) {
       KhatmaPersonal k => k.copyWith(
           id: id,
-          code: code,
           name: name,
           description: description,
           unit: unit,
@@ -138,7 +134,6 @@ sealed class Khatma {
         ),
       KhatmaShared k => k.copyWith(
           id: id,
-          code: code,
           name: name,
           description: description,
           unit: unit,
@@ -159,7 +154,6 @@ sealed class Khatma {
         ),
       KhatmaHifz k => k.copyWith(
           id: id,
-          code: code,
           name: name,
           description: description,
           unit: unit,
@@ -193,12 +187,11 @@ sealed class Khatma {
     if (identical(this, other)) return true;
     return other is Khatma &&
         other.id == id &&
-        other.type == type &&
-        other.code == code;
+        other.type == type;
   }
 
   @override
-  int get hashCode => Object.hash(id, type, code);
+  int get hashCode => Object.hash(id, type);
 
   double get completionPercent {
     return switch (this) {

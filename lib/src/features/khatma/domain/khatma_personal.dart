@@ -6,7 +6,6 @@ class KhatmaPersonal extends Khatma {
 
   const KhatmaPersonal({
     super.id,
-    required super.code,
     required super.name,
     super.description,
     required super.unit,
@@ -92,7 +91,6 @@ class KhatmaPersonal extends Khatma {
 
   KhatmaPersonal copyWith({
     KhatmaID? id,
-    String? code,
     String? name,
     String? description,
     SplitUnit? unit,
@@ -116,7 +114,6 @@ class KhatmaPersonal extends Khatma {
   }) {
     return KhatmaPersonal(
       id: id ?? this.id,
-      code: code ?? this.code,
       name: name ?? this.name,
       description: description ?? this.description,
       unit: unit ?? this.unit,

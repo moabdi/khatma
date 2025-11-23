@@ -146,7 +146,7 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
         lastReadDate = khatma.lastRead;
       }
 
-      final referenceDate = lastReadDate ?? khatma.startDate;
+      final referenceDate = lastReadDate ?? khatma.startDate ?? khatma.createDate;
       final daysSinceLastRead = now.difference(referenceDate).inDays;
       return daysSinceLastRead >= days;
     }).toList();

@@ -9,7 +9,6 @@ extension KhatmaDtoMapper on KhatmaDto {
     return switch (this) {
       PersonalKhatmaDto dto => KhatmaPersonal(
           id: dto.id,
-          code: dto.code,
           name: dto.name,
           description: dto.description,
           unit: _mapSplitUnit(dto.unit),
@@ -28,12 +27,12 @@ extension KhatmaDtoMapper on KhatmaDto {
         ),
       SharedKhatmaDto dto => KhatmaShared(
           id: dto.id,
-          code: '', // SharedKhatma doesn't have code in DTO
           name: dto.name,
           description: dto.description,
           unit: _mapSplitUnit(dto.unit),
           createDate: dto.createDate,
-          startDate: dto.createDate, // Using createDate as startDate
+          startDate: dto.startDate ?? dto.createDate,
+          endDate: dto.endDate,
           theme: kDefaultKhatmaTheme, // Shared khatma doesn't have theme
           status: _mapKhatmaStatus(dto.status),
           lastUpdated: dto.lastUpdated,
@@ -41,13 +40,12 @@ extension KhatmaDtoMapper on KhatmaDto {
           needsSync: false,
           creatorId: dto.creatorId,
           creatorName: dto.creatorName,
-          config: const SharedConfig.defaults(), // Use default config
+          config: dto.sharedConfig?.toDomain() ?? const SharedConfig.defaults(),
           participants: dto.participants.map((p) => p.toDomain()).toList(),
           units: dto.units.map((u) => u.toDomain()).toList(),
         ),
       HifzKhatmaDto dto => KhatmaHifz(
           id: dto.id,
-          code: dto.code,
           name: dto.name,
           description: dto.description,
           unit: _mapSplitUnit(dto.unit),
@@ -79,11 +77,10 @@ extension KhatmaDomainMapper on Khatma {
     return switch (this) {
       KhatmaPersonal khatma => PersonalKhatmaDto(
           id: khatma.id,
-          code: khatma.code,
           name: khatma.name,
           unit: khatma.unit.name,
           createDate: khatma.createDate,
-          startDate: khatma.startDate,
+          startDate: khatma.startDate ?? khatma.createDate,
           description: khatma.description,
           repeat: khatma.repeat,
           repeats: khatma.repeats,
@@ -104,21 +101,22 @@ extension KhatmaDomainMapper on Khatma {
           description: khatma.description ?? '',
           unit: khatma.unit.name,
           createDate: khatma.createDate,
+          startDate: khatma.startDate,
+          endDate: khatma.endDate,
           creatorId: khatma.creatorId!,
           creatorName: khatma.creatorName,
+          sharedConfig: khatma.config.toDto(),
           participants: khatma.participants.map((p) => p.toDto()).toList(),
           units: khatma.units.map((u) => u.toDto()).toList(),
           lastUpdated: khatma.lastUpdated,
           status: khatma.status.name,
-          
         ),
       KhatmaHifz khatma => HifzKhatmaDto(
           id: khatma.id,
-          code: khatma.code,
           name: khatma.name,
           unit: khatma.unit.name,
           createDate: khatma.createDate,
-          startDate: khatma.startDate,
+          startDate: khatma.startDate ?? khatma.createDate,
           description: khatma.description,
           themeColor: khatma.theme.color,
           themeIcon: khatma.theme.icon,
@@ -196,6 +194,39 @@ extension UnitDomainMapper on Unit {
       completedByName: completedByName,
       lastReminderSent: lastReminderSent,
       reminderCount: reminderCount,
+    );
+  }
+}
+
+/// SharedConfig mappers
+extension SharedConfigDtoMapper on SharedConfigDto {
+  SharedConfig toDomain() {
+    return SharedConfig(
+      inviteCode: inviteCode,
+      maxReservationsPerUser: maxReservationsPerUser,
+      maxUnitsToRead: maxUnitsToRead,
+      reservationWarningDays: reservationWarningDays,
+      reservationExpirationDays: reservationExpirationDays,
+      autoReleaseExpiredReservations: autoReleaseExpiredReservations,
+      joinMethod: _mapJoinMethod(joinMethod),
+      allowMultipleGroups: allowMultipleGroups,
+      tags: tags,
+    );
+  }
+}
+
+extension SharedConfigDomainMapper on SharedConfig {
+  SharedConfigDto toDto() {
+    return SharedConfigDto(
+      inviteCode: inviteCode,
+      maxReservationsPerUser: maxReservationsPerUser,
+      maxUnitsToRead: maxUnitsToRead,
+      reservationWarningDays: reservationWarningDays,
+      reservationExpirationDays: reservationExpirationDays,
+      autoReleaseExpiredReservations: autoReleaseExpiredReservations,
+      joinMethod: joinMethod.name,
+      allowMultipleGroups: allowMultipleGroups,
+      tags: tags,
     );
   }
 }
@@ -283,5 +314,12 @@ KhatmaTheme _mapTheme(String? color, String? icon, String variant) {
     color: color ?? kDefaultKhatmaTheme.color,
     icon: icon ?? kDefaultKhatmaTheme.icon,
     variant: variant,
+  );
+}
+
+JoinMethod _mapJoinMethod(String method) {
+  return JoinMethod.values.firstWhere(
+    (e) => e.name == method,
+    orElse: () => JoinMethod.code,
   );
 }

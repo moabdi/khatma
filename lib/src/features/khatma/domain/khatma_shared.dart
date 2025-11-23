@@ -89,12 +89,11 @@ class KhatmaShared extends Khatma {
 
   const KhatmaShared({
     super.id,
-    required super.code,
     required super.name,
     super.description,
     required super.unit,
     required super.createDate,
-    required super.startDate,
+    super.startDate,
     super.endDate,
     required super.theme,
     super.status = KhatmaStatus.active,
@@ -333,7 +332,6 @@ class KhatmaShared extends Khatma {
 
   KhatmaShared copyWith({
     KhatmaID? id,
-    String? code,
     String? name,
     String? description,
     SplitUnit? unit,
@@ -360,7 +358,6 @@ class KhatmaShared extends Khatma {
   }) {
     return KhatmaShared(
       id: id ?? this.id,
-      code: code ?? this.code,
       name: name ?? this.name,
       description: description ?? this.description,
       unit: unit ?? this.unit,

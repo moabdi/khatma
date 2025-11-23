@@ -87,7 +87,7 @@ class KhatmaBarChart extends StatelessWidget {
   }
 
   _GroupedParts _groupPartsByDate(List<KhatmaPartHistory> parts) {
-    final start = khatma.startDate;
+    final start = khatma.startDate ?? khatma.createDate;
     String mode = 'par jour';
     String Function(DateTime) formatter =
         (d) => DateFormat('dd/MM/yyyy').format(d);

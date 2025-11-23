@@ -205,7 +205,7 @@ class KhatmatListView extends ConsumerWidget {
   }
 
   Widget buildCardKhatma(Khatma khatma, WidgetRef ref, BuildContext context) {
-    bool animate = DateTime.now().difference(khatma.startDate).inMinutes == 0;
+    bool animate = khatma.startDate != null && DateTime.now().difference(khatma.startDate!).inMinutes == 0;
     var khatmaTile = ImprovedKhatmaTile(
       khatma: khatma,
       onPressed: () {

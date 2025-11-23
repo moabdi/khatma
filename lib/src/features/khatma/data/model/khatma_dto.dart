@@ -12,7 +12,6 @@ sealed class KhatmaDto with _$KhatmaDto {
 
   const factory KhatmaDto.personal({
     @JsonKey(includeFromJson: true, includeToJson: true) KhatmaID? id,
-    required String code,
     required String name,
     required String unit, // 'juzz' or 'hizb'
     required DateTime createDate,
@@ -38,8 +37,11 @@ sealed class KhatmaDto with _$KhatmaDto {
     required String description,
     required String unit, // 'juzz' or 'hizb'
     required DateTime createDate,
+    DateTime? startDate,
+    DateTime? endDate,
     required String creatorId,
     String? creatorName,
+    SharedConfigDto? sharedConfig,
     @Default([]) List<ParticipantDto> participants,
     @Default([]) List<UnitDto> units,
     DateTime? lastUpdated,
@@ -48,7 +50,6 @@ sealed class KhatmaDto with _$KhatmaDto {
 
   const factory KhatmaDto.hifz({
     @JsonKey(includeFromJson: true, includeToJson: true) KhatmaID? id,
-    required String code,
     required String name,
     required String unit, // 'juzz' or 'hizb'
     required DateTime createDate,
@@ -181,4 +182,22 @@ abstract class DetailedStatsDto with _$DetailedStatsDto {
 
   factory DetailedStatsDto.fromJson(Map<String, Object?> json) =>
       _$DetailedStatsDtoFromJson(json);
+}
+
+@freezed
+abstract class SharedConfigDto with _$SharedConfigDto {
+  const factory SharedConfigDto({
+    String? inviteCode,
+    @Default(3) int maxReservationsPerUser,
+    @Default(10) int maxUnitsToRead,
+    @Default(7) int reservationWarningDays,
+    int? reservationExpirationDays,
+    @Default(true) bool autoReleaseExpiredReservations,
+    @Default('code') String joinMethod, // 'code', 'invitation', 'both'
+    @Default(false) bool allowMultipleGroups,
+    @Default([]) List<String> tags,
+  }) = _SharedConfigDto;
+
+  factory SharedConfigDto.fromJson(Map<String, Object?> json) =>
+      _$SharedConfigDtoFromJson(json);
 }

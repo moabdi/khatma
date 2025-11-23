@@ -24,7 +24,6 @@ class KhatmaFormData {
   final KhatmaType _type;
 
   // Only track fields that the form can edit
-  final String code;
   final String name;
   final String description;
   final SplitUnit unit;
@@ -41,7 +40,6 @@ class KhatmaFormData {
   const KhatmaFormData._({
     required Khatma? original,
     required KhatmaType type,
-    required this.code,
     required this.name,
     required this.description,
     required this.unit,
@@ -70,7 +68,6 @@ class KhatmaFormData {
     return KhatmaFormData._(
       original: null,
       type: type,
-      code: code,
       name: '',
       description: '',
       unit: SplitUnit.juzz,
@@ -87,13 +84,12 @@ class KhatmaFormData {
     return KhatmaFormData._(
       original: khatma,
       type: khatma.type,
-      code: khatma.code,
       name: khatma.name,
       description: khatma.description ?? '',
       unit: khatma.unit,
       theme: khatma.theme,
       repeat: khatma.repeat,
-      startDate: khatma.startDate,
+      startDate: khatma.startDate ?? khatma.createDate,
       endDate: khatma.endDate,
     );
   }
@@ -102,23 +98,40 @@ class KhatmaFormData {
   Khatma toKhatma() {
     if (_original != null) {
       // Editing: use the type's copyWith to preserve all type-specific fields
-      return _original!.copyWith(
-        code: code,
-        name: name,
-        description: description,
-        unit: unit,
-        theme: theme,
-        repeat: repeat,
-        startDate: startDate,
-        endDate: endDate,
-      );
+      return switch (_original!) {
+        KhatmaPersonal k => k.copyWith(
+          name: name,
+          description: description,
+          unit: unit,
+          theme: theme,
+          repeat: repeat,
+          startDate: startDate,
+          endDate: endDate,
+        ),
+        KhatmaShared k => k.copyWith(
+          name: name,
+          description: description,
+          unit: unit,
+          theme: theme,
+          repeat: repeat,
+          startDate: startDate,
+          endDate: endDate,
+        ),
+        KhatmaHifz k => k.copyWith(
+          name: name,
+          description: description,
+          unit: unit,
+          theme: theme,
+          startDate: startDate,
+          endDate: endDate,
+        ),
+      };
     } else {
       // Creating new: use the type to determine which Khatma to create
       final now = DateTime.now();
 
       return switch (_type) {
         KhatmaType.shared => KhatmaShared(
-            code: code,
             name: name,
             description: description,
             unit: unit,
@@ -144,7 +157,6 @@ class KhatmaFormData {
             units: const [],
           ),
         KhatmaType.hifz => KhatmaHifz(
-            code: code,
             name: name,
             description: description,
             unit: unit,
@@ -157,7 +169,6 @@ class KhatmaFormData {
             config: hifzConfig ?? const HifzConfig.defaults(),
           ),
         KhatmaType.personal => KhatmaPersonal(
-            code: code,
             name: name,
             description: description,
             unit: unit,
@@ -175,7 +186,6 @@ class KhatmaFormData {
 
   KhatmaFormData copyWith({
     KhatmaType? type,
-    String? code,
     String? name,
     String? description,
     SplitUnit? unit,
@@ -191,7 +201,6 @@ class KhatmaFormData {
       original: _original,
       // Only allow type change when creating new khatma
       type: _original == null ? (type ?? _type) : _type,
-      code: code ?? this.code,
       name: name ?? this.name,
       description: description ?? this.description,
       unit: unit ?? this.unit,

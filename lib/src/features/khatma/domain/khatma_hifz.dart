@@ -56,7 +56,6 @@ class KhatmaHifz extends Khatma {
 
   const KhatmaHifz({
     super.id,
-    required super.code,
     required super.name,
     super.description,
     required super.unit,
@@ -172,7 +171,6 @@ class KhatmaHifz extends Khatma {
   }) {
     return KhatmaHifz(
       id: id ?? this.id,
-      code: code ?? this.code,
       name: name ?? this.name,
       description: description ?? this.description,
       unit: unit ?? this.unit,
