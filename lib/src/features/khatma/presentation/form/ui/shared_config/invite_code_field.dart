@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
+import 'package:khatma/src/utils/code_generator.dart';
 
 /// Text field for entering/generating invite codes
 ///
@@ -36,18 +37,14 @@ class _InviteCodeFieldState extends State<InviteCodeField> {
   }
 
   String _generateInviteCode() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    final random = DateTime.now().millisecondsSinceEpoch;
-    return List.generate(
-      6,
-      (index) => chars[(random + index) % chars.length],
-    ).join();
+    return CodeGenerator.generate6CharCode();
   }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: _controller,
+      readOnly: true,
       decoration: InputDecoration(
         labelText: context.loc.inviteCodeLabel,
         helperText: context.loc.inviteCodeHelper,
@@ -62,16 +59,6 @@ class _InviteCodeFieldState extends State<InviteCodeField> {
           tooltip: context.loc.generateNewCode,
         ),
       ),
-      onChanged: (value) {
-        final upperValue = value.toUpperCase();
-        if (upperValue != value) {
-          _controller.value = _controller.value.copyWith(
-            text: upperValue,
-            selection: TextSelection.collapsed(offset: upperValue.length),
-          );
-        }
-        widget.onCodeChanged(upperValue.isEmpty ? null : upperValue);
-      },
     );
   }
 }

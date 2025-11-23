@@ -65,8 +65,7 @@ class KhatmaBarChart extends StatelessWidget {
   List<KhatmaPartHistory> _getAllParts() {
       return khatma.completedPartIds
               .map((p) => KhatmaPartHistory(p, DateTime.now()))
-              .toList() ??
-          [];
+              .toList();
   }
 
   BarChartGroupData _buildBarChartGroupData(
@@ -96,6 +95,7 @@ class KhatmaBarChart extends StatelessWidget {
     Map<DateTime, int> groupBy(
         List<KhatmaPartHistory> parts, DateTime Function(DateTime) fn) {
       final map = <DateTime, int>{};
+      // ignore: unused_local_variable
       for (var part in parts) {
         final key = fn(DateTime.now());
         map.update(key, (v) => v + 1, ifAbsent: () => 1);

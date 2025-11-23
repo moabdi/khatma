@@ -91,7 +91,7 @@ class LoginManager extends _$LoginManager {
       await PreferencesService.setBool(_PreferenceKeys.isLoggedIn, true);
     }
 
-   // await ref.read(khatmaNotifierProvider.notifier).performSync();
+   // await ref.read(khatmaManagerProvider.notifier).performSync();
 
     state = state.copyWith(isLoading: false, error: result.errorOrNull);
     return result;
@@ -119,7 +119,7 @@ class LoginManager extends _$LoginManager {
               _PreferenceKeys.authToken, tokenResult.dataOrNull!);
         }
       }
-      //await ref.read(khatmaNotifierProvider.notifier).performSync();
+      //await ref.read(khatmaManagerProvider.notifier).performSync();
     }
 
     state = state.copyWith(isLoading: false, error: result.errorOrNull);
@@ -136,7 +136,7 @@ class LoginManager extends _$LoginManager {
       await PreferencesService.setBool(_PreferenceKeys.isAnonymous, true);
     }
 
-    //await ref.read(khatmaNotifierProvider.notifier).performSync();
+    //await ref.read(khatmaManagerProvider.notifier).performSync();
 
     state = state.copyWith(isLoading: false, error: result.errorOrNull);
     return result;

@@ -1,11 +1,11 @@
-import 'package:khatma/src/features/khatma/personal/presentation/welcome_home.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/presentation/welcome_home.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/components/animation/flashing_widget.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/widgets/async_value_widget.dart';
 import 'package:khatma_ui/components/loading_list_tile.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/list/ui/improved_khatma_tile.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class KhatmatListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final khatmatListValue = ref.watch(khatmaNotifierProvider).khatmas;
+    final khatmatListValue = ref.watch(khatmaManagerProvider).khatmas;
     return AsyncValueWidget<List<Khatma>>(
       loading: const LoadingListTile(itemCount: 10),
       value: khatmatListValue,
@@ -83,7 +83,7 @@ class KhatmatListView extends ConsumerWidget {
     var khatmaTile = ImprovedKhatmaTile(
       khatma: khatma,
       onPressed: () {
-        ref.read(khatmaNotifierProvider.notifier).selectKhatma(khatma);
+        ref.read(khatmaManagerProvider.notifier).selectKhatma(khatma);
         // Navigate to the appropriate route based on khatma type
         final route = switch (khatma.type) {
           KhatmaType.shared => '/khatma/shared/${khatma.id!}',

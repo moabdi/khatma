@@ -13,7 +13,7 @@ class AppLifecycleHandler extends WidgetsBindingObserver {
       debugPrint("App lifecycle changed: $state");
     }
     if (state == AppLifecycleState.resumed) {
-     // ref.read(khatmaNotifierProvider.notifier).performSync();
+     // ref.read(khatmaManagerProvider.notifier).performSync();
     }
   }
 }

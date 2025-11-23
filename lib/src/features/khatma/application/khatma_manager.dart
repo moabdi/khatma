@@ -1,38 +1,200 @@
-import 'package:khatma/src/features/authentication/application/account_manager.dart';
-import 'package:khatma/src/features/authentication/domain/app_user.dart';
+import 'package:khatma/src/core/app_status.dart';
+import 'package:khatma/src/core/result.dart';
+import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/features/khatma/data/repository/local/local_khatma_repository.dart';
-import 'package:khatma/src/features/khatma/data/repository/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
+import 'package:khatma/src/features/khatma/application/khatma_state.dart';
+import 'package:riverpod/src/framework.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'khatma_manager.g.dart';
 
 @Riverpod(keepAlive: true)
 class KhatmaManager extends _$KhatmaManager {
+  late final LocalKhatmaRepository _localRepo;
+  // late final SyncManager _syncManager;
+  // StreamSubscription? _syncSubscription;
+
   @override
-  Khatma? build() {
-    return null;
+  KhatmaState build() {
+    _localRepo = ref.read(localKhatmaRepositoryProvider);
+    // _syncManager = ref.read(syncManagerProvider.notifier);
+   // _syncManager.setupSynchronization();
+   // _syncManager.scheduleStartupSync();
+   // _setupSyncListener();
+    refreshFromLocal();
+    return const KhatmaState();
   }
 
-  AppUser? get _user => ref.read(userProvider);
-  KhatmasRepository get _khatmasRepository =>
-      ref.read(khatmasRepositoryProvider);
-  LocalKhatmaRepository get _localKhatmasRepository =>
-      ref.read(localKhatmaRepositoryProvider);
-
-  void update(Khatma updatedKhatma) {
-    state = updatedKhatma;
+/*
+  void _setupSyncListener() {
+    _syncSubscription?.cancel();
+    _syncSubscription = ref
+        .read(syncManagerProvider.notifier)
+        .syncStatusStream
+        .listen((isSyncing) {
+      if (isSyncing) {
+        refreshFromLocal();
+      }
+    });
   }
 
-  Future<void> save(Khatma khatma) async {
-    if (_user == null) {
-      await _localKhatmasRepository.save(khatma);
-    } else {
-      await _khatmasRepository.create(_user!.id, khatma);
+  void dispose() {
+    final syncManager = ref.read(syncManagerProvider.notifier);
+    syncManager.dispose();
+  }
+
+  Future<void> performSync() async {
+    if (!_isUserAuthenticated()) return;
+
+    state = state.copyWith(status: AppStatus.syncing);
+
+    try {
+      final syncManager = ref.read(syncManagerProvider.notifier);
+      await syncManager.forceFullSync();
+      await refreshFromLocal();
+    } catch (e) {
+      state = state.copyWith(
+        status: AppStatus.error,
+        error: AppErrorCode.syncGeneralFailure,
+      );
     }
   }
 
-  Future<void> delete(Khatma khatma) async {
-    _khatmasRepository.delete(_user!.id, khatma);
+  Future<void> updateSyncStatus() async {
+    final notifier = ref.read(khatmaManagerProvider.notifier);
+    final syncStatus = await _localRepo.getSyncStatus();
+    notifier.state = notifier.state.copyWith(
+      lastSyncStatus: syncStatus,
+      pendingSyncCount: syncStatus.totalCount,
+    );
   }
+
+  */
+
+  Future<Result<Khatma, AppErrorCode>> save(Khatma khatma) async {
+    state = state.copyWith(status: AppStatus.saving);
+
+    try {
+      if (khatma.id == null && !canCreateNew()) {
+        state = state.copyWith(
+          status: AppStatus.error,
+          error: AppErrorCode.limitKhatmaMaxReached,
+        );
+        return Result.failure(AppErrorCode.limitKhatmaMaxReached);
+      }
+
+      final khatmaToSave = khatma.copyWith(
+        lastUpdated: DateTime.now(),
+        needsSync: true,
+      );
+
+      final localKhatma = await _localRepo.save(khatmaToSave);
+      //await _syncManager.forcePushToRemote();
+
+      await refreshFromLocal();
+      state = state.copyWith(
+        selectedKhatma: localKhatma,
+        status: AppStatus.idle,
+        error: null,
+      );
+
+      return Result.success(localKhatma);
+    } catch (e) {
+      state = state.copyWith(
+        status: AppStatus.error,
+        error: AppErrorCode.storageSaveFailed,
+      );
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
+
+  Future<Result<void, AppErrorCode>> delete(Khatma khatma) async {
+    final khatmaId = khatma.id;
+    if (khatmaId == null) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    final existingKhatma = getKhatmaById(khatmaId);
+    if (existingKhatma == null) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+    state = state.copyWith(status: AppStatus.deleting);
+
+    try {
+      if (existingKhatma.lastSync == null) {
+        await _localRepo.deleteById(khatmaId);
+      } else {
+        await _localRepo.deleteById(khatmaId);
+      }
+      await refreshFromLocal();
+
+      state = state.copyWith(
+        status: AppStatus.idle,
+        selectedKhatma:
+            state.selectedKhatma?.id == khatmaId ? null : state.selectedKhatma,
+      );
+
+      return const Result.success(null);
+    } catch (e) {
+      state = state.copyWith(
+        status: AppStatus.error,
+        error: AppErrorCode.storageDeleteFailed,
+      );
+      return Result.failure(AppErrorCode.storageDeleteFailed);
+    }
+  }
+
+  Khatma? getKhatmaById(String id) {
+    return state.khatmas.valueOrNull?.firstWhere(
+      (khatma) => khatma.id == id,
+    );
+  }
+
+  void selectKhatma(Khatma? khatma) {
+    state = state.copyWith(selectedKhatma: khatma);
+  }
+
+  Future<List<Khatma>> getKhatmasNeedingAttention({int days = 3}) async {
+    return await _localRepo.getNeedingAttention(days: days);
+  }
+
+  bool canCreateNew() {
+    return state.khatmas.valueOrEmpty.length < 10;
+  }
+
+  Future<void> refreshFromLocal() async {
+    try {
+      final khatmas = await _localRepo.fetchAll();
+      final history = await _localRepo.getHistory();
+     // final syncStatus = await _localRepo.getSyncStatus();
+
+      state = state.copyWith(
+        khatmas: AsyncValue.data(khatmas),
+        history: AsyncValue.data(history),
+       // lastSyncStatus: syncStatus,
+        status: AppStatus.idle,
+        error: null,
+      );
+    } catch (e) {
+      state = state.copyWith(
+        khatmas: AsyncValue.error(e, StackTrace.current),
+        status: AppStatus.error,
+        error: AppErrorCode.storageLoadFailed,
+      );
+    }
+  }
+
+  Future completeParts(String s, List<int> selectedParts) async {}
+}
+
+@riverpod
+Khatma? selectedKhatma(Ref ref) {
+  return ref.watch(khatmaManagerProvider).selectedKhatma;
+}
+
+@riverpod
+AsyncValue<List<Khatma>> allKhatmas(Ref ref) {
+  final state = ref.watch(khatmaManagerProvider);
+  return state.khatmas;
 }

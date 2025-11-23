@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/read/khatma_read_screen.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/khatma_read_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/routing/app_router.dart';
@@ -65,7 +65,7 @@ class _EditKhatmaWrapperState extends ConsumerState<_EditKhatmaWrapper> {
     super.initState();
     // Initialize the form after the first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final khatma = ref.read(khatmaNotifierProvider.notifier).getKhatmaById(widget.khatmaId);
+      final khatma = ref.read(khatmaManagerProvider.notifier).getKhatmaById(widget.khatmaId);
 
       if (khatma != null) {
         ref.read(khatmaFormProvider.notifier).initializeForEdit(khatma);

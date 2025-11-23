@@ -1,4 +1,4 @@
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
 import 'package:random_string/random_string.dart';
@@ -34,7 +34,7 @@ class KhatmaForm extends _$KhatmaForm {
   /// Returns the saved khatma with updated ID
   Future<Khatma?> save() async {
     final khatmaToSave = state.toKhatma();
-    final result = await ref.read(khatmaNotifierProvider.notifier).saveKhatma(khatmaToSave);
+    final result = await ref.read(khatmaManagerProvider.notifier).save(khatmaToSave);
 
     // If save was successful, update the state with the saved khatma
     if (result.isSuccess) {
@@ -50,7 +50,7 @@ class KhatmaForm extends _$KhatmaForm {
   Future<void> delete() async {
     final khatma = state.toKhatma();
     if (khatma.id != null) {
-      await ref.read(khatmaNotifierProvider.notifier).deleteKhatma(khatma.id!);
+      await ref.read(khatmaManagerProvider.notifier).delete(khatma);
     }
   }
 

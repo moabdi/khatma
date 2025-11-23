@@ -1,4 +1,4 @@
-// lib/src/features/shared_khatma/presentation/khatma_details_page.dart
+/*// lib/src/features/shared_khatma/presentation/khatma_details_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 //import 'package:khatma/src/features/shared_khatma/application/shared_khatma_provider.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
-/*
+
 class KhatmaDetailsPage extends ConsumerStatefulWidget {
   final SharedKhatma khatma;
 

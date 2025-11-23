@@ -4,10 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/error/app_error_handler.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/read/logic/khatma_parts_controller.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/read/ui/animate_khatma_chart.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/read/khatma_complete_screen.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/logic/khatma_parts_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/ui/animate_khatma_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/khatma_complete_screen.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -17,7 +17,7 @@ import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/personal/presentation/read/ui/part_selector/to_read_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/ui/part_selector/to_read_tiles.dart';
 import 'package:readmore/readmore.dart';
 
 class KhatmaReadScreen extends ConsumerWidget {
@@ -27,14 +27,14 @@ class KhatmaReadScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Try to get the selected khatma first, if null, find by ID
-    Khatma? khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
+    Khatma? khatma = ref.watch(khatmaManagerProvider).selectedKhatma;
 
     // If no selected khatma, try to find it by ID
     if (khatma == null || khatma.id != khatmaId) {
-      khatma = ref.watch(khatmaNotifierProvider.notifier).getKhatmaById(khatmaId);
+      khatma = ref.watch(khatmaManagerProvider.notifier).getKhatmaById(khatmaId);
       // Update the selected khatma if found
       if (khatma != null) {
-        ref.read(khatmaNotifierProvider.notifier).selectKhatma(khatma);
+        ref.read(khatmaManagerProvider.notifier).selectKhatma(khatma);
       }
     }
 
@@ -354,7 +354,7 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead>
 
     try {
       final result = await ref
-          .read(khatmaNotifierProvider.notifier)
+          .read(khatmaManagerProvider.notifier)
           .completeParts(khatmaId, selectedParts);
 
       if (!context.mounted) return;
@@ -435,7 +435,7 @@ class KhatmaAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        Khatma? khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
+        Khatma? khatma = ref.watch(khatmaManagerProvider).selectedKhatma;
         return khatma == null
             ? AppBar(
                 title: Text(context.loc.khatma),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/details/shared_khatma_screen.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/presentation/details/shared_khatma_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/success/khatma_success_screen.dart';
@@ -68,7 +68,7 @@ class _EditSharedKhatmaWrapperState
     // Initialize the form after the first frame
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final khatma = ref
-          .read(khatmaNotifierProvider.notifier)
+          .read(khatmaManagerProvider.notifier)
           .getKhatmaById(widget.khatmaId);
 
       if (khatma != null) {

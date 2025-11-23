@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
-import 'package:khatma/src/features/khatma/shared/application/shared_khatma_provider.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/details/logic/khatma_details_controller.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/details/widgets/progress_stats.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/details/widgets/unit_tile.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/search/widgets/filter_chip.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/application/shared_khatma_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/presentation/details/logic/khatma_details_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/presentation/details/widgets/progress_stats.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/presentation/details/widgets/unit_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/presentation/search/widgets/filter_chip.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -49,16 +49,16 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
   @override
   Widget build(BuildContext context) {
     // Get the shared khatma from the provider
-    Khatma? khatma = ref.watch(khatmaNotifierProvider).selectedKhatma;
+    Khatma? khatma = ref.watch(khatmaManagerProvider).selectedKhatma;
 
     // If no selected khatma, try to find it by ID
     if (khatma == null || khatma.id != widget.khatmaId) {
       khatma = ref
-          .watch(khatmaNotifierProvider.notifier)
+          .watch(khatmaManagerProvider.notifier)
           .getKhatmaById(widget.khatmaId);
       // Update the selected khatma if found
       if (khatma != null) {
-        ref.read(khatmaNotifierProvider.notifier).selectKhatma(khatma);
+        ref.read(khatmaManagerProvider.notifier).selectKhatma(khatma);
       }
     }
 

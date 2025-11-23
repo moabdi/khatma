@@ -3,7 +3,7 @@ import 'package:khatma/src/features/authentication/data/auth_repository.dart';
 import 'package:khatma/src/features/khatma/data/repository/remote/khatmas_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/shared/application/khatma_shared_mocks.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/application/khatma_shared_mocks.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'shared_khatma_provider.g.dart';

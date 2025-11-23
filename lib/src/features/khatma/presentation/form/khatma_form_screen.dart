@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/personal/application/khatmat_provider.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/shared_config_screen.dart';
@@ -503,7 +503,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           } else {
             // For personal khatma, save and navigate directly
             await ref.read(khatmaFormProvider.notifier).save();
-            final savedKhatma = ref.read(khatmaNotifierProvider).selectedKhatma;
+            final savedKhatma = ref.read(khatmaManagerProvider).selectedKhatma;
             if (savedKhatma != null && savedKhatma.id != null) {
               context.go('/khatma/personal/${savedKhatma.id}');
             } else {
