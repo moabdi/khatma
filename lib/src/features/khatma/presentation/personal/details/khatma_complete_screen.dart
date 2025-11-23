@@ -5,7 +5,7 @@ import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/constants/lottie_asset.dart';
 import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/read/ui/khatma_bar_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/details/widgets/khatma_bar_chart.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma_ui/constants/app_dividers.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';

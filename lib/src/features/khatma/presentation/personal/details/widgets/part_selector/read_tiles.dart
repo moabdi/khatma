@@ -5,7 +5,7 @@ import 'package:khatma_ui/components/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/application/part_provider.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_part.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/read/ui/part_selector/part_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/details/widgets/part_selector/part_tile.dart';
 
 class ReadPartTiles extends ConsumerWidget {
   const ReadPartTiles({

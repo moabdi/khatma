@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_images.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/utils/duration_formatter.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_images.dart';
 
 class KhatmaAvatar extends StatelessWidget {
   const KhatmaAvatar({

@@ -1,4 +1,4 @@
-import 'package:khatma/src/features/khatma/presentation/list/ui/welcome_home.dart';
+import 'package:khatma/src/features/khatma/presentation/list/widgets/welcome_home.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/components/animation/flashing_widget.dart';
@@ -7,7 +7,7 @@ import 'package:khatma/src/widgets/async_value_widget.dart';
 import 'package:khatma_ui/components/loading_list_tile.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/list/ui/improved_khatma_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/list/widgets/improved_khatma_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

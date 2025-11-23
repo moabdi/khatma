@@ -6,8 +6,8 @@ import 'package:khatma/src/error/app_error_handler.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/utils/common.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/read/khatma_complete_screen.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/read/logic/khatma_parts_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/details/khatma_complete_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/details/logic/khatma_parts_controller.dart';
 
 class PartFloatingButton extends StatelessWidget {
   const PartFloatingButton({

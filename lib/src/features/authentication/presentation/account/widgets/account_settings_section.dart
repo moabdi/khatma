@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/khatma_ui.dart';
-import '../ui/settings_tile.dart';
+import 'settings_tile.dart';
 import 'edit_profile_dialog.dart';
 import 'change_password_dialog.dart';
 import 'email_verification_handler.dart';

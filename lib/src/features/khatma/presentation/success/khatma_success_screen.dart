@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/khatma/presentation/success/ui/success_widgets.dart';
+import 'package:khatma/src/features/khatma/presentation/success/widgets/success_widgets.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 

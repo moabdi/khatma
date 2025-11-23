@@ -6,7 +6,7 @@ import 'package:khatma/src/features/authentication/domain/app_user.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import '../logic/account_controller.dart';
-import '../ui/settings_tile.dart';
+import 'settings_tile.dart';
 
 class SecuritySection extends ConsumerWidget {
   final AppUser? user;

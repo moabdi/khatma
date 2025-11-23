@@ -11,7 +11,7 @@ import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/components/modern_modal_sheet.dart';
 import 'package:khatma_ui/khatma_ui.dart';
 import '../logic/account_controller.dart';
-import '../ui/settings_tile.dart';
+import 'settings_tile.dart';
 
 class DeleteAccountSection extends ConsumerWidget {
   DeleteAccountSection(this.user, {super.key});

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/authentication/data/auth_repository.dart';
-import 'package:khatma/src/features/authentication/presentation/account/ui/settings_tile.dart';
+import 'package:khatma/src/features/authentication/presentation/account/widgets/settings_tile.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/profile_header.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/khatma_ui.dart';
-import './ui/account_settings_section.dart';
-import 'ui/delete_account_section.dart';
+import './widgets/account_settings_section.dart';
+import 'widgets/delete_account_section.dart';
 
 class AccountPage extends ConsumerStatefulWidget {
   const AccountPage({super.key});

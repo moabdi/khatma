@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/authentication/presentation/account/ui/status_badge.dart';
+import 'package:khatma/src/features/authentication/presentation/account/widgets/status_badge.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/khatma_ui.dart';

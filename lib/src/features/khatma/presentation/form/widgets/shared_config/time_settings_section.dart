@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/shared_config/counter_tile.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/shared_config/counter_tile.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 
 /// Section for configuring time-related settings (warnings, expirations, auto-release)

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khatma/src/features/khatma/presentation/form/ui/khatma_images.dart';
+import 'package:khatma/src/features/khatma/presentation/form/widgets/khatma_images.dart';
 import 'package:khatma/src/themes/theme.dart';
 
 /// Circular avatar with progress indicator around it
