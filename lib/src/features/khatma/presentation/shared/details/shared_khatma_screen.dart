@@ -496,8 +496,8 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
 
       // Call the provider to join khatma with selected units
       await ref
-          .read(sharedKhatmasProvider.notifier)
-          .joinKhatma(widget.khatmaId, selectedUnits);
+          .read(khatmaManagerProvider.notifier)
+          .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: selectedUnits);
 
       if (mounted) {
         _showSnackBar(context.loc.joinedKhatmaSuccess(khatmaName));

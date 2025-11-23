@@ -186,6 +186,147 @@ class KhatmaManager extends _$KhatmaManager {
   }
 
   Future completeParts(String s, List<int> selectedParts) async {}
+
+  // ============================================================================
+  // SHARED KHATMA METHODS
+  // ============================================================================
+
+  /// Reserve a unit for the current user in a shared khatma
+  Future<Result<KhatmaShared, AppErrorCode>> reserveUnit({
+    required String khatmaId,
+    required int unitNumber,
+    required String userId,
+    required String userName,
+  }) async {
+    final khatma = getKhatmaById(khatmaId);
+    if (khatma == null || khatma is! KhatmaShared) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    try {
+      final updatedKhatma = khatma.reserveUnit(unitNumber, userId, userName);
+      await save(updatedKhatma);
+      return Result.success(updatedKhatma);
+    } catch (e) {
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
+
+  /// Complete a unit in a shared khatma
+  Future<Result<KhatmaShared, AppErrorCode>> completeUnit({
+    required String khatmaId,
+    required int unitNumber,
+    required String userId,
+    required String userName,
+  }) async {
+    final khatma = getKhatmaById(khatmaId);
+    if (khatma == null || khatma is! KhatmaShared) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    try {
+      final updatedKhatma = khatma.completeUnit(unitNumber, userId, userName);
+      await save(updatedKhatma);
+      return Result.success(updatedKhatma);
+    } catch (e) {
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
+
+  /// Release a reserved unit in a shared khatma
+  Future<Result<KhatmaShared, AppErrorCode>> releaseUnit({
+    required String khatmaId,
+    required int unitNumber,
+    required String userId,
+  }) async {
+    final khatma = getKhatmaById(khatmaId);
+    if (khatma == null || khatma is! KhatmaShared) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    try {
+      final updatedKhatma = khatma.releaseUnit(unitNumber, userId);
+      await save(updatedKhatma);
+      return Result.success(updatedKhatma);
+    } catch (e) {
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
+
+  /// Get all shared khatmas
+  List<KhatmaShared> getSharedKhatmas() {
+    return state.khatmas.valueOrEmpty.whereType<KhatmaShared>().toList();
+  }
+
+  /// Get all personal khatmas
+  List<KhatmaPersonal> getPersonalKhatmas() {
+    return state.khatmas.valueOrEmpty.whereType<KhatmaPersonal>().toList();
+  }
+
+  /// Join a shared khatma by reserving units and adding user as participant
+  Future<Result<KhatmaShared, AppErrorCode>> joinKhatma({
+    required String khatmaId,
+    required List<int> reservedUnits,
+  }) async {
+    final khatma = getKhatmaById(khatmaId);
+    final userId = "userId";
+    final userName = "userName";
+    if (khatma == null || khatma is! KhatmaShared) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    try {
+      // Update units with reservations
+      final updatedUnits = [...khatma.units];
+
+      // Reserve selected units
+      for (final unitNumber in reservedUnits) {
+        final existingUnitIndex = updatedUnits.indexWhere((u) => u.number == unitNumber);
+
+        if (existingUnitIndex != -1) {
+          // Update existing unit
+          updatedUnits[existingUnitIndex] = updatedUnits[existingUnitIndex].copyWith(
+            status: UnitStatus.reserved,
+            reservedBy: userId,
+            reservedByName: userName,
+            reservedDate: DateTime.now(),
+          );
+        } else {
+          // Add new unit
+          updatedUnits.add(Unit(
+            number: unitNumber,
+            status: UnitStatus.reserved,
+            reservedBy: userId,
+            reservedByName: userName,
+            reservedDate: DateTime.now(),
+          ));
+        }
+      }
+
+      // Add current user to participants if not already present
+      final updatedParticipants = [...khatma.participants];
+      if (!updatedParticipants.any((p) => p.userId == userId)) {
+        updatedParticipants.add(Participant(
+          userId: userId,
+          userName: userName,
+          joinedDate: DateTime.now(),
+        ));
+      }
+
+      // Create updated khatma
+      final updatedKhatma = khatma.copyWith(
+        units: updatedUnits,
+        participants: updatedParticipants,
+        lastUpdated: DateTime.now(),
+      );
+
+      // Save the updated khatma
+      await save(updatedKhatma);
+      return Result.success(updatedKhatma);
+    } catch (e) {
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
 }
 
 @riverpod
@@ -197,4 +338,16 @@ Khatma? selectedKhatma(Ref ref) {
 AsyncValue<List<Khatma>> allKhatmas(Ref ref) {
   final state = ref.watch(khatmaManagerProvider);
   return state.khatmas;
+}
+
+@riverpod
+List<KhatmaShared> sharedKhatmas(Ref ref) {
+  final state = ref.watch(khatmaManagerProvider);
+  return state.khatmas.valueOrEmpty.whereType<KhatmaShared>().toList();
+}
+
+@riverpod
+List<KhatmaPersonal> personalKhatmas(Ref ref) {
+  final state = ref.watch(khatmaManagerProvider);
+  return state.khatmas.valueOrEmpty.whereType<KhatmaPersonal>().toList();
 }
