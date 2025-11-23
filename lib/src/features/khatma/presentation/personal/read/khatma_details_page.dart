@@ -1,4 +1,5 @@
-/*// lib/src/features/shared_khatma/presentation/khatma_details_page.dart
+/*
+// lib/src/features/shared_khatma/presentation/khatma_details_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

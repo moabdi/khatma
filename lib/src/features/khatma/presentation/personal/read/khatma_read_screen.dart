@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:khatma/src/error/app_error_handler.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/logic/khatma_parts_controller.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/ui/animate_khatma_chart.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/khatma_complete_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/read/logic/khatma_parts_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/read/ui/animate_khatma_chart.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/read/khatma_complete_screen.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
@@ -17,7 +17,7 @@ import 'package:khatma/src/utils/common.dart';
 import 'package:khatma/src/widgets/empty_placeholder_widget.dart';
 import 'package:khatma_ui/components/conditional_content.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/presentation/read/ui/part_selector/to_read_tiles.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/read/ui/part_selector/to_read_tiles.dart';
 import 'package:readmore/readmore.dart';
 
 class KhatmaReadScreen extends ConsumerWidget {

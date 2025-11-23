@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/info/info_routes.dart';
-import 'package:khatma/src/features/khatma/personal/personal_khatma_routes.dart';
-import 'package:khatma/src/features/khatma/shared/shared_khatma_routes.dart';
+import 'package:khatma/src/features/khatma/presentation/personal/personal_khatma_routes.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/shared_khatma_routes.dart';
 import 'package:khatma/src/features/onboarding/onboarding_screen.dart';
 import 'package:khatma/src/features/profil/profile_routes.dart';
 import 'package:khatma/src/features/quran/quran_routes.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/details/shared_khatma_screen.dart';
-import 'package:khatma/src/features/khatma/shared/presentation/search/khatma_search_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/details/shared_khatma_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/search/khatma_search_screen.dart';
 import 'package:khatma/src/features/splash/splash.dart';
 import 'package:khatma/src/routing/go_router_refresh_stream.dart';
 import 'package:khatma/src/routing/not_found_screen.dart';

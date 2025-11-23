@@ -1,4 +1,4 @@
-import 'package:khatma/src/features/khatma/presentation/personal/presentation/welcome_home.dart';
+import 'package:khatma/src/features/khatma/presentation/list/ui/welcome_home.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/components/animation/flashing_widget.dart';

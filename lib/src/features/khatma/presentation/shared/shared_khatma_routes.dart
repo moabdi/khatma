@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
-import 'package:khatma/src/features/khatma/presentation/shared/presentation/details/shared_khatma_screen.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/details/shared_khatma_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/success/khatma_success_screen.dart';
