@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
-import 'package:khatma/src/features/khatma/presentation/shared/application/shared_khatma_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/logic/khatma_details_controller.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/progress_stats.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/unit_tile.dart';

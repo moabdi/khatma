@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:khatma/src/features/home/presentation/home_page.dart';
 import 'package:khatma/src/features/info/info_routes.dart';
-import 'package:khatma/src/features/khatma/presentation/personal/personal_khatma_routes.dart';
-import 'package:khatma/src/features/khatma/presentation/shared/shared_khatma_routes.dart';
+import 'package:khatma/src/features/khatma/khatma_routes.dart';
 import 'package:khatma/src/features/onboarding/onboarding_screen.dart';
 import 'package:khatma/src/features/profil/profile_routes.dart';
 import 'package:khatma/src/features/quran/quran_routes.dart';
@@ -83,7 +82,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const KhatmatListScreen(),
           ),
           ...khatmaRoutes(ref),
-          ...sharedKhatmaRoutes(ref),
           ...profileRoutes,
           ...quranRoutes,
           ...infoRoutes,
