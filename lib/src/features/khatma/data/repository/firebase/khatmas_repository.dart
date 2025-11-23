@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/authentication/data/firebase/auth_repository.dart';
 import 'package:khatma/src/features/khatma/data/mappers/khatma_mappers.dart';
 import 'package:khatma/src/features/khatma/data/model/khatma_dto.dart' hide KhatmaID;
 import 'package:khatma/src/features/khatma/domain/khatma.dart';

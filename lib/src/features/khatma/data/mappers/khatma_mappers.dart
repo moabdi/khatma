@@ -110,7 +110,7 @@ extension KhatmaDomainMapper on Khatma {
           units: khatma.units.map((u) => u.toDto()).toList(),
           lastUpdated: khatma.lastUpdated,
           status: khatma.status.name,
-          // Config fields are not persisted in DTO - they use defaults
+          
         ),
       KhatmaHifz khatma => HifzKhatmaDto(
           id: khatma.id,

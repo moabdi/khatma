@@ -62,12 +62,10 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     _nameController = TextEditingController(text: khatma.name);
     _descController = TextEditingController(text: khatma.description);
     _startDateController = TextEditingController(
-      text: DateFormat('dd/MM/yyyy').format(khatma.startDate),
+      text: khatma.startDate.format(),
     );
     _endDateController = TextEditingController(
-      text: khatma.endDate != null
-          ? DateFormat('dd/MM/yyyy').format(khatma.endDate!)
-          : '',
+      text: khatma.endDate?.format() ?? '',
     );
 
     // Listen to controller changes and update the provider

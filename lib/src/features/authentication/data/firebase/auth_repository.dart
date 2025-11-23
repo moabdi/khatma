@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode, debugPrint;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/core/result.dart';
 
-import 'package:khatma/src/features/authentication/data/firebase_app_user.dart';
+import 'package:khatma/src/features/authentication/data/firebase/firebase_app_user.dart';
 import 'package:khatma/src/features/authentication/domain/app_user.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:firebase_auth/firebase_auth.dart';
