@@ -17,3 +17,4 @@ dependencies:
   freezed_annotation: 3.1.0
   shimmer: 3.0.0
   index_generator: 4.0.1
+  qr_flutter: ^4.1.0
