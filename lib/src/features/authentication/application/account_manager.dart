@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:khatma/src/core/result.dart';
 import 'package:khatma/src/features/authentication/application/login_manager.dart';
-import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/authentication/data/firebase/auth_repository.dart';
 import 'package:khatma/src/features/authentication/domain/app_user.dart';
 import 'package:khatma/src/error/app_error_code.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

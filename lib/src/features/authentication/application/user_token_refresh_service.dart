@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:khatma/src/features/authentication/data/auth_repository.dart';
-import 'package:khatma/src/features/authentication/data/user_metadata_repository.dart';
+import 'package:khatma/src/features/authentication/data/firebase/auth_repository.dart';
+import 'package:khatma/src/features/authentication/data/firebase/user_metadata_repository.dart';
 import 'package:khatma/src/features/authentication/domain/app_user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

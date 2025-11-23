@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:khatma/src/features/authentication/data/auth_repository.dart';
+import 'package:khatma/src/features/authentication/data/firebase/auth_repository.dart';
 import 'package:khatma/src/features/authentication/presentation/account/widgets/security_section.dart';
 import 'package:khatma/src/features/authentication/presentation/account/widgets/settings_tile.dart';
 import 'package:khatma/src/features/authentication/presentation/widgets/profile_header.dart';
