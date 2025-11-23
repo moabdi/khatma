@@ -499,15 +499,17 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           } else if (formData.type == KhatmaType.hifz) {
             // TODO: Navigate to hifz config screen when implemented
             await ref.read(khatmaFormProvider.notifier).save();
-            context.go('/khatma');
+            context.goNamed(AppRoute.home.name);
           } else {
             // For personal khatma, save and navigate directly
             await ref.read(khatmaFormProvider.notifier).save();
             final savedKhatma = ref.read(khatmaManagerProvider).selectedKhatma;
-            if (savedKhatma != null && savedKhatma.id != null) {
-              context.go('/khatma/personal/${savedKhatma.id}');
+            if (widget.khatmaId != null) {
+              context.goNamed(AppRoute.personalKhatma.name, pathParameters: {
+                'id': widget.khatmaId!,
+              });
             } else {
-              context.go('/khatma');
+              context.goNamed(AppRoute.home.name);
             }
           }
         }
