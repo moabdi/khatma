@@ -107,12 +107,28 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                         KhatmaProgressStats(khatma: state.khatma),
                         gapH20,
 
-                        // Section title
-                        Text(
-                          context.loc.khatmaUnitsWithType(state.khatma.unit.name),
-                          style: context.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        // Section title with clear selection button
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              context.loc.khatmaUnitsWithType(state.khatma.unit.name),
+                              style: context.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            // Clear selection button (only visible when units are selected)
+                            if (state.hasSelectedUnits)
+                              TextButton.icon(
+                                onPressed: () => controller.clearSelection(),
+                                icon: const Icon(Icons.clear_all, size: 18),
+                                label: const Text('Clear'), // TODO: Add to localization
+                                style: TextButton.styleFrom(
+                                  visualDensity: VisualDensity.compact,
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                ),
+                              ),
+                          ],
                         ),
                         gapH12,
 
@@ -283,8 +299,8 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           unit: unit,
           onTap: () => _toggleUnitReservation(unit, state, controller),
           reservationWarningDays: 7,
-          isUserAdminOrCreator: _isUserAdminOrCreator(state),
-          isOwnedByCurrentUser: _isOwnedByCurrentUser(unit, state),
+          isUserAdminOrCreator: true,// _isUserAdminOrCreator(state),
+          isOwnedByCurrentUser: true,//_isOwnedByCurrentUser(unit, state),
           onSendReminder: () => _sendReminder(unit, controller),
           onFreeUnit: () => _freeUnit(unit, controller),
           color: state.khatma.color,
@@ -332,19 +348,12 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     KhatmaDetailsController controller,
     KhatmaShared khatma,
   ) {
-    // Count currently selected units
-    final selectedUnitsCount = state.khatma.units
-        .where((unit) => unit.status == UnitStatus.selected)
-        .length;
-
-    // Count already reserved units + currently selected units
-    final alreadyReservedCount = state.khatma.userReservedUnits("").length;
-    final totalReservations = alreadyReservedCount + selectedUnitsCount;
-    final maxReservations = state.khatma.maxReservationsPerUser;
-
-    // Check if button should be enabled
+    final selectedUnitsCount = state.selectedUnits.length;
     final hasSelection = selectedUnitsCount > 0;
     final canConfirm = hasSelection && !state.isJoining;
+
+    // Determine button text and action based on user state and selection
+    final buttonInfo = _getButtonInfo(state);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -362,40 +371,33 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Reservation info
+            // Selection info
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '$selectedUnitsCount / $maxReservations max',
+                  buttonInfo.subtitle,
                   style: context.textTheme.bodyMedium?.copyWith(
                     color: context.colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                if (totalReservations < maxReservations)
+                if (buttonInfo.hint != null)
                   Text(
-                    context.loc.unitsRemaining(maxReservations - totalReservations),
+                    buttonInfo.hint!,
                     style: context.textTheme.bodySmall?.copyWith(
-                      color: Colors.green.shade600,
-                    ),
-                  )
-                else
-                  Text(
-                    context.loc.limitReached,
-                    style: context.textTheme.bodySmall?.copyWith(
-                      color: Colors.orange.shade600,
+                      color: buttonInfo.isWarning ? Colors.orange.shade600 : Colors.green.shade600,
                     ),
                   ),
               ],
             ),
             gapH12,
-            // Confirm button
+            // Action button
             SizedBox(
               width: double.infinity,
               child: FilledButton.icon(
                 onPressed: canConfirm
-                    ? () => _confirmJoin(state, khatma.name)
+                    ? () => _performAction(state, controller, khatma.name, buttonInfo.action)
                     : null,
                 icon: state.isJoining
                     ? const SizedBox(
@@ -406,11 +408,9 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                           color: Colors.white,
                         ),
                       )
-                    : const Icon(Icons.check_circle),
+                    : Icon(buttonInfo.icon),
                 label: Text(
-                  state.isJoining
-                      ? context.loc.loading
-                      : '${context.loc.confirmJoinKhatma} ($selectedUnitsCount)',
+                  state.isJoining ? context.loc.loading : buttonInfo.buttonText,
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -418,7 +418,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                 ),
                 style: FilledButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: khatma.style.hexColor,
+                  backgroundColor: buttonInfo.color ?? khatma.style.hexColor,
                   disabledBackgroundColor:
                       context.colorScheme.surfaceContainerHighest,
                 ),
@@ -430,6 +430,58 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     );
   }
 
+  _ButtonInfo _getButtonInfo(KhatmaDetailsState state) {
+    final selectedCount = state.selectedUnits.length;
+    final isParticipant = state.isUserParticipant;
+    final areReservedUnitsSelected = state.areAllSelectedUnitsReserved;
+    final currentReserved = state.currentUserReservedCount;
+    final maxReservations = state.maxReservationsPerUser;
+
+    if (!isParticipant && selectedCount == 0) {
+      // User not in khatma, no selection
+      return _ButtonInfo(
+        buttonText: 'Join Khatma', // TODO: Add to localization
+        subtitle: 'Select units to join', // TODO: Add to localization
+        icon: Icons.group_add,
+        action: _ActionType.join,
+      );
+    }
+
+    if (!isParticipant && selectedCount > 0) {
+      // User not in khatma, has selection
+      return _ButtonInfo(
+        buttonText: 'Reserve & Join ($selectedCount)', // TODO: Add to localization
+        subtitle: '$selectedCount units selected • Max: $maxReservations', // TODO: Add to localization
+        hint: 'Will join khatma', // TODO: Add to localization
+        icon: Icons.group_add,
+        action: _ActionType.reserveAndJoin,
+      );
+    }
+
+    if (isParticipant && areReservedUnitsSelected) {
+      // User in khatma, selected their own reserved units
+      return _ButtonInfo(
+        buttonText: 'Unreserve Units ($selectedCount)', // TODO: Add to localization
+        subtitle: '$selectedCount units selected', // TODO: Add to localization
+        hint: 'Will free units', // TODO: Add to localization
+        icon: Icons.lock_open,
+        color: Colors.orange.shade700,
+        isWarning: true,
+        action: _ActionType.unreserve,
+      );
+    }
+
+    // User in khatma, selecting free units
+    final remaining = maxReservations - currentReserved;
+    return _ButtonInfo(
+      buttonText: 'Reserve Units ($selectedCount)', // TODO: Add to localization
+      subtitle: '$currentReserved/$maxReservations reserved • $selectedCount selected', // TODO: Add to localization
+      hint: remaining == selectedCount ? null : 'Remaining: $remaining',
+      icon: Icons.check_circle,
+      action: _ActionType.reserve,
+    );
+  }
+
   // === Event Handlers ===
 
   void _toggleUnitReservation(
@@ -437,65 +489,11 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     KhatmaDetailsState state,
     KhatmaDetailsController controller,
   ) {
-    if (unit.isFree) {
-      // Count already reserved units + currently selected units
-      final alreadyReservedCount = state.khatma.userReservedUnits("").length;
-      final currentlySelectedCount = state.khatma.units
-          .where((u) => u.status == UnitStatus.selected)
-          .length;
-      final totalReservations = alreadyReservedCount + currentlySelectedCount;
+    // Use the new validation logic
+    final error = controller.toggleUnitSelection(unit);
 
-      // Check reservation limit (including already selected units)
-      if (totalReservations >= state.khatma.maxReservationsPerUser) {
-        _showSnackBar(
-          context.loc.reservationLimitReached(
-            state.khatma.maxReservationsPerUser,
-          ),
-          isError: true,
-        );
-        return;
-      }
-      controller.reserveUnit(unit);
-    } else if (unit.isReserved || unit.isSelected) {
-      controller.unreserveUnit(unit);
-    }
-  }
-
-  Future<void> _confirmJoin(
-    KhatmaDetailsState state,
-    String khatmaName,
-  ) async {
-    try {
-      // Get the selected unit numbers
-      final selectedUnits = state.khatma.units
-          .where((unit) => unit.status == UnitStatus.selected)
-          .map((unit) => unit.number)
-          .toList();
-
-      if (selectedUnits.isEmpty) {
-        _showSnackBar(
-          'Please select at least one unit to reserve',
-          isError: true,
-        );
-        return;
-      }
-
-      // Call the provider to join khatma with selected units
-      await ref
-          .read(khatmaManagerProvider.notifier)
-          .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: selectedUnits);
-
-      if (mounted) {
-        _showSnackBar(context.loc.joinedKhatmaSuccess(khatmaName));
-        context.goNamed(AppRoute.home.name);
-      }
-    } catch (e) {
-      if (mounted) {
-        _showSnackBar(
-          '${context.loc.errorJoiningKhatma}: ${e.toString()}',
-          isError: true,
-        );
-      }
+    if (error != null) {
+      _showSnackBar(error, isError: true);
     }
   }
 
@@ -503,12 +501,6 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
 
   bool _isUserAdminOrCreator(KhatmaDetailsState state) {
     // TODO: Implement actual user role check
-    return false;
-  }
-
-  bool _isOwnedByCurrentUser(Unit unit, KhatmaDetailsState state) {
-    // TODO: Get current user ID and check if unit.reservedBy matches
-    // For now, return false until we have auth integration
     return false;
   }
 
@@ -555,4 +547,103 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
       ),
     );
   }
+
+  Future<void> _performAction(
+    KhatmaDetailsState state,
+    KhatmaDetailsController controller,
+    String khatmaName,
+    _ActionType actionType,
+  ) async {
+    try {
+      final selectedUnits = state.selectedUnits
+          .map((unit) => unit.number)
+          .toList();
+
+      if (selectedUnits.isEmpty && actionType != _ActionType.join) {
+        _showSnackBar('Please select at least one unit', isError: true);
+        return;
+      }
+
+      switch (actionType) {
+        case _ActionType.join:
+          // Just join without reserving units
+          await ref
+              .read(khatmaManagerProvider.notifier)
+              .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: []);
+
+          if (mounted) {
+            _showSnackBar('Joined $khatmaName successfully');
+            context.goNamed(AppRoute.home.name);
+          }
+          break;
+
+        case _ActionType.reserveAndJoin:
+          // Join and reserve selected units
+          await ref
+              .read(khatmaManagerProvider.notifier)
+              .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: selectedUnits);
+
+          if (mounted) {
+            _showSnackBar('Joined $khatmaName and reserved ${selectedUnits.length} units');
+          }
+          break;
+
+        case _ActionType.reserve:
+          // Just reserve units (user already in khatma)
+          // TODO: Implement reserve units API call
+          await ref
+              .read(khatmaManagerProvider.notifier)
+              .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: selectedUnits);
+
+          if (mounted) {
+            _showSnackBar('Reserved ${selectedUnits.length} units');
+            // Stay on the same page - don't navigate
+          }
+          break;
+
+        case _ActionType.unreserve:
+          // Unreserve units
+          // TODO: Implement unreserve units API call
+          // For now, just show a message
+          if (mounted) {
+            _showSnackBar('Unreserve feature coming soon');
+            // Stay on the same page - don't navigate
+          }
+          break;
+      }
+    } catch (e) {
+      if (mounted) {
+        _showSnackBar('Error: ${e.toString()}', isError: true);
+      }
+    }
+  }
+}
+
+// Helper enum for action types
+enum _ActionType {
+  join,
+  reserveAndJoin,
+  reserve,
+  unreserve,
+}
+
+// Helper class for button information
+class _ButtonInfo {
+  final String buttonText;
+  final String subtitle;
+  final String? hint;
+  final IconData icon;
+  final Color? color;
+  final bool isWarning;
+  final _ActionType action;
+
+  _ButtonInfo({
+    required this.buttonText,
+    required this.subtitle,
+    this.hint,
+    required this.icon,
+    this.color,
+    this.isWarning = false,
+    required this.action,
+  });
 }

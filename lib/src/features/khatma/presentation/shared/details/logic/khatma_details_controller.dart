@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/shared_khatma_screen.dart';
@@ -7,28 +8,86 @@ class KhatmaDetailsState {
   final KhatmaShared khatma;
   final Set<UnitFilter> activeFilters;
   final bool isJoining;
+  final String? currentUserId;
 
   KhatmaDetailsState({
     required this.khatma,
     required this.activeFilters,
     this.isJoining = false,
+    this.currentUserId,
   });
 
   KhatmaDetailsState copyWith({
     KhatmaShared? khatma,
     Set<UnitFilter>? activeFilters,
     bool? isJoining,
+    String? currentUserId,
   }) {
     return KhatmaDetailsState(
       khatma: khatma ?? this.khatma,
       activeFilters: activeFilters ?? this.activeFilters,
       isJoining: isJoining ?? this.isJoining,
+      currentUserId: currentUserId ?? this.currentUserId,
     );
+  }
+
+  // Check if user is a participant
+  bool get isUserParticipant {
+    if (currentUserId == null) return false;
+    return khatma.participants.any((p) => p.userId == currentUserId);
+  }
+
+  // Check if user is admin or creator
+  bool get isUserAdminOrCreator {
+    if (currentUserId == null) return false;
+    return khatma.hasPrivileges(currentUserId!);
   }
 
   // Check if there are any selected units
   bool get hasSelectedUnits {
     return khatma.units.any((unit) => unit.status == UnitStatus.selected);
+  }
+
+  // Get all selected units
+  List<Unit> get selectedUnits {
+    return khatma.units.where((unit) => unit.status == UnitStatus.selected).toList();
+  }
+
+  // Check if all selected units are free
+  bool get areAllSelectedUnitsFree {
+    final selected = selectedUnits;
+    if (selected.isEmpty) return false;
+    return selected.every((unit) => unit.status == UnitStatus.selected && unit.reservedBy == null);
+  }
+
+  // Check if all selected units are reserved
+  bool get areAllSelectedUnitsReserved {
+    final selected = selectedUnits;
+    if (selected.isEmpty) return false;
+    return selected.every((unit) => unit.reservedBy != null);
+  }
+
+  // Get current user's reserved units count
+  int get currentUserReservedCount {
+    if (currentUserId == null) return 0;
+    return khatma.userReservedUnits(currentUserId!).length;
+  }
+
+  // Get max reservations allowed
+  int get maxReservationsPerUser {
+    return khatma.maxReservationsPerUser;
+  }
+
+  // Check if user has reached reservation limit
+  bool get hasReachedReservationLimit {
+    if (currentUserId == null) return false;
+    return !khatma.canUserReserveMore(currentUserId!);
+  }
+
+  // Get remaining reservations for current user
+  int get remainingReservations {
+    if (currentUserId == null) return 0;
+    return khatma.remainingReservations(currentUserId!);
   }
 
   // Check if there are any visible units matching the current filter
@@ -92,19 +151,41 @@ class KhatmaDetailsState {
 }
 
 class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
-  KhatmaDetailsController(KhatmaShared khatma)
+  KhatmaDetailsController(KhatmaShared khatma, String? currentUserId)
       : super(KhatmaDetailsState(
           khatma: khatma,
-          activeFilters: _getDefaultFilters(khatma),
+          activeFilters: _getDefaultFilters(khatma, currentUserId),
+          currentUserId: currentUserId,
         ));
 
-  // Default to "mine" filter if user has reserved units, otherwise "all"
-  static Set<UnitFilter> _getDefaultFilters(KhatmaShared khatma) {
-    final mineCount = khatma.units.where((u) => u.isReserved).length;
+  // Default filter logic:
+  // - Non-participants: show "free" filter
+  // - Participants with reserved units: show "mine" filter
+  // - Participants without reserved units: show "all" filter
+  static Set<UnitFilter> _getDefaultFilters(KhatmaShared khatma, String? currentUserId) {
+    // Check if user is a participant
+    final isParticipant = currentUserId != null &&
+        khatma.participants.any((p) => p.userId == currentUserId);
+
+    if (!isParticipant) {
+      // Non-participant: show free units by default
+      return {UnitFilter.free};
+    }
+
+    // For participants, check if they have reserved units
+    final mineCount = khatma.units
+        .where((u) => u.isReserved && u.reservedBy == currentUserId)
+        .length;
+
     if (mineCount > 0) {
       return {UnitFilter.mine};
     }
+
     return {UnitFilter.all};
+  }
+
+  void setCurrentUserId(String userId) {
+    state = state.copyWith(currentUserId: userId);
   }
 
   void toggleFilter(UnitFilter filter) {
@@ -113,24 +194,124 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
     state = state.copyWith(activeFilters: {filter});
   }
 
-  void reserveUnit(Unit unit) {
+  /// Clear all selected units
+  void clearSelection() {
     final updatedUnits = state.khatma.units.map((u) {
-      if (u.number == unit.number) {
-        return u.copyWith(
-          status: UnitStatus.selected,
-        );
+      if (u.status == UnitStatus.selected) {
+        // If it was a free unit being selected, make it free
+        if (u.reservedBy == null) {
+          return u.copyWith(status: UnitStatus.free);
+        }
+        // If it was a reserved unit, keep it as reserved
+        return u.copyWith(status: UnitStatus.reserved);
       }
       return u;
     }).toList();
 
-    // Add the unit if it doesn't exist
+    state = state.copyWith(
+      khatma: state.khatma.copyWith(units: updatedUnits),
+    );
+  }
+
+  /// Toggle unit selection with validation
+  /// Returns error message if selection is invalid, null otherwise
+  String? toggleUnitSelection(Unit unit) {
+    final isCurrentlySelected = unit.status == UnitStatus.selected;
+
+    if (isCurrentlySelected) {
+      // Deselect the unit
+      _deselectUnit(unit);
+      return null;
+    }
+
+    // Check if unit can be selected
+    final canSelect = _canSelectUnit(unit);
+    if (canSelect != null) {
+      return canSelect; // Return error message
+    }
+
+    // Check for mixed selection type
+    final mixedTypeError = _validateMixedSelection(unit);
+    if (mixedTypeError != null) {
+      return mixedTypeError;
+    }
+
+    // Select the unit
+    _selectUnit(unit);
+    return null;
+  }
+
+  /// Check if a unit can be selected
+  String? _canSelectUnit(Unit unit) {
+    // Completed units cannot be selected
+    if (unit.isCompleted) {
+      return 'Completed units cannot be selected';
+    }
+
+    // Free units - check reservation limit
+    if (unit.isFree) {
+      // Check if user would exceed limit with this selection
+      final currentReserved = state.currentUserReservedCount;
+      final currentSelected = state.selectedUnits.where((u) => u.reservedBy == null).length;
+      final totalAfterSelection = currentReserved + currentSelected + 1;
+
+      if (totalAfterSelection > state.maxReservationsPerUser) {
+        return 'Limit reached: ${state.maxReservationsPerUser} units max';
+      }
+      return null;
+    }
+
+    // Reserved units can only be selected by owner or admin
+    if (unit.isReserved) {
+      final isOwner = unit.reservedBy == state.currentUserId;
+      final isAdmin = state.isUserAdminOrCreator;
+
+      if (!isOwner && !isAdmin) {
+        return 'Only the owner or admin can select this reserved unit';
+      }
+      return null;
+    }
+
+    return null;
+  }
+
+  /// Validate that selection doesn't mix free and reserved units
+  String? _validateMixedSelection(Unit newUnit) {
+    final currentSelection = state.selectedUnits;
+
+    if (currentSelection.isEmpty) {
+      return null; // First selection, no conflict
+    }
+
+    final hasReservedInSelection = currentSelection.any((u) => u.reservedBy != null);
+    final hasFreeInSelection = currentSelection.any((u) => u.reservedBy == null);
+
+    final isNewUnitReserved = newUnit.reservedBy != null || newUnit.isReserved;
+
+    if (hasReservedInSelection && !isNewUnitReserved) {
+      return 'Cannot mix reserved and free units in selection';
+    }
+
+    if (hasFreeInSelection && isNewUnitReserved) {
+      return 'Cannot mix free and reserved units in selection';
+    }
+
+    return null;
+  }
+
+  void _selectUnit(Unit unit) {
+    final updatedUnits = state.khatma.units.map((u) {
+      if (u.number == unit.number) {
+        return u.copyWith(status: UnitStatus.selected);
+      }
+      return u;
+    }).toList();
+
+    // Add the unit if it doesn't exist in the list
     if (!updatedUnits.any((u) => u.number == unit.number)) {
       updatedUnits.add(Unit(
         number: unit.number,
         status: UnitStatus.selected,
-        reservedBy: 'currentUser',
-        reservedByName: 'You',
-        reservedDate: DateTime.now(),
       ));
     }
 
@@ -139,10 +320,18 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
     );
   }
 
-  void unreserveUnit(Unit unit) {
-    final updatedUnits = state.khatma.units
-        .where((u) => u.number != unit.number)
-        .toList();
+  void _deselectUnit(Unit unit) {
+    final updatedUnits = state.khatma.units.map((u) {
+      if (u.number == unit.number) {
+        // If it was a free unit being selected, remove the selection
+        if (u.reservedBy == null) {
+          return u.copyWith(status: UnitStatus.free);
+        }
+        // If it was a reserved unit, keep it as reserved
+        return u.copyWith(status: UnitStatus.reserved);
+      }
+      return u;
+    }).toList();
 
     state = state.copyWith(
       khatma: state.khatma.copyWith(units: updatedUnits),
@@ -180,6 +369,10 @@ final khatmaDetailsControllerProvider = StateNotifierProvider.family.autoDispose
       throw StateError('Khatma with id $khatmaId not found');
     }
 
-    return KhatmaDetailsController(khatma);
+    // Get current user ID from auth provider
+    final currentUser = ref.watch(userProvider);
+    final currentUserId = currentUser?.id;
+
+    return KhatmaDetailsController(khatma, currentUserId);
   },
 );

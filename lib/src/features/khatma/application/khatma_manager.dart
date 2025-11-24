@@ -1,6 +1,8 @@
 import 'package:khatma/src/core/app_status.dart';
 import 'package:khatma/src/core/result.dart';
 import 'package:khatma/src/error/app_error_code.dart';
+import 'package:khatma/src/features/authentication/application/account_manager.dart';
+import 'package:khatma/src/features/authentication/domain/app_user.dart';
 import 'package:khatma/src/features/khatma/data/repository/local/local_khatma_repository.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/application/khatma_state.dart';
@@ -74,6 +76,7 @@ class KhatmaManager extends _$KhatmaManager {
 
   Future<Result<Khatma, AppErrorCode>> save(Khatma khatma) async {
     state = state.copyWith(status: AppStatus.saving);
+    final _currentUser = ref.read(userProvider);
 
     try {
       if (khatma.id == null && !canCreateNew()) {
@@ -84,9 +87,14 @@ class KhatmaManager extends _$KhatmaManager {
         return Result.failure(AppErrorCode.limitKhatmaMaxReached);
       }
 
+      final userId = _currentUser?.id;
+      final userName = _currentUser?.displayName ?? "anonymous";
+
       final khatmaToSave = khatma.copyWith(
         lastUpdated: DateTime.now(),
         needsSync: true,
+        creatorId: userId,
+        creatorName: userName,
       );
 
       final localKhatma = await _localRepo.save(khatmaToSave);
@@ -268,9 +276,13 @@ class KhatmaManager extends _$KhatmaManager {
     required String khatmaId,
     required List<int> reservedUnits,
   }) async {
+    final _currentUser = ref.read(userProvider);
+    final userId = _currentUser?.id;
+    if (userId == null) {
+      return Result.failure(AppErrorCode.authUserNotLoggedIn);
+    }
+    final userName = _currentUser?.displayName ?? "anonymous";
     final khatma = getKhatmaById(khatmaId);
-    final userId = "userId";
-    final userName = "userName";
     if (khatma == null || khatma is! KhatmaShared) {
       return Result.failure(AppErrorCode.khatmaNotFound);
     }
@@ -307,7 +319,7 @@ class KhatmaManager extends _$KhatmaManager {
       final updatedParticipants = [...khatma.participants];
       if (!updatedParticipants.any((p) => p.userId == userId)) {
         updatedParticipants.add(Participant(
-          userId: userId,
+          userId: userId!,
           userName: userName,
           joinedDate: DateTime.now(),
         ));

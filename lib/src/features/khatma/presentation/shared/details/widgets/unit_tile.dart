@@ -51,7 +51,7 @@ class UnitTile extends StatelessWidget {
             children: [
               // Unit number avatar
               _buildAvatar(context, statusInfo),
-              const SizedBox(width: 12),
+              gapW12,
               // Content
               Expanded(
                 child: Column(
@@ -91,17 +91,7 @@ class UnitTile extends StatelessWidget {
                       children: [
                         Expanded(
                           child: _buildSubtitle(context, isOverdue),
-                        ),
-                        if (_shouldShowActions())
-                          InkWell(
-                            onTap: () => _showActions(context),
-                            borderRadius: BorderRadius.circular(20),
-                            child: Icon(
-                              Icons.more_vert,
-                              size: 20,
-                              color: context.colorScheme.onSurfaceVariant,
-                            ),
-                          ),
+                        )
                       ],
                     ),
                     if (unit.reservedByName != null &&

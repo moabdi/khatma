@@ -1,3 +1,4 @@
+import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
@@ -11,13 +12,27 @@ class KhatmaForm extends _$KhatmaForm {
   @override
   KhatmaFormData build() {
     final code = randomAlphaNumeric(6).toUpperCase();
-    return KhatmaFormData.blank(code: code);
+    final currentUser = ref.read(userProvider);
+    final creator = currentUser != null
+        ? KhatmaCreator(
+            creatorId: currentUser.id,
+            creatorName: currentUser.displayName ?? currentUser.email,
+          )
+        : null;
+    return KhatmaFormData.blank(code: code, creator: creator);
   }
 
   /// Initialize form for creating a new Khatma
   void initializeForCreate({KhatmaType type = KhatmaType.personal}) {
     final code = randomAlphaNumeric(6).toUpperCase();
-    state = KhatmaFormData.blank(code: code, type: type);
+    final currentUser = ref.read(userProvider);
+    final creator = currentUser != null
+        ? KhatmaCreator(
+            creatorId: currentUser.id,
+            creatorName: currentUser.displayName ?? currentUser.email,
+          )
+        : null;
+    state = KhatmaFormData.blank(code: code, type: type, creator: creator);
   }
 
   /// Initialize form for editing an existing Khatma

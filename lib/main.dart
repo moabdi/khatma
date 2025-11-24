@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:khatma/firebase_options.dart';
 import 'package:khatma/src/app.dart';
+import 'package:khatma/src/features/authentication/application/login_manager.dart';
 import 'package:khatma/src/i18n/string_hardcoded.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ import 'package:path_provider/path_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-// Initialize Firebase
+  // Initialize Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   usePathUrlStrategy();
@@ -32,7 +33,18 @@ void main() async {
 
   await registerErrorHandlers();
 
-  runApp(const ProviderScope(child: MainApp()));
+  // Create a ProviderContainer to access providers before running the app
+  final container = ProviderContainer();
+
+  // Check for auto-login at startup
+  await container.read(loginManagerProvider.notifier).checkAutoLogin();
+
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const MainApp(),
+    ),
+  );
 }
 
 Future<void> registerErrorHandlers() async {

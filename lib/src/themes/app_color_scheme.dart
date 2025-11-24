@@ -8,9 +8,9 @@ class AppColorScheme {
     brightness: Brightness.light,
 
     // Primary colors
-    primary: Color(0xFF00A862),
+    primary: Color(0xFF34A677),
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFF4CAF50),
+    primaryContainer: Color(0xFFB1D2C4),
     onPrimaryContainer: Color(0xFF00693E),
 
     // Secondary colors

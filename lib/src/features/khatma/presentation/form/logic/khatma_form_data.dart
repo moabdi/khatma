@@ -57,10 +57,11 @@ class KhatmaFormData {
   factory KhatmaFormData.blank({
     required String code,
     KhatmaType type = KhatmaType.personal,
+    KhatmaCreator? creator,
   }) {
-    // Provide default creator for shared/hifz khatmas
-    // In production, this should come from the authenticated user
-    final defaultCreator = KhatmaCreator(
+
+    // Use provided creator or fall back to placeholder
+    final formCreator = creator ?? const KhatmaCreator(
       creatorId: 'local-user', // Placeholder - should be replaced with actual user ID
       creatorName: 'Local User', // Placeholder - should be replaced with actual user name
     );
@@ -75,7 +76,7 @@ class KhatmaFormData {
       repeat: false,
       startDate: DateTime.now(),
       endDate: null,
-      creator: defaultCreator,
+      creator: formCreator,
     );
   }
 
