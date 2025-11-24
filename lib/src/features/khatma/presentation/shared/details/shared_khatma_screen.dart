@@ -43,8 +43,6 @@ class SharedKhatmaScreen extends ConsumerStatefulWidget {
 }
 
 class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
-  final GlobalKey _filterButtonKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     // Get the shared khatma from the provider
@@ -239,34 +237,22 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
             onTap: () => controller.toggleFilter(UnitFilter.free),
           ),
           gapW8,
-          // More filters button
-          IconButton.filledTonal(
-            key: _filterButtonKey,
-            onPressed: () => _showMoreFilters(state, controller),
-            icon: Stack(
-              children: [
-                const Icon(Icons.tune_rounded, size: 20),
-                if (state.activeFilters.contains(UnitFilter.reserved) ||
-                    state.activeFilters.contains(UnitFilter.completed))
-                  Positioned(
-                    right: 0,
-                    top: 0,
-                    child: Container(
-                      width: 8,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        color: context.colorScheme.primary,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            tooltip: context.loc.filterUnits,
-            style: IconButton.styleFrom(
-              visualDensity: VisualDensity.compact,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
+          KhatmaFilterChip(
+            label: context.loc.filterReserved,
+            icon: Icons.lock_outline,
+            isSelected: state.activeFilters.contains(UnitFilter.reserved),
+            count: state.getFilterCount(UnitFilter.reserved),
+            isEnabled: state.getFilterCount(UnitFilter.reserved) > 0,
+            onTap: () => controller.toggleFilter(UnitFilter.reserved),
+          ),
+          gapW8,
+          KhatmaFilterChip(
+            label: context.loc.filterCompleted,
+            icon: Icons.done_all,
+            isSelected: state.activeFilters.contains(UnitFilter.completed),
+            count: state.getFilterCount(UnitFilter.completed),
+            isEnabled: state.getFilterCount(UnitFilter.completed) > 0,
+            onTap: () => controller.toggleFilter(UnitFilter.completed),
           ),
         ],
       ),
@@ -511,87 +497,6 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
         );
       }
     }
-  }
-
-  void _showMoreFilters(
-    KhatmaDetailsState state,
-    KhatmaDetailsController controller,
-  ) {
-    final RenderBox? renderBox =
-        _filterButtonKey.currentContext?.findRenderObject() as RenderBox?;
-    if (renderBox == null) return;
-
-    final buttonPosition = renderBox.localToGlobal(Offset.zero);
-    final buttonSize = renderBox.size;
-
-    showMenu(
-      context: context,
-      position: RelativeRect.fromLTRB(
-        buttonPosition.dx,
-        buttonPosition.dy + buttonSize.height,
-        buttonPosition.dx + buttonSize.width,
-        0,
-      ),
-      items: [
-        _buildFilterMenuItem(
-          UnitFilter.reserved,
-          context.loc.filterReserved,
-          state,
-          controller,
-        ),
-        _buildFilterMenuItem(
-          UnitFilter.completed,
-          context.loc.filterCompleted,
-          state,
-          controller,
-        ),
-      ],
-    );
-  }
-
-  PopupMenuItem<void> _buildFilterMenuItem(
-    UnitFilter filter,
-    String label,
-    KhatmaDetailsState state,
-    KhatmaDetailsController controller,
-  ) {
-    final count = state.getFilterCount(filter);
-    final isEnabled = count > 0;
-    final isSelected = state.activeFilters.contains(filter);
-
-    return PopupMenuItem<void>(
-      enabled: isEnabled,
-      onTap: isEnabled ? () => controller.toggleFilter(filter) : null,
-      child: Row(
-        children: [
-          Checkbox(
-            value: isSelected,
-            onChanged: isEnabled
-                ? (value) => controller.toggleFilter(filter)
-                : null,
-          ),
-          gapW8,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  label,
-                  style: context.textTheme.bodyMedium,
-                ),
-                Text(
-                  '$count ${context.loc.unitsLowercase}',
-                  style: context.textTheme.bodySmall?.copyWith(
-                    color: context.colorScheme.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   // === Helper Methods ===

@@ -108,31 +108,9 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
   }
 
   void toggleFilter(UnitFilter filter) {
-    final newFilters = Set<UnitFilter>.from(state.activeFilters);
-
-    if (filter == UnitFilter.all) {
-      // Select "All" - clear everything and add only "All"
-      newFilters.clear();
-      newFilters.add(UnitFilter.all);
-    } else {
-      // Remove "All" if it's selected (when selecting any other filter)
-      if (newFilters.contains(UnitFilter.all)) {
-        newFilters.clear();
-      }
-
-      // Toggle the selected filter
-      if (newFilters.contains(filter)) {
-        newFilters.remove(filter);
-        // If no filters remain, default back to "All"
-        if (newFilters.isEmpty) {
-          newFilters.add(UnitFilter.all);
-        }
-      } else {
-        newFilters.add(filter);
-      }
-    }
-
-    state = state.copyWith(activeFilters: newFilters);
+    // Only one filter can be selected at a time
+    // Simply replace the current filter with the new one
+    state = state.copyWith(activeFilters: {filter});
   }
 
   void reserveUnit(Unit unit) {
