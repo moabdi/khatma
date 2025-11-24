@@ -11,6 +11,7 @@ class UnitTile extends StatelessWidget {
     required this.onTap,
     this.reservationWarningDays = 7,
     this.isUserAdminOrCreator = false,
+    this.isOwnedByCurrentUser = false,
     this.onSendReminder,
     this.onFreeUnit,
     this.color,
@@ -20,6 +21,7 @@ class UnitTile extends StatelessWidget {
   final VoidCallback onTap;
   final int reservationWarningDays;
   final bool isUserAdminOrCreator;
+  final bool isOwnedByCurrentUser;
   final VoidCallback? onSendReminder;
   final VoidCallback? onFreeUnit;
   final Color? color;
@@ -42,9 +44,6 @@ class UnitTile extends StatelessWidget {
       color: statusInfo.backgroundColor,
       child: InkWell(
         onTap: statusInfo.isClickable ? onTap : null,
-        onLongPress: isOverdue && isUserAdminOrCreator
-            ? () => _showAdminActions(context)
-            : null,
         borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.all(10),
@@ -68,41 +67,41 @@ class UnitTile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // Status icon
+                        // Status icons in the middle
                         if (statusInfo.trailingIcon != null)
-                          Icon(
-                            statusInfo.trailingIcon,
-                            color: statusInfo.iconColor,
-                            size: 20,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Icon(
+                              statusInfo.trailingIcon,
+                              color: statusInfo.iconColor,
+                              size: 20,
+                            ),
+                          ),
+                        // Three-dot menu button for admin/owner actions
+                        if (_shouldShowActions())
+                          InkWell(
+                            onTap: () => _showActions(context),
+                            borderRadius: BorderRadius.circular(20),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Icon(
+                                Icons.more_vert,
+                                size: 20,
+                                color: context.colorScheme.onSurfaceVariant,
+                              ),
+                            ),
                           ),
                       ],
                     ),
                     const SizedBox(height: 4),
                     // Subtitle with metadata
                     _buildSubtitle(context, isOverdue),
-                    // Member name for reserved/completed
+                    // Reservation info widget (date left, user right)
                     if (unit.reservedByName != null &&
+                        unit.reservedDate != null &&
                         (unit.status == UnitStatus.reserved ||
-                            unit.status == UnitStatus.completed)) ...[
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person_outline,
-                            size: 12,
-                            color: context.colorScheme.onSurfaceVariant,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            unit.reservedByName!,
-                            style: context.textTheme.labelMedium?.copyWith(
-                              color: context.colorScheme.onSurfaceVariant,
-                              fontSize: 11,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            unit.status == UnitStatus.completed))
+                      _buildReservationInfo(context, isOverdue),
                   ],
                 ),
               ),
@@ -139,6 +138,26 @@ class UnitTile extends StatelessWidget {
 
   Widget _buildSubtitle(BuildContext context, bool isOverdue) {
     String subtitleText = _getStartAyahForHizb(unit.number);
+
+    return Row(
+      children: [
+        Icon(
+          Icons.menu_book_outlined,
+          size: 12,
+          color: context.colorScheme.onSurfaceVariant,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          subtitleText,
+          style: context.textTheme.bodyMedium?.copyWith(
+            fontSize: 12,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildReservationInfo(BuildContext context, bool isOverdue) {
     String? dateText;
 
     if (unit.status == UnitStatus.reserved && unit.reservedDate != null) {
@@ -150,75 +169,144 @@ class UnitTile extends StatelessWidget {
       dateText = '${context.loc.completedOn}: $formattedDate';
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Start ayah
-        Row(
-          children: [
-            Icon(
-              Icons.menu_book_outlined,
-              size: 12,
-              color: context.colorScheme.onSurfaceVariant,
-            ),
-            const SizedBox(width: 4),
-            Text(
-              subtitleText,
-              style: context.textTheme.bodyMedium?.copyWith(
-                fontSize: 12,
-              ),
-            ),
-          ],
-        ),
-        // Date info
-        if (dateText != null) ...[
-          const SizedBox(height: 2),
-          Row(
-            children: [
-              if (isOverdue) ...[
-                const Text(
-                  '⚠️',
-                  style: TextStyle(fontSize: 12),
-                ),
-                const SizedBox(width: 4),
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          // Date on the left
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (dateText != null)
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.calendar_today,
+                        size: 12,
+                        color: isOverdue
+                            ? Colors.orange.shade700
+                            : context.colorScheme.onSurfaceVariant,
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          dateText,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: isOverdue
+                                ? Colors.orange.shade700
+                                : context.colorScheme.onSurfaceVariant,
+                            fontWeight: isOverdue ? FontWeight.w600 : null,
+                            fontSize: 11,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                if (isOverdue) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    context.loc.daysOverdue(_getDaysSinceReserved()),
+                    style: context.textTheme.labelSmall?.copyWith(
+                      color: Colors.orange.shade700,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
               ],
+            ),
+          ),
+          // Username on the right
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
               Icon(
-                Icons.calendar_today,
+                Icons.person_outline,
                 size: 12,
-                color: isOverdue
-                    ? Colors.orange.shade700
-                    : context.colorScheme.onSurfaceVariant,
+                color: context.colorScheme.onSurfaceVariant,
               ),
               const SizedBox(width: 4),
-              Expanded(
-                child: Text(
-                  dateText,
-                  style: context.textTheme.bodySmall?.copyWith(
-                    color: isOverdue
-                        ? Colors.orange.shade700
-                        : context.colorScheme.onSurfaceVariant,
-                    fontWeight: isOverdue ? FontWeight.w600 : null,
-                    fontSize: 11,
-                  ),
-                  overflow: TextOverflow.ellipsis,
+              Text(
+                unit.reservedByName!,
+                style: context.textTheme.labelMedium?.copyWith(
+                  color: context.colorScheme.onSurfaceVariant,
+                  fontSize: 11,
                 ),
               ),
             ],
           ),
         ],
-        // Overdue warning
-        if (isOverdue) ...[
-          const SizedBox(height: 2),
-          Text(
-            context.loc.daysOverdue(_getDaysSinceReserved()),
-            style: context.textTheme.labelSmall?.copyWith(
-              color: Colors.orange.shade700,
-              fontWeight: FontWeight.w600,
-              fontSize: 10,
-            ),
+      ),
+    );
+  }
+
+  bool _shouldShowActions() {
+    // Show actions if user is admin/creator OR if user owns this reservation
+    return (unit.status == UnitStatus.reserved) &&
+        (isUserAdminOrCreator || isOwnedByCurrentUser);
+  }
+
+  void _showActions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Send reminder option (admin only)
+              if (isUserAdminOrCreator && !isOwnedByCurrentUser)
+                ListTile(
+                  leading: const Icon(Icons.notifications_outlined),
+                  title: Text(context.loc.sendReminder),
+                  subtitle: Text(
+                    '${context.loc.reservedBy}: ${unit.reservedByName ?? "Unknown"}',
+                    style: context.textTheme.bodySmall,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    if (onSendReminder != null) {
+                      onSendReminder!();
+                    }
+                  },
+                ),
+              // Free/Unreserve unit option
+              ListTile(
+                leading: Icon(
+                  Icons.lock_open,
+                  color: isOwnedByCurrentUser
+                      ? context.colorScheme.primary
+                      : Colors.orange.shade700,
+                ),
+                title: Text(
+                  isOwnedByCurrentUser
+                      ? 'Unreserve Unit' // TODO: Add to localization
+                      : context.loc.freeUnit,
+                  style: TextStyle(
+                    color: isOwnedByCurrentUser
+                        ? context.colorScheme.primary
+                        : Colors.orange.shade700,
+                  ),
+                ),
+                subtitle: Text(
+                  isOwnedByCurrentUser
+                      ? 'Cancel your reservation' // TODO: Add to localization
+                      : context.loc.confirmFreeUnit,
+                  style: context.textTheme.bodySmall,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  _confirmFreeUnit(context);
+                },
+              ),
+              const SizedBox(height: 8),
+            ],
           ),
-        ],
-      ],
+        );
+      },
     );
   }
 
@@ -297,51 +385,6 @@ class UnitTile extends StatelessWidget {
       8: 'Al-Baqarah 198',
     };
     return hizbData[hizbNumber] ?? 'Hizb $hizbNumber';
-  }
-
-  void _showAdminActions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.notifications_outlined),
-                title: Text(context.loc.sendReminder),
-                subtitle: Text(
-                  '${context.loc.reservedBy}: ${unit.reservedBy ?? "Unknown"}',
-                  style: context.textTheme.bodySmall,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  if (onSendReminder != null) {
-                    onSendReminder!();
-                  }
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.lock_open, color: Colors.orange.shade700),
-                title: Text(
-                  context.loc.freeUnit,
-                  style: TextStyle(color: Colors.orange.shade700),
-                ),
-                subtitle: Text(
-                  context.loc.confirmFreeUnit,
-                  style: context.textTheme.bodySmall,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  _confirmFreeUnit(context);
-                },
-              ),
-              const SizedBox(height: 8),
-            ],
-          ),
-        );
-      },
-    );
   }
 
   void _confirmFreeUnit(BuildContext context) {

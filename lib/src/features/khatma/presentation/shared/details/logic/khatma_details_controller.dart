@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/shared_khatma_screen.dart';
 
@@ -94,8 +95,17 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
   KhatmaDetailsController(KhatmaShared khatma)
       : super(KhatmaDetailsState(
           khatma: khatma,
-          activeFilters: {UnitFilter.all},
+          activeFilters: _getDefaultFilters(khatma),
         ));
+
+  // Default to "mine" filter if user has reserved units, otherwise "all"
+  static Set<UnitFilter> _getDefaultFilters(KhatmaShared khatma) {
+    final mineCount = khatma.units.where((u) => u.isReserved).length;
+    if (mineCount > 0) {
+      return {UnitFilter.mine};
+    }
+    return {UnitFilter.all};
+  }
 
   void toggleFilter(UnitFilter filter) {
     final newFilters = Set<UnitFilter>.from(state.activeFilters);
@@ -179,7 +189,19 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
 }
 
 // Provider for the controller
-final khatmaDetailsControllerProvider = StateNotifierProvider.family<
-    KhatmaDetailsController, KhatmaDetailsState, KhatmaShared>(
-  (ref, khatma) => KhatmaDetailsController(khatma),
+// Use autoDispose to keep state alive during the screen session
+// Key by khatma ID instead of entire khatma object to prevent recreating controller
+final khatmaDetailsControllerProvider = StateNotifierProvider.family.autoDispose<
+    KhatmaDetailsController, KhatmaDetailsState, String>(
+  (ref, khatmaId) {
+    // Get the khatma from the manager
+    final manager = ref.watch(khatmaManagerProvider.notifier);
+    final khatma = manager.getKhatmaById(khatmaId) as KhatmaShared?;
+
+    if (khatma == null) {
+      throw StateError('Khatma with id $khatmaId not found');
+    }
+
+    return KhatmaDetailsController(khatma);
+  },
 );

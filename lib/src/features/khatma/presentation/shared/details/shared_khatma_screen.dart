@@ -83,9 +83,9 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
   }
 
   Widget _buildContent(KhatmaShared khatma) {
-    final state = ref.watch(khatmaDetailsControllerProvider(khatma));
+    final state = ref.watch(khatmaDetailsControllerProvider(khatma.id!));
     final controller =
-        ref.read(khatmaDetailsControllerProvider(khatma).notifier);
+        ref.read(khatmaDetailsControllerProvider(khatma.id!).notifier);
 
     return Scaffold(
       appBar: _buildAppBar(khatma),
@@ -298,6 +298,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           onTap: () => _toggleUnitReservation(unit, state, controller),
           reservationWarningDays: 7,
           isUserAdminOrCreator: _isUserAdminOrCreator(state),
+          isOwnedByCurrentUser: _isOwnedByCurrentUser(unit, state),
           onSendReminder: () => _sendReminder(unit, controller),
           onFreeUnit: () => _freeUnit(unit, controller),
           color: state.khatma.color,
@@ -597,6 +598,12 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
 
   bool _isUserAdminOrCreator(KhatmaDetailsState state) {
     // TODO: Implement actual user role check
+    return false;
+  }
+
+  bool _isOwnedByCurrentUser(Unit unit, KhatmaDetailsState state) {
+    // TODO: Get current user ID and check if unit.reservedBy matches
+    // For now, return false until we have auth integration
     return false;
   }
 
