@@ -6,12 +6,13 @@ part 'khatma_dto.g.dart';
 typedef KhatmaID = String;
 
 /// Base DTO for all Khatma types - used for data transfer with Freezed
-@freezed
+@Freezed(unionKey: 'type')
 sealed class KhatmaDto with _$KhatmaDto {
   const KhatmaDto._();
 
   const factory KhatmaDto.personal({
     @JsonKey(includeFromJson: true, includeToJson: true) KhatmaID? id,
+    @Default('personal') String type,
     required String name,
     required String unit, // 'juzz' or 'hizb'
     required DateTime createDate,
@@ -33,6 +34,7 @@ sealed class KhatmaDto with _$KhatmaDto {
 
   const factory KhatmaDto.shared({
     @JsonKey(includeFromJson: true, includeToJson: true) KhatmaID? id,
+    @Default('shared') String type,
     required String name,
     required String description,
     required String unit, // 'juzz' or 'hizb'
@@ -50,6 +52,7 @@ sealed class KhatmaDto with _$KhatmaDto {
 
   const factory KhatmaDto.hifz({
     @JsonKey(includeFromJson: true, includeToJson: true) KhatmaID? id,
+    @Default('hifz') String type,
     required String name,
     required String unit, // 'juzz' or 'hizb'
     required DateTime createDate,
