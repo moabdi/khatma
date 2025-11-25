@@ -306,6 +306,37 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     );
   }
 
+  Future<bool> _showConfirmationDialog({
+    required String title,
+    required String message,
+    required String confirmText,
+    Color? confirmColor,
+  }) async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(context.loc.cancel),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialogContext, true),
+              style: FilledButton.styleFrom(
+                backgroundColor: confirmColor ?? context.colorScheme.primary,
+              ),
+              child: Text(confirmText),
+            ),
+          ],
+        );
+      },
+    );
+    return result ?? false;
+  }
+
   Future<void> _performAction(
     KhatmaDetailsState state,
     KhatmaDetailsController controller,
@@ -374,7 +405,16 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           break;
 
         case KhatmaActionType.unreserve:
-          // Unreserve units
+          // Unreserve units - show confirmation dialog first
+          final confirmed = await _showConfirmationDialog(
+            title: context.loc.unreserveUnit,
+            message: context.loc.confirmFreeUnit,
+            confirmText: context.loc.unreserveUnit,
+            confirmColor: Colors.orange.shade700,
+          );
+
+          if (!confirmed) return;
+
           final currentUserForUnreserve = ref.read(userProvider);
           if (currentUserForUnreserve == null) {
             if (mounted) {
@@ -397,6 +437,35 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
               controller.clearSelection();
             } else {
               _showSnackBar('Error: ${unreserveResult.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
+            }
+            // Stay on the same page - don't navigate
+          }
+          break;
+
+        case KhatmaActionType.complete:
+          // Complete reserved units
+          final currentUserForComplete = ref.read(userProvider);
+          if (currentUserForComplete == null) {
+            if (mounted) {
+              _showSnackBar(context.loc.userNotLoggedIn, isError: true);
+            }
+            return;
+          }
+
+          final completeResult = await ref
+              .read(khatmaManagerProvider.notifier)
+              .completeUnits(
+                khatmaId: widget.khatmaId,
+                unitNumbers: selectedUnits,
+                userId: currentUserForComplete.id,
+              );
+
+          if (mounted) {
+            if (completeResult.isSuccess) {
+              _showSnackBar(context.loc.successCompleteParts(selectedUnits.length));
+              controller.clearSelection();
+            } else {
+              _showSnackBar('Error: ${completeResult.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
             }
             // Stay on the same page - don't navigate
           }

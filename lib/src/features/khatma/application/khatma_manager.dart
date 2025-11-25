@@ -266,6 +266,32 @@ class KhatmaManager extends _$KhatmaManager {
     }
   }
 
+  /// Complete multiple reserved units at once
+  Future<Result<KhatmaShared, AppErrorCode>> completeUnits({
+    required String khatmaId,
+    required List<int> unitNumbers,
+    required String userId,
+  }) async {
+    final khatma = getKhatmaById(khatmaId);
+    if (khatma == null || khatma is! KhatmaShared) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    final currentUser = ref.read(userProvider);
+    final userName = currentUser?.displayName ?? currentUser?.email ?? 'User';
+
+    try {
+      var updatedKhatma = khatma;
+      for (final unitNumber in unitNumbers) {
+        updatedKhatma = updatedKhatma.completeUnit(unitNumber, userId, userName);
+      }
+      await save(updatedKhatma);
+      return Result.success(updatedKhatma);
+    } catch (e) {
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
+
   /// Get all shared khatmas
   List<KhatmaShared> getSharedKhatmas() {
     return state.khatmas.valueOrEmpty.whereType<KhatmaShared>().toList();

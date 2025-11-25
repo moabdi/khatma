@@ -11,6 +11,7 @@ enum KhatmaActionType {
   reserveAndJoin,
   reserve,
   unreserve,
+  complete,
 }
 
 /// Button information model
@@ -167,14 +168,13 @@ class KhatmaBottomActionButton extends StatelessWidget {
 
     if (isParticipant && areReservedUnitsSelected) {
       // User in khatma, selected their own reserved units
+      // Show "Complete Units" button
       return KhatmaButtonInfo(
-        buttonText: context.loc.unreserveUnits(selectedCount),
+        buttonText: context.loc.completeParts(selectedCount),
         subtitle: context.loc.unitsSelected(selectedCount),
-        hint: context.loc.willFreeUnits,
-        icon: Icons.lock_open,
-        color: Colors.orange.shade700,
-        isWarning: true,
-        action: KhatmaActionType.unreserve,
+        hint: context.loc.completed,
+        icon: Icons.done_all,
+        action: KhatmaActionType.complete,
       );
     }
 

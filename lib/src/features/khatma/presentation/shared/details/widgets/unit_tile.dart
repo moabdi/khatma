@@ -157,6 +157,8 @@ class UnitTile extends StatelessWidget {
         );
 
       case UnitStatus.reserved:
+        // Reserved units are clickable if owned by current user or user is admin
+        final canClick = isOwnedByCurrentUser || isUserAdminOrCreator;
         return _StatusInfo(
           backgroundColor: context.colorScheme.surfaceContainer,
           avatarColor:
@@ -166,7 +168,7 @@ class UnitTile extends StatelessWidget {
           borderColor:
               context.colorScheme.onSurfaceVariant.withValues(alpha: 0.2),
           trailingIcon: Icons.lock_outline,
-          isClickable: false,
+          isClickable: canClick,
         );
 
       case UnitStatus.selected:
