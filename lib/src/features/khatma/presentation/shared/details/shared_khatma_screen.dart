@@ -5,9 +5,11 @@ import 'package:khatma/src/features/authentication/application/account_manager.d
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/logic/khatma_details_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_description_card.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_filter_chips.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_units_header.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/progress_stats.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/unit_tile.dart';
-import 'package:khatma/src/features/khatma/presentation/shared/search/widgets/filter_chip.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -100,7 +102,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                       children: [
                         // Description section
                         if (state.khatma.description?.isNotEmpty ?? false) ...[
-                          _buildDescription(state.khatma),
+                          KhatmaDescriptionCard(khatma: state.khatma),
                           gapH16,
                         ],
 
@@ -109,32 +111,15 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                         gapH20,
 
                         // Section title with clear selection button
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              context.loc.khatmaUnitsWithType(state.khatma.unit.name),
-                              style: context.textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            // Clear selection button (only visible when units are selected)
-                            if (state.hasSelectedUnits)
-                              TextButton.icon(
-                                onPressed: () => controller.clearSelection(),
-                                icon: const Icon(Icons.clear_all, size: 18),
-                                label: Text(context.loc.clearSelection),
-                                style: TextButton.styleFrom(
-                                  visualDensity: VisualDensity.compact,
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                ),
-                              ),
-                          ],
+                        KhatmaUnitsHeader(
+                          unitName: state.khatma.unit.name,
+                          hasSelectedUnits: state.hasSelectedUnits,
+                          onClearSelection: () => controller.clearSelection(),
                         ),
                         gapH12,
 
                         // Filter chips
-                        _buildFilterChips(state, controller),
+                        KhatmaFilterChips(state: state, controller: controller),
                         gapH16,
 
                         // Units list
@@ -172,110 +157,6 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     );
   }
 
-  Widget _buildDescription(KhatmaShared khatma) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: context.colorScheme.surfaceContainerLow,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: context.colorScheme.outlineVariant,
-        ),
-      ),
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          tilePadding: EdgeInsets.zero,
-          childrenPadding: const EdgeInsets.only(top: 12),
-          title: Row(
-            children: [
-              Icon(
-                Icons.info_outline,
-                size: 16,
-                color: context.colorScheme.primary,
-              ),
-              gapW8,
-              Text(
-                context.loc.khatmaDescription,
-                style: context.textTheme.labelLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: context.colorScheme.primary,
-                ),
-              ),
-            ],
-          ),
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                khatma.description ?? '',
-                style: context.textTheme.bodyMedium?.copyWith(
-                  color: context.colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFilterChips(
-    KhatmaDetailsState state,
-    KhatmaDetailsController controller,
-  ) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          KhatmaFilterChip(
-            label: context.loc.filterAll,
-            icon: Icons.apps_rounded,
-            isSelected: state.activeFilters.contains(UnitFilter.all),
-            count: state.getFilterCount(UnitFilter.all),
-            onTap: () => controller.toggleFilter(UnitFilter.all),
-          ),
-          gapW8,
-          KhatmaFilterChip(
-            label: context.loc.filterMyUnits,
-            icon: Icons.person_rounded,
-            isSelected: state.activeFilters.contains(UnitFilter.mine),
-            count: state.getFilterCount(UnitFilter.mine),
-            isEnabled: state.getFilterCount(UnitFilter.mine) > 0,
-            onTap: () => controller.toggleFilter(UnitFilter.mine),
-          ),
-          gapW8,
-          KhatmaFilterChip(
-            label: context.loc.filterAvailable,
-            icon: Icons.check_circle_outline_rounded,
-            isSelected: state.activeFilters.contains(UnitFilter.free),
-            count: state.getFilterCount(UnitFilter.free),
-            isEnabled: state.getFilterCount(UnitFilter.free) > 0,
-            onTap: () => controller.toggleFilter(UnitFilter.free),
-          ),
-          gapW8,
-          KhatmaFilterChip(
-            label: context.loc.filterReserved,
-            icon: Icons.lock_outline,
-            isSelected: state.activeFilters.contains(UnitFilter.reserved),
-            count: state.getFilterCount(UnitFilter.reserved),
-            isEnabled: state.getFilterCount(UnitFilter.reserved) > 0,
-            onTap: () => controller.toggleFilter(UnitFilter.reserved),
-          ),
-          gapW8,
-          KhatmaFilterChip(
-            label: context.loc.filterCompleted,
-            icon: Icons.done_all,
-            isSelected: state.activeFilters.contains(UnitFilter.completed),
-            count: state.getFilterCount(UnitFilter.completed),
-            isEnabled: state.getFilterCount(UnitFilter.completed) > 0,
-            onTap: () => controller.toggleFilter(UnitFilter.completed),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildUnitsList(
     KhatmaDetailsState state,
     KhatmaDetailsController controller,
@@ -299,12 +180,12 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
         return UnitTile(
           unit: unit,
           onTap: () => _toggleUnitReservation(unit, state, controller),
-          reservationWarningDays: 7,
+          reservationWarningDays: state.khatma.reservationWarningDays,
           isUserAdminOrCreator: _isUserAdminOrCreator(state),
           isOwnedByCurrentUser: _isOwnedByCurrentUser(unit, state),
           onSendReminder: () => _sendReminder(unit, controller),
           onFreeUnit: () => _freeUnit(unit, controller),
-          color: state.khatma.color,
+          color: state.khatma.style.hexColor,
         );
       },
     );
