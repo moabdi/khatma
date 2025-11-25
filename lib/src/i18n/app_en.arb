@@ -1076,5 +1076,99 @@
   "completed": "Completed",
   "inProgress": "In Progress",
   "juzz": "Juzz",
-  "hizb": "Hizb"
+  "hizb": "Hizb",
+
+  "clearSelection": "Clear",
+  "joinKhatma": "Join Khatma",
+  "selectUnitsToJoin": "Select units to join",
+  "reserveAndJoin": "Reserve & Join ({count})",
+  "@reserveAndJoin": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsSelectedMax": "{selected} units selected • Max: {max}",
+  "@unitsSelectedMax": {
+    "placeholders": {
+      "selected": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "willJoinKhatma": "Will join khatma",
+  "unreserveUnits": "Unreserve Units ({count})",
+  "@unreserveUnits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitsSelected": "{count} units selected",
+  "@unitsSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "willFreeUnits": "Will free units",
+  "reserveUnitsAction": "Reserve Units ({count})",
+  "@reserveUnitsAction": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reservedSelectedInfo": "{reserved}/{max} reserved • {selected} selected",
+  "@reservedSelectedInfo": {
+    "placeholders": {
+      "reserved": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      },
+      "selected": {
+        "type": "int"
+      }
+    }
+  },
+  "unreserveUnit": "Unreserve Unit",
+  "cancelYourReservation": "Cancel your reservation",
+  "joinedKhatmaSuccessfully": "Joined {name} successfully",
+  "@joinedKhatmaSuccessfully": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "joinedAndReservedUnits": "Joined {name} and reserved {count} units",
+  "@joinedAndReservedUnits": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reservedUnitsSuccess": "Reserved {count} units",
+  "@reservedUnitsSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unreserveFeatureComingSoon": "Unreserve feature coming soon",
+  "pleaseSelectAtLeastOneUnit": "Please select at least one unit"
 }

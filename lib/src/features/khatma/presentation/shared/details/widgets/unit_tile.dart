@@ -282,7 +282,7 @@ class UnitTile extends StatelessWidget {
                 ),
                 title: Text(
                   isOwnedByCurrentUser
-                      ? 'Unreserve Unit' // TODO: Add to localization
+                      ? context.loc.unreserveUnit
                       : context.loc.freeUnit,
                   style: TextStyle(
                     color: isOwnedByCurrentUser
@@ -292,7 +292,7 @@ class UnitTile extends StatelessWidget {
                 ),
                 subtitle: Text(
                   isOwnedByCurrentUser
-                      ? 'Cancel your reservation' // TODO: Add to localization
+                      ? context.loc.cancelYourReservation
                       : context.loc.confirmFreeUnit,
                   style: context.textTheme.bodySmall,
                 ),

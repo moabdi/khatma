@@ -261,6 +261,54 @@ class KhatmaManager extends _$KhatmaManager {
     }
   }
 
+  /// Reserve multiple units at once for a user who is already a participant
+  Future<Result<KhatmaShared, AppErrorCode>> reserveUnits({
+    required String khatmaId,
+    required List<int> unitNumbers,
+    required String userId,
+    required String userName,
+  }) async {
+    final khatma = getKhatmaById(khatmaId);
+    if (khatma == null || khatma is! KhatmaShared) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    try {
+      var updatedKhatma = khatma;
+      for (final unitNumber in unitNumbers) {
+        updatedKhatma = updatedKhatma.reserveUnit(unitNumber, userId, userName);
+      }
+      await save(updatedKhatma);
+      return Result.success(updatedKhatma);
+    } catch (e) {
+      print('Error saving khatma: $e');
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
+
+  /// Release multiple reserved units at once
+  Future<Result<KhatmaShared, AppErrorCode>> releaseUnits({
+    required String khatmaId,
+    required List<int> unitNumbers,
+    required String userId,
+  }) async {
+    final khatma = getKhatmaById(khatmaId);
+    if (khatma == null || khatma is! KhatmaShared) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    try {
+      var updatedKhatma = khatma;
+      for (final unitNumber in unitNumbers) {
+        updatedKhatma = updatedKhatma.releaseUnit(unitNumber, userId);
+      }
+      await save(updatedKhatma);
+      return Result.success(updatedKhatma);
+    } catch (e) {
+      return Result.failure(AppErrorCode.storageSaveFailed);
+    }
+  }
+
   /// Get all shared khatmas
   List<KhatmaShared> getSharedKhatmas() {
     return state.khatmas.valueOrEmpty.whereType<KhatmaShared>().toList();

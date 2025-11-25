@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/logic/khatma_details_controller.dart';
@@ -122,7 +123,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                               TextButton.icon(
                                 onPressed: () => controller.clearSelection(),
                                 icon: const Icon(Icons.clear_all, size: 18),
-                                label: const Text('Clear'), // TODO: Add to localization
+                                label: Text(context.loc.clearSelection),
                                 style: TextButton.styleFrom(
                                   visualDensity: VisualDensity.compact,
                                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -299,8 +300,8 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           unit: unit,
           onTap: () => _toggleUnitReservation(unit, state, controller),
           reservationWarningDays: 7,
-          isUserAdminOrCreator: true,// _isUserAdminOrCreator(state),
-          isOwnedByCurrentUser: true,//_isOwnedByCurrentUser(unit, state),
+          isUserAdminOrCreator: _isUserAdminOrCreator(state),
+          isOwnedByCurrentUser: _isOwnedByCurrentUser(unit, state),
           onSendReminder: () => _sendReminder(unit, controller),
           onFreeUnit: () => _freeUnit(unit, controller),
           color: state.khatma.color,
@@ -440,8 +441,8 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     if (!isParticipant && selectedCount == 0) {
       // User not in khatma, no selection
       return _ButtonInfo(
-        buttonText: 'Join Khatma', // TODO: Add to localization
-        subtitle: 'Select units to join', // TODO: Add to localization
+        buttonText: context.loc.joinKhatma,
+        subtitle: context.loc.selectUnitsToJoin,
         icon: Icons.group_add,
         action: _ActionType.join,
       );
@@ -450,9 +451,9 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     if (!isParticipant && selectedCount > 0) {
       // User not in khatma, has selection
       return _ButtonInfo(
-        buttonText: 'Reserve & Join ($selectedCount)', // TODO: Add to localization
-        subtitle: '$selectedCount units selected • Max: $maxReservations', // TODO: Add to localization
-        hint: 'Will join khatma', // TODO: Add to localization
+        buttonText: context.loc.reserveAndJoin(selectedCount),
+        subtitle: context.loc.unitsSelectedMax(selectedCount, maxReservations),
+        hint: context.loc.willJoinKhatma,
         icon: Icons.group_add,
         action: _ActionType.reserveAndJoin,
       );
@@ -461,9 +462,9 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     if (isParticipant && areReservedUnitsSelected) {
       // User in khatma, selected their own reserved units
       return _ButtonInfo(
-        buttonText: 'Unreserve Units ($selectedCount)', // TODO: Add to localization
-        subtitle: '$selectedCount units selected', // TODO: Add to localization
-        hint: 'Will free units', // TODO: Add to localization
+        buttonText: context.loc.unreserveUnits(selectedCount),
+        subtitle: context.loc.unitsSelected(selectedCount),
+        hint: context.loc.willFreeUnits,
         icon: Icons.lock_open,
         color: Colors.orange.shade700,
         isWarning: true,
@@ -474,9 +475,9 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     // User in khatma, selecting free units
     final remaining = maxReservations - currentReserved;
     return _ButtonInfo(
-      buttonText: 'Reserve Units ($selectedCount)', // TODO: Add to localization
-      subtitle: '$currentReserved/$maxReservations reserved • $selectedCount selected', // TODO: Add to localization
-      hint: remaining == selectedCount ? null : 'Remaining: $remaining',
+      buttonText: context.loc.reserveUnitsAction(selectedCount),
+      subtitle: context.loc.reservedSelectedInfo(currentReserved, maxReservations, selectedCount),
+      hint: remaining == selectedCount ? null : context.loc.unitsRemaining(remaining),
       icon: Icons.check_circle,
       action: _ActionType.reserve,
     );
@@ -500,8 +501,12 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
   // === Helper Methods ===
 
   bool _isUserAdminOrCreator(KhatmaDetailsState state) {
-    // TODO: Implement actual user role check
-    return false;
+    return state.isUserAdminOrCreator;
+  }
+
+  bool _isOwnedByCurrentUser(Unit unit, KhatmaDetailsState state) {
+    if (state.currentUserId == null) return false;
+    return unit.reservedBy == state.currentUserId;
   }
 
   Future<void> _sendReminder(
@@ -509,7 +514,16 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     KhatmaDetailsController controller,
   ) async {
     try {
-      // TODO: Implement reminder logic
+      // TODO: Implement actual reminder notification system (push notification/email)
+      // For now, this is a placeholder that simulates sending a reminder
+      // In a real implementation, this would:
+      // 1. Send a push notification to the user who reserved the unit
+      // 2. Or send an email reminder
+      // 3. Update the lastReminderSent timestamp
+      // 4. Increment the reminderCount
+
+      await Future.delayed(const Duration(milliseconds: 500)); // Simulate API call
+
       if (mounted) {
         _showSnackBar(context.loc.reminderSentSuccess);
       }
@@ -525,9 +539,28 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     KhatmaDetailsController controller,
   ) async {
     try {
-      // TODO: Implement free unit logic
+      final currentUser = ref.read(userProvider);
+      if (currentUser == null) {
+        if (mounted) {
+          _showSnackBar(context.loc.userNotLoggedIn, isError: true);
+        }
+        return;
+      }
+
+      final result = await ref
+          .read(khatmaManagerProvider.notifier)
+          .releaseUnit(
+            khatmaId: widget.khatmaId,
+            unitNumber: unit.number,
+            userId: currentUser.id,
+          );
+
       if (mounted) {
-        _showSnackBar(context.loc.unitFreedSuccess);
+        if (result.isSuccess) {
+          _showSnackBar(context.loc.unitFreedSuccess);
+        } else {
+          _showSnackBar('Error: ${result.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
+        }
       }
     } catch (e) {
       if (mounted) {
@@ -560,7 +593,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           .toList();
 
       if (selectedUnits.isEmpty && actionType != _ActionType.join) {
-        _showSnackBar('Please select at least one unit', isError: true);
+        _showSnackBar(context.loc.pleaseSelectAtLeastOneUnit, isError: true);
         return;
       }
 
@@ -572,7 +605,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
               .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: []);
 
           if (mounted) {
-            _showSnackBar('Joined $khatmaName successfully');
+            _showSnackBar(context.loc.joinedKhatmaSuccessfully(khatmaName));
             context.goNamed(AppRoute.home.name);
           }
           break;
@@ -584,29 +617,65 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
               .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: selectedUnits);
 
           if (mounted) {
-            _showSnackBar('Joined $khatmaName and reserved ${selectedUnits.length} units');
+            _showSnackBar(context.loc.joinedAndReservedUnits(khatmaName, selectedUnits.length));
           }
           break;
 
         case _ActionType.reserve:
           // Just reserve units (user already in khatma)
-          // TODO: Implement reserve units API call
-          await ref
+          final currentUser = ref.read(userProvider);
+          if (currentUser == null) {
+            if (mounted) {
+              _showSnackBar(context.loc.userNotLoggedIn, isError: true);
+            }
+            return;
+          }
+
+          final reserveResult = await ref
               .read(khatmaManagerProvider.notifier)
-              .joinKhatma(khatmaId: widget.khatmaId, reservedUnits: selectedUnits);
+              .reserveUnits(
+                khatmaId: widget.khatmaId,
+                unitNumbers: selectedUnits,
+                userId: currentUser.id,
+                userName: currentUser.displayName ?? currentUser.email ?? 'User',
+              );
 
           if (mounted) {
-            _showSnackBar('Reserved ${selectedUnits.length} units');
+            if (reserveResult.isSuccess) {
+              _showSnackBar(context.loc.reservedUnitsSuccess(selectedUnits.length));
+              controller.clearSelection();
+            } else {
+              _showSnackBar('Error: ${reserveResult.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
+            }
             // Stay on the same page - don't navigate
           }
           break;
 
         case _ActionType.unreserve:
           // Unreserve units
-          // TODO: Implement unreserve units API call
-          // For now, just show a message
+          final currentUserForUnreserve = ref.read(userProvider);
+          if (currentUserForUnreserve == null) {
+            if (mounted) {
+              _showSnackBar(context.loc.userNotLoggedIn, isError: true);
+            }
+            return;
+          }
+
+          final unreserveResult = await ref
+              .read(khatmaManagerProvider.notifier)
+              .releaseUnits(
+                khatmaId: widget.khatmaId,
+                unitNumbers: selectedUnits,
+                userId: currentUserForUnreserve.id,
+              );
+
           if (mounted) {
-            _showSnackBar('Unreserve feature coming soon');
+            if (unreserveResult.isSuccess) {
+              _showSnackBar(context.loc.unitFreedSuccess);
+              controller.clearSelection();
+            } else {
+              _showSnackBar('Error: ${unreserveResult.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
+            }
             // Stay on the same page - don't navigate
           }
           break;

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
+import 'package:khatma/src/features/khatma/application/khatma_state.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/shared_khatma_screen.dart';
 
@@ -188,6 +189,11 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
     state = state.copyWith(currentUserId: userId);
   }
 
+  /// Update the khatma when it changes from the manager
+  void updateKhatma(KhatmaShared updatedKhatma) {
+    state = state.copyWith(khatma: updatedKhatma);
+  }
+
   void toggleFilter(UnitFilter filter) {
     // Only one filter can be selected at a time
     // Simply replace the current filter with the new one
@@ -361,18 +367,38 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
 final khatmaDetailsControllerProvider = StateNotifierProvider.family.autoDispose<
     KhatmaDetailsController, KhatmaDetailsState, String>(
   (ref, khatmaId) {
-    // Get the khatma from the manager
-    final manager = ref.watch(khatmaManagerProvider.notifier);
-    final khatma = manager.getKhatmaById(khatmaId) as KhatmaShared?;
+    // Watch the khatma manager state to get updates
+    final managerState = ref.watch(khatmaManagerProvider);
+    final khatmas = managerState.khatmas.valueOrNull ?? [];
 
-    if (khatma == null) {
-      throw StateError('Khatma with id $khatmaId not found');
-    }
+    // Find the khatma by ID
+    final khatma = khatmas.firstWhere(
+      (k) => k.id == khatmaId,
+      orElse: () => throw StateError('Khatma with id $khatmaId not found'),
+    ) as KhatmaShared;
 
     // Get current user ID from auth provider
     final currentUser = ref.watch(userProvider);
     final currentUserId = currentUser?.id;
 
-    return KhatmaDetailsController(khatma, currentUserId);
+    final controller = KhatmaDetailsController(khatma, currentUserId);
+
+    // Listen to khatma manager changes and update the controller's khatma
+    ref.listen(
+      khatmaManagerProvider,
+      (previous, next) {
+        final updatedKhatmas = next.khatmas.valueOrNull ?? [];
+        final updatedKhatmaOrNull = updatedKhatmas.firstWhere(
+          (k) => k.id == khatmaId,
+          orElse: () => khatma,
+        );
+
+        if (updatedKhatmaOrNull is KhatmaShared && updatedKhatmaOrNull != khatma) {
+          controller.updateKhatma(updatedKhatmaOrNull);
+        }
+      },
+    );
+
+    return controller;
   },
 );

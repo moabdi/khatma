@@ -2390,4 +2390,76 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hizb => 'حزب';
+
+  @override
+  String get clearSelection => 'Clear';
+
+  @override
+  String get joinKhatma => 'Join Khatma';
+
+  @override
+  String get selectUnitsToJoin => 'Select units to join';
+
+  @override
+  String reserveAndJoin(int count) {
+    return 'Reserve & Join ($count)';
+  }
+
+  @override
+  String unitsSelectedMax(int selected, int max) {
+    return '$selected units selected • Max: $max';
+  }
+
+  @override
+  String get willJoinKhatma => 'Will join khatma';
+
+  @override
+  String unreserveUnits(int count) {
+    return 'Unreserve Units ($count)';
+  }
+
+  @override
+  String unitsSelected(int count) {
+    return '$count units selected';
+  }
+
+  @override
+  String get willFreeUnits => 'Will free units';
+
+  @override
+  String reserveUnitsAction(int count) {
+    return 'Reserve Units ($count)';
+  }
+
+  @override
+  String reservedSelectedInfo(int reserved, int max, int selected) {
+    return '$reserved/$max reserved • $selected selected';
+  }
+
+  @override
+  String get unreserveUnit => 'Unreserve Unit';
+
+  @override
+  String get cancelYourReservation => 'Cancel your reservation';
+
+  @override
+  String joinedKhatmaSuccessfully(String name) {
+    return 'Joined $name successfully';
+  }
+
+  @override
+  String joinedAndReservedUnits(String name, int count) {
+    return 'Joined $name and reserved $count units';
+  }
+
+  @override
+  String reservedUnitsSuccess(int count) {
+    return 'Reserved $count units';
+  }
+
+  @override
+  String get unreserveFeatureComingSoon => 'Unreserve feature coming soon';
+
+  @override
+  String get pleaseSelectAtLeastOneUnit => 'Please select at least one unit';
 }

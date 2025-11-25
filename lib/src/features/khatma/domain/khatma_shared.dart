@@ -198,21 +198,9 @@ class KhatmaShared extends Khatma {
   KhatmaShared reserveUnit(int unitNumber, String userId, String userName) {
     assertActive();
 
-    final unitIndex = units.indexWhere((u) => u.number == unitNumber);
-    if (unitIndex == -1) {
+    // Validate unit number is within valid range
+    if (unitNumber < 1 || unitNumber > totalUnits) {
       throw InvalidPartNumberException(unitNumber, totalUnits);
-    }
-
-    final unit = units[unitIndex];
-
-    // Cannot reserve completed units
-    if (unit.isCompleted) {
-      throw UnitAlreadyCompletedException(unitNumber);
-    }
-
-    // Check if unit is already reserved by someone else
-    if (unit.isReserved && unit.reservedBy != userId) {
-      throw UnitAlreadyReservedException(unitNumber);
     }
 
     // Check reservation limit
@@ -221,14 +209,41 @@ class KhatmaShared extends Khatma {
       throw ReservationLimitExceededException(maxReservationsPerUser);
     }
 
+    final unitIndex = units.indexWhere((u) => u.number == unitNumber);
     final now = DateTime.now();
     final updatedUnits = List<Unit>.from(units);
-    updatedUnits[unitIndex] = unit.copyWith(
-      status: UnitStatus.reserved,
-      reservedBy: userId,
-      reservedByName: userName,
-      reservedDate: now,
-    );
+
+    if (unitIndex == -1) {
+      // Unit doesn't exist in array, create and add it
+      final newUnit = Unit(
+        number: unitNumber,
+        status: UnitStatus.reserved,
+        reservedBy: userId,
+        reservedByName: userName,
+        reservedDate: now,
+      );
+      updatedUnits.add(newUnit);
+    } else {
+      // Unit exists, validate and update it
+      final unit = units[unitIndex];
+
+      // Cannot reserve completed units
+      if (unit.isCompleted) {
+        throw UnitAlreadyCompletedException(unitNumber);
+      }
+
+      // Check if unit is already reserved by someone else
+      if (unit.isReserved && unit.reservedBy != userId) {
+        throw UnitAlreadyReservedException(unitNumber);
+      }
+
+      updatedUnits[unitIndex] = unit.copyWith(
+        status: UnitStatus.reserved,
+        reservedBy: userId,
+        reservedByName: userName,
+        reservedDate: now,
+      );
+    }
 
     return copyWith(
       units: updatedUnits,

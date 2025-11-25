@@ -4071,6 +4071,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hizb'**
   String get hizb;
+
+  /// No description provided for @clearSelection.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clearSelection;
+
+  /// No description provided for @joinKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Khatma'**
+  String get joinKhatma;
+
+  /// No description provided for @selectUnitsToJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Select units to join'**
+  String get selectUnitsToJoin;
+
+  /// No description provided for @reserveAndJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve & Join ({count})'**
+  String reserveAndJoin(int count);
+
+  /// No description provided for @unitsSelectedMax.
+  ///
+  /// In en, this message translates to:
+  /// **'{selected} units selected • Max: {max}'**
+  String unitsSelectedMax(int selected, int max);
+
+  /// No description provided for @willJoinKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Will join khatma'**
+  String get willJoinKhatma;
+
+  /// No description provided for @unreserveUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Unreserve Units ({count})'**
+  String unreserveUnits(int count);
+
+  /// No description provided for @unitsSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} units selected'**
+  String unitsSelected(int count);
+
+  /// No description provided for @willFreeUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Will free units'**
+  String get willFreeUnits;
+
+  /// No description provided for @reserveUnitsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve Units ({count})'**
+  String reserveUnitsAction(int count);
+
+  /// No description provided for @reservedSelectedInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'{reserved}/{max} reserved • {selected} selected'**
+  String reservedSelectedInfo(int reserved, int max, int selected);
+
+  /// No description provided for @unreserveUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unreserve Unit'**
+  String get unreserveUnit;
+
+  /// No description provided for @cancelYourReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel your reservation'**
+  String get cancelYourReservation;
+
+  /// No description provided for @joinedKhatmaSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined {name} successfully'**
+  String joinedKhatmaSuccessfully(String name);
+
+  /// No description provided for @joinedAndReservedUnits.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined {name} and reserved {count} units'**
+  String joinedAndReservedUnits(String name, int count);
+
+  /// No description provided for @reservedUnitsSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved {count} units'**
+  String reservedUnitsSuccess(int count);
+
+  /// No description provided for @unreserveFeatureComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Unreserve feature coming soon'**
+  String get unreserveFeatureComingSoon;
+
+  /// No description provided for @pleaseSelectAtLeastOneUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select at least one unit'**
+  String get pleaseSelectAtLeastOneUnit;
 }
 
 class _AppLocalizationsDelegate
