@@ -34,7 +34,9 @@ class KhatmaReadScreen extends ConsumerWidget {
       khatma = ref.watch(khatmaManagerProvider.notifier).getKhatmaById(khatmaId);
       // Update the selected khatma if found
       if (khatma != null) {
-        ref.read(khatmaManagerProvider.notifier).selectKhatma(khatma);
+        Future.microtask(() {
+          ref.read(khatmaManagerProvider.notifier).selectKhatma(khatma);
+        });
       }
     }
 

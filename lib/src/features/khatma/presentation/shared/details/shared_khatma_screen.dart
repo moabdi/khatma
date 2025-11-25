@@ -5,11 +5,12 @@ import 'package:khatma/src/features/authentication/application/account_manager.d
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/logic/khatma_details_controller.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_bottom_action_button.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_description_card.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_filter_chips.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_units_header.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/khatma_units_list.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/progress_stats.dart';
-import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/unit_tile.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -48,17 +49,33 @@ class SharedKhatmaScreen extends ConsumerStatefulWidget {
 class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
   @override
   Widget build(BuildContext context) {
-    // Get the shared khatma from the provider
-    Khatma? khatma = ref.watch(khatmaManagerProvider).selectedKhatma;
+    // Watch the khatmas list directly to avoid race conditions with selectedKhatma
+    final khatmasAsync = ref.watch(khatmaManagerProvider).khatmas;
 
-    // If no selected khatma, try to find it by ID
-    if (khatma == null || khatma.id != widget.khatmaId) {
-      khatma = ref
-          .watch(khatmaManagerProvider.notifier)
-          .getKhatmaById(widget.khatmaId);
-      // Update the selected khatma if found
-      if (khatma != null) {
-        ref.read(khatmaManagerProvider.notifier).selectKhatma(khatma);
+    // Show loading state while khatmas are being fetched
+    if (khatmasAsync.isLoading) {
+      return Scaffold(
+        appBar: AppBar(title: Text(context.loc.khatma)),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    // Try to find the khatma by ID from the loaded list
+    final khatmas = khatmasAsync.valueOrNull ?? [];
+    Khatma? khatma;
+    try {
+      khatma = khatmas.firstWhere((k) => k.id == widget.khatmaId);
+    } catch (_) {
+      khatma = null;
+    }
+
+    // Update selectedKhatma for other features that might need it (but don't rely on it)
+    if (khatma != null) {
+      final currentSelected = ref.read(khatmaManagerProvider).selectedKhatma;
+      if (currentSelected?.id != widget.khatmaId) {
+        Future.microtask(() {
+          ref.read(khatmaManagerProvider.notifier).selectKhatma(khatma);
+        });
       }
     }
 
@@ -123,14 +140,23 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                         gapH16,
 
                         // Units list
-                        _buildUnitsList(state, controller),
+                        KhatmaUnitsList(
+                          state: state,
+                          onUnitTap: (unit) => _toggleUnitReservation(unit, state, controller),
+                          onSendReminder: (unit) => _sendReminder(unit, controller),
+                          onFreeUnit: (unit) => _freeUnit(unit, controller),
+                        ),
                       ],
                     ),
                   ),
           ),
 
           // Bottom action button - always show but disabled if no selection
-          _buildBottomActionButton(state, controller, khatma),
+          KhatmaBottomActionButton(
+            state: state,
+            khatma: khatma,
+            onAction: (action, selectedUnits) => _performAction(state, controller, khatma.name, action, selectedUnits),
+          ),
         ],
       ),
     );
@@ -154,40 +180,6 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
         ),
         gapW8,
       ],
-    );
-  }
-
-  Widget _buildUnitsList(
-    KhatmaDetailsState state,
-    KhatmaDetailsController controller,
-  ) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: state.khatma.totalUnits,
-      itemBuilder: (context, index) {
-        final number = index + 1;
-        final unit = state.khatma.units.firstWhere(
-          (u) => u.number == number,
-          orElse: () => Unit(number: number),
-        );
-
-        // Apply filter
-        if (!state.shouldShowUnit(unit)) {
-          return const SizedBox.shrink();
-        }
-
-        return UnitTile(
-          unit: unit,
-          onTap: () => _toggleUnitReservation(unit, state, controller),
-          reservationWarningDays: state.khatma.reservationWarningDays,
-          isUserAdminOrCreator: _isUserAdminOrCreator(state),
-          isOwnedByCurrentUser: _isOwnedByCurrentUser(unit, state),
-          onSendReminder: () => _sendReminder(unit, controller),
-          onFreeUnit: () => _freeUnit(unit, controller),
-          color: state.khatma.style.hexColor,
-        );
-      },
     );
   }
 
@@ -225,145 +217,6 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     );
   }
 
-  Widget _buildBottomActionButton(
-    KhatmaDetailsState state,
-    KhatmaDetailsController controller,
-    KhatmaShared khatma,
-  ) {
-    final selectedUnitsCount = state.selectedUnits.length;
-    final hasSelection = selectedUnitsCount > 0;
-    final canConfirm = hasSelection && !state.isJoining;
-
-    // Determine button text and action based on user state and selection
-    final buttonInfo = _getButtonInfo(state);
-
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: context.colorScheme.surface,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Selection info
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  buttonInfo.subtitle,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: context.colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                if (buttonInfo.hint != null)
-                  Text(
-                    buttonInfo.hint!,
-                    style: context.textTheme.bodySmall?.copyWith(
-                      color: buttonInfo.isWarning ? Colors.orange.shade600 : Colors.green.shade600,
-                    ),
-                  ),
-              ],
-            ),
-            gapH12,
-            // Action button
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton.icon(
-                onPressed: canConfirm
-                    ? () => _performAction(state, controller, khatma.name, buttonInfo.action)
-                    : null,
-                icon: state.isJoining
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: Colors.white,
-                        ),
-                      )
-                    : Icon(buttonInfo.icon),
-                label: Text(
-                  state.isJoining ? context.loc.loading : buttonInfo.buttonText,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
-                ),
-                style: FilledButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: buttonInfo.color ?? khatma.style.hexColor,
-                  disabledBackgroundColor:
-                      context.colorScheme.surfaceContainerHighest,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  _ButtonInfo _getButtonInfo(KhatmaDetailsState state) {
-    final selectedCount = state.selectedUnits.length;
-    final isParticipant = state.isUserParticipant;
-    final areReservedUnitsSelected = state.areAllSelectedUnitsReserved;
-    final currentReserved = state.currentUserReservedCount;
-    final maxReservations = state.maxReservationsPerUser;
-
-    if (!isParticipant && selectedCount == 0) {
-      // User not in khatma, no selection
-      return _ButtonInfo(
-        buttonText: context.loc.joinKhatma,
-        subtitle: context.loc.selectUnitsToJoin,
-        icon: Icons.group_add,
-        action: _ActionType.join,
-      );
-    }
-
-    if (!isParticipant && selectedCount > 0) {
-      // User not in khatma, has selection
-      return _ButtonInfo(
-        buttonText: context.loc.reserveAndJoin(selectedCount),
-        subtitle: context.loc.unitsSelectedMax(selectedCount, maxReservations),
-        hint: context.loc.willJoinKhatma,
-        icon: Icons.group_add,
-        action: _ActionType.reserveAndJoin,
-      );
-    }
-
-    if (isParticipant && areReservedUnitsSelected) {
-      // User in khatma, selected their own reserved units
-      return _ButtonInfo(
-        buttonText: context.loc.unreserveUnits(selectedCount),
-        subtitle: context.loc.unitsSelected(selectedCount),
-        hint: context.loc.willFreeUnits,
-        icon: Icons.lock_open,
-        color: Colors.orange.shade700,
-        isWarning: true,
-        action: _ActionType.unreserve,
-      );
-    }
-
-    // User in khatma, selecting free units
-    final remaining = maxReservations - currentReserved;
-    return _ButtonInfo(
-      buttonText: context.loc.reserveUnitsAction(selectedCount),
-      subtitle: context.loc.reservedSelectedInfo(currentReserved, maxReservations, selectedCount),
-      hint: remaining == selectedCount ? null : context.loc.unitsRemaining(remaining),
-      icon: Icons.check_circle,
-      action: _ActionType.reserve,
-    );
-  }
-
   // === Event Handlers ===
 
   void _toggleUnitReservation(
@@ -380,15 +233,6 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
   }
 
   // === Helper Methods ===
-
-  bool _isUserAdminOrCreator(KhatmaDetailsState state) {
-    return state.isUserAdminOrCreator;
-  }
-
-  bool _isOwnedByCurrentUser(Unit unit, KhatmaDetailsState state) {
-    if (state.currentUserId == null) return false;
-    return unit.reservedBy == state.currentUserId;
-  }
 
   Future<void> _sendReminder(
     Unit unit,
@@ -466,20 +310,17 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     KhatmaDetailsState state,
     KhatmaDetailsController controller,
     String khatmaName,
-    _ActionType actionType,
+    KhatmaActionType actionType,
+    List<int> selectedUnits,
   ) async {
     try {
-      final selectedUnits = state.selectedUnits
-          .map((unit) => unit.number)
-          .toList();
-
-      if (selectedUnits.isEmpty && actionType != _ActionType.join) {
+      if (selectedUnits.isEmpty && actionType != KhatmaActionType.join) {
         _showSnackBar(context.loc.pleaseSelectAtLeastOneUnit, isError: true);
         return;
       }
 
       switch (actionType) {
-        case _ActionType.join:
+        case KhatmaActionType.join:
           // Just join without reserving units
           await ref
               .read(khatmaManagerProvider.notifier)
@@ -491,7 +332,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           }
           break;
 
-        case _ActionType.reserveAndJoin:
+        case KhatmaActionType.reserveAndJoin:
           // Join and reserve selected units
           await ref
               .read(khatmaManagerProvider.notifier)
@@ -502,7 +343,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           }
           break;
 
-        case _ActionType.reserve:
+        case KhatmaActionType.reserve:
           // Just reserve units (user already in khatma)
           final currentUser = ref.read(userProvider);
           if (currentUser == null) {
@@ -532,7 +373,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           }
           break;
 
-        case _ActionType.unreserve:
+        case KhatmaActionType.unreserve:
           // Unreserve units
           final currentUserForUnreserve = ref.read(userProvider);
           if (currentUserForUnreserve == null) {
@@ -567,33 +408,4 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
       }
     }
   }
-}
-
-// Helper enum for action types
-enum _ActionType {
-  join,
-  reserveAndJoin,
-  reserve,
-  unreserve,
-}
-
-// Helper class for button information
-class _ButtonInfo {
-  final String buttonText;
-  final String subtitle;
-  final String? hint;
-  final IconData icon;
-  final Color? color;
-  final bool isWarning;
-  final _ActionType action;
-
-  _ButtonInfo({
-    required this.buttonText,
-    required this.subtitle,
-    this.hint,
-    required this.icon,
-    this.color,
-    this.isWarning = false,
-    required this.action,
-  });
 }
