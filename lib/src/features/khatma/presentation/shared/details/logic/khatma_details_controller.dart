@@ -144,7 +144,9 @@ class KhatmaDetailsState {
         case UnitFilter.all:
           return true;
         case UnitFilter.mine:
-          if (unit.isReserved) return true;
+          // Show reserved units by current user OR completed units by current user
+          if (unit.isReserved && unit.reservedBy == currentUserId) return true;
+          if (unit.isCompleted && unit.completedBy == currentUserId) return true;
         case UnitFilter.reserved:
           if (unit.isReserved) return true;
         case UnitFilter.free:
@@ -164,7 +166,10 @@ class KhatmaDetailsState {
       case UnitFilter.all:
         return khatma.totalUnits;
       case UnitFilter.mine:
-        return khatma.units.where((u) => u.isReserved).length;
+        // Count both reserved and completed units by current user
+        final reservedByMe = khatma.units.where((u) => u.isReserved && u.reservedBy == currentUserId).length;
+        final completedByMe = khatma.units.where((u) => u.isCompleted && u.completedBy == currentUserId).length;
+        return reservedByMe + completedByMe;
       case UnitFilter.reserved:
         return khatma.units.where((u) => u.isReserved).length;
       case UnitFilter.free:
@@ -189,8 +194,8 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
 
   // Default filter logic:
   // - Non-participants: show "free" filter
-  // - Participants with reserved units: show "mine" filter
-  // - Participants without reserved units: show "all" filter
+  // - Participants with reserved or completed units: show "mine" filter
+  // - Participants without any units: show "all" filter
   static Set<UnitFilter> _getDefaultFilters(KhatmaShared khatma, String? currentUserId) {
     // Check if user is a participant
     final isParticipant = currentUserId != null &&
@@ -201,9 +206,11 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
       return {UnitFilter.free};
     }
 
-    // For participants, check if they have reserved units
+    // For participants, check if they have reserved or completed units
     final mineCount = khatma.units
-        .where((u) => u.isReserved && u.reservedBy == currentUserId)
+        .where((u) =>
+            (u.isReserved && u.reservedBy == currentUserId) ||
+            (u.isCompleted && u.completedBy == currentUserId))
         .length;
 
     if (mineCount > 0) {
@@ -417,9 +424,9 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
 }
 
 // Provider for the controller
-// Use autoDispose to keep state alive during the screen session
 // Key by khatma ID instead of entire khatma object to prevent recreating controller
-final khatmaDetailsControllerProvider = StateNotifierProvider.family.autoDispose<
+// Note: Not using autoDispose to ensure controller stays alive during async operations
+final khatmaDetailsControllerProvider = StateNotifierProvider.family<
     KhatmaDetailsController, KhatmaDetailsState, String>(
   (ref, khatmaId) {
     // Watch the khatma manager state to get updates
@@ -442,6 +449,9 @@ final khatmaDetailsControllerProvider = StateNotifierProvider.family.autoDispose
     ref.listen(
       khatmaManagerProvider,
       (previous, next) {
+        // Guard against accessing disposed controller
+        if (!controller.mounted) return;
+
         final updatedKhatmas = next.khatmas.valueOrNull ?? [];
         final updatedKhatmaOrNull = updatedKhatmas.firstWhere(
           (k) => k.id == khatmaId,

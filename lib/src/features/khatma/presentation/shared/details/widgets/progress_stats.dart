@@ -51,24 +51,24 @@ class KhatmaProgressStats extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
+              child: _ProgressStatCard(
+                label: context.loc.freeUnits,
+                percent: _calculateFreeUnitsPercent(),
+                color: context.colorScheme.secondary,
+              ),
+            ),
+            gapW12,
+            Expanded(
               child: GestureDetector(
                 onTap: () => context.go('/khatma/shared/${khatma.id}/participants'),
                 child: _ProgressStatCardWithCount(
                   icon: Icons.people_rounded,
-                  label: context.loc.members,
+                  label: context.loc.reserved,
                   count: khatma.membersCount.toString(),
                   percent: _calculateTakenUnitsPercent(),
                   color: context.colorScheme.primary,
                   shouldAnimate: shouldAnimate,
                 ),
-              ),
-            ),
-            gapW12,
-            Expanded(
-              child: _ProgressStatCard(
-                label: context.loc.freeUnits,
-                percent: _calculateFreeUnitsPercent(),
-                color: context.colorScheme.secondary,
               ),
             ),
             gapW12,

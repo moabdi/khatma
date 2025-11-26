@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -65,9 +66,12 @@ class UnitActionsSheet extends StatelessWidget {
                   : context.loc.confirmFreeUnit,
               style: context.textTheme.bodySmall,
             ),
-            onTap: () {
+            onTap: () async {
               Navigator.pop(context);
-              _showConfirmFreeDialog(context);
+              final confirmed = await _showConfirmFreeDialog(context);
+              if (confirmed == true && onFreeUnit != null) {
+                onFreeUnit!();
+              }
             },
           ),
           const SizedBox(height: 8),
@@ -76,33 +80,19 @@ class UnitActionsSheet extends StatelessWidget {
     );
   }
 
-  void _showConfirmFreeDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(context.loc.freeUnit),
-          content: Text(context.loc.confirmFreeUnit),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(context.loc.cancel),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                if (onFreeUnit != null) {
-                  onFreeUnit!();
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange.shade700,
-              ),
-              child: Text(context.loc.freeUnit),
-            ),
-          ],
-        );
-      },
+  Future<bool?> _showConfirmFreeDialog(BuildContext context) {
+    return AppDialog.showConfirm(
+      context,
+      title: isOwnedByCurrentUser
+          ? context.loc.unreserveUnit
+          : context.loc.freeUnit,
+      message: isOwnedByCurrentUser
+          ? context.loc.cancelYourReservation
+          : context.loc.confirmFreeUnit,
+      confirmText: isOwnedByCurrentUser
+          ? context.loc.unreserveUnit
+          : context.loc.freeUnit,
+      cancelText: context.loc.cancel,
     );
   }
 }

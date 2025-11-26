@@ -54,6 +54,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get edit => 'تعديل';
 
   @override
+  String get reserve => 'حجز';
+
+  @override
+  String get release => 'إطلاق';
+
+  @override
+  String get unreserve => 'إلغاء الحجز';
+
+  @override
   String get finish => 'إنهاء';
 
   @override

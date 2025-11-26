@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
@@ -132,6 +133,12 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
                           unitName: state.khatma.unit.name,
                           hasSelectedUnits: state.hasSelectedUnits,
                           onClearSelection: () => controller.clearSelection(),
+                          selectedReservedCount: state.areAllSelectedUnitsReserved
+                              ? state.selectedUnits.length
+                              : 0,
+                          onUnreserveAll: state.areAllSelectedUnitsReserved
+                              ? () => _unreserveAllSelected(state, controller)
+                              : null,
                         ),
                         gapH12,
 
@@ -354,6 +361,73 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     }
   }
 
+  Future<void> _unreserveAllSelected(
+    KhatmaDetailsState state,
+    KhatmaDetailsController controller,
+  ) async {
+    final selectedUnits = state.selectedUnits;
+    if (selectedUnits.isEmpty) return;
+
+    // Show confirmation dialog
+    final confirmed = await AppDialog.showConfirm(
+      context,
+      title: context.loc.unreserveUnits(selectedUnits.length),
+      message: 'Are you sure you want to unreserve ${selectedUnits.length} selected unit(s)?',
+      confirmText: context.loc.unreserve,
+      cancelText: context.loc.cancel,
+    );
+
+    if (confirmed != true) return;
+
+    try {
+      final currentUser = ref.read(userProvider);
+      if (currentUser == null) {
+        if (mounted) {
+          _showSnackBar(context.loc.userNotLoggedIn, isError: true);
+        }
+        return;
+      }
+
+      // Unreserve all selected units
+      int successCount = 0;
+      int failCount = 0;
+
+      for (final unit in selectedUnits) {
+        final result = await ref
+            .read(khatmaManagerProvider.notifier)
+            .releaseUnit(
+              khatmaId: widget.khatmaId,
+              unitNumber: unit.number,
+              userId: currentUser.id,
+            );
+
+        if (result.isSuccess) {
+          successCount++;
+        } else {
+          failCount++;
+        }
+      }
+
+      // Clear selection after unreserving
+      //controller.clearSelection();
+
+      if (mounted) {
+        if (failCount == 0) {
+          _showSnackBar('Successfully unreserved $successCount unit(s)');
+        } else {
+          _showSnackBar(
+            'Unreserved $successCount unit(s), failed $failCount',
+            isError: failCount > 0,
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        _showSnackBar('Error unreserving units: $e', isError: true);
+      }
+    }
+  }
+
   void _showSnackBar(String message, {bool isError = false}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -456,7 +530,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           if (mounted) {
             if (reserveResult.isSuccess) {
               _showSnackBar(context.loc.reservedUnitsSuccess(selectedUnits.length));
-              controller.clearSelection();
+              //controller.clearSelection();
             } else {
               _showSnackBar('Error: ${reserveResult.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
             }
@@ -494,7 +568,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           if (mounted) {
             if (unreserveResult.isSuccess) {
               _showSnackBar(context.loc.unitFreedSuccess);
-              controller.clearSelection();
+              //controller.clearSelection();
             } else {
               _showSnackBar('Error: ${unreserveResult.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
             }
@@ -523,7 +597,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
           if (mounted) {
             if (completeResult.isSuccess) {
               _showSnackBar(context.loc.successCompleteParts(selectedUnits.length));
-              controller.clearSelection();
+              //controller.clearSelection();
             } else {
               _showSnackBar('Error: ${completeResult.errorOrNull?.toString() ?? "Unknown error"}', isError: true);
             }

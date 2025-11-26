@@ -54,6 +54,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get edit => 'Edit';
 
   @override
+  String get reserve => 'Reserve';
+
+  @override
+  String get release => 'Release';
+
+  @override
+  String get unreserve => 'Unreserve';
+
+  @override
   String get finish => 'Finish';
 
   @override

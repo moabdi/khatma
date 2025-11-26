@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
-import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/unit_actions_sheet.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/unit_avatar.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/unit_reservation_info.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/widgets/unit_subtitle.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/khatma_ui.dart';
 
@@ -19,6 +20,7 @@ class UnitTile extends StatelessWidget {
     this.onFreeUnit,
     this.color,
     this.isSelected = false,
+    this.userPhotoUrl,
   });
 
   final Unit unit;
@@ -30,6 +32,7 @@ class UnitTile extends StatelessWidget {
   final VoidCallback? onFreeUnit;
   final Color? color;
   final bool isSelected;
+  final String? userPhotoUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,9 @@ class UnitTile extends StatelessWidget {
                 borderColor: statusInfo.iconColor,
                 numberColor: statusInfo.numberColor,
                 isSelected: isSelected,
+                userId: unit.reservedBy,
+                userName: unit.reservedByName,
+                userPhotoUrl: userPhotoUrl,
               ),
               gapW12,
               // Content
@@ -93,7 +99,7 @@ class UnitTile extends StatelessWidget {
                                 _shouldShowActions()
                                     ? Icons.lock_reset
                                     : statusInfo.trailingIcon,
-                                color: statusInfo.iconColor,
+                                color: _shouldShowActions() ? Colors.amber : statusInfo.iconColor,
                               ),
                             ),
                           ),
@@ -131,19 +137,24 @@ class UnitTile extends StatelessWidget {
         (isUserAdminOrCreator || isOwnedByCurrentUser);
   }
 
-  void _showActions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return UnitActionsSheet(
-          unit: unit,
-          isUserAdminOrCreator: isUserAdminOrCreator,
-          isOwnedByCurrentUser: isOwnedByCurrentUser,
-          onSendReminder: onSendReminder,
-          onFreeUnit: onFreeUnit,
-        );
-      },
+  Future<void> _showActions(BuildContext context) async {
+    final confirmed = await AppDialog.showConfirm(
+      context,
+      title: isOwnedByCurrentUser
+          ? context.loc.unreserveUnit
+          : context.loc.freeUnit,
+      message: isOwnedByCurrentUser
+          ? context.loc.cancelYourReservation
+          : context.loc.confirmFreeUnit,
+      confirmText: isOwnedByCurrentUser
+          ? context.loc.unreserveUnit
+          : context.loc.freeUnit,
+      cancelText: context.loc.cancel,
     );
+
+    if (confirmed == true && onFreeUnit != null) {
+      onFreeUnit!();
+    }
   }
 
   _StatusInfo _getStatusInfo(BuildContext context) {

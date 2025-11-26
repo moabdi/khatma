@@ -54,6 +54,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get edit => 'Modifier';
 
   @override
+  String get reserve => 'Reserve';
+
+  @override
+  String get release => 'Libérer';
+
+  @override
+  String get unreserve => 'Libérer';
+
+  @override
   String get finish => 'Terminer';
 
   @override

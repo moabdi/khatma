@@ -190,6 +190,24 @@ abstract class AppLocalizations {
   /// **'Edit'**
   String get edit;
 
+  /// No description provided for @reserve.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve'**
+  String get reserve;
+
+  /// No description provided for @release.
+  ///
+  /// In en, this message translates to:
+  /// **'Release'**
+  String get release;
+
+  /// No description provided for @unreserve.
+  ///
+  /// In en, this message translates to:
+  /// **'Unreserve'**
+  String get unreserve;
+
   /// No description provided for @finish.
   ///
   /// In en, this message translates to:

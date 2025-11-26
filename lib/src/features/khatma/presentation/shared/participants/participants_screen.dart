@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
+import 'package:khatma/src/features/khatma/presentation/shared/utils/user_color_generator.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/khatma_ui.dart';
@@ -819,7 +820,7 @@ class _ParticipantsScreenState extends ConsumerState<ParticipantsScreen> {
       roleIcon = Icons.shield;
     } else {
       // Members get unique color based on userId
-      avatarColor = _getUserColor(participant.userId);
+      avatarColor = UserColorGenerator.getColorForUser(participant.userId);
       roleIcon = null;
     }
 
@@ -880,26 +881,6 @@ class _ParticipantsScreenState extends ConsumerState<ParticipantsScreen> {
   }
 
   // Generate unique color based on userId
-  Color _getUserColor(String userId) {
-    final colors = [
-      Colors.blue,
-      Colors.green,
-      Colors.orange,
-      Colors.purple,
-      Colors.teal,
-      Colors.indigo,
-      Colors.pink,
-      Colors.cyan,
-      Colors.amber,
-      Colors.deepOrange,
-      Colors.lightGreen,
-      Colors.deepPurple,
-    ];
-
-    // Use hashCode to generate consistent color for same user
-    final index = userId.hashCode.abs() % colors.length;
-    return colors[index];
-  }
 
   // Build statistics header
   Widget _buildStatisticsHeader(BuildContext context, KhatmaShared khatma, int pendingCount) {

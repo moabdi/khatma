@@ -134,8 +134,8 @@ class KhatmaShared extends Khatma {
   // Computed properties
   int get membersCount => participants.length;
 
-  int get unitsAvailable =>
-      units.where((unit) => unit.status == UnitStatus.free).length;
+  // Free units are those not in the units array (not reserved or completed)
+  int get unitsAvailable => totalUnits - units.length;
 
   int get totalUnits => unit.count;
 
@@ -355,13 +355,10 @@ class KhatmaShared extends Khatma {
     }
 
     final now = DateTime.now();
+    // Remove the unit from the array instead of setting it to free
+    // This makes it truly available for new reservations
     final updatedUnits = List<Unit>.from(units);
-    updatedUnits[unitIndex] = unit.copyWith(
-      status: UnitStatus.free,
-      reservedBy: null,
-      reservedByName: null,
-      reservedDate: null,
-    );
+    updatedUnits.removeAt(unitIndex);
 
     return copyWith(
       units: updatedUnits,
@@ -502,18 +499,10 @@ class KhatmaShared extends Khatma {
       throw Exception('Participant is already blocked');
     }
 
-    // Unreserve all units reserved by this user
-    final updatedUnits = units.map((unit) {
-      if (unit.isReserved && unit.reservedBy == userId) {
-        return unit.copyWith(
-          status: UnitStatus.free,
-          reservedBy: null,
-          reservedByName: null,
-          reservedDate: null,
-        );
-      }
-      return unit;
-    }).toList();
+    // Remove all units reserved by this user (unreserve them)
+    final updatedUnits = units
+        .where((unit) => !(unit.isReserved && unit.reservedBy == userId))
+        .toList();
 
     final updatedParticipants = List<Participant>.from(participants);
     updatedParticipants[participantIndex] = participant.copyWith(
@@ -558,18 +547,10 @@ class KhatmaShared extends Khatma {
       );
     }
 
-    // Unreserve all units reserved by this user
-    final updatedUnits = units.map((unit) {
-      if (unit.isReserved && unit.reservedBy == userId) {
-        return unit.copyWith(
-          status: UnitStatus.free,
-          reservedBy: null,
-          reservedByName: null,
-          reservedDate: null,
-        );
-      }
-      return unit;
-    }).toList();
+    // Remove all units reserved by this user (unreserve them)
+    final updatedUnits = units
+        .where((unit) => !(unit.isReserved && unit.reservedBy == userId))
+        .toList();
 
     final updatedParticipants = participants.where((p) => p.userId != userId).toList();
 
