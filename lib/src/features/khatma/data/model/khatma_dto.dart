@@ -87,6 +87,7 @@ abstract class ParticipantDto with _$ParticipantDto {
     required DateTime joinedDate,
     @Default(0) int completedUnits,
     @Default('member') String role, // 'member', 'moderator', 'admin'
+    @Default('pending') String status, // 'pending', 'approved', 'rejected'
   }) = _ParticipantDto;
 
   factory ParticipantDto.fromJson(Map<String, Object?> json) =>

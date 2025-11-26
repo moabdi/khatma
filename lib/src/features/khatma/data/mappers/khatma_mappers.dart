@@ -144,6 +144,7 @@ extension ParticipantDtoMapper on ParticipantDto {
       joinedDate: joinedDate,
       completedUnits: completedUnits,
       role: _mapParticipantRole(role),
+      status: _mapParticipantStatus(status),
     );
   }
 }
@@ -157,6 +158,7 @@ extension ParticipantDomainMapper on Participant {
       joinedDate: joinedDate,
       completedUnits: completedUnits,
       role: role.name,
+      status: status.name,
     );
   }
 }
@@ -321,5 +323,12 @@ JoinMethod _mapJoinMethod(String method) {
   return JoinMethod.values.firstWhere(
     (e) => e.name == method,
     orElse: () => JoinMethod.code,
+  );
+}
+
+ParticipantStatus _mapParticipantStatus(String status) {
+  return ParticipantStatus.values.firstWhere(
+    (e) => e.name == status,
+    orElse: () => ParticipantStatus.pending,
   );
 }

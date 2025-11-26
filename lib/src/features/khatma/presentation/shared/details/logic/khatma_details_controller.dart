@@ -35,10 +35,16 @@ class KhatmaDetailsState {
     );
   }
 
-  // Check if user is a participant
+  // Check if user is a participant (approved only)
   bool get isUserParticipant {
     if (currentUserId == null) return false;
-    return khatma.participants.any((p) => p.userId == currentUserId);
+    return khatma.participants.any((p) => p.userId == currentUserId && p.isApproved);
+  }
+
+  // Check if user is a pending participant
+  bool get isUserPending {
+    if (currentUserId == null) return false;
+    return khatma.participants.any((p) => p.userId == currentUserId && p.isPending);
   }
 
   // Check if user is admin or creator
@@ -276,6 +282,11 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
     // Completed units cannot be selected
     if (unit.isCompleted) {
       return 'Completed units cannot be selected';
+    }
+
+    // Pending users cannot select units (invitation-only khatmas)
+    if (state.isUserPending) {
+      return 'You must be approved before selecting units';
     }
 
     // Free units - check both reservation limit and reading limit

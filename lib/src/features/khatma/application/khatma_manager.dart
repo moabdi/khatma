@@ -319,49 +319,26 @@ class KhatmaManager extends _$KhatmaManager {
     }
 
     try {
-      // Update units with reservations
-      final updatedUnits = [...khatma.units];
-
-      // Reserve selected units
-      for (final unitNumber in reservedUnits) {
-        final existingUnitIndex = updatedUnits.indexWhere((u) => u.number == unitNumber);
-
-        if (existingUnitIndex != -1) {
-          // Update existing unit
-          updatedUnits[existingUnitIndex] = updatedUnits[existingUnitIndex].copyWith(
-            status: UnitStatus.reserved,
-            reservedBy: userId,
-            reservedByName: userName,
-            reservedDate: DateTime.now(),
-          );
-        } else {
-          // Add new unit
-          updatedUnits.add(Unit(
-            number: unitNumber,
-            status: UnitStatus.reserved,
-            reservedBy: userId,
-            reservedByName: userName,
-            reservedDate: DateTime.now(),
-          ));
-        }
-      }
-
       // Add current user to participants if not already present
-      final updatedParticipants = [...khatma.participants];
-      if (!updatedParticipants.any((p) => p.userId == userId)) {
-        updatedParticipants.add(Participant(
+      // This respects the invitation approval flow (pending status if invitation-only)
+      KhatmaShared updatedKhatma = khatma;
+      if (!khatma.participants.any((p) => p.userId == userId)) {
+        updatedKhatma = khatma.addParticipant(
           userId: userId,
           userName: userName,
-          joinedDate: DateTime.now(),
-        ));
+          userPhotoUrl: null, // AppUser doesn't have photoURL field yet
+        );
       }
 
-      // Create updated khatma
-      final updatedKhatma = khatma.copyWith(
-        units: updatedUnits,
-        participants: updatedParticipants,
-        lastUpdated: DateTime.now(),
-      );
+      // Only reserve units if user is approved (or no invitation required)
+      // Pending users cannot reserve units
+      final userParticipant = updatedKhatma.participants.firstWhere((p) => p.userId == userId);
+      if (userParticipant.isApproved && reservedUnits.isNotEmpty) {
+        // Reserve selected units using domain method
+        for (final unitNumber in reservedUnits) {
+          updatedKhatma = updatedKhatma.reserveUnit(unitNumber, userId, userName);
+        }
+      }
 
       // Save the updated khatma
       await save(updatedKhatma);

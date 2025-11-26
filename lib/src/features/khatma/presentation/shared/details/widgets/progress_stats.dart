@@ -1,4 +1,8 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/themes/theme.dart';
@@ -7,7 +11,7 @@ import 'package:khatma_ui/constants/app_sizes.dart';
 /// Progress statistics cards for khatma details
 ///
 /// Shows three stat cards: Members, Free Units, and Completed
-class KhatmaProgressStats extends StatelessWidget {
+class KhatmaProgressStats extends ConsumerWidget {
   const KhatmaProgressStats({
     super.key,
     required this.khatma,
@@ -34,7 +38,12 @@ class KhatmaProgressStats extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = ref.watch(userProvider);
+    final hasPendingParticipants = khatma.pendingParticipants.isNotEmpty;
+    final isUserAdminOrCreator = currentUser != null && khatma.hasPrivileges(currentUser.id);
+    final shouldAnimate = hasPendingParticipants && isUserAdminOrCreator;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -42,12 +51,16 @@ class KhatmaProgressStats extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
-              child: _ProgressStatCardWithCount(
-                icon: Icons.people_rounded,
-                label: context.loc.members,
-                count: khatma.membersCount.toString(),
-                percent: _calculateTakenUnitsPercent(),
-                color: context.colorScheme.primary,
+              child: GestureDetector(
+                onTap: () => context.go('/khatma/shared/${khatma.id}/participants'),
+                child: _ProgressStatCardWithCount(
+                  icon: Icons.people_rounded,
+                  label: context.loc.members,
+                  count: khatma.membersCount.toString(),
+                  percent: _calculateTakenUnitsPercent(),
+                  color: context.colorScheme.primary,
+                  shouldAnimate: shouldAnimate,
+                ),
               ),
             ),
             gapW12,
@@ -80,6 +93,7 @@ class _ProgressStatCardWithCount extends StatelessWidget {
   final String count;
   final double percent;
   final Color color;
+  final bool shouldAnimate;
 
   const _ProgressStatCardWithCount({
     required this.icon,
@@ -87,6 +101,7 @@ class _ProgressStatCardWithCount extends StatelessWidget {
     required this.count,
     required this.percent,
     required this.color,
+    this.shouldAnimate = false,
   });
 
   @override
@@ -95,54 +110,61 @@ class _ProgressStatCardWithCount extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         // Circular progress indicator with icon and count
-        SizedBox(
-          width: 56,
-          height: 56,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Background circle
-              Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: color.withValues(alpha: 0.15),
-                ),
-              ),
-              // Progress circle
-              SizedBox(
-                width: 56,
-                height: 56,
-                child: CircularProgressIndicator(
-                  value: percent.clamp(0.0, 1.0),
-                  strokeWidth: 3,
-                  backgroundColor: Colors.transparent,
-                  valueColor: AlwaysStoppedAnimation<Color>(color),
-                  strokeCap: StrokeCap.round,
-                ),
-              ),
-              // Icon and count
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    icon,
-                    color: color,
-                    size: 16,
+        AvatarGlow(
+          glowColor: shouldAnimate ? color : Colors.transparent,
+          repeat: true,
+          animate: shouldAnimate,
+          glowRadiusFactor: 0.3,
+          duration: const Duration(seconds: 2),
+          child: SizedBox(
+            width: 56,
+            height: 56,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                // Background circle
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: color.withValues(alpha: 0.15),
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    count,
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: color,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 11,
-                        ),
+                ),
+                // Progress circle
+                SizedBox(
+                  width: 56,
+                  height: 56,
+                  child: CircularProgressIndicator(
+                    value: percent.clamp(0.0, 1.0),
+                    strokeWidth: 3,
+                    backgroundColor: Colors.transparent,
+                    valueColor: AlwaysStoppedAnimation<Color>(color),
+                    strokeCap: StrokeCap.round,
                   ),
-                ],
-              ),
-            ],
+                ),
+                // Icon and count
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      icon,
+                      color: color,
+                      size: 16,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      count,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            color: color,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11,
+                          ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         gapH8,

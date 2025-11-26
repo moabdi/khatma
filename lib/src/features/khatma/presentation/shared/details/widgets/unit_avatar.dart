@@ -19,52 +19,34 @@ class UnitAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(50),
-            border: Border.all(
-              color: borderColor.withValues(alpha: 0.3),
-              width: 1.5,
-            ),
-          ),
-          child: Center(
-            child: Text(
-              '$unitNumber',
-              style: context.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: numberColor,
-              ),
-            ),
-          ),
+    return Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        color: isSelected ? context.colorScheme.primary : backgroundColor,
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(
+          color: isSelected
+              ? context.colorScheme.primary
+              : borderColor.withValues(alpha: 0.3),
+          width: 1.5,
         ),
-        if (isSelected)
-          Positioned(
-            right: 0,
-            top: 0,
-            child: Container(
-              width: 18,
-              height: 18,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2,
+      ),
+      child: Center(
+        child: isSelected
+            ? Icon(
+                Icons.check,
+                size: 24,
+                color: context.colorScheme.onPrimary,
+              )
+            : Text(
+                '$unitNumber',
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: numberColor,
                 ),
               ),
-              child: const Icon(
-                Icons.check,
-                size: 12,
-                color: Colors.white,
-              ),
-            ),
-          ),
-      ],
+      ),
     );
   }
 }

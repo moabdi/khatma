@@ -372,6 +372,229 @@ class KhatmaShared extends Khatma {
     );
   }
 
+  // ============================================================================
+  // PARTICIPANT MANAGEMENT METHODS
+  // ============================================================================
+
+  /// Add a participant (with pending status if invitation is required)
+  KhatmaShared addParticipant({
+    required String userId,
+    required String userName,
+    String? userPhotoUrl,
+  }) {
+    assertActive();
+
+    // Check if user is already a participant
+    if (participants.any((p) => p.userId == userId)) {
+      throw Exception('User is already a participant');
+    }
+
+    final now = DateTime.now();
+    final status = config.joinMethod == JoinMethod.invitation
+        ? ParticipantStatus.pending
+        : ParticipantStatus.approved;
+
+    final newParticipant = Participant(
+      userId: userId,
+      userName: userName,
+      userPhotoUrl: userPhotoUrl,
+      joinedDate: now,
+      status: status,
+    );
+
+    final updatedParticipants = [...participants, newParticipant];
+
+    return copyWith(
+      participants: updatedParticipants,
+      lastActivityDate: now,
+      lastActivityUserId: userId,
+      lastUpdated: now,
+      needsSync: true,
+    );
+  }
+
+  /// Approve a pending participant (admin only)
+  KhatmaShared approveParticipant(String userId, String adminId) {
+    assertActive();
+
+    // Check if admin has privileges
+    if (!hasPrivileges(adminId)) {
+      throw InsufficientPrivilegesException('approve participant');
+    }
+
+    // Find the participant
+    final participantIndex = participants.indexWhere((p) => p.userId == userId);
+    if (participantIndex == -1) {
+      throw Exception('Participant not found');
+    }
+
+    final participant = participants[participantIndex];
+    if (!participant.isPending) {
+      throw Exception('Participant is not pending approval');
+    }
+
+    final updatedParticipants = List<Participant>.from(participants);
+    updatedParticipants[participantIndex] = participant.copyWith(
+      status: ParticipantStatus.approved,
+    );
+
+    return copyWith(
+      participants: updatedParticipants,
+      lastActivityDate: DateTime.now(),
+      lastActivityUserId: adminId,
+      lastUpdated: DateTime.now(),
+      needsSync: true,
+    );
+  }
+
+  /// Reject a pending participant (admin only) - removes them from the list
+  KhatmaShared rejectParticipant(String userId, String adminId) {
+    assertActive();
+
+    // Check if admin has privileges
+    if (!hasPrivileges(adminId)) {
+      throw InsufficientPrivilegesException('reject participant');
+    }
+
+    // Find the participant
+    final participant = participants.firstWhere(
+      (p) => p.userId == userId,
+      orElse: () => throw Exception('Participant not found'),
+    );
+
+    if (!participant.isPending) {
+      throw Exception('Can only reject pending participants');
+    }
+
+    final updatedParticipants = participants.where((p) => p.userId != userId).toList();
+
+    return copyWith(
+      participants: updatedParticipants,
+      lastActivityDate: DateTime.now(),
+      lastActivityUserId: adminId,
+      lastUpdated: DateTime.now(),
+      needsSync: true,
+    );
+  }
+
+  /// Block a participant (admin only) - keeps them in the list but blocks participation
+  KhatmaShared blockParticipant(String userId, String adminId) {
+    assertActive();
+
+    // Check if admin has privileges
+    if (!hasPrivileges(adminId)) {
+      throw InsufficientPrivilegesException('block participant');
+    }
+
+    // Find the participant
+    final participantIndex = participants.indexWhere((p) => p.userId == userId);
+    if (participantIndex == -1) {
+      throw Exception('Participant not found');
+    }
+
+    // Cannot block the creator
+    if (userId == creatorId) {
+      throw Exception('Cannot block the creator');
+    }
+
+    final participant = participants[participantIndex];
+    if (participant.isBlocked) {
+      throw Exception('Participant is already blocked');
+    }
+
+    // Unreserve all units reserved by this user
+    final updatedUnits = units.map((unit) {
+      if (unit.isReserved && unit.reservedBy == userId) {
+        return unit.copyWith(
+          status: UnitStatus.free,
+          reservedBy: null,
+          reservedByName: null,
+          reservedDate: null,
+        );
+      }
+      return unit;
+    }).toList();
+
+    final updatedParticipants = List<Participant>.from(participants);
+    updatedParticipants[participantIndex] = participant.copyWith(
+      status: ParticipantStatus.blocked,
+    );
+
+    return copyWith(
+      participants: updatedParticipants,
+      units: updatedUnits,
+      lastActivityDate: DateTime.now(),
+      lastActivityUserId: adminId,
+      lastUpdated: DateTime.now(),
+      needsSync: true,
+    );
+  }
+
+  /// Remove a participant (admin only) - completely removes them from the list
+  /// Only allowed if they have no completed units
+  KhatmaShared removeParticipant(String userId, String adminId) {
+    assertActive();
+
+    // Check if admin has privileges
+    if (!hasPrivileges(adminId)) {
+      throw InsufficientPrivilegesException('remove participant');
+    }
+
+    // Check if participant exists
+    if (!participants.any((p) => p.userId == userId)) {
+      throw Exception('Participant not found');
+    }
+
+    // Cannot remove the creator
+    if (userId == creatorId) {
+      throw Exception('Cannot remove the creator');
+    }
+
+    // Check if participant has completed units
+    final completedUnits = userCompletedUnits(userId);
+    if (completedUnits.isNotEmpty) {
+      throw Exception(
+        'Cannot remove participant with completed units. Consider blocking instead.',
+      );
+    }
+
+    // Unreserve all units reserved by this user
+    final updatedUnits = units.map((unit) {
+      if (unit.isReserved && unit.reservedBy == userId) {
+        return unit.copyWith(
+          status: UnitStatus.free,
+          reservedBy: null,
+          reservedByName: null,
+          reservedDate: null,
+        );
+      }
+      return unit;
+    }).toList();
+
+    final updatedParticipants = participants.where((p) => p.userId != userId).toList();
+
+    return copyWith(
+      participants: updatedParticipants,
+      units: updatedUnits,
+      lastActivityDate: DateTime.now(),
+      lastActivityUserId: adminId,
+      lastUpdated: DateTime.now(),
+      needsSync: true,
+    );
+  }
+
+  /// Get pending participants
+  List<Participant> get pendingParticipants =>
+      participants.where((p) => p.isPending).toList();
+
+  /// Get approved participants
+  List<Participant> get approvedParticipants =>
+      participants.where((p) => p.isApproved).toList();
+
+  /// Get blocked participants
+  List<Participant> get blockedParticipants =>
+      participants.where((p) => p.isBlocked).toList();
+
   KhatmaShared copyWith({
     KhatmaID? id,
     String? name,
@@ -439,6 +662,7 @@ class Participant {
   final DateTime joinedDate;
   final int completedUnits;
   final ParticipantRole role;
+  final ParticipantStatus status;
 
   const Participant({
     required this.userId,
@@ -447,6 +671,7 @@ class Participant {
     required this.joinedDate,
     this.completedUnits = 0,
     this.role = ParticipantRole.member,
+    this.status = ParticipantStatus.approved,
   });
 
   Participant copyWith({
@@ -456,6 +681,7 @@ class Participant {
     DateTime? joinedDate,
     int? completedUnits,
     ParticipantRole? role,
+    ParticipantStatus? status,
   }) {
     return Participant(
       userId: userId ?? this.userId,
@@ -464,8 +690,15 @@ class Participant {
       joinedDate: joinedDate ?? this.joinedDate,
       completedUnits: completedUnits ?? this.completedUnits,
       role: role ?? this.role,
+      status: status ?? this.status,
     );
   }
+
+  // Helper getters
+  bool get isPending => status == ParticipantStatus.pending;
+  bool get isApproved => status == ParticipantStatus.approved;
+  bool get isRejected => status == ParticipantStatus.rejected;
+  bool get isBlocked => status == ParticipantStatus.blocked;
 
   @override
   bool operator ==(Object other) {

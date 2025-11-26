@@ -47,6 +47,14 @@ enum ParticipantRole {
   admin;
 }
 
+/// Status of participant in shared Khatma
+enum ParticipantStatus {
+  pending,   // Waiting for admin approval
+  approved,  // Approved and can participate
+  rejected,  // Rejected by admin
+  blocked;   // Blocked from participating
+}
+
 /// Status of a unit in shared Khatma
 enum UnitStatus {
   free,

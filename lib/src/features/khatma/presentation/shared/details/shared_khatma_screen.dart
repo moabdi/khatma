@@ -171,11 +171,57 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
         onPressed: () => context.go('/khatma'),
       ),
       actions: [
-        // Participants button
-        IconButton(
-          icon: const Icon(Icons.people_outline),
-          onPressed: () => context.go('/khatma/shared/${khatma.id!}/participants'),
-          tooltip: context.loc.participants,
+        // Participants button with pending badge
+        Builder(
+          builder: (context) {
+            final pendingCount = khatma.participants.where((p) => p.isPending).length;
+            return Stack(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.people_outline),
+                  onPressed: () => context.go('/khatma/shared/${khatma.id!}/participants'),
+                  tooltip: context.loc.participants,
+                ),
+                if (pendingCount > 0)
+                  Positioned(
+                    right: 6,
+                    top: 6,
+                    child: Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: context.colorScheme.surface,
+                          width: 1.5,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.orange.withValues(alpha: 0.6),
+                            blurRadius: 6,
+                            spreadRadius: 2,
+                          ),
+                        ],
+                      ),
+                      constraints: const BoxConstraints(
+                        minWidth: 16,
+                        minHeight: 16,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '$pendingCount',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 9,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
         ),
         // Settings button (config)
         IconButton(

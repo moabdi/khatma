@@ -140,15 +140,35 @@ class KhatmaBottomActionButton extends StatelessWidget {
   KhatmaButtonInfo _getButtonInfo(BuildContext context) {
     final selectedCount = state.selectedUnits.length;
     final isParticipant = state.isUserParticipant;
+    final isPending = state.isUserPending;
     final areReservedUnitsSelected = state.areAllSelectedUnitsReserved;
     final currentReserved = state.currentUserReservedCount;
     final maxReservations = state.maxReservationsPerUser;
+    final requiresInvitation = state.khatma.config.joinMethod == JoinMethod.invitation;
+
+    // User is pending approval
+    if (isPending) {
+      return KhatmaButtonInfo(
+        buttonText: 'Pending Approval',
+        subtitle: 'Waiting for admin approval',
+        icon: Icons.hourglass_empty,
+        action: KhatmaActionType.join,
+        color: Colors.orange,
+      );
+    }
 
     if (!isParticipant && selectedCount == 0) {
       // User not in khatma, no selection
+      final buttonText = requiresInvitation
+          ? 'Request to Join'
+          : context.loc.joinKhatma;
+      final subtitle = requiresInvitation
+          ? 'Request to join this khatma'
+          : context.loc.selectUnitsToJoin;
+
       return KhatmaButtonInfo(
-        buttonText: context.loc.joinKhatma,
-        subtitle: context.loc.selectUnitsToJoin,
+        buttonText: buttonText,
+        subtitle: subtitle,
         icon: Icons.group_add,
         action: KhatmaActionType.join,
       );
@@ -156,6 +176,16 @@ class KhatmaBottomActionButton extends StatelessWidget {
 
     if (!isParticipant && selectedCount > 0) {
       // User not in khatma, has selection
+      // For invitation method, don't allow selecting units before approval
+      if (requiresInvitation) {
+        return KhatmaButtonInfo(
+          buttonText: 'Request to Join',
+          subtitle: 'You must be approved before selecting units',
+          icon: Icons.group_add,
+          action: KhatmaActionType.join,
+        );
+      }
+
       return KhatmaButtonInfo(
         buttonText: context.loc.reserveAndJoin(selectedCount),
         subtitle:
