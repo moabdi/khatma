@@ -171,12 +171,26 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
         onPressed: () => context.go('/khatma'),
       ),
       actions: [
+        // Participants button
+        IconButton(
+          icon: const Icon(Icons.people_outline),
+          onPressed: () => context.go('/khatma/shared/${khatma.id!}/participants'),
+          tooltip: context.loc.participants,
+        ),
+        // Settings button (config)
+        IconButton(
+          icon: const Icon(Icons.settings_outlined),
+          onPressed: () => context.go('/khatma/shared/${khatma.id!}/settings'),
+          tooltip: context.loc.settings,
+        ),
+        // Edit button
         IconButton(
           icon: Icon(
             Icons.edit_outlined,
             color: khatma.style.hexColor,
           ),
           onPressed: () => context.go('/khatma/shared/${khatma.id!}/edit'),
+          tooltip: context.loc.edit,
         ),
         gapW8,
       ],

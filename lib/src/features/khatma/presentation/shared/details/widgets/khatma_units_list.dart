@@ -44,6 +44,7 @@ class KhatmaUnitsList extends StatelessWidget {
           onSendReminder: () => onSendReminder(unit),
           onFreeUnit: () => onFreeUnit(unit),
           color: state.khatma.style.hexColor,
+          isSelected: state.selectedUnitNumbers.contains(unit.number),
         );
       },
     );

@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
-import 'package:khatma/src/features/khatma/application/khatma_state.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/shared_khatma_screen.dart';
 
@@ -10,12 +9,14 @@ class KhatmaDetailsState {
   final Set<UnitFilter> activeFilters;
   final bool isJoining;
   final String? currentUserId;
+  final Set<int> selectedUnitNumbers;
 
   KhatmaDetailsState({
     required this.khatma,
     required this.activeFilters,
     this.isJoining = false,
     this.currentUserId,
+    this.selectedUnitNumbers = const {},
   });
 
   KhatmaDetailsState copyWith({
@@ -23,12 +24,14 @@ class KhatmaDetailsState {
     Set<UnitFilter>? activeFilters,
     bool? isJoining,
     String? currentUserId,
+    Set<int>? selectedUnitNumbers,
   }) {
     return KhatmaDetailsState(
       khatma: khatma ?? this.khatma,
       activeFilters: activeFilters ?? this.activeFilters,
       isJoining: isJoining ?? this.isJoining,
       currentUserId: currentUserId ?? this.currentUserId,
+      selectedUnitNumbers: selectedUnitNumbers ?? this.selectedUnitNumbers,
     );
   }
 
@@ -46,12 +49,14 @@ class KhatmaDetailsState {
 
   // Check if there are any selected units
   bool get hasSelectedUnits {
-    return khatma.units.any((unit) => unit.status == UnitStatus.selected);
+    return khatma.units.any((unit) => unit.status == UnitStatus.selected) || selectedUnitNumbers.isNotEmpty;
   }
 
   // Get all selected units
   List<Unit> get selectedUnits {
-    return khatma.units.where((unit) => unit.status == UnitStatus.selected).toList();
+    return khatma.units.where((unit) =>
+      unit.status == UnitStatus.selected || selectedUnitNumbers.contains(unit.number)
+    ).toList();
   }
 
   // Check if all selected units are free
@@ -74,9 +79,26 @@ class KhatmaDetailsState {
     return khatma.userReservedUnits(currentUserId!).length;
   }
 
+  // Get current user's completed units count
+  int get currentUserCompletedCount {
+    if (currentUserId == null) return 0;
+    return khatma.userCompletedUnits(currentUserId!).length;
+  }
+
+  // Get current user's total units (reserved + completed)
+  int get currentUserTotalUnits {
+    if (currentUserId == null) return 0;
+    return khatma.userTotalUnits(currentUserId!);
+  }
+
   // Get max reservations allowed
   int get maxReservationsPerUser {
     return khatma.maxReservationsPerUser;
+  }
+
+  // Get max units to read (total limit)
+  int get maxUnitsToRead {
+    return khatma.config.maxUnitsToRead;
   }
 
   // Check if user has reached reservation limit
@@ -216,13 +238,15 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
 
     state = state.copyWith(
       khatma: state.khatma.copyWith(units: updatedUnits),
+      selectedUnitNumbers: {}, // Clear the selection set
     );
   }
 
   /// Toggle unit selection with validation
   /// Returns error message if selection is invalid, null otherwise
   String? toggleUnitSelection(Unit unit) {
-    final isCurrentlySelected = unit.status == UnitStatus.selected;
+    final isCurrentlySelected = unit.status == UnitStatus.selected ||
+                                state.selectedUnitNumbers.contains(unit.number);
 
     if (isCurrentlySelected) {
       // Deselect the unit
@@ -254,16 +278,25 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
       return 'Completed units cannot be selected';
     }
 
-    // Free units - check reservation limit
+    // Free units - check both reservation limit and reading limit
     if (unit.isFree) {
-      // Check if user would exceed limit with this selection
+      // Check if user would exceed reservation limit with this selection
       final currentReserved = state.currentUserReservedCount;
       final currentSelected = state.selectedUnits.where((u) => u.reservedBy == null).length;
-      final totalAfterSelection = currentReserved + currentSelected + 1;
+      final totalReservedAfterSelection = currentReserved + currentSelected + 1;
 
-      if (totalAfterSelection > state.maxReservationsPerUser) {
-        return 'Limit reached: ${state.maxReservationsPerUser} units max';
+      if (totalReservedAfterSelection > state.maxReservationsPerUser) {
+        return 'Reservation limit reached: ${state.maxReservationsPerUser} units max';
       }
+
+      // Check if user would exceed reading limit (total units)
+      final currentTotal = state.currentUserTotalUnits;
+      final totalUnitsAfterSelection = currentTotal + currentSelected + 1;
+
+      if (totalUnitsAfterSelection > state.maxUnitsToRead) {
+        return 'Reading limit reached: ${state.maxUnitsToRead} total units max';
+      }
+
       return null;
     }
 
@@ -306,6 +339,14 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
   }
 
   void _selectUnit(Unit unit) {
+    // For reserved units, add to selectedUnitNumbers set without changing status
+    if (unit.isReserved || unit.reservedBy != null) {
+      final updatedSelection = Set<int>.from(state.selectedUnitNumbers)..add(unit.number);
+      state = state.copyWith(selectedUnitNumbers: updatedSelection);
+      return;
+    }
+
+    // For free units, change status to selected
     final updatedUnits = state.khatma.units.map((u) {
       if (u.number == unit.number) {
         return u.copyWith(status: UnitStatus.selected);
@@ -327,14 +368,17 @@ class KhatmaDetailsController extends StateNotifier<KhatmaDetailsState> {
   }
 
   void _deselectUnit(Unit unit) {
+    // For reserved units, remove from selectedUnitNumbers set
+    if (unit.isReserved || unit.reservedBy != null) {
+      final updatedSelection = Set<int>.from(state.selectedUnitNumbers)..remove(unit.number);
+      state = state.copyWith(selectedUnitNumbers: updatedSelection);
+      return;
+    }
+
+    // For free units, change status back to free
     final updatedUnits = state.khatma.units.map((u) {
       if (u.number == unit.number) {
-        // If it was a free unit being selected, remove the selection
-        if (u.reservedBy == null) {
-          return u.copyWith(status: UnitStatus.free);
-        }
-        // If it was a reserved unit, keep it as reserved
-        return u.copyWith(status: UnitStatus.reserved);
+        return u.copyWith(status: UnitStatus.free);
       }
       return u;
     }).toList();

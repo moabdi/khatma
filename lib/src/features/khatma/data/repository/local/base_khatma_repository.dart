@@ -25,7 +25,6 @@ abstract class BaseKhatmaRepository extends LocalKhatmaRepository {
     }
 
     String jsonString = jsonEncode(khatma.toDto().toJson());
-    print('Saving Khatma: $jsonString');
     await box.put(khatma.id!, jsonString);
     return khatma;
   }

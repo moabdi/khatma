@@ -18,6 +18,7 @@ class UnitTile extends StatelessWidget {
     this.onSendReminder,
     this.onFreeUnit,
     this.color,
+    this.isSelected = false,
   });
 
   final Unit unit;
@@ -28,6 +29,7 @@ class UnitTile extends StatelessWidget {
   final VoidCallback? onSendReminder;
   final VoidCallback? onFreeUnit;
   final Color? color;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +60,7 @@ class UnitTile extends StatelessWidget {
                 backgroundColor: statusInfo.avatarColor,
                 borderColor: statusInfo.iconColor,
                 numberColor: statusInfo.numberColor,
+                isSelected: isSelected,
               ),
               gapW12,
               // Content

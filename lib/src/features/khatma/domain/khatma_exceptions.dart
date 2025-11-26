@@ -40,6 +40,12 @@ class ReservationLimitExceededException extends KhatmaDomainException {
       : super('Reservation limit exceeded', 'Maximum $limit reservations per user');
 }
 
+/// Thrown when reading limit is exceeded (total reserved + completed)
+class ReadingLimitExceededException extends KhatmaDomainException {
+  const ReadingLimitExceededException(int limit)
+      : super('Reading limit exceeded', 'Maximum $limit units to read per user (reserved + completed)');
+}
+
 /// Thrown when trying to complete a non-reserved unit
 class UnitNotReservedException extends KhatmaDomainException {
   const UnitNotReservedException(int unitNumber)

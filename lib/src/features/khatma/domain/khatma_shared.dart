@@ -144,16 +144,31 @@ class KhatmaShared extends Khatma {
 
   // Get units reserved by a specific user
   List<Unit> userReservedUnits(String userId) =>
-      units.where((unit) => unit.reservedBy == userId).toList();
+      units.where((unit) => unit.reservedBy == userId && unit.status == UnitStatus.reserved).toList();
 
-  // Check if user can reserve more units
-  bool canUserReserveMore(String userId) =>
-      userReservedUnits(userId).length < maxReservationsPerUser;
+  // Get units completed by a specific user
+  List<Unit> userCompletedUnits(String userId) =>
+      units.where((unit) => unit.completedBy == userId && unit.status == UnitStatus.completed).toList();
 
-  // Get remaining reservations for a user
-  int remainingReservations(String userId) =>
-      (maxReservationsPerUser - userReservedUnits(userId).length)
-          .clamp(0, maxReservationsPerUser);
+  // Get total units (reserved + completed) for a user
+  int userTotalUnits(String userId) =>
+      userReservedUnits(userId).length + userCompletedUnits(userId).length;
+
+  // Check if user can reserve more units (checks both limits)
+  bool canUserReserveMore(String userId) {
+    final reserved = userReservedUnits(userId).length;
+    final total = userTotalUnits(userId);
+    return reserved < maxReservationsPerUser && total < config.maxUnitsToRead;
+  }
+
+  // Get remaining reservations for a user (considers both limits)
+  int remainingReservations(String userId) {
+    final reserved = userReservedUnits(userId).length;
+    final total = userTotalUnits(userId);
+    final remainingByReservationLimit = maxReservationsPerUser - reserved;
+    final remainingByReadLimit = config.maxUnitsToRead - total;
+    return remainingByReservationLimit.clamp(0, remainingByReadLimit).clamp(0, maxReservationsPerUser);
+  }
 
   double get completionPercent {
     if (units.isEmpty) return 0.0;
@@ -191,6 +206,12 @@ class KhatmaShared extends Khatma {
       return false;
     }
 
+    // Check if user has reached reading limit (total units)
+    final userTotal = userTotalUnits(userId);
+    if (userTotal >= config.maxUnitsToRead) {
+      return false;
+    }
+
     return unit.isFree || unit.reservedBy == userId;
   }
 
@@ -207,6 +228,12 @@ class KhatmaShared extends Khatma {
     final userReserved = userReservedUnits(userId);
     if (userReserved.length >= maxReservationsPerUser) {
       throw ReservationLimitExceededException(maxReservationsPerUser);
+    }
+
+    // Check reading limit (total units)
+    final userTotal = userTotalUnits(userId);
+    if (userTotal >= config.maxUnitsToRead) {
+      throw ReadingLimitExceededException(config.maxUnitsToRead);
     }
 
     final unitIndex = units.indexWhere((u) => u.number == unitNumber);
