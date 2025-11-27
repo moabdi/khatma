@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:khatma/src/core/app_dialog.dart';
+import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_data.dart';
@@ -113,7 +114,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             : AppLocalizations.of(context).newKhatma,
       ),
       leading: BackButton(
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => context.goNamed(AppRoute.home.name),
       ),
     );
   }
@@ -327,6 +328,10 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
     // Type cannot be changed when editing
     final canChangeType = !formData.isEditing;
 
+    // Check if user is authenticated
+    final currentUser = ref.watch(userProvider);
+    final isAuthenticated = currentUser != null && !currentUser.isAnonymous;
+
     Map<KhatmaType, IconData> typeIcons = {
       KhatmaType.personal: Icons.person,
       KhatmaType.shared: Icons.group,
@@ -343,6 +348,9 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
       child: Column(
         children: KhatmaType.values.map((type) {
           final isSelected = formData.type == type;
+          // Disable shared and hifz types for non-authenticated users
+          final isDisabled = !isAuthenticated && (type == KhatmaType.shared || type == KhatmaType.hifz);
+
           return Container(
             decoration: BoxDecoration(
               color: isSelected
@@ -353,7 +361,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             child: RadioListTile<KhatmaType>(
               value: type,
               groupValue: formData.type,
-              onChanged: canChangeType
+              onChanged: (canChangeType && !isDisabled)
                   ? (value) {
                       if (value != null) {
                         ref.read(khatmaFormProvider.notifier).update(
@@ -366,12 +374,22 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
                 type.name[0].toUpperCase() + type.name.substring(1),
                 style: TextStyle(
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                  color: isDisabled ? context.colorScheme.onSurface.withValues(alpha: 0.38) : null,
                 ),
               ),
-              subtitle: Text(typeDescriptions[type] ?? ''),
+              subtitle: Text(
+                isDisabled
+                    ? 'Sign in required'
+                    : typeDescriptions[type] ?? '',
+                style: TextStyle(
+                  color: isDisabled ? context.colorScheme.error : null,
+                ),
+              ),
               secondary: Icon(
                 typeIcons[type],
-                color: isSelected ? context.colorScheme.primary : null,
+                color: isDisabled
+                    ? context.colorScheme.onSurface.withValues(alpha: 0.38)
+                    : isSelected ? context.colorScheme.primary : null,
               ),
             ),
           );

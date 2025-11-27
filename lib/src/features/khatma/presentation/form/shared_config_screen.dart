@@ -5,6 +5,7 @@ import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
 import 'package:khatma/src/features/khatma/presentation/form/widgets/shared_config/shared_config_widgets.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -50,7 +51,7 @@ class _SharedKhatmaConfigScreenState
         centerTitle: true,
         title: Text(context.loc.sharedKhatmaSettings),
         leading: BackButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => context.goNamed(AppRoute.home.name),
         ),
       ),
       body: Column(

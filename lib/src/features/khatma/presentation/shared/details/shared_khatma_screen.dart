@@ -50,6 +50,53 @@ class SharedKhatmaScreen extends ConsumerStatefulWidget {
 class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
   @override
   Widget build(BuildContext context) {
+    // Check if user is authenticated
+    final currentUser = ref.watch(userProvider);
+    final isAuthenticated = currentUser != null && !currentUser.isAnonymous;
+
+    // Prevent non-authenticated users from viewing shared khatmas
+    if (!isAuthenticated) {
+      return Scaffold(
+        appBar: AppBar(title: Text(context.loc.khatma)),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.lock_outline,
+                  size: 64,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                gapH16,
+                Text(
+                  'Sign in Required',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                gapH8,
+                Text(
+                  'You must sign in to view shared khatmas',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                gapH24,
+                ElevatedButton.icon(
+                  onPressed: () {
+                    context.goNamed(AppRoute.account.name);
+                  },
+                  icon: const Icon(Icons.login),
+                  label: const Text('Sign In'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     // Watch the khatmas list directly to avoid race conditions with selectedKhatma
     final khatmasAsync = ref.watch(khatmaManagerProvider).khatmas;
 

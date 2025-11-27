@@ -7,17 +7,11 @@ import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   final bool isVisible;
 
-  const SplashScreen({Key? key, this.isVisible = true}) : super(key: key);
+  const SplashScreen({super.key, this.isVisible = true});
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
   static const _bgGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -28,35 +22,33 @@ class _SplashScreenState extends State<SplashScreen>
     ],
   );
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _startRedirect();
-    });
-  }
-
-  Future<void> _startRedirect() async {
+  Future<void> _startRedirect(BuildContext context) async {
+    print('SplashScreen: Starting redirect process...');
     final prefs = await SharedPreferences.getInstance();
     final onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
 
     // Delay for splash effect (optional)
     await Future.delayed(const Duration(seconds: 3));
 
-    if (!mounted) return;
+    if (!context.mounted) return;
 
     if (kIsWeb || onboardingCompleted) {
-      context.goNamed(AppRoute.home.name);
+      context.replaceNamed(AppRoute.home.name);
     } else {
-      context.goNamed(AppRoute.onboarding.name);
+      context.replaceNamed(AppRoute.onboarding.name);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // Trigger redirect after first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startRedirect(context);
+    });
+
     return Scaffold(
       body: AnimatedOpacity(
-        opacity: widget.isVisible ? 1 : 0,
+        opacity: isVisible ? 1 : 0,
         duration: const Duration(milliseconds: 500),
         child: Container(
           color: Colors.transparent,
@@ -76,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen>
                         glowRadiusFactor: 1.5,
                         repeat: false,
                         curve: Curves.fastOutSlowIn,
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           backgroundColor: Colors.transparent,
                           backgroundImage: AssetImage('assets/app-icon.png'),
                           radius: 50.0,
@@ -88,13 +80,13 @@ class _SplashScreenState extends State<SplashScreen>
                   Text(
                     'ختمة',
                     style: context.textTheme.displaySmall!
-                        .copyWith(color: Color(0xFF065F46)),
+                        .copyWith(color: const Color(0xFF065F46)),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     'Khatma',
                     style: context.textTheme.headlineLarge!
-                        .copyWith(color: Color(0xFF065F46)),
+                        .copyWith(color: const Color(0xFF065F46)),
                   ),
                   const SizedBox(height: 8),
                   const Text(

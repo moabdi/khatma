@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/i18n/generated/app_localizations.dart';
+import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
@@ -28,6 +30,57 @@ class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Check if user is authenticated
+    final currentUser = ref.watch(userProvider);
+    final isAuthenticated = currentUser != null && !currentUser.isAnonymous;
+
+    // Prevent non-authenticated users from searching shared khatmas
+    if (!isAuthenticated) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(context.loc.khatma_search_title),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.lock_outline,
+                  size: 64,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                gapH16,
+                Text(
+                  'Sign in Required',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                gapH8,
+                Text(
+                  'You must sign in to search for shared khatmas',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                gapH24,
+                ElevatedButton.icon(
+                  onPressed: () {
+                    context.goNamed(AppRoute.account.name);
+                  },
+                  icon: const Icon(Icons.login),
+                  label: const Text('Sign In'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     final sharedKhatmas = ref.watch(sharedKhatmasProvider);
     final filteredKhatmas = _filterKhatmas(sharedKhatmas, _searchQuery);
 
