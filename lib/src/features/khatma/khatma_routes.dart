@@ -7,6 +7,7 @@ import 'package:khatma/src/features/khatma/presentation/shared/details/shared_kh
 import 'package:khatma/src/features/khatma/presentation/shared/participants/participants_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/khatma_form_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/form/logic/khatma_form_provider.dart';
+import 'package:khatma/src/features/khatma/presentation/form/shared_config_screen.dart';
 import 'package:khatma/src/features/khatma/presentation/success/khatma_success_screen.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/widgets/markdown_reader.dart';
@@ -91,12 +92,12 @@ List<GoRoute> khatmaRoutes(Ref ref) => [
               return ParticipantsScreen(khatmaId: khatmaId);
             },
           ),
-          // Settings screen (config) - uses same form as edit
+          // Settings screen (config) - shared khatma specific settings
           GoRoute(
             path: 'settings',
             builder: (context, state) {
               final khatmaId = state.pathParameters['id']!;
-              return _EditSharedKhatmaWrapper(khatmaId: khatmaId);
+              return _SharedConfigWrapper(khatmaId: khatmaId);
             },
           ),
           // Shared khatma success screen
@@ -227,5 +228,59 @@ class _EditSharedKhatmaWrapperState
     }
 
     return AddKhatmaScreen(khatmaId: widget.khatmaId);
+  }
+}
+
+/// Wrapper widget to ensure form is initialized before showing shared config screen
+/// Used for shared khatma settings
+class _SharedConfigWrapper extends ConsumerStatefulWidget {
+  const _SharedConfigWrapper({
+    required this.khatmaId,
+  });
+
+  final String khatmaId;
+
+  @override
+  ConsumerState<_SharedConfigWrapper> createState() =>
+      _SharedConfigWrapperState();
+}
+
+class _SharedConfigWrapperState extends ConsumerState<_SharedConfigWrapper> {
+  bool _initialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the form after the first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final khatma = ref
+          .read(khatmaManagerProvider.notifier)
+          .getKhatmaById(widget.khatmaId);
+
+      if (khatma != null) {
+        ref.read(khatmaFormProvider.notifier).initializeForEdit(khatma);
+        if (mounted) {
+          setState(() {
+            _initialized = true;
+          });
+        }
+      } else {
+        // Navigate back if khatma not found
+        if (mounted) {
+          Navigator.of(context).pop();
+        }
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_initialized) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return const SharedKhatmaConfigScreen();
   }
 }

@@ -41,9 +41,17 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Trigger redirect after first frame
+    // Only trigger redirect if we're actually on the splash route
+    // This prevents the splash from redirecting when navigating to other routes
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _startRedirect(context);
+      // Check if we're still on the splash screen before redirecting
+      if (context.mounted) {
+        final location = GoRouter.of(context).routerDelegate.currentConfiguration.uri.path;
+        // Only redirect if we're on the root path
+        if (location == '/') {
+          _startRedirect(context);
+        }
+      }
     });
 
     return Scaffold(
