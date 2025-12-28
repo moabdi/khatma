@@ -1,6 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:khatma/src/themes/theme.dart';
-import 'package:khatma_ui/constants/app_sizes.dart';
 import 'package:khatma/src/navigation/navigation_bar.dart';
 import 'package:khatma/src/features/home/presentation/header/top_card.dart';
 import 'package:khatma/src/features/khatma/presentation/list/widgets/katmat_list_view.dart';
@@ -23,11 +22,28 @@ class KhatmatListScreen extends StatelessWidget {
             leading: Center(
               child: Padding(
                 padding: const EdgeInsets.only(left: 10),
-                child: Image.asset("assets/images/khatma/khatma.png"),
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: context.colorScheme.primary.withValues(alpha: 0.4),
+                        blurRadius: 12,
+                        spreadRadius: 2,
+                      ),
+                      BoxShadow(
+                        color: context.colorScheme.primary.withValues(alpha: 0.2),
+                        blurRadius: 20,
+                        spreadRadius: 4,
+                      ),
+                    ],
+                  ),
+                  child: Image.asset("assets/images/khatma/khatma.png"),
+                ),
               ),
             ),
-            backgroundColor: context.colorScheme.primary,
-            surfaceTintColor: context.colorScheme.primary,
+            backgroundColor: context.colorScheme.primaryContainer,
+            surfaceTintColor: context.colorScheme.primaryContainer,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: false,
               title: AnimatedTextKit(
@@ -48,21 +64,17 @@ class KhatmatListScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              color: context.colorScheme.primary,
+              color: context.colorScheme.primaryContainer,
               child: TopCard(height: MediaQuery.of(context).size.height / 6),
             ),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      gapH24,
-                      KhatmatListView(),
-                    ],
-                  ),
+                return Column(
+                  children: [
+                    KhatmatListView(),
+                  ],
                 );
               },
               childCount: 1,

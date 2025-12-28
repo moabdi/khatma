@@ -27,60 +27,42 @@ class AppErrorDialog extends StatelessWidget {
     final message = customMessage ?? errorCode.translate(context);
     final buttonText = this.buttonText ?? AppLocalizations.of(context).ok;
 
-    return Dialog(
+    return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding:
-            const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TweenAnimationBuilder<double>(
-              duration: const Duration(milliseconds: 300),
-              tween: Tween(begin: 0, end: 1),
-              builder: (context, value, child) => Transform.scale(
-                scale: value,
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundColor: errorCode.severityColor.withOpacity(0.1),
-                  child: Icon(icon, color: errorCode.severityColor, size: 30),
-                ),
+      contentPadding: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+      icon: 
+          TweenAnimationBuilder<double>(
+            duration: const Duration(milliseconds: 300),
+            tween: Tween(begin: 0, end: 1),
+            builder: (context, value, child) => Transform.scale(
+              scale: value,
+              child: CircleAvatar(
+                radius: 30,
+                backgroundColor: errorCode.severityColor.withAlpha(25),
+                child: Icon(icon, color: errorCode.severityColor, size: 24),
               ),
             ),
-            gapH24,
-
-            // Title
-            Text(title,
-                style: Theme.of(context).textTheme.titleLarge,
-                textAlign: TextAlign.center),
-            gapH12,
-
-            // Message
-            Text(message,
-                style: context.theme.listTileTheme.subtitleTextStyle,
-                textAlign: TextAlign.center),
-            gapH24,
-
-            // Button
-            SizedBox(
-              height: 45,
-              width: double.infinity,
-              child: TextButton(
+          ),
+      title:Text(title,
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center) ,
+      content: Text(message,
+          style: context.theme.listTileTheme.subtitleTextStyle,
+          textAlign: TextAlign.center),
+      actions: [
+        TextButton(
+              onPressed: onPressed ?? () => Navigator.of(context).pop(true),
+              child: Text(buttonText),
                 style: TextButton.styleFrom(
-                  backgroundColor:
-                      context.theme.colorScheme.error.withAlpha(25),
-                  foregroundColor: context.theme.colorScheme.error,
+                  textStyle: context.textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                onPressed: onPressed ?? () => Navigator.of(context).pop(true),
-                child: Text(buttonText),
-              ),
-            ),
-          ],
-        ),
-      ),
+            )
+      ]
     );
   }
 

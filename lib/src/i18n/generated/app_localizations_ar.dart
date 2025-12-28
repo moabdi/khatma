@@ -2282,7 +2282,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get freeUpExpiredReservedUnits => 'تحرير الوحدات المحجوزة المنتهية';
 
   @override
-  String get joinByCode => 'الانضمام بالكود';
+  String get joinByCode => 'الانضمام برمز';
 
   @override
   String get joinByCodeDesc => 'أي شخص لديه الكود يمكنه الانضمام فوراً';
@@ -2471,4 +2471,101 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseSelectAtLeastOneUnit => 'Please select at least one unit';
+
+  @override
+  String get loginRequired => 'تسجيل الدخول مطلوب';
+
+  @override
+  String get loginRequiredTitle => 'سجل الدخول للمتابعة';
+
+  @override
+  String get loginRequiredMessage =>
+      'يرجى تسجيل الدخول للوصول إلى هذه الميزة ومزامنة بياناتك عبر الأجهزة.';
+
+  @override
+  String get loginRequiredDescription =>
+      'أنشئ حساباً أو سجل الدخول لفتح جميع الميزات، وتتبع تقدمك، والمشاركة في الختمات المشتركة.';
+
+  @override
+  String get splashAppNameArabic => 'ختمة';
+
+  @override
+  String get splashAppNameLatin => 'Khatma';
+
+  @override
+  String get splashTagline => 'رفيقك في قراءة القرآن';
+
+  @override
+  String get khatmaTypeTitle => 'نوع الختمة';
+
+  @override
+  String get readingUnitTitle => 'وحدة القراءة';
+
+  @override
+  String get scheduleTitle => 'الجدول الزمني';
+
+  @override
+  String get startDateLabel => 'تاريخ البداية';
+
+  @override
+  String get endDateLabel => 'تاريخ النهاية (اختياري)';
+
+  @override
+  String get typePersonalDescription => 'تتبع قراءتك الشخصية للقرآن';
+
+  @override
+  String get typeSharedDescription => 'شارك مع العائلة والأصدقاء';
+
+  @override
+  String get typeHifzDescription => 'تتبع الحفظ';
+
+  @override
+  String get signInRequiredForType => 'تسجيل الدخول مطلوب';
+
+  @override
+  String get addKhatmaMenuTitle => 'إضافة ختمة';
+
+  @override
+  String get createKhatma => 'إنشاء ختمة';
+
+  @override
+  String get createKhatmaDescription => 'ابدأ رحلتك الخاصة في قراءة القرآن';
+
+  @override
+  String get joinByCodeDescription => 'أدخل رمزًا للانضمام إلى ختمة خاصة';
+
+  @override
+  String get joinPublicKhatma => 'الانضمام برمز';
+
+  @override
+  String get joinPublicKhatmaDescription =>
+      'أدخل رمزًا من 6 أحرف للانضمام إلى ختمة';
+
+  @override
+  String get joinByCodeTitle => 'الانضمام برمز';
+
+  @override
+  String get enterKhatmaCode => 'أدخل رمز الختمة';
+
+  @override
+  String get codeInputHint => 'أدخل رمزًا من 6 أحرف';
+
+  @override
+  String get codeInputLabel => 'رمز الختمة';
+
+  @override
+  String get searchKhatmaByCode => 'بحث';
+
+  @override
+  String get invalidCodeLength => 'يجب أن يتكون الرمز من 6 أحرف';
+
+  @override
+  String get khatmaNotFoundByCode => 'لم يتم العثور على ختمة بهذا الرمز';
+
+  @override
+  String get khatmaNotFoundByCodeDescription =>
+      'يرجى التحقق من الرمز والمحاولة مرة أخرى';
+
+  @override
+  String get enterCodeToSearch => 'أدخل رمزًا من 6 أحرف للعثور على ختمة';
 }

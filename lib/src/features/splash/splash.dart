@@ -3,26 +3,47 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   final bool isVisible;
 
   const SplashScreen({super.key, this.isVisible = true});
 
-  static const _bgGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool _hasRedirected = false;
+
+  static const _bgGradientLight = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
     colors: [
-      Color(0xFFECFDF5),
-      Color(0xFFCCFBF1),
-      Color(0xFFE0F2FE),
+      Color(0xFFECFDF5), // Light green/mint
+      Color(0xFFD1FAE5), // Lighter green
+      Color(0xFFFFFFFF), // White
+    ],
+    stops: [0.0, 0.5, 1.0],
+  );
+
+  static const _bgGradientDark = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFF1F2937), // Grey 800
+      Color(0xFF111827), // Grey 900
     ],
   );
 
   Future<void> _startRedirect(BuildContext context) async {
+    if (_hasRedirected) return;
+    _hasRedirected = true;
+
     print('SplashScreen: Starting redirect process...');
     final prefs = await SharedPreferences.getInstance();
     final onboardingCompleted = prefs.getBool('onboarding_completed') ?? false;
@@ -37,6 +58,28 @@ class SplashScreen extends StatelessWidget {
     } else {
       context.replaceNamed(AppRoute.onboarding.name);
     }
+  }
+
+  Future<void> _forceRedirectAfterTimeout(BuildContext context) async {
+    // Safety timeout: force redirect to home after 3 seconds if still on splash
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (!context.mounted || _hasRedirected) return;
+
+    _hasRedirected = true;
+    print('SplashScreen: Force redirecting to home after timeout...');
+    context.replaceNamed(AppRoute.home.name);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Start the force redirect timeout immediately
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _forceRedirectAfterTimeout(context);
+      }
+    });
   }
 
   @override
@@ -54,14 +97,18 @@ class SplashScreen extends StatelessWidget {
       }
     });
 
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final gradient = isDark ? _bgGradientDark : _bgGradientLight;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       body: AnimatedOpacity(
-        opacity: isVisible ? 1 : 0,
+        opacity: widget.isVisible ? 1 : 0,
         duration: const Duration(milliseconds: 500),
         child: Container(
           color: Colors.transparent,
           child: DecoratedBox(
-            decoration: const BoxDecoration(gradient: _bgGradient),
+            decoration: BoxDecoration(gradient: gradient),
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -71,7 +118,7 @@ class SplashScreen extends StatelessWidget {
                     children: [
                       AvatarGlow(
                         startDelay: const Duration(milliseconds: 600),
-                        glowColor: Theme.of(context).colorScheme.primary,
+                        glowColor: colorScheme.primary,
                         glowShape: BoxShape.circle,
                         glowRadiusFactor: 1.5,
                         repeat: false,
@@ -86,22 +133,26 @@ class SplashScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   Text(
-                    'ختمة',
-                    style: context.textTheme.displaySmall!
-                        .copyWith(color: const Color(0xFF065F46)),
+                    context.loc.splashAppNameArabic,
+                    style: context.textTheme.displaySmall!.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Khatma',
-                    style: context.textTheme.headlineLarge!
-                        .copyWith(color: const Color(0xFF065F46)),
+                    context.loc.splashAppNameLatin,
+                    style: context.textTheme.headlineLarge!.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'Your Quran Reading Companion',
+                  Text(
+                    context.loc.splashTagline,
                     style: TextStyle(
                       fontSize: 18,
-                      color: Color(0xFF059669),
+                      color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                   const SizedBox(height: 32),
@@ -109,7 +160,7 @@ class SplashScreen extends StatelessWidget {
                     width: 64,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF34D399),
+                      color: colorScheme.primary,
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),

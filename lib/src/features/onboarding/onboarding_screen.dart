@@ -65,7 +65,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Future<void> _completeOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onboarding_completed', true);
-    context.goNamed(AppRoute.khatma.name);
+    context.goNamed(AppRoute.home.name);
   }
 
   @override

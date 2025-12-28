@@ -41,14 +41,7 @@ class UnitTile extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),
-      elevation: unit.status == UnitStatus.selected ? .5 : 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: statusInfo.borderColor,
-          width: unit.status == UnitStatus.selected ? .5 : 0,
-        ),
-      ),
+      elevation: 0,
       color: statusInfo.backgroundColor,
       child: InkWell(
         onTap: statusInfo.isClickable ? onTap : null,
@@ -161,10 +154,10 @@ class UnitTile extends StatelessWidget {
     switch (unit.status) {
       case UnitStatus.free:
         return _StatusInfo(
-          backgroundColor: context.colorScheme.surfaceContainerLow,
-          avatarColor: context.colorScheme.surface,
-          numberColor: context.colorScheme.onSurfaceVariant,
-          iconColor: context.colorScheme.onSurfaceVariant,
+          backgroundColor: context.colorScheme.primary.withAlpha(15),
+          avatarColor: context.colorScheme.primary.withAlpha(25),
+          numberColor: context.colorScheme.primary,
+          iconColor: context.colorScheme.primary.withAlpha(250),
           borderColor: context.colorScheme.outlineVariant,
           trailingIcon: null,
           isClickable: true,

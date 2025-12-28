@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/login_required_screen.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/presentation/shared/details/logic/khatma_details_controller.dart';
@@ -58,42 +59,7 @@ class _SharedKhatmaScreenState extends ConsumerState<SharedKhatmaScreen> {
     if (!isAuthenticated) {
       return Scaffold(
         appBar: AppBar(title: Text(context.loc.khatma)),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.lock_outline,
-                  size: 64,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                gapH16,
-                Text(
-                  'Sign in Required',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                gapH8,
-                Text(
-                  'You must sign in to view shared khatmas',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                gapH24,
-                ElevatedButton.icon(
-                  onPressed: () {
-                    context.goNamed(AppRoute.account.name);
-                  },
-                  icon: const Icon(Icons.login),
-                  label: const Text('Sign In'),
-                ),
-              ],
-            ),
-          ),
-        ),
+        body: const LoginRequiredScreen(),
       );
     }
 

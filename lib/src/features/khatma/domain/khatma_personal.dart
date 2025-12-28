@@ -1,7 +1,8 @@
 part of 'khatma.dart';
 
 class KhatmaPersonal extends Khatma {
-  final List<int> completedParts;
+  // Map of part number to completion date
+  final Map<int, DateTime> completedParts;
   final DateTime? lastRead;
 
   const KhatmaPersonal({
@@ -24,15 +25,14 @@ class KhatmaPersonal extends Khatma {
     super.repeats = 0,
     super.progress = 0.0,
     super.version = 1,
-    this.completedParts = const [],
+    this.completedParts = const {},
     this.lastRead,
   }) : super(type: KhatmaType.personal);
 
   // Computed properties
   double get completionPercent {
     if (completedParts.isEmpty) return 0.0;
-    final uniqueCompleted = completedParts.toSet().length;
-    return (uniqueCompleted / unit.count).clamp(0.0, 1.0);
+    return (completedParts.length / unit.count).clamp(0.0, 1.0);
   }
 
   Duration get duration {
@@ -40,15 +40,17 @@ class KhatmaPersonal extends Khatma {
     return DateTime.now().difference(baseDate);
   }
 
-  List<int> get completedPartIds => completedParts.toSet().toList();
+  List<int> get completedPartIds => completedParts.keys.toList()..sort();
 
   List<int> get remainingPartIds {
     final allParts = List.generate(unit.count, (index) => index + 1);
-    final completed = completedParts.toSet();
-    return allParts.where((part) => !completed.contains(part)).toList();
+    return allParts.where((part) => !completedParts.containsKey(part)).toList();
   }
 
   int get remainingPartsCount => remainingPartIds.length;
+
+  // Get completion date for a specific part
+  DateTime? getCompletionDate(int partId) => completedParts[partId];
 
   // Helper method for updating reading progress with domain validation
   KhatmaPersonal addCompletedParts(List<int> partIds) {
@@ -62,14 +64,17 @@ class KhatmaPersonal extends Khatma {
       }
     }
 
-    final alreadyCompleted = completedParts.toSet();
+    final alreadyCompleted = completedParts.keys.toSet();
     final duplicates = partIds.where((id) => alreadyCompleted.contains(id)).toList();
     if (duplicates.isNotEmpty) {
       throw DuplicatePartException(duplicates);
     }
 
     final now = DateTime.now();
-    final updatedCompletedParts = [...completedParts, ...partIds];
+    final updatedCompletedParts = Map<int, DateTime>.from(completedParts);
+    for (final partId in partIds) {
+      updatedCompletedParts[partId] = now;
+    }
 
     final updated = copyWith(
       completedParts: updatedCompletedParts,
@@ -109,7 +114,7 @@ class KhatmaPersonal extends Khatma {
     int? repeats,
     double? progress,
     int? version,
-    List<int>? completedParts,
+    Map<int, DateTime>? completedParts,
     DateTime? lastRead,
   }) {
     return KhatmaPersonal(

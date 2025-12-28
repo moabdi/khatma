@@ -1079,5 +1079,43 @@
   "completed": "مكتمل",
   "inProgress": "قيد التقدم",
   "juzz": "جزء",
-  "hizb": "حزب"
+  "hizb": "حزب",
+
+  "loginRequired": "تسجيل الدخول مطلوب",
+  "loginRequiredTitle": "سجل الدخول للمتابعة",
+  "loginRequiredMessage": "يرجى تسجيل الدخول للوصول إلى هذه الميزة ومزامنة بياناتك عبر الأجهزة.",
+  "loginRequiredDescription": "أنشئ حساباً أو سجل الدخول لفتح جميع الميزات، وتتبع تقدمك، والمشاركة في الختمات المشتركة.",
+
+  "splashAppNameArabic": "ختمة",
+  "splashAppNameLatin": "Khatma",
+  "splashTagline": "رفيقك في قراءة القرآن",
+
+  "khatmaTypeTitle": "نوع الختمة",
+  "readingUnitTitle": "وحدة القراءة",
+  "scheduleTitle": "الجدول الزمني",
+  "startDateLabel": "تاريخ البداية",
+  "endDateLabel": "تاريخ النهاية (اختياري)",
+  "khatmaNotFound": "الختمة غير موجودة",
+  "typePersonalDescription": "تتبع قراءتك الشخصية للقرآن",
+  "typeSharedDescription": "شارك مع العائلة والأصدقاء",
+  "typeHifzDescription": "تتبع الحفظ",
+  "signInRequiredForType": "تسجيل الدخول مطلوب",
+
+  "addKhatmaMenuTitle": "إضافة ختمة",
+  "createKhatma": "إنشاء ختمة",
+  "createKhatmaDescription": "ابدأ رحلتك الخاصة في قراءة القرآن",
+  "joinByCode": "الانضمام برمز",
+  "joinByCodeDescription": "أدخل رمزًا للانضمام إلى ختمة خاصة",
+  "joinPublicKhatma": "الانضمام برمز",
+  "joinPublicKhatmaDescription": "أدخل رمزًا من 6 أحرف للانضمام إلى ختمة",
+
+  "joinByCodeTitle": "الانضمام برمز",
+  "enterKhatmaCode": "أدخل رمز الختمة",
+  "codeInputHint": "أدخل رمزًا من 6 أحرف",
+  "codeInputLabel": "رمز الختمة",
+  "searchKhatmaByCode": "بحث",
+  "invalidCodeLength": "يجب أن يتكون الرمز من 6 أحرف",
+  "khatmaNotFoundByCode": "لم يتم العثور على ختمة بهذا الرمز",
+  "khatmaNotFoundByCodeDescription": "يرجى التحقق من الرمز والمحاولة مرة أخرى",
+  "enterCodeToSearch": "أدخل رمزًا من 6 أحرف للعثور على ختمة"
 }

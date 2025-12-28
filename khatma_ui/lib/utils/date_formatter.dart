@@ -10,6 +10,15 @@ DateTime parse(String date) {
   return dateFormat.parse(date);
 }
 
+DateTime parseOrNow(String? date) {
+  if (date == null || date.isEmpty) return DateTime.now();
+  try {
+    return dateFormat.parse(date);
+  } catch (e) {
+    return DateTime.now();
+  }
+}
+
 extension DateTimeFormatter on DateTime {
   LocalDate toLocalDate() => LocalDate(year, month, day);
 

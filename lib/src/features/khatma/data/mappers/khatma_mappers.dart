@@ -20,7 +20,7 @@ extension KhatmaDtoMapper on KhatmaDto {
           lastUpdated: dto.lastUpdated,
           lastSync: dto.lastSync,
           needsSync: dto.needsSync,
-          completedParts: dto.completedParts?? [],
+          completedParts: _mapCompletedPartsFromDto(dto.completedParts),
           repeat: dto.repeat,
           repeats: dto.repeats,
           lastRead: dto.lastRead,
@@ -89,7 +89,7 @@ extension KhatmaDomainMapper on Khatma {
           themeVariant: khatma.theme.variant,
           endDate: khatma.endDate,
           lastRead: khatma.lastRead,
-          completedParts: khatma.completedParts,
+          completedParts: _mapCompletedPartsToDto(khatma.completedParts),
           lastUpdated: khatma.lastUpdated,
           lastSync: khatma.lastSync,
           needsSync: khatma.needsSync,
@@ -331,4 +331,28 @@ ParticipantStatus _mapParticipantStatus(String status) {
     (e) => e.name == status,
     orElse: () => ParticipantStatus.pending,
   );
+}
+
+// Helper function to convert completedParts from DTO (Map<String, String>) to Domain (Map<int, DateTime>)
+Map<int, DateTime> _mapCompletedPartsFromDto(Map<String, String>? completedParts) {
+  if (completedParts == null) return {};
+
+  final result = <int, DateTime>{};
+  completedParts.forEach((key, value) {
+    final partNumber = int.tryParse(key);
+    final completionDate = DateTime.tryParse(value);
+    if (partNumber != null && completionDate != null) {
+      result[partNumber] = completionDate;
+    }
+  });
+  return result;
+}
+
+// Helper function to convert completedParts from Domain (Map<int, DateTime>) to DTO (Map<String, String>)
+Map<String, String> _mapCompletedPartsToDto(Map<int, DateTime> completedParts) {
+  final result = <String, String>{};
+  completedParts.forEach((key, value) {
+    result[key.toString()] = value.toIso8601String();
+  });
+  return result;
 }

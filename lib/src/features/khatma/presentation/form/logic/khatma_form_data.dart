@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:khatma/src/features/khatma/domain/khatma_domain.dart';
 import 'package:khatma/src/features/khatma/domain/khatma_theme.dart';
+import 'package:khatma/src/utils/code_generator.dart';
 
 /// Creator information for creating a new Khatma
 class KhatmaCreator {
@@ -92,6 +93,9 @@ class KhatmaFormData {
       repeat: khatma.repeat,
       startDate: khatma.startDate ?? khatma.createDate,
       endDate: khatma.endDate,
+      // Preserve existing config for shared khatmas
+      sharedConfig: khatma is KhatmaShared ? khatma.config : null,
+      hifzConfig: khatma is KhatmaHifz ? khatma.config : null,
     );
   }
 
@@ -143,7 +147,12 @@ class KhatmaFormData {
             repeat: repeat,
             creatorId: creator!.creatorId,
             creatorName: creator!.creatorName,
-            config: sharedConfig ?? const SharedConfig.defaults(),
+            config: () {
+              final baseConfig = sharedConfig ?? const SharedConfig.defaults();
+              // Only generate a new code if one doesn't exist
+              final code = baseConfig.inviteCode ?? CodeGenerator.generate6CharCode();
+              return baseConfig.copyWith(inviteCode: code);
+            }(),
             // Initialize with creator as first participant
             participants: [
               Participant(

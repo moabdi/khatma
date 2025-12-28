@@ -1,14 +1,16 @@
 // lib/src/features/shared_khatma/presentation/khatma_search_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
+import 'package:khatma/src/features/authentication/presentation/widgets/login_required_screen.dart';
 import 'package:khatma/src/features/khatma/application/khatma_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
 import 'package:khatma/src/i18n/app_localizations_context.dart';
 import 'package:khatma/src/i18n/generated/app_localizations.dart';
-import 'package:khatma/src/routing/app_router.dart';
 import 'package:khatma/src/themes/theme.dart';
+import 'package:khatma_ui/components/loading_list_tile.dart';
 import 'package:khatma_ui/constants/app_sizes.dart';
 
 class KhatmaSearchScreen extends ConsumerStatefulWidget {
@@ -21,6 +23,7 @@ class KhatmaSearchScreen extends ConsumerStatefulWidget {
 class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
+  bool _isSearching = false;
 
   @override
   void dispose() {
@@ -28,11 +31,29 @@ class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
     super.dispose();
   }
 
+  void _performSearch(String value) async {
+    setState(() {
+      _searchQuery = value.toUpperCase();
+      _isSearching = value.length == 6;
+    });
+
+    // Add a small delay to show loading state
+    if (value.length == 6) {
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (mounted) {
+        setState(() {
+          _isSearching = false;
+        });
+      }
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // Check if user is authenticated
     final currentUser = ref.watch(userProvider);
-    final isAuthenticated = currentUser != null && !currentUser.isAnonymous;
+    final isAuthenticated = currentUser != null;
 
     // Prevent non-authenticated users from searching shared khatmas
     if (!isAuthenticated) {
@@ -42,47 +63,13 @@ class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
           backgroundColor: Theme.of(context).colorScheme.surface,
           foregroundColor: Theme.of(context).colorScheme.onSurface,
         ),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.lock_outline,
-                  size: 64,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                gapH16,
-                Text(
-                  'Sign in Required',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                gapH8,
-                Text(
-                  'You must sign in to search for shared khatmas',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                gapH24,
-                ElevatedButton.icon(
-                  onPressed: () {
-                    context.goNamed(AppRoute.account.name);
-                  },
-                  icon: const Icon(Icons.login),
-                  label: const Text('Sign In'),
-                ),
-              ],
-            ),
-          ),
-        ),
+        body: const LoginRequiredScreen(),
       );
     }
 
     final sharedKhatmas = ref.watch(sharedKhatmasProvider);
-    final filteredKhatmas = _filterKhatmas(sharedKhatmas, _searchQuery);
+    final filteredKhatmas = _filterKhatmasByCode(sharedKhatmas, _searchQuery);
+    final isCodeComplete = _searchQuery.length == 6;
 
     return Scaffold(
       appBar: AppBar(
@@ -93,62 +80,105 @@ class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Search TextField
+            // Search TextField with character counter
             Container(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 controller: _searchController,
+                maxLength: 6,
+                textAlign: TextAlign.center,
+                textCapitalization: TextCapitalization.characters,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[A-Z0-9]')),
+                  UpperCaseTextFormatter(),
+                ],
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      letterSpacing: 4,
+                      fontWeight: FontWeight.w600,
+                    ),
                 decoration: InputDecoration(
-                  hintText: context.loc.khatma_search_hint,
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  hintText: 'ABC123',
+                  hintStyle: TextStyle(
+                    letterSpacing: 4,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
                   ),
-                  suffixIcon: _searchQuery.isNotEmpty
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _searchController.clear();
-                              _searchQuery = '';
-                            });
-                          },
-                          icon: Icon(
-                            Icons.clear,
-                            color:
-                                Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
+                  prefixIcon: Icon(
+                    Icons.qr_code_2,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  suffixIcon: _searchQuery.length == 6
+                      ? Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () => _performSearch(_searchQuery),
+                              icon: Icon(
+                                Icons.search,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              tooltip: 'Rechercher',
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _searchController.clear();
+                                  _searchQuery = '';
+                                });
+                              },
+                              icon: Icon(
+                                Icons.clear,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
                         )
-                      : null,
+                      : _searchQuery.isNotEmpty
+                          ? IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _searchController.clear();
+                                  _searchQuery = '';
+                                });
+                              },
+                              icon: Icon(
+                                Icons.clear,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              ),
+                            )
+                          : null,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   filled: true,
-                  fillColor:
-                      Theme.of(context).colorScheme.surfaceContainerHighest,
+                  fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  counterText: '',
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _searchQuery = value;
-                  });
-                },
+                onChanged: _performSearch,
               ),
             ),
 
-            // Search Results
+            // Search Results - only show when code is complete
             Expanded(
-              child: filteredKhatmas.isEmpty
-                  ? _buildEmptyState(context)
-                  : ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      itemCount: filteredKhatmas.length,
-                      itemBuilder: (context, index) {
-                        final khatma = filteredKhatmas[index];
-                        return _KhatmaSearchItem(
-                          khatma: khatma,
-                          onTap: () => _navigateToDetails(context, khatma),
-                        );
-                      },
-                    ),
+              child: _isSearching
+                  ? const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: LoadingListTile(itemCount: 1),
+                    )
+                  : isCodeComplete
+                      ? (filteredKhatmas.isEmpty
+                          ? _buildEmptyState(context)
+                          : ListView.builder(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              itemCount: filteredKhatmas.length,
+                              itemBuilder: (context, index) {
+                                final khatma = filteredKhatmas[index];
+                                return _KhatmaSearchItem(
+                                  khatma: khatma,
+                                  onTap: () => _navigateToDetails(context, khatma),
+                                );
+                              },
+                            ))
+                      : _buildInstructionState(context),
             ),
           ],
         ),
@@ -156,37 +186,73 @@ class _KhatmaSearchScreenState extends ConsumerState<KhatmaSearchScreen> {
     );
   }
 
-  List<KhatmaShared> _filterKhatmas(List<KhatmaShared> khatmas, String query) {
-    if (query.isEmpty) return khatmas;
+  List<KhatmaShared> _filterKhatmasByCode(List<KhatmaShared> khatmas, String query) {
+    // Only search by code - require exactly 6 characters
+    if (query.length != 6) return [];
 
-    final lowercaseQuery = query.toLowerCase();
+    final upperQuery = query.toUpperCase();
     return khatmas.where((khatma) {
-      return khatma.name.toLowerCase().contains(lowercaseQuery) ||
-          (khatma.description?.toLowerCase().contains(lowercaseQuery) ?? false);
+      return khatma.inviteCode?.toUpperCase() == upperQuery;
     }).toList();
+  }
+
+  Widget _buildInstructionState(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.qr_code_scanner,
+              size: 80,
+              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
+            ),
+            gapH24,
+            Text(
+              context.loc.enterCodeToSearch,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            gapH8,
+            Text(
+              'Entrez un code de 6 caractères pour rejoindre une Khatma',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildEmptyState(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.search_off,
-            size: 64,
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          ),
-          gapH16,
-          Text(
-            _searchQuery.isEmpty
-                ? context.loc.khatma_search_empty_default
-                : context.loc.khatma_search_no_results,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.search_off,
+              size: 64,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+            gapH16,
+            Text(
+              context.loc.khatmaNotFoundByCode,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -393,10 +459,24 @@ class _CompactChip extends StatelessWidget {
   }
 }
 
+// Text formatter to convert input to uppercase
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    return TextEditingValue(
+      text: newValue.text.toUpperCase(),
+      selection: newValue.selection,
+    );
+  }
+}
+
 // Extension for missing localization strings (you should add these to your .arb files)
 extension KhatmaSearchLocalizations on AppLocalizations {
   String get khatma_search_title => 'Rechercher une Khatma';
-  String get khatma_search_hint => 'Nom ou description';
+  String get khatma_search_hint => 'Nom, description ou code (6 caractères)';
   String get khatma_join_button => 'Rejoindre';
   String get khatma_search_empty_default =>
       'Découvrez les Khatmas publiques disponibles';

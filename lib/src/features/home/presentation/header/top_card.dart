@@ -15,13 +15,6 @@ class TopCard extends StatelessWidget {
         Container(
           height: height * .9,
           padding: EdgeInsets.only(right: 0),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              alignment: Alignment.centerRight,
-              image: AssetImage('assets/images/hifdz.png'),
-              opacity: 0.3,
-            ),
-          ),
           width: double.infinity,
           child: lottieStartReading,
         ),

@@ -1173,5 +1173,43 @@
     }
   },
   "unreserveFeatureComingSoon": "Unreserve feature coming soon",
-  "pleaseSelectAtLeastOneUnit": "Please select at least one unit"
+  "pleaseSelectAtLeastOneUnit": "Please select at least one unit",
+
+  "loginRequired": "Login Required",
+  "loginRequiredTitle": "Sign in to continue",
+  "loginRequiredMessage": "Please sign in to access this feature and sync your data across devices.",
+  "loginRequiredDescription": "Create an account or sign in to unlock all features, track your progress, and participate in shared khatmas.",
+
+  "splashAppNameArabic": "ختمة",
+  "splashAppNameLatin": "Khatma",
+  "splashTagline": "Your Quran Reading Companion",
+
+  "khatmaTypeTitle": "Khatma Type",
+  "readingUnitTitle": "Reading Unit",
+  "scheduleTitle": "Schedule",
+  "startDateLabel": "Start Date",
+  "endDateLabel": "End Date (Optional)",
+  "khatmaNotFound": "Khatma not found",
+  "typePersonalDescription": "Track your personal Quran reading",
+  "typeSharedDescription": "Share with family and friends",
+  "typeHifzDescription": "Memorization tracking",
+  "signInRequiredForType": "Sign in required",
+
+  "addKhatmaMenuTitle": "Add Khatma",
+  "createKhatma": "Create Khatma",
+  "createKhatmaDescription": "Start your own Quran reading journey",
+  "joinByCode": "Join by Code",
+  "joinByCodeDescription": "Enter a code to join a private Khatma",
+  "joinPublicKhatma": "Join by Code",
+  "joinPublicKhatmaDescription": "Enter a 6-character code to join a Khatma",
+
+  "joinByCodeTitle": "Join by Code",
+  "enterKhatmaCode": "Enter Khatma Code",
+  "codeInputHint": "Enter 6-character code",
+  "codeInputLabel": "Khatma Code",
+  "searchKhatmaByCode": "Search",
+  "invalidCodeLength": "Code must be 6 characters",
+  "khatmaNotFoundByCode": "No Khatma found with this code",
+  "khatmaNotFoundByCodeDescription": "Please check the code and try again",
+  "enterCodeToSearch": "Enter a 6-character code to find a Khatma"
 }

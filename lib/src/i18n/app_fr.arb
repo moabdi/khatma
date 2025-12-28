@@ -1079,5 +1079,43 @@
   "completed": "Terminé",
   "inProgress": "En Cours",
   "juzz": "Juzz",
-  "hizb": "Hizb"
+  "hizb": "Hizb",
+
+  "loginRequired": "Connexion requise",
+  "loginRequiredTitle": "Connectez-vous pour continuer",
+  "loginRequiredMessage": "Veuillez vous connecter pour accéder à cette fonctionnalité et synchroniser vos données sur tous vos appareils.",
+  "loginRequiredDescription": "Créez un compte ou connectez-vous pour débloquer toutes les fonctionnalités, suivre votre progression et participer aux khatmas partagées.",
+
+  "splashAppNameArabic": "ختمة",
+  "splashAppNameLatin": "Khatma",
+  "splashTagline": "Votre compagnon de lecture du Coran",
+
+  "khatmaTypeTitle": "Type de Khatma",
+  "readingUnitTitle": "Unité de lecture",
+  "scheduleTitle": "Programme",
+  "startDateLabel": "Date de début",
+  "endDateLabel": "Date de fin (Optionnel)",
+  "khatmaNotFound": "Khatma introuvable",
+  "typePersonalDescription": "Suivez votre lecture personnelle du Coran",
+  "typeSharedDescription": "Partagez avec votre famille et vos amis",
+  "typeHifzDescription": "Suivi de la mémorisation",
+  "signInRequiredForType": "Connexion requise",
+
+  "addKhatmaMenuTitle": "Ajouter une Khatma",
+  "createKhatma": "Créer une Khatma",
+  "createKhatmaDescription": "Commencez votre propre parcours de lecture du Coran",
+  "joinByCode": "Rejoindre par Code",
+  "joinByCodeDescription": "Entrez un code pour rejoindre une Khatma privée",
+  "joinPublicKhatma": "Rejoindre par Code",
+  "joinPublicKhatmaDescription": "Entrez un code de 6 caractères pour rejoindre une Khatma",
+
+  "joinByCodeTitle": "Rejoindre par Code",
+  "enterKhatmaCode": "Entrez le Code de Khatma",
+  "codeInputHint": "Entrez un code de 6 caractères",
+  "codeInputLabel": "Code de Khatma",
+  "searchKhatmaByCode": "Rechercher",
+  "invalidCodeLength": "Le code doit contenir 6 caractères",
+  "khatmaNotFoundByCode": "Aucune Khatma trouvée avec ce code",
+  "khatmaNotFoundByCodeDescription": "Veuillez vérifier le code et réessayer",
+  "enterCodeToSearch": "Entrez un code de 6 caractères pour trouver une Khatma"
 }

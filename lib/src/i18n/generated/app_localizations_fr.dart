@@ -1069,7 +1069,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get khatmaErrors => 'Erreurs de Khatma';
 
   @override
-  String get khatmaNotFound => 'Khatma non trouvée';
+  String get khatmaNotFound => 'Khatma introuvable';
 
   @override
   String get alreadyCompleted => 'Déjà terminé';
@@ -2348,7 +2348,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Libérer les unités réservées expirées';
 
   @override
-  String get joinByCode => 'Rejoindre par code';
+  String get joinByCode => 'Rejoindre par Code';
 
   @override
   String get joinByCodeDesc =>
@@ -2540,4 +2540,105 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get pleaseSelectAtLeastOneUnit => 'Please select at least one unit';
+
+  @override
+  String get loginRequired => 'Connexion requise';
+
+  @override
+  String get loginRequiredTitle => 'Connectez-vous pour continuer';
+
+  @override
+  String get loginRequiredMessage =>
+      'Veuillez vous connecter pour accéder à cette fonctionnalité et synchroniser vos données sur tous vos appareils.';
+
+  @override
+  String get loginRequiredDescription =>
+      'Créez un compte ou connectez-vous pour débloquer toutes les fonctionnalités, suivre votre progression et participer aux khatmas partagées.';
+
+  @override
+  String get splashAppNameArabic => 'ختمة';
+
+  @override
+  String get splashAppNameLatin => 'Khatma';
+
+  @override
+  String get splashTagline => 'Votre compagnon de lecture du Coran';
+
+  @override
+  String get khatmaTypeTitle => 'Type de Khatma';
+
+  @override
+  String get readingUnitTitle => 'Unité de lecture';
+
+  @override
+  String get scheduleTitle => 'Programme';
+
+  @override
+  String get startDateLabel => 'Date de début';
+
+  @override
+  String get endDateLabel => 'Date de fin (Optionnel)';
+
+  @override
+  String get typePersonalDescription =>
+      'Suivez votre lecture personnelle du Coran';
+
+  @override
+  String get typeSharedDescription => 'Partagez avec votre famille et vos amis';
+
+  @override
+  String get typeHifzDescription => 'Suivi de la mémorisation';
+
+  @override
+  String get signInRequiredForType => 'Connexion requise';
+
+  @override
+  String get addKhatmaMenuTitle => 'Ajouter une Khatma';
+
+  @override
+  String get createKhatma => 'Créer une Khatma';
+
+  @override
+  String get createKhatmaDescription =>
+      'Commencez votre propre parcours de lecture du Coran';
+
+  @override
+  String get joinByCodeDescription =>
+      'Entrez un code pour rejoindre une Khatma privée';
+
+  @override
+  String get joinPublicKhatma => 'Rejoindre par Code';
+
+  @override
+  String get joinPublicKhatmaDescription =>
+      'Entrez un code de 6 caractères pour rejoindre une Khatma';
+
+  @override
+  String get joinByCodeTitle => 'Rejoindre par Code';
+
+  @override
+  String get enterKhatmaCode => 'Entrez le Code de Khatma';
+
+  @override
+  String get codeInputHint => 'Entrez un code de 6 caractères';
+
+  @override
+  String get codeInputLabel => 'Code de Khatma';
+
+  @override
+  String get searchKhatmaByCode => 'Rechercher';
+
+  @override
+  String get invalidCodeLength => 'Le code doit contenir 6 caractères';
+
+  @override
+  String get khatmaNotFoundByCode => 'Aucune Khatma trouvée avec ce code';
+
+  @override
+  String get khatmaNotFoundByCodeDescription =>
+      'Veuillez vérifier le code et réessayer';
+
+  @override
+  String get enterCodeToSearch =>
+      'Entrez un code de 6 caractères pour trouver une Khatma';
 }

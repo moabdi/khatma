@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:khatma/src/core/app_dialog.dart';
 import 'package:khatma/src/features/authentication/application/account_manager.dart';
 import 'package:khatma/src/features/khatma/domain/khatma.dart';
@@ -122,7 +121,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   Widget _buildBody(BuildContext context, KhatmaFormData formData) {
     // Check if we're editing a khatma that doesn't match the current ID
     if (widget.khatmaId != null && formData.id != widget.khatmaId) {
-      return const EmptyPlaceholderWidget(message: 'Khatma not found');
+      return EmptyPlaceholderWidget(message: context.loc.khatmaNotFound);
     }
 
     return SafeArea(
@@ -160,17 +159,17 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             gapH16,
             _buildDescriptionField(context),
             gapH16,
-            _buildSectionTitle('Khatma Type'),
+            _buildSectionTitle(context.loc.khatmaTypeTitle),
             gapH8,
             _buildTypeSelector(context, formData),
             gapH16,
-            _buildSectionTitle('Reading Unit'),
+            _buildSectionTitle(context.loc.readingUnitTitle),
             gapH8,
             _buildSplitUnitSelector(context, formData),
             gapH16,
             _buildRepeatToggle(formData),
             gapH16,
-            _buildSectionTitle('Schedule'),
+            _buildSectionTitle(context.loc.scheduleTitle),
             gapH8,
             _buildDateSection(context),
             gapH24,
@@ -275,7 +274,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
   }
 
   Widget _buildDateSection(BuildContext context) {
-    final startDate = _parseDate(_startDateController.text) ?? DateTime.now();
+    final startDate = parseOrNow(_startDateController.text);
 
     return Card(
       child: Padding(
@@ -285,7 +284,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
           children: [
             DateField(
               controller: _startDateController,
-              labelText: 'Start Date',
+              labelText: context.loc.startDateLabel,
               isRequired: true,
               onDateSelected: (date) {
                 if (date != null) {
@@ -299,7 +298,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
             gapH16,
             DateField(
               controller: _endDateController,
-              labelText: 'End Date (Optional)',
+              labelText: context.loc.endDateLabel,
               isRequired: false,
               firstDate: startDate,
               onDateSelected: (date) {
@@ -313,15 +312,6 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
         ),
       ),
     );
-  }
-
-  DateTime? _parseDate(String dateString) {
-    if (dateString.isEmpty) return null;
-    try {
-      return DateFormat('dd/MM/yyyy').parse(dateString);
-    } catch (e) {
-      return null;
-    }
   }
 
   Widget _buildTypeSelector(BuildContext context, KhatmaFormData formData) {
@@ -338,10 +328,10 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
       KhatmaType.hifz: Icons.school,
     };
 
-    Map<KhatmaType, String> typeDescriptions = {
-      KhatmaType.personal: 'Track your personal Quran reading',
-      KhatmaType.shared: 'Share with family and friends',
-      KhatmaType.hifz: 'Memorization tracking',
+    final typeDescriptions = {
+      KhatmaType.personal: context.loc.typePersonalDescription,
+      KhatmaType.shared: context.loc.typeSharedDescription,
+      KhatmaType.hifz: context.loc.typeHifzDescription,
     };
 
     return Card(
@@ -379,7 +369,7 @@ class _AddKhatmaScreenState extends ConsumerState<AddKhatmaScreen> {
               ),
               subtitle: Text(
                 isDisabled
-                    ? 'Sign in required'
+                    ? context.loc.signInRequiredForType
                     : typeDescriptions[type] ?? '',
                 style: TextStyle(
                   color: isDisabled ? context.colorScheme.error : null,

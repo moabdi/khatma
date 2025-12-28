@@ -20,18 +20,14 @@ class AppDialog {
       fullscreenDialog: true,
       barrierColor: Colors.black54,
       barrierLabel: "Labe",
-      builder: (context) => Dialog(
+      builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
+        actionsAlignment: MainAxisAlignment.spaceBetween,
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         elevation: 8,
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Icon
-              Container(
+        icon: Container(
                 width: 56,
                 height: 56,
                 decoration: BoxDecoration(
@@ -44,67 +40,30 @@ class AppDialog {
                   color: color,
                 ),
               ),
-
-              const SizedBox(height: 16),
-
-              // Title
-              Text(
-                title,
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-
-              const SizedBox(height: 12),
-
-              // Message
-              Text(
-                message,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-                textAlign: TextAlign.center,
-              ),
-
-              const SizedBox(height: 24),
-
-              // Buttons - Fixed approach without Expanded issues
-              IntrinsicHeight(
-                child: Row(
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: TextButton(
-                          onPressed: () => Navigator.of(context).pop(false),
-                          child: Text(cancelText ?? l10n.cancel),
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: color,
-                              foregroundColor: Colors.white,
-                              textStyle: TextStyle(
-                                fontSize: 15,
-                              )),
-                          onPressed: () => Navigator.of(context).pop(true),
-                          child: Text(confirmText),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+        title: Text(
+          title,
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w600,
           ),
         ),
+        content: Text(
+          message,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+        actions: [
+          Expanded(
+            child: ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(confirmText),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: color,
+                foregroundColor: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

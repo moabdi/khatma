@@ -1999,7 +1999,7 @@ abstract class AppLocalizations {
   /// No description provided for @khatmaNotFound.
   ///
   /// In en, this message translates to:
-  /// **'Khatma Not Found'**
+  /// **'Khatma not found'**
   String get khatmaNotFound;
 
   /// No description provided for @alreadyCompleted.
@@ -3865,7 +3865,7 @@ abstract class AppLocalizations {
   /// No description provided for @joinByCode.
   ///
   /// In en, this message translates to:
-  /// **'Join by code'**
+  /// **'Join by Code'**
   String get joinByCode;
 
   /// No description provided for @joinByCodeDesc.
@@ -4197,6 +4197,192 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please select at least one unit'**
   String get pleaseSelectAtLeastOneUnit;
+
+  /// No description provided for @loginRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Required'**
+  String get loginRequired;
+
+  /// No description provided for @loginRequiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue'**
+  String get loginRequiredTitle;
+
+  /// No description provided for @loginRequiredMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in to access this feature and sync your data across devices.'**
+  String get loginRequiredMessage;
+
+  /// No description provided for @loginRequiredDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account or sign in to unlock all features, track your progress, and participate in shared khatmas.'**
+  String get loginRequiredDescription;
+
+  /// No description provided for @splashAppNameArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'ختمة'**
+  String get splashAppNameArabic;
+
+  /// No description provided for @splashAppNameLatin.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma'**
+  String get splashAppNameLatin;
+
+  /// No description provided for @splashTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Quran Reading Companion'**
+  String get splashTagline;
+
+  /// No description provided for @khatmaTypeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Type'**
+  String get khatmaTypeTitle;
+
+  /// No description provided for @readingUnitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Unit'**
+  String get readingUnitTitle;
+
+  /// No description provided for @scheduleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get scheduleTitle;
+
+  /// No description provided for @startDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date'**
+  String get startDateLabel;
+
+  /// No description provided for @endDateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'End Date (Optional)'**
+  String get endDateLabel;
+
+  /// No description provided for @typePersonalDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your personal Quran reading'**
+  String get typePersonalDescription;
+
+  /// No description provided for @typeSharedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with family and friends'**
+  String get typeSharedDescription;
+
+  /// No description provided for @typeHifzDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Memorization tracking'**
+  String get typeHifzDescription;
+
+  /// No description provided for @signInRequiredForType.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in required'**
+  String get signInRequiredForType;
+
+  /// No description provided for @addKhatmaMenuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Khatma'**
+  String get addKhatmaMenuTitle;
+
+  /// No description provided for @createKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Khatma'**
+  String get createKhatma;
+
+  /// No description provided for @createKhatmaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your own Quran reading journey'**
+  String get createKhatmaDescription;
+
+  /// No description provided for @joinByCodeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a code to join a private Khatma'**
+  String get joinByCodeDescription;
+
+  /// No description provided for @joinPublicKhatma.
+  ///
+  /// In en, this message translates to:
+  /// **'Join by Code'**
+  String get joinPublicKhatma;
+
+  /// No description provided for @joinPublicKhatmaDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a 6-character code to join a Khatma'**
+  String get joinPublicKhatmaDescription;
+
+  /// No description provided for @joinByCodeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join by Code'**
+  String get joinByCodeTitle;
+
+  /// No description provided for @enterKhatmaCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Khatma Code'**
+  String get enterKhatmaCode;
+
+  /// No description provided for @codeInputHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 6-character code'**
+  String get codeInputHint;
+
+  /// No description provided for @codeInputLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Khatma Code'**
+  String get codeInputLabel;
+
+  /// No description provided for @searchKhatmaByCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get searchKhatmaByCode;
+
+  /// No description provided for @invalidCodeLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Code must be 6 characters'**
+  String get invalidCodeLength;
+
+  /// No description provided for @khatmaNotFoundByCode.
+  ///
+  /// In en, this message translates to:
+  /// **'No Khatma found with this code'**
+  String get khatmaNotFoundByCode;
+
+  /// No description provided for @khatmaNotFoundByCodeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check the code and try again'**
+  String get khatmaNotFoundByCodeDescription;
+
+  /// No description provided for @enterCodeToSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a 6-character code to find a Khatma'**
+  String get enterCodeToSearch;
 }
 
 class _AppLocalizationsDelegate

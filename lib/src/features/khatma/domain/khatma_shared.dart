@@ -8,7 +8,7 @@ part of 'khatma.dart';
 enum JoinMethod {
   code, // Join by code only
   invitation, // Join by invitation with validation
-  both; // Both code and invitation
+  open; // Both code and invitation
 }
 
 /// Configuration for Shared-specific settings

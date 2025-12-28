@@ -25,7 +25,8 @@ sealed class KhatmaDto with _$KhatmaDto {
     @Default('light') String themeVariant,
     DateTime? endDate,
     DateTime? lastRead,
-    List<int>? completedParts,
+    // Map of part number (as string) to completion date (as ISO8601 string)
+    Map<String, String>? completedParts,
     DateTime? lastUpdated,
     DateTime? lastSync,
     @Default(false) bool needsSync,
