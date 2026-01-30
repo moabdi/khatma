@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:khatma/src/core/result.dart';
@@ -122,7 +124,7 @@ class AppErrorHandler {
 extension ResultErrorHandling<T> on Result<T, AppErrorCode> {
   void handleUI(
     BuildContext context, {
-    required VoidCallback onSuccess,
+    required FutureOr<void> Function() onSuccess,
     VoidCallback? onError,
     VoidCallback? onRetry,
   }) {

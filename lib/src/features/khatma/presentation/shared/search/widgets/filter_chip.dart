@@ -55,12 +55,11 @@ class KhatmaFilterChip extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 count != null ? '$label ($count)' : label,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: isSelected
                           ? Theme.of(context).colorScheme.primary
                           : Theme.of(context).colorScheme.onSurfaceVariant,
                       fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                      fontSize: 12,
                     ),
               ),
             ],

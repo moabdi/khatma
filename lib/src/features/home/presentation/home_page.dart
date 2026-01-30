@@ -42,8 +42,8 @@ class KhatmatListScreen extends StatelessWidget {
                 ),
               ),
             ),
-            backgroundColor: context.colorScheme.primaryContainer,
-            surfaceTintColor: context.colorScheme.primaryContainer,
+            backgroundColor:  Color(0xFF047857),
+            surfaceTintColor:  Color(0xFF047857),//context.colorScheme.primaryContainer,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: false,
               title: AnimatedTextKit(
@@ -64,7 +64,8 @@ class KhatmatListScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              color: context.colorScheme.primaryContainer,
+              color:  Color(0xFF047857),//context.colorScheme.primaryContainer,
+              width: null,
               child: TopCard(height: MediaQuery.of(context).size.height / 6),
             ),
           ),

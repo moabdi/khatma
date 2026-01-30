@@ -231,6 +231,7 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead>
         mainAxisSize: MainAxisSize.min,
         children: [
           // Enhanced selection counter
+          /*
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             height: hasSelection ? null : 0,
@@ -261,7 +262,7 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead>
               ),
             ),
           ),
-
+          */
           // Enhanced button with animations
           SizedBox(
             width: double.infinity,
@@ -405,6 +406,7 @@ class _ConfirmReadState extends ConsumerState<ConfirmRead>
         },
       );
     } catch (e) {
+      print('Error completing parts: $e');
       if (context.mounted) {
         AppErrorHandler.handleError(context, AppErrorCode.generalUnknown);
         // Error haptic feedback

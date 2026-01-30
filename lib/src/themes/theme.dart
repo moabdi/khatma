@@ -110,7 +110,7 @@ class AppTheme {
   ) {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        foregroundColor: colorScheme.onPrimary,
+        foregroundColor: Colors.white,
         backgroundColor: colorScheme.primary,
         minimumSize: const Size(double.infinity, buttonHeight),
         shape: RoundedRectangleBorder(

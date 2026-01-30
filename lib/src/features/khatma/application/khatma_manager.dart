@@ -150,7 +150,20 @@ class KhatmaManager extends _$KhatmaManager {
     }
   }
 
-  Future completeParts(String s, List<int> selectedParts) async {}
+  Future<Result<Khatma, AppErrorCode>> completeParts(String khatmaId, List<int> selectedParts) async {
+    final khatma = getKhatmaById(khatmaId);
+    if (khatma == null) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    if (khatma is! KhatmaPersonal) {
+      return Result.failure(AppErrorCode.khatmaNotFound);
+    }
+
+    // addCompletedParts returns a NEW immutable object with the updated parts
+    final updatedKhatma = khatma.addCompletedParts(selectedParts);
+    return await save(updatedKhatma);
+  }
 
   // ============================================================================
   // SHARED KHATMA METHODS
